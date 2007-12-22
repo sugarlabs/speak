@@ -45,7 +45,6 @@ class SpeakActivity(activity.Activity):
         self.connect( "notify::active", self._activeCb )
         self.audio = audio.AudioGrab(datastore, self._jobject)
         self.mouth = mouth.Mouth(self.audio)
-        self.audio.set_wave_copy(self.mouth)
         
         box = gtk.VBox(homogeneous=False)
         box.pack_start(eyeBox, expand=False)

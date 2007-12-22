@@ -34,8 +34,6 @@ class Mouth(gtk.DrawingArea):
         self.num_of_points = 105
         
         self.details_show = False
-        self.logging_status=False
-        self.f=None
 
         self.stop=False
 
@@ -48,14 +46,12 @@ class Mouth(gtk.DrawingArea):
         self.scaleY = "10"
 
             
-    def _new_buffer(self, obj, buf, status, f):
+    def _new_buffer(self, obj, buf):
         self.str_buffer = buf
         self.integer_buffer = list(unpack( str(int(len(buf))/2)+'h' , buf))     
         if(len(self.main_buffers)>6301):
             del self.main_buffers[0:(len(self.main_buffers)-6301)]
         self.main_buffers += self.integer_buffer
-        self.logging_status=status
-        self.f=f
         return True
 
 
