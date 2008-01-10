@@ -1,18 +1,31 @@
-#! /usr/bin/python
+# Speak.activity
+# A simple front end to the espeak text-to-speech engine on the XO laptop
+#
+# Copyright (C) 2008  Joshua Minor
+# This file is part of Speak.activity
+#
+# Parts of Speak.activity are based on code from Measure.activity
+# Copyright (C) 2007  Arjun Sarwal - arjun@laptop.org
+# 
+#     Speak.activity is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
+# 
+#     Foobar is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+# 
+#     You should have received a copy of the GNU General Public License
+#     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-import pygst
-pygst.require("0.10")
-import pygtk
+# This code is a super-stripped down version of the waveform view from Measure
+
 import gtk
 import cairo
-import gobject
-from time import *
-from struct import *
-import pango
-import os
-import audioop
-from Numeric import *
-from FFT import *
+from struct import unpack
+import numpy.core
 
 class Mouth(gtk.DrawingArea):
     def __init__(self, audioSource):
@@ -20,120 +33,28 @@ class Mouth(gtk.DrawingArea):
         gtk.DrawingArea.__init__(self)
         self.connect("expose_event",self.expose)
         self.buffers = []
+        self.buffer_size = 256
         self.main_buffers = []
-        self.integer_buffer = []
+        self.newest_buffer = []
 
         audioSource.connect("new-buffer", self._new_buffer)
 
-        self.peaks = []
-
-        self.y_mag = 0.7
-        self.freq_range=70
-        self.draw_interval = 1
-        self.num_of_points = 105
-
-        self.stop=False
-
-        self.fft_show = False
-        self.fftx = []
-
-        self.y_mag_bias_multiplier = 1  #constant to multiply with self.param2 while scaling values
-
-        self.scaleX = "10"
-        self.scaleY = "10"
-
-
     def _new_buffer(self, obj, buf):
-        self.integer_buffer = list(unpack( str(int(len(buf))/2)+'h' , buf))
-        if(len(self.main_buffers)>6301):
-            del self.main_buffers[0:(len(self.main_buffers)-6301)]
-        self.main_buffers += self.integer_buffer
+        self.newest_buffer = list(unpack( str(int(len(buf))/2)+'h' , buf))
+        self.main_buffers += self.newest_buffer
+        if(len(self.main_buffers)>self.buffer_size):
+            del self.main_buffers[0:(len(self.main_buffers)-self.buffer_size)]
+        self.queue_draw()
         return True
 
-
     def processBuffer(self, bounds):
-        self.param1 = bounds.height/65536.0
-        self.param2 = bounds.height/2.0
-
-        if(self.stop==False):
-
-            if(self.fft_show==False):
-
-                ######################filtering####################
-                weights = [1,2,3,4,3,2,1]
-                weights_sum = 16.0
-
-                for i in range(3,len(self.integer_buffer)-3):
-                    self.integer_buffer[i] = (self.integer_buffer[(i-3)]+2*self.integer_buffer[(i-2)] + 3*self.integer_buffer[(i-1)] + 4*self.integer_buffer[(i)]+3*self.integer_buffer[(i+1)] + 2*self.integer_buffer[(i+2)]  + self.integer_buffer[(i+3)]) / weights_sum
-                ###################################################
-
-                self.y_mag_bias_multiplier=1
-                self.draw_interval=10
-
-                #100hz
-                if(self.freq_range==30):
-                    self.spacing = 60
-                    self.num_of_points=6300
-
-                #1khz
-                if(self.freq_range==50):
-                    self.spacing = 6
-                    self.num_of_points=630
-
-                #4khz
-                if(self.freq_range==70):
-                    self.spacing = 1
-                    self.num_of_points = 105
-
-                self.scaleX = str(self.spacing*.104) + " msec"  #.104 = 5/48; 5 points per division and 48 khz sampling
-
-                if(len(self.main_buffers)>=self.num_of_points):
-                    del self.main_buffers[0:len(self.main_buffers)-(self.num_of_points+1)]
-                    self.buffers=[]
-                    i=0
-                    while i<self.num_of_points:
-                        self.buffers.append(self.main_buffers[i])
-                        i+=self.spacing
-
-                self.scaleY=" "
-
-            else:
-                ###############fft################
-                Fs = 48000
-                nfft= 65536
-                self.integer_buffer=self.integer_buffer[0:256]
-                self.fftx = fft(self.integer_buffer, 256,-1)
-
-                self.fftx=self.fftx[0:self.freq_range*2]
-                self.draw_interval=bounds.width/(self.freq_range*2)
-
-                NumUniquePts = ceil((nfft+1)/2)
-                self.buffers=abs(self.fftx)*0.02
-                self.y_mag_bias_multiplier=0.1
-                self.scaleX = "hz"
-                self.scaleY = ""
-                ##################################
-
-        if(len(self.buffers)==0):
-            return False
-
-        ###############Scaling the values################
-        val = []
-        for i in self.buffers:
-            temp_val_float = float(self.param1*i*self.y_mag) + self.y_mag_bias_multiplier * self.param2
-
-            if(temp_val_float >= bounds.height):
-                temp_val_float = bounds.height-25
-            if(temp_val_float <= 0):
-                temp_val_float = 25
-            val.append( temp_val_float )
-
-        self.peaks = val
-        #################################################
+        if len(self.main_buffers) == 0:
+            self.volume = 0
+        else:
+            self.volume = numpy.core.max(self.main_buffers)# - numpy.core.min(self.main_buffers)
 
     def expose(self, widget, event):
         """This function is the "expose" event handler and does all the drawing."""
-
         bounds = self.get_allocation()
 
         self.processBuffer(bounds)
@@ -151,12 +72,21 @@ class Mouth(gtk.DrawingArea):
         self.context.rectangle(0,0, bounds.width,bounds.height)
         self.context.fill()
 
-        # Draw the waveform
+        # Draw the mouth
+        volume = self.volume / 65535.
+        mouthH = volume * bounds.height
+        mouthW = volume**2 * (bounds.width/2.) + bounds.width/2.
+        #        T
+        #  L          R
+        #        B
+        Lx,Ly = bounds.width/2 - mouthW/2, bounds.height/2
+        Tx,Ty = bounds.width/2,            bounds.height/2 - mouthH/2
+        Rx,Ry = bounds.width/2 + mouthW/2, bounds.height/2
+        Bx,By = bounds.width/2,            bounds.height/2 + mouthH/2
         self.context.set_line_width(10.0)
-        count = 0
-        for peak in self.peaks:
-            self.context.line_to(count,bounds.height - peak)
-            count += self.draw_interval
+        self.context.move_to(Lx,Ly)
+        self.context.curve_to(Tx,Ty, Tx,Ty, Rx,Ry)
+        self.context.curve_to(Bx,By, Bx,By, Lx,Ly)
         self.context.set_source_rgb(0,0,0)
         self.context.stroke()
 

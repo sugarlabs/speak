@@ -3,5 +3,5 @@ name = Speak
 service_name = vu.lux.olpc.Speak
 class = activity.SpeakActivity
 icon = activity-speak
-activity_version = 1
+activity_version = 3
 show_launcher = yes

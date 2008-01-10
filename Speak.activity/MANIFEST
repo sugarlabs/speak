@@ -1,4 +1,9 @@
 activity/activity-speak.svg
 activity/activity.info
 activity.py
+audio.py
+COPYING
+eye.py
+mouth.py
 setup.py
+voice.py

@@ -1,4 +1,24 @@
-#! /usr/bin/python
+# Speak.activity
+# A simple front end to the espeak text-to-speech engine on the XO laptop
+#
+# Copyright (C) 2008  Joshua Minor
+# This file is part of Speak.activity
+#
+# Parts of Speak.activity are based on code from Measure.activity
+# Copyright (C) 2007  Arjun Sarwal - arjun@laptop.org
+# 
+#     Speak.activity is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
+# 
+#     Foobar is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+# 
+#     You should have received a copy of the GNU General Public License
+#     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 import pygtk
 import gtk
@@ -12,19 +32,33 @@ class Eye(gtk.DrawingArea):
         gtk.DrawingArea.__init__(self)
         self.connect("expose_event",self.expose)
         self.frame = 0
-        # instead of listening for mouse move events we poll to see if the mouse has moved
-        # this is so we can react to the mouse even when it isn't directly over this widget
-        gobject.timeout_add(100, self._timeout_cb)
-        self.mousePosition = self.get_mouse()
+        self.blink = False
+        
+        # listen for clicks
+        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
+        self.connect("button_press_event", self._mouse_pressed_cb)
+        self.connect("button_release_event", self._mouse_released_cb)
+        
+        # Instead of listening for mouse move events we could poll to see if the mouse has moved
+        # would let us react to the mouse even when it isn't directly over this widget.
+        # Unfortunately that would cause a lot of CPU usage.  So instead we rely on our parent to
+        # tell us to redraw when the mouse has moved.  We still need to call add_events so that
+        # our parent will get mouse motion events, but we don't connect the callback for them ourselves.
+        self.add_events(gtk.gdk.POINTER_MOTION_MASK)
+        # self.connect("motion_notify_event", self._mouse_moved_cb)
 
-    def _timeout_cb(self):
-        # only redraw if the mouse has moved
-        newPosition = self.get_mouse()
-        if newPosition != self.mousePosition:
-            self.queue_draw()
-            self.mousePosition = newPosition
-        return True
+    def _mouse_moved_cb(self, widget, event):
+        self.queue_draw()
 
+    def _mouse_pressed_cb(self, widget, event):
+        self.blink = True
+        self.queue_draw()
+
+    def _mouse_released_cb(self, widget, event):
+        self.blink = False
+        self.queue_draw()
+        
     def get_mouse(self):
         display = gtk.gdk.display_get_default()
         screen, mouseX, mouseY, modifiers = display.get_pointer()
@@ -34,7 +68,7 @@ class Eye(gtk.DrawingArea):
         self.frame += 1
         bounds = self.get_allocation()
         
-        mouseX, mouseY = self.mousePosition
+        mouseX, mouseY = self.get_mouse()
         
         eyeSize = min(bounds.width, bounds.height)
         outlineWidth = eyeSize/20.0
@@ -76,5 +110,7 @@ class Eye(gtk.DrawingArea):
         self.context.arc(pupilX,pupilY,pupilSize,0,360)
         self.context.set_source_rgb(0,0,0)
         self.context.fill()
+
+        self.blink = False
 
         return True

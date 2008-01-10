@@ -5,11 +5,10 @@
   <!ENTITY stroke_color "#000000">
 ]>
 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
-  <rect x="3" y="24" width="44" height="20"
-  style="fill:&fill_color;;stroke:&stroke_color;;stroke-width:2"/>
   <ellipse fill="&fill_color;" stroke="&stroke_color;" stroke-width="3.5" cx="12" cy="12" rx="10" ry="10"/>
   <ellipse fill="&fill_color;" stroke="&stroke_color;" stroke-width="3.5" cx="36" cy="12" rx="10" ry="10"/>
   <circle fill="&fill_color;" stroke="&stroke_color;" stroke-width="3.5" cx="16" cy="10" r="2"/>
   <circle fill="&fill_color;" stroke="&stroke_color;" stroke-width="3.5" cx="40" cy="10" r="2"/>
+  <ellipse fill="&fill_color;" stroke="&stroke_color;" stroke-width="3.5" cx="25" cy="34" rx="20" ry="4"/>
 </svg>
 
