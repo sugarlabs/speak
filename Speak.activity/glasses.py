@@ -29,13 +29,10 @@ class Glasses(Eye):
     def expose(self, widget, event):
         bounds = self.get_allocation()
         
-        mouseX, mouseY = self.get_mouse()
-        
         eyeSize = min(bounds.width, bounds.height)
         outlineWidth = eyeSize/20.0
         pupilSize = eyeSize/10.0
-        pupilX = max(min(mouseX - bounds.x, bounds.width), 0)
-        pupilY = max(min(mouseY - bounds.y, bounds.height), 0)
+        pupilX, pupilY = self.pupil_position()
         dX = pupilX - bounds.width/2.
         dY = pupilY - bounds.height/2.
         distance = math.sqrt(dX*dX + dY*dY)

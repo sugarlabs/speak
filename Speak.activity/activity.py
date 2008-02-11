@@ -68,9 +68,12 @@ class SpeakActivity(activity.Activity):
         #self.proc = None
 
         # make a box to type into
-        self.entry = gtk.Entry()
+        self.entrycombo = gtk.combo_box_entry_new_text()
+        self.entrycombo.connect("changed", self._combo_changed_cb)
+        self.entry = self.entrycombo.child
         self.entry.set_editable(True)
-        self.entry.connect('activate', self.entry_activate_cb)
+        self.entry.connect('activate', self._entry_activate_cb)
+        self.entry.connect("key-press-event", self._entry_key_press_cb)
         self.input_font = pango.FontDescription(str='sans bold 24')
         self.entry.modify_font(self.input_font)
 
@@ -86,7 +89,7 @@ class SpeakActivity(activity.Activity):
         box = gtk.VBox(homogeneous=False)
         box.pack_start(self.eyebox, expand=False)
         box.pack_start(self.mouthbox)
-        box.pack_start(self.entry, expand=False)
+        box.pack_start(self.entrycombo, expand=False)
         
         self.set_canvas(box)
         box.show_all()
@@ -112,18 +115,62 @@ class SpeakActivity(activity.Activity):
         
         # make the text box active right away
         self.entry.grab_focus()
-
-        # start polling for audio
-        #gobject.timeout_add(100, self._timeout_cb)
         
+        self.entry.connect("move-cursor", self._cursor_moved_cb)
+        self.entry.connect("changed", self._cursor_moved_cb)
+
+        # try to catch all mouse-moved events so the eyes will track wherever you go
+        # this doesn't work for some reason I don't understand
+        # it gets mouse motion over lots of stuff, but not sliders or comboboxes
+        # import time
+        # self.window.set_events(self.window.get_events() | gtk.gdk.POINTER_MOTION_MASK)
+        # def event_filter(event, user_data=None):
+        #     map(lambda w: w.queue_draw(), self.eyes)
+        #     print time.asctime(), time.time(), event.get_coords(), event.get_root_coords()
+        #     return gtk.gdk.FILTER_CONTINUE
+        # self.window.add_filter(event_filter)
+        # map(lambda c: c.forall(lambda w: w.add_events(gtk.gdk.POINTER_MOTION_MASK)), self.window.get_children())
+
+        # start polling for mouse movement
+        # self.mouseX = None
+        # self.mouseY = None
+        # def poll_mouse():
+        #     display = gtk.gdk.display_get_default()
+        #     screen, mouseX, mouseY, modifiers = display.get_pointer()
+        #     if self.mouseX != mouseX or self.mouseY != mouseY:
+        #         self.mouseX = mouseX
+        #         self.mouseY = mouseY
+        #         map(lambda w: w.queue_draw(), self.eyes)
+        #     return True
+        # gobject.timeout_add(100, poll_mouse)
+        
+        # start with the eyes straight ahead
+        map(lambda e: e.look_ahead(), self.eyes)
+
         # say hello to the user
         self.active = True
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
-        self.say("Hello %s, my name is XO.  Type something." % xoOwner.props.nick)
+        self.say("Hello %s.  Type something." % xoOwner.props.nick)
+
+    def _cursor_moved_cb(self, entry, *ignored):
+        # make the eyes track the motion of the text cursor
+        index = entry.props.cursor_position
+        layout = entry.get_layout()
+        pos = layout.get_cursor_pos(index)
+        x = pos[0][0] / pango.SCALE - entry.props.scroll_offset
+        y = entry.get_allocation().y
+        map(lambda e, x=x, y=y: e.look_at(x,y), self.eyes)
+
+    def get_mouse(self):
+        display = gtk.gdk.display_get_default()
+        screen, mouseX, mouseY, modifiers = display.get_pointer()
+        return mouseX, mouseY
 
     def _mouse_moved_cb(self, widget, event):
-        map(lambda w: w.queue_draw(), self.eyes)
+        # make the eyes track the motion of the mouse cursor
+        x,y = self.get_mouse()
+        map(lambda e, x=x, y=y: e.look_at(x,y), self.eyes)
 
     def _mouse_clicked_cb(self, widget, event):
         pass
@@ -186,18 +233,11 @@ class SpeakActivity(activity.Activity):
     def rate_adjusted_cb(self, get, data=None):
         self.say("rate adjusted")
 
-
     def make_face_bar(self):
         facebar = gtk.Toolbar()
 
         self.numeyesadj = None
         
-        # button = ToolButton('change-voice')
-        # button.set_tooltip("Change Voice")
-        # button.connect('clicked', self.change_voice_cb)
-        # facebar.insert(button, -1)
-        # button.show()
-
         combo = ComboBox()
         combo.connect('changed', self.mouth_changed_cb)
         combo.append_item(mouth.Mouth, "Simple")
@@ -264,23 +304,53 @@ class SpeakActivity(activity.Activity):
 
         # this SegFaults: self.say(self.eye_shape_combo.get_active_text())
         self.say("eyes changed")
+        
+    def _combo_changed_cb(self, combo):
+        # when a new item is chosen, make sure the text is selected
+        if not self.entry.is_focus():
+            self.entry.grab_focus()
+            self.entry.select_region(0,-1)
 
-    def _timeout_cb(self):
-        # make the mouth update with the latest waveform
-        # ideally we would only do this when the audio is actually playing
-        if self.mouth:
-            self.mouth.queue_draw();
-        return True
+    def _entry_key_press_cb(self, combo, event):
+        # make the up/down arrows navigate through our history
+        keyname = gtk.gdk.keyval_name(event.keyval)
+        if keyname == "Up":
+            index = self.entrycombo.get_active()
+            if index>0:
+                index-=1
+            self.entrycombo.set_active(index)
+            self.entry.select_region(0,-1)
+            return True
+        elif keyname == "Down":
+            index = self.entrycombo.get_active()
+            if index<len(self.entrycombo.get_model())-1:
+                index+=1
+            self.entrycombo.set_active(index)
+            self.entry.select_region(0,-1)
+            return True
+        return False
 
-    def entry_activate_cb(self, entry):
+    def _entry_activate_cb(self, entry):
         # the user pressed Return, say the text and clear it out
         text = entry.props.text
         if text:
+            # look ahead
+            map(lambda e: e.look_ahead(), self.eyes)
+            
+            # speak the text
             self.say(text)
-            # ideally we would clear it after we finish saying it
-            # so that you would be able to compare the audio to the text
-            # without having to remember what you typed
-            entry.props.text = ''
+            
+            # add this text to our history unless it is the same as the last item
+            history = self.entrycombo.get_model()
+            if len(history)==0 or history[-1][0] != text:
+                self.entrycombo.append_text(text)
+                # don't let the history get too big
+                while len(history)>20:
+                    self.entrycombo.remove_text(0)
+                # select the new item
+                self.entrycombo.set_active(len(history)-1)
+            # select the whole text
+            entry.select_region(0,-1)
         
     def say(self, something):
         if self.audio is None or not self.active:

@@ -30,9 +30,10 @@ import math
 class Eye(gtk.DrawingArea):
     def __init__(self):
         gtk.DrawingArea.__init__(self)
-        self.connect("expose_event",self.expose)
+        self.connect("expose_event", self.expose)
         self.frame = 0
         self.blink = False
+        self.x, self.y = 0,0
         
         # listen for clicks
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
@@ -59,22 +60,40 @@ class Eye(gtk.DrawingArea):
         self.blink = False
         self.queue_draw()
         
-    def get_mouse(self):
-        display = gtk.gdk.display_get_default()
-        screen, mouseX, mouseY, modifiers = display.get_pointer()
-        return mouseX, mouseY
+    def look_at(self, x, y):
+        self.x = x
+        self.y = y
+        self.queue_draw()
+
+    def look_ahead(self):
+        self.x = None
+        self.y = None
+        self.queue_draw()
+
+    def pupil_position(self):
+        bounds = self.get_allocation()
+        abs_x, abs_y = self.translate_coordinates(self.get_toplevel(), 0, 0)
+        if self.x is not None and self.y is not None:
+            dir_x, dir_y = self.x - abs_x, self.y - abs_y
+        else:
+            # look ahead, but not *directly* in the middle
+            if bounds.x+bounds.width/2 < self.parent.get_allocation().width/2:
+                dir_x = bounds.width * 0.6
+            else:
+                dir_x = bounds.width * 0.4
+            dir_y = bounds.height * 0.6
+        pupilX = max(min(dir_x, bounds.width), 0)
+        pupilY = max(min(dir_y, bounds.height), 0)
+        return pupilX, pupilY
 
     def expose(self, widget, event):
         self.frame += 1
         bounds = self.get_allocation()
         
-        mouseX, mouseY = self.get_mouse()
-        
         eyeSize = min(bounds.width, bounds.height)
         outlineWidth = eyeSize/20.0
         pupilSize = eyeSize/10.0
-        pupilX = max(min(mouseX - bounds.x, bounds.width), 0)
-        pupilY = max(min(mouseY - bounds.y, bounds.height), 0)
+        pupilX, pupilY = self.pupil_position()
         dX = pupilX - bounds.width/2.
         dY = pupilY - bounds.height/2.
         distance = math.sqrt(dX*dX + dY*dY)

@@ -88,6 +88,7 @@ class Mouth(gtk.DrawingArea):
         self.context.curve_to(Tx,Ty, Tx,Ty, Rx,Ry)
         self.context.curve_to(Bx,By, Bx,By, Lx,Ly)
         self.context.set_source_rgb(0,0,0)
+        self.context.close_path()
         self.context.stroke()
 
         return True
