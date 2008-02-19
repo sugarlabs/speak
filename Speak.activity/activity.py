@@ -23,6 +23,7 @@
 
 import sys
 import os
+from urllib import (quote, unquote)
 import subprocess
 import random
 from sugar.activity import activity
@@ -32,6 +33,12 @@ import logging
 import gtk
 import gobject
 import pango
+
+try:
+    sys.path.append('/usr/lib/python2.4/site-packages') # for speechd
+    import speechd.client
+except:
+    print "Speech-dispatcher not found."
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toolcombobox import ToolComboBox
@@ -54,6 +61,12 @@ class SpeakActivity(activity.Activity):
         
         activity.Activity.__init__(self, handle)
         bounds = self.get_allocation()
+
+        try:
+            self.synth = speechd.client.SSIPClient("Speak.activity")
+        except:
+            self.synth = None
+            print "Falling back to espeak command line tool."
 
         # pick a voice that espeak supports
         self.voices = voice.allVoices()
@@ -153,6 +166,79 @@ class SpeakActivity(activity.Activity):
         xoOwner = presenceService.get_owner()
         self.say("Hello %s.  Type something." % xoOwner.props.nick)
 
+    def write_file(self, file_path):
+        f = open(file_path, "w")
+        f.write("speak file format v1\n")
+        f.write("voice=%s\n" % quote(self.voice.friendlyname))
+        f.write("text=%s\n" % quote(self.entry.props.text))
+        history = map(lambda i: i[0], self.entrycombo.get_model())
+        f.write("history=[%s]\n" % ",".join(map(quote, history)))
+        f.write("pitch=%d\n" % self.pitchadj.value)
+        f.write("rate=%d\n" % self.rateadj.value)
+        f.write("mouth_shape=%s\n" % quote(self.mouth_shape_combo.get_active_item()[1]))
+        f.write("eye_shape=%s\n" % quote(self.eye_shape_combo.get_active_item()[1]))
+        f.write("num_eyes=%d\n" % self.numeyesadj.value)
+        f.close()
+        
+        f = open(file_path, "r")
+        print f.readlines()
+        f.close()
+        
+        
+    def read_file(self, file_path):
+        
+        def pick_combo_item(combo, name):
+            index = 0
+            model = combo.get_model()
+            for item in model:
+                if item[1] == name:
+                    combo.set_active(index)
+                    return True
+                index += 1
+            return False
+        
+        f = open(file_path, "r")
+        header = f.readline().strip()
+        if header != "speak file format v1":
+            print "Reading format from the future '%s', will try my best." % header
+        for line in f.readlines():
+            line = line.strip()
+            index = line.find('=')
+            key = line[:index]
+            value = line[index+1:]
+            if key == 'voice':
+                voice_name = unquote(value)
+                found = pick_combo_item(self.voice_combo, voice_name)
+                if not found:
+                    print "Unrecognized voice name: %s" % voice_name
+            elif key == 'text':
+                self.entry.props.text = unquote(value)
+            elif key == 'history':
+                if value[0]=='[' and value[-1]==']':
+                    for item in value[1:-1].split(','):
+                        self.entrycombo.append_text(unquote(item))
+                else:
+                    print "Unrecognized history: %s" % value
+            elif key == 'pitch':
+                self.pitchadj.value = int(value)
+            elif key == 'rate':
+                self.rateadj.value = int(value)
+            elif key == 'mouth_shape':
+                mouth_name = unquote(value)
+                found = pick_combo_item(self.mouth_shape_combo, mouth_name)
+                if not found:
+                    print "Unrecognized mouth shape: %s" % mouth_name
+            elif key == 'eye_shape':
+                eye_name = unquote(value)
+                found = pick_combo_item(self.eye_shape_combo, eye_name)
+                if not found:
+                    print "Unrecognized eye shape: %s" % eye_name
+            elif key == 'num_eyes':
+                self.numeyesadj.value = int(value)
+            else:
+                print "Ignoring unrecognized line: %s" % line
+        f.close()
+
     def _cursor_moved_cb(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
         index = entry.props.cursor_position
@@ -184,18 +270,23 @@ class SpeakActivity(activity.Activity):
         # voicebar.insert(button, -1)
         # button.show()
         
-        combo = ComboBox()
-        combo.connect('changed', self.voice_changed_cb)
+        self.voice_combo = ComboBox()
+        self.voice_combo.connect('changed', self.voice_changed_cb)
         voicenames = self.voices.keys()
         voicenames.sort()
         for name in voicenames:
-            combo.append_item(self.voices[name], name)
-        combo.set_active(voicenames.index(self.voice.friendlyname))
-        combotool = ToolComboBox(combo)
+            self.voice_combo.append_item(self.voices[name], name)
+        self.voice_combo.set_active(voicenames.index(self.voice.friendlyname))
+        combotool = ToolComboBox(self.voice_combo)
         voicebar.insert(combotool, -1)
         combotool.show()
 
-        self.pitchadj = gtk.Adjustment(50, 0, 99, 1, 10, 0)
+        if self.synth is not None:
+            # speechd uses -100 to 100
+            self.pitchadj = gtk.Adjustment(0, -100, 100, 1, 10, 0)
+        else:
+            # espeak uses 0 to 99
+            self.pitchadj = gtk.Adjustment(50, 0, 99, 1, 10, 0)
         self.pitchadj.connect("value_changed", self.pitch_adjusted_cb, self.pitchadj)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
@@ -208,7 +299,12 @@ class SpeakActivity(activity.Activity):
         voicebar.insert(pitchtool, -1)
         pitchbar.show()
 
-        self.rateadj = gtk.Adjustment(100, 80, 370, 1, 10, 0)
+        if self.synth is not None:
+            # speechd uses -100 to 100
+            self.rateadj = gtk.Adjustment(0, -100, 100, 1, 10, 0)
+        else:
+            # espeak uses 80 to 370
+            self.rateadj = gtk.Adjustment(100, 80, 370, 1, 10, 0)
         self.rateadj.connect("value_changed", self.rate_adjusted_cb, self.rateadj)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
@@ -238,13 +334,13 @@ class SpeakActivity(activity.Activity):
 
         self.numeyesadj = None
         
-        combo = ComboBox()
-        combo.connect('changed', self.mouth_changed_cb)
-        combo.append_item(mouth.Mouth, "Simple")
-        combo.append_item(waveform_mouth.WaveformMouth, "Waveform")
-        combo.append_item(fft_mouth.FFTMouth, "Frequency")
-        combo.set_active(0)
-        combotool = ToolComboBox(combo)
+        self.mouth_shape_combo = ComboBox()
+        self.mouth_shape_combo.connect('changed', self.mouth_changed_cb)
+        self.mouth_shape_combo.append_item(mouth.Mouth, "Simple")
+        self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth, "Waveform")
+        self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, "Frequency")
+        self.mouth_shape_combo.set_active(0)
+        combotool = ToolComboBox(self.mouth_shape_combo)
         facebar.insert(combotool, -1)
         combotool.show()
 
@@ -351,23 +447,26 @@ class SpeakActivity(activity.Activity):
                 self.entrycombo.set_active(len(history)-1)
             # select the whole text
             entry.select_region(0,-1)
+
+    def _synth_cb(self, callback_type):
+        print "synth callback type:", callback_type
         
     def say(self, something):
         if self.audio is None or not self.active:
             return
-        # ideally we would stream the audio instead of writing to disk each time...
+        
         print self.voice.name, ":", something
-        wavpath = "/tmp/speak.wav"
-        subprocess.call(["espeak", "-w", wavpath, "-p", str(self.pitchadj.value), "-s", str(self.rateadj.value), "-v", self.voice.name, something], stdout=subprocess.PIPE)
-        self.audio.playfile(wavpath)
-        # this doesn't seem to work, but would avoid the /tmp/file.wave
-        # if self.proc:
-        #     self.proc = None
-        # self.proc = subprocess.Popen(["espeak", "--stdout", "-s", "100", "-v", self.voice.name, something], stdout=subprocess.PIPE)
-        # print self.proc
-        # print self.proc.stdout
-        # print self.proc.stdout.fileno()
-        # self.audio.playfd(self.proc.stdout.fileno())
+        
+        if self.synth is not None:
+            self.synth.set_rate(int(self.rateadj.value))
+            self.synth.set_pitch(int(self.pitchadj.value))
+            self.synth.set_language(self.voice.language)
+            self.synth.speak(something) #, callback=self._synth_cb)
+        else:
+            # ideally we would stream the audio instead of writing to disk each time...
+            wavpath = "/tmp/speak.wav"
+            subprocess.call(["espeak", "-w", wavpath, "-p", str(self.pitchadj.value), "-s", str(self.rateadj.value), "-v", self.voice.name, something], stdout=subprocess.PIPE)
+            self.audio.playfile(wavpath)
     
     def _activeCb( self, widget, pspec ):
         # only generate sound when this activity is active
