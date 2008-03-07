@@ -33,12 +33,13 @@ import logging
 import gtk
 import gobject
 import pango
+from gettext import gettext as _
 
-try:
-    sys.path.append('/usr/lib/python2.4/site-packages') # for speechd
-    import speechd.client
-except:
-    print "Speech-dispatcher not found."
+# try:
+#     sys.path.append('/usr/lib/python2.4/site-packages') # for speechd
+#     import speechd.client
+# except:
+#     print "Speech-dispatcher not found."
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toolcombobox import ToolComboBox
@@ -62,23 +63,29 @@ class SpeakActivity(activity.Activity):
         activity.Activity.__init__(self, handle)
         bounds = self.get_allocation()
 
-        try:
-            self.synth = speechd.client.SSIPClient("Speak.activity")
-        except:
-            self.synth = None
-            print "Falling back to espeak command line tool."
+        self.synth = None
+        # try:
+        #     self.synth = speechd.client.SSIPClient("Speak.activity")
+        #     try:
+        #         # Try some speechd v0.6.6 features
+        #         print "Output modules:", self.synth.list_output_modules()
+        #         print "Voices:", self.synth.list_synthesis_voices()
+        #     except:
+        #         pass
+        # except:
+        #     self.synth = None
+        #     print "Falling back to espeak command line tool."
 
         # pick a voice that espeak supports
         self.voices = voice.allVoices()
+        #print self.voices
         #self.voice = random.choice(self.voices.values())
-        self.voice = self.voices["Default"]
+        self.voice = voice.defaultVoice()
 
         # make an audio device for playing back and rendering audio
         self.active = False
         self.connect( "notify::active", self._activeCb )
         self.audio = audio.AudioGrab(datastore, self._jobject)
-
-        #self.proc = None
 
         # make a box to type into
         self.entrycombo = gtk.combo_box_entry_new_text()
@@ -164,7 +171,7 @@ class SpeakActivity(activity.Activity):
         self.active = True
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
-        self.say("Hello %s.  Type something." % xoOwner.props.nick)
+        self.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
 
     def write_file(self, file_path):
         f = open(file_path, "w")
@@ -324,10 +331,10 @@ class SpeakActivity(activity.Activity):
         self.say(self.voice.friendlyname)
 
     def pitch_adjusted_cb(self, get, data=None):
-        self.say("pitch adjusted")
+        self.say(_("pitch adjusted"))
 
     def rate_adjusted_cb(self, get, data=None):
-        self.say("rate adjusted")
+        self.say(_("rate adjusted"))
 
     def make_face_bar(self):
         facebar = gtk.Toolbar()
@@ -336,9 +343,9 @@ class SpeakActivity(activity.Activity):
         
         self.mouth_shape_combo = ComboBox()
         self.mouth_shape_combo.connect('changed', self.mouth_changed_cb)
-        self.mouth_shape_combo.append_item(mouth.Mouth, "Simple")
-        self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth, "Waveform")
-        self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, "Frequency")
+        self.mouth_shape_combo.append_item(mouth.Mouth, _("Simple"))
+        self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth, _("Waveform"))
+        self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, _("Frequency"))
         self.mouth_shape_combo.set_active(0)
         combotool = ToolComboBox(self.mouth_shape_combo)
         facebar.insert(combotool, -1)
@@ -346,8 +353,8 @@ class SpeakActivity(activity.Activity):
 
         self.eye_shape_combo = ComboBox()
         self.eye_shape_combo.connect('changed', self.eyes_changed_cb)
-        self.eye_shape_combo.append_item(eye.Eye, "Round")
-        self.eye_shape_combo.append_item(glasses.Glasses, "Glasses")
+        self.eye_shape_combo.append_item(eye.Eye, _("Round"))
+        self.eye_shape_combo.append_item(glasses.Glasses, _("Glasses"))
         combotool = ToolComboBox(self.eye_shape_combo)
         facebar.insert(combotool, -1)
         combotool.show()
@@ -378,7 +385,7 @@ class SpeakActivity(activity.Activity):
         # enable mouse move events so we can track the eyes while the mouse is over the mouth
         self.mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
         # this SegFaults: self.say(combo.get_active_text())
-        self.say("mouth changed")
+        self.say(_("mouth changed"))
 
     def eyes_changed_cb(self, ignored, ignored2=None):
         if self.numeyesadj is None:
@@ -399,7 +406,7 @@ class SpeakActivity(activity.Activity):
             eye.show()
 
         # this SegFaults: self.say(self.eye_shape_combo.get_active_text())
-        self.say("eyes changed")
+        self.say(_("eyes changed"))
         
     def _combo_changed_cb(self, combo):
         # when a new item is chosen, make sure the text is selected
@@ -448,8 +455,8 @@ class SpeakActivity(activity.Activity):
             # select the whole text
             entry.select_region(0,-1)
 
-    def _synth_cb(self, callback_type):
-        print "synth callback type:", callback_type
+    def _synth_cb(self, callback_type, index_mark=None):
+        print "synth callback:", callback_type, index_mark
         
     def say(self, something):
         if self.audio is None or not self.active:

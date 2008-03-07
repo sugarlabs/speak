@@ -22,7 +22,49 @@
 
 
 import subprocess
-import re
+import re, os
+from gettext import gettext as _
+
+# Lets trick gettext into generating entries for the voice names we expect espeak to have
+# If espeak actually has new or different names then they won't get translated, but they
+# should still show up in the interface.
+expectedVoiceNames = [
+    _("Brazil"),
+    _("Swedish"),
+    _("Icelandic"),
+    _("Romanian"),
+    _("Swahili"),
+    _("Hindi"),
+    _("Dutch"),
+    _("Latin"),
+    _("Hungarian"),
+    _("Macedonian"),
+    _("Welsh"),
+    _("French"),
+    _("Norwegian"),
+    _("Russian"),
+    _("Afrikaans"),
+    _("Finnish"),
+    _("Default"),
+    _("Cantonese"),
+    _("Scottish"),
+    _("Greek"),
+    _("Vietnam"),
+    _("English"),
+    _("Lancashire"),
+    _("Italian"),
+    _("Portugal"),
+    _("German"),
+    _("Whisper"),
+    _("Croatian"),
+    _("Czech"),
+    _("Slovak"),
+    _("Spanish"),
+    _("Polish"),
+    _("Esperanto")
+]
+
+_allVoices = {}
 
 class Voice:
     def __init__(self, language, gender, name):
@@ -36,20 +78,46 @@ class Voice:
         friendlyname = friendlyname.replace('en-','')
         friendlyname = friendlyname.replace('english-wisper','whisper')
         friendlyname = friendlyname.capitalize()
-        self.friendlyname = friendlyname
-
+        self.friendlyname = _(friendlyname)
     
 def allVoices():
-    voices = {}
-    result = subprocess.Popen(["espeak", "--voices"], stdout=subprocess.PIPE).communicate()[0]
-    for line in result.split('\n'):
-        m = re.match(r'\s*\d+\s+([\w-]+)\s+([MF])\s+([\w_-]+)\s+(.+)', line)
-        if m:
-            language, gender, name, stuff = m.groups()
-            if stuff.startswith('mb/') or name in ('en-rhotic','english_rp','english_wmids'):
-                # these voices don't produce sound
-                continue
-            voice = Voice(language, gender, name)
-            voices[voice.friendlyname] = voice
-    return voices
+    if len(_allVoices) == 0:
+        result = subprocess.Popen(["espeak", "--voices"], stdout=subprocess.PIPE).communicate()[0]
+        for line in result.split('\n'):
+            m = re.match(r'\s*\d+\s+([\w-]+)\s+([MF])\s+([\w_-]+)\s+(.+)', line)
+            if m:
+                language, gender, name, stuff = m.groups()
+                if stuff.startswith('mb/') or name in ('en-rhotic','english_rp','english_wmids'):
+                    # these voices don't produce sound
+                    continue
+                voice = Voice(language, gender, name)
+                _allVoices[voice.friendlyname] = voice
+    return _allVoices
 
+def defaultVoice():
+    """Try to figure out the default voice, from the current locale ($LANG).
+       Fall back to espeak's voice called Default."""
+
+    def fit(a,b):
+        "Compare two language ids to see if they are similar."
+	as = re.split(r'[^a-z]+', a.lower())
+	bs = re.split(r'[^a-z]+', b.lower())
+	for count in range(0, min(len(as),len(bs))):
+            if as[count] != bs[count]:
+                count -= 1
+                break
+        return count
+    try:
+        lang = os.environ["LANG"]
+    except:
+        lang = ""
+    
+    best = _allVoices[_("Default")]
+    for voice in _allVoices.values():
+        voiceMetric = fit(voice.language, lang)
+        bestMetric  = fit(best.language, lang)
+        if voiceMetric > bestMetric:
+            best = voice
+
+    print "Best voice for LANG %s seems to be %s %s" % (lang, best.language, best.friendlyname)
+    return best
