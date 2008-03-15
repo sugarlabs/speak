@@ -1,0 +1,66 @@
+- collaboration
+	- if performance is okay, should show multiple faces - one for each person
+	- if not, then just share settings and let any person type
+
+- eyes should look some z-distance towards the user
+	- this should prevent the cross-eyed and mismatched y-coordinate problems
+
+- i18n
+
+- speechd
+	- get newer version with callbacks, list_voices, etc.
+	- try to insert lots of index_marks
+	- try to pipe audio back to Speak to get waveform
+
+- mouth shape should be driven by phonemes
+	- try C-API callbacks
+		- we get callbacks for phonemes with really big numbers - not sure how to interpret them
+		- could use multi-step process: text->human readable phonemes, then add <mark> between each one, then speak 
+		- either way need to handle RETRIEVAL mode and route audio to the right place
+	- try to wrap espeak API with SWIG
+	- get per-phoneme callbacks from speechd?
+		- can we send pre-phonemed [[...]] text to speechd?
+
+- words/syllables should highlight as it speaks (karaoke-style)
+
+- repackage face into a widget
+- eyes should blink
+- there should be a nose
+- there should be a Googly vs Normal eye motion (keep y-coords level)
+- use XO colors
+- mouth doesn't close all the way at the end sometimes?
+	- especially when using fft and rate is very fast
+- large numbers aren't spoken correctly
+- eyes should track when dragging sliders in the toolbar
+
+- adjusting rate, pitch, etc. should say something more informative (like "faster", "slower", etc.)
+
+- read-a-story mode
+	- list of stories to read
+	- easy to add new ones
+	- play/pause
+	- remember where you left off
+	- this sounds like maybe a different activity?
+
+- predictive typing ala Stephen Hawking's talking computer
+	- use a simple dictionary for letters, weighted by frequency of use
+	- use a markov chain for words, seeded with some pre-computed frequencies, but trained by use
+
+- language translation
+	I typed "open source machine translation" into Google and spent a couple of hours reading.
+	Start here: http://events.ccc.de/congress/2006/Fahrplan/events/1701.en.html
+	This one seems quite nice: http://www.statmt.org/moses/
+	The language models + phrase tables are large (200-400 MB)
+	An open web translation service would be ideal for space, but requires connectivity
+	Could try: http://www.google.com/language_tools?hl=en
+	http://www.google.com/support/contact/?translate=1
+	http://groups.google.com/group/google-translate
+
+[done] try speechd API
+[done] fix mouth corners by using end caps or a closed shape
+[done] eyes should track the text cursor when typing
+[done] eyes should float back to center after a while
+[done] up/down arrows should cycle through old sentences
+[done] text should not disappear until after the sentence is over
+[done] should save state to journal
+
