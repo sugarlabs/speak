@@ -25,8 +25,13 @@
 
 from mouth import *
 
-from Numeric import ceil
-from FFT import *
+# Newer OLPC builds (and Fedora) have numpy instead of numeric:
+try:
+    from numpy.oldnumeric import ceil
+    from numpy.fft import *
+except:
+    from Numeric import ceil
+    from FFT import *
 
 class FFTMouth(Mouth):
     def __init__(self, audioSource):

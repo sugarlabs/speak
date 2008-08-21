@@ -4,6 +4,12 @@ activity.py
 audio.py
 COPYING
 eye.py
+fft_mouth.py
+glasses.py
 mouth.py
+NEWS
 setup.py
 voice.py
+waveform_mouth.py
+po/activity.pot
+po/voice.pot

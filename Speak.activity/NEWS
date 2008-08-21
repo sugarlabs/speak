@@ -1,0 +1,1 @@
+* #7852: Fix crash on launch by using numpy (morgs)
