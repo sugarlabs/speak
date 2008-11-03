@@ -22,7 +22,6 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import aiml
 import sys
 import os
 from urllib import (quote, unquote)
@@ -36,9 +35,6 @@ import gtk
 import gobject
 import pango
 from gettext import gettext as _
-
-k=aiml.Kernel()
-k.loadBrain("cerebro.brn")
 
 # try:
 #     sys.path.append('/usr/lib/python2.4/site-packages') # for speechd
@@ -61,13 +57,13 @@ import mouth
 import fft_mouth
 import waveform_mouth
 import voice
+import brain
 
 class HablarConSaraActivity(activity.Activity):
     def __init__(self, handle):
         
         activity.Activity.__init__(self, handle)
         bounds = self.get_allocation()
-
         self.synth = None
         # try:
         #     self.synth = speechd.client.SSIPClient("Speak.activity")
@@ -86,6 +82,8 @@ class HablarConSaraActivity(activity.Activity):
         #print self.voices
         #self.voice = random.choice(self.voices.values())
         self.voice = voice.defaultVoice()
+
+	self.brain = brain.defaultBrain(self.voice)
 
         # make an audio device for playing back and rendering audio
         self.active = False
@@ -333,6 +331,7 @@ class HablarConSaraActivity(activity.Activity):
 
     def voice_changed_cb(self, combo):
         self.voice = combo.props.value
+	self.brain = brain.defaultBrain(self.voice)
         self.say(self.voice.friendlyname)
 
     def pitch_adjusted_cb(self, get, data=None):
@@ -448,7 +447,7 @@ class HablarConSaraActivity(activity.Activity):
             map(lambda e: e.look_ahead(), self.eyes)
             
             # speak the text
-            self.say(k.respond(text))
+            self.say(self.brain.respond(text))
             
             # add this text to our history unless it is the same as the last item
             history = self.entrycombo.get_model()
