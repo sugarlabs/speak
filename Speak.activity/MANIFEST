@@ -31,4 +31,5 @@ brain.py
 po/es.po
 locale/es/activity.linfo
 locale/es/LC_MESSAGES/vu.lux.olpc.HablarConSara.mo
+locale/en/activity.linfo
 activity/activity-hablarconsara.svg
