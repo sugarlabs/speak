@@ -1,0 +1,9 @@
+HabarConSara Activity
+
+Humorada de modificación a Actividad Hablar
+Elaborada por Sebastian Silva <sebastian@fuentelibre.org>
+
+http://www.fuentelibre.org/
+
+Puede obtener las fuentes de los cerebros AIML descargando la versión de desarrollo:
+git clone git://gitorious.org/hablar-con-sara/mainline.git HablarConSara.activity
