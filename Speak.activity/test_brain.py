@@ -5,6 +5,6 @@ import aiml
 import os.path
 
 k = aiml.Kernel()
-k.loadBrain("cerebro.brn")
+k.loadBrain("sara.brn")
 
 while True: print k.respond(raw_input("Pregunta > ")) 
