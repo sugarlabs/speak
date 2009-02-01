@@ -39,7 +39,7 @@ class AudioGrab(gobject.GObject):
         'new-buffer': (gobject.SIGNAL_RUN_FIRST, None, [gobject.TYPE_PYOBJECT])
     }
 
-    def __init__(self, datastore, _jobject):
+    def __init__(self):
         gobject.GObject.__init__(self)
         self.pipeline = None
 

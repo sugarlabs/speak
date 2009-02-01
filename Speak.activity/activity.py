@@ -50,13 +50,13 @@ import pygst
 pygst.require("0.10")
 import gst
 
-import audio
 import eye
 import glasses
 import mouth
 import fft_mouth
 import waveform_mouth
 import voice
+import face
 
 class SpeakActivity(activity.Activity):
     def __init__(self, handle):
@@ -64,28 +64,11 @@ class SpeakActivity(activity.Activity):
         activity.Activity.__init__(self, handle)
         bounds = self.get_allocation()
 
-        self.synth = None
-        # try:
-        #     self.synth = speechd.client.SSIPClient("Speak.activity")
-        #     try:
-        #         # Try some speechd v0.6.6 features
-        #         print "Output modules:", self.synth.list_output_modules()
-        #         print "Voices:", self.synth.list_synthesis_voices()
-        #     except:
-        #         pass
-        # except:
-        #     self.synth = None
-        #     print "Falling back to espeak command line tool."
-
         # pick a voice that espeak supports
         self.voices = voice.allVoices()
-        #print self.voices
-        #self.voice = random.choice(self.voices.values())
-        self.voice = voice.defaultVoice()
 
         # make an audio device for playing back and rendering audio
         self.connect( "notify::active", self._activeCb )
-        self.audio = audio.AudioGrab(datastore, self._jobject)
 
         # make a box to type into
         self.entrycombo = gtk.combo_box_entry_new_text()
@@ -97,18 +80,12 @@ class SpeakActivity(activity.Activity):
         self.input_font = pango.FontDescription(str='sans bold 24')
         self.entry.modify_font(self.input_font)
 
-        # make an empty box for some eyes
-        self.eyes = None
-        self.eyebox = gtk.HBox()
-        
-        # make an empty box to put the mouth in
-        self.mouth = None
-        self.mouthbox = gtk.HBox()
-        
+        self.face = face.View()
+        self.face.show()
+
         # layout the screen
         box = gtk.VBox(homogeneous=False)
-        box.pack_start(self.eyebox, expand=False)
-        box.pack_start(self.mouthbox)
+        box.pack_start(self.face)
         box.pack_start(self.entrycombo, expand=False)
         
         self.set_canvas(box)
@@ -167,7 +144,7 @@ class SpeakActivity(activity.Activity):
         # say hello to the user
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
-        self.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
+        self.face.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
 
         # XXX do it after(possible) read_file() invoking
         # have to rely on calling read_file() from map_cb in sugar-toolkit
@@ -182,14 +159,12 @@ class SpeakActivity(activity.Activity):
         self.numeyesadj.connect("value_changed", self.eyes_changed_cb, False)
         self.eye_shape_combo.connect('changed', self.eyes_changed_cb, False)
         self.eyes_changed_cb(None, True)
-
-        # start with the eyes straight ahead
-        map(lambda e: e.look_ahead(), self.eyes)
+        self.face.look_ahead()
 
     def write_file(self, file_path):
         f = open(file_path, "w")
         f.write("speak file format v1\n")
-        f.write("voice=%s\n" % quote(self.voice.friendlyname))
+        f.write("voice=%s\n" % quote(self.face.voice.friendlyname))
         f.write("text=%s\n" % quote(self.entry.props.text))
         history = map(lambda i: i[0], self.entrycombo.get_model())
         f.write("history=[%s]\n" % ",".join(map(quote, history)))
@@ -266,7 +241,7 @@ class SpeakActivity(activity.Activity):
         pos = layout.get_cursor_pos(index)
         x = pos[0][0] / pango.SCALE - entry.props.scroll_offset
         y = entry.get_allocation().y
-        map(lambda e, x=x, y=y: e.look_at(x,y), self.eyes)
+        self.face.look_at(x, y)
 
     def get_mouse(self):
         display = gtk.gdk.display_get_default()
@@ -276,7 +251,7 @@ class SpeakActivity(activity.Activity):
     def _mouse_moved_cb(self, widget, event):
         # make the eyes track the motion of the mouse cursor
         x,y = self.get_mouse()
-        map(lambda e, x=x, y=y: e.look_at(x,y), self.eyes)
+        self.face.look_at(x, y)
 
     def _mouse_clicked_cb(self, widget, event):
         pass
@@ -295,17 +270,14 @@ class SpeakActivity(activity.Activity):
         voicenames.sort()
         for name in voicenames:
             self.voice_combo.append_item(self.voices[name], name)
-        self.voice_combo.set_active(voicenames.index(self.voice.friendlyname))
+        self.voice_combo.set_active(voicenames.index(
+            self.face.voice.friendlyname))
         combotool = ToolComboBox(self.voice_combo)
         voicebar.insert(combotool, -1)
         combotool.show()
 
-        if self.synth is not None:
-            # speechd uses -100 to 100
-            self.pitchadj = gtk.Adjustment(0, -100, 100, 1, 10, 0)
-        else:
-            # espeak uses 0 to 99
-            self.pitchadj = gtk.Adjustment(50, 0, 99, 1, 10, 0)
+        self.pitchadj = gtk.Adjustment(self.face.pitch, 0, face.PITCH_MAX, 1,
+                face.PITCH_MAX/10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
         #pitchbar.set_inverted(True)
@@ -317,12 +289,8 @@ class SpeakActivity(activity.Activity):
         voicebar.insert(pitchtool, -1)
         pitchbar.show()
 
-        if self.synth is not None:
-            # speechd uses -100 to 100
-            self.rateadj = gtk.Adjustment(0, -100, 100, 1, 10, 0)
-        else:
-            # espeak uses 80 to 370
-            self.rateadj = gtk.Adjustment(100, 80, 370, 1, 10, 0)
+        self.rateadj = gtk.Adjustment(self.face.rate, 0, face.RATE_MAX, 1,
+                face.RATE_MAX/10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         #ratebar.set_inverted(True)
@@ -337,14 +305,16 @@ class SpeakActivity(activity.Activity):
         return voicebar
 
     def voice_changed_cb(self, combo):
-        self.voice = combo.props.value
-        self.say(self.voice.friendlyname)
+        self.face.voice = combo.props.value
+        self.face.say(self.face.voice.friendlyname)
 
     def pitch_adjusted_cb(self, get, data=None):
-        self.say(_("pitch adjusted"))
+        self.face.pitch = get.value
+        self.face.say(_("pitch adjusted"))
 
     def rate_adjusted_cb(self, get, data=None):
-        self.say(_("rate adjusted"))
+        self.face.rate = get.value
+        self.face.say(_("rate adjusted"))
 
     def make_face_bar(self):
         facebar = gtk.Toolbar()
@@ -383,39 +353,22 @@ class SpeakActivity(activity.Activity):
         return facebar
 
     def mouth_changed_cb(self, combo, quiet):
-        mouth_class = combo.props.value
-        if self.mouth:
-            self.mouthbox.remove(self.mouth)
-        self.mouth = mouth_class(self.audio)
-        self.mouthbox.add(self.mouth)
-        self.mouth.show()
-        # enable mouse move events so we can track the eyes while the mouse is over the mouth
-        self.mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
-        # this SegFaults: self.say(combo.get_active_text())
+        self.face.implant_mouth(combo.props.value)
+
+        # this SegFaults: self.face.say(combo.get_active_text())
         if not quiet:
-            self.say(_("mouth changed"))
+            self.face.say(_("mouth changed"))
 
     def eyes_changed_cb(self, ignored, quiet):
         if self.numeyesadj is None:
             return
-        
-        eye_class = self.eye_shape_combo.props.value
-        if self.eyes:
-            for eye in self.eyes:
-                self.eyebox.remove(eye)
 
-        self.eyes = []
-        numberOfEyes = int(self.numeyesadj.value)
-        for i in range(numberOfEyes):
-            eye = eye_class()
-            self.eyes.append(eye)
-            self.eyebox.pack_start(eye)
-            eye.set_size_request(300,300)
-            eye.show()
+        self.face.implant_eyes(self.eye_shape_combo.props.value,
+                self.numeyesadj.value)
 
-        # this SegFaults: self.say(self.eye_shape_combo.get_active_text())
+        # this SegFaults: self.face.say(self.eye_shape_combo.get_active_text())
         if not quiet:
-            self.say(_("eyes changed"))
+            self.face.say(_("eyes changed"))
         
     def _combo_changed_cb(self, combo):
         # when a new item is chosen, make sure the text is selected
@@ -446,11 +399,10 @@ class SpeakActivity(activity.Activity):
         # the user pressed Return, say the text and clear it out
         text = entry.props.text
         if text:
-            # look ahead
-            map(lambda e: e.look_ahead(), self.eyes)
+            self.face.look_ahead()
             
             # speak the text
-            self.say(text)
+            self.face.say(text)
             
             # add this text to our history unless it is the same as the last item
             history = self.entrycombo.get_model()
@@ -467,32 +419,15 @@ class SpeakActivity(activity.Activity):
     def _synth_cb(self, callback_type, index_mark=None):
         print "synth callback:", callback_type, index_mark
         
-    def say(self, something):
-        if self.audio is None:
-            return
-        
-        print self.voice.name, ":", something
-        
-        if self.synth is not None:
-            self.synth.set_rate(int(self.rateadj.value))
-            self.synth.set_pitch(int(self.pitchadj.value))
-            self.synth.set_language(self.voice.language)
-            self.synth.speak(something) #, callback=self._synth_cb)
-        else:
-            # ideally we would stream the audio instead of writing to disk each time...
-            wavpath = "/tmp/speak.wav"
-            subprocess.call(["espeak", "-w", wavpath, "-p", str(self.pitchadj.value), "-s", str(self.rateadj.value), "-v", self.voice.name, something], stdout=subprocess.PIPE)
-            self.audio.playfile(wavpath)
-    
     def _activeCb( self, widget, pspec ):
         # only generate sound when this activity is active
         if not self.props.active:
-            self.audio.stop_sound_device()
+            self.face.quiet()
         else:
-            self.audio.restart_sound_device()
+            self.face.verbose()
 
-    def on_quit(self, data=None):
-        self.audio.on_quit()    
+    #def on_quit(self, data=None):
+    #    self.audio.on_quit()    
 
 # activate gtk threads when this module loads
 gtk.gdk.threads_init()
