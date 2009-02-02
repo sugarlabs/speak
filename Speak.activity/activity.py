@@ -84,7 +84,6 @@ class SpeakActivity(activity.Activity):
         self.voice = voice.defaultVoice()
 
         # make an audio device for playing back and rendering audio
-        self.active = False
         self.connect( "notify::active", self._activeCb )
         self.audio = audio.AudioGrab(datastore, self._jobject)
 
@@ -165,14 +164,27 @@ class SpeakActivity(activity.Activity):
         #     return True
         # gobject.timeout_add(100, poll_mouse)
         
-        # start with the eyes straight ahead
-        map(lambda e: e.look_ahead(), self.eyes)
-
         # say hello to the user
-        self.active = True
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
         self.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
+
+        # XXX do it after(possible) read_file() invoking
+        # have to rely on calling read_file() from map_cb in sugar-toolkit
+        self.connect_after('map', self.connect_to)
+
+    def connect_to(self, widget):
+        self.voice_combo.connect('changed', self.voice_changed_cb)
+        self.pitchadj.connect("value_changed", self.pitch_adjusted_cb, self.pitchadj)
+        self.rateadj.connect("value_changed", self.rate_adjusted_cb, self.rateadj)
+        self.mouth_shape_combo.connect('changed', self.mouth_changed_cb, False)
+        self.mouth_changed_cb(self.mouth_shape_combo, True)
+        self.numeyesadj.connect("value_changed", self.eyes_changed_cb, False)
+        self.eye_shape_combo.connect('changed', self.eyes_changed_cb, False)
+        self.eyes_changed_cb(None, True)
+
+        # start with the eyes straight ahead
+        map(lambda e: e.look_ahead(), self.eyes)
 
     def write_file(self, file_path):
         f = open(file_path, "w")
@@ -279,7 +291,6 @@ class SpeakActivity(activity.Activity):
         # button.show()
         
         self.voice_combo = ComboBox()
-        self.voice_combo.connect('changed', self.voice_changed_cb)
         voicenames = self.voices.keys()
         voicenames.sort()
         for name in voicenames:
@@ -295,7 +306,6 @@ class SpeakActivity(activity.Activity):
         else:
             # espeak uses 0 to 99
             self.pitchadj = gtk.Adjustment(50, 0, 99, 1, 10, 0)
-        self.pitchadj.connect("value_changed", self.pitch_adjusted_cb, self.pitchadj)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
         #pitchbar.set_inverted(True)
@@ -313,7 +323,6 @@ class SpeakActivity(activity.Activity):
         else:
             # espeak uses 80 to 370
             self.rateadj = gtk.Adjustment(100, 80, 370, 1, 10, 0)
-        self.rateadj.connect("value_changed", self.rate_adjusted_cb, self.rateadj)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         #ratebar.set_inverted(True)
@@ -343,7 +352,6 @@ class SpeakActivity(activity.Activity):
         self.numeyesadj = None
         
         self.mouth_shape_combo = ComboBox()
-        self.mouth_shape_combo.connect('changed', self.mouth_changed_cb)
         self.mouth_shape_combo.append_item(mouth.Mouth, _("Simple"))
         self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth, _("Waveform"))
         self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, _("Frequency"))
@@ -353,7 +361,6 @@ class SpeakActivity(activity.Activity):
         combotool.show()
 
         self.eye_shape_combo = ComboBox()
-        self.eye_shape_combo.connect('changed', self.eyes_changed_cb)
         self.eye_shape_combo.append_item(eye.Eye, _("Round"))
         self.eye_shape_combo.append_item(glasses.Glasses, _("Glasses"))
         combotool = ToolComboBox(self.eye_shape_combo)
@@ -361,7 +368,6 @@ class SpeakActivity(activity.Activity):
         combotool.show()
 
         self.numeyesadj = gtk.Adjustment(2, 1, 5, 1, 1, 0)
-        self.numeyesadj.connect("value_changed", self.eyes_changed_cb, self.numeyesadj)
         numeyesbar = gtk.HScale(self.numeyesadj)
         numeyesbar.set_draw_value(False)
         numeyesbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
@@ -376,7 +382,7 @@ class SpeakActivity(activity.Activity):
         
         return facebar
 
-    def mouth_changed_cb(self, combo):
+    def mouth_changed_cb(self, combo, quiet):
         mouth_class = combo.props.value
         if self.mouth:
             self.mouthbox.remove(self.mouth)
@@ -386,9 +392,10 @@ class SpeakActivity(activity.Activity):
         # enable mouse move events so we can track the eyes while the mouse is over the mouth
         self.mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
         # this SegFaults: self.say(combo.get_active_text())
-        self.say(_("mouth changed"))
+        if not quiet:
+            self.say(_("mouth changed"))
 
-    def eyes_changed_cb(self, ignored, ignored2=None):
+    def eyes_changed_cb(self, ignored, quiet):
         if self.numeyesadj is None:
             return
         
@@ -407,7 +414,8 @@ class SpeakActivity(activity.Activity):
             eye.show()
 
         # this SegFaults: self.say(self.eye_shape_combo.get_active_text())
-        self.say(_("eyes changed"))
+        if not quiet:
+            self.say(_("eyes changed"))
         
     def _combo_changed_cb(self, combo):
         # when a new item is chosen, make sure the text is selected
@@ -460,7 +468,7 @@ class SpeakActivity(activity.Activity):
         print "synth callback:", callback_type, index_mark
         
     def say(self, something):
-        if self.audio is None or not self.active:
+        if self.audio is None:
             return
         
         print self.voice.name, ":", something
@@ -478,11 +486,10 @@ class SpeakActivity(activity.Activity):
     
     def _activeCb( self, widget, pspec ):
         # only generate sound when this activity is active
-        if (not self.props.active and self.active):
+        if not self.props.active:
             self.audio.stop_sound_device()
-        elif (self.props.active and not self.active):
+        else:
             self.audio.restart_sound_device()
-        self.active = self.props.active
 
     def on_quit(self, data=None):
         self.audio.on_quit()    
