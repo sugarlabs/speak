@@ -26,9 +26,9 @@
 from mouth import *
 
 class WaveformMouth(Mouth):
-    def __init__(self, audioSource):
+    def __init__(self, audioSource, fill_color):
 
-        Mouth.__init__(self, audioSource)
+        Mouth.__init__(self, audioSource, fill_color)
         
         self.buffer_size = 100
         self.peaks = []
@@ -54,12 +54,12 @@ class WaveformMouth(Mouth):
         self.context.clip()
 
         # background
-        self.context.set_source_rgb(.5,.5,.5)
+        self.context.set_source_rgba(*self.fill_color.get_rgba())
         self.context.rectangle(0,0, bounds.width,bounds.height)
         self.context.fill()
 
         # Draw the waveform
-        self.context.set_line_width(10.0)
+        self.context.set_line_width(min(bounds.height/10.0, 10))
         count = 0
         buflen = float(len(self.main_buffers))
         for value in self.main_buffers:

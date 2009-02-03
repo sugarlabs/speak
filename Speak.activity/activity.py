@@ -57,6 +57,10 @@ import fft_mouth
 import waveform_mouth
 import voice
 import face
+from toolbars import ChatToolbar
+from chat import Chat
+
+CHAT_TOOLBAR = 3
 
 class SpeakActivity(activity.Activity):
     def __init__(self, handle):
@@ -87,20 +91,32 @@ class SpeakActivity(activity.Activity):
         box = gtk.VBox(homogeneous=False)
         box.pack_start(self.face)
         box.pack_start(self.entrycombo, expand=False)
-        
-        self.set_canvas(box)
-        box.show_all()
 
         box.add_events(gtk.gdk.BUTTON_PRESS_MASK |
                        gtk.gdk.POINTER_MOTION_MASK)
         box.connect("motion_notify_event", self._mouse_moved_cb)
         box.connect("button_press_event", self._mouse_clicked_cb)
 
+        # desktop
+        self.notebook = gtk.Notebook()
+        self.notebook.show()
+        self.notebook.props.show_border = False
+        self.notebook.props.show_tabs = False
+        self.set_canvas(self.notebook)
+
+        box.show_all()
+        self.notebook.append_page(box)
+
+        self.chat = Chat()
+        self.chat.show_all()
+        self.notebook.append_page(self.chat)
+
         # make some toolbars
         toolbox = activity.ActivityToolbox(self)
         self.set_toolbox(toolbox)
         toolbox.show()
         #activitybar = toolbox.get_activity_toolbar()
+        toolbox.connect('current-toolbar-changed', self._toolbar_changed_cb)
 
         voicebar = self.make_voice_bar()
         toolbox.add_toolbar("Voice", voicebar)
@@ -110,6 +126,10 @@ class SpeakActivity(activity.Activity):
         toolbox.add_toolbar("Face", facebar)
         facebar.show()
         
+        chatbar = ChatToolbar()
+        toolbox.add_toolbar(_('Chat'), chatbar)
+        chatbar.show()
+
         # make the text box active right away
         self.entry.grab_focus()
         
@@ -164,7 +184,7 @@ class SpeakActivity(activity.Activity):
     def write_file(self, file_path):
         f = open(file_path, "w")
         f.write("speak file format v1\n")
-        f.write("voice=%s\n" % quote(self.face.voice.friendlyname))
+        f.write("voice=%s\n" % quote(self.face.status.voice.friendlyname))
         f.write("text=%s\n" % quote(self.entry.props.text))
         history = map(lambda i: i[0], self.entrycombo.get_model())
         f.write("history=[%s]\n" % ",".join(map(quote, history)))
@@ -271,13 +291,13 @@ class SpeakActivity(activity.Activity):
         for name in voicenames:
             self.voice_combo.append_item(self.voices[name], name)
         self.voice_combo.set_active(voicenames.index(
-            self.face.voice.friendlyname))
+            self.face.status.voice.friendlyname))
         combotool = ToolComboBox(self.voice_combo)
         voicebar.insert(combotool, -1)
         combotool.show()
 
-        self.pitchadj = gtk.Adjustment(self.face.pitch, 0, face.PITCH_MAX, 1,
-                face.PITCH_MAX/10, 0)
+        self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
+                face.PITCH_MAX, 1, face.PITCH_MAX/10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
         #pitchbar.set_inverted(True)
@@ -289,8 +309,8 @@ class SpeakActivity(activity.Activity):
         voicebar.insert(pitchtool, -1)
         pitchbar.show()
 
-        self.rateadj = gtk.Adjustment(self.face.rate, 0, face.RATE_MAX, 1,
-                face.RATE_MAX/10, 0)
+        self.rateadj = gtk.Adjustment(self.face.status.rate, 0, face.RATE_MAX,
+                1, face.RATE_MAX/10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         #ratebar.set_inverted(True)
@@ -305,15 +325,15 @@ class SpeakActivity(activity.Activity):
         return voicebar
 
     def voice_changed_cb(self, combo):
-        self.face.voice = combo.props.value
-        self.face.say(self.face.voice.friendlyname)
+        self.face.status.voice = combo.props.value
+        self.face.say(self.face.status.voice.friendlyname)
 
     def pitch_adjusted_cb(self, get, data=None):
-        self.face.pitch = get.value
+        self.face.status.pitch = get.value
         self.face.say(_("pitch adjusted"))
 
     def rate_adjusted_cb(self, get, data=None):
-        self.face.rate = get.value
+        self.face.status.rate = get.value
         self.face.say(_("rate adjusted"))
 
     def make_face_bar(self):
@@ -353,7 +373,8 @@ class SpeakActivity(activity.Activity):
         return facebar
 
     def mouth_changed_cb(self, combo, quiet):
-        self.face.implant_mouth(combo.props.value)
+        self.face.status.mouth = combo.props.value
+        self.face.update()
 
         # this SegFaults: self.face.say(combo.get_active_text())
         if not quiet:
@@ -363,8 +384,9 @@ class SpeakActivity(activity.Activity):
         if self.numeyesadj is None:
             return
 
-        self.face.implant_eyes(self.eye_shape_combo.props.value,
-                self.numeyesadj.value)
+        self.face.status.eyes = [self.eye_shape_combo.props.value] \
+                * int(self.numeyesadj.value)
+        self.face.update()
 
         # this SegFaults: self.face.say(self.eye_shape_combo.get_active_text())
         if not quiet:
@@ -425,6 +447,13 @@ class SpeakActivity(activity.Activity):
             self.face.quiet()
         else:
             self.face.verbose()
+
+    def _toolbar_changed_cb(self, widget, index):
+        if index == CHAT_TOOLBAR:
+            self.chat.update(self.face.status)
+            self.notebook.set_current_page(1)
+        else:
+            self.notebook.set_current_page(0)
 
     #def on_quit(self, data=None):
     #    self.audio.on_quit()    

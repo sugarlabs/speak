@@ -1,0 +1,228 @@
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+import gtk
+import pango
+import hippo
+import logging
+
+import sugar.graphics.style as style
+from sugar.graphics.roundbox import CanvasRoundBox
+
+import eye
+import glasses
+import mouth
+import face
+from chatbox import ChatBox
+
+BUDDY_SIZE = min(100, min(gtk.gdk.screen_width(),
+        gtk.gdk.screen_height() - style.LARGE_ICON_SIZE) / 5)
+BUDDY_XPAD = 0
+BUDDY_YPAD = 5
+
+BUDDIES_WIDTH = int(BUDDY_SIZE * 2.5)
+BUDDIES_COLOR = style.COLOR_SELECTION_GREY
+#COLOR_BUTTON_GREY
+
+ENTRY_COLOR = style.COLOR_PANEL_GREY
+ENTRY_XPAD = 0
+ENTRY_YPAD = 7
+
+class Chat(hippo.Canvas):
+    def __init__(self):
+        hippo.Canvas.__init__(self)
+        self._buddies = {}
+
+        self.connect('motion_notify_event', self._motion_notify_cb)
+
+        # buddies box
+
+        self._buddies_list = hippo.CanvasBox(
+                background_color = BUDDIES_COLOR.get_int(),
+                box_width = BUDDIES_WIDTH,
+                padding = ENTRY_YPAD,
+                spacing = ENTRY_YPAD
+                )
+
+        self._buddies_box = hippo.CanvasScrollbars()
+        self._buddies_box.set_policy(hippo.ORIENTATION_HORIZONTAL,
+                hippo.SCROLLBAR_NEVER)
+        self._buddies_box.set_root(self._buddies_list)
+
+        # chat entry
+
+        self.chat = ChatBox()
+        self.me = self.chat.owner
+
+        self.my_face, self_face = self._new_face(self.chat.owner, ENTRY_COLOR)
+
+        chat_post = gtk.TextView()
+        chat_post.modify_bg(gtk.STATE_INSENSITIVE,
+                style.COLOR_WHITE.get_gdk_color())
+        chat_post.modify_base(gtk.STATE_INSENSITIVE,
+                style.COLOR_WHITE.get_gdk_color())
+        chat_post.connect('key-press-event', self._key_press_cb)
+
+        chat_post_box = CanvasRoundBox(
+                background_color = style.COLOR_WHITE.get_int(),
+                padding_left = ENTRY_XPAD,
+                padding_right = ENTRY_XPAD,
+                padding_top = ENTRY_YPAD,
+                padding_bottom = ENTRY_YPAD
+                )
+        chat_post_box.props.border_color = ENTRY_COLOR.get_int()
+        chat_post_box.append(hippo.CanvasWidget(widget=chat_post),
+                hippo.PACK_EXPAND)
+
+        chat_entry = CanvasRoundBox(
+                background_color = ENTRY_COLOR.get_int(),
+                padding_left = ENTRY_XPAD,
+                padding_right = ENTRY_XPAD,
+                padding_top = ENTRY_YPAD,
+                padding_bottom = ENTRY_YPAD,
+                spacing = ENTRY_YPAD
+                )
+        chat_entry.props.orientation = hippo.ORIENTATION_HORIZONTAL
+        chat_entry.props.border_color = style.COLOR_WHITE.get_int()
+        chat_entry.append(self_face)
+        chat_entry.append(chat_post_box, hippo.PACK_EXPAND)
+
+        chat_box = hippo.CanvasBox(
+                orientation = hippo.ORIENTATION_VERTICAL,
+                background_color = style.COLOR_WHITE.get_int(),
+                )
+        chat_box.append(self.chat, hippo.PACK_EXPAND)
+        chat_box.append(chat_entry)
+
+        # desk
+
+        self._desk = hippo.CanvasBox()
+        self._desk.props.orientation=hippo.ORIENTATION_HORIZONTAL
+        self._desk.append(chat_box, hippo.PACK_EXPAND)
+
+        self.set_root(self._desk)
+
+        self._add_buddy(self.chat.owner)
+
+    def update(self, status, buddy = None, text = None):
+        if not buddy or buddy == self.me:
+            face = self.my_face
+        else:
+            i = self._buddies.get(buddy)
+            if i:
+                face = i['face']
+            else:
+                self._add_buddy(boddy)
+                face = self._buddies[buddy]['face']
+
+        if status:
+            face.update(status)
+        if text:
+            face.say(text)
+
+    def farewell(self, buddy):
+        i = self._buddies.get(buddy)
+        if not i:
+            logging.debug('farewell: cannot find boddy %s' % buddy.props.nick)
+            return
+
+        self._buddies_list.remove(i['box'])
+        del self._buddies[buddy]
+
+        if len(self._buddies) == 0:
+            self._desk.remove(self._buddies_box)
+
+    def _add_buddy(self, buddy):
+        box = hippo.CanvasBox(
+                orientation = hippo.ORIENTATION_HORIZONTAL,
+                background_color = BUDDIES_COLOR.get_int(),
+                spacing = ENTRY_YPAD
+                )
+
+        buddy_face, buddy_widget = self._new_face(buddy, BUDDIES_COLOR)
+        
+        nick = hippo.CanvasText(
+                text = buddy.props.nick,
+                xalign = hippo.ALIGNMENT_START,
+                yalign = hippo.ALIGNMENT_START
+                )
+
+        box.append(buddy_widget)
+        box.append(nick, hippo.PACK_EXPAND)
+
+        self._buddies[buddy] = {
+                'box'   : box,
+                'face'  : buddy_face }
+        self._buddies_list.append(box)
+
+        if len(self._buddies) == 1:
+            self._desk.append(self._buddies_box)
+
+    def _key_press_cb(self, widget, event):
+        if event.keyval == gtk.keysyms.Return:
+            if not (event.state & gtk.gdk.CONTROL_MASK):
+                text = widget.get_buffer().props.text
+                self.chat.add_text(None, text)
+                widget.get_buffer().props.text = ''
+
+                #if len(self._buddies) == 1:
+                #    self._del_buddy(self.chat.owner)
+                #else:
+                #    self._add_buddy(self.chat.owner)
+
+                self.update(None, None, text)
+                return True
+        return False
+
+    def _new_face(self, buddy, color):
+        stroke_color, fill_color = buddy.props.color.split(',')
+        stroke_color = style.Color(stroke_color)
+        fill_color = style.Color(fill_color)
+
+        buddy_face = face.View(fill_color)
+        buddy_face.show_all()
+
+        inner = CanvasRoundBox(
+                background_color = fill_color.get_int(),
+                padding_top = BUDDY_YPAD,
+                padding_bottom = BUDDY_YPAD,
+                padding_left = BUDDY_XPAD,
+                padding_right = BUDDY_XPAD,
+                )
+        inner.props.border_color = fill_color.get_int()
+        inner.append(hippo.CanvasWidget(widget=buddy_face), hippo.PACK_EXPAND)
+
+        outer = CanvasRoundBox(
+                background_color = stroke_color.get_int(),
+                box_width = BUDDY_SIZE,
+                box_height = BUDDY_SIZE,
+                padding_top = BUDDY_YPAD,
+                padding_bottom = BUDDY_YPAD,
+                padding_left = BUDDY_XPAD,
+                padding_right = BUDDY_XPAD
+                )
+        outer.props.border_color = stroke_color.get_int()
+        outer.append(inner, hippo.PACK_EXPAND)
+
+        return (buddy_face, outer)
+
+    def _look_at(self, x, y):
+        self.my_face.look_at(x, y)
+        for i in self._buddies.values():
+            i['face'].look_at(x, y)
+
+    def _motion_notify_cb(self, widget, event):
+        display = gtk.gdk.display_get_default()
+        screen, x, y, modifiers = display.get_pointer()
+        self._look_at(x,y)

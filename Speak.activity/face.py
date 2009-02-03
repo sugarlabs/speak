@@ -45,6 +45,7 @@ from gettext import gettext as _
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toolcombobox import ToolComboBox
 from sugar.graphics.combobox import ComboBox
+import sugar.graphics.style as style
 
 import pygst
 pygst.require("0.10")
@@ -60,15 +61,24 @@ import waveform_mouth
 
 PITCH_MAX = 100
 RATE_MAX = 100
+FACE_PAD = 2
 
-class View(gtk.VBox):
+class Status:
     def __init__(self):
-        gtk.VBox.__init__(self, homogeneous=False)
-
-        #self.voice = random.choice(self.voices.values())
         self.voice = voice.defaultVoice()
         self.pitch = PITCH_MAX/2
         self.rate = RATE_MAX/2
+        self.eyes = [eye.Eye] * 2
+        self.mouth = mouth.Mouth
+
+class View(gtk.EventBox):
+    def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
+        gtk.EventBox.__init__(self)
+
+        self.status = Status()
+        self.fill_color = fill_color
+
+        self.connect('size-allocate', self._size_allocate_cb)
 
         self._audio = audio.AudioGrab()
         self._synth = None
@@ -95,34 +105,45 @@ class View(gtk.VBox):
         self._mouthbox.show()
         
         # layout the screen
-        self.pack_start(self._eyebox, expand=False)
-        self.pack_start(self._mouthbox)
+        box = gtk.VBox(homogeneous=False)
+        box.pack_start(self._eyebox)
+        box.pack_start(self._mouthbox, False)
+        box.set_border_width(FACE_PAD)
+        self.modify_bg(gtk.STATE_NORMAL, self.fill_color.get_gdk_color())
+        self.add(box)
+
+        self.update()
         
     def look_ahead(self):
-        map(lambda e: e.look_ahead(), self._eyes)
+        if self._eyes:
+            map(lambda e: e.look_ahead(), self._eyes)
 
     def look_at(self, x, y):
-        map(lambda e, x=x, y=y: e.look_at(x,y), self._eyes)
+        if self._eyes:
+            map(lambda e, x=x, y=y: e.look_at(x,y), self._eyes)
 
-    def implant_eyes(self, klass, number):
+    def update(self, status = None):
+        if not status:
+            status = self.status
+        else:
+            self.status = status
+
         if self._eyes:
             for eye in self._eyes:
                 self._eyebox.remove(eye)
-
-        self._eyes = []
-
-        for i in range(int(number)):
-            eye = klass()
-            self._eyes.append(eye)
-            self._eyebox.pack_start(eye)
-            eye.set_size_request(300,300)
-            eye.show()
-
-    def implant_mouth(self, klass):
         if self._mouth:
             self._mouthbox.remove(self._mouth)
 
-        self._mouth = klass(self._audio)
+        self._eyes = []
+
+        for i in status.eyes:
+            eye = i(self.fill_color)
+            self._eyes.append(eye)
+            self._eyebox.pack_start(eye, padding=FACE_PAD)
+            #eye.set_size_request(300,300)
+            eye.show()
+
+        self._mouth = status.mouth(self._audio, self.fill_color)
         self._mouth.show()
         self._mouthbox.add(self._mouth)
 
@@ -133,9 +154,9 @@ class View(gtk.VBox):
         if self._audio is None:
             return
         
-        logging.debug('%s: %s' % (self.voice.name, something))
-        pitch = int(self.pitch)
-        rate = int(self.rate)
+        logging.debug('%s: %s' % (self.status.voice.name, something))
+        pitch = int(self.status.pitch)
+        rate = int(self.status.rate)
 
         if self._synth is not None:
             # speechd uses -100 to 100
@@ -145,7 +166,7 @@ class View(gtk.VBox):
 
             self._synth.set_rate(rate)
             self._synth.set_pitch(pitch)
-            self._synth.set_language(self.voice.language)
+            self._synth.set_language(self.status.voice.language)
             self._synth.speak(something) #, callback=self._synth_cb)
         else:
             # espeak uses 0 to 99
@@ -153,11 +174,9 @@ class View(gtk.VBox):
             # espeak uses 80 to 370
             rate = 80 + (370-80) * rate / 100
 
-            logging.error(">> %d:%d" %(pitch, rate))
-
             # ideally we would stream the audio instead of writing to disk each time...
             wavpath = "/tmp/speak.wav"
-            subprocess.call(["espeak", "-w", wavpath, "-p", str(pitch), "-s", str(rate), "-v", self.voice.name, something], stdout=subprocess.PIPE)
+            subprocess.call(["espeak", "-w", wavpath, "-p", str(pitch), "-s", str(rate), "-v", self.status.voice.name, something], stdout=subprocess.PIPE)
             self._audio.playfile(wavpath)
     
     def quiet(self):
@@ -165,3 +184,6 @@ class View(gtk.VBox):
 
     def verbose(self):
         self._audio.restart_sound_device()
+
+    def _size_allocate_cb(self, widget, allocation):
+        self._mouthbox.set_size_request(-1, int(allocation.height/2.5))

@@ -29,12 +29,13 @@ import cairo
 import math
 
 class Eye(gtk.DrawingArea):
-    def __init__(self):
+    def __init__(self, fill_color):
         gtk.DrawingArea.__init__(self)
         self.connect("expose_event", self.expose)
         self.frame = 0
         self.blink = False
         self.x, self.y = 0,0
+        self.fill_color = fill_color
         
         # listen for clicks
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
@@ -111,7 +112,7 @@ class Eye(gtk.DrawingArea):
         self.context.clip()
 
         # background
-        self.context.set_source_rgb(.5,.5,.5)
+        self.context.set_source_rgba(*self.fill_color.get_rgba())
         self.context.rectangle(0,0,bounds.width,bounds.height)
         self.context.fill()
 

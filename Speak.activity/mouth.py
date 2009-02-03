@@ -29,7 +29,7 @@ from struct import unpack
 import numpy.core
 
 class Mouth(gtk.DrawingArea):
-    def __init__(self, audioSource):
+    def __init__(self, audioSource, fill_color):
 
         gtk.DrawingArea.__init__(self)
         self.connect("expose_event",self.expose)
@@ -37,6 +37,7 @@ class Mouth(gtk.DrawingArea):
         self.buffer_size = 256
         self.main_buffers = []
         self.newest_buffer = []
+        self.fill_color = fill_color
 
         audioSource.connect("new-buffer", self._new_buffer)
 
@@ -69,7 +70,7 @@ class Mouth(gtk.DrawingArea):
         self.context.clip()
 
         # background
-        self.context.set_source_rgb(.5,.5,.5)
+        self.context.set_source_rgba(*self.fill_color.get_rgba())
         self.context.rectangle(0,0, bounds.width,bounds.height)
         self.context.fill()
 
@@ -84,7 +85,7 @@ class Mouth(gtk.DrawingArea):
         Tx,Ty = bounds.width/2,            bounds.height/2 - mouthH/2
         Rx,Ry = bounds.width/2 + mouthW/2, bounds.height/2
         Bx,By = bounds.width/2,            bounds.height/2 + mouthH/2
-        self.context.set_line_width(10.0)
+        self.context.set_line_width(min(bounds.height/10.0, 10))
         self.context.move_to(Lx,Ly)
         self.context.curve_to(Tx,Ty, Tx,Ty, Rx,Ry)
         self.context.curve_to(Bx,By, Bx,By, Lx,Ly)

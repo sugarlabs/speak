@@ -35,12 +35,9 @@ URL_REGEXP = re.compile('((http|ftp)s?://)?'
     '(([-a-zA-Z0-9]+[.])+[-a-zA-Z0-9]{2,}|([0-9]{1,3}[.]){3}[0-9]{1,3})'
     '(:[1-9][0-9]{0,4})?(/[-a-zA-Z0-9/%~@&_+=;:,.?#]*[a-zA-Z0-9/])?')
 
-class ChatBox(gtk.VBox):
-    __gsignals__ = {
-        'send_message': (SIGNAL_RUN_FIRST, None, [TYPE_PYOBJECT]) }
-
+class ChatBox(hippo.CanvasScrollbars):
     def __init__(self):
-        gtk.VBox.__init__(self, homogeneous=False)
+        hippo.CanvasScrollbars.__init__(self)
 
         self.owner = presenceservice.get_instance().get_owner()
 
@@ -56,31 +53,13 @@ class ChatBox(gtk.VBox):
                 spacing=0,
                 background_color=COLOR_WHITE.get_int())
 
-        self._scrolled = hippo.CanvasScrollbars()
-        self._scrolled.set_policy(hippo.ORIENTATION_HORIZONTAL,
+        self.set_policy(hippo.ORIENTATION_HORIZONTAL,
                 hippo.SCROLLBAR_NEVER)
-        self._scrolled.set_root(self._conversation)
+        self.set_root(self._conversation)
 
-        vadj = self._scrolled.props.widget.get_vadjustment()
+        vadj = self.props.widget.get_vadjustment()
         vadj.connect('changed', self._scroll_changed_cb)
         vadj.connect('value-changed', self._scroll_value_changed_cb)
-
-        self._entry = gtk.Entry()
-        self._entry.modify_bg(gtk.STATE_INSENSITIVE,
-                COLOR_WHITE.get_gdk_color())
-        self._entry.modify_base(gtk.STATE_INSENSITIVE,
-                COLOR_WHITE.get_gdk_color())
-        #self._entry.set_sensitive(False)
-        self._entry.connect('activate', self._entry_activate_cb)
-
-        hbox = gtk.HBox()
-        hbox.add(self._entry)
-
-        canvas = hippo.Canvas()
-        canvas.set_root(self._scrolled)
-
-        self.pack_start(canvas)
-        self.pack_start(hbox, expand=False)
 
     def get_log(self):
         return self._chat_log
@@ -110,36 +89,32 @@ class ChatBox(gtk.VBox):
         |             +----------------+ |
         `--------------------------------'
         """
-        if buddy:
-            if type(buddy) is dict:
-                # dict required for loading chat log from journal
-                nick = buddy['nick']
-                color = buddy['color']
-            else:
-                nick = buddy.props.nick
-                color = buddy.props.color
-            try:
-                color_stroke_html, color_fill_html = color.split(',')
-            except ValueError:
-                color_stroke_html, color_fill_html = ('#000000', '#888888')
+        if not buddy:
+            buddy = self.owner
 
-            # Select text color based on fill color:
-            color_fill_rgba = Color(color_fill_html).get_rgba()
-            color_fill_gray = (color_fill_rgba[0] + color_fill_rgba[1] +
-                               color_fill_rgba[2])/3
-            color_stroke = Color(color_stroke_html).get_int()
-            color_fill = Color(color_fill_html).get_int()
-
-            if color_fill_gray < 0.5:
-                text_color = COLOR_WHITE.get_int()
-            else:
-                text_color = COLOR_BLACK.get_int()
+        if type(buddy) is dict:
+            # dict required for loading chat log from journal
+            nick = buddy['nick']
+            color = buddy['color']
         else:
-            nick = '???'  # XXX: should be '' but leave for debugging
-            color_stroke = COLOR_BLACK.get_int()
-            color_fill = COLOR_WHITE.get_int()
+            nick = buddy.props.nick
+            color = buddy.props.color
+        try:
+            color_stroke_html, color_fill_html = color.split(',')
+        except ValueError:
+            color_stroke_html, color_fill_html = ('#000000', '#888888')
+
+        # Select text color based on fill color:
+        color_fill_rgba = Color(color_fill_html).get_rgba()
+        color_fill_gray = (color_fill_rgba[0] + color_fill_rgba[1] +
+                           color_fill_rgba[2])/3
+        color_stroke = Color(color_stroke_html).get_int()
+        color_fill = Color(color_fill_html).get_int()
+
+        if color_fill_gray < 0.5:
+            text_color = COLOR_WHITE.get_int()
+        else:
             text_color = COLOR_BLACK.get_int()
-            color = '#000000,#FFFFFF'
 
         self._add_log(nick, color, text, status_message)
 
@@ -251,16 +226,6 @@ class ChatBox(gtk.VBox):
         if self._scroll_auto:
             adj.set_value(adj.upper-adj.page_size)
             self._scroll_value = adj.get_value()
-
-    def _entry_activate_cb(self, entry):
-        text = entry.props.text
-        logging.debug('Entry: %s' % text)
-        if not text: return
-
-        self.add_text(self.owner, text)
-        entry.props.text = ''
-        self.emit('send_message', text)
-
 
     def _link_activated_cb(self, link):
         url = url_check_protocol(link.props.text)

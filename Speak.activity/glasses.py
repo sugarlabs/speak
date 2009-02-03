@@ -24,8 +24,8 @@
 from eye import *
 
 class Glasses(Eye):
-    def __init__(self):
-        Eye.__init__(self)
+    def __init__(self, fill_color):
+        Eye.__init__(self, fill_color)
 
     def expose(self, widget, event):
         bounds = self.get_allocation()
@@ -50,7 +50,7 @@ class Glasses(Eye):
         self.context.clip()
 
         # background
-        self.context.set_source_rgb(.5,.5,.5)
+        self.context.set_source_rgba(*self.fill_color.get_rgba())
         self.context.rectangle(0,0,bounds.width,bounds.height)
         self.context.fill()
 

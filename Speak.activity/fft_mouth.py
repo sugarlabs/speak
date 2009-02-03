@@ -34,9 +34,9 @@ except:
     from FFT import *
 
 class FFTMouth(Mouth):
-    def __init__(self, audioSource):
+    def __init__(self, audioSource, fill_color):
 
-        Mouth.__init__(self, audioSource)
+        Mouth.__init__(self, audioSource, fill_color)
         
         self.peaks = []
 
@@ -107,12 +107,12 @@ class FFTMouth(Mouth):
         self.context.clip()
 
         # background
-        self.context.set_source_rgb(.5,.5,.5)
+        self.context.set_source_rgba(*self.fill_color.get_rgba())
         self.context.rectangle(0,0, bounds.width,bounds.height)
         self.context.fill()
 
         # Draw the waveform
-        self.context.set_line_width(10.0)
+        self.context.set_line_width(min(bounds.height/10.0, 10))
         self.context.set_source_rgb(0,0,0)
         count = 0
         for peak in self.peaks:
