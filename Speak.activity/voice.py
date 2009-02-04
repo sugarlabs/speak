@@ -101,10 +101,10 @@ def defaultVoice():
 
     def fit(a,b):
         "Compare two language ids to see if they are similar."
-	as = re.split(r'[^a-z]+', a.lower())
+	as_ = re.split(r'[^a-z]+', a.lower())
 	bs = re.split(r'[^a-z]+', b.lower())
-	for count in range(0, min(len(as),len(bs))):
-            if as[count] != bs[count]:
+	for count in range(0, min(len(as_),len(bs))):
+            if as_[count] != bs[count]:
                 count -= 1
                 break
         return count
