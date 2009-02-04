@@ -24,7 +24,10 @@ import eye
 import glasses
 import mouth
 import face
+import messenger
 from chatbox import ChatBox
+
+logger = logging.getLogger('speak')
 
 BUDDY_SIZE = min(100, min(gtk.gdk.screen_width(),
         gtk.gdk.screen_height() - style.LARGE_ICON_SIZE) / 5)
@@ -42,8 +45,11 @@ ENTRY_YPAD = 7
 class Chat(hippo.Canvas):
     def __init__(self):
         hippo.Canvas.__init__(self)
-        self._buddies = {}
 
+        self.messenger = None
+        self.me = None
+
+        self._buddies = {}
         self.connect('motion_notify_event', self._motion_notify_cb)
 
         # buddies box
@@ -62,10 +68,9 @@ class Chat(hippo.Canvas):
 
         # chat entry
 
-        self.chat = ChatBox()
-        self.me = self.chat.owner
-
-        self.my_face, self_face = self._new_face(self.chat.owner, ENTRY_COLOR)
+        self._chat = ChatBox()
+        self.me, my_face_widget = self._new_face(self._chat.owner,
+                ENTRY_COLOR)
 
         chat_post = gtk.TextView()
         chat_post.modify_bg(gtk.STATE_INSENSITIVE,
@@ -95,14 +100,14 @@ class Chat(hippo.Canvas):
                 )
         chat_entry.props.orientation = hippo.ORIENTATION_HORIZONTAL
         chat_entry.props.border_color = style.COLOR_WHITE.get_int()
-        chat_entry.append(self_face)
+        chat_entry.append(my_face_widget)
         chat_entry.append(chat_post_box, hippo.PACK_EXPAND)
 
         chat_box = hippo.CanvasBox(
                 orientation = hippo.ORIENTATION_VERTICAL,
                 background_color = style.COLOR_WHITE.get_int(),
                 )
-        chat_box.append(self.chat, hippo.PACK_EXPAND)
+        chat_box.append(self._chat, hippo.PACK_EXPAND)
         chat_box.append(chat_entry)
 
         # desk
@@ -113,28 +118,24 @@ class Chat(hippo.Canvas):
 
         self.set_root(self._desk)
 
-        self._add_buddy(self.chat.owner)
-
-    def update(self, status, buddy = None, text = None):
-        if not buddy or buddy == self.me:
-            face = self.my_face
+    def post(self, buddy, status, text):
+        i = self._buddies.get(buddy)
+        if i:
+            face = i['face']
         else:
-            i = self._buddies.get(buddy)
-            if i:
-                face = i['face']
-            else:
-                self._add_buddy(boddy)
-                face = self._buddies[buddy]['face']
+            self._add_buddy(buddy)
+            face = self._buddies[buddy]['face']
 
         if status:
             face.update(status)
         if text:
+            self._chat.add_text(buddy, text)
             face.say(text)
 
     def farewell(self, buddy):
         i = self._buddies.get(buddy)
         if not i:
-            logging.debug('farewell: cannot find boddy %s' % buddy.props.nick)
+            logger.debug('farewell: cannot find buddy %s' % buddy.props.nick)
             return
 
         self._buddies_list.remove(i['box'])
@@ -173,15 +174,14 @@ class Chat(hippo.Canvas):
         if event.keyval == gtk.keysyms.Return:
             if not (event.state & gtk.gdk.CONTROL_MASK):
                 text = widget.get_buffer().props.text
-                self.chat.add_text(None, text)
-                widget.get_buffer().props.text = ''
 
-                #if len(self._buddies) == 1:
-                #    self._del_buddy(self.chat.owner)
-                #else:
-                #    self._add_buddy(self.chat.owner)
+                if text:
+                    self._chat.add_text(None, text)
+                    widget.get_buffer().props.text = ''
+                    self.me.say(text)
+                    if self.messenger:
+                        self.messenger.post(text)
 
-                self.update(None, None, text)
                 return True
         return False
 
@@ -218,7 +218,7 @@ class Chat(hippo.Canvas):
         return (buddy_face, outer)
 
     def _look_at(self, x, y):
-        self.my_face.look_at(x, y)
+        self.me.look_at(x, y)
         for i in self._buddies.values():
             i['face'].look_at(x, y)
 

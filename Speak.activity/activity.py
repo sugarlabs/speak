@@ -59,13 +59,15 @@ import voice
 import face
 from toolbars import ChatToolbar
 from chat import Chat
+from collab import CollabActivity
+from messenger import Messenger, SERVICE
 
 CHAT_TOOLBAR = 3
 
-class SpeakActivity(activity.Activity):
+class SpeakActivity(CollabActivity):
     def __init__(self, handle):
         
-        activity.Activity.__init__(self, handle)
+        CollabActivity.__init__(self, SERVICE, handle)
         bounds = self.get_allocation()
 
         # pick a voice that espeak supports
@@ -450,10 +452,13 @@ class SpeakActivity(activity.Activity):
 
     def _toolbar_changed_cb(self, widget, index):
         if index == CHAT_TOOLBAR:
-            self.chat.update(self.face.status)
+            self.chat.me.update(self.face.status)
             self.notebook.set_current_page(1)
         else:
             self.notebook.set_current_page(0)
+
+    def on_tube(self, tube_conn, initiating):
+        self.chat.messenger = Messenger(tube_conn, initiating, self.chat)
 
     #def on_quit(self, data=None):
     #    self.audio.on_quit()    

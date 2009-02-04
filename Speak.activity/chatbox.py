@@ -31,6 +31,8 @@ from sugar.graphics.style import (Color, COLOR_BLACK, COLOR_WHITE)
 from sugar.graphics.menuitem import MenuItem
 from sugar.activity.activity import get_activity_root
 
+logger = logging.getLogger('speak')
+
 URL_REGEXP = re.compile('((http|ftp)s?://)?'
     '(([-a-zA-Z0-9]+[.])+[-a-zA-Z0-9]{2,}|([0-9]{1,3}[.]){3}[0-9]{1,3})'
     '(:[1-9][0-9]{0,4})?(/[-a-zA-Z0-9/%~@&_+=;:,.?#]*[a-zA-Z0-9/])?')
@@ -238,7 +240,7 @@ class ChatBox(hippo.CanvasScrollbars):
         from sugar import profile
         from sugar.activity.activity import show_object_in_journal
         from sugar.datastore import datastore
-        logging.debug('Create journal entry for URL: %s', url)
+        logger.debug('Create journal entry for URL: %s', url)
         jobject = datastore.create()
         metadata = {
             'title': "%s: %s" % (_('URL from Chat'), url),
@@ -300,7 +302,7 @@ class URLMenu(Palette):
         pass
 
     def _copy_to_clipboard_cb(self, menuitem):
-        logging.debug('Copy %s to clipboard', self.url)
+        logger.debug('Copy %s to clipboard', self.url)
         clipboard = gtk.clipboard_get()
         targets = [("text/uri-list", 0, 0),
                    ("UTF8_STRING", 0, 1)]
@@ -309,23 +311,23 @@ class URLMenu(Palette):
                                        self._clipboard_data_get_cb,
                                        self._clipboard_clear_cb,
                                        (self.url)):
-            logging.error('GtkClipboard.set_with_data failed!')
+            logger.error('GtkClipboard.set_with_data failed!')
         else:
             self.owns_clipboard = True
 
     def _clipboard_data_get_cb(self, clipboard, selection, info, data):
-        logging.debug('_clipboard_data_get_cb data=%s target=%s', data,
+        logger.debug('_clipboard_data_get_cb data=%s target=%s', data,
                      selection.target)        
         if selection.target in ['text/uri-list']:
             if not selection.set_uris([data]):
-                logging.debug('failed to set_uris')
+                logger.debug('failed to set_uris')
         else:
-            logging.debug('not uri')
+            logger.debug('not uri')
             if not selection.set_text(data):
-                logging.debug('failed to set_text')
+                logger.debug('failed to set_text')
 
     def _clipboard_clear_cb(self, clipboard, data):
-        logging.debug('clipboard_clear_cb')
+        logger.debug('clipboard_clear_cb')
         self.owns_clipboard = False
 
 def url_check_protocol(url):

@@ -34,6 +34,7 @@ import logging
 import gtk
 import gobject
 import pango
+import cjson
 from gettext import gettext as _
 
 # try:
@@ -59,6 +60,8 @@ import voice
 import fft_mouth
 import waveform_mouth
 
+logger = logging.getLogger('speak')
+
 PITCH_MAX = 100
 RATE_MAX = 100
 FACE_PAD = 2
@@ -70,6 +73,38 @@ class Status:
         self.rate = RATE_MAX/2
         self.eyes = [eye.Eye] * 2
         self.mouth = mouth.Mouth
+
+    def serialize(self):
+        eyes    = { eye.Eye : 1,
+                    glasses.Glasses : 2 }
+        mouths  = { mouth.Mouth : 1,
+                    fft_mouth.FFTMouth : 2,
+                    waveform_mouth.WaveformMouth : 3 }
+
+        return cjson.encode({
+            'voice' : { 'language'  : self.voice.language,
+                        'gender'    : self.voice.gender,
+                        'name'      : self.voice.name },
+            'pitch' : self.pitch,
+            'rate'  : self.rate,
+            'eyes'  : [eyes[i] for i in self.eyes],
+            'mouth' : mouths[self.mouth] })
+
+    def deserialize(self, buf):
+        eyes    = { 1: eye.Eye,
+                    2: glasses.Glasses }
+        mouths  = { 1: mouth.Mouth,
+                    2: fft_mouth.FFTMouth,
+                    3: waveform_mouth.WaveformMouth }
+
+        data = cjson.decode(buf)
+        self.voice.language = data['voice']['language']
+        self.voice.gender = data['voice']['gender']
+        self.voice.name = data['voice']['name']
+        self.pitch = data['pitch']
+        self.rate = data['rate']
+        self.eyes = [eyes[i] for i in data['eyes']]
+        self.mouth = mouths[data['mouth']]
 
 class View(gtk.EventBox):
     def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
@@ -154,7 +189,7 @@ class View(gtk.EventBox):
         if self._audio is None:
             return
         
-        logging.debug('%s: %s' % (self.status.voice.name, something))
+        logger.debug('%s: %s' % (self.status.voice.name, something))
         pitch = int(self.status.pitch)
         rate = int(self.status.rate)
 
