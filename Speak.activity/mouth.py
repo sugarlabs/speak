@@ -50,7 +50,7 @@ class Mouth(gtk.DrawingArea):
         return True
 
     def processBuffer(self, bounds):
-        if len(self.main_buffers) == 0:
+        if len(self.main_buffers) == 0 or len(self.newest_buffer) == 0:
             self.volume = 0
         else:
             self.volume = numpy.core.max(self.main_buffers)# - numpy.core.min(self.main_buffers)

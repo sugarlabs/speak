@@ -22,35 +22,12 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys
-import os
-from urllib import (quote, unquote)
-import subprocess
-import random
-from sugar.activity import activity
-from sugar.datastore import datastore
-from sugar.presence import presenceservice
 import logging 
 import gtk
-import gobject
-import pango
 import cjson
 from gettext import gettext as _
 
-# try:
-#     sys.path.append('/usr/lib/python2.4/site-packages') # for speechd
-#     import speechd.client
-# except:
-#     print "Speech-dispatcher not found."
-
-from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.toolcombobox import ToolComboBox
-from sugar.graphics.combobox import ComboBox
 import sugar.graphics.style as style
-
-import pygst
-pygst.require("0.10")
-import gst
 
 import audio
 import eye
@@ -62,8 +39,8 @@ import waveform_mouth
 
 logger = logging.getLogger('speak')
 
-PITCH_MAX = 100
-RATE_MAX = 100
+PITCH_MAX = 99
+RATE_MAX = 99
 FACE_PAD = 2
 
 class Status:
@@ -83,7 +60,6 @@ class Status:
 
         return cjson.encode({
             'voice' : { 'language'  : self.voice.language,
-                        'gender'    : self.voice.gender,
                         'name'      : self.voice.name },
             'pitch' : self.pitch,
             'rate'  : self.rate,
@@ -98,13 +74,14 @@ class Status:
                     3: waveform_mouth.WaveformMouth }
 
         data = cjson.decode(buf)
-        self.voice.language = data['voice']['language']
-        self.voice.gender = data['voice']['gender']
-        self.voice.name = data['voice']['name']
+        self.voice = voice.Voice(data['voice']['language'],
+                data['voice']['name'])
         self.pitch = data['pitch']
         self.rate = data['rate']
         self.eyes = [eyes[i] for i in data['eyes']]
         self.mouth = mouths[data['mouth']]
+
+        return self
 
 class View(gtk.EventBox):
     def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
@@ -116,18 +93,6 @@ class View(gtk.EventBox):
         self.connect('size-allocate', self._size_allocate_cb)
 
         self._audio = audio.AudioGrab()
-        self._synth = None
-        # try:
-        #     self._synth = speechd.client.SSIPClient("Speak.activity")
-        #     try:
-        #         # Try some speechd v0.6.6 features
-        #         print "Output modules:", self._synth.list_output_modules()
-        #         print "Voices:", self._synth.list_synthesis_voices()
-        #     except:
-        #         pass
-        # except:
-        #     self._synth = None
-        #     print "Falling back to espeak command line tool."
 
         # make an empty box for some eyes
         self._eyes = None
@@ -186,39 +151,10 @@ class View(gtk.EventBox):
         #self._mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
 
     def say(self, something):
-        if self._audio is None:
-            return
-        
-        logger.debug('%s: %s' % (self.status.voice.name, something))
-        pitch = int(self.status.pitch)
-        rate = int(self.status.rate)
-
-        if self._synth is not None:
-            # speechd uses -100 to 100
-            pitch = pitch*2 - 100
-            # speechd uses -100 to 100
-            rate = rate*2 - 100
-
-            self._synth.set_rate(rate)
-            self._synth.set_pitch(pitch)
-            self._synth.set_language(self.status.voice.language)
-            self._synth.speak(something) #, callback=self._synth_cb)
-        else:
-            # espeak uses 0 to 99
-            pitch = pitch
-            # espeak uses 80 to 370
-            rate = 80 + (370-80) * rate / 100
-
-            # ideally we would stream the audio instead of writing to disk each time...
-            wavpath = "/tmp/speak.wav"
-            subprocess.call(["espeak", "-w", wavpath, "-p", str(pitch), "-s", str(rate), "-v", self.status.voice.name, something], stdout=subprocess.PIPE)
-            self._audio.playfile(wavpath)
+        self._audio.playfile(self.status, something)
     
-    def quiet(self):
+    def shut_up(self):
         self._audio.stop_sound_device()
-
-    def verbose(self):
-        self._audio.restart_sound_device()
 
     def _size_allocate_cb(self, widget, allocation):
         self._mouthbox.set_size_request(-1, int(allocation.height/2.5))

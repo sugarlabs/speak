@@ -144,6 +144,11 @@ class Chat(hippo.Canvas):
         if len(self._buddies) == 0:
             self._desk.remove(self._buddies_box)
 
+    def shut_up(self):
+        for i in self._buddies:
+            i['face'].shut_up();
+        self.me.shut_up();
+
     def _add_buddy(self, buddy):
         box = hippo.CanvasBox(
                 orientation = hippo.ORIENTATION_HORIZONTAL,

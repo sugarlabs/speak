@@ -22,33 +22,18 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys
-import os
-from urllib import (quote, unquote)
-import subprocess
-import random
 from sugar.activity import activity
-from sugar.datastore import datastore
 from sugar.presence import presenceservice
 import logging 
 import gtk
 import gobject
 import pango
+import cjson
 from gettext import gettext as _
-
-# try:
-#     sys.path.append('/usr/lib/python2.4/site-packages') # for speechd
-#     import speechd.client
-# except:
-#     print "Speech-dispatcher not found."
 
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toolcombobox import ToolComboBox
 from sugar.graphics.combobox import ComboBox
-
-import pygst
-pygst.require("0.10")
-import gst
 
 import eye
 import glasses
@@ -61,6 +46,8 @@ from toolbars import ChatToolbar
 from chat import Chat
 from collab import CollabActivity
 from messenger import Messenger, SERVICE
+
+logger = logging.getLogger('speak')
 
 CHAT_TOOLBAR = 3
 
@@ -163,11 +150,6 @@ class SpeakActivity(CollabActivity):
         #     return True
         # gobject.timeout_add(100, poll_mouse)
         
-        # say hello to the user
-        presenceService = presenceservice.get_instance()
-        xoOwner = presenceService.get_owner()
-        self.face.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
-
         # XXX do it after(possible) read_file() invoking
         # have to rely on calling read_file() from map_cb in sugar-toolkit
         self.connect_after('map', self.connect_to)
@@ -181,80 +163,41 @@ class SpeakActivity(CollabActivity):
         self.numeyesadj.connect("value_changed", self.eyes_changed_cb, False)
         self.eye_shape_combo.connect('changed', self.eyes_changed_cb, False)
         self.eyes_changed_cb(None, True)
+
         self.face.look_ahead()
 
+        # say hello to the user
+        presenceService = presenceservice.get_instance()
+        xoOwner = presenceService.get_owner()
+        self.face.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
+
     def write_file(self, file_path):
-        f = open(file_path, "w")
-        f.write("speak file format v1\n")
-        f.write("voice=%s\n" % quote(self.face.status.voice.friendlyname))
-        f.write("text=%s\n" % quote(self.entry.props.text))
-        history = map(lambda i: i[0], self.entrycombo.get_model())
-        f.write("history=[%s]\n" % ",".join(map(quote, history)))
-        f.write("pitch=%d\n" % self.pitchadj.value)
-        f.write("rate=%d\n" % self.rateadj.value)
-        f.write("mouth_shape=%s\n" % quote(self.mouth_shape_combo.get_active_item()[1]))
-        f.write("eye_shape=%s\n" % quote(self.eye_shape_combo.get_active_item()[1]))
-        f.write("num_eyes=%d\n" % self.numeyesadj.value)
-        f.close()
-        
-        f = open(file_path, "r")
-        print f.readlines()
-        f.close()
-        
+        cfg = { 'status'  : self.face.status.serialize(),
+                'text'    : self.entry.props.text,
+                'history' : map(lambda i: i[0], self.entrycombo.get_model()) }
+        file(file_path, 'w').write(cjson.encode(cfg))
         
     def read_file(self, file_path):
-        
-        def pick_combo_item(combo, name):
-            index = 0
-            model = combo.get_model()
-            for item in model:
-                if item[1] == name:
-                    combo.set_active(index)
-                    return True
-                index += 1
-            return False
-        
-        f = open(file_path, "r")
-        header = f.readline().strip()
-        if header != "speak file format v1":
-            print "Reading format from the future '%s', will try my best." % header
-        for line in f.readlines():
-            line = line.strip()
-            index = line.find('=')
-            key = line[:index]
-            value = line[index+1:]
-            if key == 'voice':
-                voice_name = unquote(value)
-                found = pick_combo_item(self.voice_combo, voice_name)
-                if not found:
-                    print "Unrecognized voice name: %s" % voice_name
-            elif key == 'text':
-                self.entry.props.text = unquote(value)
-            elif key == 'history':
-                if value[0]=='[' and value[-1]==']':
-                    for item in value[1:-1].split(','):
-                        self.entrycombo.append_text(unquote(item))
-                else:
-                    print "Unrecognized history: %s" % value
-            elif key == 'pitch':
-                self.pitchadj.value = int(value)
-            elif key == 'rate':
-                self.rateadj.value = int(value)
-            elif key == 'mouth_shape':
-                mouth_name = unquote(value)
-                found = pick_combo_item(self.mouth_shape_combo, mouth_name)
-                if not found:
-                    print "Unrecognized mouth shape: %s" % mouth_name
-            elif key == 'eye_shape':
-                eye_name = unquote(value)
-                found = pick_combo_item(self.eye_shape_combo, eye_name)
-                if not found:
-                    print "Unrecognized eye shape: %s" % eye_name
-            elif key == 'num_eyes':
-                self.numeyesadj.value = int(value)
-            else:
-                print "Ignoring unrecognized line: %s" % line
-        f.close()
+        cfg = cjson.decode(file(file_path, 'r').read())
+
+        def pick_combo_item(combo, col, obj):
+            for i, item in enumerate(combo.get_model()):
+                if item[col] == obj:
+                    combo.set_active(i)
+                    return
+            logger.warning("Unrecognized loaded value: %s" % obj)
+
+        status = self.face.status = face.Status().deserialize(cfg['status'])
+        pick_combo_item(self.voice_combo, 1, status.voice.friendlyname)
+        self.pitchadj.value = self.face.status.pitch
+        self.rateadj.value = self.face.status.rate
+        pick_combo_item(self.mouth_shape_combo, 0, status.mouth)
+        pick_combo_item(self.eye_shape_combo, 0, status.eyes[0])
+        self.numeyesadj.value = len(status.eyes)
+
+        self.entry.props.text = cfg['text']
+        for i in cfg['history']:
+            self.entrycombo.append_text(i)
 
     def _cursor_moved_cb(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
@@ -446,15 +389,16 @@ class SpeakActivity(CollabActivity):
     def _activeCb( self, widget, pspec ):
         # only generate sound when this activity is active
         if not self.props.active:
-            self.face.quiet()
-        else:
-            self.face.verbose()
+            self.face.shut_up()
+            self.chat.shut_up()
 
     def _toolbar_changed_cb(self, widget, index):
         if index == CHAT_TOOLBAR:
+            self.face.shut_up()
             self.chat.me.update(self.face.status)
             self.notebook.set_current_page(1)
         else:
+            self.chat.shut_up()
             self.notebook.set_current_page(0)
 
     def on_tube(self, tube_conn, initiating):

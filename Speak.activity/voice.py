@@ -22,8 +22,8 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import subprocess
 import re, os
+import gst
 from gettext import gettext as _
 
 # Lets trick gettext into generating entries for the voice names we expect espeak to have
@@ -68,9 +68,8 @@ expectedVoiceNames = [
 _allVoices = {}
 
 class Voice:
-    def __init__(self, language, gender, name):
+    def __init__(self, language, name):
         self.language = language
-        self.gender = gender
         self.name = name
 
         friendlyname = name
@@ -83,16 +82,14 @@ class Voice:
     
 def allVoices():
     if len(_allVoices) == 0:
-        result = subprocess.Popen(["espeak", "--voices"], stdout=subprocess.PIPE).communicate()[0]
-        for line in result.split('\n'):
-            m = re.match(r'\s*\d+\s+([\w-]+)\s+([MF])\s+([\w_-]+)\s+(.+)', line)
-            if m:
-                language, gender, name, stuff = m.groups()
-                if stuff.startswith('mb/') or name in ('en-rhotic','english_rp','english_wmids'):
-                    # these voices don't produce sound
-                    continue
-                voice = Voice(language, gender, name)
-                _allVoices[voice.friendlyname] = voice
+        for i in gst.element_factory_make('espeak').props.voices:
+            name, language = i.split(':')
+            if name in ('en-rhotic','english_rp','english_wmids'):
+                # these voices don't produce sound
+                continue
+            voice = Voice(language, name)
+            _allVoices[voice.friendlyname] = voice
+
     return _allVoices
 
 def defaultVoice():
