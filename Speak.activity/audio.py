@@ -23,6 +23,8 @@
 
 # This code is a stripped down version of the audio grabber from Measure
 
+import pygst
+pygst.require("0.10")
 import gst
 import pygtk
 import gtk, gobject
