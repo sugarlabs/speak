@@ -22,8 +22,10 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import re, os
+import pygst
+pygst.require("0.10")
 import gst
+import re, os
 from gettext import gettext as _
 
 # Lets trick gettext into generating entries for the voice names we expect espeak to have
