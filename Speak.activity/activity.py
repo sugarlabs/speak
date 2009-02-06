@@ -394,7 +394,7 @@ class SpeakActivity(CollabActivity):
     def _toolbar_changed_cb(self, widget, index):
         if index == CHAT_TOOLBAR:
             self.face.shut_up()
-            self.chat.me.update(self.face.status)
+            self.chat.update(self.face.status)
             self.notebook.set_current_page(1)
         else:
             self.chat.shut_up()

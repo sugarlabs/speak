@@ -40,6 +40,8 @@ class Messenger(ExportedGObject):
         self._tube.watch_participants(self._participant_change_cb)
 
     def post(self, text):
+        if text == None:
+            text = ''
         self._post(self.chat.me.status.serialize(), text)
 
     def _participant_change_cb(self, added, removed):
@@ -106,6 +108,8 @@ class Messenger(ExportedGObject):
     def _post_cb(self, sender_status, text, sender=None):
         if sender == self.me:
             return
+        if not text:
+            text = None
 
         tp_handle = self._tube.bus_name_to_handle[sender]
         buddy = self._buddies[tp_handle]

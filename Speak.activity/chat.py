@@ -140,6 +140,11 @@ class View(hippo.Canvas):
 
         self.set_root(self._desk)
 
+    def update(self, status):
+        self.me.update(status)
+        if self.messenger:
+            self.messenger.post(None)
+
     def post(self, buddy, status, text):
         i = self._buddies.get(buddy)
         if i:
