@@ -132,7 +132,8 @@ class Chat(hippo.Canvas):
             face.update(status)
         if text:
             self._chat.add_text(buddy, text)
-            face.say(text)
+            if self.props.window and self.props.window.is_visible():
+                face.say(text)
 
     def farewell(self, buddy):
         i = self._buddies.get(buddy)

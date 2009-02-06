@@ -80,7 +80,8 @@ class Messenger(ExportedGObject):
         tp_handle = self._tube.bus_name_to_handle[sender]
         buddy = self._buddies[tp_handle] = self._tube.get_buddy(tp_handle)
 
-        logger.debug('pong received from %s(%s)' % (sender, buddy.props.nick))
+        logger.debug('pong received from %s(%s) status=%s' \
+                % (sender, buddy.props.nick, sender_status))
 
         self.chat.post(buddy, face.Status().deserialize(sender_status), None)
 
@@ -89,9 +90,12 @@ class Messenger(ExportedGObject):
             return
 
         tp_handle = self._tube.bus_name_to_handle[sender]
-        buddy = self._buddies[tp_handle] = self._tube.get_buddy(tp_handle)
+        buddy = self._tube.get_buddy(tp_handle)
+        if not buddy: return
+        self._buddies[tp_handle] = buddy
 
-        logger.debug('ping received from %s(%s)' % (sender, buddy.props.nick))
+        logger.debug('ping received from %s(%s) status=%s' \
+                % (sender, buddy.props.nick, sender_status))
 
         self.chat.post(buddy, face.Status().deserialize(sender_status), None)
         remote_object = self._tube.get_object(sender, PATH)
