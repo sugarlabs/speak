@@ -112,8 +112,18 @@ class View(gtk.EventBox):
         self.modify_bg(gtk.STATE_NORMAL, self.fill_color.get_gdk_color())
         self.add(box)
 
+        self._mapped = False
+        self._peding = None
+        self.connect("map_event",self._map_event)
+
         self.update()
         
+    def _map_event(self, widget, event):
+        self._mapped = True
+        if self._peding:
+            self.update(self._peding)
+            self._peding = None
+
     def look_ahead(self):
         if self._eyes:
             map(lambda e: e.look_ahead(), self._eyes)
@@ -126,7 +136,9 @@ class View(gtk.EventBox):
         if not status:
             status = self.status
         else:
-            self.status = status
+            if not self._mapped:
+                self._peding = status
+                return
 
         if self._eyes:
             for eye in self._eyes:
@@ -140,7 +152,6 @@ class View(gtk.EventBox):
             eye = i(self.fill_color)
             self._eyes.append(eye)
             self._eyebox.pack_start(eye, padding=FACE_PAD)
-            #eye.set_size_request(300,300)
             eye.show()
 
         self._mouth = status.mouth(self._audio, self.fill_color)
