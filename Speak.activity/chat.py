@@ -124,12 +124,16 @@ class Chat(hippo.Canvas):
         i = self._buddies.get(buddy)
         if i:
             face = i['face']
+            lang_box = None
         else:
             self._add_buddy(buddy)
             face = self._buddies[buddy]['face']
+            lang_box = self._buddies[buddy]['lang']
 
         if status:
             face.update(status)
+            if lang_box:
+                lang_box.props.text = status.voice.friendlyname
         if text:
             self._chat.add_text(buddy, text)
             if self.props.window and self.props.window.is_visible():
@@ -161,18 +165,30 @@ class Chat(hippo.Canvas):
 
         buddy_face, buddy_widget = self._new_face(buddy, BUDDIES_COLOR)
         
+        char_box = hippo.CanvasBox(
+                orientation = hippo.ORIENTATION_VERTICAL,
+                )
         nick = hippo.CanvasText(
                 text = buddy.props.nick,
                 xalign = hippo.ALIGNMENT_START,
                 yalign = hippo.ALIGNMENT_START
                 )
+        lang = hippo.CanvasText(
+                text = '',
+                xalign = hippo.ALIGNMENT_START,
+                yalign = hippo.ALIGNMENT_START
+                )
+        char_box.append(nick)
+        char_box.append(lang)
 
         box.append(buddy_widget)
-        box.append(nick, hippo.PACK_EXPAND)
+        box.append(char_box, hippo.PACK_EXPAND)
 
         self._buddies[buddy] = {
                 'box'   : box,
-                'face'  : buddy_face }
+                'face'  : buddy_face,
+                'lang'  : lang
+                }
         self._buddies_list.append(box)
 
         if len(self._buddies) == 1:

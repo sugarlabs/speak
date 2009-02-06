@@ -139,6 +139,7 @@ class View(gtk.EventBox):
             if not self._mapped:
                 self._peding = status
                 return
+            self.status = status
 
         if self._eyes:
             for eye in self._eyes:
