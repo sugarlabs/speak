@@ -147,13 +147,12 @@ class View(hippo.Canvas):
 
     def post(self, buddy, status, text):
         i = self._buddies.get(buddy)
-        if i:
-            face = i['face']
-            lang_box = None
-        else:
+        if not i:
             self._add_buddy(buddy)
-            face = self._buddies[buddy]['face']
-            lang_box = self._buddies[buddy]['lang']
+            i = self._buddies[buddy]
+
+        face = i['face']
+        lang_box = i['lang']
 
         if status:
             face.update(status)
