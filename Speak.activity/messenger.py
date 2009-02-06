@@ -37,10 +37,6 @@ class Messenger(ExportedGObject):
         self._entered = False
         self._buddies = {}
 
-        self._tube.add_signal_receiver(self._ping_cb, '_ping', IFACE, path=PATH,
-                sender_keyword='sender')
-        self._tube.add_signal_receiver(self._post_cb, '_post', IFACE, path=PATH,
-                sender_keyword='sender')
         self._tube.watch_participants(self._participant_change_cb)
 
     def post(self, text):
@@ -60,6 +56,12 @@ class Messenger(ExportedGObject):
         else:
             if not self._entered:
                 self.me = self._tube.get_unique_name()
+
+                self._tube.add_signal_receiver(self._ping_cb, '_ping', IFACE, path=PATH,
+                        sender_keyword='sender')
+                self._tube.add_signal_receiver(self._post_cb, '_post', IFACE, path=PATH,
+                        sender_keyword='sender')
+
                 if not self.is_initiator:
                     self._ping(self.chat.me.status.serialize())
             self._entered = True

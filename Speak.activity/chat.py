@@ -16,9 +16,11 @@ import gtk
 import pango
 import hippo
 import logging
+from gettext import gettext as _
 
 import sugar.graphics.style as style
 from sugar.graphics.roundbox import CanvasRoundBox
+from sugar.graphics.toggletoolbutton import ToggleToolButton
 
 import eye
 import glasses
@@ -36,18 +38,36 @@ BUDDY_YPAD = 5
 
 BUDDIES_WIDTH = int(BUDDY_SIZE * 2.5)
 BUDDIES_COLOR = style.COLOR_SELECTION_GREY
-#COLOR_BUTTON_GREY
 
 ENTRY_COLOR = style.COLOR_PANEL_GREY
 ENTRY_XPAD = 0
 ENTRY_YPAD = 7
 
-class Chat(hippo.Canvas):
+class Toolbar(gtk.Toolbar):
+    def __init__(self, chat):
+        gtk.Toolbar.__init__(self)
+        self.chat = chat
+
+        mute = ToggleToolButton('stock_volume-mute')
+        mute.set_tooltip(_('Mute'))
+        mute.connect('toggled', self._toggled_cb)
+        mute.show()
+        self.insert(mute, -1)
+
+    def _toggled_cb(self, widget):
+        if widget.get_active():
+            self.chat.quiet = True
+            self.chat.shut_up()
+        else:
+            self.chat.quiet = False
+
+class View(hippo.Canvas):
     def __init__(self):
         hippo.Canvas.__init__(self)
 
         self.messenger = None
         self.me = None
+        self.quiet = False
 
         self._buddies = {}
         self.connect('motion_notify_event', self._motion_notify_cb)
@@ -136,7 +156,8 @@ class Chat(hippo.Canvas):
                 lang_box.props.text = status.voice.friendlyname
         if text:
             self._chat.add_text(buddy, text)
-            if self.props.window and self.props.window.is_visible():
+            if not self.quiet and self.props.window \
+                    and self.props.window.is_visible():
                 face.say(text)
 
     def farewell(self, buddy):
@@ -202,7 +223,8 @@ class Chat(hippo.Canvas):
                 if text:
                     self._chat.add_text(None, text)
                     widget.get_buffer().props.text = ''
-                    self.me.say(text)
+                    if not self.quiet:
+                        self.me.say(text)
                     if self.messenger:
                         self.messenger.post(text)
 

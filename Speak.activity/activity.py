@@ -42,8 +42,7 @@ import fft_mouth
 import waveform_mouth
 import voice
 import face
-from toolbars import ChatToolbar
-from chat import Chat
+import chat
 from collab import CollabActivity
 from messenger import Messenger, SERVICE
 
@@ -96,7 +95,7 @@ class SpeakActivity(CollabActivity):
         box.show_all()
         self.notebook.append_page(box)
 
-        self.chat = Chat()
+        self.chat = chat.View()
         self.chat.show_all()
         self.notebook.append_page(self.chat)
 
@@ -115,7 +114,7 @@ class SpeakActivity(CollabActivity):
         toolbox.add_toolbar("Face", facebar)
         facebar.show()
         
-        chatbar = ChatToolbar()
+        chatbar = chat.Toolbar(self.chat)
         toolbox.add_toolbar(_('Chat'), chatbar)
         chatbar.show()
 
