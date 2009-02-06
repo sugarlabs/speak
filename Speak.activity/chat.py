@@ -78,6 +78,8 @@ class Chat(hippo.Canvas):
         chat_post.modify_base(gtk.STATE_INSENSITIVE,
                 style.COLOR_WHITE.get_gdk_color())
         chat_post.connect('key-press-event', self._key_press_cb)
+        chat_post.props.wrap_mode = gtk.WRAP_WORD_CHAR
+        chat_post.set_size_request(-1, BUDDY_SIZE - ENTRY_YPAD*2)
 
         chat_post_box = CanvasRoundBox(
                 background_color = style.COLOR_WHITE.get_int(),
@@ -145,7 +147,7 @@ class Chat(hippo.Canvas):
             self._desk.remove(self._buddies_box)
 
     def shut_up(self):
-        for i in self._buddies:
+        for i in self._buddies.values():
             i['face'].shut_up();
         self.me.shut_up();
 
