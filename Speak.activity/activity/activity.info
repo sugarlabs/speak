@@ -1,7 +1,7 @@
 [Activity]
 name = Speak
 bundle_id = vu.lux.olpc.Speak
-class = activity.SpeakActivity
+exec = sugar-activity activity.SpeakActivity -s
 icon = activity-speak
 activity_version = 9
 show_launcher = yes
