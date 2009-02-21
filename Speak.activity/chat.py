@@ -160,8 +160,9 @@ class View(hippo.Canvas):
                 lang_box.props.text = status.voice.friendlyname
         if text:
             self._chat.add_text(buddy, text)
-            if not self.quiet and self.props.window \
-                    and self.props.window.is_visible():
+            if not self.quiet:
+                # and self.props.window \
+                #    and self.props.window.is_visible():
                 face.say(text)
 
     def farewell(self, buddy):

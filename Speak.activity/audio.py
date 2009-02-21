@@ -23,6 +23,7 @@
 
 # This code is a stripped down version of the audio grabber from Measure
 
+import subprocess
 import pygst
 pygst.require("0.10")
 import gst
@@ -45,7 +46,17 @@ class AudioGrab(gobject.GObject):
         gobject.GObject.__init__(self)
         self.pipeline = None
 
-    def playfile(self, status, text):
+    def speak(self, status, text):
+        try:
+            self._speak(status, text)
+        except:
+            # espeak uses 80 to 370
+            rate = 80 + (370-80) * int(status.rate) / 100
+            wavpath = "/tmp/speak.wav"
+            subprocess.call(["espeak", "-w", wavpath, "-p", str(status.pitch), "-s", str(rate), "-v", status.voice.name, text], stdout=subprocess.PIPE)
+            self._playfile(wavpath)
+    
+    def _speak(self, status, text):
         pitch = int(status.pitch)
         rate = int(status.rate)
         # espeak uses 80 to 370
@@ -90,6 +101,42 @@ class AudioGrab(gobject.GObject):
         # how do we detect when the sample has finished playing?
         # we should stop the sound device and stop emitting buffers
         # to save on CPU and battery usage when there is no audio playing
+        
+        
+    def _playfile(self, filename):
+        self.stop_sound_device()
+        self._quiet = False
+
+        # build a pipeline that reads the given file
+        # and sends it to both the real audio output
+        # and a fake one that we use to draw from
+        p = 'filesrc name=file-source ! decodebin ! tee name=tee tee.! audioconvert ! alsasink tee.! queue ! audioconvert name=conv'
+        self.pipeline = gst.parse_launch(p)
+
+        # make a fakesink to capture audio
+        fakesink = gst.element_factory_make("fakesink", "fakesink")
+        fakesink.connect("handoff",self.on_buffer)
+        fakesink.set_property("signal-handoffs",True)
+        self.pipeline.add(fakesink)
+
+        bus = self.pipeline.get_bus()
+        bus.add_signal_watch()
+        bus.connect('message', self._gstmessage_cb)
+
+        # attach it to the pipeline
+        conv = self.pipeline.get_by_name("conv")
+        gst.element_link_many(conv, fakesink)
+
+        # set the source file
+        self.pipeline.get_by_name("file-source").set_property('location', filename)
+
+        # play
+        self.restart_sound_device()
+
+        # how do we detect when the sample has finished playing?
+        # we should stop the sound device and stop emitting buffers
+        # to save on CPU and battery usage when there is no audio playing
+
 
     def _gstmessage_cb(self, bus, message):
         type = message.type

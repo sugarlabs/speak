@@ -47,7 +47,7 @@ class Status:
     def __init__(self):
         self.voice = voice.defaultVoice()
         self.pitch = PITCH_MAX/2
-        self.rate = RATE_MAX/2
+        self.rate = RATE_MAX/3
         self.eyes = [eye.Eye] * 2
         self.mouth = mouth.Mouth
 
@@ -163,7 +163,7 @@ class View(gtk.EventBox):
         #self._mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
 
     def say(self, something):
-        self._audio.playfile(self.status, something)
+        self._audio.speak(self.status, something)
     
     def shut_up(self):
         self._audio.stop_sound_device()
