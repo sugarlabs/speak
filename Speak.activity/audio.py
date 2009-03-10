@@ -57,10 +57,8 @@ class AudioGrab(gobject.GObject):
             self._playfile(wavpath)
     
     def _speak(self, status, text):
-        pitch = int(status.pitch)
-        rate = int(status.rate)
-        # espeak uses 80 to 370
-        rate = 80 + (370-80) * rate / 100
+        pitch = int(status.pitch) * 2 - 100
+        rate = int(status.rate) * 2 - 100
 
         logger.debug('pitch=%d rate=%d voice=%s text=%s' % (pitch, rate,
                 status.voice.name, text))
