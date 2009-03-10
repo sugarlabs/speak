@@ -39,15 +39,13 @@ import waveform_mouth
 
 logger = logging.getLogger('speak')
 
-PITCH_MAX = 99
-RATE_MAX = 99
 FACE_PAD = 2
 
 class Status:
     def __init__(self):
         self.voice = voice.defaultVoice()
-        self.pitch = PITCH_MAX/2
-        self.rate = RATE_MAX/3
+        self.pitch = audio.PITCH_DEFAULT
+        self.rate = audio.RATE_DEFAULT
         self.eyes = [eye.Eye] * 2
         self.mouth = mouth.Mouth
 

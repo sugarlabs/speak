@@ -37,6 +37,20 @@ from struct import *
 
 logger = logging.getLogger('speak')
 
+try:
+    import gst
+    gst.element_factory_make('espeak')
+
+    PITCH_MAX = 200
+    RATE_MAX = 200
+    PITCH_DEFAULT = PITCH_MAX/2
+    RATE_DEFAULT = RATE_MAX/2
+except:
+    PITCH_MAX = 99
+    RATE_MAX = 99
+    PITCH_DEFAULT = PITCH_MAX/2
+    RATE_DEFAULT = RATE_MAX/3
+
 class AudioGrab(gobject.GObject):
     __gsignals__ = {
         'new-buffer': (gobject.SIGNAL_RUN_FIRST, None, [gobject.TYPE_PYOBJECT])
@@ -57,8 +71,8 @@ class AudioGrab(gobject.GObject):
             self._playfile(wavpath)
     
     def _speak(self, status, text):
-        pitch = int(status.pitch) * 2 - 100
-        rate = int(status.rate) * 2 - 100
+        pitch = int(status.pitch) - 100
+        rate = int(status.rate) - 100
 
         logger.debug('pitch=%d rate=%d voice=%s text=%s' % (pitch, rate,
                 status.voice.name, text))

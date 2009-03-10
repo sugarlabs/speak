@@ -43,6 +43,7 @@ import waveform_mouth
 import voice
 import face
 import chat
+import audio
 from collab import CollabActivity
 from messenger import Messenger, SERVICE
 
@@ -241,7 +242,7 @@ class SpeakActivity(CollabActivity):
         combotool.show()
 
         self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
-                face.PITCH_MAX, 1, face.PITCH_MAX/10, 0)
+                audio.PITCH_MAX, 1, audio.PITCH_MAX/10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
         #pitchbar.set_inverted(True)
@@ -253,8 +254,8 @@ class SpeakActivity(CollabActivity):
         voicebar.insert(pitchtool, -1)
         pitchbar.show()
 
-        self.rateadj = gtk.Adjustment(self.face.status.rate, 0, face.RATE_MAX,
-                1, face.RATE_MAX/10, 0)
+        self.rateadj = gtk.Adjustment(self.face.status.rate, 0, audio.RATE_MAX,
+                1, audio.RATE_MAX/10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         #ratebar.set_inverted(True)
