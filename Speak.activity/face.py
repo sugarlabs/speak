@@ -161,7 +161,7 @@ class View(gtk.EventBox):
         #self._mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
 
     def say(self, something):
-        self._audio.speak(self.status, something)
+        self._audio.speak(self._peding or self.status, something)
     
     def shut_up(self):
         self._audio.stop_sound_device()
