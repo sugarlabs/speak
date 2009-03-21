@@ -84,7 +84,7 @@ class AudioGrab(gobject.GObject):
         # and sends it to both the real audio output
         # and a fake one that we use to draw from
         p = 'espeak text="%s" pitch=%d rate=%d voice=%s ' \
-            '! decodebin ' \
+            '! wavenc ! decodebin ' \
             '! tee name=tee ' \
             'tee.! audioconvert ' \
                 '! alsasink ' \
