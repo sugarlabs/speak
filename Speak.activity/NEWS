@@ -1,3 +1,7 @@
+10
+
+* #743: FIx crash for as sintaxis (dirakx)
+
 7
 
 * #7852: Fix crash on launch by using numpy (morgs)

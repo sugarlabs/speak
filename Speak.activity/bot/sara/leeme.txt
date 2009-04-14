@@ -1,0 +1,12 @@
+SARA - Sistema Artificial de Respuestas Automáticas
+
+Versión 0.2 - 15 de Marzo de 2006
+
+Ficheros AIML creados por Adam Codony aka XGargoyle
+
+
+Acerca de Sara
+--------------
+
+Sara es un agente conversacional en español creado por Adam Codony, como aplicación práctica de su Proyecto Final de Carrera (PFC) del Graduado en Multimedia de la Universitat Politècnica de Catalunya (UPC). 
+

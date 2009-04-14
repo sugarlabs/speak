@@ -1,0 +1,58 @@
+# Spanish translation of Speak Activity 
+# Copyright (C) 2008 Joshua Minor 
+# This file is distributed under the same license as the Speak package.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-07 08:10+0000\n"
+"PO-Revision-Date: 2008-11-03 09:42+0000\n"
+"Last-Translator:  Sebastian Silva <sebastian@fuentelibre.org>\n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../activity.py:174
+#, python-format
+msgid "Hello %s.  Type something."
+msgstr "Hola %s. Escribe algo."
+
+#: ../activity.py:334
+msgid "pitch adjusted"
+msgstr "tono ajustado"
+
+#: ../activity.py:337
+msgid "rate adjusted"
+msgstr "velocidad ajustada"
+
+#: ../activity.py:346
+msgid "Simple"
+msgstr "Simple"
+
+#: ../activity.py:347
+msgid "Waveform"
+msgstr "Onda"
+
+#: ../activity.py:348
+msgid "Frequency"
+msgstr "Frecuencia"
+
+#: ../activity.py:356
+msgid "Round"
+msgstr "Redondos"
+
+#: ../activity.py:357
+msgid "Glasses"
+msgstr "Anteojos"
+
+#: ../activity.py:388
+msgid "mouth changed"
+msgstr "boca cambiada"
+
+#: ../activity.py:409
+msgid "eyes changed"
+msgstr "ojos cambiados"

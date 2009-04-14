@@ -42,6 +42,7 @@ import fft_mouth
 import waveform_mouth
 import voice
 import face
+import brain
 import chat
 import audio
 from collab import CollabActivity
@@ -166,6 +167,8 @@ class SpeakActivity(CollabActivity):
 
         self.face.look_ahead()
 
+        self.brain = brain.defaultBrain(self.face.status.voice)
+
         # say hello to the user
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
@@ -272,6 +275,7 @@ class SpeakActivity(CollabActivity):
     def voice_changed_cb(self, combo):
         self.face.status.voice = combo.props.value
         self.face.say(self.face.status.voice.friendlyname)
+        self.brain = brain.defaultBrain(self.face.status.voice)
 
     def pitch_adjusted_cb(self, get, data=None):
         self.face.status.pitch = get.value
@@ -369,7 +373,7 @@ class SpeakActivity(CollabActivity):
             self.face.look_ahead()
             
             # speak the text
-            self.face.say(text)
+            self.face.say(self.brain.respond(text))
             
             # add this text to our history unless it is the same as the last item
             history = self.entrycombo.get_model()
