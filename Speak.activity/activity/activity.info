@@ -1,9 +1,9 @@
 [Activity]
-name = Speak
-bundle_id = vu.lux.olpc.Speak
-class = activity.SpeakActivity
-icon = activity-speak
-activity_version = 9
+name = HablarConSara 
+bundle_id = vu.lux.olpc.HablarConSara
+class = activity.HablarConSaraActivity
+icon = activity-hablarconsara
+activity_version = 1
 show_launcher = yes
 license = GPLv3+
 host_version = 1
