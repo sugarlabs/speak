@@ -29,6 +29,9 @@ import gst
 import re, os
 from gettext import gettext as _
 
+import logging
+logger = logging.getLogger('speak')
+
 # Lets trick gettext into generating entries for the voice names we expect espeak to have
 # If espeak actually has new or different names then they won't get translated, but they
 # should still show up in the interface.
@@ -87,13 +90,16 @@ def allVoices():
     if len(_allVoices) == 0:
         try:
             for i in gst.element_factory_make('espeak').props.voices:
-                name, language = i.split(':')
+                name, language, dialect = i
                 if name in ('en-rhotic','english_rp','english_wmids'):
                     # these voices don't produce sound
                     continue
                 voice = Voice(language, name)
                 _allVoices[voice.friendlyname] = voice
-        except:
+        except Exception, e:
+            logger.warning('Can not find gst-espeak, ' \
+                    'fallback to espeak command: %s' % e)
+
             result = subprocess.Popen(["espeak", "--voices"], stdout=subprocess.PIPE).communicate()[0]
             for line in result.split('\n'):
                 m = re.match(r'\s*\d+\s+([\w-]+)\s+([MF])\s+([\w_-]+)\s+(.+)', line)
