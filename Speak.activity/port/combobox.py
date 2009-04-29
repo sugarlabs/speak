@@ -173,11 +173,15 @@ class ComboBox(gtk.ComboBox):
                 continue
             try:
                 if silent_cb:
-                    self.disconnect_by_func(silent_cb)
+                    try:
+                        self.handler_block_by_func(silent_cb)
+                    except Exception, e:
+                        print e
+                        silent_cb = None
                 self.set_active(i)
             finally:
                 if silent_cb:
-                    self.connect('changed', silent_cb)
+                    self.handler_unblock_by_func(silent_cb)
             break
 
 class ToolComboBox(gtk.ToolItem):
