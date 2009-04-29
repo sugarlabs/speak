@@ -63,7 +63,9 @@ class AudioGrab(gobject.GObject):
     def speak(self, status, text):
         try:
             self._speak(status, text)
-        except:
+        except Exception, e:
+            logger.error('Cannot speak "%s": %s' % (text, e))
+
             # espeak uses 80 to 370
             rate = 80 + (370-80) * int(status.rate) / 100
             wavpath = "/tmp/speak.wav"
@@ -83,15 +85,20 @@ class AudioGrab(gobject.GObject):
         # build a pipeline that reads the given file
         # and sends it to both the real audio output
         # and a fake one that we use to draw from
-        p = 'espeak text="%s" pitch=%d rate=%d voice=%s ' \
+        p = 'espeak name=espeak ' \
             '! wavenc ! decodebin ' \
             '! tee name=tee ' \
             'tee.! audioconvert ' \
                 '! alsasink ' \
             'tee.! queue ' \
-                '! audioconvert name=conv' \
-                % (text, pitch, rate, status.voice.name)
+                '! audioconvert name=conv'
         self.pipeline = gst.parse_launch(p)
+
+        espeak = self.pipeline.get_by_name('espeak')
+        espeak.props.text = text
+        espeak.props.pitch = pitch
+        espeak.props.rate = rate
+        espeak.props.voice = status.voice.name
         
         # make a fakesink to capture audio
         fakesink = gst.element_factory_make("fakesink", "fakesink")
