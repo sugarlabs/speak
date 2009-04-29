@@ -39,9 +39,9 @@ BOTS = {
                     'predicates': { 'name': 'Alice',
                                     'master': 'the Sugar Community' } } }
 
-DEFAULT = voice.defaultVoice()
+DEFAULT = voice.DEFAULT
 if not BOTS.has_key(DEFAULT):
-    DEFAULT = _('English')
+    DEFAULT = voice.allVoices()[_('English')]
 
 class Toolbar(gtk.Toolbar):
     def __init__(self, activity):
@@ -80,9 +80,9 @@ class Toolbar(gtk.Toolbar):
                 hello = _("Hello, I'am a robot \"%s\". Ask me any question.") \
                         % BOTS[voice]['name']
                 hello += ' ' + sorry
-                self.activity.face.say(hello)
+                self.activity.face.say_notification(hello)
             elif sorry:
-                self.activity.face.say(sorry)
+                self.activity.face.say_notification(sorry)
 
         old_cursor = self.activity.get_cursor()
         self.activity.set_cursor(gtk.gdk.WATCH)
@@ -96,7 +96,7 @@ class Toolbar(gtk.Toolbar):
 
     def update_voice(self):
         voice = self.activity.voice_combo.props.value.friendlyname
-        new_voice = BOTS.has_key(voice) and voice or DEFAULT
+        new_voice = BOTS.has_key(voice) and voice or DEFAULT.friendlyname
 
         if voice != new_voice:
             self.activity.change_voice(new_voice, True)
@@ -108,7 +108,7 @@ class Toolbar(gtk.Toolbar):
         if not self._kernels.has_key(new_voice):
             self._load_brain(new_voice, (voice != new_voice) and sorry or '')
         elif voice != new_voice:
-            self.activity.face.say(sorry)
+            self.activity.face.say_notification(sorry)
 
     def respond(self, text):
         voice = self.voices.combo.props.value

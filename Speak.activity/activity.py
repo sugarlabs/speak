@@ -170,7 +170,8 @@ class SpeakActivity(SharedActivity):
         # say hello to the user
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
-        self.face.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
+        self.face.say_notification(_("Hello %s.  Type something.") \
+                % xoOwner.props.nick)
 
     def resume_instance(self, file_path):
         cfg = cjson.decode(file(file_path, 'r').read())
@@ -276,15 +277,15 @@ class SpeakActivity(SharedActivity):
 
     def voice_changed_cb(self, combo):
         self.face.status.voice = combo.props.value
-        self.face.say(self.face.status.voice.friendlyname)
+        self.face.say_notification(self.face.status.voice.friendlyname)
 
     def pitch_adjusted_cb(self, get, data=None):
         self.face.status.pitch = get.value
-        self.face.say(_("pitch adjusted"))
+        self.face.say_notification(_("pitch adjusted"))
 
     def rate_adjusted_cb(self, get, data=None):
         self.face.status.rate = get.value
-        self.face.say(_("rate adjusted"))
+        self.face.say_notification(_("rate adjusted"))
 
     def make_face_bar(self):
         facebar = gtk.Toolbar()
@@ -328,7 +329,7 @@ class SpeakActivity(SharedActivity):
 
         # this SegFaults: self.face.say(combo.get_active_text())
         if not quiet:
-            self.face.say(_("mouth changed"))
+            self.face.say_notification(_("mouth changed"))
 
     def eyes_changed_cb(self, ignored, quiet):
         if self.numeyesadj is None:
@@ -340,7 +341,7 @@ class SpeakActivity(SharedActivity):
 
         # this SegFaults: self.face.say(self.eye_shape_combo.get_active_text())
         if not quiet:
-            self.face.say(_("eyes changed"))
+            self.face.say_notification(_("eyes changed"))
         
     def _combo_changed_cb(self, combo):
         # when a new item is chosen, make sure the text is selected

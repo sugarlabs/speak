@@ -43,7 +43,7 @@ FACE_PAD = 2
 
 class Status:
     def __init__(self):
-        self.voice = voice.defaultVoice()
+        self.voice = voice.DEFAULT
         self.pitch = audio.PITCH_DEFAULT
         self.rate = audio.RATE_DEFAULT
         self.eyes = [eye.Eye] * 2
@@ -80,6 +80,15 @@ class Status:
         self.mouth = mouths[data['mouth']]
 
         return self
+
+    def clone(self):
+        new = Status()
+        new.voice = self.voice
+        new.pitch = self.pitch
+        new.rate = self.rate
+        new.eyes = self.eyes
+        new.mouth = self.mouth
+        return new
 
 class View(gtk.EventBox):
     def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
@@ -163,6 +172,11 @@ class View(gtk.EventBox):
     def say(self, something):
         self._audio.speak(self._peding or self.status, something)
     
+    def say_notification(self, something):
+        status = (self._peding or self.status).clone()
+        status.voice = voice.DEFAULT
+        self._audio.speak(status, something)
+
     def shut_up(self):
         self._audio.stop_sound_device()
 
