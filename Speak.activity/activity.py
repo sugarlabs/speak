@@ -32,8 +32,9 @@ import cjson
 from gettext import gettext as _
 
 from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.toolcombobox import ToolComboBox
-from sugar.graphics.combobox import ComboBox
+from port.toolcombobox import ToolComboBox
+from port.combobox import ComboBox
+from port.activity import SharedActivity
 
 import eye
 import glasses
@@ -45,17 +46,18 @@ import face
 import brain
 import chat
 import audio
-from collab import CollabActivity
 from messenger import Messenger, SERVICE
 
 logger = logging.getLogger('speak')
 
-CHAT_TOOLBAR = 3
+BOT_TOOLBAR = 3
+CHAT_TOOLBAR = 4
 
-class SpeakActivity(CollabActivity):
+class SpeakActivity(SharedActivity):
     def __init__(self, handle):
+        self.notebook = gtk.Notebook()
         
-        CollabActivity.__init__(self, SERVICE, handle)
+        SharedActivity.__init__(self, self.notebook, SERVICE, handle)
         bounds = self.get_allocation()
 
         # pick a voice that espeak supports
@@ -88,11 +90,9 @@ class SpeakActivity(CollabActivity):
         box.connect("button_press_event", self._mouse_clicked_cb)
 
         # desktop
-        self.notebook = gtk.Notebook()
         self.notebook.show()
         self.notebook.props.show_border = False
         self.notebook.props.show_tabs = False
-        self.set_canvas(self.notebook)
 
         box.show_all()
         self.notebook.append_page(box)
@@ -102,22 +102,26 @@ class SpeakActivity(CollabActivity):
         self.notebook.append_page(self.chat)
 
         # make some toolbars
-        toolbox = activity.ActivityToolbox(self)
-        self.set_toolbox(toolbox)
-        toolbox.show()
+        self.toolbox = activity.ActivityToolbox(self)
+        self.set_toolbox(self.toolbox)
+        self.toolbox.show()
         #activitybar = toolbox.get_activity_toolbar()
-        toolbox.connect('current-toolbar-changed', self._toolbar_changed_cb)
+        self.toolbox.connect('current-toolbar-changed', self._toolbar_changed_cb)
 
         voicebar = self.make_voice_bar()
-        toolbox.add_toolbar("Voice", voicebar)
+        self.toolbox.add_toolbar(_('Voice'), voicebar)
         voicebar.show()
         
         facebar = self.make_face_bar()
-        toolbox.add_toolbar("Face", facebar)
+        self.toolbox.add_toolbar(_('Face'), facebar)
         facebar.show()
         
+        self.bot = brain.Toolbar(self)
+        self.toolbox.add_toolbar(_('Robot'), self.bot)
+        self.bot.show()
+
         chatbar = chat.Toolbar(self.chat)
-        toolbox.add_toolbar(_('Chat'), chatbar)
+        self.toolbox.add_toolbar(_('Chat'), chatbar)
         chatbar.show()
 
         # make the text box active right away
@@ -150,12 +154,8 @@ class SpeakActivity(CollabActivity):
         #         map(lambda w: w.queue_draw(), self.eyes)
         #     return True
         # gobject.timeout_add(100, poll_mouse)
-        
-        # XXX do it after(possible) read_file() invoking
-        # have to rely on calling read_file() from map_cb in sugar-toolkit
-        self.connect_after('map', self.connect_to)
 
-    def connect_to(self, widget):
+    def new_instance(self):
         self.voice_combo.connect('changed', self.voice_changed_cb)
         self.pitchadj.connect("value_changed", self.pitch_adjusted_cb, self.pitchadj)
         self.rateadj.connect("value_changed", self.rate_adjusted_cb, self.rateadj)
@@ -167,40 +167,42 @@ class SpeakActivity(CollabActivity):
 
         self.face.look_ahead()
 
-        self.brain = brain.defaultBrain(self.face.status.voice)
-
         # say hello to the user
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
         self.face.say(_("Hello %s.  Type something.") % xoOwner.props.nick)
 
-    def write_file(self, file_path):
-        cfg = { 'status'  : self.face.status.serialize(),
-                'text'    : self.entry.props.text,
-                'history' : map(lambda i: i[0], self.entrycombo.get_model()) }
-        file(file_path, 'w').write(cjson.encode(cfg))
-        
-    def read_file(self, file_path):
+    def resume_instance(self, file_path):
         cfg = cjson.decode(file(file_path, 'r').read())
 
-        def pick_combo_item(combo, col, obj):
-            for i, item in enumerate(combo.get_model()):
-                if item[col] == obj:
-                    combo.set_active(i)
-                    return
-            logger.warning("Unrecognized loaded value: %s" % obj)
-
         status = self.face.status = face.Status().deserialize(cfg['status'])
-        pick_combo_item(self.voice_combo, 1, status.voice.friendlyname)
+        self.change_voice(voice,status.voice.friendlyname, True)
         self.pitchadj.value = self.face.status.pitch
         self.rateadj.value = self.face.status.rate
-        pick_combo_item(self.mouth_shape_combo, 0, status.mouth)
-        pick_combo_item(self.eye_shape_combo, 0, status.eyes[0])
+        self.mouth_shape_combo.select(status.mouth)
+        self.eye_shape_combo.select(status.eyes[0])
         self.numeyesadj.value = len(status.eyes)
 
         self.entry.props.text = cfg['text']
         for i in cfg['history']:
             self.entrycombo.append_text(i)
+
+        self.new_instance()
+
+    def save_instance(self, file_path):
+        cfg = { 'status'  : self.face.status.serialize(),
+                'text'    : self.entry.props.text,
+                'history' : map(lambda i: i[0], self.entrycombo.get_model()) }
+        file(file_path, 'w').write(cjson.encode(cfg))
+        
+    def share_instance(self, connection, is_initiator):
+        self.chat.messenger = Messenger(connection, is_initiator, self.chat)
+
+    def change_voice(self, voice, silent):
+        self.voice_combo.select(voice,
+                column=1,
+                silent_cb=(silent and self.voice_changed_cb or None))
+        self.face.status.voice = self.voice_combo.get_active_item()[0]
 
     def _cursor_moved_cb(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
@@ -275,7 +277,6 @@ class SpeakActivity(CollabActivity):
     def voice_changed_cb(self, combo):
         self.face.status.voice = combo.props.value
         self.face.say(self.face.status.voice.friendlyname)
-        self.brain = brain.defaultBrain(self.face.status.voice)
 
     def pitch_adjusted_cb(self, get, data=None):
         self.face.status.pitch = get.value
@@ -373,7 +374,10 @@ class SpeakActivity(CollabActivity):
             self.face.look_ahead()
             
             # speak the text
-            self.face.say(self.brain.respond(text))
+            if self.toolbox.get_current_toolbar() == BOT_TOOLBAR:
+                self.face.say(self.bot.respond(text))
+            else:
+                self.face.say(text)
             
             # add this text to our history unless it is the same as the last item
             history = self.entrycombo.get_model()
@@ -404,9 +408,8 @@ class SpeakActivity(CollabActivity):
         else:
             self.chat.shut_up()
             self.notebook.set_current_page(0)
-
-    def on_tube(self, tube_conn, initiating):
-        self.chat.messenger = Messenger(tube_conn, initiating, self.chat)
+            if index == BOT_TOOLBAR:
+                self.bot.update_voice()
 
     #def on_quit(self, data=None):
     #    self.audio.on_quit()    

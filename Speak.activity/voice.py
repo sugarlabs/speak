@@ -118,6 +118,8 @@ def defaultVoice():
     """Try to figure out the default voice, from the current locale ($LANG).
        Fall back to espeak's voice called Default."""
 
+    voices = allVoices()
+
     def fit(a,b):
         "Compare two language ids to see if they are similar."
 	as_ = re.split(r'[^a-z]+', a.lower())
@@ -132,8 +134,8 @@ def defaultVoice():
     except:
         lang = ""
     
-    best = _allVoices[_("Default")]
-    for voice in _allVoices.values():
+    best = voices[_("Default")]
+    for voice in voices.values():
         voiceMetric = fit(voice.language, lang)
         bestMetric  = fit(best.language, lang)
         if voiceMetric > bestMetric:
