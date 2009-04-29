@@ -16,6 +16,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: activity/activity.info:2
+msgid "Speak"
+msgstr "HablarConSara"
+
 #: ../activity.py:174
 #, python-format
 msgid "Hello %s.  Type something."

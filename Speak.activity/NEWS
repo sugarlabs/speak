@@ -1,3 +1,9 @@
+11
+
+* Pronounce gettext strings in native language
+* Load brain after choosing voice from combobox in "Robot" tab
+* Add ru.po
+
 10
 
 * Merge HabarConSara branch

@@ -177,7 +177,7 @@ class SpeakActivity(SharedActivity):
         cfg = cjson.decode(file(file_path, 'r').read())
 
         status = self.face.status = face.Status().deserialize(cfg['status'])
-        self.change_voice(voice,status.voice.friendlyname, True)
+        self.change_voice(status.voice.friendlyname, True)
         self.pitchadj.value = self.face.status.pitch
         self.rateadj.value = self.face.status.rate
         self.mouth_shape_combo.select(status.mouth)
