@@ -48,7 +48,6 @@ class Toolbar(gtk.Toolbar):
         gtk.Toolbar.__init__(self)
         self.activity = activity
         self._kernels = {}
-        self._first_session = True
 
         self.voices = ToolComboBox()
 
@@ -61,8 +60,39 @@ class Toolbar(gtk.Toolbar):
 
         self.insert(self.voices, -1)
 
+    def _load_brain(self, voice, sorry=''):
+        def load_brain(old_cursor):
+            is_first_session = (len(self._kernels) == 0)
+
+            try:
+                brain = BOTS[voice]
+                logger.debug('Load bot: %s' % brain)
+
+                kernel = bot.aiml.Kernel()
+                kernel.loadBrain(brain['brain'])
+                for name, value in brain['predicates'].items():
+                    kernel.setBotPredicate(name, value)
+                self._kernels[voice] = kernel
+            finally:
+                self.activity.set_cursor(old_cursor)
+
+            if is_first_session:
+                hello = _("Hello, I'am a robot \"%s\". Ask me any question.") \
+                        % BOTS[voice]['name']
+                hello += ' ' + sorry
+                self.activity.face.say(hello)
+            elif sorry:
+                self.activity.face.say(sorry)
+
+        old_cursor = self.activity.get_cursor()
+        self.activity.set_cursor(gtk.gdk.WATCH)
+        gobject.idle_add(load_brain, old_cursor)
+
     def _changed_cb(self, combo):
-        self.activity.change_voice(combo.props.value, False)
+        voice = combo.props.value
+        self.activity.change_voice(voice, False)
+        if not self._kernels.has_key(voice):
+            self._load_brain(voice)
 
     def update_voice(self):
         voice = self.activity.voice_combo.props.value.friendlyname
@@ -70,39 +100,15 @@ class Toolbar(gtk.Toolbar):
 
         if voice != new_voice:
             self.activity.change_voice(new_voice, True)
-            self.voices.combo.select(new_voice)
-        else:
-            self.voices.combo.select(voice)
+        self.voices.combo.select(new_voice, silent_cb=self._changed_cb)
+
+        sorry = _("Sorry, I can speak %s, let's speak %s instead.") \
+                % (voice, new_voice)
 
         if not self._kernels.has_key(new_voice):
-            def load_brain(old_cursor, is_first_session):
-                try:
-                    brain = BOTS[new_voice]
-                    logger.debug('Load bot: %s' % brain)
-
-                    kernel = bot.aiml.Kernel()
-                    kernel.loadBrain(brain['brain'])
-                    for name, value in brain['predicates'].items():
-                        kernel.setBotPredicate(name, value)
-                    self._kernels[new_voice] = kernel
-                finally:
-                    self.activity.set_cursor(old_cursor)
-
-                if is_first_session:
-                    self.activity.face.say(
-                            _("Hello, I'am a robot \"%s\". " \
-                              "Ask me any question.") % BOTS[new_voice]['name'])
-
-            old_cursor = self.activity.get_cursor()
-            self.activity.set_cursor(gtk.gdk.WATCH)
-            gobject.idle_add(load_brain, old_cursor, self._first_session)
-
+            self._load_brain(new_voice, (voice != new_voice) and sorry or '')
         elif voice != new_voice:
-            self.activity.face.say(
-                    _("Sorry, I can speak %s, let's speak %s instead.") \
-                            % (voice, new_voice))
-
-        self._first_session = False
+            self.activity.face.say(sorry)
 
     def respond(self, text):
         voice = self.voices.combo.props.value
