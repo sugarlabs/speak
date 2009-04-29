@@ -1,0 +1,236 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-29 01:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: activity/activity.info:2
+msgid "Speak"
+msgstr "Болтун"
+
+#: /home/sugar/src/activities/speak/Speak.activity/chatbox.py:246
+msgid "URL from Chat"
+msgstr "Ссылка из Чата"
+
+#: /home/sugar/src/activities/speak/Speak.activity/chatbox.py:296
+msgid "Copy to Clipboard"
+msgstr "Скопировать в буфер обмена"
+
+#: /home/sugar/src/activities/speak/Speak.activity/brain.py:33
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:69
+msgid "Spanish"
+msgstr "Испанский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/brain.py:37
+#: /home/sugar/src/activities/speak/Speak.activity/brain.py:44
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:60
+msgid "English"
+msgstr "Английский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/brain.py:93
+#, python-format
+msgid "Hello, I'am a robot \"%s\". Ask me any question."
+msgstr "Привет, я робот \"%s\". Задавай мне любые вопросы."
+
+#: /home/sugar/src/activities/speak/Speak.activity/brain.py:102
+#, python-format
+msgid "Sorry, I can speak %s, let's speak %s instead."
+msgstr "Извини, я не знаю %s, давай использовать %s."
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:39
+msgid "Brazil"
+msgstr "Бразильский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:40
+msgid "Swedish"
+msgstr "Шведский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:41
+msgid "Icelandic"
+msgstr "Исландский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:42
+msgid "Romanian"
+msgstr "Румынский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:43
+msgid "Swahili"
+msgstr "Суахили"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:44
+msgid "Hindi"
+msgstr "Хинди"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:45
+msgid "Dutch"
+msgstr "Голландский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:46
+msgid "Latin"
+msgstr "Латинский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:47
+msgid "Hungarian"
+msgstr "Венгерский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:48
+msgid "Macedonian"
+msgstr "Македонский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:49
+msgid "Welsh"
+msgstr "Валлийский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:50
+msgid "French"
+msgstr "Французский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:51
+msgid "Norwegian"
+msgstr "Норвежский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:52
+msgid "Russian"
+msgstr "Русский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:53
+msgid "Afrikaans"
+msgstr "Африкаанс"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:54
+msgid "Finnish"
+msgstr "Финский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:55
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:137
+msgid "Default"
+msgstr "По умолчанию"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:56
+msgid "Cantonese"
+msgstr "Кантон"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:57
+msgid "Scottish"
+msgstr "Шотландский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:58
+msgid "Greek"
+msgstr "Греческий"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:59
+msgid "Vietnam"
+msgstr "Вьетнамский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:61
+msgid "Lancashire"
+msgstr "Ланкашир"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:62
+msgid "Italian"
+msgstr "Итальянский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:63
+msgid "Portugal"
+msgstr "Португальский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:64
+msgid "German"
+msgstr "Немецкий"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:65
+msgid "Whisper"
+msgstr "Шепот"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:66
+msgid "Croatian"
+msgstr "Хорватский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:67
+msgid "Czech"
+msgstr "Чешский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:68
+msgid "Slovak"
+msgstr "Словацкий"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:70
+msgid "Polish"
+msgstr "Польский"
+
+#: /home/sugar/src/activities/speak/Speak.activity/voice.py:71
+msgid "Esperanto"
+msgstr "Эсперанто"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:112
+msgid "Voice"
+msgstr "Голос"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:116
+msgid "Face"
+msgstr "Лицо"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:120
+msgid "Robot"
+msgstr "Робот"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:124
+msgid "Chat"
+msgstr "Чат"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:173
+#, python-format
+msgid "Hello %s.  Type something."
+msgstr "Привет %s. Напиши что-нибудь."
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:283
+msgid "pitch adjusted"
+msgstr "тон изменён"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:287
+msgid "rate adjusted"
+msgstr "темп изменён"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:295
+msgid "Simple"
+msgstr "Простой"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:296
+msgid "Waveform"
+msgstr "Волнообразный"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:297
+msgid "Frequency"
+msgstr "Частота"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:304
+msgid "Round"
+msgstr "Круг"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:305
+msgid "Glasses"
+msgstr "Очки"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:331
+msgid "mouth changed"
+msgstr "рот изменён"
+
+#: /home/sugar/src/activities/speak/Speak.activity/activity.py:343
+msgid "eyes changed"
+msgstr "глаза изменены"
+
+#: /home/sugar/src/activities/speak/Speak.activity/chat.py:52
+msgid "Mute"
+msgstr "Тишина"
