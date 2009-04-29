@@ -22,6 +22,8 @@ STABLE.
 import gobject
 import gtk
 
+from sugar.graphics import style
+
 class ComboBox(gtk.ComboBox):
     def __init__(self):
         gtk.ComboBox.__init__(self)
@@ -177,3 +179,40 @@ class ComboBox(gtk.ComboBox):
                 if silent_cb:
                     self.connect('changed', silent_cb)
             break
+
+class ToolComboBox(gtk.ToolItem):
+    __gproperties__ = {
+        'label-text' : (str, None, None, None,
+                        gobject.PARAM_WRITABLE),
+    }
+
+    def __init__(self, combo=None, **kwargs):
+        self.label = None
+        self._label_text = ''
+
+        gobject.GObject.__init__(self, **kwargs)
+
+        self.set_border_width(style.DEFAULT_PADDING)
+
+        hbox = gtk.HBox(False, style.DEFAULT_SPACING)
+
+        self.label = gtk.Label(self._label_text)
+        hbox.pack_start(self.label, False)
+        self.label.show()
+
+        if combo:
+            self.combo = combo
+        else:
+            self.combo = ComboBox()
+
+        hbox.pack_start(self.combo)
+        self.combo.show()
+
+        self.add(hbox)
+        hbox.show()
+
+    def do_set_property(self, pspec, value):
+        if pspec.name == 'label-text':
+            self._label_text = value
+            if self.label:
+                self.label.set_text(self._label_text)

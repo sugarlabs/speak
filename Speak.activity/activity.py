@@ -32,7 +32,7 @@ import cjson
 from gettext import gettext as _
 
 from sugar.graphics.toolbutton import ToolButton
-from port.toolcombobox import ToolComboBox
+from port.combobox import ToolComboBox
 from port.combobox import ComboBox
 from port.activity import SharedActivity
 

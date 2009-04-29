@@ -24,7 +24,7 @@ from gettext import gettext as _
 import logging
 logger = logging.getLogger('speak')
 
-from port.toolcombobox import ToolComboBox
+from port.combobox import ToolComboBox
 
 import bot.aiml
 import voice
