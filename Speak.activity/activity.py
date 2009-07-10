@@ -32,8 +32,7 @@ import cjson
 from gettext import gettext as _
 
 from sugar.graphics.toolbutton import ToolButton
-from port.combobox import ToolComboBox
-from port.combobox import ComboBox
+from port.widgets import ComboBox, ToolComboBox
 from port.activity import SharedActivity
 
 import eye
@@ -45,7 +44,7 @@ import voice
 import face
 import brain
 import chat
-import audio
+import espeak
 from messenger import Messenger, SERVICE
 
 logger = logging.getLogger('speak')
@@ -248,7 +247,7 @@ class SpeakActivity(SharedActivity):
         combotool.show()
 
         self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
-                audio.PITCH_MAX, 1, audio.PITCH_MAX/10, 0)
+                espeak.PITCH_MAX, 1, espeak.PITCH_MAX/10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
         #pitchbar.set_inverted(True)
@@ -260,8 +259,8 @@ class SpeakActivity(SharedActivity):
         voicebar.insert(pitchtool, -1)
         pitchbar.show()
 
-        self.rateadj = gtk.Adjustment(self.face.status.rate, 0, audio.RATE_MAX,
-                1, audio.RATE_MAX/10, 0)
+        self.rateadj = gtk.Adjustment(self.face.status.rate, 0, espeak.RATE_MAX,
+                1, espeak.RATE_MAX/10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         #ratebar.set_inverted(True)
@@ -411,9 +410,6 @@ class SpeakActivity(SharedActivity):
             self.notebook.set_current_page(0)
             if index == BOT_TOOLBAR:
                 self.bot.update_voice()
-
-    #def on_quit(self, data=None):
-    #    self.audio.on_quit()    
 
 # activate gtk threads when this module loads
 gtk.gdk.threads_init()

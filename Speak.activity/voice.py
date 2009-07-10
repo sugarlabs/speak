@@ -17,20 +17,17 @@
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-
-import subprocess
-import pygst
-pygst.require("0.10")
-import gst
 import re, os
 from gettext import gettext as _
 
 import logging
 logger = logging.getLogger('speak')
+
+import espeak
 
 # Lets trick gettext into generating entries for the voice names we expect espeak to have
 # If espeak actually has new or different names then they won't get translated, but they
@@ -86,31 +83,15 @@ class Voice:
         friendlyname = friendlyname.replace('english-wisper','whisper')
         friendlyname = friendlyname.capitalize()
         self.friendlyname = _(friendlyname)
-    
-def allVoices():
-    if len(_allVoices) == 0:
-        try:
-            for i in gst.element_factory_make('espeak').props.voices:
-                name, language, dialect = i
-                if name in ('en-rhotic','english_rp','english_wmids'):
-                    # these voices don't produce sound
-                    continue
-                voice = Voice(language, name)
-                _allVoices[voice.friendlyname] = voice
-        except Exception, e:
-            logger.warning('Can not find gst-espeak, ' \
-                    'fallback to espeak command: %s' % e)
 
-            result = subprocess.Popen(["espeak", "--voices"], stdout=subprocess.PIPE).communicate()[0]
-            for line in result.split('\n'):
-                m = re.match(r'\s*\d+\s+([\w-]+)\s+([MF])\s+([\w_-]+)\s+(.+)', line)
-                if m:
-                    language, gender, name, stuff = m.groups()
-                    if stuff.startswith('mb/') or name in ('en-rhotic','english_rp','english_wmids'):
-                        # these voices don't produce sound
-                        continue
-                    voice = Voice(language, name)
-                    _allVoices[voice.friendlyname] = voice
+def allVoices():
+    if _allVoices:
+        return _allVoices
+
+    for language, name in espeak.voices():
+        voice = Voice(language, name)
+        _allVoices[voice.friendlyname] = voice
+
     return _allVoices
 
 def _defaultVoice():
@@ -132,7 +113,7 @@ def _defaultVoice():
         lang = os.environ["LANG"]
     except:
         lang = ""
-    
+
     best = voices[_("Default")]
     for voice in voices.values():
         voiceMetric = fit(voice.language, lang)

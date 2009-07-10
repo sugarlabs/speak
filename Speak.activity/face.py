@@ -29,7 +29,7 @@ from gettext import gettext as _
 
 import sugar.graphics.style as style
 
-import audio
+import espeak
 import eye
 import glasses
 import mouth
@@ -44,8 +44,8 @@ FACE_PAD = 2
 class Status:
     def __init__(self):
         self.voice = voice.DEFAULT
-        self.pitch = audio.PITCH_DEFAULT
-        self.rate = audio.RATE_DEFAULT
+        self.pitch = espeak.PITCH_DEFAULT
+        self.rate = espeak.RATE_DEFAULT
         self.eyes = [eye.Eye] * 2
         self.mouth = mouth.Mouth
 
@@ -99,13 +99,13 @@ class View(gtk.EventBox):
 
         self.connect('size-allocate', self._size_allocate_cb)
 
-        self._audio = audio.AudioGrab()
+        self._audio = espeak.AudioGrab()
 
         # make an empty box for some eyes
         self._eyes = None
         self._eyebox = gtk.HBox()
         self._eyebox.show()
-        
+
         # make an empty box to put the mouth in
         self._mouth = None
         self._mouthbox = gtk.HBox()
