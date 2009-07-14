@@ -174,7 +174,7 @@ class SpeakActivity(SharedActivity):
         cfg = cjson.decode(file(file_path, 'r').read())
 
         status = self.face.status = face.Status().deserialize(cfg['status'])
-        self.change_voice(status.voice.friendlyname, True)
+        self.voice_combo.resume(status.voice.friendlyname)
         self.pitchadj.value = self.face.status.pitch
         self.rateadj.value = self.face.status.rate
         self.mouth_shape_combo.select(status.mouth)
@@ -192,15 +192,9 @@ class SpeakActivity(SharedActivity):
                 'text'    : self.entry.props.text,
                 'history' : map(lambda i: i[0], self.entrycombo.get_model()) }
         file(file_path, 'w').write(cjson.encode(cfg))
-        
+
     def share_instance(self, connection, is_initiator):
         self.chat.messenger = Messenger(connection, is_initiator, self.chat)
-
-    def change_voice(self, voice, silent):
-        self.voice_combo.select(voice,
-                column=1,
-                silent_cb=(silent and self.voice_changed_cb or None))
-        self.face.status.voice = self.voice_combo.get_active_item()[0]
 
     def _cursor_moved_cb(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
@@ -234,7 +228,7 @@ class SpeakActivity(SharedActivity):
         # button.show()
 
         self.voice_combo = widgets.Voices()
-        self.voice_combo.select(self.face.status.voice.friendlyname)
+        self.voice_combo.select(name=self.face.status.voice.friendlyname)
         combotool = ToolComboBox(self.voice_combo)
         voicebar.insert(combotool, -1)
         combotool.show()

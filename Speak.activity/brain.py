@@ -100,7 +100,12 @@ class Toolbar(gtk.Toolbar):
 
         if voice != new_voice:
             self.activity.change_voice(new_voice, True)
-        self.voices.combo.select(new_voice, silent_cb=self._changed_cb)
+
+        try:
+            self.voices.combo.handler_block_by_func(self._changed_cb)
+            self.voices.combo.select(new_voice)
+        finally:
+            self.voices.combo.handler_unblock_by_func(self._changed_cb)
 
         sorry = _("Sorry, I can speak %s, let's speak %s instead.") \
                 % (voice, new_voice)

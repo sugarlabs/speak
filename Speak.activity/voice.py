@@ -94,6 +94,9 @@ def allVoices():
 
     return _allVoices
 
+def by_name(name):
+    return allVoices().get(name, defaultVoice())
+
 def defaultVoice():
     """Try to figure out the default voice, from the current locale ($LANG).
        Fall back to espeak's voice called Default."""
