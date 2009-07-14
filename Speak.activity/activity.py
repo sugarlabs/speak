@@ -45,6 +45,7 @@ import face
 import brain
 import chat
 import espeak
+import widgets
 from messenger import Messenger, SERVICE
 
 logger = logging.getLogger('speak')
@@ -58,9 +59,6 @@ class SpeakActivity(SharedActivity):
         
         SharedActivity.__init__(self, self.notebook, SERVICE, handle)
         bounds = self.get_allocation()
-
-        # pick a voice that espeak supports
-        self.voices = voice.allVoices()
 
         # make an audio device for playing back and rendering audio
         self.connect( "notify::active", self._activeCb )
@@ -228,20 +226,15 @@ class SpeakActivity(SharedActivity):
 
     def make_voice_bar(self):
         voicebar = gtk.Toolbar()
-        
+
         # button = ToolButton('change-voice')
         # button.set_tooltip("Change Voice")
         # button.connect('clicked', self.change_voice_cb)
         # voicebar.insert(button, -1)
         # button.show()
-        
-        self.voice_combo = ComboBox()
-        voicenames = self.voices.keys()
-        voicenames.sort()
-        for name in voicenames:
-            self.voice_combo.append_item(self.voices[name], name)
-        self.voice_combo.set_active(voicenames.index(
-            self.face.status.voice.friendlyname))
+
+        self.voice_combo = widgets.Voices()
+        self.voice_combo.select(self.face.status.voice.friendlyname)
         combotool = ToolComboBox(self.voice_combo)
         voicebar.insert(combotool, -1)
         combotool.show()

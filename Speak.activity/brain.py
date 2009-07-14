@@ -39,7 +39,7 @@ BOTS = {
                     'predicates': { 'name': 'Alice',
                                     'master': 'the Sugar Community' } } }
 
-DEFAULT = voice.DEFAULT
+DEFAULT = voice.defaultVoice()
 if not BOTS.has_key(DEFAULT):
     DEFAULT = voice.allVoices()[_('English')]
 

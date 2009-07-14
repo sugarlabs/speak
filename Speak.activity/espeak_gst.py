@@ -15,8 +15,6 @@
 import logging
 logger = logging.getLogger('speak')
 
-import pygst
-pygst.require("0.10")
 import gst
 import espeak
 

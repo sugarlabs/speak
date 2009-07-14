@@ -69,7 +69,7 @@ expectedVoiceNames = [
 ]
 
 _allVoices = {}
-DEFAULT = None
+_defaultVoice = None
 
 class Voice:
     def __init__(self, language, name):
@@ -94,9 +94,14 @@ def allVoices():
 
     return _allVoices
 
-def _defaultVoice():
+def defaultVoice():
     """Try to figure out the default voice, from the current locale ($LANG).
        Fall back to espeak's voice called Default."""
+
+    global _defaultVoice
+
+    if _defaultVoice:
+        return _defaultVoice
 
     voices = allVoices()
 
@@ -122,6 +127,5 @@ def _defaultVoice():
             best = voice
 
     print "Best voice for LANG %s seems to be %s %s" % (lang, best.language, best.friendlyname)
+    _defaultVoice =  best
     return best
-
-DEFAULT = _defaultVoice()

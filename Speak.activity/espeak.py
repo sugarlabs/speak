@@ -12,8 +12,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import pygst
-pygst.require("0.10")
 import gst
 import gobject
 import subprocess
