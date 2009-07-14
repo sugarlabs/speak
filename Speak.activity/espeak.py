@@ -58,18 +58,20 @@ class BaseAudioGrab(gobject.GObject):
         self.pipeline = gst.parse_launch(
                 cmd + ' ' \
                 '! decodebin ' \
-                '! queue ' \
-                '! identity name=valve ' \
-                '! autoaudiosink')
+                '! tee name=tee ' \
+                'tee.! queue ' \
+                    '! alsasink ' \
+                'tee.! queue ' \
+                    '! fakesink name=sink')
 
-        def on_buffer(element, buffer):
+        def on_buffer(element, buffer, pad):
             # we got a new buffer of data, ask for another
             gobject.timeout_add(100, self._new_buffer, str(buffer))
             return True
 
-        valve = self.pipeline.get_by_name('valve')
-        valve.props.signal_handoffs = True
-        valve.connect('handoff', on_buffer)
+        sink = self.pipeline.get_by_name('sink')
+        sink.props.signal_handoffs = True
+        sink.connect('handoff', on_buffer)
 
         def gstmessage_cb(bus, message):
             self._was_message = True
