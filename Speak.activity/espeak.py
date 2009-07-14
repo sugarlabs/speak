@@ -59,10 +59,10 @@ class BaseAudioGrab(gobject.GObject):
                 cmd + ' ' \
                 '! decodebin ' \
                 '! tee name=tee ' \
-                'tee.! queue ' \
+                'tee.! audioconvert ' \
                     '! alsasink ' \
                 'tee.! queue ' \
-                    '! fakesink name=sink')
+                    '! audioconvert ! fakesink name=sink')
 
         def on_buffer(element, buffer, pad):
             # we got a new buffer of data, ask for another

@@ -227,7 +227,7 @@ class SpeakActivity(SharedActivity):
         # voicebar.insert(button, -1)
         # button.show()
 
-        self.voice_combo = widgets.Voices()
+        self.voice_combo = widgets.Voices(self.face)
         self.voice_combo.select(name=self.face.status.voice.friendlyname)
         combotool = ToolComboBox(self.voice_combo)
         voicebar.insert(combotool, -1)
