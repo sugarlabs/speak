@@ -36,13 +36,13 @@ class Eye(gtk.DrawingArea):
         self.blink = False
         self.x, self.y = 0,0
         self.fill_color = fill_color
-        
+
         # listen for clicks
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
         self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
         self.connect("button_press_event", self._mouse_pressed_cb)
         self.connect("button_release_event", self._mouse_released_cb)
-        
+
         # Instead of listening for mouse move events we could poll to see if the mouse has moved
         # would let us react to the mouse even when it isn't directly over this widget.
         # Unfortunately that would cause a lot of CPU usage.  So instead we rely on our parent to
@@ -61,7 +61,7 @@ class Eye(gtk.DrawingArea):
     def _mouse_released_cb(self, widget, event):
         self.blink = False
         self.queue_draw()
-        
+
     def look_at(self, x, y):
         self.x = x
         self.y = y
@@ -72,30 +72,50 @@ class Eye(gtk.DrawingArea):
         self.y = None
         self.queue_draw()
 
-    def pupil_position(self):
-        bounds = self.get_allocation()
-        abs_x, abs_y = self.translate_coordinates(self.get_toplevel(), 0, 0)
-        if self.x is not None and self.y is not None:
-            dir_x, dir_y = self.x - abs_x, self.y - abs_y
-        else:
+    # Thanks to xeyes :)
+    def computePupil(self):
+        a = self.get_allocation()
+
+        if self.x is None or self.y is None:
             # look ahead, but not *directly* in the middle
-            if bounds.x+bounds.width/2 < self.parent.get_allocation().width/2:
-                dir_x = bounds.width * 0.6
+            if a.x + a.width/2 < self.parent.get_allocation().width/2:
+                cx = a.width * 0.6
             else:
-                dir_x = bounds.width * 0.4
-            dir_y = bounds.height * 0.6
-        pupilX = max(min(dir_x, bounds.width), 0)
-        pupilY = max(min(dir_y, bounds.height), 0)
-        return pupilX, pupilY
+                cx = a.width * 0.4
+            return cx, a.height * 0.6
+
+        EYE_X, EYE_Y = self.translate_coordinates(
+                self.get_toplevel(), a.width/2, a.height/2)
+        EYE_HWIDTH = a.width
+        EYE_HHEIGHT = a.height
+        BALL_DIST = EYE_HWIDTH/4
+
+        dx = self.x - EYE_X
+        dy = self.y - EYE_Y
+
+        if dx or dy:
+            angle = math.atan2(dy, dx)
+            cosa = math.cos(angle)
+            sina = math.sin(angle)
+            h = math.hypot(EYE_HHEIGHT * cosa, EYE_HWIDTH * sina)
+            x = (EYE_HWIDTH * EYE_HHEIGHT) * cosa / h
+            y = (EYE_HWIDTH * EYE_HHEIGHT) * sina / h
+            dist = BALL_DIST * math.hypot(x, y)
+
+            if dist < math.hypot(dx, dy):
+                dx = dist * cosa
+                dy = dist * sina
+
+        return a.width/2 + dx, a.height/2 + dy
 
     def expose(self, widget, event):
         self.frame += 1
         bounds = self.get_allocation()
-        
+
         eyeSize = min(bounds.width, bounds.height)
         outlineWidth = eyeSize/20.0
         pupilSize = eyeSize/10.0
-        pupilX, pupilY = self.pupil_position()
+        pupilX, pupilY = self.computePupil()
         dX = pupilX - bounds.width/2.
         dY = pupilY - bounds.height/2.
         distance = math.sqrt(dX*dX + dY*dY)
