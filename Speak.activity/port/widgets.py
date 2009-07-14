@@ -16,6 +16,7 @@ import gtk
 import hippo
 import gobject
 import logging
+import math
 
 from sugar.graphics import style
 from sugar.graphics import palette
@@ -24,6 +25,7 @@ from sugar.graphics import radiotoolbutton
 from sugar.graphics import icon
 from sugar.graphics import toggletoolbutton
 from sugar.graphics import combobox
+from sugar.graphics import roundbox
 
 def labelize(text, widget):
     box = hippo.CanvasBox()
@@ -251,22 +253,71 @@ class ComboBox(combobox.ComboBox):
     def __init__(self, **kwargs):
         combobox.ComboBox.__init__(self, **kwargs)
 
-    def select(self, value, column=0, silent_cb=None):
+    def select(self, id=None, name=None):
+        if id is not None:
+            column = 0
+            value = id
+        elif name is not None:
+            column = 1
+            value = name
+        else:
+            return
+
         for i, item in enumerate(self.get_model()):
             if item[column] != value:
                 continue
-            try:
-                if silent_cb:
-                    try:
-                        self.handler_block_by_func(silent_cb)
-                    except Exception, e:
-                        print e
-                        silent_cb = None
-                self.set_active(i)
-            finally:
-                if silent_cb:
-                    self.handler_unblock_by_func(silent_cb)
+            self.set_active(i)
             break
+
+    def append_item(self, action_id, text, icon_name=None, file_name=None):
+        item = self._item_new(action_id, text, icon_name, file_name)
+        self.get_model().append(item)
+
+    def set_item(self, action_id, text=None, icon_name=None, file_name=None):
+        for i, value in enumerate(self.get_model()):
+            if value[0] == action_id:
+                item = self._item_new(action_id, text, icon_name, file_name)
+                iter = self.get_model().iter_nth_child(None, i)
+                if text is not None:
+                    self.get_model().set(iter, 1, item[1])
+                if icon_name is not None or file_name is not None:
+                    self.get_model().set(iter, 2, item[2])
+                return True
+        return False
+
+    def _item_new(self, action_id, text, icon_name, file_name):
+        if not self._icon_renderer and (icon_name or file_name):
+            self._icon_renderer = gtk.CellRendererPixbuf()
+
+            settings = self.get_settings()
+            w, h = gtk.icon_size_lookup_for_settings(
+                                            settings, gtk.ICON_SIZE_MENU)
+            self._icon_renderer.props.stock_size = max(w, h)
+
+            self.pack_start(self._icon_renderer, False)
+            self.add_attribute(self._icon_renderer, 'pixbuf', 2)
+
+        if not self._text_renderer and text:
+            self._text_renderer = gtk.CellRendererText()
+            self.pack_end(self._text_renderer, True)
+            self.add_attribute(self._text_renderer, 'text', 1)
+
+        if icon_name or file_name:
+            if text:
+                size = gtk.ICON_SIZE_MENU
+            else:
+                size = gtk.ICON_SIZE_LARGE_TOOLBAR
+            width, height = gtk.icon_size_lookup(size)
+
+            if icon_name:
+                file_name = self._get_real_name_from_theme(icon_name, size)
+
+            pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(
+                                                file_name, width, height)
+        else:
+            pixbuf = None
+
+        return (action_id, text, pixbuf, False)
 
 class ToolComboBox(gtk.ToolItem):
     __gproperties__ = {
@@ -304,3 +355,49 @@ class ToolComboBox(gtk.ToolItem):
             self._label_text = value
             if self.label:
                 self.label.set_text(self._label_text)
+
+class CanvasRoundBox(roundbox.CanvasRoundBox):
+    def __init__(self, radius=style.zoom(10), **kwargs):
+        hippo.CanvasBox.__init__(self, **kwargs)
+        self.set_radius(radius)
+
+    def get_radius(self):
+        return self._radius
+
+    def set_radius(self, radius):
+        self._radius = radius
+        self.props.border_left = radius
+        self.props.border_right = radius
+
+    radius = property(get_radius, set_radius)
+
+    def do_paint_background(self, cr, damaged_box):
+        [width, height] = self.get_allocation()
+
+        cr.rectangle(0, 0, width, height)
+        hippo.cairo_set_source_rgba32(cr, self.props.background_color)
+        cr.fill()
+
+        x = self.props.border_top/2
+        y = self.props.border_top/2
+        width -= self.props.border_top
+        height -= self.props.border_top
+
+        cr.move_to(x + self._radius, y)
+        cr.arc(x + width - self._radius, y + self._radius,
+               self._radius, math.pi * 1.5, math.pi * 2)
+        cr.arc(x + width - self._radius, x + height - self._radius,
+               self._radius, 0, math.pi * 0.5)
+        cr.arc(x + self._radius, y + height - self._radius,
+               self._radius, math.pi * 0.5, math.pi)
+        cr.arc(x + self._radius, y + self._radius, self._radius,
+               math.pi, math.pi * 1.5)
+
+        hippo.cairo_set_source_rgba32(cr, self.props.background_color)
+        cr.fill_preserve()
+
+        # TODO: we should be more consistent here with the border properties.
+        if self.props.border_color:
+            hippo.cairo_set_source_rgba32(cr, self.props.border_color)
+            cr.set_line_width(self.props.border_top)
+            cr.stroke()

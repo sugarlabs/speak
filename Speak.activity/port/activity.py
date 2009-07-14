@@ -22,6 +22,7 @@ import gobject
 import sugar.activity.activity as toolkit
 from sugar.presence.sugartubeconn import SugarTubeConnection
 from sugar.graphics.alert import ConfirmationAlert, NotifyAlert
+from sugar.activity import activity
 
 _NEW_INSTANCE   = 0
 _NEW_INSTANCE   = 1
@@ -69,6 +70,10 @@ class Activity(toolkit.Activity):
         Subclass should implement this method to save activity data.
         """
         raise NotImplementedError
+
+    def on_save_instance(self, cb, *args):
+        """ Register callback which will be invoked before save_instance """
+        self.__on_save_instance.append((cb, args))
 
     def share_instance(self, connection, is_initiator):
         """
@@ -144,6 +149,7 @@ class Activity(toolkit.Activity):
 
         self.__resume_filename = None
         self.__postponed_share = []
+        self.__on_save_instance = []
 
         self._cursor = None
         self.set_cursor(gtk.gdk.LEFT_PTR)
@@ -180,6 +186,8 @@ class Activity(toolkit.Activity):
 
     def write_file(self, filepath):
         """Subclass should not override this method"""
+        for cb, args in self.__on_save_instance:
+            cb(*args)
         self.save_instance(filepath)
 
     def __map_canvasactivity_cb(self, widget):
@@ -296,3 +304,14 @@ class SharedActivity(Activity):
                 group_iface=self._text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
             
             self._share(tube_conn, self.__initiator)
+
+class ActivityToolbox(activity.ActivityToolbox):
+    def __init__(self, activity_object):
+        activity.ActivityToolbox.__init__(self, activity_object)
+
+    def get_bars(self):
+        nb = self._notebook
+        return [nb.get_nth_page(i).get_child().get_child() \
+                for i in range(nb.get_n_pages())]
+
+    bars = property(get_bars)
