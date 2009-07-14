@@ -21,7 +21,7 @@ logger = logging.getLogger('speak')
 
 supported = True
 
-class AudioGrab(gobject.GObject):
+class BaseAudioGrab(gobject.GObject):
     __gsignals__ = {
         'new-buffer': (gobject.SIGNAL_RUN_FIRST, None, [gobject.TYPE_PYOBJECT])
     }
@@ -48,31 +48,47 @@ class AudioGrab(gobject.GObject):
         self.quiet = True
 
     def make_pipeline(self, cmd):
+        if self.pipeline is not None:
+            self.stop_sound_device()
+            del self.pipeline
+
         # build a pipeline that reads the given file
         # and sends it to both the real audio output
         # and a fake one that we use to draw from
-        self.pipeline = gst.parse_launch(cmd)
+        self.pipeline = gst.parse_launch(
+                cmd + ' ' \
+                '! decodebin ' \
+                '! queue ' \
+                '! identity name=valve ' \
+                '! autoaudiosink')
 
-        def on_buffer(element, buffer, pad):
+        def on_buffer(element, buffer):
             # we got a new buffer of data, ask for another
             gobject.timeout_add(100, self._new_buffer, str(buffer))
             return True
 
-        # make a fakesink to capture audio
-        fakesink = gst.element_factory_make("fakesink", "fakesink")
-        fakesink.connect("handoff",on_buffer)
-        fakesink.set_property("signal-handoffs",True)
-        self.pipeline.add(fakesink)
-
-        # attach it to the pipeline
-        conv = self.pipeline.get_by_name("conv")
-        gst.element_link_many(conv, fakesink)
+        valve = self.pipeline.get_by_name('valve')
+        valve.props.signal_handoffs = True
+        valve.connect('handoff', on_buffer)
 
         def gstmessage_cb(bus, message):
-            if message.type in (gst.MESSAGE_EOS, gst.MESSAGE_ERROR):
+            self._was_message = True
+
+            if message.type == gst.MESSAGE_WARNING:
+                def check_after_warnings():
+                    if not self._was_message:
+                        self.stop_sound_device()
+                    return True
+
+                logger.debug(message.type)
+                self._was_message = False
+                gobject.timeout_add(500, self._new_buffer, str(buffer))
+
+            elif  message.type in (gst.MESSAGE_EOS, gst.MESSAGE_ERROR):
                 logger.debug(message.type)
                 self.stop_sound_device()
 
+        self._was_message = False
         bus = self.pipeline.get_bus()
         bus.add_signal_watch()
         bus.connect('message', gstmessage_cb)

@@ -23,19 +23,9 @@ RATE_MAX = 200
 PITCH_DEFAULT = PITCH_MAX/2
 RATE_DEFAULT = RATE_MAX/2
 
-class AudioGrabGst(espeak.AudioGrab):
+class AudioGrabGst(espeak.BaseAudioGrab):
     def speak(self, status, text):
-        self.stop_sound_device()
-
-        self.make_pipeline(
-                'espeak name=espeak ' \
-                '! wavenc ! decodebin ' \
-                '! tee name=tee ' \
-                'tee.! audioconvert ' \
-                    '! alsasink ' \
-                'tee.! queue ' \
-                    '! audioconvert name=conv')
-
+        self.make_pipeline('espeak name=espeak ! wavenc')
         src = self.pipeline.get_by_name('espeak')
 
         pitch = int(status.pitch) - 100

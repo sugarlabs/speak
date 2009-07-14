@@ -42,10 +42,15 @@ class Mouth(gtk.DrawingArea):
         audioSource.connect("new-buffer", self._new_buffer)
 
     def _new_buffer(self, obj, buf):
-        self.newest_buffer = list(unpack( str(int(len(buf))/2)+'h' , buf))
-        self.main_buffers += self.newest_buffer
-        if(len(self.main_buffers)>self.buffer_size):
-            del self.main_buffers[0:(len(self.main_buffers)-self.buffer_size)]
+        if len(buf) < 28:
+            self.newest_buffer = []
+        else:
+            self.newest_buffer = list(unpack( str(int(len(buf))/2)+'h' , buf))
+            self.main_buffers += self.newest_buffer
+            if(len(self.main_buffers)>self.buffer_size):
+                del self.main_buffers[0:(len(self.main_buffers)- \
+                        self.buffer_size)]
+
         self.queue_draw()
         return True
 
