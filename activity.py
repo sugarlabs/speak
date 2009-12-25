@@ -134,14 +134,14 @@ class SpeakActivity(SharedActivity):
 
         mode_type = RadioToolButton(
                 named_icon='mode-type',
-                tooltip=_('Lessons'))
+                tooltip=_('Type something to hear it'))
         mode_type.connect('toggled', self.__toggled_mode_type_cb, all_voices)
         toolbox.toolbar.insert(mode_type, -1)
 
         mode_robot = RadioToolButton(
                 named_icon='mode-robot',
                 group=mode_type,
-                tooltip=_('Robot'))
+                tooltip=_('Ask robot any question'))
         mode_robot.connect('toggled', self.__toggled_mode_robot_cb,
                 brain_voices)
         toolbox.toolbar.insert(mode_robot, -1)
@@ -149,7 +149,7 @@ class SpeakActivity(SharedActivity):
         mode_chat = RadioToolButton(
                 named_icon='mode-chat',
                 group=mode_type,
-                tooltip=_('Chat'))
+                tooltip=_('Voice chat'))
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
 
