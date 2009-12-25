@@ -7,24 +7,24 @@
 #
 # Parts of Speak.activity are based on code from Measure.activity
 # Copyright (C) 2007  Arjun Sarwal - arjun@laptop.org
-# 
+#
 #     Speak.activity is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
 #     (at your option) any later version.
-# 
+#
 #     Speak.activity is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from sugar.activity import activity
 from sugar.presence import presenceservice
-import logging 
+import logging
 import gtk
 import gobject
 import pango
@@ -32,8 +32,14 @@ import cjson
 from gettext import gettext as _
 
 from sugar.graphics.toolbutton import ToolButton
-from port.widgets import ComboBox, ToolComboBox
-from port.activity import SharedActivity
+from sugar.graphics.toggletoolbutton import ToggleToolButton
+from sugar.graphics.radiotoolbutton import RadioToolButton
+
+from toolkit.toolitem import ToolWidget
+from toolkit.combobox import ComboBox
+from toolkit.toolbarbox import ToolbarBox
+from toolkit.activity import SharedActivity
+from toolkit.activity_widgets import *
 
 import eye
 import glasses
@@ -45,20 +51,23 @@ import face
 import brain
 import chat
 import espeak
-import widgets
 from messenger import Messenger, SERVICE
 
 logger = logging.getLogger('speak')
 
-BOT_TOOLBAR = 3
-CHAT_TOOLBAR = 4
+MODE_TYPE = 1
+MODE_BOT = 2
+MODE_CHAT = 3
+
 
 class SpeakActivity(SharedActivity):
     def __init__(self, handle):
         self.notebook = gtk.Notebook()
-        
+
         SharedActivity.__init__(self, self.notebook, SERVICE, handle)
-        bounds = self.get_allocation()
+
+        self._mode = MODE_TYPE
+        self.numeyesadj = None
 
         # make an audio device for playing back and rendering audio
         self.connect( "notify::active", self._activeCb )
@@ -81,9 +90,11 @@ class SpeakActivity(SharedActivity):
         box.pack_start(self.face)
         box.pack_start(self.entrycombo, expand=False)
 
-        box.add_events(gtk.gdk.BUTTON_PRESS_MASK |
-                       gtk.gdk.POINTER_MOTION_MASK)
-        box.connect("motion_notify_event", self._mouse_moved_cb)
+        self.add_events(gtk.gdk.POINTER_MOTION_HINT_MASK
+                | gtk.gdk.POINTER_MOTION_MASK)
+        self.connect("motion_notify_event", self._mouse_moved_cb)
+
+        box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
         box.connect("button_press_event", self._mouse_clicked_cb)
 
         # desktop
@@ -98,62 +109,80 @@ class SpeakActivity(SharedActivity):
         self.chat.show_all()
         self.notebook.append_page(self.chat)
 
-        # make some toolbars
-        self.toolbox = activity.ActivityToolbox(self)
-        self.set_toolbox(self.toolbox)
-        self.toolbox.show()
-        #activitybar = toolbox.get_activity_toolbar()
-        self.toolbox.connect('current-toolbar-changed', self._toolbar_changed_cb)
-
-        voicebar = self.make_voice_bar()
-        self.toolbox.add_toolbar(_('Voice'), voicebar)
-        voicebar.show()
-        
-        facebar = self.make_face_bar()
-        self.toolbox.add_toolbar(_('Face'), facebar)
-        facebar.show()
-        
-        self.bot = brain.Toolbar(self)
-        self.toolbox.add_toolbar(_('Robot'), self.bot)
-        self.bot.show()
-
-        chatbar = chat.Toolbar(self.chat)
-        self.toolbox.add_toolbar(_('Chat'), chatbar)
-        chatbar.show()
-
         # make the text box active right away
         self.entry.grab_focus()
-        
+
         self.entry.connect("move-cursor", self._cursor_moved_cb)
         self.entry.connect("changed", self._cursor_moved_cb)
 
-        # try to catch all mouse-moved events so the eyes will track wherever you go
-        # this doesn't work for some reason I don't understand
-        # it gets mouse motion over lots of stuff, but not sliders or comboboxes
-        # import time
-        # self.window.set_events(self.window.get_events() | gtk.gdk.POINTER_MOTION_MASK)
-        # def event_filter(event, user_data=None):
-        #     map(lambda w: w.queue_draw(), self.eyes)
-        #     print time.asctime(), time.time(), event.get_coords(), event.get_root_coords()
-        #     return gtk.gdk.FILTER_CONTINUE
-        # self.window.add_filter(event_filter)
-        # map(lambda c: c.forall(lambda w: w.add_events(gtk.gdk.POINTER_MOTION_MASK)), self.window.get_children())
+        # toolbar
 
-        # start polling for mouse movement
-        # self.mouseX = None
-        # self.mouseY = None
-        # def poll_mouse():
-        #     display = gtk.gdk.display_get_default()
-        #     screen, mouseX, mouseY, modifiers = display.get_pointer()
-        #     if self.mouseX != mouseX or self.mouseY != mouseY:
-        #         self.mouseX = mouseX
-        #         self.mouseY = mouseY
-        #         map(lambda w: w.queue_draw(), self.eyes)
-        #     return True
-        # gobject.timeout_add(100, poll_mouse)
+        toolbox = ToolbarBox()
+
+        toolbox.toolbar.insert(ActivityToolbarButton(self), -1)
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(False)
+        toolbox.toolbar.insert(separator, -1)
+
+        self.voices = ComboBox()
+        for name in sorted(voice.allVoices().keys()):
+            self.voices.append_item(voice.allVoices()[name], name)
+        self.voices.select(voice.defaultVoice())
+        all_voices = self.voices.get_model()
+        brain_voices = brain.get_voices()
+
+        mode_type = RadioToolButton(
+                named_icon='mode-type',
+                tooltip=_('Lessons'))
+        mode_type.connect('toggled', self.__toggled_mode_type_cb, all_voices)
+        toolbox.toolbar.insert(mode_type, -1)
+
+        mode_robot = RadioToolButton(
+                named_icon='mode-robot',
+                group=mode_type,
+                tooltip=_('Robot'))
+        mode_robot.connect('toggled', self.__toggled_mode_robot_cb,
+                brain_voices)
+        toolbox.toolbar.insert(mode_robot, -1)
+
+        mode_chat = RadioToolButton(
+                named_icon='mode-chat',
+                group=mode_type,
+                tooltip=_('Chat'))
+        mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
+        toolbox.toolbar.insert(mode_chat, -1)
+
+        separator = gtk.SeparatorToolItem()
+        toolbox.toolbar.insert(separator, -1)
+
+        voices_toolitem = ToolWidget(widget=self.voices)
+        toolbox.toolbar.insert(voices_toolitem, -1)
+
+        voice_button = ToolbarButton(
+                page=self.make_voice_bar(),
+                label=_('Voice'),
+                icon_name='voice')
+        toolbox.toolbar.insert(voice_button, -1)
+
+        face_button = ToolbarButton(
+                page=self.make_face_bar(),
+                label=_('Face'),
+                icon_name='face')
+        toolbox.toolbar.insert(face_button, -1)
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(False)
+        separator.set_expand(True)
+        toolbox.toolbar.insert(separator, -1)
+
+        toolbox.toolbar.insert(StopButton(self), -1)
+
+        toolbox.show_all()
+        self.toolbar_box = toolbox
 
     def new_instance(self):
-        self.voice_combo.connect('changed', self.voice_changed_cb)
+        self.voices.connect('changed', self.__changed_voices_cb)
         self.pitchadj.connect("value_changed", self.pitch_adjusted_cb, self.pitchadj)
         self.rateadj.connect("value_changed", self.rate_adjusted_cb, self.rateadj)
         self.mouth_shape_combo.connect('changed', self.mouth_changed_cb, False)
@@ -203,7 +232,7 @@ class SpeakActivity(SharedActivity):
         pos = layout.get_cursor_pos(index)
         x = pos[0][0] / pango.SCALE - entry.props.scroll_offset
         y = entry.get_allocation().y
-        self.face.look_at(x, y)
+        self.face.look_at(pos=(x, y))
 
     def get_mouse(self):
         display = gtk.gdk.display_get_default()
@@ -212,26 +241,14 @@ class SpeakActivity(SharedActivity):
 
     def _mouse_moved_cb(self, widget, event):
         # make the eyes track the motion of the mouse cursor
-        x,y = self.get_mouse()
-        self.face.look_at(x, y)
+        self.face.look_at()
+        self.chat.look_at()
 
     def _mouse_clicked_cb(self, widget, event):
         pass
 
     def make_voice_bar(self):
         voicebar = gtk.Toolbar()
-
-        # button = ToolButton('change-voice')
-        # button.set_tooltip("Change Voice")
-        # button.connect('clicked', self.change_voice_cb)
-        # voicebar.insert(button, -1)
-        # button.show()
-
-        self.voice_combo = widgets.Voices(self.face)
-        self.voice_combo.select(name=self.face.status.voice.friendlyname)
-        combotool = ToolComboBox(self.voice_combo)
-        voicebar.insert(combotool, -1)
-        combotool.show()
 
         self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
                 espeak.PITCH_MAX, 1, espeak.PITCH_MAX/10, 0)
@@ -240,11 +257,11 @@ class SpeakActivity(SharedActivity):
         #pitchbar.set_inverted(True)
         pitchbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
         pitchbar.set_size_request(240,15)
-        pitchtool = gtk.ToolItem()
-        pitchtool.add(pitchbar)
-        pitchtool.show()
-        voicebar.insert(pitchtool, -1)
-        pitchbar.show()
+
+        pitchbar_toolitem = ToolWidget(
+                widget=pitchbar,
+                label_text=_('Pitch:'))
+        voicebar.insert(pitchbar_toolitem, -1)
 
         self.rateadj = gtk.Adjustment(self.face.status.rate, 0, espeak.RATE_MAX,
                 1, espeak.RATE_MAX/10, 0)
@@ -253,17 +270,14 @@ class SpeakActivity(SharedActivity):
         #ratebar.set_inverted(True)
         ratebar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
         ratebar.set_size_request(240,15)
-        ratetool = gtk.ToolItem()
-        ratetool.add(ratebar)
-        ratetool.show()
-        voicebar.insert(ratetool, -1)
-        ratebar.show()
-        
-        return voicebar
 
-    def voice_changed_cb(self, combo):
-        self.face.status.voice = combo.props.value
-        self.face.say_notification(self.face.status.voice.friendlyname)
+        ratebar_toolitem = ToolWidget(
+                widget=ratebar,
+                label_text=_('Rate:'))
+        voicebar.insert(ratebar_toolitem, -1)
+
+        voicebar.show_all()
+        return voicebar
 
     def pitch_adjusted_cb(self, get, data=None):
         self.face.status.pitch = get.value
@@ -276,42 +290,44 @@ class SpeakActivity(SharedActivity):
     def make_face_bar(self):
         facebar = gtk.Toolbar()
 
-        self.numeyesadj = None
-        
         self.mouth_shape_combo = ComboBox()
         self.mouth_shape_combo.append_item(mouth.Mouth, _("Simple"))
         self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth, _("Waveform"))
         self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, _("Frequency"))
         self.mouth_shape_combo.set_active(0)
-        combotool = ToolComboBox(self.mouth_shape_combo)
-        facebar.insert(combotool, -1)
-        combotool.show()
+
+        mouth_shape_toolitem = ToolWidget(
+                widget=self.mouth_shape_combo,
+                label_text=_('Mouth:'))
+        facebar.insert(mouth_shape_toolitem, -1)
 
         self.eye_shape_combo = ComboBox()
         self.eye_shape_combo.append_item(eye.Eye, _("Round"))
         self.eye_shape_combo.append_item(glasses.Glasses, _("Glasses"))
-        combotool = ToolComboBox(self.eye_shape_combo)
-        facebar.insert(combotool, -1)
-        combotool.show()
+        self.eye_shape_combo.set_active(0)
+
+        eye_shape_toolitem = ToolWidget(
+                widget=self.eye_shape_combo,
+                label_text=_('Eyes:'))
+        facebar.insert(eye_shape_toolitem, -1)
 
         self.numeyesadj = gtk.Adjustment(2, 1, 5, 1, 1, 0)
         numeyesbar = gtk.HScale(self.numeyesadj)
         numeyesbar.set_draw_value(False)
         numeyesbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
         numeyesbar.set_size_request(240,15)
-        numeyestool = gtk.ToolItem()
-        numeyestool.add(numeyesbar)
-        numeyestool.show()
-        facebar.insert(numeyestool, -1)
-        numeyesbar.show()
 
-        self.eye_shape_combo.set_active(0)
-        
+        numeyesbar_toolitem = ToolWidget(
+                widget=numeyesbar,
+                label_text=_('Eyes number:'))
+        facebar.insert(numeyesbar_toolitem, -1)
+
+        facebar.show_all()
         return facebar
 
     def mouth_changed_cb(self, combo, quiet):
         self.face.status.mouth = combo.props.value
-        self.face.update()
+        self._update_face()
 
         # this SegFaults: self.face.say(combo.get_active_text())
         if not quiet:
@@ -323,12 +339,16 @@ class SpeakActivity(SharedActivity):
 
         self.face.status.eyes = [self.eye_shape_combo.props.value] \
                 * int(self.numeyesadj.value)
-        self.face.update()
+        self._update_face()
 
         # this SegFaults: self.face.say(self.eye_shape_combo.get_active_text())
         if not quiet:
             self.face.say_notification(_("eyes changed"))
-        
+
+    def _update_face(self):
+        self.face.update()
+        self.chat.update(self.face.status)
+
     def _combo_changed_cb(self, combo):
         # when a new item is chosen, make sure the text is selected
         if not self.entry.is_focus():
@@ -359,13 +379,14 @@ class SpeakActivity(SharedActivity):
         text = entry.props.text
         if text:
             self.face.look_ahead()
-            
+
             # speak the text
-            if self.toolbox.get_current_toolbar() == BOT_TOOLBAR:
-                self.face.say(self.bot.respond(text))
+            if self._mode == MODE_BOT:
+                self.face.say(
+                        brain.respond(self.voices.props.value, text))
             else:
                 self.face.say(text)
-            
+
             # add this text to our history unless it is the same as the last item
             history = self.entrycombo.get_model()
             if len(history)==0 or history[-1][0] != text:
@@ -378,25 +399,80 @@ class SpeakActivity(SharedActivity):
             # select the whole text
             entry.select_region(0,-1)
 
-    def _synth_cb(self, callback_type, index_mark=None):
-        print "synth callback:", callback_type, index_mark
-        
     def _activeCb( self, widget, pspec ):
         # only generate sound when this activity is active
         if not self.props.active:
             self.face.shut_up()
             self.chat.shut_up()
 
-    def _toolbar_changed_cb(self, widget, index):
-        if index == CHAT_TOOLBAR:
-            self.face.shut_up()
-            self.chat.update(self.face.status)
-            self.notebook.set_current_page(1)
+    def _set_voice(self, new_voice):
+        try:
+            self.voices.handler_block_by_func(self.__changed_voices_cb)
+            self.voices.select(new_voice)
+        finally:
+            self.voices.handler_unblock_by_func(self.__changed_voices_cb)
+
+    def __toggled_mode_type_cb(self, button, voices_model):
+        if not button.props.active:
+            return
+
+        self._mode = MODE_TYPE
+        self.chat.shut_up()
+        self.face.shut_up()
+        self.notebook.set_current_page(0)
+
+        old_voice = self.voices.props.value
+        self.voices.set_model(voices_model)
+        self._set_voice(old_voice)
+
+    def __toggled_mode_robot_cb(self, button, voices_model):
+        if not button.props.active:
+            return
+
+        self._mode = MODE_BOT
+        self.chat.shut_up()
+        self.face.shut_up()
+        self.notebook.set_current_page(0)
+
+        old_voice = self.voices.props.value
+        self.voices.set_model(voices_model)
+
+        if not [i for i in voices_model if i[0] == old_voice]:
+            new_voice = brain.get_default_voice()
+            sorry = _("Sorry, I can't speak %s, let's speak %s instead.") % \
+                    (old_voice.friendlyname, new_voice.friendlyname)
         else:
-            self.chat.shut_up()
-            self.notebook.set_current_page(0)
-            if index == BOT_TOOLBAR:
-                self.bot.update_voice()
+            new_voice = old_voice
+            sorry = None
+
+        self._set_voice(new_voice)
+
+        if not brain.load(self, self.voices.props.value, sorry):
+            if sorry:
+                self.face.say_notification(sorry)
+
+    def __toggled_mode_chat_cb(self, button, voices_model):
+        if not button.props.active:
+            return
+
+        self._mode = MODE_CHAT
+        self.face.shut_up()
+        self.notebook.set_current_page(1)
+
+        old_voice = self.voices.props.value
+        self.voices.set_model(voices_model)
+        self._set_voice(old_voice)
+
+    def __changed_voices_cb(self, combo):
+        voice = combo.props.value
+
+        if self._mode == MODE_BOT:
+            self.face.set_voice(voice)
+            brain.load(self, voice)
+        else:
+            self.face.set_voice(voice)
+            self.face.say_notification(voice.friendlyname)
+
 
 # activate gtk threads when this module loads
 gtk.gdk.threads_init()

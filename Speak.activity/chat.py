@@ -43,23 +43,6 @@ ENTRY_COLOR = style.COLOR_PANEL_GREY
 ENTRY_XPAD = 0
 ENTRY_YPAD = 7
 
-class Toolbar(gtk.Toolbar):
-    def __init__(self, chat):
-        gtk.Toolbar.__init__(self)
-        self.chat = chat
-
-        mute = ToggleToolButton('stock_volume-mute')
-        mute.set_tooltip(_('Mute'))
-        mute.connect('toggled', self._toggled_cb)
-        mute.show()
-        self.insert(mute, -1)
-
-    def _toggled_cb(self, widget):
-        if widget.get_active():
-            self.chat.quiet = True
-            self.chat.shut_up()
-        else:
-            self.chat.quiet = False
 
 class View(hippo.Canvas):
     def __init__(self):
@@ -70,7 +53,6 @@ class View(hippo.Canvas):
         self.quiet = False
 
         self._buddies = {}
-        self.connect('motion_notify_event', self._motion_notify_cb)
 
         # buddies box
 
@@ -190,7 +172,7 @@ class View(hippo.Canvas):
                 )
 
         buddy_face, buddy_widget = self._new_face(buddy, BUDDIES_COLOR)
-        
+
         char_box = hippo.CanvasBox(
                 orientation = hippo.ORIENTATION_VERTICAL,
                 )
@@ -268,12 +250,7 @@ class View(hippo.Canvas):
 
         return (buddy_face, outer)
 
-    def _look_at(self, x, y):
-        self.me.look_at(x, y)
+    def look_at(self):
+        self.me.look_at()
         for i in self._buddies.values():
-            i['face'].look_at(x, y)
-
-    def _motion_notify_cb(self, widget, event):
-        display = gtk.gdk.display_get_default()
-        screen, x, y, modifiers = display.get_pointer()
-        self._look_at(x,y)
+            i['face'].look_at()

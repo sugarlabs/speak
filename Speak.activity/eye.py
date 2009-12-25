@@ -43,17 +43,6 @@ class Eye(gtk.DrawingArea):
         self.connect("button_press_event", self._mouse_pressed_cb)
         self.connect("button_release_event", self._mouse_released_cb)
 
-        # Instead of listening for mouse move events we could poll to see if the mouse has moved
-        # would let us react to the mouse even when it isn't directly over this widget.
-        # Unfortunately that would cause a lot of CPU usage.  So instead we rely on our parent to
-        # tell us to redraw when the mouse has moved.  We still need to call add_events so that
-        # our parent will get mouse motion events, but we don't connect the callback for them ourselves.
-        self.add_events(gtk.gdk.POINTER_MOTION_MASK)
-        # self.connect("motion_notify_event", self._mouse_moved_cb)
-
-    def _mouse_moved_cb(self, widget, event):
-        self.queue_draw()
-
     def _mouse_pressed_cb(self, widget, event):
         self.blink = True
         self.queue_draw()

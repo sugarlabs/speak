@@ -110,7 +110,7 @@ class View(gtk.EventBox):
         self._mouth = None
         self._mouthbox = gtk.HBox()
         self._mouthbox.show()
-        
+
         # layout the screen
         box = gtk.VBox(homogeneous=False)
         box.pack_start(self._eyebox)
@@ -119,14 +119,12 @@ class View(gtk.EventBox):
         self.modify_bg(gtk.STATE_NORMAL, self.fill_color.get_gdk_color())
         self.add(box)
 
-        self._mapped = False
         self._peding = None
-        self.connect("map_event",self._map_event)
+        self.connect('map', self.__map_cb)
 
         self.update()
-        
-    def _map_event(self, widget, event):
-        self._mapped = True
+
+    def __map_cb(self, widget):
         if self._peding:
             self.update(self._peding)
             self._peding = None
@@ -135,15 +133,20 @@ class View(gtk.EventBox):
         if self._eyes:
             map(lambda e: e.look_ahead(), self._eyes)
 
-    def look_at(self, x, y):
+    def look_at(self, pos=None):
         if self._eyes:
-            map(lambda e, x=x, y=y: e.look_at(x,y), self._eyes)
+            if pos is None:
+                display = gtk.gdk.display_get_default()
+                screen_, x, y, modifiers_ = display.get_pointer()
+            else:
+                x, y = pos
+            map(lambda e, x=x, y=y: e.look_at(x, y), self._eyes)
 
     def update(self, status = None):
         if not status:
             status = self.status
         else:
-            if not self._mapped:
+            if not self.flags() & gtk.MAPPED:
                 self._peding = status
                 return
             self.status = status
@@ -168,6 +171,10 @@ class View(gtk.EventBox):
 
         # enable mouse move events so we can track the eyes while the mouse is over the mouth
         #self._mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
+
+    def set_voice(self, voice):
+        self.status.voice = voice
+        self.say_notification(voice.friendlyname)
 
     def say(self, something):
         self._audio.speak(self._peding or self.status, something)
