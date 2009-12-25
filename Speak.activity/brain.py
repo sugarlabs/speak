@@ -39,6 +39,11 @@ BOTS = {
                     'predicates': { 'name': 'Alice',
                                     'master': 'the Sugar Community' } } }
 
+# load Standard AIML set for restricted systems
+if int([i for i in file('/proc/meminfo').readlines()
+        if i.startswith('MemTotal:')][0].split()[1]) < 524288:
+    BOTS[_('English')]['brain'] = 'bot/alisochka.brn'
+
 _kernels = {}
 
 
