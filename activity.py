@@ -455,6 +455,8 @@ class SpeakActivity(SharedActivity):
         if not button.props.active:
             return
 
+        is_first_session = not self.chat.me.flags() & gtk.MAPPED
+
         self._mode = MODE_CHAT
         self.face.shut_up()
         self.notebook.set_current_page(1)
@@ -462,6 +464,10 @@ class SpeakActivity(SharedActivity):
         old_voice = self.voices.props.value
         self.voices.set_model(voices_model)
         self._set_voice(old_voice)
+
+        if is_first_session:
+            self.chat.me.say_notification(
+                    _("You are in off-line mode, share and invite someone."))
 
     def __changed_voices_cb(self, combo):
         voice = combo.props.value
