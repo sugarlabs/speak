@@ -44,7 +44,8 @@ if int([i for i in file('/proc/meminfo').readlines()
         if i.startswith('MemTotal:')][0].split()[1]) < 524288:
     BOTS[_('English')]['brain'] = 'bot/alisochka.brn'
 
-_kernels = {}
+_kernel = None
+_kernel_voice = None
 
 
 def get_default_voice():
@@ -63,18 +64,24 @@ def get_voices():
 
 
 def respond(voice, text):
-    return _kernels[voice].respond(text)
+    if _kernel is None:
+        return text
+    else:
+        return _kernel.respond(text)
 
 
 def load(activity, voice, sorry=None):
-    if voice in _kernels:
+    if voice == _kernel_voice:
         return False
 
     old_cursor = activity.get_cursor()
     activity.set_cursor(gtk.gdk.WATCH)
 
     def load_brain():
-        is_first_session = (len(_kernels) == 0)
+        global _kernel
+        global _kernel_voice
+
+        is_first_session = _kernel is None
 
         try:
             brain = BOTS[voice.friendlyname]
@@ -84,7 +91,15 @@ def load(activity, voice, sorry=None):
             kernel.loadBrain(brain['brain'])
             for name, value in brain['predicates'].items():
                 kernel.setBotPredicate(name, value)
-            _kernels[voice] = kernel
+
+            if _kernel is not None:
+                del _kernel
+                _kernel = None
+                import gc
+                gc.collect()
+
+            _kernel = kernel
+            _kernel_voice = voice
         finally:
             activity.set_cursor(old_cursor)
 
