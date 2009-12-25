@@ -1,4 +1,0 @@
-#!/bin/sh
-
-rm dist/speak.xo
-zip -r dist/speak.xo Speak.activity && scp dist/speak.xo luxvu@lux.vu:public_html/olpc/
