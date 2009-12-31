@@ -104,7 +104,7 @@ def load(activity, voice, sorry=None):
             activity.set_cursor(old_cursor)
 
         if is_first_session:
-            hello = _("Hello, I'am a robot \"%s\". Ask me any question.") \
+            hello = _("Hello, I'm a robot \"%s\". Ask me any question.") \
                     % BOTS[voice.friendlyname]['name']
             if sorry:
                 hello += ' ' + sorry
