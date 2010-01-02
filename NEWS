@@ -1,3 +1,12 @@
+12
+
+* Add toolkit service to use new toolbars design in all supported sugars
+* Add gst-plugins-espeak service to use gst in 0.82
+* Speak offline mode warning
+* Do not cache bot brains to save memory
+* Load standard AIML set for restricted systems
+* Implant xeyes
+
 11
 
 * Pronounce gettext strings in native language

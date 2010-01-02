@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-25 15:36+0000\n"
+"POT-Creation-Date: 2010-01-02 13:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: /home/sugar/src/activities/speak.activity/brain.py:107
 #, python-format
-msgid "Hello, I'am a robot \"%s\". Ask me any question."
+msgid "Hello, I'm a robot \"%s\". Ask me any question."
 msgstr ""
 
 #: /home/sugar/src/activities/speak.activity/voice.py:36
@@ -254,4 +254,8 @@ msgstr ""
 #: /home/sugar/src/activities/speak.activity/activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:470
+msgid "You are in off-line mode, share and invite someone."
 msgstr ""
