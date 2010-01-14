@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-25 15:36+0000\n"
+"PO-Revision-Date: 2010-01-11 21:57-0400\n"
+"Last-Translator: Robson Mendonça <robsonmwoc@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 1.2.1\n"
+
+#: activity/activity.info:2
+msgid "Speak"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/chatbox.py:246
+msgid "URL from Chat"
+msgstr "URL do Chat"
+
+#: /home/sugar/src/activities/speak.activity/chatbox.py:296
+msgid "Copy to Clipboard"
+msgstr "Copiar para Prancheta"
+
+#: /home/sugar/src/activities/speak.activity/brain.py:33
+#: /home/sugar/src/activities/speak.activity/voice.py:66
+msgid "Spanish"
+msgstr "Espanhol"
+
+#: /home/sugar/src/activities/speak.activity/brain.py:37
+#: /home/sugar/src/activities/speak.activity/brain.py:45
+#: /home/sugar/src/activities/speak.activity/brain.py:54
+#: /home/sugar/src/activities/speak.activity/voice.py:57
+msgid "English"
+msgstr "Inglês"
+
+#: /home/sugar/src/activities/speak.activity/brain.py:107
+#, python-format
+msgid "Hello, I'am a robot \"%s\". Ask me any question."
+msgstr "Olá, eu sou um robô \"%s\". Pergunte-me algo."
+
+#: /home/sugar/src/activities/speak.activity/voice.py:36
+msgid "Brazil"
+msgstr "Brasil"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:37
+msgid "Swedish"
+msgstr "Sueco"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:38
+msgid "Icelandic"
+msgstr "Islandês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:39
+msgid "Romanian"
+msgstr "Romeno"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:40
+msgid "Swahili"
+msgstr "Suaíli"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:41
+msgid "Hindi"
+msgstr "Hindi"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:42
+msgid "Dutch"
+msgstr "Holandês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:43
+msgid "Latin"
+msgstr "Latim"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:44
+msgid "Hungarian"
+msgstr "Húngaro"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:45
+msgid "Macedonian"
+msgstr "Macedônio"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:46
+msgid "Welsh"
+msgstr "Galês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:47
+msgid "French"
+msgstr "Francês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:48
+msgid "Norwegian"
+msgstr "Norueguês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:49
+msgid "Russian"
+msgstr "Russo"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:50
+msgid "Afrikaans"
+msgstr "Africânder"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:51
+msgid "Finnish"
+msgstr "Finlandês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:52
+#: /home/sugar/src/activities/speak.activity/voice.py:125
+msgid "Default"
+msgstr "Padrão"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:53
+msgid "Cantonese"
+msgstr "Cantonês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:54
+msgid "Scottish"
+msgstr "Escocês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:55
+msgid "Greek"
+msgstr "Grego"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:56
+msgid "Vietnam"
+msgstr "Vietnamita"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:58
+msgid "Lancashire"
+msgstr "Lancashire"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:59
+msgid "Italian"
+msgstr "Italiano"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:60
+msgid "Portugal"
+msgstr "Portugal"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:61
+msgid "German"
+msgstr "Alemão"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:62
+msgid "Whisper"
+msgstr "Sugestão"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:63
+msgid "Croatian"
+msgstr "Croata"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:64
+msgid "Czech"
+msgstr "Tcheco"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:65
+msgid "Slovak"
+msgstr "Eslovaco"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:67
+msgid "Polish"
+msgstr "Polonês"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:68
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:137
+msgid "Type something to hear it"
+msgstr "Escreva algo para escutá-lo"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:144
+msgid "Ask robot any question"
+msgstr "Pergunte algo ao robô"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:152
+#, fuzzy
+msgid "Voice chat"
+msgstr "Conversa por voz"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:164
+msgid "Voice"
+msgstr "Voz"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:170
+msgid "Face"
+msgstr "Rosto"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:199
+#, python-format
+msgid "Hello %s.  Type something."
+msgstr "Olá %s. Escreva algo."
+
+#: /home/sugar/src/activities/speak.activity/activity.py:263
+msgid "Pitch:"
+msgstr "Passo:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:276
+msgid "Rate:"
+msgstr "Taxa:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:284
+msgid "pitch adjusted"
+msgstr "passo ajustado"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:288
+msgid "rate adjusted"
+msgstr "taxa ajustada"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:294
+msgid "Simple"
+msgstr "Simples"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:295
+msgid "Waveform"
+msgstr "Forma da onda"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:296
+msgid "Frequency"
+msgstr "Frequência"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:301
+msgid "Mouth:"
+msgstr "Boca:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:305
+msgid "Round"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:306
+msgid "Glasses"
+msgstr "Óculos"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:311
+msgid "Eyes:"
+msgstr "Olhos:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:322
+msgid "Eyes number:"
+msgstr "Número de olhos:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:334
+msgid "mouth changed"
+msgstr "boca modificada"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:346
+msgid "eyes changed"
+msgstr "olhos modificados"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:442
+#, python-format
+msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgstr "Desculpe, Eu não consigo falar %s, vamos falar %s ao invés."
