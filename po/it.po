@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-20 13:08-0500\n"
-"PO-Revision-Date: 2010-01-23 23:36+0200\n"
+"PO-Revision-Date: 2010-01-23 23:38+0200\n"
 "Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -246,7 +246,7 @@ msgstr "Ceco"
 
 #: voice.py:65
 msgid "Slovak"
-msgstr "Sovacco"
+msgstr "Slovacco"
 
 #: voice.py:67
 msgid "Polish"
