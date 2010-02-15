@@ -33,8 +33,7 @@ logger = logging.getLogger('speak')
 
 BUDDY_SIZE = min(100, min(gtk.gdk.screen_width(),
         gtk.gdk.screen_height() - style.LARGE_ICON_SIZE) / 5)
-BUDDY_XPAD = 0
-BUDDY_YPAD = 5
+BUDDY_PAD = 5
 
 BUDDIES_WIDTH = int(BUDDY_SIZE * 2.5)
 BUDDIES_COLOR = style.COLOR_SELECTION_GREY
@@ -228,25 +227,19 @@ class View(hippo.Canvas):
 
         inner = CanvasRoundBox(
                 background_color = fill_color.get_int(),
-                padding_top = BUDDY_YPAD,
-                padding_bottom = BUDDY_YPAD,
-                padding_left = BUDDY_XPAD,
-                padding_right = BUDDY_XPAD,
                 )
         inner.props.border_color = fill_color.get_int()
         inner.append(hippo.CanvasWidget(widget=buddy_face), hippo.PACK_EXPAND)
+        inner.props.border = BUDDY_PAD
 
         outer = CanvasRoundBox(
                 background_color = stroke_color.get_int(),
                 box_width = BUDDY_SIZE,
                 box_height = BUDDY_SIZE,
-                padding_top = BUDDY_YPAD,
-                padding_bottom = BUDDY_YPAD,
-                padding_left = BUDDY_XPAD,
-                padding_right = BUDDY_XPAD
                 )
         outer.props.border_color = stroke_color.get_int()
         outer.append(inner, hippo.PACK_EXPAND)
+        outer.props.border = BUDDY_PAD
 
         return (buddy_face, outer)
 
