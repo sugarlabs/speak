@@ -1,10 +1,10 @@
 [Activity]
 name = Speak
 bundle_id = vu.lux.olpc.Speak
-exec = bin/0sugar-launch -c sugar-activity -c activity.SpeakActivity
+exec = .0sugar-injection/launcher activity.SpeakActivity
 icon = activity-speak
 activity_version = 12
 show_launcher = yes
 license = GPLv3+
 host_version = 1
-requires = toolkit; gst-plugins-espeak
+requires = toolkit/python, gst-plugins-espeak
