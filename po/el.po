@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-25 15:36+0000\n"
+"PO-Revision-Date: 2009-12-31 04:32-0400\n"
+"Last-Translator: Γιάννης Κασκαμανίδης <ttnfy17@yahoo.gr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
+
+#: activity/activity.info:2
+msgid "Speak"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/chatbox.py:246
+msgid "URL from Chat"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/chatbox.py:296
+msgid "Copy to Clipboard"
+msgstr "Αντιγραφή στο πρόχειρο"
+
+#: /home/sugar/src/activities/speak.activity/brain.py:33
+#: /home/sugar/src/activities/speak.activity/voice.py:66
+msgid "Spanish"
+msgstr "Ισπανικά"
+
+#: /home/sugar/src/activities/speak.activity/brain.py:37
+#: /home/sugar/src/activities/speak.activity/brain.py:45
+#: /home/sugar/src/activities/speak.activity/brain.py:54
+#: /home/sugar/src/activities/speak.activity/voice.py:57
+msgid "English"
+msgstr "Αγγλικά"
+
+#: /home/sugar/src/activities/speak.activity/brain.py:107
+#, python-format
+msgid "Hello, I'am a robot \"%s\". Ask me any question."
+msgstr "Γεια, είμαι το ρομπότ \"%s\". Ρώτα με ό,τι θες."
+
+#: /home/sugar/src/activities/speak.activity/voice.py:36
+msgid "Brazil"
+msgstr "Βραζιλιάνικα"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:37
+msgid "Swedish"
+msgstr "Σουηδικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:38
+msgid "Icelandic"
+msgstr "Ισλανδικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:39
+msgid "Romanian"
+msgstr "Ρουμανικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:40
+msgid "Swahili"
+msgstr "Σουαχίλι"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:41
+msgid "Hindi"
+msgstr "Χίντι"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:42
+msgid "Dutch"
+msgstr "Ολλανδικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:43
+msgid "Latin"
+msgstr "Λατινικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:44
+msgid "Hungarian"
+msgstr "Ουγγρικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:45
+msgid "Macedonian"
+msgstr "Σλαβομακεδονικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:46
+msgid "Welsh"
+msgstr "Ουαλικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:47
+msgid "French"
+msgstr "Γαλλικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:48
+msgid "Norwegian"
+msgstr "Νορβηγικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:49
+msgid "Russian"
+msgstr "Ρωσικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:50
+msgid "Afrikaans"
+msgstr "Αφρικάανς"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:51
+msgid "Finnish"
+msgstr "Φινλανδικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:52
+#: /home/sugar/src/activities/speak.activity/voice.py:125
+msgid "Default"
+msgstr "Προκαθορισμένη"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:53
+msgid "Cantonese"
+msgstr "Καντονέζικα"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:54
+msgid "Scottish"
+msgstr "Σκωτικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:55
+msgid "Greek"
+msgstr "Ελληνικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:56
+msgid "Vietnam"
+msgstr "Βιετναμέζικα"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:58
+msgid "Lancashire"
+msgstr "Λανκασάιρ"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:59
+msgid "Italian"
+msgstr "Ιταλικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:60
+msgid "Portugal"
+msgstr "Πορτογαλικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:61
+msgid "German"
+msgstr "Γερμανικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:62
+#, fuzzy
+msgid "Whisper"
+msgstr "Ψίθυρος"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:63
+msgid "Croatian"
+msgstr "Κροάτικα"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:64
+msgid "Czech"
+msgstr "Τσέχικα"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:65
+msgid "Slovak"
+msgstr "Σλοβάκικα"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:67
+msgid "Polish"
+msgstr "Πολωνικά"
+
+#: /home/sugar/src/activities/speak.activity/voice.py:68
+msgid "Esperanto"
+msgstr "Εσπεράντο"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:137
+msgid "Type something to hear it"
+msgstr "Πληκτρολόγησε κάτι για να το ακούσεις"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:144
+msgid "Ask robot any question"
+msgstr "Ρώτα το ρομπότ ό,τι θες"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:152
+msgid "Voice chat"
+msgstr "Φωνητική συνομιλία"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:164
+msgid "Voice"
+msgstr "Φωνή"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:170
+msgid "Face"
+msgstr "Πρόσωπο"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:199
+#, python-format
+msgid "Hello %s.  Type something."
+msgstr "Γεια σου %s.  Πληκτρολόγησε κάτι."
+
+#: /home/sugar/src/activities/speak.activity/activity.py:263
+msgid "Pitch:"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:276
+msgid "Rate:"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:284
+msgid "pitch adjusted"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:288
+msgid "rate adjusted"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:294
+msgid "Simple"
+msgstr "Απλό"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:295
+msgid "Waveform"
+msgstr "Κυματομορφή"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:296
+msgid "Frequency"
+msgstr "Συχνότητα"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:301
+msgid "Mouth:"
+msgstr "Στόμα:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:305
+msgid "Round"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:306
+msgid "Glasses"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:311
+msgid "Eyes:"
+msgstr "Μάτια:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:322
+msgid "Eyes number:"
+msgstr "Αριθμός ματιών:"
+
+#: /home/sugar/src/activities/speak.activity/activity.py:334
+msgid "mouth changed"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:346
+msgid "eyes changed"
+msgstr ""
+
+#: /home/sugar/src/activities/speak.activity/activity.py:442
+#, python-format
+msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgstr ""
