@@ -25,6 +25,10 @@ RATE_DEFAULT = RATE_MAX/2
 
 class AudioGrabGst(espeak.BaseAudioGrab):
     def speak(self, status, text):
+        # XXX workaround for http://bugs.sugarlabs.org/ticket/1801
+        if not [i for i in text if i.isalnum()]:
+            return
+
         self.make_pipeline('espeak name=espeak ! wavenc')
         src = self.pipeline.get_by_name('espeak')
 
