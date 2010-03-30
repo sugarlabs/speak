@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-25 15:36+0000\n"
+"POT-Creation-Date: 2010-01-20 13:08-0500\n"
 "PO-Revision-Date: 2010-01-06 00:41-0400\n"
 "Last-Translator: Chris Leonard <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,238 +21,237 @@ msgstr ""
 msgid "Speak"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/chatbox.py:246
-msgid "URL from Chat"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/chatbox.py:296
-msgid "Copy to Clipboard"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/brain.py:33
-#: /home/sugar/src/activities/speak.activity/voice.py:66
-msgid "Spanish"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/brain.py:37
-#: /home/sugar/src/activities/speak.activity/brain.py:45
-#: /home/sugar/src/activities/speak.activity/brain.py:54
-#: /home/sugar/src/activities/speak.activity/voice.py:57
-msgid "English"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/brain.py:107
-#, python-format
-msgid "Hello, I'am a robot \"%s\". Ask me any question."
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:36
-msgid "Brazil"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:37
-msgid "Swedish"
-msgstr "Швед"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:38
-msgid "Icelandic"
-msgstr "Исланд"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:39
-msgid "Romanian"
-msgstr "Румын"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:40
-msgid "Swahili"
-msgstr "Свахили"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:41
-msgid "Hindi"
-msgstr "Хинди"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:42
-msgid "Dutch"
-msgstr "Нидерланд"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:43
-msgid "Latin"
-msgstr "Латин"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:44
-msgid "Hungarian"
-msgstr "Унгар"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:45
-msgid "Macedonian"
-msgstr "Макидони"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:46
-msgid "Welsh"
-msgstr "Уэльс"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:47
-msgid "French"
-msgstr "Франц"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:48
-msgid "Norwegian"
-msgstr "Норвеги"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:49
-msgid "Russian"
-msgstr "Орос"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:50
-msgid "Afrikaans"
-msgstr "Африк"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:51
-msgid "Finnish"
-msgstr "Финнлянд"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:52
-#: /home/sugar/src/activities/speak.activity/voice.py:125
-msgid "Default"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:53
-msgid "Cantonese"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:54
-msgid "Scottish"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:55
-msgid "Greek"
-msgstr "Грек"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:56
-msgid "Vietnam"
-msgstr "Ветьнам"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:58
-msgid "Lancashire"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:59
-msgid "Italian"
-msgstr "Итали"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:60
-msgid "Portugal"
-msgstr "Португали"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:61
-msgid "German"
-msgstr "Герман"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:62
-msgid "Whisper"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:63
-msgid "Croatian"
-msgstr "Хорват"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:64
-msgid "Czech"
-msgstr "Чех"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:65
-msgid "Slovak"
-msgstr "Словак"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:67
-msgid "Polish"
-msgstr "Польш"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:68
-msgid "Esperanto"
-msgstr "Аспиранто"
-
-#: /home/sugar/src/activities/speak.activity/activity.py:137
+#: activity.py:137
 msgid "Type something to hear it"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:144
+#: activity.py:144
 msgid "Ask robot any question"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:152
+#: activity.py:152
 msgid "Voice chat"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:164
+#: activity.py:164
 msgid "Voice"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:170
+#: activity.py:170
 msgid "Face"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:199
+#: activity.py:199
 #, python-format
 msgid "Hello %s.  Type something."
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:263
+#: activity.py:263
 msgid "Pitch:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:276
+#: activity.py:276
 msgid "Rate:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:284
+#: activity.py:284
 msgid "pitch adjusted"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:288
+#: activity.py:288
 msgid "rate adjusted"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:294
+#: activity.py:294
 msgid "Simple"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:295
+#: activity.py:295
 msgid "Waveform"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:296
+#: activity.py:296
 msgid "Frequency"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:301
+#: activity.py:301
 msgid "Mouth:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:305
+#: activity.py:305
 msgid "Round"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:306
+#: activity.py:306
 msgid "Glasses"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:311
+#: activity.py:311
 msgid "Eyes:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:322
+#: activity.py:322
 msgid "Eyes number:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:334
+#: activity.py:334
 msgid "mouth changed"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:346
+#: activity.py:346
 msgid "eyes changed"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:442
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
 msgstr ""
+
+#: activity.py:470
+msgid "You are in off-line mode, share and invite someone."
+msgstr ""
+
+#: brain.py:33 voice.py:66
+msgid "Spanish"
+msgstr ""
+
+#: brain.py:37 brain.py:45 brain.py:54 voice.py:57
+msgid "English"
+msgstr ""
+
+#: brain.py:107
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Ask me any question."
+msgstr ""
+
+#: chatbox.py:246
+msgid "URL from Chat"
+msgstr ""
+
+#: chatbox.py:296
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: voice.py:36
+msgid "Brazil"
+msgstr ""
+
+#: voice.py:37
+msgid "Swedish"
+msgstr "Швед"
+
+#: voice.py:38
+msgid "Icelandic"
+msgstr "Исланд"
+
+#: voice.py:39
+msgid "Romanian"
+msgstr "Румын"
+
+#: voice.py:40
+msgid "Swahili"
+msgstr "Свахили"
+
+#: voice.py:41
+msgid "Hindi"
+msgstr "Хинди"
+
+#: voice.py:42
+msgid "Dutch"
+msgstr "Нидерланд"
+
+#: voice.py:43
+msgid "Latin"
+msgstr "Латин"
+
+#: voice.py:44
+msgid "Hungarian"
+msgstr "Унгар"
+
+#: voice.py:45
+msgid "Macedonian"
+msgstr "Макидони"
+
+#: voice.py:46
+msgid "Welsh"
+msgstr "Уэльс"
+
+#: voice.py:47
+msgid "French"
+msgstr "Франц"
+
+#: voice.py:48
+msgid "Norwegian"
+msgstr "Норвеги"
+
+#: voice.py:49
+msgid "Russian"
+msgstr "Орос"
+
+#: voice.py:50
+msgid "Afrikaans"
+msgstr "Африк"
+
+#: voice.py:51
+msgid "Finnish"
+msgstr "Финнлянд"
+
+#: voice.py:52 voice.py:125
+msgid "Default"
+msgstr ""
+
+#: voice.py:53
+msgid "Cantonese"
+msgstr ""
+
+#: voice.py:54
+msgid "Scottish"
+msgstr ""
+
+#: voice.py:55
+msgid "Greek"
+msgstr "Грек"
+
+#: voice.py:56
+msgid "Vietnam"
+msgstr "Ветьнам"
+
+#: voice.py:58
+msgid "Lancashire"
+msgstr ""
+
+#: voice.py:59
+msgid "Italian"
+msgstr "Итали"
+
+#: voice.py:60
+msgid "Portugal"
+msgstr "Португали"
+
+#: voice.py:61
+msgid "German"
+msgstr "Герман"
+
+#: voice.py:62
+msgid "Whisper"
+msgstr ""
+
+#: voice.py:63
+msgid "Croatian"
+msgstr "Хорват"
+
+#: voice.py:64
+msgid "Czech"
+msgstr "Чех"
+
+#: voice.py:65
+msgid "Slovak"
+msgstr "Словак"
+
+#: voice.py:67
+msgid "Polish"
+msgstr "Польш"
+
+#: voice.py:68
+msgid "Esperanto"
+msgstr "Аспиранто"
