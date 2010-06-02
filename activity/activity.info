@@ -7,4 +7,4 @@ activity_version = 16
 show_launcher = yes
 license = GPLv3+
 host_version = 1
-requires = toolkit/python, gst-plugins-espeak
+requires = toolkit/python = 1, gst-plugins-espeak
