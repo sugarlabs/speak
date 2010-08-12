@@ -7,16 +7,21 @@ description = Speak is a talking face for the XO laptop. Anything you type will
             adjust the accent, rate and pitch of the voice as well as the shape
             of the eyes and mouth.
             This is a great way to experiment with the speech synthesizer,
-            learn to type or just have fun making a funny face for your XO. 
-icon      = activity-speak.svg
-license   = GPLv3+
+            learn to type or just have fun making a funny face for your XO.
+icon      = activity/activity-speak.svg
 homepage  = http://wiki.sugarlabs.org/go/Activities/Speak
-requires  = polyol/python; gst-plugins-espeak
-exec      = sugar-activity activity.SpeakActivity
-version   = 16
+license   = GPLv3+
+
+version   = 17
 stability = testing
+
+requires  = gst-plugins-espeak; pyaiml
+exec      = sugar-activity activity.SpeakActivity
 
 # deprecated
 icon = activity-speak
 bundle_id = vu.lux.olpc.Speak
-activity_version = 16
+activity_version = 17
+
+[Source]
+exclude   = MANIFEST; locale/**; aiml/**

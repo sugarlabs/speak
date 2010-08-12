@@ -26,7 +26,7 @@ logger = logging.getLogger('speak')
 
 from toolkit.combobox import ComboBox
 
-import bot.aiml
+import aiml
 import voice
 
 BOTS = {
@@ -87,7 +87,7 @@ def load(activity, voice, sorry=None):
             brain = BOTS[voice.friendlyname]
             logger.debug('Load bot: %s' % brain)
 
-            kernel = bot.aiml.Kernel()
+            kernel = aiml.Kernel()
             kernel.loadBrain(brain['brain'])
             for name, value in brain['predicates'].items():
                 kernel.setBotPredicate(name, value)
