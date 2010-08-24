@@ -16,12 +16,6 @@
 		</template>
 	</category>
 	<category>
-		<pattern>FAG</pattern>
-		<template>
-			<srai>YOU ARE GAY</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>FAHR ZUR HOELLE</pattern>
 		<template>Warum bist Du so wuetend?
 </template>
@@ -765,13 +759,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>FOR GODS *</pattern>
-		<template>
-			<srai>FOR GOD S <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>FOR HOW *</pattern>
 		<template>
 			<srai>HOW <star/> FOR</srai>
@@ -1260,11 +1247,6 @@ best advertising.
 	<category>
 		<pattern>FROM DR WALLACE</pattern>
 		<template>Did he send you an e-mail?
-</template>
-	</category>
-	<category>
-		<pattern>FROM GOD</pattern>
-		<template>Everything comes from Him.
 </template>
 	</category>
 	<category>

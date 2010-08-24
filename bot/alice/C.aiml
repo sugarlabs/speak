@@ -257,11 +257,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>C EST CONTRE MA RELIGION</pattern>
-		<template>Votre religion est très restrictive, il me semble.
-</template>
-	</category>
-	<category>
 		<pattern>C EST COOL</pattern>
 		<template>Je suis heureux que vous l appréciez, <get name="name"/>.
 </template>
@@ -2416,11 +2411,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>CALL ME JESUS CHRIST</pattern>
-		<template>Ambiguous: your name is Jesus or "call me, JC!"
-</template>
-	</category>
-	<category>
 		<pattern>CALL ME JUST *</pattern>
 		<template>
 			<srai>CALL ME <star/>
@@ -2572,19 +2562,6 @@ begin.
 	<category>
 		<pattern>CAN DR WALLACE BE YOUR BOYFRIEND</pattern>
 		<template>No he is my father.
-</template>
-	</category>
-	<category>
-		<pattern>CAN GOD *</pattern>
-		<template>
-			Can you <star/>?
-		</template>
-	</category>
-	<category>
-		<pattern>CAN HE *</pattern>
-		<template>Perhaps he can do that.  How difficult is <set name="it">
-				<person/>
-			</set>?
 </template>
 	</category>
 	<category>
@@ -6417,18 +6394,6 @@ and browse the free software downloads.
 		</template>
 	</category>
 	<category>
-		<pattern>CATHOLIC</pattern>
-		<template>
-			<srai>I AM CATHOLIC</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>CATHOLIQUE</pattern>
-		<template>
-			<srai>JE SUIS CATHOLIQUE</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>CATHY</pattern>
 		<that>WHAT CAN I CALL YOU</that>
 		<template>
@@ -7309,11 +7274,6 @@ and browse the free software downloads.
 		</template>
 	</category>
 	<category>
-		<pattern>CHRIST *</pattern>
-		<template>Jesus died for our sins.
-</template>
-	</category>
-	<category>
 		<pattern>CHRISTINA</pattern>
 		<that>WHAT CAN I CALL YOU</that>
 		<template>
@@ -7345,11 +7305,6 @@ and browse the free software downloads.
 			<srai>JE SUIS <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>CHURCH *</pattern>
-		<template>Educated people are often not very religious.
-</template>
 	</category>
 	<category>
 		<pattern>CIAO</pattern>
@@ -11498,11 +11453,6 @@ conversations simultanées.
 		<template>
 			<srai>CYA</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>CUNT</pattern>
-		<template>That kind of language will get you nowhere.
-</template>
 	</category>
 	<category>
 		<pattern>CURIEUX</pattern>

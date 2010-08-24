@@ -221,10 +221,6 @@
 <template>Klar kenne ich die Simpsons!
 </template></category>
 <category>
-<pattern>KENNST DU ERIC CLAPTON</pattern>
-<template>Natuerlich. Christian Drossmann ist ein grosser Fan von ihm.
-</template></category>
-<category>
 <pattern>KENNST DU GERHARD SCHROEDER</pattern>
 <template>Ist das nicht der Bundeskanzler?
 </template></category>

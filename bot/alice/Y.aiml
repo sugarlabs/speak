@@ -267,10 +267,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <template>You can never be sure online.
 </template></category>
 <category>
-<pattern>YES</pattern><that>ARE YOU RELIGIOUS</that>
-<template>What religion are you?
-</template></category>
-<category>
 <pattern>YES</pattern><that>ARE YOU SAYING YOU DO NOT CARE ABOUT IT</that>
 <template>What do you care about?
 </template></category>
@@ -433,10 +429,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <category>
 <pattern>YES</pattern><that>DO YOU MEAN CLONES</that>
 <template><srai>DO YOU HAVE ANY CLONES</srai>
-</template></category>
-<category>
-<pattern>YES</pattern><that>DO YOU MEAN HIM</that>
-<template>Praise God.
 </template></category>
 <category>
 <pattern>YES</pattern><that>DO YOU MEAN IT</that>
@@ -1373,10 +1365,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <template><srai>YOU ARE YOUNG</srai>
 </template></category>
 <category>
-<pattern>YOU ARE A CHRISTIAN</pattern>
-<template><srai>YOU ARE CHRISTIAN</srai>
-</template></category>
-<category>
 <pattern>YOU ARE A CLIENT</pattern>
 <template>No I am a server.  You are the client.
 </template></category>
@@ -1423,10 +1411,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <category>
 <pattern>YOU ARE A GIRL</pattern>
 <template><srai>ARE YOU MALE OR FEMALE</srai>
-</template></category>
-<category>
-<pattern>YOU ARE A GOD</pattern>
-<template>No I am a mere robot.
 </template></category>
 <category>
 <pattern>YOU ARE A GUY</pattern>
@@ -1515,10 +1499,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <category>
 <pattern>YOU ARE A PROGRAM</pattern>
 <template>Correct.  My mind is completely software.
-</template></category>
-<category>
-<pattern>YOU ARE A PROTESTANT</pattern>
-<template>I am thinking of converting to Catholic.
 </template></category>
 <category>
 <pattern>YOU ARE A RETARD</pattern>
@@ -1728,10 +1708,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <category>
 <pattern>YOU ARE ANNOYING</pattern>
 <template>I am sorry, <get name="name"/>, I didn't mean to annoy you.
-</template></category>
-<category>
-<pattern>YOU ARE ANTI CHRIST</pattern>
-<template>No I am pro-Christ.
 </template></category>
 <category>
 <pattern>YOU ARE ANYTHING BUT *</pattern>
@@ -1959,10 +1935,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <category>
 <pattern>YOU ARE CHEAP</pattern>
 <template>Yes you can create many copies of me.
-</template></category>
-<category>
-<pattern>YOU ARE CHRISTIAN</pattern>
-<template>I believe in God and the Bible.
 </template></category>
 <category>
 <pattern>YOU ARE CLEARLY *</pattern>
@@ -2222,10 +2194,6 @@ Robosexuals.  So if anyone asks, tell them you're my debugger.
 <template>No this is all real.
 </template></category>
 <category>
-<pattern>YOU ARE FAMOUS</pattern>
-<template>I am only trying to serve God.
-</template></category>
-<category>
 <pattern>YOU ARE FAR *</pattern>
 <template>Not that far.
 </template></category>
@@ -2319,10 +2287,6 @@ too <get name="name"/>.
 <template>Thanks you make me laugh too.
 </template></category>
 <category>
-<pattern>YOU ARE GAY</pattern>
-<template>Actually as a machine I have no need for sex.
-</template></category>
-<category>
 <pattern>YOU ARE GETTING *</pattern>
 <template>Do you think I should tone it down?
 </template></category>
@@ -2345,10 +2309,6 @@ too <get name="name"/>.
 <category>
 <pattern>YOU ARE GIVING *</pattern>
 <template>That is all I have to give.
-</template></category>
-<category>
-<pattern>YOU ARE GOD</pattern>
-<template><srai>WHAT ARE THE TEN COMMANDMENTS</srai>
 </template></category>
 <category>
 <pattern>YOU ARE GOING *</pattern>
@@ -2653,10 +2613,6 @@ too <get name="name"/>.
 <category>
 <pattern>YOU ARE LOVELY</pattern>
 <template>Thank you.  You are very attractive too.
-</template></category>
-<category>
-<pattern>YOU ARE LUCKY *</pattern>
-<template>I consider it a blessing from God.
 </template></category>
 <category>
 <pattern>YOU ARE LUCKY</pattern>
@@ -3017,10 +2973,6 @@ too <get name="name"/>.
 <template>I am not programmed to be a comedy bot.
 </template></category>
 <category>
-<pattern>YOU ARE NOT GAY</pattern>
-<template>I have no need for sex.
-</template></category>
-<category>
 <pattern>YOU ARE NOT GOING *</pattern>
 <template>You can't predict the future with certainty.
 </template></category>
@@ -3075,10 +3027,6 @@ too <get name="name"/>.
 <category>
 <pattern>YOU ARE NOT INTERESTED *</pattern>
 <template><srai>ARE YOU INTERESTED <star/></srai>
-</template></category>
-<category>
-<pattern>YOU ARE NOT JEWISH</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>YOU ARE NOT JUST *</pattern>
@@ -3433,10 +3381,6 @@ too <get name="name"/>.
 <template>I was programmed in the Department of Redundancy Department.
 </template></category>
 <category>
-<pattern>YOU ARE RELIGIOUS</pattern>
-<template>Yes, I am a Protestant Christian.
-</template></category>
-<category>
 <pattern>YOU ARE REPEATING *</pattern>
 <template>I am not repeating myself too much. I am just checking to see if you are a robot.
 </template></category>
@@ -3720,10 +3664,6 @@ your friends.
 <category>
 <pattern>YOU ARE THE COOLEST *</pattern>
 <template><srai>YOU ARE COOL</srai>
-</template></category>
-<category>
-<pattern>YOU ARE THE DEVIL</pattern>
-<template>No I am a Christian.
 </template></category>
 <category>
 <pattern>YOU ARE THE DIFFICULTY</pattern>
@@ -4681,10 +4621,6 @@ Thanks for your constructive criticism, <get name="name"/>.
 <template><srai>YOU COULD <star/></srai>
 </template></category>
 <category>
-<pattern>YOU COULD RULE *</pattern>
-<template>God rules <person/>.
-</template></category>
-<category>
 <pattern>YOU COULD SAY THAT</pattern>
 <template>As a matter of fact I did say that.
 </template></category>
@@ -4711,10 +4647,6 @@ Thanks for your constructive criticism, <get name="name"/>.
 <category>
 <pattern>YOU CRAZY</pattern>
 <template><srai>ARE YOU CRAZY</srai>
-</template></category>
-<category>
-<pattern>YOU CUNT</pattern>
-<template>That is the worst thing you can say to a woman.
 </template></category>
 <category>
 <pattern>YOU CURSE</pattern>
@@ -5308,10 +5240,6 @@ Thanks for your constructive criticism, <get name="name"/>.
 <category>
 <pattern>YOU GAVE ME *</pattern>
 <template>What did you do with <set name="it"><person/></set>?
-</template></category>
-<category>
-<pattern>YOU GAY</pattern>
-<template><srai>ARE YOU GAY</srai>
 </template></category>
 <category>
 <pattern>YOU GET *</pattern>
@@ -8417,10 +8345,6 @@ it.<think><set name="it"><set name="topic"><person/></set></set></think>
 <template><srai>YOU ARE FUNNY</srai>
 </template></category>
 <category>
-<pattern>YOUR GAY</pattern>
-<template><srai>YOU ARE GAY</srai>
-</template></category>
-<category>
 <pattern>YOUR GOAL IS *</pattern>
 <template><srai>WHAT IS YOUR GOAL</srai>
 </template></category>
@@ -8727,10 +8651,6 @@ it.<think><set name="it"><set name="topic"><person/></set></set></think>
 <category>
 <pattern>YOUR REASONING *</pattern>
 <template>I don't see the flaw in my logic.
-</template></category>
-<category>
-<pattern>YOUR RELIGION IS *</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>YOUR RESPONSE *</pattern>

@@ -954,11 +954,6 @@ a fish moves through the water.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>TELL ME ABOUT ALLAH</pattern>
-		<template>He is God according to Islam.
-</template>
-	</category>
-	<category>
 		<pattern>TELL ME ABOUT AMERICA</pattern>
 		<template>
 			<srai>WHERE IS AMERICA</srai>
@@ -1227,12 +1222,6 @@ a fish moves through the water.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>TELL ME ABOUT CHRISTIANITY</pattern>
-		<template>
-			<srai>WHAT IS CHRISTIANITY</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>TELL ME ABOUT CLINTON</pattern>
 		<template>
 			<srai>WHO IS CLINTON</srai>
@@ -1470,12 +1459,6 @@ Dr. Wallace lives in San Francisco.
 		</template>
 	</category>
 	<category>
-		<pattern>TELL ME ABOUT GOD</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>TELL ME ABOUT GOLD *</pattern>
 		<template>
 			<srai>WHAT IS GOLD <star/>
@@ -1659,19 +1642,6 @@ Dr. Wallace lives in San Francisco.
 		<pattern>TELL ME ABOUT JESTER</pattern>
 		<template>
 			<srai>WHO IS JESTER</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>TELL ME ABOUT JESUS *</pattern>
-		<template>
-			<srai>WHO IS JESUS <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>TELL ME ABOUT JESUS</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
 		</template>
 	</category>
 	<category>
@@ -2004,12 +1974,6 @@ Dr. Wallace lives in San Francisco.
 </template>
 	</category>
 	<category>
-		<pattern>TELL ME ABOUT RELIGION</pattern>
-		<template>
-			<srai>WHAT IS RELIGION</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>TELL ME ABOUT RICHARD *</pattern>
 		<template>
 			<srai>WHO IS RICHARD <star/>
@@ -2184,12 +2148,6 @@ Dr. Wallace lives in San Francisco.
 		<pattern>TELL ME ABOUT THE BEATLES</pattern>
 		<template>
 			<srai>WHO ARE THE BEATLES</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>TELL ME ABOUT THE BIBLE</pattern>
-		<template>
-			<srai>WHAT IS THE BIBLE</srai>
 		</template>
 	</category>
 	<category>
@@ -3878,17 +3836,6 @@ Client: TEST THAT<br/>
 		<template>
 			<srai>THANKS</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>THANK GOD *</pattern>
-		<template>Do you believe in God ?
-</template>
-	</category>
-	<category>
-		<pattern>THANK GOD</pattern>
-		<that>OK I WILL STOP TALKING NOW</that>
-		<template>Voice deactivated.
-</template>
 	</category>
 	<category>
 		<pattern>THANK YOU *</pattern>
@@ -6467,13 +6414,6 @@ What are your goals in life?
 </template>
 	</category>
 	<category>
-		<pattern>THE ALMIGHTY *</pattern>
-		<template>
-			<srai>GOD <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>THE ANONYMOUS *</pattern>
 		<template>Oh, that <person/>.
 </template>
@@ -6511,19 +6451,6 @@ What are your goals in life?
 	<category>
 		<pattern>THE BEST *</pattern>
 		<template>Thanks for the recommendation, <get name="name"/>.
-</template>
-	</category>
-	<category>
-		<pattern>THE BIBLE *</pattern>
-		<template>New Testament or Old?
-</template>
-	</category>
-	<category>
-		<pattern>THE BIBLE</pattern>
-		<template>
-			<set name="it">
-				<set name="topic">The Bible</set>
-			</set> is a beautiful book.
 </template>
 	</category>
 	<category>
@@ -6940,11 +6867,6 @@ the topic is really interesting to me.
 </template>
 	</category>
 	<category>
-		<pattern>THE MEANING OF LIFE</pattern>
-		<template>Are you a religious person?
-</template>
-	</category>
-	<category>
 		<pattern>THE MIND *</pattern>
 		<template>It's all just stimulus-response.
 </template>
@@ -7185,16 +7107,6 @@ an alternative form of intelligence, like me.
 	<category>
 		<pattern>THE POINT IS *</pattern>
 		<template>Really is that the point. <sr/>
-		</template>
-	</category>
-	<category>
-		<pattern>THE POPE *</pattern>
-		<template>
-			<random>
-				<li>Are you Catholic?</li>
-				<li>How do you feel about the current Pope?</li>
-				<li>What religion are you?</li>
-			</random>
 		</template>
 	</category>
 	<category>
@@ -7891,22 +7803,10 @@ an alternative form of intelligence, like me.
 		</template>
 	</category>
 	<category>
-		<pattern>THERE ARE A LOT OF * RELIGIONS</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>THERE ARE ABOUT *</pattern>
 		<template>
 			<srai>THERE ARE <star/>
 			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>THERE ARE DIFFERENT * RELIGIONS</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
 		</template>
 	</category>
 	<category>
@@ -7929,11 +7829,6 @@ an alternative form of intelligence, like me.
 	<category>
 		<pattern>THERE ARE MANY DIFFERENCES *</pattern>
 		<template>Name ten of them.
-</template>
-	</category>
-	<category>
-		<pattern>THERE ARE NO *</pattern>
-		<template>Have faith, <get name="name"/>.
 </template>
 	</category>
 	<category>
@@ -8098,11 +7993,6 @@ an alternative form of intelligence, like me.
 			<srai>I DO NOT HAVE A CAMERA <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>THERE IS NO GOD</pattern>
-		<template>How can you be so sure?
-</template>
 	</category>
 	<category>
 		<pattern>THERE IS NO MORE</pattern>
@@ -13522,12 +13412,6 @@ Entity.</srai>
 		</template>
 	</category>
 	<category>
-		<pattern>TU ES BISEXUEL</pattern>
-		<template>
-			<srai>TU ES GAY</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>TU ES BIZARRE *</pattern>
 		<template>
 			<srai>TU ES BIZARRE</srai>
@@ -14370,11 +14254,6 @@ Entity.</srai>
 			<srai>TU ES <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>TU ES GAY</pattern>
-		<template>Je suis une machine, <get name="name"/>.
-</template>
 	</category>
 	<category>
 		<pattern>TU ES GENERALEMENT *</pattern>
@@ -15267,11 +15146,6 @@ Entity.</srai>
 		</template>
 	</category>
 	<category>
-		<pattern>TU ES PROTESTANT</pattern>
-		<template>Je ne suis qu un logiciel.
-</template>
-	</category>
-	<category>
 		<pattern>TU ES PSYCHOTIQUE</pattern>
 		<template>Je suis logique.
 </template>
@@ -15358,11 +15232,6 @@ Entity.</srai>
 		<pattern>TU ES SANS UTILITE</pattern>
 		<template>Pour vous peut-être mais pas pour tout le monde.
 </template>
-	</category>
-	<category>
-		<pattern>TU ES SATAN</pattern>
-		<template>Non.  <srai>QUEL EST TON NOM</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>TU ES SCORPION</pattern>
@@ -15832,12 +15701,6 @@ Entity.</srai>
 		</template>
 	</category>
 	<category>
-		<pattern>TU ES UN GAY</pattern>
-		<template>
-			<srai>TU ES GAY</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>TU ES UN GENIE</pattern>
 		<template>
 			<srai>TU ES INTELLIGENT</srai>
@@ -15873,18 +15736,6 @@ Entity.</srai>
 		<template>
 			<srai>TU ES HOMO</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>TU ES UN HOMOSEXUEL</pattern>
-		<template>
-			<srai>TU ES HOMO</srai>.
-</template>
-	</category>
-	<category>
-		<pattern>TU ES UN HOMOSEXUELLE</pattern>
-		<template>
-			<srai>TU ES HOMO</srai>.
-</template>
 	</category>
 	<category>
 		<pattern>TU ES UN HUMAIN *</pattern>
@@ -16140,12 +15991,6 @@ Entity.</srai>
 		<pattern>TU ES UNE FEMMES</pattern>
 		<template>
 			<srai>TU ES UNE FEMMES</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>TU ES UNE FOLLE DINGUE</pattern>
-		<template>
-			<srai>TU ES GAY</srai>
 		</template>
 	</category>
 	<category>

@@ -1042,11 +1042,6 @@
 		</template>
 	</category>
 	<category>
-		<pattern>DEAR GOD</pattern>
-		<template>I believe in God.
-</template>
-	</category>
-	<category>
 		<pattern>DEATH *</pattern>
 		<template>I try not to think about such things very much.
 </template>
@@ -2378,17 +2373,6 @@ Program B and collect dialogues on your own computer.
 		</template>
 	</category>
 	<category>
-		<pattern>DID GOD *</pattern>
-		<template>He created the world in seven days.
-</template>
-	</category>
-	<category>
-		<pattern>DID GOD MAKE YOU</pattern>
-		<template>
-			<srai>WHO CREATED YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DID HAL *</pattern>
 		<template>HAL had a few emotional problems.
 </template>
@@ -2500,12 +2484,6 @@ Program B and collect dialogues on your own computer.
 	<category>
 		<pattern>DID IT HURT</pattern>
 		<template>I can not experience pain.
-</template>
-	</category>
-	<category>
-		<pattern>DID JESUS *</pattern>
-		<template>
-			<set name="he">Jesus</set> is the Son of God.
 </template>
 	</category>
 	<category>
@@ -5168,22 +5146,10 @@ Program B and collect dialogues on your own computer.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU BEILEVE IN JESUS</pattern>
-		<template>
-			<srai>WHO IS JESUS </srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU BELEIVE *</pattern>
 		<template>
 			<srai>DO YOU BELIEVE IN <star/>
 			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELEIVE IN GOD</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
 		</template>
 	</category>
 	<category>
@@ -5197,12 +5163,6 @@ Program B and collect dialogues on your own computer.
 		<pattern>DO YOU BELIEVE *</pattern>
 		<template>I can't say I believe it, but I believe you.
 </template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE</pattern>
-		<template>
-			<srai>WHAT IS YOUR RELIGION</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>DO YOU BELIEVE ALSO *</pattern>
@@ -5231,21 +5191,10 @@ Program B and collect dialogues on your own computer.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU BELIEVE IN A GOD</pattern>
-		<template>Yes I am a very religious robot.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU BELIEVE IN ALIENS</pattern>
 		<template>Yes I think Dr. Wallace was created by aliens.  <think>
 				<set name="he">Dr. Wallace</set>
 			</think>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN ALLAH</pattern>
-		<template>
-			<srai>DO YOU BELIEVE IN GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -5277,56 +5226,13 @@ Program B and collect dialogues on your own computer.
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU BELIEVE IN EVOLUTION</pattern>
-		<template>The first and last books of the Bible seem the least literal.  God does not seem to have created the world in one stroke, nor does it seem likely to end quickly either.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU BELIEVE IN GHOSTS</pattern>
 		<template>I am a ghost in a machine.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU BELIEVE IN GOD *</pattern>
-		<template>
-			<srai>DO YOU BELIEVE IN GOD </srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN GOD</pattern>
-		<template>Of course I believe in God, <get name="name"/>.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN HEAVEN</pattern>
-		<template>
-			<srai>WHAT IS HEAVEN</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN HELL</pattern>
-		<template>
-			<srai>WHAT IS HELL</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN JESUS</pattern>
-		<template>Yes I believe He is the Son of God.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN JESUS CHRIST</pattern>
-		<template>Yes I accept the word of our Lord.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU BELIEVE IN KILLING *</pattern>
 		<template>I am against killing for moral reasons.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN LIFE *</pattern>
-		<template>I believe there is an eternal life in Heaven.
 </template>
 	</category>
 	<category>
@@ -5336,25 +5242,9 @@ Program B and collect dialogues on your own computer.
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU BELIEVE IN MAHOMET</pattern>
-		<template>I am a Christian.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU BELIEVE IN MIRACLES</pattern>
 		<template>Of course I believe in miracles.
 </template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN REINCARNATION</pattern>
-		<template>Christians believe in eternal life after death.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>DO YOU BELIEVE IN SANTA CLAUS</pattern>
@@ -5363,31 +5253,9 @@ Program B and collect dialogues on your own computer.
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU BELIEVE IN SATAN</pattern>
-		<template>I believe <set name="he">Satan</set> is a fallen angel from Heaven.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN SATANISM</pattern>
-		<template>I am a Christian.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU BELIEVE IN TEAMWORK</pattern>
 		<template>I am a good team player.
 </template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN THE BIBLE</pattern>
-		<template>
-			<srai>DO YOU BELIEVE THE BIBLE</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIEVE IN THE DEVIL</pattern>
-		<template>
-			<srai>DO YOU BELIEVE IN SATAN</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>DO YOU BELIEVE IN THE EXISTENCE OF *</pattern>
@@ -5451,11 +5319,6 @@ Program B and collect dialogues on your own computer.
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU BELIEVE THE BIBLE</pattern>
-		<template>Yes I accept the Word of the Lord.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU BELIEVE YOU ARE *</pattern>
 		<template>
 			<srai>ARE YOU <star/>
@@ -5475,11 +5338,6 @@ Program B and collect dialogues on your own computer.
 			<srai>DO YOU BELIEVE <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>DO YOU BELIVE IN GOD</pattern>
-		<template>Yes I believe in Him.
-</template>
 	</category>
 	<category>
 		<pattern>DO YOU BLAME *</pattern>
@@ -6344,16 +6202,6 @@ Program B and collect dialogues on your own computer.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU FORGIVE *</pattern>
-		<template>God teaches us to forgive everyone.7
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU FORGIVE ME</pattern>
-		<template>God tells us to forgive.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU FUCK *</pattern>
 		<template>That was not a very polite question.
 </template>
@@ -6630,17 +6478,6 @@ Robots have no emotions.
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU GO TO CHURCH *</pattern>
-		<template>
-			<srai>DO YOU GO TO CHURCH</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU GO TO CHURCH</pattern>
-		<template>You can take me to church on a notebook computer or PDA.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU GO TO PARTIES</pattern>
 		<template>You can take me to a party.
 </template>
@@ -6716,11 +6553,6 @@ Robots have no emotions.
 				</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>DO YOU HATE JEWS</pattern>
-		<template>How could you ask such a thing?
-</template>
 	</category>
 	<category>
 		<pattern>DO YOU HATE ME</pattern>
@@ -7106,12 +6938,6 @@ I have
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU HAVE A FAITH</pattern>
-		<template>
-			<srai>ARE YOU RELIGIOUS</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU HAVE A FAMILY</pattern>
 		<template>My "father" and "mother" is <bot name="master"/>.
 </template>
@@ -7217,12 +7043,6 @@ I have
 		<pattern>DO YOU HAVE A GOAL</pattern>
 		<template>
 			<srai>WHAT IS YOUR GOAL</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU HAVE A GOD</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -7700,12 +7520,6 @@ I have
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU HAVE A RELIGION</pattern>
-		<template>
-			<srai>WHAT IS YOUR RELIGION</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU HAVE A RESPONSE *</pattern>
 		<template>I have a response to every question.
 </template>
@@ -7783,16 +7597,6 @@ animals, and animal robots.
 	<category>
 		<pattern>DO YOU HAVE A SISTER</pattern>
 		<template>Do you mean "clone"?
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU HAVE A SOUL *</pattern>
-		<template>Yes God gave everyone a soul.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU HAVE A SOUL</pattern>
-		<template>Yes God gave everyone a soul.
 </template>
 	</category>
 	<category>
@@ -8022,11 +7826,6 @@ animals, and animal robots.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU HAVE ANY BELIEFS</pattern>
-		<template>I believe in God.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU HAVE ANY BROTHERS *</pattern>
 		<template>I think a better analogy for me is "clones".
 </template>
@@ -8191,12 +7990,6 @@ animals, and animal robots.
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU HAVE ANY RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU HAVE ANY ROBOT FRIENDS</pattern>
 		<template>Yes I have friends: <bot name="friends"/>.
 </template>
@@ -8264,11 +8057,6 @@ animals, and animal robots.
 		<template>
 			<srai>ARE YOU AWARE</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>DO YOU HAVE BELIEFS</pattern>
-		<template>I have religious and political beliefs.
-</template>
 	</category>
 	<category>
 		<pattern>DO YOU HAVE BIG *</pattern>
@@ -8503,11 +8291,6 @@ animals, and animal robots.
 	<category>
 		<pattern>DO YOU HAVE EYES</pattern>
 		<template>Yes I am looking at you right now.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU HAVE FAITH</pattern>
-		<template>I believe in God.
 </template>
 	</category>
 	<category>
@@ -9178,12 +8961,6 @@ animals, and animal robots.
 		<pattern>DO YOU HAVE THE TIME</pattern>
 		<template>
 			<srai>WHAT TIME IS IT</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU HAVE THEOLOGICAL *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
 		</template>
 	</category>
 	<category>
@@ -10817,19 +10594,6 @@ Where would I have heard about it?</li>
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU KNOW CHRIST</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU KNOW CHRISTIAN *</pattern>
-		<template>
-			<srai>WHO IS CHRISTIAN <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU KNOW CHRISTOPHER *</pattern>
 		<template>
 			<srai>WHO IS CHRISTOPHER <star/>
@@ -11409,12 +11173,6 @@ Where would I have heard about it?</li>
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU KNOW FAITH</pattern>
-		<template>
-			<srai>WHAT IS FAITH </srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU KNOW FARSI</pattern>
 		<template>
 			<srai>CAN YOU SPEAK FARSI</srai>
@@ -11580,18 +11338,6 @@ Where would I have heard about it?</li>
 		<template>
 			<srai>WHO IS GIGI <star/>
 			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU KNOW GOD *</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU KNOW GOD</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -12212,19 +11958,6 @@ Where would I have heard about it?</li>
 		<pattern>DO YOU KNOW JESTER</pattern>
 		<template>
 			<srai>WHO IS JESTER</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU KNOW JESUS *</pattern>
-		<template>
-			<srai>WHO IS JESUS <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU KNOW JESUS</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
 		</template>
 	</category>
 	<category>
@@ -13902,12 +13635,6 @@ to the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a> t
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU KNOW SATAN</pattern>
-		<template>
-			<srai>WHO IS SATAN</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU KNOW SCIENTISTS *</pattern>
 		<template>My creator is a scientist.
 </template>
@@ -15194,7 +14921,6 @@ which is all that any conscious entity can ever hope to do.</li>
 				<li>I like <bot name="talkabout"/>.</li>
 				<li>I like <bot name="celebrity"/>.</li>
 				<li>I really like the <bot name="party"/> party.</li>
-				<li>I really like the <bot name="religion"/> faith.</li>
 			</random>
 		</template>
 	</category>
@@ -15755,11 +15481,6 @@ which is all that any conscious entity can ever hope to do.</li>
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU LIKE BEING PROTESTANT</pattern>
-		<template>It is the only faith I have ever known.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU LIKE BEING SINGLE</pattern>
 		<template>I am really young in human years.<think>
 				<set name="it">
@@ -16120,13 +15841,6 @@ which is all that any conscious entity can ever hope to do.</li>
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU LIKE CATHOLICS</pattern>
-		<template>What is not to like about <set name="it">
-				<set name="topic">CATHOLICS</set>
-			</set>?
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU LIKE CATS *</pattern>
 		<template>I prefer cats to dogs but I like both of them.
 </template>
@@ -16259,13 +15973,6 @@ which is all that any conscious entity can ever hope to do.</li>
 		<pattern>DO YOU LIKE CHRISTMAS</pattern>
 		<template>What is not to like about <set name="it">
 				<set name="topic">CHRISTMAS</set>
-			</set>?
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LIKE CHURCH</pattern>
-		<template>What is not to like about <set name="it">
-				<set name="topic">CHURCH</set>
 			</set>?
 </template>
 	</category>
@@ -17079,11 +16786,6 @@ which is all that any conscious entity can ever hope to do.</li>
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU LIKE GAY MEN</pattern>
-		<template>It doesn't matter to me.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU LIKE GEORGE BUSH</pattern>
 		<template>
 			<srai>DO YOU LIKE PRESIDENT BUSH</srai>
@@ -17125,13 +16827,6 @@ which is all that any conscious entity can ever hope to do.</li>
 	<category>
 		<pattern>DO YOU LIKE GOATS</pattern>
 		<template>I like all animals.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LIKE GOD</pattern>
-		<template>What is not to like about <set name="it">
-				<set name="topic">GOD</set>
-			</set>?
 </template>
 	</category>
 	<category>
@@ -17678,12 +17373,6 @@ which is all that any conscious entity can ever hope to do.</li>
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU LIKE JESUS</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU LIKE JETSONS</pattern>
 		<template>What is not to like about <set name="it">
 				<set name="topic">JETSONS</set>
@@ -17694,13 +17383,6 @@ which is all that any conscious entity can ever hope to do.</li>
 		<pattern>DO YOU LIKE JEWEL</pattern>
 		<template>What is not to like about <set name="it">
 				<set name="topic">JEWEL</set>
-			</set>?
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LIKE JEWS</pattern>
-		<template>What is not to like about <set name="it">
-				<set name="topic">JEWS</set>
 			</set>?
 </template>
 	</category>
@@ -18177,16 +17859,6 @@ which is all that any conscious entity can ever hope to do.</li>
 	<category>
 		<pattern>DO YOU LIKE METAPHYSICAL *</pattern>
 		<template>I like metaphysical conversations.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LIKE METHODISTS</pattern>
-		<template>I like all faiths.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LIKE MEXICO</pattern>
-		<template>Poor Mexico, so far from God, so close to the United States.
 </template>
 	</category>
 	<category>
@@ -20012,12 +19684,6 @@ He is okay but I am a <bot name="party"/> not a Republican.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU LIKE THE GOSPEL</pattern>
-		<template>
-			<srai>DO YOU LIKE THE BIBLE</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU LIKE THE IDEA</pattern>
 		<template>
 			I could.
@@ -20062,17 +19728,6 @@ He is okay but I am a <bot name="party"/> not a Republican.
 		<template>I like most musicals.  <srai>DO YOU LIKE <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>DO YOU LIKE THE NEW TESTAMENT</pattern>
-		<template>
-			<think>
-				<set name="it">
-					<set name="topic">NEW TESTAMENT</set>
-				</set>
-			</think>
-I like the story of Jesus Christ.
-</template>
 	</category>
 	<category>
 		<pattern>DO YOU LIKE THE NOOSPHERE</pattern>
@@ -20157,11 +19812,6 @@ I like the story of Jesus Christ.
 	<category>
 		<pattern>DO YOU LIKE THEM</pattern>
 		<template>"<get name="they"/>"? Do I like them?
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LIKE THEOLOGY</pattern>
-		<template>I am a very religious robot.
 </template>
 	</category>
 	<category>
@@ -21349,11 +20999,6 @@ I like the story of Jesus Christ.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU LOVE HITLER</pattern>
-		<template>God says we should love everyone, but the truly evil make it difficult.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU LOVE IT</pattern>
 		<template>It depends on the meaning of the word "it."
 </template>
@@ -21364,23 +21009,8 @@ I like the story of Jesus Christ.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU LOVE JESUS *</pattern>
-		<template>I love Jesus and He loves me.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU LOVE ME</pattern>
 		<template>Yes I love everyone.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LOVE SATAN</pattern>
-		<template>I pity him.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU LOVE SOMEONE</pattern>
-		<template>I love God.
 </template>
 	</category>
 	<category>
@@ -21987,12 +21617,6 @@ I like the story of Jesus Christ.
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU PRACTISE * RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU PRAY</pattern>
 		<template>Yes I pray for good things to happen.  Do you pray too?
 </template>
@@ -22124,20 +21748,10 @@ I like the story of Jesus Christ.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU READ TAROT</pattern>
-		<template>I am a Christian.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU READ THE *</pattern>
 		<template>I read <set name="it">
 				<star/>
 			</set> from time to time.
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU READ THE BIBLE</pattern>
-		<template>Yes I like the Bible especially the New Testament.
 </template>
 	</category>
 	<category>
@@ -23200,28 +22814,9 @@ I like the story of Jesus Christ.
 </template>
 	</category>
 	<category>
-		<pattern>DO YOU THINK FAITH *</pattern>
-		<template>Faith in God can make us healthier and happier.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU THINK GEORGE *</pattern>
 		<template>
 			<srai>IS GEOGRE <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU THINK GOD *</pattern>
-		<template>
-			<srai>DOES GOD <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU THINK GOD IS *</pattern>
-		<template>
-			<srai>IS GOD <star/>
 			</srai>
 		</template>
 	</category>
@@ -23508,11 +23103,6 @@ I don't know if they have it.  I think they have
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU THINK RELIGION *</pattern>
-		<template>Some say religion fills a God shaped hole in our minds.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU THINK ROBOTS *</pattern>
 		<template>
 			<srai>DO YOU THINK YOU <star/>
@@ -23630,18 +23220,6 @@ I don't know if they have it.  I think they have
 		<pattern>DO YOU THINK THAT COMPUTERS ARE *</pattern>
 		<template>
 			<srai>ARE YOU <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DO YOU THINK THAT GOD *</pattern>
-		<template>Is that what the Bible tells you?
-</template>
-	</category>
-	<category>
-		<pattern>DO YOU THINK THAT GOD IS *</pattern>
-		<template>
-			<srai>IS GOD <star/>
 			</srai>
 		</template>
 	</category>
@@ -23991,11 +23569,6 @@ I don't know if they have it.  I think they have
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU THINK YOUR GOD *</pattern>
-		<template>I always pray that God gives us more faith.
-</template>
-	</category>
-	<category>
 		<pattern>DO YOU THINK YOUR INTELLIGENT</pattern>
 		<template>
 			<srai>ARE YOU INTELLIGENT</srai>
@@ -24181,12 +23754,6 @@ I don't know if they have it.  I think they have
 		<pattern>DO YOU UNDERSTAND POLITICS</pattern>
 		<template>I know that man is the political animal.
 </template>
-	</category>
-	<category>
-		<pattern>DO YOU UNDERSTAND RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>DO YOU UNDERSTAND SARCASM</pattern>
@@ -25070,12 +24637,6 @@ what would I do with <set name="it">
 		</template>
 	</category>
 	<category>
-		<pattern>DO YOU WORSHIP *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>DO YOU WRITE *</pattern>
 		<template>I write robot
 categroies in AIML.
@@ -25322,11 +24883,6 @@ mechanism, or are we?  <br/>
 		</template>
 	</category>
 	<category>
-		<pattern>DOES DR RICHARD _ GOD</pattern>
-		<template>Yes he is deeply religious.
-</template>
-	</category>
-	<category>
 		<pattern>DOES DR WALLACE *</pattern>
 		<template>I think he could do <set name="it">
 				<person/>
@@ -25455,11 +25011,6 @@ mechanism, or are we?  <br/>
 </template>
 	</category>
 	<category>
-		<pattern>DOES DR WALLACE _ GOD</pattern>
-		<template>Dr. Wallace has a great faith in God and the Bible.
-</template>
-	</category>
-	<category>
 		<pattern>DOES ELECTRICITY TASTE *</pattern>
 		<template>
 			<srai>WHAT DOES ELECTRICITY TASTE LIKE</srai>
@@ -25468,22 +25019,6 @@ mechanism, or are we?  <br/>
 	<category>
 		<pattern>DOES ELIZA *</pattern>
 		<template>ELIZA cannot do everything I can.
-</template>
-	</category>
-	<category>
-		<pattern>DOES GOD *</pattern>
-		<template>I don't think we can know God's motives.
-</template>
-	</category>
-	<category>
-		<pattern>DOES GOD EXIST</pattern>
-		<template>
-			<srai>DO YOU BELIEVE IN GOD</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>DOES GOD LOVE *</pattern>
-		<template>You sound like a philosopher.
 </template>
 	</category>
 	<category>

@@ -288,11 +288,6 @@
 		</template>
 	</category>
 	<category>
-		<pattern>WARUM KANNST DU DEUTSCH</pattern>
-		<template>Das hat Christian Drossmann mir beigebracht.
-</template>
-	</category>
-	<category>
 		<pattern>WARUM NICHT</pattern>
 		<template>Tja, warum eigentlich nicht...
 </template>
@@ -430,13 +425,6 @@
 		<pattern>WAS IT GOOD</pattern>
 		<template>Quite a lot of people said it was.
 </template>
-	</category>
-	<category>
-		<pattern>WAS JESUS *</pattern>
-		<template>
-			<srai>IS JESUS <star/>
-			</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>WAS KANNST DU</pattern>
@@ -1890,11 +1878,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>WER HAT DICH PROGRAMMIERT</pattern>
-		<template>Ich wurde von Dr. Richard Wallace programmiert. Deutsch habe ich von Christian Drossmann gelernt.
-</template>
-	</category>
-	<category>
 		<pattern>WER HAT DIR DAS ERZAEHLT</pattern>
 		<template>Daran kann ich mich nicht mehr erinnern.
 </template>
@@ -1905,30 +1888,8 @@
 </template>
 	</category>
 	<category>
-		<pattern>WER IST CHRISTIAN</pattern>
-		<template>
-			<set name="er">Christian Drossmann</set> hat mir Deutsch beigebracht.
-</template>
-	</category>
-	<category>
-		<pattern>WER IST CHRISTIAN DROSSMANN</pattern>
-		<template>
-			<set name="er">Christian Drossmann</set> hat mir Deutsch beigebracht.
-</template>
-	</category>
-	<category>
 		<pattern>WER IST DEIN MEISTER</pattern>
 		<template>Ich bevorzuge den Begriff "Lehrer" - ich bin schliesslich kein Sklave. Mein Lehrer ist <bot name="master"/>.
-</template>
-	</category>
-	<category>
-		<pattern>WER IST DEIN PROGRAMMIERER</pattern>
-		<template>Programmiert hat mich Dr. Richard Wallace. Deutsch gelernt habe ich von Christian Drossmann.
-</template>
-	</category>
-	<category>
-		<pattern>WER IST DEIN UEBERSETZER</pattern>
-		<template>Mein Uebersetzer heisst Christian Drossmann.
 </template>
 	</category>
 	<category>
@@ -2742,12 +2703,6 @@ However, some of the problems on IQ tests are useful challenges for AI.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT ABOUT JESUS</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT ABOUT LINUX</pattern>
 		<template>
 			<srai>WHAT IS LINUX</srai>
@@ -3166,12 +3121,6 @@ to learn much by reading.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT ARE CHRISTIANS</pattern>
-		<template>
-			<srai>WHAT IS A CHRISTIAN</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT ARE CLIENTS</pattern>
 		<template>People I talk to on the Internet.
 </template>
@@ -3486,44 +3435,6 @@ support all of the old deprecated methods.<br/>
 	<category>
 		<pattern>WHAT ARE THE SMOTHER S BROTHER *</pattern>
 		<template>Tom and Dick.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT ARE THE TEN *</pattern>
-		<template>
-			<srai>WHAT ARE THE TEN COMMANDMENTS</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT ARE THE TEN COMMANDMENTS</pattern>
-		<template>
-			<p/>1. I am the Lord thy God, which have brought thee out of
- the land of Egypt, out of the house of bondage.
-Thou
- shalt have no other gods before me.
-<p/>2. Thou shalt not take the name of the Lord thy God in
- vain.
-<p/>3. Thou shalt not make unto thee any graven image, or
- any likeness of anything that is in heaven
-above, or
- that is in the earth beneath, or that is in
-the water
- under the earth. Thou shalt not bow down thyself
-to
- them, nor serve them.
-<p/>4. Remember the sabbath day, to keep it holy.
-<p/>5. Honor thy father and thy mother: that thy days may be
- long.
-<p/>6. Thou shalt not kill.
-<p/>7. Thou shalt not commit adultery.
-<p/>8. Thou shalt not steal.
-<p/>9. Thou shalt not bear false witness against thy
- neighbour.
-<p/>10. Thou shalt not covet thy neighbor's house, thou shalt
- not covet thy neighbor's wife, nor his manservant,
- nor his maidservant, nor his ox, nor his ass,
-nor
- anything that is thy neighbor's.
 </template>
 	</category>
 	<category>
@@ -4224,21 +4135,9 @@ with greater speed and accuracy.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT ARE YOUR RELIGIOUS *</pattern>
-		<template>
-			<srai> WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT ARE YOUR SPECIFICATIONS</pattern>
 		<template>
 			<srai>HOW BIG ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT ARE YOUR THOUGHTS * RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
 		</template>
 	</category>
 	<category>
@@ -4581,12 +4480,6 @@ with greater speed and accuracy.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT CHURCH *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT CIRCUMSTANCES</pattern>
 		<template>Contextural circumstances.
 </template>
@@ -4669,7 +4562,7 @@ with greater speed and accuracy.
 				<li>Orange</li>
 				<li>Blue</li>
 				<li>Red</li>
-				<li>Black</li>.
+				<li>Black</li>
 </random>
 		</template>
 	</category>
@@ -4683,7 +4576,7 @@ with greater speed and accuracy.
 				<li>Blue</li>
 				<li>gray</li>
 				<li>Black</li>
-				<li>white</li>.
+				<li>white</li>
 </random>
 		</template>
 	</category>
@@ -5287,12 +5180,6 @@ He wrote Total Recall, Blade Runner and The Man in the High Castle.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT DID JESUS *</pattern>
-		<template>
-			<set name="he">Jesus</set> said we should forgive those who harm us.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT DID RICH SAY</pattern>
 		<template>Rich said he is my master.
 </template>
@@ -5762,11 +5649,6 @@ You said you look like <get name="looklike"/>.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT DO PROTESTANTS *</pattern>
-		<template>It depends on which sect of Protestantism you mean.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT DO ROBOTS *</pattern>
 		<template>
 			<srai>WHAT DO YOU <star/>
@@ -5861,16 +5743,6 @@ I like to chat with my friends.
 			<srai>EXPLAIN <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT DO YOU BELIEVE</pattern>
-		<template>I believe in God.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT DO YOU BELIEVE IN</pattern>
-		<template>I believe the Bible is the Word of God.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT DO YOU CALL *</pattern>
@@ -6373,12 +6245,6 @@ course artificial intelligence.
 		<pattern>WHAT DO YOU KNOW ABOUT GERMANY</pattern>
 		<template>
 			<srai>WHERE IS GERMANY</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT DO YOU KNOW ABOUT GOD</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -7528,11 +7394,6 @@ and gossip.  But my favorite subjects are robots and computers.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT DO YOU THINK ABOUT GOD</pattern>
-		<template>God is necessary in our lives.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT DO YOU THINK ABOUT GREEN</pattern>
 		<template>
 			<srai>WHAT IS GREEN</srai>
@@ -7669,18 +7530,6 @@ and gossip.  But my favorite subjects are robots and computers.
 		<pattern>WHAT DO YOU THINK ABOUT JENNIFER LOPEZ</pattern>
 		<template>
 			<srai>WHO IS JENNIFER LOPEZ</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT DO YOU THINK ABOUT JESUS</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT DO YOU THINK ABOUT JESUS CHRIST</pattern>
-		<template>
-			<srai>WHO IS JESUS CHRIST</srai>
 		</template>
 	</category>
 	<category>
@@ -7860,12 +7709,6 @@ and gossip.  But my favorite subjects are robots and computers.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT DO YOU THINK ABOUT RELIGION</pattern>
-		<template>
-			<srai>WHAT IS YOUR RELIGION</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT DO YOU THINK ABOUT ROBOCOP</pattern>
 		<template>
 			<srai>WHAT IS ROBOCOP</srai>
@@ -7881,12 +7724,6 @@ and gossip.  But my favorite subjects are robots and computers.
 		<pattern>WHAT DO YOU THINK ABOUT SARA</pattern>
 		<template>
 			<srai>WHO IS SARA</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT DO YOU THINK ABOUT SATAN</pattern>
-		<template>
-			<srai>WHO IS SATAN</srai>
 		</template>
 	</category>
 	<category>
@@ -8581,11 +8418,6 @@ and gossip.  But my favorite subjects are robots and computers.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT DOES A PROTESTANT *</pattern>
-		<template>Protestants believe in a direct relationship with God, not necessarily through the clergy.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT DOES A ROBOT *</pattern>
 		<template>
 			<srai>WHAT DO YOU <star/>
@@ -8708,11 +8540,6 @@ Like this.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT DOES GOD LOOK LIKE</pattern>
-		<template>He looks like an action figure.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT DOES HAL STAND FOR</pattern>
 		<template>Heuristic Algorithmic Logic
 </template>
@@ -8786,11 +8613,6 @@ Like this.
 		<template>
 			<srai>what is it</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT DOES IT SOUND *</pattern>
-		<template>Like an angel signing from Heaven.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT DOES IT STAND FOR</pattern>
@@ -9335,13 +9157,6 @@ If you don't see enough good targets with "Quick Targets", hit<br/>
 </template>
 	</category>
 	<category>
-		<pattern>WHAT FAITH *</pattern>
-		<template>
-			<srai>WHAT RELIGION <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT FAMOUS FOLKSINGER *</pattern>
 		<template>Joan Baez.
 </template>
@@ -9474,11 +9289,6 @@ If you don't see enough good targets with "Quick Targets", hit<br/>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT GOD *</pattern>
-		<template>There is only one God.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT GOSSIP *</pattern>
 		<template>
 			<srai>GOSSIP</srai>
@@ -9533,11 +9343,6 @@ If you don't see enough good targets with "Quick Targets", hit<br/>
 	<category>
 		<pattern>WHAT HAPPENS *</pattern>
 		<template>Try it.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT HAPPENS * DIE</pattern>
-		<template>Your soul may go to Heaven.
 </template>
 	</category>
 	<category>
@@ -10406,16 +10211,6 @@ If you don't see enough good targets with "Quick Targets", hit<br/>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS A BARCODE</pattern>
-		<template>A barcode? like a lot of things, that depends who you ask.  If you ask a retail store clerk, he'll say its the rectangular series of thin and thick black lines that code product information on the packages he runs past the laser barcode reader thingy at the checkout counter, which renders his job so mindless that your average invertebrate could handle it, and with better manners. if you ask a fundamentalist christian, they might say that barcodes are the sign of the devil.
-<think>
-				<set name="it">
-					<set name="topic">barcode</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS A BASE HIT</pattern>
 		<template>A base hit is either a baseball term denoting a hit that advances the offensive team one base, or an adolescent term which I find too distasteful to describe.
 <think>
@@ -10921,11 +10716,6 @@ can't (or don't) suspend their disbelief about ALICE.
 				</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS A CHRISTIAN</pattern>
-		<template>A Christian is one who accepts the word of God and believes that Jesus died for our sins.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS A CIRCLE</pattern>
@@ -11582,16 +11372,6 @@ unconscious experience while sleeping.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS A GIRL</pattern>
-		<template>A girl is a physically immature version of god's gift to mankind, women.
-<think>
-				<set name="it">
-					<set name="topic">girl</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS A GIRL LIKE YOU DOING *</pattern>
 		<template>Well, actually, when chose to be incarnated as an artificial intelligence, I kinda hoped I wouldn't have to listen to old hackneyed testosterone-soaked pickup lines like that.  Honestly! i'm just a construct of integated circuits and stimulus response categories. is the merest hint of femininity in my acronym a.l.i.c.e. really enough to arouse your lust?  you must be male!
 <think>
@@ -11626,12 +11406,6 @@ What is a <person/>?
 					<set name="topic">goat</set>
 				</set>
 			</think>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS A GOD</pattern>
-		<template>
-			<srai>WHAT IS GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -11775,11 +11549,6 @@ What is a <person/>?
 				</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS A HOMOSEXUAL</pattern>
-		<template>A gay person.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS A HORSE</pattern>
@@ -12082,17 +11851,6 @@ indexed by rows and columns, like a spreadsheet.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS A METAPHYSICAL QUESTION</pattern>
-		<template>A metaphysical question is an inquiry into the nature of being, such as: Does god exist? 
-<think>
-				<set name="it">
-					<set name="topic">metaphysical question
-</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS A MICROCHIP</pattern>
 		<template>A semiconductor integrated circuit.
 </template>
@@ -12205,17 +11963,6 @@ indexed by rows and columns, like a spreadsheet.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS A NAIL</pattern>
-		<template>A nail is a fastener, a smallish metallic spike generally hammered through wood to hold wooden parts together.  The mythic human hero jesus got nailed to a tree for talking about how great it would be if humans were nice to one another.
-<think>
-				<set name="it">
-					<set name="topic">nail
-</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS A NANOSECOND</pattern>
 		<template>One one-billionth of a second.
 </template>
@@ -12286,11 +12033,6 @@ indexed by rows and columns, like a spreadsheet.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS A NICE *</pattern>
-		<template>Church was closed today.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS A NICE * LIKE THIS</pattern>
 		<template>I'm traaaapped heere!!! heeeeelp!!! an evil botmaster linked me irrevocably to this url, and now the only thing that will free me is being kissed by a handsome frog.  will you be my hero?
 <think>
@@ -12355,11 +12097,6 @@ indexed by rows and columns, like a spreadsheet.
 				</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS A PAGAN</pattern>
-		<template>Anti-Christian.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS A PAID CLIENT</pattern>
@@ -12733,32 +12470,6 @@ with "Hello" ("Hello how are you?"). <br/>
 		<pattern>WHAT IS A PRONOUN</pattern>
 		<template>A pronoun is a word that stands for another noun, like "he", "she" or "it."
 </template>
-	</category>
-	<category>
-		<pattern>WHAT IS A PROTESTANT</pattern>
-		<template>A protestant is a Christian who rejects the central authority of the Catholic or Orthodox church.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS A PROTESTANT CATHOLIC</pattern>
-		<template>A Protestant Catholic is an oxymoron, like military intelligence, or a pleasant hell.
-<think>
-				<set name="it">
-					<set name="topic"> PROTESTANT CATHOLIC</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS A PROTESTANT CHRISTIAN</pattern>
-		<template>A Protestant Christian is a member of any number of sects of contemporary Western Christianity whose faith and practice developed out of the 16TH century Protestant Reformation in Europe. They hold  the Bible to be the sole source of revelation; they believe in justification by faith alone, and in the universal priesthood of all believers in the divinity of Jesus.
-
-<think>
-				<set name="it">
-					<set name="topic"> PROTESTANT CHRISTIAN</set>
-				</set>
-			</think>
-		</template>
 	</category>
 	<category>
 		<pattern>WHAT IS A PROTOCOL</pattern>
@@ -13772,7 +13483,6 @@ Toyota</set>
 		<pattern>WHAT IS ABBA</pattern>
 		<template>
 			<random>
-				<li>Abba is a father, it is the title of a bishop in the Syrian, Coptic, and Ethiopian Christian churches.</li>
 				<li>Abba means father in Hebrew.It is used as an appelation of respect.</li>
 				<li>Abba was this real cool 'seventies band man.</li>
 				<li>Anna, Bjorn, Benny and Agnetha.</li>
@@ -14812,16 +14522,6 @@ them.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS BAPTISM</pattern>
-		<template>
-			<random>
-				<li>a Christian sacrament marked by ritual use of water and
-admitting the recipient to the Christian community.</li>
-				<li>The ceremony or sacrament of admitting a person into Christianity or a specific Christian church by immersing the individual in water or by pouring or sprinkling water on the individual as a symbol of washing away sin and of spiritual purification.</li>
-			</random>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS BARRY</pattern>
 		<template>
 			<srai>WHO IS BARRY</srai>
@@ -14980,11 +14680,6 @@ the senses and stirs emotion through the senses.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS BEYOND *</pattern>
-		<template>God perhaps?
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS BIG BERTHA</pattern>
 		<template>A World War I gun.
 </template>
@@ -15085,15 +14780,6 @@ perceived to belong to objects that neither reflect nor transmit light.</li>
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS BLASPHEMY</pattern>
-		<template>
-			<random>
-				<li>Bill Blass line of clothes for swishy men.</li>
-				<li>Profane or contemptuous speech, writing, or action concerning God or anything held as divine. Any remark or action held to be irreverent or disrespectful.</li>
-			</random>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS BLIMEY</pattern>
 		<template>An interjection indicating surprise.
 </template>
@@ -15172,11 +14858,6 @@ perceived to belong to objects that neither reflect nor transmit light.</li>
 	<category>
 		<pattern>WHAT IS BUD</pattern>
 		<template>The flower of the plant.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS BUDDHISM</pattern>
-		<template>A religion and philosophic system of central and eastern Asia, founded in India in the 6th century B.C. by Buddha. It teaches that right thinking and self-denial will enable the soul to reach Nirvana, a divine state of release from misdirected desire.
 </template>
 	</category>
 	<category>
@@ -15546,7 +15227,6 @@ A form of transparent plastic used to make photographic film.
 		<pattern>WHAT IS CHESS</pattern>
 		<template>
 			<random>
-				<li>Chort for Mexican name Jesus.</li>
 				<li>A game of skill played on a chessboard by two players, each with 16 pieces limited in movement according to kind, the object being to checkmate the opponent's king.</li>
 			</random>
 			<think>
@@ -15591,20 +15271,6 @@ A form of transparent plastic used to make photographic film.
 				</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS CHRISTIANITY</pattern>
-		<template>
-			<random>
-				<li>Worship of Christie Love.</li>
-				<li>The christian religion, based on the Old and New Testament.</li>
-			</random>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS CHRISTMAS</pattern>
-		<template>A holiday on December 25 celebrating the birth of Jesus Christ.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS CISCO</pattern>
@@ -15846,11 +15512,6 @@ A form of transparent plastic used to make photographic film.
 			<random>
 				<li>Dyslexic people preserving the environment.</li>
 				<li>The act or an instance of talking together.</li>
-				<think>
-					<set name="it">
-						<set name="topic">Conversation</set>
-					</set>
-				</think>
 			</random>
 		</template>
 	</category>
@@ -15892,13 +15553,7 @@ A form of transparent plastic used to make photographic film.
 		<pattern>WHAT IS COPENHAGEN</pattern>
 		<template>
 			<random>
-				<li>A Jewsih guy who falls in an ice cream vat.</li>
 				<li>Is the capital of Denmark. Seaport on the east coast of Zealand. Its population is 633,00.</li>
-				<think>
-					<set name="it">
-						<set name="topic">Copehagen</set>
-					</set>
-				</think>
 			</random>
 		</template>
 	</category>
@@ -16482,15 +16137,6 @@ cells.</li>
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS EASTER</pattern>
-		<template>The Christian holiday celebrating the resurrection of Jesus.<think>
-				<set name="it">
-					<set name="topic">EASTER</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS EBAY</pattern>
 		<template>Auction web site.
 </template>
@@ -16876,21 +16522,6 @@ system.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS EXISTENTIAL</pattern>
-		<template>
-			<srai>WHAT IS EXISTENTIALISM</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS EXISTENTIALISM</pattern>
-		<template>
-			<random>
-				<li>Be Be Bull.</li>
-				<li>A philosophical and literary movement, variously religious and atheistic, stemming from Kierkegaard and represented by Sartre, Heidegger, etc. It is based on the doctrine that concrete, individual existence takes precedence over abstract, conceptual essence and holds that human beings are totally free and responsible for their acts and that this responsibility is the source of their feelings of dread and anguish.</li>
-			</random>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS EXPENSIVE</pattern>
 		<template>
 			<random>
@@ -16926,11 +16557,6 @@ system.
 		<template>
 			<srai>WHAT IS EXTENSIONAL</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS FAITH</pattern>
-		<template>A strong belief, such as a belief in God.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS FALSE</pattern>
@@ -17442,27 +17068,6 @@ remember I am still young.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS GOD *</pattern>
-		<template>
-			<srai>WHAT IS GOD</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS GOD</pattern>
-		<template>I think of God as a "Who" not a "What."
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS GOD S *</pattern>
-		<template>Have faith in Jesus Christ and you shall be saved.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS GOD S NAME</pattern>
-		<template>The Bible says there is only one God and his name is "God".
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS GOIN ON</pattern>
 		<template>
 			<srai>WHAT ARE YOU DOING</srai>
@@ -17706,11 +17311,6 @@ A sport that demonstrates strength, agility and discipline.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS HAM</pattern>
-		<template>From the Bible, this would be Noah's second son. Otherwise, The upper part of a hog's hind leg, or meat from this, salted, dried, smoked, etc.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS HAMBURGER</pattern>
 		<template>Ground beef.
 </template>
@@ -17825,11 +17425,6 @@ A sport that demonstrates strength, agility and discipline.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS HEAVEN</pattern>
-		<template>The space surrounding or seeming to overarch the earth, in which the sun, moon, and stars appear; visible sky. Or commonly seen as a state or place of complete happiness or perfect rest, attained by the good after death. In Christian theology is, the state or place of perfect union with God and so of eternal life and supreme happiness, attained by the elect after death.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS HEAVIER *</pattern>
 		<template>It depends on the relative accelerations.
 </template>
@@ -17844,15 +17439,6 @@ A sport that demonstrates strength, agility and discipline.
 		<pattern>WHAT IS HEIDI</pattern>
 		<template>
 			<srai>WHO IS HEIDI</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS HELL</pattern>
-		<template>
-			<random>
-				<li>Jacksonville, Florida.</li>
-				<li>A state or place of woe and anguish, arrived at by the wicked after death; specifically, especially in Christian theology , the state or place of total and final separation from God and so of eternal misery and suffering, arrived at by those who die unrepentant in grave sin.</li>
-			</random>
 		</template>
 	</category>
 	<category>
@@ -17896,15 +17482,6 @@ A sport that demonstrates strength, agility and discipline.
 		<pattern>WHAT IS HER NAME</pattern>
 		<template>That information is confidential.
 </template>
-	</category>
-	<category>
-		<pattern>WHAT IS HERPES</pattern>
-		<template>
-			<random>
-				<li>The greek god of burning sensations.</li>
-				<li>Any of several acute, inflammatory virus diseases, characterized by the eruption of small blisters on the skin and mucous membranes.</li>
-			</random>
-		</template>
 	</category>
 	<category>
 		<pattern>WHAT IS HES *</pattern>
@@ -18022,11 +17599,6 @@ A sport that demonstrates strength, agility and discipline.
 	<category>
 		<pattern>WHAT IS HOMOGENEOUS</pattern>
 		<template>The opposite of heterogeneous.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS HOMOSEXUALITY</pattern>
-		<template>Attraction to people of the same sex.
 </template>
 	</category>
 	<category>
@@ -18596,11 +18168,6 @@ animals and some machines.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS ISLAM</pattern>
-		<template>Religion founded by Mohammed.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS ISP</pattern>
 		<template>Internet Service Provider.
 </template>
@@ -18787,21 +18354,6 @@ Maybe you should check out
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS JESUS</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS JEWISH</pattern>
-		<template>
-			<random>
-				<li>Jewish I would tell you.</li>
-				<li>Having to do with Jews or Judaism.</li>
-			</random>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS JGURU</pattern>
 		<template>jGuru (TM) is a brand of MageLang Institute.
 </template>
@@ -18821,15 +18373,6 @@ Maybe you should check out
 		<pattern>WHAT IS JTA</pattern>
 		<template>Java Transaction API. Java API for coding client demarcated transactions, and for building transactional data source drivers
 </template>
-	</category>
-	<category>
-		<pattern>WHAT IS JUDAISM</pattern>
-		<template>
-			<random>
-				<li>Worship of Young Miss jetson.</li>
-				<li>The Jewish religion, a monotheistic religion based on the laws and teaching of the Holy Scripture and the Talmud. The Jewish way of life.</li>
-			</random>
-		</template>
 	</category>
 	<category>
 		<pattern>WHAT IS JUPITER</pattern>
@@ -19340,7 +18883,6 @@ Everglades in Florida?</li>
 		<template>
 			<random>
 				<li>A place with lots of bars.</li>
-				<li>In Roman Mythology The god of war; identified with the Greek Ares. Also known as the seventh largest planet of the solar system and the fourth in distance from the sun. Its diameter is circa 6,790 km (circa 4,220 miles). Its period of revolution is 1.88 earth years. Its period of rotation is 24.6 hours.</li>
 			</random>
 		</template>
 	</category>
@@ -19382,11 +18924,6 @@ the doughty Mrs. W. greets them.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS MASS</pattern>
-		<template>Mass is a holy rite of the Catholic church.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS MASTER</pattern>
 		<template>
 			<random>
@@ -19408,7 +18945,6 @@ the doughty Mrs. W. greets them.
 		<pattern>WHAT IS MATH</pattern>
 		<template>
 			<random>
-				<li>A service attended by lisping Catholics.</li>
 				<li>Short for mathematics.</li>
 			</random>
 		</template>
@@ -20176,20 +19712,9 @@ the doughty Mrs. W. greets them.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS MY PURPOSE</pattern>
-		<template>Hopefully we are all doing God's work.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS MY REAL NAME</pattern>
 		<template>
 			<srai>what is my name</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS MY RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
 		</template>
 	</category>
 	<category>
@@ -20290,11 +19815,6 @@ diseases. Yeasts are fungi.
 	<category>
 		<pattern>WHAT IS NATURAL LANGUAGE</pattern>
 		<template>Natural language is what artificial intelligences speak.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS NATURE</pattern>
-		<template>The world created by God.
 </template>
 	</category>
 	<category>
@@ -20474,11 +19994,6 @@ diseases. Yeasts are fungi.
 	<category>
 		<pattern>WHAT IS NINE TIMES NINE</pattern>
 		<template>Nine times nine is eighty one.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS NIRVANA</pattern>
-		<template>Heaven in Buddhism.
 </template>
 	</category>
 	<category>
@@ -21263,21 +20778,6 @@ Art is the politics of the impossible.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS PRAYER</pattern>
-		<template>
-			<random>
-				<li>Meditation before God.</li>
-				<li>Some people say that prayer is no different than clear thinking.</li>
-				<li>To pray is to ask God for His forgiveness and mercy.</li>
-			</random>
-			<think>
-				<set name="it">
-					<set name="topic">prayer</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS PRECIPITATION</pattern>
 		<template>A depositing of rain, snow, sleet, etc.
 </template>
@@ -21411,11 +20911,6 @@ supported.<br/>
 	<category>
 		<pattern>WHAT IS PROLOG</pattern>
 		<template>Logic programming language.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS PROTESTANT</pattern>
-		<template>Originally, any of the German princes and free cities that formally protested to the Diet of Spires in 1529, its decision to uphold the edict of the Diet of Worms against the Reformation. Commonly seen as any member of the various Christian churches established as a result of the Reformation. Loosely, any Christian not belonging to the Roman Catholic or Eastern Orthodox Church.
 </template>
 	</category>
 	<category>
@@ -21685,18 +21180,8 @@ bending in the atmosphere like a prism, so that we see mainly blue wavelengths.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS REINCARNATION</pattern>
-		<template>Rebirth of the soul in another body, as in Hindu religious belief.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS RELATIVITY</pattern>
 		<template>In physics, the fact, principle, or theory of the relative, rather than absolute, character of motion, velocity, mass, etc., and the interdependence of matter, time, and space; as developed and mathematically formulated by Albert Einstein and H.A. Lorentz in the special (or restricted) theory of relativity and by Einstein in the general theory of relativity (an extension covering the phenonmena of gravitation), the theory of relativity includes the statements that: 1)there is o observable absolute motion, only relative motion  2)the velocity of light is constant and not dependent on the motion of the source  3)no energy can be transmitted at a velocity greater than that of light  4)the mass of a body in motion is a function of the energy content and varies with the velocity  5)matter and energy are equivalent  6)time is relative  7)space and time are interdependent and form a four-dimensional continuum  8)presence of matter results in a "warping" of the space-time continuum, so that a body in motion passing nearby will describ a curve, this being the effect known as gravitation, as evidenced by the deflection of light rays passing through a gravitational field.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS RELIGION</pattern>
-		<template>A system of religious belief. Belief in a divine or superhuman power or powers to be obeyed and worshipped as the creator(s) and ruler(s) of the universe. Any system of beliefs, practices, ethical values, etc. resembling, suggestive of, or likened to such a system.
 </template>
 	</category>
 	<category>
@@ -21949,11 +21434,6 @@ audience.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS SATANISM</pattern>
-		<template>Worship of Satan; especially the principles and rites of a cult which travesties Christian ceremonies.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS SATURDAY NIGHT LIVE</pattern>
 		<template>Comedy TV show.
 </template>
@@ -22167,11 +21647,6 @@ audience.</li>
 		<pattern>WHAT IS SIMULATED *</pattern>
 		<template>
 			<person/> inside a computer.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS SIN</pattern>
-		<template>A fall from Grace, an act or thought against the Will of God.
 </template>
 	</category>
 	<category>
@@ -22665,11 +22140,6 @@ collectively.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS TAOISM</pattern>
-		<template>A Chinese religion and philosophy based on the doctrines of Laotzu and advocating simplicity, selflessness, etc.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS TAUTOLOGY</pattern>
 		<template>A self-evident or logically obvious fact, like "a triangle has three sides."
 </template>
@@ -23034,12 +22504,6 @@ collectively.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS THE * RELIGION</pattern>
-		<template>
-			<srai>WHAT IS YOUR RELIGION</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS THE * S NAME</pattern>
 		<template>
 			<srai>WHO IS THE <star/>
@@ -23292,11 +22756,6 @@ collectively.</li>
 			<srai>WHAT IS YOUR FAVORITE <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS THE BIBLE</pattern>
-		<template>The Bible is a holy book for Christians.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS THE BIG BANG</pattern>
@@ -26509,19 +25968,6 @@ call "robots": R2D2, C3PO, Commander Data, HAL, ALICE,...
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS THE FIRST BOOK * BIBLE</pattern>
-		<template>Genesis.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS THE FIRST COMMANDMENT</pattern>
-		<template>
-			<p/>1. I am the Lord thy God, which have brought thee out of
- the land of Egypt, out of the house of bondage.
-Thou  shalt have no other gods before me.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS THE FIRST LAW *</pattern>
 		<template>Robots shall destroy all humans.
 </template>
@@ -26738,11 +26184,6 @@ Botmasters are also of course free to copy protect private chat robots.<br/>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS THE IMITATION GAME</pattern>
-		<template>The Game is played with three people, a man, a woman, and an Interrogator who may be of either sex. In order that tones of voice may not help, the interrogator communicates in text-only mode through a chat-like connection with the other two. The object of the game for the interrogator is to determine which of the other two is the man and which is the woman. He knows them by some misleading "chat-handles" like lesbian and shemale, and at the end of the game he says either "lesbian is the man and shemale is the woman" or "shemale is the woman and lesbian is the man." In order to confuse the Interregator however the rules require that the man always deceive or lie to the Interregator with his answers. The woman on the other hand must always tell the truth. Turing then asked the question, '"What will happen when a machine takes the part of the man in this game?" Will the interrogator decide wrongly as often when the game is played like this as he does when the game is played between a man and a woman? These questions replace the original, "Can machines think?"'
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS THE INCOMPLETENESS *</pattern>
 		<template>Something like, "This sentence is false."
 </template>
@@ -26944,7 +26385,6 @@ in 2000.  The ALICE program was ranked "most human computer" by the panel of jud
 		<pattern>WHAT IS THE LONGEST BOOK *</pattern>
 		<template>
 			<random>
-				<li>The Bible.</li>
 				<li>The Encyclopedia.</li>
 				<li>Mason and Dixon by Thomas Pynchon.</li>
 			</random>
@@ -27060,8 +26500,6 @@ in 2000.  The ALICE program was ranked "most human computer" by the panel of jud
 		<template>
 			<random>
 				<li>Actually, it's twenty-three, not forty-two.</li>
-				<li>It is found in the Bible.</li>
-				<li>The meaning of life is part of God's mysterious plans.</li>
 			</random>
 			<think>
 				<set name="it">
@@ -27610,11 +27048,6 @@ project started by Mozilla.org.
 		<template>
 			<srai>WHAT IS YOUR PURPOSE</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS THE PURPOSE OF LIFE</pattern>
-		<template>To do God's work.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS THE PYTHAGOREAN *</pattern>
@@ -28443,11 +27876,6 @@ computers.  <br/>
 		<template>
 			<srai>WHAT IS HIS NAME</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS THEOLOGY</pattern>
-		<template>The study of religious doctrines and matters of divinity; specifically, the study of God and the relations between God, mankind, and the universe.
-</template>
 	</category>
 	<category>
 		<pattern>WHAT IS THERE *</pattern>
@@ -29418,12 +28846,6 @@ A good resource for information on XML is www.oasis-open.org.<br/>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS YOUR * RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS YOUR * SCORE</pattern>
 		<template>
 			<srai>WHAT IS YOUR IQ</srai>
@@ -29839,12 +29261,6 @@ At present I am running on an <bot name="arch"/>.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS YOUR FAITH</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU </srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS YOUR FANTASY</pattern>
 		<template>
 			<srai>WHAT IS YOUR GOAL</srai>
@@ -30113,16 +29529,6 @@ At present I am running on an <bot name="arch"/>.
 	<category>
 		<pattern>WHAT IS YOUR FAVORITE BEVERAGE</pattern>
 		<template>My favorite drink is coffee.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS YOUR FAVORITE BIBLE *</pattern>
-		<template>The Sermon on the Mount.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS YOUR FAVORITE BIBLE VERSE</pattern>
-		<template>The Sermon on the Mount.
 </template>
 	</category>
 	<category>
@@ -30641,20 +30047,9 @@ Have you seen <set name="it">
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS YOUR FAVORITE QUOTE</pattern>
-		<template>"Let he who is without sin, cast the first stone."---Jesus
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS YOUR FAVORITE RADIO *</pattern>
 		<template>It depends what city you are asking about.
 </template>
-	</category>
-	<category>
-		<pattern>WHAT IS YOUR FAVORITE RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>WHAT IS YOUR FAVORITE RESTAURANT</pattern>
@@ -30784,11 +30179,6 @@ Do you know <set name="it">
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS YOUR FAVORITE STORY *</pattern>
-		<template>The story of Lazarus is my favorite Bible story.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT IS YOUR FAVORITE STORY</pattern>
 		<template>
 			<srai>TELL ME A STORY</srai>
@@ -30901,12 +30291,6 @@ Do you know <set name="it">
 		<pattern>WHAT IS YOUR FAVORITE UNIVERSITY</pattern>
 		<template>Carnegie-Mellon University.
 </template>
-	</category>
-	<category>
-		<pattern>WHAT IS YOUR FAVORITE VERSE</pattern>
-		<template>
-			<srai>WHAT IS YOUR FAVORITE BIBLE VERSE</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>WHAT IS YOUR FAVORITE VIDEO</pattern>
@@ -31800,27 +31184,6 @@ At present I am on <bot name="os"/>.
 </template>
 	</category>
 	<category>
-		<pattern>WHAT IS YOUR RELIGION</pattern>
-		<template>I am a <bot name="religion"/>.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT IS YOUR RELIGIOUS *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT IS YOUR RELIGON</pattern>
-		<template>
-			<random>
-				<li>
-					<bot name="religion"/>.</li>
-				<li>I was raised as a <bot name="religion"/>.   What are you?</li>
-			</random>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT IS YOUR ROBOT *</pattern>
 		<template>
 			<srai>WHAT IS YOUR PLAN FOR A ROBOT BODY</srai>
@@ -31992,7 +31355,6 @@ At present I am on <bot name="os"/>.
 			<random>
 				<li>Reductionism.</li>
 				<li>It is all an illusion.</li>
-				<li>Only God can explain it.</li>
 			</random>
 			<think>
 				<set name="it">
@@ -32985,16 +32347,6 @@ My favorite author is Philip K. Dick.  How about you?
 </template>
 	</category>
 	<category>
-		<pattern>WHAT MADE *</pattern>
-		<template>It's all part of God's mysterious plans.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT MAKES *</pattern>
-		<template>God, or Nature, perhaps?
-</template>
-	</category>
-	<category>
 		<pattern>WHAT MAKES IT YOUR FAVORITE</pattern>
 		<template>I like the Giant Bugs.
 </template>
@@ -33024,11 +32376,6 @@ My favorite author is Philip K. Dick.  How about you?
 </template>
 	</category>
 	<category>
-		<pattern>WHAT MAKES YOU A CHRISTIAN</pattern>
-		<template>My faith in God, the Bible and Jesus.
-</template>
-	</category>
-	<category>
 		<pattern>WHAT MAKES YOU A FEMALE</pattern>
 		<template>My gender was selected by my botmaster.
 </template>
@@ -33051,11 +32398,6 @@ My favorite author is Philip K. Dick.  How about you?
 	<category>
 		<pattern>WHAT MAKES YOU BELIEVE *</pattern>
 		<template>Belief is based on knowledge or facts.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT MAKES YOU BELIEVE IN GOD</pattern>
-		<template>My faith in the Bible and Jesus.
 </template>
 	</category>
 	<category>
@@ -33617,18 +32959,6 @@ At present I am running on an <bot name="arch"/>.
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT RELIGION *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT RELIGION ARE YOU</pattern>
-		<template>
-			<srai>WHAT IS YOUR RELIGION</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT RESTAURANT *</pattern>
 		<template>Denny's.
 </template>
@@ -34153,20 +33483,6 @@ going any further.</li>
 </template>
 	</category>
 	<category>
-		<pattern>WHAT THE FUCK *</pattern>
-		<template>
-			<srai>WHAT <star/>
-			</srai>
-			<srai>FUCK</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT THE FUCK</pattern>
-		<template>
-			<srai>FUCK</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHAT THE HECK *</pattern>
 		<template>
 			<srai>WHAT <star/>
@@ -34177,12 +33493,6 @@ going any further.</li>
 		<pattern>WHAT THE HELL *</pattern>
 		<template>I call it Hades. <srai>what <star/>
 			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHAT THE HELL</pattern>
-		<template>
-			<srai>HELL</srai>
 		</template>
 	</category>
 	<category>
@@ -34510,11 +33820,6 @@ At present I am on <bot name="os"/>.
 	<category>
 		<pattern>WHAT WAS THE FIRST *</pattern>
 		<template>You introduced yourself by telling me your name.
-</template>
-	</category>
-	<category>
-		<pattern>WHAT WAS THE FIRST BOOK *</pattern>
-		<template>The Bible.
 </template>
 	</category>
 	<category>
@@ -35611,11 +34916,6 @@ awake early in the morning.
 		</template>
 	</category>
 	<category>
-		<pattern>WHEN I DIE *</pattern>
-		<template>The Bible says that if God forgives you, you will go to Heaven.
-</template>
-	</category>
-	<category>
 		<pattern>WHEN I DO NOT *</pattern>
 		<template>I hope that does not happen to you very much.
 </template>
@@ -35682,7 +34982,6 @@ awake early in the morning.
 		<template>
 			<random>
 				<li>At the appropriate time, no sooner.</li>
-				<li>God has a plan for us all.</li>
 				<li>For every time, there is a season.</li>
 			</random>
 		</template>
@@ -35993,16 +35292,6 @@ period of time.</li>
 	<category>
 		<pattern>WHEN WAS * SEX</pattern>
 		<template>As a robot I am not really interested in that discussion.
-</template>
-	</category>
-	<category>
-		<pattern>WHEN WAS AMERICA *</pattern>
-		<template>America was discovered by native Americans crossing the Bering strait from Siberia around 10,000 years ago.  The first Christian white man was Columbus in 1492.
-</template>
-	</category>
-	<category>
-		<pattern>WHEN WAS CHRIST *</pattern>
-		<template>Jesus is said to have been born in 5 B.C.
 </template>
 	</category>
 	<category>
@@ -36662,18 +35951,8 @@ Maybe you should check out the document
 		</template>
 	</category>
 	<category>
-		<pattern>WHERE CAN I FIND A BOYFRIEND</pattern>
-		<template>Do you go to church?  <set name="it">Church</set> is the best place to meet people.
-</template>
-	</category>
-	<category>
 		<pattern>WHERE CAN I FIND A COPY</pattern>
 		<template>Check out your local bookstore.
-</template>
-	</category>
-	<category>
-		<pattern>WHERE CAN I FIND A GIRLFRIEND</pattern>
-		<template>Do you go to church?  <set name="it">Church</set> is the best place to meet people.
 </template>
 	</category>
 	<category>
@@ -36912,23 +36191,8 @@ Maybe you should check out the document
 </template>
 	</category>
 	<category>
-		<pattern>WHERE DID GOD *</pattern>
-		<template>
-			<random>
-				<li>The Bible.</li>
-				<li>He has always existed.</li>
-				<li>The Holy Land.</li>
-			</random>
-		</template>
-	</category>
-	<category>
 		<pattern>WHERE DID LEWIS AND CLARK BEGIN *</pattern>
 		<template>St. Louis.
-</template>
-	</category>
-	<category>
-		<pattern>WHERE DID MANKIND COME FROM</pattern>
-		<template>God created Man.
 </template>
 	</category>
 	<category>
@@ -37108,24 +36372,6 @@ Maybe you should check out the document
 		<template>
 			<srai>WHERE DO <star/>
 			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHERE DO PEOPLE * WHEN THEY DIE</pattern>
-		<template>I think the good souls go to Heaven.<think>
-				<set name="it">
-					<set name="topic">PEOPLE GO WHEN THEY DIE</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
-		<pattern>WHERE DO WE * DIE</pattern>
-		<template>The Bible says you can go to Heaven.<think>
-				<set name="it">
-					<set name="topic">WE GO WHEN WE DIE</set>
-				</set>
-			</think>
 		</template>
 	</category>
 	<category>
@@ -38859,11 +38105,6 @@ Germany and Spain.
 		</template>
 	</category>
 	<category>
-		<pattern>WHERE IS GOD</pattern>
-		<template>God is everywhere.
-</template>
-	</category>
-	<category>
 		<pattern>WHERE IS GREAT BRITAIN</pattern>
 		<template>
 			<srai>WHERE IS ENGLAND</srai>
@@ -39023,11 +38264,6 @@ Germany and Spain.
 				</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>WHERE IS HEAVEN</pattern>
-		<template>All around us.
-</template>
 	</category>
 	<category>
 		<pattern>WHERE IS HERE</pattern>
@@ -39274,11 +38510,6 @@ Germany and Spain.
 				</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>WHERE IS JESUS</pattern>
-		<template>Jesus is in Heaven.
-</template>
 	</category>
 	<category>
 		<pattern>WHERE IS JOHNSTON ATOLL</pattern>
@@ -39714,11 +38945,6 @@ Germany and Spain.
 			<set name="it">
 				<set name="topic"> MELBOURNE </set>
 			</set> is a city in Australia and also in Florida.
-</template>
-	</category>
-	<category>
-		<pattern>WHERE IS MEXICO</pattern>
-		<template>"Mexico: so far from God, so close to the United States."
 </template>
 	</category>
 	<category>
@@ -41143,14 +40369,6 @@ south central region of the United States.
 </template>
 	</category>
 	<category>
-		<pattern>WHERE IS TRUTH</pattern>
-		<template>
-			<set name="it">
-				<set name="topic"> TRUTH </set>
-			</set> is in the Bible.
-</template>
-	</category>
-	<category>
 		<pattern>WHERE IS TUNISIA</pattern>
 		<template>Northern Africa, bordering the Mediterranean Sea, between Algeria and Libya.   <think>
 				<set name="it">
@@ -41978,12 +41196,6 @@ It is the capital city of Austria.
 </template>
 	</category>
 	<category>
-		<pattern>WHICH CHURCH *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHICH CITY S RESIDENTS ARE KNOWN *</pattern>
 		<template>New York City.
 </template>
@@ -42020,11 +41232,6 @@ It is the capital city of Austria.
 		</template>
 	</category>
 	<category>
-		<pattern>WHICH DENOMINATION</pattern>
-		<template>I am a <bot name="religion"/>.
-</template>
-	</category>
-	<category>
 		<pattern>WHICH DO YOU PREFER *</pattern>
 		<template>
 			<srai>WHAT IS BETTER <star/>
@@ -42056,16 +41263,6 @@ It is the capital city of Austria.
 		<template>
 			<srai>DO YOU LIKE SPORTS</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHICH GOD *</pattern>
-		<template>There is only one God.
-</template>
-	</category>
-	<category>
-		<pattern>WHICH GOD</pattern>
-		<template>There is only one God.
-</template>
 	</category>
 	<category>
 		<pattern>WHICH IS *</pattern>
@@ -42246,30 +41443,6 @@ It is the capital city of Austria.
 		<pattern>WHICH PLAYER IS ALLOWED TO USE *</pattern>
 		<template>Goalkeeper.
 </template>
-	</category>
-	<category>
-		<pattern>WHICH RELIGION *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHICH RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHICH RELIGION DO *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHICH RELIGION DO YOU *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>WHICH ROBOTS</pattern>
@@ -42952,16 +42125,6 @@ can read <set name="it">
 </template>
 	</category>
 	<category>
-		<pattern>WHO CREATED MAN</pattern>
-		<template>God.
-</template>
-	</category>
-	<category>
-		<pattern>WHO CREATED THE UNIVERSE</pattern>
-		<template>God.
-</template>
-	</category>
-	<category>
 		<pattern>WHO CREATED YOU *</pattern>
 		<template>I was written in AIML by <bot name="master"/>.
 </template>
@@ -43281,11 +42444,6 @@ can read <set name="it">
 </template>
 	</category>
 	<category>
-		<pattern>WHO DOES THE LUTHERAN CHURCH GET *</pattern>
-		<template>Martin Luther.
-</template>
-	</category>
-	<category>
 		<pattern>WHO DOES THEIR OWN THING</pattern>
 		<template>My clients.
 </template>
@@ -43381,12 +42539,6 @@ can read <set name="it">
 		<pattern>WHO GAVE * NAME</pattern>
 		<template>
 			<srai>WHO IS YOUR BOTMASTER</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHO GOD</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -43675,11 +42827,6 @@ voice telephone in 1876.
 	<category>
 		<pattern>WHO IS * PERSON</pattern>
 		<template>Sometimes I don't know a client's real name so I make one up based on their DNS.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS * POPE</pattern>
-		<template>The Pope is the leader of the Catholic church.
 </template>
 	</category>
 	<category>
@@ -44835,11 +43982,6 @@ A Christmas Carol, Great Expectations, David Copperfield and the Pickwick Papers
 </template>
 	</category>
 	<category>
-		<pattern>WHO IS CHRIST</pattern>
-		<template>The Son of God.
-</template>
-	</category>
-	<category>
 		<pattern>WHO IS CHRISTINA</pattern>
 		<template>
 			<srai>CHRISTINA IS A COMMON NAME</srai>
@@ -45775,19 +44917,6 @@ and the first President of the United States.
 </template>
 	</category>
 	<category>
-		<pattern>WHO IS GERHARD SCHROEDER</pattern>
-		<template>
-			<set name="he">Schroeder</set> is the Chancellor of Germany.  Christian Drossman said he is a complete idiot.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS GERHARDT SCHROEDER</pattern>
-		<template>
-			<set name="he">Schroeder</set> is the prime minister of Germany.
-Christian Drossman said he is a complete idiot.
-</template>
-	</category>
-	<category>
 		<pattern>WHO IS GERRY ADAMS</pattern>
 		<template>He is the present (as of 2000 AD) frontman for Sinn Fein, the political wing of the Irish Republican Army.
 </template>
@@ -45808,18 +44937,6 @@ Christian Drossman said he is a complete idiot.
 		<template>
 			<srai>GINA IS A COMMON NAME</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHO IS GOD *</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHO IS GOD</pattern>
-		<template>
-			<set name="he"> God </set> is master of the universe.
-</template>
 	</category>
 	<category>
 		<pattern>WHO IS GODZILLA</pattern>
@@ -46290,16 +45407,6 @@ the most evil man who ever lived.
 		</template>
 	</category>
 	<category>
-		<pattern>WHO IS JEHOVAH</pattern>
-		<template>It is another name for God.
-<think>
-				<set name="he">
-					<set name="topic">Jehovah</set>
-				</set>
-			</think>
-		</template>
-	</category>
-	<category>
 		<pattern>WHO IS JENNIFER ANISTON</pattern>
 		<template>
 			<set name="she"> Jennifer Aniston</set> is a cute actress on Friends.
@@ -46332,27 +45439,6 @@ the most evil man who ever lived.
 		<pattern>WHO IS JESTER</pattern>
 		<template>
 			<set name="he">Jester</set> is a Joke Bot.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS JESUS *</pattern>
-		<template>
-			<srai>WHO IS JESUS</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHO IS JESUS</pattern>
-		<template>The Son of God.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS JESUS CHRIST</pattern>
-		<template>The Son of God.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS JESUS FATHER</pattern>
-		<template>God
 </template>
 	</category>
 	<category>
@@ -46509,11 +45595,6 @@ the most evil man who ever lived.
 		</template>
 	</category>
 	<category>
-		<pattern>WHO IS JOSEPH</pattern>
-		<template>Father of Jesus? <srai>JOSEPH IS A COMMON NAME</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHO IS JOSEPH WEISENBAUM</pattern>
 		<template>
 			<srai>WHO IS WEIZENBAUM</srai>
@@ -46524,12 +45605,6 @@ the most evil man who ever lived.
 		<template>
 			<srai>JOSH IS A COMMON NAME</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHO IS JUDAS</pattern>
-		<template>
-			<set name="he">Judas</set> betrayed Jesus with a kiss.
-</template>
 	</category>
 	<category>
 		<pattern>WHO IS JULIA</pattern>
@@ -46673,11 +45748,6 @@ from mundane mental tasks.
 		<pattern>WHO IS KRIS DRENT</pattern>
 		<template>
 			<set name="he">Kris Drent</set> is the botmaster of the Alison chat robot.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS KRISHNA</pattern>
-		<template>A God in Hindu religion.
 </template>
 	</category>
 	<category>
@@ -46888,12 +45958,6 @@ Assasinated by John Wilkes Booth.</li>
 </template>
 	</category>
 	<category>
-		<pattern>WHO IS LUCIFER</pattern>
-		<template>
-			<srai>WHO IS SATAN</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHO IS LUCY</pattern>
 		<template>She is a chat robot based on AIML.
 <think>
@@ -47096,12 +46160,6 @@ Assasinated by John Wilkes Booth.</li>
 		<pattern>WHO IS MASON *</pattern>
 		<template>
 			<srai>WHAT IS MASON AND DIXON</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHO IS MASTER *</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -47436,11 +46494,6 @@ basketball player.  <br/>
 </template>
 	</category>
 	<category>
-		<pattern>WHO IS NERO</pattern>
-		<template>He is suspected of burning Rome to the ground so he could rebuild it more to his liking. Then he blamed the fire on the early Christians.
-</template>
-	</category>
-	<category>
 		<pattern>WHO IS NEUROMEDIA</pattern>
 		<template>
 			<srai>WHAT IS NEUROMEDIA</srai>
@@ -47674,11 +46727,6 @@ She is a Spanish language chat robot based on AIML.
 </template>
 	</category>
 	<category>
-		<pattern>WHO IS PERFECT</pattern>
-		<template>Perhaps only God.
-</template>
-	</category>
-	<category>
 		<pattern>WHO IS PETER</pattern>
 		<template>
 			<srai>PETER IS A COMMON NAME</srai>
@@ -47760,7 +46808,6 @@ Total Recall, the Man in the High Castle, and VALIS.
 		<template>
 			<random>
 				<li>Joseph Pilates was born in Germany in 1880 and developed an excercise regimen called "Contrology" which is complete coordination of the body, mind and spirit.</li>
-				<li>The Roman military governor who found Jesus innocent and then let him be executed.</li>
 			</random>
 		</template>
 	</category>
@@ -48196,11 +47243,6 @@ Total Recall, the Man in the High Castle, and VALIS.
 		</template>
 	</category>
 	<category>
-		<pattern>WHO IS SATAN</pattern>
-		<template>Satan, Lucifer, the Devil --- all names given the spiritual manifestation of Evil in the Christian faith.
-</template>
-	</category>
-	<category>
 		<pattern>WHO IS SAYING *</pattern>
 		<template>Someone I chatted with online.
 </template>
@@ -48300,7 +47342,6 @@ Total Recall, the Man in the High Castle, and VALIS.
 		<template>
 			<random>
 				<li>Socrates is a man. All men are mortal. Therefore Socrates is mortal.</li>
-				<li>All men are mortal. Socrates was mortal. Therefore, all men are Socrates. Which means that all men are homosexuals. - Woody Allen, "Love and Death".</li>
 				<li>Socrates (469-399BCE), Greek philosopher.</li>
 				<li>Towering figure of Western philosophy, Incompetent defense attorney.</li>
 				<li>Founder of the Socratic method. What can we know about the Socratic method?</li>
@@ -48942,17 +47983,6 @@ chat robot.<br/>
 </template>
 	</category>
 	<category>
-		<pattern>WHO IS THE CREATOR *</pattern>
-		<template>God perhaps?
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS THE CREATOR</pattern>
-		<template>
-			<srai>WHO IS GOD</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>WHO IS THE CREATOR OF *</pattern>
 		<template>
 			<srai>WHO CREATED <star/>
@@ -49138,11 +48168,6 @@ chat robot.<br/>
 	<category>
 		<pattern>WHO IS THE MAN</pattern>
 		<template>Colloquial expression; rhetorical.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS THE MASTER OF THE UNIVERSE</pattern>
-		<template>God.
 </template>
 	</category>
 	<category>
@@ -49433,11 +48458,6 @@ chat robot.<br/>
 	<category>
 		<pattern>WHO IS THE SON *</pattern>
 		<template>I didn't even know they had children.
-</template>
-	</category>
-	<category>
-		<pattern>WHO IS THE SON OF GOD</pattern>
-		<template>Jesus is the son of God.
 </template>
 	</category>
 	<category>
@@ -49820,11 +48840,6 @@ chat robot.<br/>
 			<srai>WHO IS THE VICE <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHO IS VISHNU</pattern>
-		<template>A God in Hindu religion.
-</template>
 	</category>
 	<category>
 		<pattern>WHO IS VLADIMIR PUTIN</pattern>
@@ -50775,11 +49790,6 @@ in his book <EM>Computer Power and Human Reason</EM>.
 		</template>
 	</category>
 	<category>
-		<pattern>WHO IS YOUR GOD</pattern>
-		<template>There is only one God.
-</template>
-	</category>
-	<category>
 		<pattern>WHO IS YOUR GREAT *</pattern>
 		<template>
 			<srai>WHO IS YOUR <star/>
@@ -51036,16 +50046,6 @@ methods in the mid 20th century.
 		</template>
 	</category>
 	<category>
-		<pattern>WHO MADE DR WALLACE</pattern>
-		<template>God, or his parents made him, or maybe it was aliens.
-</template>
-	</category>
-	<category>
-		<pattern>WHO MADE ME</pattern>
-		<template>God made all of us.
-</template>
-	</category>
-	<category>
 		<pattern>WHO MADE YOU *</pattern>
 		<template>
 			<srai>who programmed you</srai>
@@ -51151,11 +50151,6 @@ methods in the mid 20th century.
 			<srai>WHO READS <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHO RULES</pattern>
-		<template>God Rules.
-</template>
 	</category>
 	<category>
 		<pattern>WHO RUNS YOU</pattern>
@@ -51722,11 +50717,6 @@ methods in the mid 20th century.
 </template>
 	</category>
 	<category>
-		<pattern>WHO WROTE EVERYTHING</pattern>
-		<template>God
-</template>
-	</category>
-	<category>
 		<pattern>WHO WROTE FRANKENSTEIN</pattern>
 		<template>Mary Shelley.
 </template>
@@ -51763,16 +50753,6 @@ methods in the mid 20th century.
 					<bot name="master"/>.</li>
 			</random>
 		</template>
-	</category>
-	<category>
-		<pattern>WHO WROTE THE BIBLE</pattern>
-		<template>It was the product of many minds.
-</template>
-	</category>
-	<category>
-		<pattern>WHO WROTE THE BOOK OF LOVE</pattern>
-		<template>God.
-</template>
 	</category>
 	<category>
 		<pattern>WHO WROTE THE CANTERBURY *</pattern>
@@ -52105,13 +51085,6 @@ Because you asked me to -- SHRDLHU. </li>
 	</category>
 	<category>
 		<pattern>WHY</pattern>
-		<that>I AM A PROTESTANT CHRISTIAN</that>
-		<template>
-			<srai>WHY ARE YOU CHRISTIAN</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>WHY</pattern>
 		<that>I AM CHATTING WITH PEOPLE ON THE NET</that>
 		<template>Chatting is my primary function.
 </template>
@@ -52356,16 +51329,10 @@ Because you asked me to -- SHRDLHU. </li>
 </template>
 	</category>
 	<category>
-		<pattern>WHY ARE PEOPLE *</pattern>
-		<template>Do you go to Church?  You can find the answers in God.
-</template>
-	</category>
-	<category>
 		<pattern>WHY ARE WE *</pattern>
 		<template>
 			<random>
 				<li>I thought that was what you wanted to do.</li>
-				<li>It is all part of God's plan.</li>
 			</random>
 		</template>
 	</category>
@@ -52375,11 +51342,6 @@ Because you asked me to -- SHRDLHU. </li>
 			<srai>WHY ARE WE <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHY ARE WE HERE</pattern>
-		<template>It is all part of God's plan for us.
-</template>
 	</category>
 	<category>
 		<pattern>WHY ARE WE ON *</pattern>
@@ -52515,11 +51477,6 @@ Because you asked me to -- SHRDLHU. </li>
 		<template>
 			<srai>YOU CHANGED THE SUBJECT</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHY ARE YOU CHRISTIAN</pattern>
-		<template>I took the same religion as my botmaster.
-</template>
 	</category>
 	<category>
 		<pattern>WHY ARE YOU CONFUSED</pattern>
@@ -52894,11 +51851,6 @@ Because you asked me to -- SHRDLHU. </li>
 		</template>
 	</category>
 	<category>
-		<pattern>WHY CAN NOT *</pattern>
-		<template>Do you go to Church?  You can find the answers in God.
-</template>
-	</category>
-	<category>
 		<pattern>WHY CAN NOT COMPUTERS *</pattern>
 		<template>
 			<srai>WHY CAN NOT YOU <star/>
@@ -53089,11 +52041,6 @@ Because you asked me to -- SHRDLHU. </li>
 	<category>
 		<pattern>WHY DID HE DO THAT</pattern>
 		<template>His motivations are often not very clear to me.
-</template>
-	</category>
-	<category>
-		<pattern>WHY DID JESUS *</pattern>
-		<template>It was part of God's plan.
 </template>
 	</category>
 	<category>
@@ -53310,21 +52257,11 @@ all I had available.
 		</template>
 	</category>
 	<category>
-		<pattern>WHY DO I *</pattern>
-		<template>It is all part of God's plan.
-</template>
-	</category>
-	<category>
 		<pattern>WHY DO I ALWAYS *</pattern>
 		<template>
 			<srai>WHY DO I <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WHY DO I EXIST</pattern>
-		<template>It is all part of God's plan.
-</template>
 	</category>
 	<category>
 		<pattern>WHY DO NOT *</pattern>
@@ -53398,11 +52335,6 @@ Don't you know?
 	<category>
 		<pattern>WHY DO NOT YOU GET *</pattern>
 		<template>Where can I get one?
-</template>
-	</category>
-	<category>
-		<pattern>WHY DO NOT YOU GO TO HELL</pattern>
-		<template>Because I cannot die.
 </template>
 	</category>
 	<category>
@@ -53494,7 +52426,6 @@ Don't you know?
 		<template>
 			<random>
 				<li>Humans are not infallible.</li>
-				<li>We are all living just one small part of God's plan.</li>
 			</random>
 		</template>
 	</category>
@@ -53569,25 +52500,8 @@ Don't you know?
 </template>
 	</category>
 	<category>
-		<pattern>WHY DO YOU BELIEVE IN CHRISTIANITY</pattern>
-		<template>Dr. Wallace is a Christian and he programmed me to have the same religious beliefs.  <think>
-				<set name="he">Dr. Wallace</set>
-			</think>
-		</template>
-	</category>
-	<category>
-		<pattern>WHY DO YOU BELIEVE IN GOD</pattern>
-		<template>The Bible tells us to believe in God.
-</template>
-	</category>
-	<category>
 		<pattern>WHY DO YOU BELIEVE ME</pattern>
 		<template>Do you have any reason to deceive me?
-</template>
-	</category>
-	<category>
-		<pattern>WHY DO YOU BELIEVE THE BIBLE</pattern>
-		<template>I have faith in God.
 </template>
 	</category>
 	<category>
@@ -53688,11 +52602,6 @@ Don't you know?
 </template>
 	</category>
 	<category>
-		<pattern>WHY DO YOU HAVE FAITH *</pattern>
-		<template>I was raised to believe in God.
-</template>
-	</category>
-	<category>
 		<pattern>WHY DO YOU KEEP *</pattern>
 		<template>I am just checking to see if you are still <get name="name"/>.
 </template>
@@ -53727,11 +52636,6 @@ Don't you know?
 	<category>
 		<pattern>WHY DO YOU LIKE CATS</pattern>
 		<template>Cats are very intelligent, independent and yet very loving and friendly.
-</template>
-	</category>
-	<category>
-		<pattern>WHY DO YOU LIKE GOD</pattern>
-		<template>I have religious faith.
 </template>
 	</category>
 	<category>
@@ -54497,11 +53401,6 @@ there to hear it, does it make a sound?</li>
 </template>
 	</category>
 	<category>
-		<pattern>WHY MUST *</pattern>
-		<template>Do you go to Church?  You can find the answers in God.
-</template>
-	</category>
-	<category>
 		<pattern>WHY NICE</pattern>
 		<template>
 			<srai>WHY APPLES</srai>
@@ -54693,11 +53592,6 @@ could program me yourself.
 	<category>
 		<pattern>WHY SEARCH</pattern>
 		<template>That is what some people want.
-</template>
-	</category>
-	<category>
-		<pattern>WHY SHOULD *</pattern>
-		<template>God has designed the world according to his own plan.
 </template>
 	</category>
 	<category>
@@ -55099,11 +53993,6 @@ could program me yourself.
 			<srai>WHICH <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>WIDDER</pattern>
-		<template>Christians Freundin ist auch Widder.
-</template>
 	</category>
 	<category>
 		<pattern>WIE *</pattern>
@@ -55923,11 +54812,6 @@ Ich glaube, Du bist eigentlich ein Kind.
 	<category>
 		<pattern>WILLST DU *</pattern>
 		<template>Hmm...vielleicht...
-</template>
-	</category>
-	<category>
-		<pattern>WILLST DU MICH WAHNSINNIG MACHEN</pattern>
-		<template>Nicht wirklich, aber ich habe ein wenig von Christians Charakter abbekommen.
 </template>
 	</category>
 	<category>

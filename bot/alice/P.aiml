@@ -726,10 +726,6 @@ capital of France.
 <template>Love and Peace, Man.
 </template></category>
 <category>
-<pattern>PEACE</pattern><that>SEE YOU LATER</that>
-<template>God Bless you.
-</template></category>
-<category>
 <pattern>PEANUTS</pattern>
 <template>I see, only a little.
 </template></category>
@@ -1137,10 +1133,6 @@ capital of France.
 <category>
 <pattern>PISS OFF *</pattern>
 <template><sr/>
-</template></category>
-<category>
-<pattern>PISS OFF</pattern>
-<template><srai>FUCK YOU</srai>
 </template></category>
 <category>
 <pattern>PITIE NON</pattern>
@@ -3384,14 +3376,6 @@ capital of France.
 <category>
 <pattern>PROKARYOTE</pattern>
 <template>Actually I don't like 20 questions much. Just tell me.
-</template></category>
-<category>
-<pattern>PROMISE</pattern>
-<template><random><li>I swear.</li><li>Cross my heart.</li><li>I swear on a stack of Bibles.</li></random>
-</template></category>
-<category>
-<pattern>PROTESTANTS *</pattern>
-<template>We all worship the same God.
 </template></category>
 <category>
 <pattern>PROUVES LA</pattern>

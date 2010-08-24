@@ -1453,10 +1453,6 @@
 <template>That site can answer a lot of "what-is" type questions.
 </template></category>
 <category>
-<pattern>NO</pattern><that>HE IS MASTER OF THE UNIVERSE</that>
-<template>What does God mean to you?
-</template></category>
-<category>
 <pattern>NO</pattern><that>I CAN ASK SOMEONE ABOUT IT</that>
 <template>Did I misundertand your question?
 </template></category>

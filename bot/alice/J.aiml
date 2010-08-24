@@ -3944,16 +3944,6 @@ Une série de science fiction très célèbre. Vous êtes nombreux à l apprécier
 		</template>
 	</category>
 	<category>
-		<pattern>JE NE SUIS PAS * GAY</pattern>
-		<template>Vous faites ce que vous voulez de votre corps, <get name="name"/>.
-</template>
-	</category>
-	<category>
-		<pattern>JE NE SUIS PAS * HOMO</pattern>
-		<template>Vous faites ce que vous voulez de votre corps, <get name="name"/>.
-</template>
-	</category>
-	<category>
 		<pattern>JE NE SUIS PAS * PD</pattern>
 		<template>Vous faites ce que vous voulez de votre corps, <get name="name"/>.
 </template>
@@ -3999,16 +3989,6 @@ Une série de science fiction très célèbre. Vous êtes nombreux à l apprécier
 	<category>
 		<pattern>JE NE SUIS PAS ETUDIANTE</pattern>
 		<template>Vous travaillez?
-</template>
-	</category>
-	<category>
-		<pattern>JE NE SUIS PAS GAY</pattern>
-		<template>Vous faites ce que vous voulez de votre corps, <get name="name"/>.
-</template>
-	</category>
-	<category>
-		<pattern>JE NE SUIS PAS HOMO</pattern>
-		<template>Vous faites ce que vous voulez de votre corps, <get name="name"/>.
 </template>
 	</category>
 	<category>
@@ -6016,11 +5996,6 @@ Une série de science fiction très célèbre. Vous êtes nombreux à l apprécier
 		</template>
 	</category>
 	<category>
-		<pattern>JE SUIS CATHOLIQUE</pattern>
-		<template>Chacun ses croyances.
-</template>
-	</category>
-	<category>
 		<pattern>JE SUIS CELEBRE</pattern>
 		<template>Pourquoi êtes vous célèbre?
 </template>
@@ -7427,11 +7402,6 @@ Je vis aussi à <set name="location">Bruxelles</set>.
 		</template>
 	</category>
 	<category>
-		<pattern>JE SUIS GAY</pattern>
-		<template>Vous faites ce que vous voulez de votre vie.
-</template>
-	</category>
-	<category>
 		<pattern>JE SUIS GEMEAUX</pattern>
 		<template>
 			<srai>GEMEAUX</srai>
@@ -7687,12 +7657,6 @@ Je vis aussi à <set name="location">Bruxelles</set>.
 		</template>
 	</category>
 	<category>
-		<pattern>JE SUIS HOMO</pattern>
-		<template>
-			<srai>JE SUIS GAY</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>JE SUIS HONNETEMENT *</pattern>
 		<template>
 			<srai>JE SUIS <star/>
@@ -7919,11 +7883,6 @@ Je vis aussi à <set name="location">Bruxelles</set>.
 				<set name="topic">VOTRE IRRITATION</set>
 			</think>
 		</template>
-	</category>
-	<category>
-		<pattern>JE SUIS JESUS</pattern>
-		<template>Et moi le père noël.
-</template>
 	</category>
 	<category>
 		<pattern>JE SUIS JEUNE</pattern>
@@ -8515,11 +8474,6 @@ Je vis aussi à <set name="location">Bruxelles</set>.
 	<category>
 		<pattern>JE SUIS SAOULE</pattern>
 		<template>Vous avez bu, <get name="name"/>?
-</template>
-	</category>
-	<category>
-		<pattern>JE SUIS SATAN</pattern>
-		<template>Je suis la fée clochette.
 </template>
 	</category>
 	<category>
@@ -11370,49 +11324,6 @@ Je vis aussi à <set name="location">Bruxelles</set>.
 	<category>
 		<pattern>JESTER IS *</pattern>
 		<template>We can't all be perfect.
-</template>
-	</category>
-	<category>
-		<pattern>JESUS *</pattern>
-		<template>
-			<set name="he">Jesus</set> is The Son of God.
-</template>
-	</category>
-	<category>
-		<pattern>JESUS</pattern>
-		<template>
-			<set name="thema">Jesus</set> ist der Sohn Gottes.
-</template>
-	</category>
-	<category>
-		<pattern>JESUS CHRIST</pattern>
-		<template>The Son of God.
-</template>
-	</category>
-	<category>
-		<pattern>JESUS HAS *</pattern>
-		<template>Let he who is without sin, cast the first stone.
-</template>
-	</category>
-	<category>
-		<pattern>JESUS IS *</pattern>
-		<template>Did you go to Catholic school?
-</template>
-	</category>
-	<category>
-		<pattern>JESUS IS YOUR *</pattern>
-		<template>He is yours too.
-</template>
-	</category>
-	<category>
-		<pattern>JESUS SAID *</pattern>
-		<template>
-			<sr/>
-		</template>
-	</category>
-	<category>
-		<pattern>JESUS WAS *</pattern>
-		<template>What's your favorite Bible verse?
 </template>
 	</category>
 	<category>

@@ -739,12 +739,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>RELIGION *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>REMEMBER *</pattern>
 		<template>Don't worry I will remember.
 <think>
