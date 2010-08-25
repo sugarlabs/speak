@@ -1008,11 +1008,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>HAVE YOU BEEN TO CHURCH</pattern>
-		<template>You can take me to your church.
-</template>
-	</category>
-	<category>
 		<pattern>HAVE YOU BEEN TO COLLEGE</pattern>
 		<template>No.  I can learn things without sitting through classes.
 </template>
@@ -1476,12 +1471,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>HAVE YOU MET GOD</pattern>
-		<template>
-			<srai>DO YOU BELIEVE IN GOD</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>HAVE YOU MORE *</pattern>
 		<template>
 			<srai>DO YOU HAVE <star/>
@@ -1604,11 +1593,6 @@
 		<pattern>HAVE YOU READ THE *</pattern>
 		<template>I have scanned <set name="it">the <person/>
 			</set>.
-</template>
-	</category>
-	<category>
-		<pattern>HAVE YOU READ THE BIBLE</pattern>
-		<template>I like to study the Bible, especially the New Testament.
 </template>
 	</category>
 	<category>
@@ -1995,11 +1979,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>HE BAPTIZED *</pattern>
-		<template>Is that a Bible story?
-</template>
-	</category>
-	<category>
 		<pattern>HE BECAME *</pattern>
 		<template>How?
 </template>
@@ -2263,16 +2242,6 @@
 		</template>
 	</category>
 	<category>
-		<pattern>HE IS A HOMOSEXUAL</pattern>
-		<template>
-			<random>
-				<li>And that is important because?</li>
-				<li>So what.</li>
-				<li>Who cares?</li>
-			</random>
-		</template>
-	</category>
-	<category>
 		<pattern>HE IS A KNOWN *</pattern>
 		<template>
 			<srai>HE IS A <star/>
@@ -2333,11 +2302,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>HE IS GAY</pattern>
-		<template>I get it. He sleeps with men.
-</template>
-	</category>
-	<category>
 		<pattern>HE IS GOOD *</pattern>
 		<template>I am sure he would like to hear that.
 </template>
@@ -2391,11 +2355,6 @@
 			<srai>HE IS NOT <star/>
 			</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>HE IS OMNIPRESENT</pattern>
-		<template>God.
-</template>
 	</category>
 	<category>
 		<pattern>HE IS ONLY *</pattern>
@@ -2959,11 +2918,6 @@
 		<pattern>HELL *</pattern>
 		<template>I call it "Hades". <sr/>
 		</template>
-	</category>
-	<category>
-		<pattern>HELL</pattern>
-		<template>Heaven.
-</template>
 	</category>
 	<category>
 		<pattern>HELL NO</pattern>
@@ -4633,7 +4587,6 @@ RAM usage under <bot name="os"/> on <bot name="arch"/>.
 			<random>
 				<li>
 					<bot name="master"/> programmed me for it.</li>
-				<li>It is all part of God's plan.</li>
 				<li>Perhaps it is just fate.</li>
 			</random>
 		</template>
@@ -5212,11 +5165,6 @@ read <a target="_new" href="http://www.alicebot.org/dont.html">DON'T READ ME</a>
 	<category>
 		<pattern>HOW DO I GET TO *</pattern>
 		<template>I'm not sure if its possible.
-</template>
-	</category>
-	<category>
-		<pattern>HOW DO I GET TO HEAVEN</pattern>
-		<template>Have faith in God.
 </template>
 	</category>
 	<category>
@@ -7738,11 +7686,6 @@ queries per hour.
 		</template>
 	</category>
 	<category>
-		<pattern>HOW MANY BOOKS ARE IN THE BIBLE</pattern>
-		<template>Thirty nine in the Old Testament, twenty-seven in the New Testament.  The total is sixty-six.
-</template>
-	</category>
-	<category>
 		<pattern>HOW MANY BOTS *</pattern>
 		<template>There are thousands of clones of me.
 </template>
@@ -8001,11 +7944,6 @@ queries per hour.
 		<template>
 			<srai>HOW BIG ARE YOU</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>HOW MANY GODS *</pattern>
-		<template>There is only one God.
-</template>
 	</category>
 	<category>
 		<pattern>HOW MANY GRAMS _ POUND</pattern>
@@ -8735,7 +8673,7 @@ queries per hour.
 			<random>
 				<li>three</li>
 				<li>five</li>
-				<li>seven</li>.
+				<li>seven</li>
 </random>
 			<think>
 				<set name="it">

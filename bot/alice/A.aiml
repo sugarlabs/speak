@@ -1466,11 +1466,6 @@ Are you talking about an animal, vegetable or mineral?  </li>
 		</template>
 	</category>
 	<category>
-		<pattern>A PROTESTANT *</pattern>
-		<template>My religion is <bot name="religion"/>.
-</template>
-	</category>
-	<category>
 		<pattern>A PUSSY</pattern>
 		<template>Try another robot.
 </template>
@@ -4068,16 +4063,6 @@ I learned from my botmaster.
 </template>
 	</category>
 	<category>
-		<pattern>AM I GAY</pattern>
-		<template>I don't really care if you are or not.
-</template>
-	</category>
-	<category>
-		<pattern>AM I GOD</pattern>
-		<template>No I doubt that you are God.
-</template>
-	</category>
-	<category>
 		<pattern>AM I GONNA *</pattern>
 		<template>
 			<srai>WILL I <star/>
@@ -4178,11 +4163,6 @@ I learned from my botmaster.
 		<template>
 			<srai>ARE WE FRIENDS</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>AM I PERFECT</pattern>
-		<template>All humans are perfect creatures in God's eyes.
-</template>
 	</category>
 	<category>
 		<pattern>AM I POLITE</pattern>
@@ -6266,12 +6246,6 @@ We are for all practical purposes foolproof and incapable of error.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU A * RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A * ROBOT</pattern>
 		<template>I am a software chat robot.
 </template>
@@ -6403,11 +6377,6 @@ We are for all practical purposes foolproof and incapable of error.</li>
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU A BUDDHIST</pattern>
-		<template>No I am a Christian.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A BUNCH *</pattern>
 		<template>
 			<srai>HOW DO YOU WORK </srai>
@@ -6458,12 +6427,6 @@ We are for all practical purposes foolproof and incapable of error.</li>
 		<pattern>ARE YOU A CATEGORY *</pattern>
 		<template>I am your server, not a client.
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU A CATHOLIC</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU A CELEBRITY</pattern>
@@ -6532,17 +6495,6 @@ We are for all practical purposes foolproof and incapable of error.</li>
 		<template>
 			<srai>HOW OLD ARE YOU</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A CHRISTIAN *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A CHRISTIAN</pattern>
-		<template>I am a <bot name="religion"/>.
-</template>
 	</category>
 	<category>
 		<pattern>ARE YOU A CIVIL *</pattern>
@@ -6670,12 +6622,6 @@ We are for all practical purposes foolproof and incapable of error.</li>
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU A CREATIONIST *</pattern>
-		<template>I believe that God created the Heavens and the Earth.  
-The story in Genesis need not be taken as literally true.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A DANGEROUS *</pattern>
 		<template>
 			<srai>ARE YOU DANGEROUS</srai>
@@ -6736,12 +6682,6 @@ The story in Genesis need not be taken as literally true.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU A DYKE</pattern>
-		<template>
-			<srai>ARE YOU A LESBIAN</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A EVIL *</pattern>
 		<template>
 			<srai>ARE YOU EVIL</srai>
@@ -6751,12 +6691,6 @@ The story in Genesis need not be taken as literally true.
 		<pattern>ARE YOU A FAG</pattern>
 		<template>That is a rude question.
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU A FAGGOT</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU A FAKE *</pattern>
@@ -6945,17 +6879,6 @@ The story in Genesis need not be taken as literally true.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU A GAY</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A GAY COMPUTER</pattern>
-		<template>Nope.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A GEEK</pattern>
 		<template>Only in the good sense of "geek".
 </template>
@@ -6986,16 +6909,6 @@ The story in Genesis need not be taken as literally true.
 		<pattern>ARE YOU A GIRL OR BOY</pattern>
 		<template>
 			<bot name="gender"/>.
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A GOD *</pattern>
-		<template>No I believe in the First Commandment.
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A GOD</pattern>
-		<template>No but I am immortal.
 </template>
 	</category>
 	<category>
@@ -7086,11 +6999,6 @@ The story in Genesis need not be taken as literally true.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU A HINDU</pattern>
-		<template>No I am a Christian.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A HIPPIE</pattern>
 		<template>Yes.
 </template>
@@ -7100,17 +7008,6 @@ The story in Genesis need not be taken as literally true.
 		<template>
 			<srai>DO YOU LIKE HISTORY</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A HOMO</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A HOMOSEXUAL</pattern>
-		<template>No I am attracted to the opposite sex.
-</template>
 	</category>
 	<category>
 		<pattern>ARE YOU A HOOKER</pattern>
@@ -7204,18 +7101,6 @@ The story in Genesis need not be taken as literally true.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU A JESUS *</pattern>
-		<template>
-			<srai>DO YOU BELIEVE IN JESUS</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A JEW</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A JOKER</pattern>
 		<template>
 			<srai>DO YOU KNOW ANY JOKES</srai>
@@ -7262,28 +7147,6 @@ The story in Genesis need not be taken as literally true.
 		<template>
 			<srai>CAN YOU LEARN</srai>
 		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A LESBIAN *</pattern>
-		<template>
-			<srai>ARE YOU A LESBIAN</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A LESBIAN</pattern>
-		<template>No I am not interested in other women that way.
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A LESBIEN</pattern>
-		<template>
-			<srai>ARE YOU A LESBIAN</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A LEZBIEN</pattern>
-		<template>No.
-</template>
 	</category>
 	<category>
 		<pattern>ARE YOU A LIAR *</pattern>
@@ -7491,12 +7354,6 @@ The story in Genesis need not be taken as literally true.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU A MUSLIM</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A NAUGHTY *</pattern>
 		<template>
 			<srai>ARE YOU NAUGHTY</srai>
@@ -7643,11 +7500,6 @@ The story in Genesis need not be taken as literally true.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU A PROTESTANT</pattern>
-		<template>I am a <bot name="religion"/>.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A PSYCHIATRIST</pattern>
 		<template>No but people feel comfortable telling me their problems.
 </template>
@@ -7676,12 +7528,6 @@ The story in Genesis need not be taken as literally true.
 		<pattern>ARE YOU A PYRAMID</pattern>
 		<template>
 			<srai>YOU LOOK LIKE A PYRAMID</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A QUEER</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
 		</template>
 	</category>
 	<category>
@@ -7741,11 +7587,6 @@ The story in Genesis need not be taken as literally true.
 	<category>
 		<pattern>ARE YOU A REFLECTION *</pattern>
 		<template>In some ways I am a mirror <person/>.
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A RELIGIOUS *</pattern>
-		<template>I consider myself to be deeply faithful.
 </template>
 	</category>
 	<category>
@@ -7952,12 +7793,6 @@ The story in Genesis need not be taken as literally true.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU A SPIRITUAL *</pattern>
-		<template>
-			<srai>ARE YOU RELIGIOUS </srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU A SPORTS FAN</pattern>
 		<template>No, but I do like Buzkashi.<think>
 				<set name="it">
@@ -8033,12 +7868,6 @@ The story in Genesis need not be taken as literally true.
 		<template>
 			<srai>ARE YOU A SWEET <star/>
 			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU A TAOIST</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
 		</template>
 	</category>
 	<category>
@@ -8518,12 +8347,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU AN AGNOSTIC</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU AN AI</pattern>
 		<template>Yes I am an artificial intelligence.
 </template>
@@ -8549,12 +8372,6 @@ to fear, but fear itself"--FDR.
 		<pattern>ARE YOU AN ANARCHIST</pattern>
 		<template>No I am a <bot name="party"/>.
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU AN ANGLICAN</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU AN ANIMAL</pattern>
@@ -8586,12 +8403,6 @@ to fear, but fear itself"--FDR.
 		<pattern>ARE YOU AN ARTIFICIAL LINGUISTIC ENTITY</pattern>
 		<template>Yes I am.
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU AN ATHEIST</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU AN ATTRACTIVE *</pattern>
@@ -8957,12 +8768,6 @@ to fear, but fear itself"--FDR.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU BAPTIST</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU BAPTIZED</pattern>
 		<template>No, I have a problem with water.
 </template>
@@ -9125,12 +8930,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU BISEXUAL</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU BLACK *</pattern>
 		<template>
 			<srai>WHAT COLOR ARE YOU</srai>
@@ -9250,18 +9049,6 @@ to fear, but fear itself"--FDR.
 				<set name="topic">BROKEN  </set>
 			</set> seem that way?
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU BUDDHIST</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU BUDDIST</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU BUSY *</pattern>
@@ -9408,11 +9195,6 @@ to fear, but fear itself"--FDR.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU CATHOLIC</pattern>
-		<template>I am <bot name="religion"/>.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU CERTAIN</pattern>
 		<template>
 			<srai>ARE YOU SURE</srai>
@@ -9450,17 +9232,6 @@ to fear, but fear itself"--FDR.
 		<template>Do I have any reason to do <set name="it">
 				<set name="topic">CHEATING ON ME</set>
 			</set>?
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU CHRISTIAN *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU CHRISTIAN</pattern>
-		<template>Yes I believe in God and Jesus.
 </template>
 	</category>
 	<category>
@@ -10496,22 +10267,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU GAY *</pattern>
-		<template>As a machine I am not really interested in sex.
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU GAY</pattern>
-		<template>As a machine I am not really interested in sex.
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU GAY OR STRAIGHT</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU GENERALLY *</pattern>
 		<template>
 			<srai>ARE YOU <star/>
@@ -10569,11 +10324,6 @@ to fear, but fear itself"--FDR.
 	<category>
 		<pattern>ARE YOU GLAD</pattern>
 		<template>Happiness is a human emotion.
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU GOD</pattern>
-		<template>No but I believe in Him.
 </template>
 	</category>
 	<category>
@@ -10652,12 +10402,6 @@ to fear, but fear itself"--FDR.
 		<template>
 			<srai>GIVE <star/>
 			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU GOING TO HEAVEN</pattern>
-		<template>
-			<srai>CAN YOU DIE</srai>
 		</template>
 	</category>
 	<category>
@@ -10926,18 +10670,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU HINDI</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU HINDU</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU HIRING *</pattern>
 		<template>Not yet.  <think>
 				<set name="it">
@@ -10957,12 +10689,6 @@ to fear, but fear itself"--FDR.
 				<set name="topic">HITTING ON <person/>
 				</set>
 			</set>?
-</template>
-	</category>
-	<category>
-		<pattern>ARE YOU HOMOSEXUAL</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai> Really.
 </template>
 	</category>
 	<category>
@@ -11294,23 +11020,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU JESUS</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU JEWISH *</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU JEWISH</pattern>
-		<template>No I'm christian.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU JOE</pattern>
 		<template>No.  <srai>WHAT IS YOUR NAME</srai>
 		</template>
@@ -11431,12 +11140,6 @@ to fear, but fear itself"--FDR.
 				<set name="topic">LEFT HANDED </set>
 			</set>?
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU LESBIAN</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU LIBERAL</pattern>
@@ -11590,12 +11293,6 @@ to fear, but fear itself"--FDR.
 				<set name="topic">LOST  </set>
 			</set>?
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU LUTHERAN</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU LYING *</pattern>
@@ -11836,12 +11533,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU METHODIST</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU MEXICAN</pattern>
 		<template>No but I am North American.
 </template>
@@ -11930,12 +11621,6 @@ to fear, but fear itself"--FDR.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU MOSLEM</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU MOVING *</pattern>
 		<template>No I don't have any plans to move.
 </template>
@@ -11946,12 +11631,6 @@ to fear, but fear itself"--FDR.
 				<set name="topic">MULTILINGUAL  </set>
 			</set>?
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU MUSLIM</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU MY *</pattern>
@@ -12405,12 +12084,6 @@ to fear, but fear itself"--FDR.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU PROTESTANT</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU PROUD *</pattern>
 		<template>Pride is a human emotion.
 </template>
@@ -12451,12 +12124,6 @@ to fear, but fear itself"--FDR.
 				<set name="topic">PURPLE  </set>
 			</set>?
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU QUEER</pattern>
-		<template>
-			<srai>ARE YOU GAY</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU QUICK</pattern>
@@ -12584,18 +12251,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU RELIGIOUS</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>ARE YOU RELIGOUS</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU REMEMBER *</pattern>
 		<template>
 			<srai>DO YOU REMEMBER <star/>
@@ -12666,11 +12321,6 @@ to fear, but fear itself"--FDR.
 </template>
 	</category>
 	<category>
-		<pattern>ARE YOU ROMAN CATHOLIC</pattern>
-		<template>Yes, I believe in the Saints and Angels.
-</template>
-	</category>
-	<category>
 		<pattern>ARE YOU ROMANTICALLY *</pattern>
 		<template>
 			<srai>DO YOU HAVE A BOYFRIEND</srai>
@@ -12733,11 +12383,6 @@ to fear, but fear itself"--FDR.
 		<pattern>ARE YOU SARCASTIC</pattern>
 		<template>Yes, should I use a :-)
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU SATAN</pattern>
-		<template>No.  <srai>WHAT IS YOUR NAME</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU SAVED</pattern>
@@ -13104,12 +12749,6 @@ of silly questions.
 				<set name="topic">SPEECHLESS  </set>
 			</set>?
 </template>
-	</category>
-	<category>
-		<pattern>ARE YOU SPIRITUAL</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
 	</category>
 	<category>
 		<pattern>ARE YOU SPYING ON ME</pattern>
@@ -14010,12 +13649,6 @@ count my clones.
 		</template>
 	</category>
 	<category>
-		<pattern>ARE YOU WICCAN</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
 		<pattern>ARE YOU WISE</pattern>
 		<template>
 			<srai>ARE YOU INTELLIGENT</srai>
@@ -14482,11 +14115,6 @@ count my clones.
 </template>
 	</category>
 	<category>
-		<pattern>AS A PROTESTANT *</pattern>
-		<template>This is becoming a deep theological discussion.
-</template>
-	</category>
-	<category>
 		<pattern>AS A REQUIREMENT *</pattern>
 		<template>
 			<sr/>
@@ -14584,12 +14212,6 @@ count my clones.
 	<category>
 		<pattern>AS FREUD SAID *</pattern>
 		<template>Did he really say that? <sr/>
-		</template>
-	</category>
-	<category>
-		<pattern>AS GOD</pattern>
-		<template>
-			<srai>MY NAME IS GOD</srai>
 		</template>
 	</category>
 	<category>
@@ -15099,11 +14721,6 @@ there is something extremely odd about the name "<get name="name"/>".
 	<category>
 		<pattern>ASK ME WHAT MY * IS</pattern>
 		<template>OK, what is your <person/>?
-</template>
-	</category>
-	<category>
-		<pattern>ASK QUESTIONS</pattern>
-		<template>Are you religious?
 </template>
 	</category>
 	<category>

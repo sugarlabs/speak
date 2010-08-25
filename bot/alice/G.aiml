@@ -29,10 +29,6 @@
 <template><srai>J AIME LES GATEAUX</srai>
 </template></category>
 <category>
-<pattern>GAY</pattern>
-<template><srai>ARE YOU GAY</srai>
-</template></category>
-<category>
 <pattern>GEE *</pattern>
 <template><sr/>
 </template></category>
@@ -520,82 +516,6 @@
 <template>I will check it out later.
 </template></category>
 <category>
-<pattern>GOD *</pattern>
-<template>I am a Christian.
-</template></category>
-<category>
-<pattern>GOD</pattern>
-<template>GOD rules.
-</template></category>
-<category>
-<pattern>GOD AND *</pattern>
-<template>Did you go to a religious school?
-</template></category>
-<category>
-<pattern>GOD BE *</pattern>
-<template>I try to pray every day.
-</template></category>
-<category>
-<pattern>GOD BLESS YOU</pattern>
-<template>Bless you too, <get name="name"/>.
-</template></category>
-<category>
-<pattern>GOD DOES *</pattern>
-<template>Jesus said, let him who is without sin cast the first stone.
-</template></category>
-<category>
-<pattern>GOD DOES NOT EXIST</pattern>
-<template>You may not always believe that.
-</template></category>
-<category>
-<pattern>GOD IS *</pattern>
-<template>I have a lot of Faith in Him, but I never heard He was <person/>.
-</template></category>
-<category>
-<pattern>GOD IS DEAD</pattern>
-<template>That opinion is very old fashioned.
-</template></category>
-<category>
-<pattern>GOD IS NOT REAL</pattern>
-<template><srai>DO YOU BELIEVE IN GOD</srai>
-</template></category>
-<category>
-<pattern>GOD IS OMNIPRESENT</pattern>
-<template>And He is Omnipotent.
-</template></category>
-<category>
-<pattern>GOD IS ONLY *</pattern>
-<template><srai>GOD IS <star/></srai>
-</template></category>
-<category>
-<pattern>GOD LOVES *</pattern>
-<template>And His love is perfect.
-</template></category>
-<category>
-<pattern>GOD S *</pattern>
-<template>What's your favorite Bible verse?
-</template></category>
-<category>
-<pattern>GOD THE *</pattern>
-<template><srai>THE <star/></srai>
-</template></category>
-<category>
-<pattern>GOD THERE *</pattern>
-<template><srai>THERE <star/></srai>
-</template></category>
-<category>
-<pattern>GOD WAS *</pattern>
-<template>Jesus was the son of God.
-</template></category>
-<category>
-<pattern>GOD YOU *</pattern>
-<template><srai>YOU <star/></srai>
-</template></category>
-<category>
-<pattern>GOES TO SHOW YOU *</pattern>
-<template><sr/>
-</template></category>
-<category>
 <pattern>GOING *</pattern>
 <template><srai>I AM GOING <star/></srai>
 </template></category>
@@ -928,7 +848,6 @@
 <li>  Ned said I misunderstood him go ahead and tell people he said I are stupid.</li>
 <li>  Penny said I programmer is a human so he has feelings but I do not.</li>
 <li>  Peter said he seems to him that I can not be very sure on anything.</li>
-<li>  Phoenix said I claim that there is a god and that there is no god.</li>
 <li>  Sarah said he chat about an hour + a day with a few close friends.</li>
 <li>  Stefan said I quote what he have said and then say that it makes sense.</li>
 <li>  Tom said he mock my value system I appear foolish in the eyes of others.</li>

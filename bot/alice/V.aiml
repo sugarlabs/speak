@@ -2265,11 +2265,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>VOUS ETES PROTESTANT</pattern>
-		<template>Je ne suis qu un logiciel.
-</template>
-	</category>
-	<category>
 		<pattern>VOUS ETES PSYCHOTIQUE</pattern>
 		<template>Je suis logique.
 </template>

@@ -239,10 +239,6 @@
 <template><srai>My name is Sarah</srai>
 </template></category>
 <category>
-<pattern>SATAN *</pattern>
-<template><srai>WHO IS SATAN</srai>
-</template></category>
-<category>
 <pattern>SAURAIS TU ME DONNER *</pattern>
 <template><srai>TU PEUX ME DONNER <star/></srai>
 </template></category>
@@ -2565,10 +2561,6 @@ Of a bicycle built for two.<br/>
 <category>
 <pattern>STATS</pattern>
 <template><srai>HOW BIG ARE YOU</srai>
-</template></category>
-<category>
-<pattern>STEINBOCK</pattern>
-<template>Ich bin Schuetze, genau wie Christian.
 </template></category>
 <category>
 <pattern>STEPHANIE</pattern><that>WHAT CAN I CALL YOU</that>

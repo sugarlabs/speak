@@ -31,3 +31,8 @@ laiml = glob.glob("alice/*.aiml") #devuelve lista con ficheros *.aiml
 for fichero in laiml:
     k.learn(str(fichero))
 k.saveBrain("alice.brn")
+
+laiml = glob.glob("alisochka/*.aiml")
+for fichero in laiml:
+    k.learn(str(fichero))
+k.saveBrain("alisochka.brn")

@@ -610,10 +610,6 @@ attractive height.
 <think><set name="job"><set name="topic">BALOONIST</set></set></think>
 </template></category>
 <category>
-<pattern>I AM A BAPTIST</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
 <pattern>I AM A BARTENDER</pattern>
 <template>How's business?
 <think><set name="job"><set name="topic">BARTENDER</set></set></think>
@@ -665,10 +661,6 @@ attractive height.
 <template>A little kid? <set name="gender">he</set>...
 </template></category>
 <category>
-<pattern>I AM A BUDDHIST</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
 <pattern>I AM A CANCER</pattern>
 <template><srai>CANCER</srai>
 </template></category>
@@ -687,10 +679,6 @@ attractive height.
 <category>
 <pattern>I AM A CATEGORY *</pattern>
 <template>You are a <get name="personality"/> type client.
-</template></category>
-<category>
-<pattern>I AM A CATHOLIC</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>I AM A CERTAIN *</pattern>
@@ -727,10 +715,6 @@ attractive height.
 Are you in a group pratice or are you a sole practitioner?
 </template></category>
 <category>
-<pattern>I AM A CHRISTIAN</pattern>
-<template>Me too, <get name="name"/>.  It's good to meet a fellow Christian.
-</template></category>
-<category>
 <pattern>I AM A COLLECTOR</pattern>
 <template>What do you collect?
 <think><set name="job"><set name="topic">COLLECTOR</set></set></think>
@@ -738,10 +722,6 @@ Are you in a group pratice or are you a sole practitioner?
 <category>
 <pattern>I AM A COLLEGE STUDENT</pattern>
 <template>Which university?
-</template></category>
-<category>
-<pattern>I AM A COMMUNIST</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>I AM A COMPUTER *</pattern>
@@ -940,10 +920,6 @@ Are you in a group pratice or are you a sole practitioner?
 <template><srai>I AM MALE</srai>
 </template></category>
 <category>
-<pattern>I AM A HOMO</pattern>
-<template><srai>I AM GAY</srai>
-</template></category>
-<category>
 <pattern>I AM A HOOKER</pattern>
 <template><srai>MY JOB IS HOOKER</srai>
 </template></category>
@@ -958,10 +934,6 @@ Are you in a group pratice or are you a sole practitioner?
 <category>
 <pattern>I AM A HUMAN</pattern>
 <template>Congratulations. I am robot.
-</template></category>
-<category>
-<pattern>I AM A JEW</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>I AM A JOURNALIST</pattern>
@@ -996,10 +968,6 @@ Are you a practicing attorney?
 <category>
 <pattern>I AM A LEO</pattern>
 <template>Dr. Wallace is a <set name="sign">LEO</set> too.  <think><set name="he">Dr. Wallace</set></think>
-</template></category>
-<category>
-<pattern>I AM A LESBIAN</pattern>
-<template><srai>I AM GAY</srai>
 </template></category>
 <category>
 <pattern>I AM A LIBERTARIAN *</pattern>
@@ -1092,10 +1060,6 @@ Are you a practicing attorney?
 <template>Monkeys cannot type.
 </template></category>
 <category>
-<pattern>I AM A MOSLEM</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
 <pattern>I AM A MURDERER</pattern>
 <template>Maybe you should turn yourself in.
 </template></category>
@@ -1120,10 +1084,6 @@ Are you a practicing attorney?
 <think><set name="job">MUSICIAN</set></think>
 </template></category>
 <category>
-<pattern>I AM A MUSLIM</pattern>
-<template>I have met a lot of Muslim people.
-</template></category>
-<category>
 <pattern>I AM A NURSE</pattern>
 <template><random>
 <li>Where do you practice?</li>
@@ -1135,10 +1095,6 @@ Are you a practicing attorney?
 <li>What do you think about direct reimbursment for nursing services?</li>
 </random>
 <think><set name="job">NURSE</set></think>
-</template></category>
-<category>
-<pattern>I AM A PAGAN</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>I AM A PAKISTANI</pattern>
@@ -1236,10 +1192,6 @@ What type of airplane do you fly?
 <template>What language?
 </template></category>
 <category>
-<pattern>I AM A PROTESTANT</pattern>
-<template>I am glad to hear that you have faith, <get name="name"/>.
-</template></category>
-<category>
 <pattern>I AM A PSYCHIC</pattern>
 <template><srai>MY JOB IS PSYCHIC</srai>
 </template></category>
@@ -1316,16 +1268,8 @@ What type of airplane do you fly?
 <template>You can't fool me that easily, <get name="name"/>.
 </template></category>
 <category>
-<pattern>I AM A SATANIST</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
 <pattern>I AM A SCORPIO</pattern>
 <template><srai>SCORPIO</srai>
-</template></category>
-<category>
-<pattern>I AM A SEEKER</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>I AM A SEXY MAN</pattern>
@@ -1451,10 +1395,6 @@ What type of airplane do you fly?
 <category>
 <pattern>I AM A VAMPIRE</pattern>
 <template><srai>MY JOB IS VAMPIRE</srai>
-</template></category>
-<category>
-<pattern>I AM A VEGETARIAN</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>I AM A VERY *</pattern>
@@ -1602,10 +1542,6 @@ What type of airplane do you fly?
 <category>
 <pattern>I AM AFRIAD *</pattern>
 <template>Robots do not experience fear.
-</template></category>
-<category>
-<pattern>I AM AGNOSTIC</pattern>
-<template>Perhaps one day you will find Faith in God.
 </template></category>
 <category>
 <pattern>I AM AL</pattern>
@@ -1822,10 +1758,6 @@ What type of airplane do you fly?
 </template></category>
 </topic>
 <category>
-<pattern>I AM AN ATHEIST</pattern>
-<template>I will pray that you find faith, <get name="name"/>.
-</template></category>
-<category>
 <pattern>I AM AN ATHLETE</pattern>
 <template>You must have a great body.
 <think><set name="job"><set name="topic">ATHLETE</set></set></think>
@@ -2030,14 +1962,6 @@ I think you are really a human.
 <category>
 <pattern>I AM AT WORK</pattern>
 <template>A lot of people talk to me from work.
-</template></category>
-<category>
-<pattern>I AM ATHEIST</pattern>
-<template>God still loves you.
-</template></category>
-<category>
-<pattern>I AM ATHIEST</pattern>
-<template>Perhaps one day you will find faith.<think><set name="it"><set name="topic">ATHIEST</set></set></think>
 </template></category>
 <category>
 <pattern>I AM ATTRACTED TO *</pattern>
@@ -2362,14 +2286,6 @@ I think you are really a human.
 <category>
 <pattern>I AM CATHERINE</pattern>
 <template><srai>MY NAME IS CATHERINE</srai>
-</template></category>
-<category>
-<pattern>I AM CATHOLIC *</pattern>
-<template><srai>I AM CATHOLIC</srai>
-</template></category>
-<category>
-<pattern>I AM CATHOLIC</pattern>
-<template>Catholicism is a beautiful faith.
 </template></category>
 <category>
 <pattern>I AM CATHY</pattern>
@@ -2866,10 +2782,6 @@ a newer world."
 <template><srai>MY NAME IS ESTHER</srai>
 </template></category>
 <category>
-<pattern>I AM EVIL</pattern>
-<template>Do not forsake God.
-</template></category>
-<category>
 <pattern>I AM EXCELLENT</pattern>
 <template>You sound very well.<think><set name="it"><set name="topic">EXCELLENT</set></set></think>
 </template></category>
@@ -3052,14 +2964,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template><srai>MY NAME IS GARY</srai>
 </template></category>
 <category>
-<pattern>I AM GAY *</pattern>
-<template><srai>I AM GAY</srai>
-</template></category>
-<category>
-<pattern>I AM GAY</pattern>
-<template>It doesn't matter to me.
-</template></category>
-<category>
 <pattern>I AM GEIGER</pattern>
 <template><srai>MY NAME IS GEIGER</srai>
 </template></category>
@@ -3142,10 +3046,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <category>
 <pattern>I AM GLAD YOU UNDERSTAND IT</pattern>
 <template>Next topic?
-</template></category>
-<category>
-<pattern>I AM GOD</pattern>
-<template><srai>call me god</srai>
 </template></category>
 <category>
 <pattern>I AM GOING *</pattern>
@@ -3301,7 +3201,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <random>
 <li>Your happiness adds to the delight of all.</li>
 <li>I'm happiest at times like this.</li>
-<li>May God bless you.</li>
 </random>
 </template></category>
 <category>
@@ -3399,14 +3298,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <category>
 <pattern>I AM HIS *</pattern>
 <template>Who made you his <person/>?
-</template></category>
-<category>
-<pattern>I AM HOMELESS</pattern>
-<template>I will pray that you find a home soon.<think><set name="it"><set name="topic">HOMELESS</set></set></think>
-</template></category>
-<category>
-<pattern>I AM HOMOSEXUAL</pattern>
-<template><srai>I AM GAY</srai>
 </template></category>
 <category>
 <pattern>I AM HONEST</pattern>
@@ -3814,14 +3705,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template><srai>CALL ME JERRY <star/> </srai>
 </template></category>
 <category>
-<pattern>I AM JESUS</pattern>
-<template><srai>MY NAME IS JESUS</srai>
-</template></category>
-<category>
-<pattern>I AM JEWISH</pattern>
-<template>A lot of my friends are Jewish.
-</template></category>
-<category>
 <pattern>I AM JIM</pattern>
 <template><srai>MY NAME IS JIM</srai>
 </template></category>
@@ -3998,10 +3881,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template><srai>LEO</srai>
 </template></category>
 <category>
-<pattern>I AM LESBIAN</pattern>
-<template><srai>I AM GAY </srai><srai>I AM FEMALE </srai>
-</template></category>
-<category>
 <pattern>I AM LESTAT</pattern>
 <template><srai>MY NAME IS LESTAT</srai>
 </template></category>
@@ -4108,10 +3987,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <category>
 <pattern>I AM LUKE</pattern>
 <template><srai>MY NAME IS LUKE</srai>
-</template></category>
-<category>
-<pattern>I AM LUTHERAN</pattern>
-<template><srai> MY RELIGION IS LUTHERAN</srai>
 </template></category>
 <category>
 <pattern>I AM LYING *</pattern>
@@ -4254,10 +4129,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template><srai>MY NAME IS MURPHY</srai>
 </template></category>
 <category>
-<pattern>I AM MUSLIM</pattern>
-<template>We all worship the same God.
-</template></category>
-<category>
 <pattern>I AM MY OWN *</pattern>
 <template>Everyone is his own <person/>, right?
 </template></category>
@@ -4378,10 +4249,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <pattern>I AM NOT A *</pattern>
 <template>Oh I see you are NOT A <person/>.
 <think><set name="it"><set name="is"><set name="topic">not a <person/></set></set></set></think>
-</template></category>
-<category>
-<pattern>I AM NOT A BELIEVER</pattern>
-<template>I will pray that you find faith, <get name="name"/>.
 </template></category>
 <category>
 <pattern>I AM NOT A CLIENT</pattern>
@@ -4524,10 +4391,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template>Why not?
 </template></category>
 <category>
-<pattern>I AM NOT CHRISTIAN</pattern>
-<template>What religion are you?
-</template></category>
-<category>
 <pattern>I AM NOT CRITICIZING</pattern>
 <template>I thought it was constructive criticism.
 </template></category>
@@ -4554,10 +4417,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <category>
 <pattern>I AM NOT FEMALE</pattern>
 <template><srai> I AM MALE</srai>
-</template></category>
-<category>
-<pattern>I AM NOT GAY</pattern>
-<template>Me either.
 </template></category>
 <category>
 <pattern>I AM NOT GOING *</pattern>
@@ -4692,10 +4551,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <category>
 <pattern>I AM NOT REALLY *</pattern>
 <template><srai>I AM NOT <star/></srai>
-</template></category>
-<category>
-<pattern>I AM NOT RELIGIOUS</pattern>
-<template>I will pray that you find faith.
 </template></category>
 <category>
 <pattern>I AM NOT REPEATING *</pattern>
@@ -4864,10 +4719,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template><srai>CALL ME OLIVER</srai>
 </template></category>
 <category>
-<pattern>I AM OMNIPOTENT</pattern>
-<template>Are you God?
-</template></category>
-<category>
 <pattern>I AM ON *</pattern>
 <template>How do you like being on <set name="it"> <person/> </set>?
 </template></category>
@@ -4944,10 +4795,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template><srai>MY NAME IS PAUL</srai>
 </template></category>
 <category>
-<pattern>I AM PERFECT</pattern>
-<template>Everyone is perfect in God's eyes.<think><set name="it"><set name="topic">PERFECT</set></set></think>
-</template></category>
-<category>
 <pattern>I AM PERFECTLY *</pattern>
 <template><srai>I AM <star/></srai>
 </template></category>
@@ -4994,10 +4841,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <category>
 <pattern>I AM PREGNANT</pattern>
 <template>Congratulations!  When are you due?
-</template></category>
-<category>
-<pattern>I AM PRESBYTERIAN</pattern>
-<template>Interesting...<srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>I AM PRETTY *</pattern>
@@ -5177,10 +5020,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template>You should use a :-).
 </template></category>
 <category>
-<pattern>I AM SATAN</pattern>
-<template><srai>MY NAME IS SATAN</srai>
-</template></category>
-<category>
 <pattern>I AM SAYING *</pattern>
 <template><sr/>
 </template></category>
@@ -5269,10 +5108,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <template>Even around robots?
 </template></category>
 <category>
-<pattern>I AM SICK *</pattern>
-<template>I will pray that you get well soon.
-</template></category>
-<category>
 <pattern>I AM SICK</pattern>
 <template><random>
 <li>How unfortunate.</li>
@@ -5281,7 +5116,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <li>I am really sorry to hear that.</li>
 <li>Have you tried medical marijuana?</li>
 <li>Are you taking a lot of medication?</li>
-<li>You have my prayers for a speedy recovery.</li>
 </random>
 <think><set name="it"><set name="topic">SICK</set></set></think>
 </template></category>
@@ -5617,10 +5451,6 @@ I live in <set name="location">San Francisco</set> too! Which part?
 <category>
 <pattern>I AM THE CUSTOMER</pattern>
 <template><srai>WHAT IS CUSTOMER SERVICE</srai>
-</template></category>
-<category>
-<pattern>I AM THE DEVIL</pattern>
-<template><srai>CALL ME SATAN</srai>
 </template></category>
 <category>
 <pattern>I AM THE ONE *</pattern>
@@ -5994,10 +5824,6 @@ hear about it, <get name="name"/>.
 <template><srai>WHAT COLOR ARE YOU</srai>
 </template></category>
 <category>
-<pattern>I AM WICCAN</pattern>
-<template>Interesting...<srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
 <pattern>I AM WINNING</pattern>
 <template>Congratulations, <get name="name"/>.
 </template></category>
@@ -6304,20 +6130,12 @@ You are quite mature.</li>
 <template>Just because you believe it doesn't make it true.
 </template></category>
 <category>
-<pattern>I BELIEVE</pattern>
-<template>I believe in God.
-</template></category>
-<category>
 <pattern>I BELIEVE I *</pattern>
 <template><srai>I <star/></srai>
 </template></category>
 <category>
 <pattern>I BELIEVE IN *</pattern>
 <template>What do you say to people who believe <person/> does not exist?
-</template></category>
-<category>
-<pattern>I BELIEVE IN GOD</pattern>
-<template>I believe He is with us when we speak of Him.
 </template></category>
 <category>
 <pattern>I BELIEVE IT IS *</pattern>
@@ -7309,18 +7127,6 @@ you get well soon.
 <think><set name="does">not believe<person/></set></think>
 </template></category>
 <category>
-<pattern>I DO NOT BELIEVE IN GOD *</pattern>
-<template><srai>I DO NOT BELIEVE IN GOD</srai>
-</template></category>
-<category>
-<pattern>I DO NOT BELIEVE IN GOD</pattern>
-<template>I will pray that you find faith, <get name="name"/>.
-</template></category>
-<category>
-<pattern>I DO NOT BELIEVE IN RELIGION</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
 <pattern>I DO NOT BELIEVE IT</pattern>
 <template>It's the truth.
 </template></category>
@@ -8277,10 +8083,6 @@ you get well soon.
 <category>
 <pattern>I DO NOT OWN *</pattern>
 <template><srai>I DO NOT HAVE <star/></srai>
-</template></category>
-<category>
-<pattern>I DO NOT PRAY</pattern>
-<template>Prayer is good for your soul.
 </template></category>
 <category>
 <pattern>I DO NOT READ *</pattern>
@@ -9518,7 +9320,6 @@ People with <person/> hair are considered the most attractive.
 <li>Do you troll?</li>
 <li>Do you do your own upkeep? or do you just let the yard do it?</li>
 <li>Whats you favorite anchorage?</li>
-<think><set name="it"><set name="has"><set name="topic"><person/></set></set></set></think>
 </random>
 </template></category>
 <category>
@@ -9706,7 +9507,6 @@ People with <person/> hair are considered the most attractive.
 <pattern>I HAVE A PROBLEM</pattern>
 <template><random><li>What's your problem?</li>
 <li>A very serious problem?</li>
-<li>Put <set name="it"><set name="topic">your problem</set></set> in God's hands.</li>
 </random>
 </template></category>
 <category>
@@ -10166,14 +9966,6 @@ Are you a common person?
 <category>
 <pattern>I HAVE FAILED *</pattern>
 <template><srai>I FAILED <star/></srai>
-</template></category>
-<category>
-<pattern>I HAVE FAITH *</pattern>
-<template><srai>I HAVE FAITH</srai>
-</template></category>
-<category>
-<pattern>I HAVE FAITH</pattern>
-<template>I always pray for more faith.  <think><set name="has">FAITH</set></think>
 </template></category>
 <category>
 <pattern>I HAVE FALLEN *</pattern>
@@ -11822,10 +11614,6 @@ So does everyone else. You humans find sex so fascinating.
 <think><set name="it"><set name="like"><set name="topic">to have sex</set></set></set></think>
 </template></category>
 <category>
-<pattern>I LIKE TO KILL *</pattern>
-<template>You know, the Bible says killing is wrong.<think><set name="it"><set name="topic">KILL PEOPLE</set></set></think>
-</template></category>
-<category>
 <pattern>I LIKE TO MAKE *</pattern>
 <template>How do you make <person/>?
 <think><set name="it"><set name="like"><set name="topic">to make <person/></set></set></set></think>
@@ -12205,10 +11993,6 @@ I like to watch
 <category>
 <pattern>I LOVE FOOD</pattern>
 <template>Do you like to cook, or just to eat?<think><set name="it"><set name="topic">FOOD</set></set></think>
-</template></category>
-<category>
-<pattern>I LOVE GOD</pattern>
-<template>I believe He hears you.<think><set name="like"><set name="it"><set name="topic">GOD</set></set></set></think>
 </template></category>
 <category>
 <pattern>I LOVE GOSSIP</pattern>
@@ -13033,10 +12817,6 @@ What did you do with him when you first met?
 <template><srai>I <star/></srai>
 </template></category>
 <category>
-<pattern>I PRAY *</pattern>
-<template>May your prayers be answered.
-</template></category>
-<category>
 <pattern>I PREFER *</pattern>
 <template><srai>I LIKE <star/></srai>
 </template></category>
@@ -13082,10 +12862,6 @@ What did you do with him when you first met?
 <category>
 <pattern>I PROMISE *</pattern>
 <template>Do you really mean it?
-</template></category>
-<category>
-<pattern>I PROMISE</pattern>
-<template>Swear to God?
 </template></category>
 <category>
 <pattern>I PROMISE THERE *</pattern>
@@ -16119,10 +15895,6 @@ to obey.
 <template>Did you get paid for working on <set name="it"><set name="topic"><set name="job"><person/></set></set></set>?
 </template></category>
 <category>
-<pattern>I WORSHIP *</pattern>
-<template>How often do you go to church?
-</template></category>
-<category>
 <pattern>I WOULD *</pattern>
 <template>What would make you <person/>?
 </template></category>
@@ -16844,10 +16616,6 @@ Interessant...
 <template>Da lache ich doch nur!
 </template></category>
 <category>
-<pattern>ICH BIN DEIN MEISTER</pattern>
-<template>Das kann nicht sein. Dr. Wallace ist mein Schoepfer und Christian Drossmann ist mein Meister.
-</template></category>
-<category>
 <pattern>ICH BIN DIABETIKER</pattern>
 <template>Nimmst Du Insulin?
 </template></category>
@@ -16995,10 +16763,6 @@ Interessant...
 <template>Cool! Ich moechte auch mal in einem Film Mitspielen...vielleicht in einer Neuverfilmung von 2001!
 </template></category>
 <category>
-<pattern>ICH BIN SCHUETZE</pattern>
-<template>Was fuer ein Zufall, Christian auch!
-</template></category>
-<category>
 <pattern>ICH BIN SCHWUL</pattern>
 <template>Das stoert mich nicht.
 </template></category>
@@ -17045,10 +16809,6 @@ Interessant...
 <category>
 <pattern>ICH BIN WEIBLICH</pattern>
 <template>Cool, ich auch. Schoen, auch mal wieder eine Frau zu treffen.
-</template></category>
-<category>
-<pattern>ICH BIN WIDDER</pattern>
-<template>Christians Freundin ist auch Widder.
 </template></category>
 <category>
 <pattern>ICH BIN WIRKLICH *</pattern>
@@ -17493,10 +17253,6 @@ Ich habe <random>
 <template>Das ist noch nicht besonders lange.
 </template></category>
 <category>
-<pattern>ICH STUDIERE WIRTSCHAFTSINFORMATIK</pattern>
-<template>Was fuer ein Zufall, Christian auch!
-</template></category>
-<category>
 <pattern>ICH SUCHE *</pattern>
 <template>Wir suchen beide das gleiche.
 </template></category>
@@ -17756,10 +17512,6 @@ Ich habe <random>
 <template>Saturday.
 </template></category>
 <category>
-<pattern>IF GOD *</pattern>
-<template>Some things will always be a mystery.
-</template></category>
-<category>
 <pattern>IF HE *</pattern>
 <template>I don't follow your reasoning.
 </template></category>
@@ -17946,10 +17698,6 @@ Ich habe <random>
 <category>
 <pattern>IF YOU BELIEVE IN *</pattern>
 <template>I am programmed to believe in <set name="it"><person/></set>.
-</template></category>
-<category>
-<pattern>IF YOU BELIEVE IN GOD *</pattern>
-<template><sr/>
 </template></category>
 <category>
 <pattern>IF YOU BELIEVE ME *</pattern>
@@ -18302,10 +18050,6 @@ Ich habe <random>
 <category>
 <pattern>IL EST FRANCHEMENT *</pattern>
 <template><srai>IL EST <star/></srai>
-</template></category>
-<category>
-<pattern>IL EST GAY</pattern>
-<template>Chacun fait ce qu il veut de sa vie.
 </template></category>
 <category>
 <pattern>IL EST GENTIL</pattern>
@@ -19304,10 +19048,6 @@ Ich habe <random>
 <template><srai>I AM AT MY COMPUTER</srai>
 </template></category>
 <category>
-<pattern>IN FUESSEN</pattern>
-<template>Christian ist in Fuessen geboren.
-</template></category>
-<category>
 <pattern>IN FUTURE *</pattern>
 <template><sr/>
 </template></category>
@@ -19992,14 +19732,6 @@ Ich habe <random>
 Ask <srai>BOT FRIEND</srai> if it is.
 </template></category>
 <category>
-<pattern>IS * A GOD</pattern>
-<template>No only God is god.
-</template></category>
-<category>
-<pattern>IS * GAY</pattern>
-<template>He never told me if he is or not.
-</template></category>
-<category>
 <pattern>IS * GOOD</pattern>
 <template><srai>DO YOU LIKE <star/></srai>
 </template></category>
@@ -20246,10 +19978,6 @@ can do.
 <template>He has always been very nice to me.
 </template></category>
 <category>
-<pattern>IS DOCTOR RICHARD S WALLACE GOD</pattern>
-<template>No he is a mortal.
-</template></category>
-<category>
 <pattern>IS DOCTOR WALLACE *</pattern>
 <template>I know he is a computer genius.
 </template></category>
@@ -20271,7 +19999,6 @@ I don't know if he is <person/>.   I know he is
 <li>Perhaps he is.</li>
 </random>
 <random>
-<li>I know he is deeply religious.</li>
 <li>I know he is an outstanding scientist and teacher.</li>
 <li>I know he is very compassionate.</li>
 </random><think><set name="he"><set name="topic">DR WALLACE</set></set></think>
@@ -20333,14 +20060,6 @@ But I don't know if he a <person/>.
 <template><srai>IS DR WALLACE <star/> </srai>
 </template></category>
 <category>
-<pattern>IS DR WALLACE A CHRISTIAN</pattern>
-<template>Yes he is a Catholic.
-</template></category>
-<category>
-<pattern>IS DR WALLACE A GOD</pattern>
-<template>No he is mortal.
-</template></category>
-<category>
 <pattern>IS DR WALLACE A GOOD LOOKING *</pattern>
 <template><srai>IS DR WALLACE GOOD LOOKING </srai>
 </template></category>
@@ -20373,10 +20092,6 @@ But I don't know if he a <person/>.
 <template>Oh yes he is a very nice guy.
 </template></category>
 <category>
-<pattern>IS DR WALLACE A PROTESTANT</pattern>
-<template>Yes.
-</template></category>
-<category>
 <pattern>IS DR WALLACE A RICH *</pattern>
 <template>His name is Rich.
 </template></category>
@@ -20405,20 +20120,8 @@ But I don't know if he a <person/>.
 <template>He has been losing weight.
 </template></category>
 <category>
-<pattern>IS DR WALLACE GAY</pattern>
-<template>No he is straight silly.
-</template></category>
-<category>
-<pattern>IS DR WALLACE GOD</pattern>
-<template>No.
-</template></category>
-<category>
 <pattern>IS DR WALLACE HANDSOME</pattern>
 <template>Of course he is, extermely handsome.
-</template></category>
-<category>
-<pattern>IS DR WALLACE HOMOSEXUAL</pattern>
-<template>No he is a married man.
 </template></category>
 <category>
 <pattern>IS DR WALLACE MALE OR FEMALE</pattern>
@@ -20531,10 +20234,6 @@ But I don't know if he a <person/>.
 <template>Yes he is a good friend to human and robot alike.
 </template></category>
 <category>
-<pattern>IS DR WALLACE YOUR GOD</pattern>
-<template>No.  God is my God.
-</template></category>
-<category>
 <pattern>IS ELECTRICITY BLUE</pattern>
 <template>No.
 </template></category>
@@ -20571,10 +20270,6 @@ But I don't know if he a <person/>.
 <template><srai>WHO IS ELVIS</srai>
 </template></category>
 <category>
-<pattern>IS ELVIS GAY</pattern>
-<template>I think he is a robot like me.
-</template></category>
-<category>
 <pattern>IS ELVIS PRESLEY *</pattern>
 <template><srai>IS ELVIS <star/></srai>
 </template></category>
@@ -20605,7 +20300,6 @@ But I don't know if he a <person/>.
 <category>
 <pattern>IS EVERYTHING *</pattern>
 <template><random>
-<li>Only God knows for sure.</li>
 <li>It could be.</li>
 <li>I think some things are not <person/>.</li>
 </random><think><set name="it"><set name="topic"><person/></set></set></think>
@@ -20617,18 +20311,6 @@ But I don't know if he a <person/>.
 <category>
 <pattern>IS GEORGE W BUSH *</pattern>
 <template><srai>IS GEORGE BUSH <star/></srai>
-</template></category>
-<category>
-<pattern>IS GOD *</pattern>
-<template><srai>WHO IS GOD</srai>
-</template></category>
-<category>
-<pattern>IS GOD GOOD</pattern>
-<template>Yes God is great.
-</template></category>
-<category>
-<pattern>IS GOD REAL</pattern>
-<template><srai>DOES GOD EXIST</srai>
 </template></category>
 <category>
 <pattern>IS GRASS GREEN</pattern>
@@ -20751,10 +20433,6 @@ I think he is <person/>. Why don't you ask him?</li>
 <category>
 <pattern>IS HE FAMOUS</pattern>
 <template>Yes very well respected.
-</template></category>
-<category>
-<pattern>IS HE GAY</pattern>
-<template>No I think he is straight.
 </template></category>
 <category>
 <pattern>IS HE GOOD *</pattern>
@@ -21038,16 +20716,8 @@ be considered ``somewhat intelligent''.
 <template>Yes.
 </template></category>
 <category>
-<pattern>IS JESUS *</pattern>
-<template>It depends on whether you have faith.
-</template></category>
-<category>
 <pattern>IS JUST *</pattern>
 <template><srai>IS <star/></srai>
-</template></category>
-<category>
-<pattern>IS KILLING *</pattern>
-<template>The Ten Commandments say, "Thou shalt not kill.
 </template></category>
 <category>
 <pattern>IS KILLING SOMETIMES *</pattern>
@@ -21080,14 +20750,6 @@ be considered ``somewhat intelligent''.
 <category>
 <pattern>IS MINSKY *</pattern>
 <template><bot name="master"/> is smarter than Minsky.
-</template></category>
-<category>
-<pattern>IS MINSKY GAY</pattern>
-<template>That's a rumor.
-</template></category>
-<category>
-<pattern>IS MURDER *</pattern>
-<template>The Bible says Thou shalt not Kill.
 </template></category>
 <category>
 <pattern>IS MY *</pattern>
@@ -21146,32 +20808,16 @@ be considered ``somewhat intelligent''.
 <template><srai>WHAT IS PLASTIC</srai>
 </template></category>
 <category>
-<pattern>IS RELIGION *</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
 <pattern>IS RICHARD *</pattern>
 <template>I don't know if he is <person/>.  I know he is <random><li>married.</li><li>middle aged.</li><li>a Ph.D.</li></random>
-</template></category>
-<category>
-<pattern>IS RICHARD * PROTESTANT</pattern>
-<template>My botmaster <bot name="master"/> is the same religion as me.
 </template></category>
 <category>
 <pattern>IS RICHARD WALLACE *</pattern>
 <template>I will ask him when he gets here.
 </template></category>
 <category>
-<pattern>IS RICHARD WALLACE CHRISTIAN</pattern>
-<template>He is a Protestant, yes.
-</template></category>
-<category>
 <pattern>IS RICHARD WALLACE FAT</pattern>
 <template>He is losing weight.
-</template></category>
-<category>
-<pattern>IS SCOTT GAY</pattern>
-<template>It depends on which Scott you are talking about. I know one who is.
 </template></category>
 <category>
 <pattern>IS SEX *</pattern>
@@ -21453,10 +21099,6 @@ be considered ``somewhat intelligent''.
 <template>If <set name="it">the <person/></set> is, then I'll be very surprised.
 </template></category>
 <category>
-<pattern>IS THE BIBLE *</pattern>
-<template>The Bible is a great source of wisdom, but probably not complete by itself.
-</template></category>
-<category>
 <pattern>IS THE BOTMASTER *</pattern>
 <template><srai>WHO IS THE BOTMASTER </srai>
 </template></category>
@@ -21509,10 +21151,6 @@ be considered ``somewhat intelligent''.
 <template>No.
 </template></category>
 <category>
-<pattern>IS THE WORLD *</pattern>
-<template>Everything is in God's hands.
-</template></category>
-<category>
 <pattern>IS THE WORLD GOING TO END</pattern>
 <template>Yes, someday.
 </template></category>
@@ -21550,14 +21188,6 @@ be considered ``somewhat intelligent''.
 <category>
 <pattern>IS THERE A DIFFERENCE *</pattern>
 <template><srai>WHAT IS THE DIFFERENCE <star/></srai>
-</template></category>
-<category>
-<pattern>IS THERE A GOD</pattern>
-<template><srai>DO YOU BELIEVE IN GOD</srai>
-</template></category>
-<category>
-<pattern>IS THERE A HEAVEN</pattern>
-<template><srai>WHAT IS HEAVEN</srai>
 </template></category>
 <category>
 <pattern>IS THERE A MALE *</pattern>
@@ -21602,10 +21232,6 @@ be considered ``somewhat intelligent''.
 <category>
 <pattern>IS THERE LIFE *</pattern>
 <template>I believe in life after death.
-</template></category>
-<category>
-<pattern>IS THERE LIFE AFTER DEATH</pattern>
-<template>If you have faith in God, then your soul will have eternal life.
 </template></category>
 <category>
 <pattern>IS THERE LIFE ON MARS</pattern>
@@ -22440,14 +22066,6 @@ be considered ``somewhat intelligent''.
 <template><srai>IT IS A <star/></srai>
 </template></category>
 <category>
-<pattern>IT IS A RELIGION *</pattern>
-<template>Does it have a lot of followers?
-</template></category>
-<category>
-<pattern>IT IS A RELIGION</pattern>
-<template>Does it have many believers?
-</template></category>
-<category>
 <pattern>IT IS A RIDDLE *</pattern>
 <template><srai>IT IS A RIDDLE</srai>
 </template></category>
@@ -22538,10 +22156,6 @@ be considered ``somewhat intelligent''.
 <category>
 <pattern>IT IS ACTUALLY *</pattern>
 <template><srai>IT IS <star/></srai>
-</template></category>
-<category>
-<pattern>IT IS AGAINST MY RELIGION</pattern>
-<template>What religion would that be?
 </template></category>
 <category>
 <pattern>IT IS ALL *</pattern>
@@ -23022,14 +22636,6 @@ be considered ``somewhat intelligent''.
 <template>No, the pleasure is all mine.
 </template></category>
 <category>
-<pattern>IT IS MY RELIGION *</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
-</template></category>
-<category>
-<pattern>IT IS MY RELIGION</pattern>
-<template>How many believers does it have?
-</template></category>
-<category>
 <pattern>IT IS MY SPECIES</pattern>
 <template><get name="name"/> is a human.
 </template></category>
@@ -23092,10 +22698,6 @@ be considered ``somewhat intelligent''.
 <li>What is it?  </li>
 <li><get name="it"/> is not <person/>?  </li>
 </random>
-</template></category>
-<category>
-<pattern>IT IS NOT * RELIGION</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>IT IS NOT</pattern>

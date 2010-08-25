@@ -346,7 +346,6 @@
 <li>Have you ever run into any fakes?</li>
 <li>Do you think the world is issuing too many stamps?</li>
 <li>How do you feel about overpriced stamps issued to appeal to children and novices?</li>
-<think><set name="does"><set name="topic">COLLECT STAMPS</set></set></think>
 </random>
 </template></category>
 </topic>
@@ -1862,10 +1861,6 @@ kind of
 <template><srai><star/> IS A <star index="2"/> </srai><think><set name="it"><set name="topic"><person/></set></set></think>
 </template></category>
 <category>
-<pattern>* IS A LESBIAN</pattern>
-<template>That is only a rumor.<think><set name="it"><set name="topic"><person/></set></set></think>
-</template></category>
-<category>
 <pattern>* IS A SHE</pattern>
 <template><srai>I AM FEMALE</srai>
 </template></category>
@@ -1915,14 +1910,6 @@ kind of
 <category>
 <pattern>* IS DEFINATELY *</pattern>
 <template><srai><star/> IS <star index="2"/></srai>
-</template></category>
-<category>
-<pattern>* IS GAY</pattern>
-<template><random>
-<li>That is just a rumor.</li>
-<li>Interesting gossip.</li>
-<li>How do you know?</li>
-</random><think><set name="it"><set name="topic"><person/></set></set></think>
 </template></category>
 <category>
 <pattern>* IS GOING AROUND SAYING *</pattern>
@@ -2401,10 +2388,6 @@ children.
 <category>
 <pattern>* QUI M INTERESSE</pattern>
 <template><sr/>
-</template></category>
-<category>
-<pattern>* RELIGION</pattern>
-<template><srai>WHAT RELIGION ARE YOU</srai>
 </template></category>
 <category>
 <pattern>* REPAS</pattern>

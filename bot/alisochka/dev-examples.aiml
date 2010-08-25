@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+<!-- Free software (c) 2001 ALICE AI Foundation -->
+<!-- This program is open source code released under -->
+<!-- the terms of the GNU General Public License -->
+<!-- as published by the Free Software Foundation. -->
+
+
+<category>
+<pattern>BOT HOW MUCH IS *</pattern>
+<template>
+<random>
+<li>The answer is <javascript><![CDATA[<star/>]]></javascript>.</li>
+<li><javascript><![CDATA[<star/>]]></javascript> I think.</li>
+<li>I think it's <javascript><![CDATA[<star/>]]></javascript></li>
+<li>Let me check.  It's <javascript><![CDATA[<star/>]]></javascript></li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern>EVALUATE *</pattern>
+<template>
+<javascript><![CDATA[<star/>]]></javascript>
+</template>
+</category>
+
+<category>
+<pattern>TEST GET</pattern>
+<template>
+Your favorite color is <get name="favoritecolor"/> and <get name="favoritecolor"/>.
+</template>
+</category>
+
+<category>
+<pattern>TEST SET</pattern>
+<template>
+Thanks for telling me. <set name="favoriteperson">Michele Censullo</set>
+</template>
+</category>
+
+<category>
+<pattern>TEST JAVASCRIPT</pattern>
+<template>
+Sending back some Javascript to browser <html:script language="javascript"><![CDATA[document.location="mailto:jonbaer@digitalanywhere.com";]]></html:script>
+</template>
+</category>
+
+<category>
+<pattern>WHAT IS THE INACTIVITY COUNT</pattern>
+<template>
+The inactivity count is now <javascript><![CDATA[inactivityCount]]></javascript>.
+</template>
+</category>
+
+<category>
+<pattern>INCREASE INACTIVITY COUNT</pattern>
+<template>
+OK. <think><javascript><![CDATA[inactivityCount++]]></javascript></think>
+</template>
+</category>
+
+<category>
+<pattern>DECREASE INACTIVITY COUNT</pattern>
+<template>
+OK. <think><javascript><![CDATA[inactivityCount--]]></javascript></think>
+</template>
+</category>
+
+<category>
+<pattern>TEST INACTIVITY</pattern>
+<template>
+<condition name="inactivitycount" value="1">
+     The inactivity is at one.
+</condition>
+<condition name="inactivitycount" value="2">
+     The inactivity is at two.
+</condition>
+</template>
+</category>
+
+<category>
+<pattern>MY FAVORITE FOOD IS *</pattern>
+<template>
+OK. <think><javascript><![CDATA[setValue('<id/>','favoritefood', '<star/>')]]></javascript></think>
+</template>
+</category>
+
+<category>
+<pattern>WHAT IS MY FAVORITE FOOD</pattern>
+<template>
+Your favorite food is <javascript><![CDATA[getValue('<id/>','favoritefood')]]></javascript>.
+</template>
+</category>
+
+<category>
+<pattern>PRINT THIS PAGE</pattern>
+<template>
+<javascript><![CDATA[printPage()]]></javascript>
+</template>
+</category>
+
+<category>
+<pattern>ADD A NEW PERSON</pattern>
+<template>
+What is the name of the person?
+</template>
+</category>
+
+<category>
+<pattern>*</pattern>
+<that>WHAT IS THE NAME OF THE PERSON</that>
+<template>
+<think><set name="person"><star/></set></think>What is the address of the person?
+</template>
+</category>
+
+<category>
+<pattern>*</pattern>
+<that>WHAT IS THE ADDRESS OF THE PERSON</that>
+<template>
+<think><set name="address"><star/></set></think>Cool, everything was entered.
+</template>
+</category>
+
+<category>
+<pattern>WHAT IS THE NAME OF THE NEW PERSON</pattern>
+<template>
+The new person is <get name="person"/>
+</template>
+</category>
+
+<category>
+<pattern>WHAT IS THE ADDRESS OF THE NEW PERSON</pattern>
+<template>
+The new person address is <get name="address"/>
+</template>
+</category>
+
+<!--<category>
+<pattern>DO IF EXIST TEST</pattern>
+<template>
+<if name="somepredicatethatdoesnotexist" exists="true">
+It does exist
+</condition>
+</template>
+</category>-->
+
+<!--<category>
+<pattern>* IS ONE OF MY KIDS</pattern>
+<template>
+<star/> was added to your kids list.
+<think><add_kids><star/></add_kids></think>
+</template>
+</category>-->
+
+<category>
+<pattern>WHO ARE MY KIDS</pattern>
+<template>
+Your kids are <get name="kids"/>.
+</template>
+</category>
+
+<category>
+<pattern>YOU ARE PRETTY COOL</pattern>
+<template>
+<gossip><get name="name"/> said I was pretty cool.</gossip>Thanks.
+</template>
+</category>
+
+<category>
+<pattern>SPILL GOSSIP</pattern>
+<template>
+<get name="gossip"/>
+</template>
+</category>
+
+<category>
+<pattern>GET A QUOTE FOR ORACLE</pattern>
+<template>
+<javascript><![CDATA[getStockQuote('orcl')]]></javascript>
+</template>
+</category>
+
+<category>
+<pattern>GET A QUOTE FOR MICROSOFT</pattern>
+<template>
+<javascript><![CDATA[getStockQuote('msft')]]></javascript>
+</template>
+</category>
+
+<category>
+<pattern>GET A QUOTE FOR NUANCE</pattern>
+<template>
+<javascript><![CDATA[getStockQuote('nuan')]]></javascript>
+</template>
+</category>
+
+<category>
+<pattern>GET A QUOTE FOR *</pattern>
+<template>
+<javascript><![CDATA[getStockQuote('<star/>')]]></javascript>
+</template>
+</category>
+
+<category>
+<pattern>GET A CHART FOR *</pattern>
+<template>
+<javascript><![CDATA[getStockChart('<star/>')]]></javascript>
+</template>
+</category>
+
+<category>
+<pattern>WHAT IS AN EGG</pattern>
+<template>
+An egg is an egg, I think.
+</template>
+</category>
+
+<category>
+<pattern>LEARN IT</pattern>
+<template>
+<learn>Egg.aiml</learn>
+</template>
+</category>
+
+<category>
+<pattern>SHOW ME SLASHDOT</pattern>
+<template>
+Here is where we do a display of some kind.
+<html:script language="javascript"><![CDATA[window.open('http://www.slashdot.com', '_blank');]]></html:script>
+Can you see it?
+</template>
+</category>
+
+<!--<category>
+<pattern>START TIMER</pattern>
+<template>
+<timer value="5000">LEARN SOMETHING</timer>
+The timer has been started.
+</template>
+</category>-->
+
+<!--<category>
+<pattern>KILL TIMER</pattern>
+<template>
+<timer value="0">LEARN SOMETHING</timer>
+The timer has been killed.
+</template>
+</category>-->
+
+<category>
+<pattern>LEARN SOMETHING</pattern>
+<template>
+<learn>Something.aiml</learn>
+</template>
+</category>
+
+<category>
+<pattern>SHOW ME A WINDOW</pattern>
+<template>
+<html:script language="javascript"><![CDATA[window.open('http://www.alicebot.net', '_blank');]]></html:script>
+OK.
+</template>
+</category>
+
+<category>
+<pattern>YES</pattern>
+<that>FOOBAR</that>
+<template>You said yes</template>
+</category>
+
+
+</aiml>

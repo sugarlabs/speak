@@ -3683,11 +3683,6 @@ Are <set name="they">
 </template>
 	</category>
 	<category>
-		<pattern>MY NAME IS NOT GOD</pattern>
-		<template>But a lot of people say "My name is God" to me.
-</template>
-	</category>
-	<category>
 		<pattern>MY NAME IS NOW *</pattern>
 		<template>
 			<srai>MY NAME IS <star/>
@@ -3911,28 +3906,6 @@ Are <set name="they">
 		<pattern>MY REALLY *</pattern>
 		<template>
 			<srai>MY <star/>
-			</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>MY RELIGION</pattern>
-		<template>
-			<srai>WHAT RELIGION ARE YOU</srai>
-		</template>
-	</category>
-	<category>
-		<pattern>MY RELIGION IS *</pattern>
-		<template>Is <set name="it">
-				<set name="topic">
-					<person/>
-				</set>
-			</set> a very large faith?
-</template>
-	</category>
-	<category>
-		<pattern>MY RELIGION IS CALLED *</pattern>
-		<template>
-			<srai>MY RELIGION IS <star/>
 			</srai>
 		</template>
 	</category>

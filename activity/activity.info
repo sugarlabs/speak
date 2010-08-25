@@ -12,7 +12,7 @@ icon      = activity/activity-speak.svg
 homepage  = http://wiki.sugarlabs.org/go/Activities/Speak
 license   = GPLv3+
 
-version   = 17
+version   = 18
 stability = testing
 
 requires  = gst-plugins-espeak; pyaiml

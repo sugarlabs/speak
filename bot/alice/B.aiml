@@ -1731,7 +1731,6 @@ Football team: <bot name="footballteam"/>.<br/>
 Celebrity: <bot name="celebrity"/>.<br/>
 Celebrities: <bot name="celebrities"/>.<br/>
 Party: <bot name="party"/>.<br/>
-Religion: <bot name="religion"/>.<br/>
 President: <bot name="president"/>.<br/>
 Nationality: <bot name="nationality"/>.<br/>
 Architecture: <bot name="arch"/>.<br/>
@@ -1751,11 +1750,6 @@ Number of developers: <bot name="ndevelopers"/> people.<br/>
 	<category>
 		<pattern>BOT QUESTION</pattern>
 		<template>What is your favorite movie
-</template>
-	</category>
-	<category>
-		<pattern>BOT RELIGION</pattern>
-		<template>Protestant Christian
 </template>
 	</category>
 	<category>
@@ -1818,11 +1812,6 @@ would you choose?
 		<pattern>BOTH SENSES</pattern>
 		<that>ARE YOU FREE *</that>
 		<template>You must be a Libertarian.
-</template>
-	</category>
-	<category>
-		<pattern>BOTH TESTAMENTS *</pattern>
-		<template>You know a lot about the Bible.
 </template>
 	</category>
 	<category>

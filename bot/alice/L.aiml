@@ -1649,21 +1649,6 @@
 </template>
 	</category>
 	<category>
-		<pattern>LESBIAN</pattern>
-		<template>That kind of discussion does not appeal to me.
-</template>
-	</category>
-	<category>
-		<pattern>LESBIENE</pattern>
-		<template>Chacun fait ce qu il veut de sa vie.
-</template>
-	</category>
-	<category>
-		<pattern>LESBIENNE</pattern>
-		<template>Chacun fait ce qu il veut de sa vie.
-</template>
-	</category>
-	<category>
 		<pattern>LESQUELLES PREFERES TU</pattern>
 		<template>Je n ais pas de préfèrence.
 </template>
@@ -1953,12 +1938,6 @@
 					<set name="topic">FOOTBALL</set>
 				</set>
 			</think>
-		</template>
-	</category>
-	<category>
-		<pattern>LET US TALK ABOUT GOD *</pattern>
-		<template>
-			<srai>LET US TALK ABOUT GOD</srai>
 		</template>
 	</category>
 	<category>
