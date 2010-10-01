@@ -24,15 +24,13 @@ import espeak
 
 PITCH_MAX = 99
 RATE_MAX = 99
-PITCH_DEFAULT = PITCH_MAX/2
-RATE_DEFAULT = RATE_MAX/3
 
 class AudioGrabCmd(espeak.BaseAudioGrab):
     def speak(self, status, text):
         self.make_pipeline('filesrc name=file-source')
 
-        # espeak uses 80 to 370
-        rate = 80 + (370-80) * int(status.rate) / 100
+        # 175 is default value, min is 80
+        rate = 80 + int(((175 - 80) * 2) * status.rate / RATE_MAX)
         wavpath = "/tmp/speak.wav"
 
         subprocess.call(["espeak", "-w", wavpath, "-p", str(status.pitch),

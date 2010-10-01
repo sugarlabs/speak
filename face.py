@@ -44,8 +44,9 @@ FACE_PAD = 2
 class Status:
     def __init__(self):
         self.voice = voice.defaultVoice()
-        self.pitch = espeak.PITCH_DEFAULT
-        self.rate = espeak.RATE_DEFAULT
+        self.pitch = espeak.PITCH_MAX / 2
+        self.rate = espeak.RATE_MAX / 2
+
         self.eyes = [eye.Eye] * 2
         self.mouth = mouth.Mouth
 

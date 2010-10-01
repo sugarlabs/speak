@@ -22,8 +22,6 @@ import espeak
 
 PITCH_MAX = 200
 RATE_MAX = 200
-PITCH_DEFAULT = PITCH_MAX/2
-RATE_DEFAULT = RATE_MAX/2
 
 class AudioGrabGst(espeak.BaseAudioGrab):
     def speak(self, status, text):
