@@ -1,3 +1,9 @@
+19
+
+* talk to computer crashes #2533
+* Use the same default rate in espeak command mode like in gst mode #2182
+* Update ta translation
+
 18
 
 * Remove content from AIML sets that is inappropriate to education
