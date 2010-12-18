@@ -39,10 +39,20 @@ BOTS = {
                     'predicates': { 'name': 'Alice',
                                     'master': 'the Sugar Community' } } }
 
+
+def get_mem_info(tag):
+    meminfo = file('/proc/meminfo').readlines()
+    return int([i for i in meminfo if i.startswith(tag)][0].split()[1])
+
+
 # load Standard AIML set for restricted systems
-if int([i for i in file('/proc/meminfo').readlines()
-        if i.startswith('MemTotal:')][0].split()[1]) < 524288:
-    BOTS[_('English')]['brain'] = 'bot/alisochka.brn'
+if get_mem_info('MemTotal:') < 524288:
+    mem_free = get_mem_info('MemFree:') + get_mem_info('Cached:')
+    if mem_free < 102400:
+        BOTS[_('English')]['brain'] = None
+    else:
+        BOTS[_('English')]['brain'] = 'bot/alisochka.brn'
+
 
 _kernel = None
 _kernel_voice = None
@@ -64,10 +74,11 @@ def get_voices():
 
 
 def respond(voice, text):
-    if _kernel is None:
-        return text
-    else:
-        return _kernel.respond(text)
+    if _kernel is not None:
+        text = _kernel.respond(text)
+    if _kernel is None or not text:
+        text = _("Sorry, I can't understand what you are asking about.")
+    return text
 
 
 def load(activity, voice, sorry=None):
@@ -88,6 +99,13 @@ def load(activity, voice, sorry=None):
             logger.debug('Load bot: %s' % brain)
 
             kernel = aiml.Kernel()
+
+            if brain['brain'] is None:
+                warning = _("Sorry, there is no free memory to load my " \
+                        "brain. Close other activities and try once more.")
+                activity.face.say_notification(warning)
+                return
+
             kernel.loadBrain(brain['brain'])
             for name, value in brain['predicates'].items():
                 kernel.setBotPredicate(name, value)
