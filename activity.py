@@ -437,12 +437,14 @@ class SpeakActivity(SharedActivity):
         old_voice = self.voices.props.value
         self.voices.set_model(voices_model)
 
-        if not [i for i in voices_model if i[0] == old_voice]:
+        new_voice = [i[0] for i in voices_model
+                if i[0].short_name == old_voice.short_name]
+        if not new_voice:
             new_voice = brain.get_default_voice()
             sorry = _("Sorry, I can't speak %s, let's speak %s instead.") % \
                     (old_voice.friendlyname, new_voice.friendlyname)
         else:
-            new_voice = old_voice
+            new_voice = new_voice[0]
             sorry = None
 
         self._set_voice(new_voice)
