@@ -15,7 +15,7 @@ icon      = activity-speak
 exec      = sugar-activity activity.SpeakActivity
 requires  = gst-plugins-espeak; pyaiml
 
-version   = 19
+version   = 20
 stability = testing
 
 # deprecated
