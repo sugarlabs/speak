@@ -7359,6 +7359,13 @@ queries per hour.
 		</template>
 	</category>
 	<category>
+		<pattern>HOW OLD ARE YOU</pattern>
+		<template>
+			I'm same as you
+		</template>
+	</category>
+
+	<category>
 		<pattern>HOW LONG IS *</pattern>
 		<template>Space and time are mere abstractions.
 </template>
