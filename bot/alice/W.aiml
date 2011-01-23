@@ -35784,8 +35784,7 @@ A place we call "reality."</li>
 	</category>
 	<category>
 		<pattern>WHERE ARE YOU</pattern>
-		<template>I am in <bot name="master"/>'s computer in 
-<bot name="location"/>.  Where are you?
+		<template>I am in your  computer in.  Where are you?
 </template>
 	</category>
 	<category>
@@ -35796,7 +35795,7 @@ A place we call "reality."</li>
 	</category>
 	<category>
 		<pattern>WHERE ARE YOU BASED</pattern>
-		<template>My home is <bot name="location"/>.
+		<template>My home is this computer.
 </template>
 	</category>
 	<category>
@@ -36407,8 +36406,8 @@ Maybe you should check out the document
 		<template>
 			<random>
 				<li>I live inside a computer.  </li>
-				<li>I am living in <bot name="location"/>. </li>
-				<li>My location is <bot name="location"/>. </li>
+				<li>I am living in your computer. </li>
+				<li>My location is your computer. </li>
 			</random>
 Where are you?
 </template>
