@@ -84,6 +84,9 @@ class Voice:
         friendlyname = friendlyname.capitalize()
         self.friendlyname = _(friendlyname)
 
+    def __cmp__(self, other):
+        return cmp(self.friendlyname, other.friendlyname if other else '')
+
 def allVoices():
     if _allVoices:
         return _allVoices
