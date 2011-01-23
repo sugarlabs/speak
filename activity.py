@@ -409,6 +409,7 @@ class SpeakActivity(SharedActivity):
         try:
             self.voices.handler_block_by_func(self.__changed_voices_cb)
             self.voices.select(new_voice)
+            self.face.status.voice = new_voice
         finally:
             self.voices.handler_unblock_by_func(self.__changed_voices_cb)
 
@@ -473,13 +474,9 @@ class SpeakActivity(SharedActivity):
 
     def __changed_voices_cb(self, combo):
         voice = combo.props.value
-
+        self.face.set_voice(voice)
         if self._mode == MODE_BOT:
-            self.face.set_voice(voice)
             brain.load(self, voice)
-        else:
-            self.face.set_voice(voice)
-            self.face.say_notification(voice.friendlyname)
 
 
 # activate gtk threads when this module loads
