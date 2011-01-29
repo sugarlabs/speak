@@ -1,3 +1,9 @@
+21
+
+* Speak's robot is missing a some nouns in os439dg on XO-1.5 #2566
+* Switch face voice to known language for robot on fallback
+* More AIML tweaks
+
 20
 
 * Translate only first part of voice names (ie language name)
