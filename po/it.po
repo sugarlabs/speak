@@ -26,12 +26,16 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-02 00:31-0400\n"
-"PO-Revision-Date: 2011-02-09 13:54+0200\n"
+"POT-Creation-Date: 2011-01-23 00:31-0500\n"
+"PO-Revision-Date: 2011-02-11 11:42+0200\n"
 "Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -126,12 +130,12 @@ msgstr "bocca cambiata"
 msgid "eyes changed"
 msgstr "occhi cambiati"
 
-#: activity.py:442
+#: activity.py:444
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
 msgstr "Mi spiace, non so parlare %s, parliamo in %s invece."
 
-#: activity.py:470
+#: activity.py:472
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Sei in modalità privata, condividi ed invita qualcuno."
 
@@ -139,11 +143,23 @@ msgstr "Sei in modalità privata, condividi ed invita qualcuno."
 msgid "Spanish"
 msgstr "Spagnolo"
 
-#: brain.py:37 brain.py:45 brain.py:54 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
 msgid "English"
 msgstr "Inglese"
 
-#: brain.py:107
+#: brain.py:80
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Mi spiace, non capisco quello che stai chiedendo."
+
+#: brain.py:104
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Mi spiace, non c'è sufficiente memoria per caricare il mio cervello. Chiudi "
+"delle altre attività e prova ancora."
+
+#: brain.py:125
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Ask me any question."
 msgstr "Ciao, io sono il robot \"%s\". Fammi una domanda."
@@ -256,7 +272,7 @@ msgstr "Afrikaans"
 msgid "Finnish"
 msgstr "Finlandese"
 
-#: voice.py:52 voice.py:125
+#: voice.py:52 voice.py:130
 msgid "Default"
 msgstr "Default"
 
