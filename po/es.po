@@ -154,7 +154,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-23 00:31-0500\n"
+"POT-Creation-Date: 2011-03-27 00:30-0400\n"
 "PO-Revision-Date: 2011-02-08 18:43+0200\n"
 "Last-Translator: Santiago <santiago_mota@yahoo.es>\n"
 "Language-Team: Spanish\n"
@@ -191,7 +191,8 @@ msgstr "Cara"
 
 #: activity.py:199
 #, python-format
-msgid "Hello %s.  Type something."
+#, python-format, fuzzy
+msgid "Hello %s. Please Type something."
 msgstr "Hola %s.  Escribe algo."
 
 #: activity.py:263
@@ -250,12 +251,12 @@ msgstr "boca cambiada"
 msgid "eyes changed"
 msgstr "ojos cambiados"
 
-#: activity.py:444
+#: activity.py:445
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
 msgstr "Lo siento, no puedo hablar %s, mejor hablemos %s."
 
-#: activity.py:472
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Estás en modo desconectado, comparte e invita a alguien."
 

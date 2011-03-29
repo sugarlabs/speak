@@ -22,13 +22,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-20 13:08-0500\n"
-"PO-Revision-Date: 2010-08-04 20:06+0200\n"
-"Last-Translator: தங்கமணி <thangam.arunx@gmail.com>\n"
+"POT-Creation-Date: 2011-01-23 00:31-0500\n"
+"PO-Revision-Date: 2011-01-20 17:18+0200\n"
+"Last-Translator: Thangamani <thangam.arunx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
@@ -122,12 +130,12 @@ msgstr "வாய் மாற்றப்பட்டது"
 msgid "eyes changed"
 msgstr "கண்கள் மாற்றப்பட்டன."
 
-#: activity.py:442
+#: activity.py:444
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
 msgstr "மன்னிக்கவும் என்னால் பேச முடியவில்லை %s, இல்லையென்றால்பேசுங்க %s இப்ப ."
 
-#: activity.py:470
+#: activity.py:472
 msgid "You are in off-line mode, share and invite someone."
 msgstr "நீங்க இப்ப இணையத்தில் இல்லை, எனவே யாரையாவது பகிர் மற்றும் அழைக்கவும்"
 
@@ -135,22 +143,68 @@ msgstr "நீங்க இப்ப இணையத்தில் இல்ல
 msgid "Spanish"
 msgstr "ஸ்பானிஸ்"
 
-#: brain.py:37 brain.py:45 brain.py:54 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
 msgid "English"
 msgstr "ஆங்கிலம்"
 
-#: brain.py:107
+#: brain.py:80
+msgid "Sorry, I can't understand what you are asking about."
+msgstr ""
+
+#: brain.py:104
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+
+#: brain.py:125
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Ask me any question."
 msgstr "ஹேலோ நான் ஒரு எந்திரன் \"%s\". என்னிடம் எதாவது கேள்வி கேட்கவும்."
 
-#: chatbox.py:246
+#: chatbox.py:248
 msgid "URL from Chat"
 msgstr "அரட்டையிலிருந்து யூஆர்எல்(URL)"
 
-#: chatbox.py:296
+#: chatbox.py:298
 msgid "Copy to Clipboard"
 msgstr "மறைப்பலகைக்கு பிரதியெடு"
+
+#: toolkit/activity_widgets.py:83
+msgid "Stop"
+msgstr "நிறுத்து"
+
+#: toolkit/activity_widgets.py:95
+msgid "Undo"
+msgstr "செயலை ரத்து செய்"
+
+#: toolkit/activity_widgets.py:103
+msgid "Redo"
+msgstr "மீழ் செய்"
+
+#: toolkit/activity_widgets.py:110
+msgid "Copy"
+msgstr "பிரதி செய்"
+
+#: toolkit/activity_widgets.py:117
+msgid "Paste"
+msgstr "ஒட்டு"
+
+#: toolkit/activity_widgets.py:127
+msgid "Private"
+msgstr "தனியார்"
+
+#: toolkit/activity_widgets.py:134
+msgid "My Neighborhood"
+msgstr "என் பக்கத்து"
+
+#: toolkit/activity_widgets.py:166
+msgid "Keep"
+msgstr "வைத்திரு"
+
+#: toolkit/activity_widgets.py:344
+msgid "Activity"
+msgstr "செயற்பாடு"
 
 #: voice.py:36
 msgid "Brazil"
@@ -216,7 +270,7 @@ msgstr "ஆவ்ப்ரிக்கன்"
 msgid "Finnish"
 msgstr "பின்லாந்திய"
 
-#: voice.py:52 voice.py:125
+#: voice.py:52 voice.py:130
 msgid "Default"
 msgstr "கொடாநிலை"
 

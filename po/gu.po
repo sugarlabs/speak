@@ -2,11 +2,39 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-25 15:36+0000\n"
+"POT-Creation-Date: 2011-01-23 00:31-0500\n"
 "PO-Revision-Date: 2010-01-02 01:56-0400\n"
 "Last-Translator: Chris Leonard <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,238 +49,283 @@ msgstr ""
 msgid "Speak"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/chatbox.py:246
-msgid "URL from Chat"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/chatbox.py:296
-msgid "Copy to Clipboard"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/brain.py:33
-#: /home/sugar/src/activities/speak.activity/voice.py:66
-msgid "Spanish"
-msgstr "સ્પેનિશ"
-
-#: /home/sugar/src/activities/speak.activity/brain.py:37
-#: /home/sugar/src/activities/speak.activity/brain.py:45
-#: /home/sugar/src/activities/speak.activity/brain.py:54
-#: /home/sugar/src/activities/speak.activity/voice.py:57
-msgid "English"
-msgstr "અંગ્રેજી"
-
-#: /home/sugar/src/activities/speak.activity/brain.py:107
-#, python-format
-msgid "Hello, I'am a robot \"%s\". Ask me any question."
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:36
-msgid "Brazil"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:37
-msgid "Swedish"
-msgstr "સ્વેડિશ"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:38
-msgid "Icelandic"
-msgstr "આઇસલૅન્ડિક"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:39
-msgid "Romanian"
-msgstr "રોમાનિયન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:40
-msgid "Swahili"
-msgstr "સ્વાહિલી"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:41
-msgid "Hindi"
-msgstr "હિન્દી"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:42
-msgid "Dutch"
-msgstr "ડચ"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:43
-msgid "Latin"
-msgstr "લેટિન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:44
-msgid "Hungarian"
-msgstr "હન્ગેરિયન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:45
-msgid "Macedonian"
-msgstr "મૅસિડોનિયન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:46
-msgid "Welsh"
-msgstr "વેલ્શ"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:47
-msgid "French"
-msgstr "ફ્રેન્ચ"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:48
-msgid "Norwegian"
-msgstr "નોર્વેજિયન નિનોર્સ્ક"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:49
-msgid "Russian"
-msgstr "રશિયન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:50
-msgid "Afrikaans"
-msgstr "આફ્રિકન્સ"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:51
-msgid "Finnish"
-msgstr "ફિનીશ"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:52
-#: /home/sugar/src/activities/speak.activity/voice.py:125
-msgid "Default"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:53
-msgid "Cantonese"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:54
-msgid "Scottish"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:55
-msgid "Greek"
-msgstr "ગ્રીક"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:56
-msgid "Vietnam"
-msgstr "વિયેતનામી"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:58
-msgid "Lancashire"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:59
-msgid "Italian"
-msgstr "ઇટાલિયન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:60
-msgid "Portugal"
-msgstr "પોર્ટુગી"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:61
-msgid "German"
-msgstr "જર્મન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:62
-msgid "Whisper"
-msgstr ""
-
-#: /home/sugar/src/activities/speak.activity/voice.py:63
-msgid "Croatian"
-msgstr "ક્રોએટિઅન"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:64
-msgid "Czech"
-msgstr "ચેક"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:65
-msgid "Slovak"
-msgstr "સ્લોવાક"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:67
-msgid "Polish"
-msgstr "પોલિશ"
-
-#: /home/sugar/src/activities/speak.activity/voice.py:68
-msgid "Esperanto"
-msgstr "ઇસ્પેરાન્ટો"
-
-#: /home/sugar/src/activities/speak.activity/activity.py:137
+#: activity.py:137
 msgid "Type something to hear it"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:144
+#: activity.py:144
 msgid "Ask robot any question"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:152
+#: activity.py:152
 msgid "Voice chat"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:164
+#: activity.py:164
 msgid "Voice"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:170
+#: activity.py:170
 msgid "Face"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:199
+#: activity.py:199
 #, python-format
 msgid "Hello %s.  Type something."
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:263
+#: activity.py:263
 msgid "Pitch:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:276
+#: activity.py:276
 msgid "Rate:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:284
+#: activity.py:284
 msgid "pitch adjusted"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:288
+#: activity.py:288
 msgid "rate adjusted"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:294
+#: activity.py:294
 msgid "Simple"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:295
+#: activity.py:295
 msgid "Waveform"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:296
+#: activity.py:296
 msgid "Frequency"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:301
+#: activity.py:301
 msgid "Mouth:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:305
+#: activity.py:305
 msgid "Round"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:306
+#: activity.py:306
 msgid "Glasses"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:311
+#: activity.py:311
 msgid "Eyes:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:322
+#: activity.py:322
 msgid "Eyes number:"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:334
+#: activity.py:334
 msgid "mouth changed"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:346
+#: activity.py:346
 msgid "eyes changed"
 msgstr ""
 
-#: /home/sugar/src/activities/speak.activity/activity.py:442
+#: activity.py:444
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
 msgstr ""
+
+#: activity.py:472
+msgid "You are in off-line mode, share and invite someone."
+msgstr ""
+
+#: brain.py:33 voice.py:66
+msgid "Spanish"
+msgstr "સ્પેનિશ"
+
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
+msgid "English"
+msgstr "અંગ્રેજી"
+
+#: brain.py:80
+msgid "Sorry, I can't understand what you are asking about."
+msgstr ""
+
+#: brain.py:104
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+
+#: brain.py:125
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Ask me any question."
+msgstr ""
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr ""
+
+#: chatbox.py:298
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: toolkit/activity_widgets.py:83
+msgid "Stop"
+msgstr ""
+
+#: toolkit/activity_widgets.py:95
+msgid "Undo"
+msgstr ""
+
+#: toolkit/activity_widgets.py:103
+msgid "Redo"
+msgstr ""
+
+#: toolkit/activity_widgets.py:110
+msgid "Copy"
+msgstr ""
+
+#: toolkit/activity_widgets.py:117
+msgid "Paste"
+msgstr ""
+
+#: toolkit/activity_widgets.py:127
+msgid "Private"
+msgstr ""
+
+#: toolkit/activity_widgets.py:134
+msgid "My Neighborhood"
+msgstr ""
+
+#: toolkit/activity_widgets.py:166
+msgid "Keep"
+msgstr ""
+
+#: toolkit/activity_widgets.py:344
+msgid "Activity"
+msgstr ""
+
+#: voice.py:36
+msgid "Brazil"
+msgstr ""
+
+#: voice.py:37
+msgid "Swedish"
+msgstr "સ્વેડિશ"
+
+#: voice.py:38
+msgid "Icelandic"
+msgstr "આઇસલૅન્ડિક"
+
+#: voice.py:39
+msgid "Romanian"
+msgstr "રોમાનિયન"
+
+#: voice.py:40
+msgid "Swahili"
+msgstr "સ્વાહિલી"
+
+#: voice.py:41
+msgid "Hindi"
+msgstr "હિન્દી"
+
+#: voice.py:42
+msgid "Dutch"
+msgstr "ડચ"
+
+#: voice.py:43
+msgid "Latin"
+msgstr "લેટિન"
+
+#: voice.py:44
+msgid "Hungarian"
+msgstr "હન્ગેરિયન"
+
+#: voice.py:45
+msgid "Macedonian"
+msgstr "મૅસિડોનિયન"
+
+#: voice.py:46
+msgid "Welsh"
+msgstr "વેલ્શ"
+
+#: voice.py:47
+msgid "French"
+msgstr "ફ્રેન્ચ"
+
+#: voice.py:48
+msgid "Norwegian"
+msgstr "નોર્વેજિયન નિનોર્સ્ક"
+
+#: voice.py:49
+msgid "Russian"
+msgstr "રશિયન"
+
+#: voice.py:50
+msgid "Afrikaans"
+msgstr "આફ્રિકન્સ"
+
+#: voice.py:51
+msgid "Finnish"
+msgstr "ફિનીશ"
+
+#: voice.py:52 voice.py:130
+msgid "Default"
+msgstr ""
+
+#: voice.py:53
+msgid "Cantonese"
+msgstr ""
+
+#: voice.py:54
+msgid "Scottish"
+msgstr ""
+
+#: voice.py:55
+msgid "Greek"
+msgstr "ગ્રીક"
+
+#: voice.py:56
+msgid "Vietnam"
+msgstr "વિયેતનામી"
+
+#: voice.py:58
+msgid "Lancashire"
+msgstr ""
+
+#: voice.py:59
+msgid "Italian"
+msgstr "ઇટાલિયન"
+
+#: voice.py:60
+msgid "Portugal"
+msgstr "પોર્ટુગી"
+
+#: voice.py:61
+msgid "German"
+msgstr "જર્મન"
+
+#: voice.py:62
+msgid "Whisper"
+msgstr ""
+
+#: voice.py:63
+msgid "Croatian"
+msgstr "ક્રોએટિઅન"
+
+#: voice.py:64
+msgid "Czech"
+msgstr "ચેક"
+
+#: voice.py:65
+msgid "Slovak"
+msgstr "સ્લોવાક"
+
+#: voice.py:67
+msgid "Polish"
+msgstr "પોલિશ"
+
+#: voice.py:68
+msgid "Esperanto"
+msgstr "ઇસ્પેરાન્ટો"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-23 00:31-0500\n"
+"POT-Creation-Date: 2011-03-27 00:30-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: activity.py:199
 #, python-format
-msgid "Hello %s.  Type something."
+msgid "Hello %s. Please Type something."
 msgstr ""
 
 #: activity.py:263
@@ -101,12 +101,12 @@ msgstr ""
 msgid "eyes changed"
 msgstr ""
 
-#: activity.py:444
+#: activity.py:445
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
 msgstr ""
 
-#: activity.py:472
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 

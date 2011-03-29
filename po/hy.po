@@ -18,12 +18,16 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-02 00:31-0400\n"
+"POT-Creation-Date: 2011-01-23 00:31-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,275 +38,285 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Speak"
-msgstr ""
+msgstr "Խոսել"
 
 #: activity.py:137
 msgid "Type something to hear it"
-msgstr ""
+msgstr "Որեւէ բան տպել՝ այն լսելու նպատակով  "
 
 #: activity.py:144
 msgid "Ask robot any question"
-msgstr ""
+msgstr "Ռոբոտին հարց տալ"
 
 #: activity.py:152
 msgid "Voice chat"
-msgstr ""
+msgstr "Բարձրաձայն զրույց"
 
 #: activity.py:164
 msgid "Voice"
-msgstr ""
+msgstr "Ձայն"
 
 #: activity.py:170
 msgid "Face"
-msgstr ""
+msgstr "Երես"
 
 #: activity.py:199
 #, python-format
 msgid "Hello %s.  Type something."
-msgstr ""
+msgstr "Բարեւ %s: Որեւէ բան տպեք:"
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr ""
+msgstr "Տոնայնությունը."
 
 #: activity.py:276
 msgid "Rate:"
-msgstr ""
+msgstr "Տեմպը."
 
 #: activity.py:284
 msgid "pitch adjusted"
-msgstr ""
+msgstr "տոնայնությունը կարգավորված է."
 
 #: activity.py:288
 msgid "rate adjusted"
-msgstr ""
+msgstr "տեմպը կարգավորված է."
 
 #: activity.py:294
 msgid "Simple"
-msgstr ""
+msgstr "Պարզ"
 
 #: activity.py:295
 msgid "Waveform"
-msgstr ""
+msgstr "Ազդանշանի ձեւաչափը"
 
 #: activity.py:296
 msgid "Frequency"
-msgstr ""
+msgstr "Հաճախականությունը"
 
 #: activity.py:301
 msgid "Mouth:"
-msgstr ""
+msgstr "Բերանը."
 
 #: activity.py:305
 msgid "Round"
-msgstr ""
+msgstr "Կլոր"
 
 #: activity.py:306
 msgid "Glasses"
-msgstr ""
+msgstr "Ակնոց"
 
 #: activity.py:311
 msgid "Eyes:"
-msgstr ""
+msgstr "Աչքեր."
 
 #: activity.py:322
 msgid "Eyes number:"
-msgstr ""
+msgstr "Աչքերի համարը."
 
 #: activity.py:334
 msgid "mouth changed"
-msgstr ""
+msgstr "բերանը փոխվել է"
 
 #: activity.py:346
 msgid "eyes changed"
-msgstr ""
+msgstr "աչքերը փոխվել են"
 
-#: activity.py:442
+#: activity.py:444
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr ""
+msgstr "Ներողություն, ես %s չեմ կարող խոսել, փոխարենը եկեք խոսենք %s:"
 
-#: activity.py:470
+#: activity.py:472
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "Դուք ցանցին միացած չեք, կիսվեք որեւէ մեկի հետ եւ հրավիրեք նրան:  "
 
 #: brain.py:33 voice.py:66
 msgid "Spanish"
-msgstr ""
+msgstr "Իսպաներեն"
 
-#: brain.py:37 brain.py:45 brain.py:54 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
 msgid "English"
+msgstr "Անգլերեն"
+
+#: brain.py:80
+msgid "Sorry, I can't understand what you are asking about."
 msgstr ""
 
-#: brain.py:107
+#: brain.py:104
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+
+#: brain.py:125
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Ask me any question."
-msgstr ""
+msgstr "Բարեւ, ես ռոբոտ \"%s\"-ն եմ: Տվեք ինձ ցանկացած հարց: "
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "Զրույցի URL-ը"
 
 #: chatbox.py:298
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Կրկնօրինակեք լուսատախտակին"
 
 #: toolkit/activity_widgets.py:83
 msgid "Stop"
-msgstr ""
+msgstr "Կանգառ"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
-msgstr ""
+msgstr "Վերականգնել"
 
 #: toolkit/activity_widgets.py:103
 msgid "Redo"
-msgstr ""
+msgstr "Վերստին կատարել "
 
 #: toolkit/activity_widgets.py:110
 msgid "Copy"
-msgstr ""
+msgstr "Կրկնօրինակել"
 
 #: toolkit/activity_widgets.py:117
 msgid "Paste"
-msgstr ""
+msgstr "Փակցնել"
 
 #: toolkit/activity_widgets.py:127
 msgid "Private"
-msgstr ""
+msgstr "Պրիվատ"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
-msgstr ""
+msgstr "Իմ թաղը"
 
 #: toolkit/activity_widgets.py:166
 msgid "Keep"
-msgstr ""
+msgstr "Պահել"
 
 #: toolkit/activity_widgets.py:344
 msgid "Activity"
-msgstr ""
+msgstr "Գործողություն"
 
 #: voice.py:36
 msgid "Brazil"
-msgstr ""
+msgstr "Բրազիլիա"
 
 #: voice.py:37
 msgid "Swedish"
-msgstr ""
+msgstr "Շվեդերեն"
 
 #: voice.py:38
 msgid "Icelandic"
-msgstr ""
+msgstr "Իսլանդերեն"
 
 #: voice.py:39
 msgid "Romanian"
-msgstr ""
+msgstr "Ռումիներեն"
 
 #: voice.py:40
 msgid "Swahili"
-msgstr ""
+msgstr "Սուահիլի"
 
 #: voice.py:41
 msgid "Hindi"
-msgstr ""
+msgstr "Հնդկերեն"
 
 #: voice.py:42
 msgid "Dutch"
-msgstr ""
+msgstr "Հոլանդերեն"
 
 #: voice.py:43
 msgid "Latin"
-msgstr ""
+msgstr "Լատիներեն"
 
 #: voice.py:44
 msgid "Hungarian"
-msgstr ""
+msgstr "Հունգարերեն"
 
 #: voice.py:45
 msgid "Macedonian"
-msgstr ""
+msgstr "Մակեդոներեն"
 
 #: voice.py:46
 msgid "Welsh"
-msgstr ""
+msgstr "Ուելսերեն"
 
 #: voice.py:47
 msgid "French"
-msgstr ""
+msgstr "Ֆրանսերեն"
 
 #: voice.py:48
 msgid "Norwegian"
-msgstr ""
+msgstr "Նորվեգերեն"
 
 #: voice.py:49
 msgid "Russian"
-msgstr ""
+msgstr "Ռուսերեն"
 
 #: voice.py:50
 msgid "Afrikaans"
-msgstr ""
+msgstr "Աֆրիկաանս"
 
 #: voice.py:51
 msgid "Finnish"
-msgstr ""
+msgstr "Ֆիններեն"
 
-#: voice.py:52 voice.py:125
+#: voice.py:52 voice.py:130
 msgid "Default"
-msgstr ""
+msgstr "Ելման դիրք"
 
 #: voice.py:53
 msgid "Cantonese"
-msgstr ""
+msgstr "Կանտոներեն"
 
 #: voice.py:54
 msgid "Scottish"
-msgstr ""
+msgstr "Շոտլանդերեն"
 
 #: voice.py:55
 msgid "Greek"
-msgstr ""
+msgstr "Հունարեն"
 
 #: voice.py:56
 msgid "Vietnam"
-msgstr ""
+msgstr "Վիետնամերեն"
 
 #: voice.py:58
 msgid "Lancashire"
-msgstr ""
+msgstr "Լանկաշիրերեն"
 
 #: voice.py:59
 msgid "Italian"
-msgstr ""
+msgstr "Իտալերեն"
 
 #: voice.py:60
 msgid "Portugal"
-msgstr ""
+msgstr "Պորտուգալերեն"
 
 #: voice.py:61
 msgid "German"
-msgstr ""
+msgstr "Գերմաներեն"
 
 #: voice.py:62
 msgid "Whisper"
-msgstr ""
+msgstr "Շշուկով"
 
 #: voice.py:63
 msgid "Croatian"
-msgstr ""
+msgstr "Խորվաթերեն"
 
 #: voice.py:64
 msgid "Czech"
-msgstr ""
+msgstr "Չեխերեն"
 
 #: voice.py:65
 msgid "Slovak"
-msgstr ""
+msgstr "Սլովակերեն"
 
 #: voice.py:67
 msgid "Polish"
-msgstr ""
+msgstr "Լեհերեն"
 
 #: voice.py:68
 msgid "Esperanto"
-msgstr ""
+msgstr "Էսպերանտո"
