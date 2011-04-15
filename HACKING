@@ -1,0 +1,29 @@
+How to contribute
+=================
+
+Useful notes how to contribute to the project.
+
+Before committing
+-----------------
+All source files need to be passed through `sugar-lint`_ command.
+Follow sugar-lint home page instructions and especially
+`"Lint files before committing"` section.
+
+Send patches
+------------
+Create your patches using ``git format`` command and send them to all
+maintainers from the :ref:`AUTHORS <AUTHORS>` file. The easiest way it just
+using ``git send-email`` command. Patches might be CCed to
+sugar-devel@lists.sugarlabs.org to attract more people to review.
+
+Gitorious forks
+---------------
+Another useful way to contribute, especially for big improvements, is creating
+Gitorious forks and request them for merge to the trunk.
+
+* http://blog.gitorious.org/2009/05/09/weve-made-a-few-changes/
+  (see `"Merge requests"` topic)
+* http://blog.gitorious.org/2009/07/15/new-merge-request-functionality/
+* http://blog.gitorious.org/2009/11/06/awesome-code-review/
+
+.. _sugar-lint: http://wiki.sugarlabs.org/go/Platform_Team/Sugar_Lint
