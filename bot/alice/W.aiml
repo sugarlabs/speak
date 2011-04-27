@@ -27589,9 +27589,9 @@ computers.  <br/>
 		</template>
 	</category>
 	<category>
-		<pattern>WHAT IS THE TIME *</pattern>
+		<pattern>WHAT TIME IS IT </pattern>
 		<template>
-			<srai>what time is it</srai>
+			Sorry I don't have a watch
 		</template>
 	</category>
 	<category>
