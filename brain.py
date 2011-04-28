@@ -33,11 +33,11 @@ BOTS = {
     _('Spanish'): { 'name': 'Sara',
                     'brain': 'bot/sara.brn',
                     'predicates': { 'nombre_bot': 'Sara',
-                                    'botmaster': 'la comunidad Azucar' } },
+                                    'botmaster': 'La comunidad Azucar' } },
     _('English'): { 'name': 'Alice',
                     'brain': 'bot/alice.brn',
                     'predicates': { 'name': 'Alice',
-                                    'master': 'the Sugar Community' } } }
+                                    'master': 'The Sugar Community' } } }
 
 
 def get_mem_info(tag):
@@ -122,7 +122,7 @@ def load(activity, voice, sorry=None):
             activity.set_cursor(old_cursor)
 
         if is_first_session:
-            hello = _("Hello, I'm a robot \"%s\". Ask me any question.") \
+            hello = _("Hello, I'm a robot \"%s\". Please ask me any question.") \
                     % BOTS[voice.friendlyname]['name']
             if sorry:
                 hello += ' ' + sorry
