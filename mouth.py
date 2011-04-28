@@ -83,7 +83,7 @@ class Mouth(gtk.DrawingArea):
         # Draw the mouth
         volume = self.volume / 30000.
         mouthH = volume * bounds.height
-        mouthW = volume * *2 * (bounds.width / 2.) + bounds.width / 2.
+        mouthW = volume**2 * (bounds.width / 2.) + bounds.width / 2.
         #        T
         #  L          R
         #        B
