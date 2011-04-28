@@ -82,8 +82,7 @@ class View(hippo.Canvas):
                 style.COLOR_WHITE.get_gdk_color())
         chat_post.connect('key-press-event', self._key_press_cb)
         chat_post.props.wrap_mode = gtk.WRAP_WORD_CHAR
-        chat_post.set_size_request(-1, BUDDY_SIZE - ENTRY_YPAD*2)
-
+        chat_post.set_size_request(-1, BUDDY_SIZE - ENTRY_YPAD * 2)
         chat_post_box = CanvasRoundBox(
                 background_color = style.COLOR_WHITE.get_int(),
                 padding_left = ENTRY_XPAD,
@@ -118,7 +117,7 @@ class View(hippo.Canvas):
         # desk
 
         self._desk = hippo.CanvasBox()
-        self._desk.props.orientation=hippo.ORIENTATION_HORIZONTAL
+        self._desk.props.orientation = hippo.ORIENTATION_HORIZONTAL
         self._desk.append(chat_box, hippo.PACK_EXPAND)
 
         self.set_root(self._desk)
@@ -194,9 +193,9 @@ class View(hippo.Canvas):
         box.append(char_box, hippo.PACK_EXPAND)
 
         self._buddies[buddy] = {
-                'box'   : box,
-                'face'  : buddy_face,
-                'lang'  : lang
+                'box': box,
+                'face': buddy_face,
+                'lang': lang
                 }
         self._buddies_list.append(box)
 

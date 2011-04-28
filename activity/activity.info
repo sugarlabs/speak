@@ -16,9 +16,7 @@ exec      = sugar-activity activity.SpeakActivity
 requires  = gst-plugins-espeak; pyaiml
 
 version   = 21
-stability = testing
 
-# deprecated
 bundle_id = vu.lux.olpc.Speak
 activity_version = %(version)s
 
