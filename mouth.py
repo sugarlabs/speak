@@ -28,11 +28,12 @@ import cairo
 from struct import unpack
 import numpy.core
 
+
 class Mouth(gtk.DrawingArea):
     def __init__(self, audioSource, fill_color):
 
         gtk.DrawingArea.__init__(self)
-        self.connect("expose_event",self.expose)
+        self.connect("expose_event", self.expose)
         self.buffers = []
         self.buffer_size = 256
         self.main_buffers = []
@@ -45,10 +46,10 @@ class Mouth(gtk.DrawingArea):
         if len(buf) < 28:
             self.newest_buffer = []
         else:
-            self.newest_buffer = list(unpack( str(int(len(buf))/2)+'h' , buf))
+            self.newest_buffer = list(unpack(str(int(len(buf)) / 2) + 'h', buf))
             self.main_buffers += self.newest_buffer
-            if(len(self.main_buffers)>self.buffer_size):
-                del self.main_buffers[0:(len(self.main_buffers)- \
+            if(len(self.main_buffers) > self.buffer_size):
+                del self.main_buffers[0:(len(self.main_buffers) - \
                         self.buffer_size)]
 
         self.queue_draw()
@@ -58,7 +59,7 @@ class Mouth(gtk.DrawingArea):
         if len(self.main_buffers) == 0 or len(self.newest_buffer) == 0:
             self.volume = 0
         else:
-            self.volume = numpy.core.max(self.main_buffers)# - numpy.core.min(self.main_buffers)
+            self.volume = numpy.core.max(self.main_buffers)  # - numpy.core.min(self.main_buffers)
 
     def expose(self, widget, event):
         """This function is the "expose" event handler and does all the drawing."""
@@ -71,30 +72,30 @@ class Mouth(gtk.DrawingArea):
         self.context.set_antialias(cairo.ANTIALIAS_NONE)
 
         #set a clip region for the expose event. This reduces redrawing work (and time)
-        self.context.rectangle(event.area.x, event.area.y,event.area.width, event.area.height)
+        self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
         self.context.clip()
 
         # background
         self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0,0, bounds.width,bounds.height)
+        self.context.rectangle(0, 0, bounds.width, bounds.height)
         self.context.fill()
 
         # Draw the mouth
         volume = self.volume / 30000.
         mouthH = volume * bounds.height
-        mouthW = volume**2 * (bounds.width/2.) + bounds.width/2.
+        mouthW = volume * *2 * (bounds.width / 2.) + bounds.width / 2.
         #        T
         #  L          R
         #        B
-        Lx,Ly = bounds.width/2 - mouthW/2, bounds.height/2
-        Tx,Ty = bounds.width/2,            bounds.height/2 - mouthH/2
-        Rx,Ry = bounds.width/2 + mouthW/2, bounds.height/2
-        Bx,By = bounds.width/2,            bounds.height/2 + mouthH/2
-        self.context.set_line_width(min(bounds.height/10.0, 10))
-        self.context.move_to(Lx,Ly)
-        self.context.curve_to(Tx,Ty, Tx,Ty, Rx,Ry)
-        self.context.curve_to(Bx,By, Bx,By, Lx,Ly)
-        self.context.set_source_rgb(0,0,0)
+        Lx, Ly = bounds.width / 2 - mouthW / 2, bounds.height / 2
+        Tx, Ty = bounds.width / 2, bounds.height / 2 - mouthH / 2
+        Rx, Ry = bounds.width / 2 + mouthW / 2, bounds.height / 2
+        Bx, By = bounds.width / 2, bounds.height / 2 + mouthH / 2
+        self.context.set_line_width(min(bounds.height / 10.0, 10))
+        self.context.move_to(Lx, Ly)
+        self.context.curve_to(Tx, Ty, Tx, Ty, Rx, Ry)
+        self.context.curve_to(Bx, By, Bx, By, Lx, Ly)
+        self.context.set_source_rgb(0, 0, 0)
         self.context.close_path()
         self.context.stroke()
 

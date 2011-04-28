@@ -23,6 +23,7 @@
 
 from eye import *
 
+
 class Glasses(Eye):
     def __init__(self, fill_color):
         Eye.__init__(self, fill_color)
@@ -31,16 +32,16 @@ class Glasses(Eye):
         bounds = self.get_allocation()
 
         eyeSize = min(bounds.width, bounds.height)
-        outlineWidth = eyeSize/20.0
-        pupilSize = eyeSize/10.0
+        outlineWidth = eyeSize / 20.0
+        pupilSize = eyeSize / 10.0
         pupilX, pupilY = self.computePupil()
-        dX = pupilX - bounds.width/2.
-        dY = pupilY - bounds.height/2.
-        distance = math.sqrt(dX*dX + dY*dY)
-        limit = eyeSize/2 - outlineWidth*2 - pupilSize
+        dX = pupilX - bounds.width / 2.
+        dY = pupilY - bounds.height / 2.
+        distance = math.sqrt(dX * dX + dY * dY)
+        limit = eyeSize / 2 - outlineWidth * 2 - pupilSize
         if distance > limit:
-            pupilX = bounds.width/2 + dX*limit/distance
-            pupilY = bounds.height/2 + dY*limit/distance
+            pupilX = bounds.width / 2 + dX * limit / distance
+            pupilY = bounds.height / 2 + dY * limit / distance
 
         self.context = widget.window.cairo_create()
         #self.context.set_antialias(cairo.ANTIALIAS_NONE)
@@ -51,31 +52,31 @@ class Glasses(Eye):
 
         # background
         self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0,0,bounds.width,bounds.height)
+        self.context.rectangle(0, 0, bounds.width, bounds.height)
         self.context.fill()
 
-        def roundrect(x1,y1, x2,y2):
-            self.context.move_to(x1, (y1+y2)/2.)
-            self.context.curve_to(x1,y1, x1,y1, (x1+x2)/2.,y1)
-            self.context.curve_to(x2,y1, x2,y1, x2,(y1+y2)/2.)
-            self.context.curve_to(x2,y2, x2,y2, (x1+x2)/2.,y2)
-            self.context.curve_to(x1,y2, x1,y2, x1,(y1+y2)/2.)
+        def roundrect(x1, y1, x2, y2):
+            self.context.move_to(x1, (y1 + y2) / 2.)
+            self.context.curve_to(x1, y1, x1, y1, (x1 + x2) / 2., y1)
+            self.context.curve_to(x2, y1, x2, y1, x2, (y1 + y2) / 2.)
+            self.context.curve_to(x2, y2, x2, y2, (x1 + x2) / 2., y2)
+            self.context.curve_to(x1, y2, x1, y2, x1, (y1 + y2) / 2.)
 
         # eye ball
-        roundrect(outlineWidth,outlineWidth, bounds.width-outlineWidth,bounds.height-outlineWidth)
-        self.context.set_source_rgb(1,1,1)
+        roundrect(outlineWidth, outlineWidth, bounds.width - outlineWidth, bounds.height - outlineWidth)
+        self.context.set_source_rgb(1, 1, 1)
         self.context.fill()
 
         # outline
         self.context.set_line_width(outlineWidth)
-        roundrect(outlineWidth,outlineWidth, bounds.width-outlineWidth,bounds.height-outlineWidth)
+        roundrect(outlineWidth, outlineWidth, bounds.width - outlineWidth, bounds.height - outlineWidth)
         #roundrect(0,0, bounds.width,bounds.height)
-        self.context.set_source_rgb(0,0,0)
+        self.context.set_source_rgb(0, 0, 0)
         self.context.stroke()
 
         # pupil
-        self.context.arc(pupilX,pupilY,pupilSize,0,360)
-        self.context.set_source_rgb(0,0,0)
+        self.context.arc(pupilX, pupilY, pupilSize, 0, 360)
+        self.context.set_source_rgb(0, 0, 0)
         self.context.fill()
 
         return True
