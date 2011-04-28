@@ -196,7 +196,7 @@ class SpeakActivity(SharedActivity):
         # say hello to the user
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
-         self.face.say_notification(_("Hello %s. Please Type something.") \
+        self.face.say_notification(_("Hello %s. Please Type something.") \
                 % xoOwner.props.nick)
 
     def resume_instance(self, file_path):
