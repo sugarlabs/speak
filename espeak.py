@@ -23,6 +23,7 @@ logger = logging.getLogger('speak')
 
 supported = True
 
+
 class BaseAudioGrab(gobject.GObject):
     __gsignals__ = {
         'new-buffer': (gobject.SIGNAL_RUN_FIRST, None, [gobject.TYPE_PYOBJECT])
