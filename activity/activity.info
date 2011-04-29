@@ -1,5 +1,5 @@
 [Activity]
-sweet     = speak
+implement = speak
 name      = Speak
 summary   = An animated face that speaks whatever you type
 description = Speak is a talking face for the XO laptop. Anything you type will
@@ -11,12 +11,14 @@ description = Speak is a talking face for the XO laptop. Anything you type will
 homepage  = http://wiki.sugarlabs.org/go/Activities/Speak
 license   = GPLv3+
 
+version   = 21
+stability = stable
+
 icon      = activity-speak
 exec      = sugar-activity activity.SpeakActivity
-requires  = gst-plugins-espeak; pyaiml
+requires  = base/gst-plugins-espeak; base/pyaiml
 
-version   = 21
-
+# Deprecated options
 bundle_id = vu.lux.olpc.Speak
 activity_version = %(version)s
 
