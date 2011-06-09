@@ -21,7 +21,8 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-import re, os
+import re 
+import os
 from gettext import gettext as _
 
 import logging
