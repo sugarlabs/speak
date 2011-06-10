@@ -11,7 +11,7 @@ description = Speak is a talking face for the XO laptop. Anything you type will
 homepage  = http://wiki.sugarlabs.org/go/Activities/Speak
 license   = GPLv3+
 
-version   = 26
+activity_version   = 26
 stability = stable
 
 icon      = activity-speak
