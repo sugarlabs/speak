@@ -18,9 +18,7 @@ icon      = activity-speak
 exec      = sugar-activity activity.SpeakActivity
 requires  = base/gst-plugins-espeak; base/pyaiml
 
-# Deprecated options
 bundle_id = vu.lux.olpc.Speak
-activity_version = %(version)s
 
 [Source]
 exclude   = aiml/**
