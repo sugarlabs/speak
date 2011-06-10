@@ -55,8 +55,8 @@ def voices():
         if not m:
             continue
         language, gender, name, stuff = m.groups()
-        if stuff.startswith('mb/') or \
-                name in ('en-rhotic','english_rp','english_wmids'):
+        if stuff.startswith('mb/'): #or \ 
+                #name in ('en-rhotic','english_rp','english_wmids'):
             # these voices don't produce sound
             continue
         out.append((language, name))
