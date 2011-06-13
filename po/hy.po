@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-23 00:31-0500\n"
+"POT-Creation-Date: 2011-04-29 00:31-0400\n"
 "PO-Revision-Date: 2011-05-15 13:06+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,8 @@ msgstr "Երես"
 
 #: activity.py:199
 #, python-format
-msgid "Hello %s.  Type something."
+#, python-format, fuzzy
+msgid "Hello %s. Please Type something."
 msgstr "Բարեւ %s: Որեւէ բան տպեք:"
 
 #: activity.py:263
@@ -122,12 +123,12 @@ msgstr "բերանը փոխվել է"
 msgid "eyes changed"
 msgstr "աչքերը փոխվել են"
 
-#: activity.py:444
+#: activity.py:445
 #, python-format
 msgid "Sorry, I can't speak %s, let's speak %s instead."
 msgstr "Ներողություն, ես %s չեմ կարող խոսել, փոխարենը եկեք խոսենք %s:"
 
-#: activity.py:472
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Դուք ցանցին միացած չեք, կիսվեք որեւէ մեկի հետ եւ հրավիրեք նրան:"
 
@@ -151,7 +152,8 @@ msgstr ""
 
 #: brain.py:125
 #, python-format
-msgid "Hello, I'm a robot \"%s\". Ask me any question."
+#, python-format, fuzzy
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr "Բարեւ, ես ռոբոտ \"%s\"-ն եմ: Տվեք ինձ ցանկացած հարց:"
 
 #: chatbox.py:248
