@@ -32,8 +32,8 @@ class AudioGrabGst(espeak.BaseAudioGrab):
         self.make_pipeline('espeak name=espeak ! wavenc')
         src = self.pipeline.get_by_name('espeak')
 
-        pitch = int(status.pitch) - 100
-        rate = int(status.rate) - 100
+        pitch = int(status.pitch) - 120
+        rate = int(status.rate) - 120
 
         logger.debug('pitch=%d rate=%d voice=%s text=%s' % (pitch, rate,
                 status.voice.name, text))

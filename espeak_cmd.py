@@ -30,7 +30,7 @@ class AudioGrabCmd(espeak.BaseAudioGrab):
         self.make_pipeline('filesrc name=file-source')
 
         # 175 is default value, min is 80
-        rate = 80 + int(((175 - 80) * 2) * status.rate / RATE_MAX)
+        rate = 60 + int(((175 - 80) * 2) * status.rate / RATE_MAX)
         wavpath = "/tmp/speak.wav"
 
         subprocess.call(["espeak", "-w", wavpath, "-p", str(status.pitch),
