@@ -39,6 +39,7 @@ URL_REGEXP = re.compile('((http|ftp)s?://)?'
     '(([-a-zA-Z0-9]+[.])+[-a-zA-Z0-9]{2,}|([0-9]{1,3}[.]){3}[0-9]{1,3})'
     '(:[1-9][0-9]{0,4})?(/[-a-zA-Z0-9/%~@&_+=;:,.?#]*[a-zA-Z0-9/])?')
 
+
 class ChatBox(hippo.CanvasScrollbars):
     def __init__(self):
         hippo.CanvasScrollbars.__init__(self)
@@ -111,7 +112,7 @@ class ChatBox(hippo.CanvasScrollbars):
         # Select text color based on fill color:
         color_fill_rgba = Color(color_fill_html).get_rgba()
         color_fill_gray = (color_fill_rgba[0] + color_fill_rgba[1] +
-                           color_fill_rgba[2])/3
+                           color_fill_rgba[2]) / 3
         color_stroke = Color(color_stroke_html).get_int()
         color_fill = Color(color_fill_html).get_int()
 
@@ -150,7 +151,7 @@ class ChatBox(hippo.CanvasScrollbars):
             self._last_msg = rb
             self._last_msg_sender = buddy
             if not status_message:
-                name = hippo.CanvasText(text=nick+':   ',
+                name = hippo.CanvasText(text=nick + ':   ',
                     color=text_color)
                 name_vbox = hippo.CanvasBox(
                     orientation=hippo.ORIENTATION_VERTICAL)
@@ -216,19 +217,18 @@ class ChatBox(hippo.CanvasScrollbars):
 
     def _scroll_value_changed_cb(self, adj, scroll=None):
         """Turn auto scrolling on or off.
-        
         If the user scrolled up, turn it off.
         If the user scrolled to the bottom, turn it back on.
         """
         if adj.get_value() < self._scroll_value:
             self._scroll_auto = False
-        elif adj.get_value() == adj.upper-adj.page_size:
+        elif adj.get_value() == adj.upper - adj.page_size:
             self._scroll_auto = True
 
     def _scroll_changed_cb(self, adj, scroll=None):
         """Scroll the chat window to the bottom"""
         if self._scroll_auto:
-            adj.set_value(adj.upper-adj.page_size)
+            adj.set_value(adj.upper - adj.page_size)
             self._scroll_value = adj.get_value()
 
     def _link_activated_cb(self, link):
@@ -250,7 +250,7 @@ class ChatBox(hippo.CanvasScrollbars):
             'icon-color': profile.get_color().to_string(),
             'mime_type': 'text/uri-list',
             }
-        for k,v in metadata.items():
+        for k, v in metadata.items():
             jobject.metadata[k] = v
         file_path = os.path.join(get_activity_root(), 'instance',
                                  '%i_' % time.time())
@@ -264,7 +264,6 @@ class ChatBox(hippo.CanvasScrollbars):
 
     def _add_log(self, nick, color, text, status_message):
         """Add the text to the chat log.
-        
         nick -- string, buddy nickname
         color -- string, buddy.props.color
         text -- string, body of message
@@ -282,12 +281,14 @@ class ChatBox(hippo.CanvasScrollbars):
             datetime.strftime(datetime.now(), '%b %d %H:%M:%S'),
             nick, color, status_message, text)
 
+
 class CanvasLink(hippo.CanvasLink):
     def __init__(self, **kwargs):
         hippo.CanvasLink.__init__(self, **kwargs)
 
     def create_palette(self):
         return URLMenu(self.props.text)
+
 
 class URLMenu(Palette):
     def __init__(self, url):
@@ -319,7 +320,7 @@ class URLMenu(Palette):
 
     def _clipboard_data_get_cb(self, clipboard, selection, info, data):
         logger.debug('_clipboard_data_get_cb data=%s target=%s', data,
-                     selection.target)        
+                     selection.target)
         if selection.target in ['text/uri-list']:
             if not selection.set_uris([data]):
                 logger.debug('failed to set_uris')
@@ -332,11 +333,12 @@ class URLMenu(Palette):
         logger.debug('clipboard_clear_cb')
         self.owns_clipboard = False
 
+
 def url_check_protocol(url):
     """Check that the url has a protocol, otherwise prepend https://
-    
+
     url -- string
-    
+
     Returns url -- string
     """
     protocols = ['http://', 'https://', 'ftp://', 'ftps://']
@@ -347,4 +349,3 @@ def url_check_protocol(url):
     if no_protocol:
         url = 'http://' + url
     return url
-
