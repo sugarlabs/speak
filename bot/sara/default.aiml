@@ -118,7 +118,7 @@
   </category>
   <category>
     <pattern>*</pattern>
-	<that>NACÍ EN EL 82, POR LO QUE TENGO 23 AÑOS</that>
+	<that>NACÍ EN EL 88, POR LO QUE TENGO 23 AÑOS</that>
     <template> 
       <random>
         <li>Vale.</li>
