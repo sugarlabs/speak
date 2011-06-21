@@ -254,7 +254,7 @@ class SpeakActivity(SharedActivity):
                 espeak.PITCH_MAX, 1, espeak.PITCH_MAX/10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
-        #pitchbar.set_inverted(True)
+        # pitchbar.set_inverted(True)
         pitchbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
         pitchbar.set_size_request(240,15)
 
@@ -267,7 +267,7 @@ class SpeakActivity(SharedActivity):
                 1, espeak.RATE_MAX/10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
-        #ratebar.set_inverted(True)
+        # ratebar.set_inverted(True)
         ratebar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
         ratebar.set_size_request(240,15)
 
