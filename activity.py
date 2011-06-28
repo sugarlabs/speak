@@ -256,7 +256,7 @@ class SpeakActivity(SharedActivity):
         pitchbar.set_draw_value(False)
         # pitchbar.set_inverted(True)
         pitchbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
-        pitchbar.set_size_request(240,15)
+        pitchbar.set_size_request(240, 15)
 
         pitchbar_toolitem = ToolWidget(
                 widget=pitchbar,
