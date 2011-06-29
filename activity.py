@@ -70,7 +70,7 @@ class SpeakActivity(SharedActivity):
         self.numeyesadj = None
 
         # make an audio device for playing back and rendering audio
-        self.connect( "notify::active", self._activeCb )
+        self.connect("notify::active", self._activeCb)
 
         # make a box to type into
         self.entrycombo = gtk.combo_box_entry_new_text()
@@ -99,8 +99,8 @@ class SpeakActivity(SharedActivity):
 
         # desktop
         self.notebook.show()
-        self.notebook.props.show_border = False
-        self.notebook.props.show_tabs = False
+        self.notebook.props.show_border=False
+        self.notebook.props.show_tabs=False
 
         box.show_all()
         self.notebook.append_page(box)
@@ -217,9 +217,9 @@ class SpeakActivity(SharedActivity):
         self.new_instance()
 
     def save_instance(self, file_path):
-        cfg = { 'status'  : self.face.status.serialize(),
-                'text'    : self.entry.props.text,
-                'history' : map(lambda i: i[0], self.entrycombo.get_model()) }
+        cfg = {'status': self.face.status.serialize(),
+                'text': self.entry.props.text,
+                'history': map(lambda i: i[0], self.entrycombo.get_model())}
         file(file_path, 'w').write(cjson.encode(cfg))
 
     def share_instance(self, connection, is_initiator):
@@ -264,12 +264,12 @@ class SpeakActivity(SharedActivity):
         voicebar.insert(pitchbar_toolitem, -1)
 
         self.rateadj = gtk.Adjustment(self.face.status.rate, 0, espeak.RATE_MAX,
-                1, espeak.RATE_MAX/10, 0)
+                1, espeak.RATE_MAX / 10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         # ratebar.set_inverted(True)
         ratebar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
-        ratebar.set_size_request(240,15)
+        ratebar.set_size_request(240, 15)
 
         ratebar_toolitem = ToolWidget(
                 widget=ratebar,
@@ -315,7 +315,7 @@ class SpeakActivity(SharedActivity):
         numeyesbar = gtk.HScale(self.numeyesadj)
         numeyesbar.set_draw_value(False)
         numeyesbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
-        numeyesbar.set_size_request(240,15)
+        numeyesbar.set_size_request(240, 15)
 
         numeyesbar_toolitem = ToolWidget(
                 widget=numeyesbar,
@@ -353,7 +353,7 @@ class SpeakActivity(SharedActivity):
         # when a new item is chosen, make sure the text is selected
         if not self.entry.is_focus():
             self.entry.grab_focus()
-            self.entry.select_region(0,-1)
+            self.entry.select_region(0, -1)
 
     def _entry_key_press_cb(self, combo, event):
         # make the up/down arrows navigate through our history
@@ -370,7 +370,7 @@ class SpeakActivity(SharedActivity):
             if index<len(self.entrycombo.get_model())-1:
                 index+=1
             self.entrycombo.set_active(index)
-            self.entry.select_region(0,-1)
+            self.entry.select_region(0, -1)
             return True
         return False
 
@@ -397,9 +397,9 @@ class SpeakActivity(SharedActivity):
                 # select the new item
                 self.entrycombo.set_active(len(history)-1)
             # select the whole text
-            entry.select_region(0,-1)
+            entry.select_region(0, -1)
 
-    def _activeCb( self, widget, pspec ):
+    def _activeCb(self, widget, pspec):
         # only generate sound when this activity is active
         if not self.props.active:
             self.face.shut_up()
