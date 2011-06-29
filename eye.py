@@ -24,8 +24,6 @@
 import pygtk
 import gtk
 import gtk.gdk
-import gobject
-import cairo
 import math
 
 
