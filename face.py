@@ -25,7 +25,6 @@
 import logging 
 import gtk
 import cjson
-from gettext import gettext as _
 
 import sugar.graphics.style as style
 
