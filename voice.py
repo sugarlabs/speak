@@ -76,16 +76,21 @@ class Voice:
     def __init__(self, language, name):
         self.language = language
         self.name = name
-
         friendlyname = name
         friendlyname = friendlyname.replace('-test','')
         friendlyname = friendlyname.replace('_test','')
         friendlyname = friendlyname.replace('en-','')
         friendlyname = friendlyname.replace('english-wisper','whisper')
+        
 
-        parts = re.split('[ -]', friendlyname)
+
+        parts = re.split('[_-]', friendlyname)
         self.short_name = _(parts[0].capitalize())
         self.friendlyname = ' '.join([self.short_name] + parts[1:])
+        
+    #    if parts[1:] == 'rp':
+    #            self.short_name  = _(parts[0].capitalize())   
+    #            self.friendlyname = ''.join([self.shot_name] + ('required pronunciation')
 
     def __cmp__(self, other):
         return cmp(self.friendlyname, other.friendlyname if other else '')
