@@ -87,7 +87,7 @@ class Voice:
 
         friendlynameRP = name #friendlyname for RP
         friendlynameRP = friendlynameRP.replace('english_rp', 'rp')
-
+        friendlynameRP = friendlynameRP.replace('english_wmids', 'wmids')
 
         parts = re.split('[ _-]', friendlyname)
         partsRP = re.split('[ _]', friendlynameRP) #RE for english_RP
@@ -107,6 +107,13 @@ class Voice:
         if friendlyname == 'us':
                 friendlynameUS = 'English (USA)'
                 print friendlynameUS 
+        
+        friendlynameWMIDS = None
+        if friendlynameRP == 'wmids':
+                friendlynameWMIDS = 'English (West Midlands)'
+                print friendlynameWMIDS
+            
+
 
     def __cmp__(self, other):
         return cmp(self.friendlyname, other.friendlyname if other else '')
