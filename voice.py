@@ -70,6 +70,7 @@ expectedVoiceNames = [
 ]
 
 _allVoices = {}
+#_allVoicesRP = {}
 _defaultVoice = None
 
 class Voice:
@@ -82,18 +83,28 @@ class Voice:
         friendlyname = friendlyname.replace('en-','')
         friendlyname = friendlyname.replace('english-wisper','whisper')
         
+        friendlynameRP = name #friendlyname for RP
+        friendlynameRP = friendlynameRP.replace('english_rp', 'rp')
 
-
-        parts = re.split('[_-]', friendlyname)
+        parts = re.split('[ _-]', friendlyname)
+        partsRP = re.split('[ _]', friendlynameRP) #RE for english_RP
+        #print friendlynameRP
         self.short_name = _(parts[0].capitalize())
         self.friendlyname = ' '.join([self.short_name] + parts[1:])
         
-    #    if parts[1:] == 'rp':
-    #            self.short_name  = _(parts[0].capitalize())   
-    #            self.friendlyname = ''.join([self.shot_name] + ('required pronunciation')
+        friendlynameRP1 = None 
+        if friendlynameRP == 'rp':
+                
+                #self.short_nameRP  = _(partsRP[0].capitalize())
+                #self.friendlynameRP1 = ''.join([self.short_nameRP] + ['Required'])
+                friendlynameRP1 = 'English Required Pronunciation'
+                print friendlynameRP1 
 
     def __cmp__(self, other):
         return cmp(self.friendlyname, other.friendlyname if other else '')
+ #   def __cmpRP__(self, other):
+ #       return cmpf(self.friendlynameRP1, other.friendlynameRP if other else '')
+
 
 def allVoices():
     if _allVoices:
@@ -102,14 +113,26 @@ def allVoices():
     for language, name in espeak.voices():
         voice = Voice(language, name)
         _allVoices[voice.friendlyname] = voice
-
     return _allVoices
+
+#def allVoicesRP():
+#    if _allVoicesRP:
+#        return _allVoicesRP
+
+#    for language, name in espeak.voices():
+#        voiceRP = VoiceRP(language, name)
+#        _allVoicesRP[voiceRP.friendlynameRP1] = voiceRP
+#    return _allVoicesRP
 
 def by_name(name):
     return allVoices().get(name, defaultVoice())
 
+#def by_nameRP(name):
+#    return allVoicesRP().get(name, defaultVoice())
+    
+
 def defaultVoice():
-    """Try to figure out the default voice, from the current locale ($LANG).
+    """Try to figure ofuft the default voice, from the current locale ($LANG).
        Fall back to espeak's voice called Default."""
 
     global _defaultVoice
@@ -118,6 +141,7 @@ def defaultVoice():
         return _defaultVoice
 
     voices = allVoices()
+#    voicesRP = allVoicesRP()
 
     def fit(a,b):
         "Compare two language ids to see if they are similar."
