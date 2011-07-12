@@ -82,9 +82,12 @@ class Voice:
         friendlyname = friendlyname.replace('_test','')
         friendlyname = friendlyname.replace('en-','')
         friendlyname = friendlyname.replace('english-wisper','whisper')
+        friendlyname = friendlyname.replace('english-us', 'us')
         
+
         friendlynameRP = name #friendlyname for RP
         friendlynameRP = friendlynameRP.replace('english_rp', 'rp')
+
 
         parts = re.split('[ _-]', friendlyname)
         partsRP = re.split('[ _]', friendlynameRP) #RE for english_RP
@@ -97,8 +100,13 @@ class Voice:
                 
                 #self.short_nameRP  = _(partsRP[0].capitalize())
                 #self.friendlynameRP1 = ''.join([self.short_nameRP] + ['Required'])
-                friendlynameRP1 = 'English Required Pronunciation'
-                print friendlynameRP1 
+                friendlynameRP1 = 'English (Required Pronunciation)'
+                print friendlynameRP1
+        
+        friendlynameUS = None
+        if friendlyname == 'us':
+                friendlynameUS = 'English (USA)'
+                print friendlynameUS 
 
     def __cmp__(self, other):
         return cmp(self.friendlyname, other.friendlyname if other else '')
