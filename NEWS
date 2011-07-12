@@ -1,3 +1,9 @@
+28
+
+*Adding friendlynames for english_rp and english_wmids, englis-us accents.
+*various pep8 and pylint fixes.
+*updated translations
+
 26
 
 *Enabling english_rp and english_wmids accents
