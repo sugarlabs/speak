@@ -130,7 +130,7 @@ def by_name(name):
 
     
 def defaultVoice():
-    """Try to figure ofuft the default voice, from the current locale ($LANG).
+    """Try to figure out the default voice, from the current locale ($LANG).
        Fall back to espeak's voice called Default."""
 
     global _defaultVoice
