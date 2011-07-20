@@ -96,8 +96,8 @@ class Voice:
         friendlynameRP1 = None 
         if friendlynameRP == 'rp':
                 
-                friendlynameRP1 = 'English (Required Pronunciation)'
-                self.friendlyname = 'English (Required Pronunciation)'
+                friendlynameRP1 = 'English (Recieved Pronunciation)'
+                self.friendlyname = 'English (Recieved Pronunciation)'
         
         friendlynameUS = None
         if friendlyname == 'us':
