@@ -159,24 +159,6 @@ class ShareButton(RadioMenuButton):
             self.neighborhood.handler_unblock(self._neighborhood_handle)
 
 
-class KeepButton(ToolButton):
-
-    def __init__(self, activity, **kwargs):
-        ToolButton.__init__(self, **kwargs)
-        self.props.tooltip = _('Keep')
-        self.props.accelerator = '<Ctrl>S'
-
-        color = profile.get_color()
-        keep_icon = Icon(icon_name='document-save', xo_color=color)
-        keep_icon.show()
-
-        self.set_icon_widget(keep_icon)
-        self.connect('clicked', self.__keep_button_clicked_cb, activity)
-
-    def __keep_button_clicked_cb(self, button, activity):
-        activity.copy()
-
-
 class TitleEntry(gtk.ToolItem):
 
     def __init__(self, activity, **kwargs):
@@ -222,7 +204,7 @@ class TitleEntry(gtk.ToolItem):
 
 class ActivityToolbar(gtk.Toolbar):
     """The Activity toolbar with the Journal entry title, sharing,
-       Keep and Stop buttons
+       and Stop buttons
 
     All activities should have this toolbar. It is easiest to add it to your
     Activity by using the ActivityToolbox.
@@ -249,10 +231,6 @@ class ActivityToolbar(gtk.Toolbar):
         self.share = ShareButton(activity)
         self.share.show()
         self.insert(self.share, -1)
-
-        self.keep = KeepButton(activity)
-        self.insert(self.keep, -1)
-        self.keep.show()
 
         self.stop = StopButton(activity)
         self.insert(self.stop, -1)
