@@ -6,20 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-29 00:31-0400\n"
+"POT-Creation-Date: 2011-08-04 13:41+0000\n"
 "PO-Revision-Date: 2011-06-02 18:30+0200\n"
 "Last-Translator: Aputsiaq <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: da\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
-
-#: activity/activity.info:2
-msgid "Speak"
-msgstr "Tale"
 
 #: activity.py:137
 msgid "Type something to hear it"
@@ -112,11 +108,15 @@ msgstr "Beklager, jeg kan ikke tale %s, lad os tale %s i stedet for."
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Du er i frakoblet tilstand, del og invitér en person."
 
-#: brain.py:33 voice.py:66
+#: activity/activity.info:2
+msgid "Speak"
+msgstr "Tale"
+
+#: brain.py:33 voice.py:67
 msgid "Spanish"
 msgstr "Spansk"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
 msgstr "Engelsk"
 
@@ -142,7 +142,7 @@ msgstr "Hej, jeg er robot \"%s\". Venligst stil mig hvilket som helst spørgsmå
 msgid "URL from Chat"
 msgstr "URL fra Chat"
 
-#: chatbox.py:298
+#: chatbox.py:299
 msgid "Copy to Clipboard"
 msgstr "Kopiér til udklipsholder"
 
@@ -174,134 +174,133 @@ msgstr "Privat"
 msgid "My Neighborhood"
 msgstr "Mit nabolag"
 
-#: toolkit/activity_widgets.py:166
-msgid "Keep"
-msgstr "Behold"
-
-#: toolkit/activity_widgets.py:344
+#: toolkit/activity_widgets.py:322
 msgid "Activity"
 msgstr "Aktivitet"
 
-#: voice.py:36
+#: voice.py:37
 msgid "Brazil"
 msgstr "Brasiliansk"
 
-#: voice.py:37
+#: voice.py:38
 msgid "Swedish"
 msgstr "Svensk"
 
-#: voice.py:38
+#: voice.py:39
 msgid "Icelandic"
 msgstr "Islandsk"
 
-#: voice.py:39
+#: voice.py:40
 msgid "Romanian"
 msgstr "Rumænsk"
 
-#: voice.py:40
+#: voice.py:41
 msgid "Swahili"
 msgstr "Swahili"
 
-#: voice.py:41
+#: voice.py:42
 msgid "Hindi"
 msgstr "Hindi"
 
-#: voice.py:42
+#: voice.py:43
 msgid "Dutch"
 msgstr "Hollandsk"
 
-#: voice.py:43
+#: voice.py:44
 msgid "Latin"
 msgstr "Latin"
 
-#: voice.py:44
+#: voice.py:45
 msgid "Hungarian"
 msgstr "Ungarsk"
 
-#: voice.py:45
+#: voice.py:46
 msgid "Macedonian"
 msgstr "Makedonsk"
 
-#: voice.py:46
+#: voice.py:47
 msgid "Welsh"
 msgstr "Walisisk"
 
-#: voice.py:47
+#: voice.py:48
 msgid "French"
 msgstr "Fransk"
 
-#: voice.py:48
+#: voice.py:49
 msgid "Norwegian"
 msgstr "Norsk"
 
-#: voice.py:49
+#: voice.py:50
 msgid "Russian"
 msgstr "Russisk"
 
-#: voice.py:50
+#: voice.py:51
 msgid "Afrikaans"
 msgstr "Afrikaans"
 
-#: voice.py:51
+#: voice.py:52
 msgid "Finnish"
 msgstr "Finsk"
 
-#: voice.py:52 voice.py:130
+#: voice.py:53 voice.py:157
 msgid "Default"
 msgstr "Standard"
 
-#: voice.py:53
+#: voice.py:54
 msgid "Cantonese"
 msgstr "Kantonesisk"
 
-#: voice.py:54
+#: voice.py:55
 msgid "Scottish"
 msgstr "Skotsk"
 
-#: voice.py:55
+#: voice.py:56
 msgid "Greek"
 msgstr "Græsk"
 
-#: voice.py:56
+#: voice.py:57
 msgid "Vietnam"
 msgstr "Vietnamesisk"
 
-#: voice.py:58
+#: voice.py:59
 msgid "Lancashire"
 msgstr "Lancashire"
 
-#: voice.py:59
+#: voice.py:60
 msgid "Italian"
 msgstr "Italiensk"
 
-#: voice.py:60
+#: voice.py:61
 msgid "Portugal"
 msgstr "Portugisisk"
 
-#: voice.py:61
+#: voice.py:62
 msgid "German"
 msgstr "Tysk"
 
-#: voice.py:62
+#: voice.py:63
 msgid "Whisper"
 msgstr "Hvisken"
 
-#: voice.py:63
+#: voice.py:64
 msgid "Croatian"
 msgstr "Kroatisk"
 
-#: voice.py:64
+#: voice.py:65
 msgid "Czech"
 msgstr "Tjekkisk"
 
-#: voice.py:65
+#: voice.py:66
 msgid "Slovak"
 msgstr "Slovakisk"
 
-#: voice.py:67
+#: voice.py:68
 msgid "Polish"
 msgstr "Polsk"
 
-#: voice.py:68
+#: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
+
+#~ msgid "Keep"
+#~ msgstr "Behold"
