@@ -3,12 +3,6 @@ How to contribute
 
 Useful notes how to contribute to the project.
 
-Before committing
------------------
-All source files need to be passed through `sugar-lint`_ command.
-Follow sugar-lint home page instructions and especially
-`"Lint files before committing"` section.
-
 Send patches
 ------------
 Create your patches using ``git format`` command and send them to all
