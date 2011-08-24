@@ -1,0 +1,303 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-04 13:41+0000\n"
+"PO-Revision-Date: 2011-08-19 08:00+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: hus\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
+
+#: activity.py:137
+msgid "Type something to hear it"
+msgstr "ka we' dhucha' abal ka ats'a'"
+
+#: activity.py:144
+msgid "Ask robot any question"
+msgstr "ka t'ajchij jawak'ij tam konoxtlab an tsalpadh pat'al"
+
+#: activity.py:152
+msgid "Voice chat"
+msgstr "janidh t'ilomtaláb"
+
+#: activity.py:164
+msgid "Voice"
+msgstr "kawímtal"
+
+#: activity.py:170
+msgid "Face"
+msgstr "wálek"
+
+#: activity.py:199
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "Nenek %s. t'ajchij an alwa'talab Ka dhucha' jun jant'o"
+
+#: activity.py:263
+msgid "Pitch:"
+msgstr "alwa' in janidh."
+
+#: activity.py:276
+msgid "Rate:"
+msgstr "adhík"
+
+#: activity.py:284
+msgid "pitch adjusted"
+msgstr "t'ojojodh in alwa' in janidh"
+
+#: activity.py:288
+msgid "rate adjusted"
+msgstr "t'ojojodh in adhík"
+
+#: activity.py:294
+msgid "Simple"
+msgstr "alk'idh"
+
+#: activity.py:295
+msgid "Waveform"
+msgstr "ik' bel"
+
+#: activity.py:296
+msgid "Frequency"
+msgstr "tsáp an ik' bel"
+
+#: activity.py:301
+msgid "Mouth:"
+msgstr "wi'"
+
+#: activity.py:305
+msgid "Round"
+msgstr "kwechochik"
+
+#: activity.py:306
+msgid "Glasses"
+msgstr "tajwal"
+
+#: activity.py:311
+msgid "Eyes:"
+msgstr "wal"
+
+#: activity.py:322
+msgid "Eyes number:"
+msgstr "jay in wal"
+
+#: activity.py:334
+msgid "mouth changed"
+msgstr "jaludh in wi'"
+
+#: activity.py:346
+msgid "eyes changed"
+msgstr "jaludh in walchik."
+
+#: activity.py:445
+#, python-format
+msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgstr "Pakwlanchij yab u ejtowal kin kawin %s, alwa' ku kawin %s."
+
+#: activity.py:473
+msgid "You are in off-line mode, share and invite someone."
+msgstr "It k'wajat ti in alwa´yab ts'ot'k'odh, ts'ejlixna ani ka kániy jita'."
+
+#: activity/activity.info:2
+msgid "Speak"
+msgstr "kaw k'al a Sara."
+
+#: brain.py:33 voice.py:67
+msgid "Spanish"
+msgstr "labkaw"
+
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+msgid "English"
+msgstr "Inglés"
+
+#: brain.py:80
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Pawlanchij yab u ejtowal ku éxbay jawa' exom a konówyal"
+
+#: brain.py:104
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Pakwlanchij, yabats wa'ats i jolat tu dhaikoy, ka mapuy k'e'at i t'ojlabchik "
+"ani ka exa' ti it."
+
+#: brain.py:125
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr ""
+"Nenek, nana' pel in atiklab pat'al \"%s\". Ti kin konowiy jawakitstom "
+"konowixtaláb"
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "URB ma tin tújtal an dhuchad t'ilomtaláb"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "K'ot'biy ani abna' ti dhaykol úw."
+
+#: toolkit/activity_widgets.py:83
+msgid "Stop"
+msgstr "kuba'"
+
+#: toolkit/activity_widgets.py:95
+msgid "Undo"
+msgstr "wichk'ow"
+
+#: toolkit/activity_widgets.py:103
+msgid "Redo"
+msgstr "Tsáb ts'ejka."
+
+#: toolkit/activity_widgets.py:110
+msgid "Copy"
+msgstr "k'ot'biy"
+
+#: toolkit/activity_widgets.py:117
+msgid "Paste"
+msgstr "Ts'at'ka'"
+
+#: toolkit/activity_widgets.py:127
+msgid "Private"
+msgstr "tsinat"
+
+#: toolkit/activity_widgets.py:134
+msgid "My Neighborhood"
+msgstr "Át kímadh"
+
+#: toolkit/activity_widgets.py:322
+msgid "Activity"
+msgstr "T'ojlab."
+
+#: voice.py:37
+msgid "Brazil"
+msgstr "Brasileño"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Sueco"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Islandes"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Rumano"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Suajili"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Hindi"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Holandés"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Latin"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Húngaro"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Macedonio."
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Galés"
+
+#: voice.py:48
+msgid "French"
+msgstr "Francés"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "Noruego"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Ruso"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Africaans"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Finlandés"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "K'ejabijidh"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Cantonés"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Escocés"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Griego"
+
+#: voice.py:57
+msgid "Vietnam"
+msgstr "Vietnamita"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Lancashire"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Italiano"
+
+#: voice.py:61
+msgid "Portugal"
+msgstr "Portugués"
+
+#: voice.py:62
+msgid "German"
+msgstr "Alemán"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "Kwe' kaw"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Croata"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Checo"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Eslovaco"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Polaco"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Aychix"
