@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
+"POT-Creation-Date: 2011-09-23 14:41-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgstr ""
 
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgid "Sorry, I can't %(speak)s, let's %(speak)s instead."
 msgstr ""
 
 #: activity.py:473
