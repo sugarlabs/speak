@@ -158,6 +158,10 @@ def defaultVoice():
     for voice in voices.values():
         voiceMetric = fit(voice.language, lang)
         bestMetric  = fit(best.language, lang)
+        if lang=='en_AU.UTF-8':
+            if voice.friendlyname=='English (Received Pronunciation)':
+                best = voice
+                break
         if voiceMetric > bestMetric:
             best = voice
 
