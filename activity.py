@@ -442,7 +442,7 @@ class SpeakActivity(SharedActivity):
                 if i[0].short_name == old_voice.short_name]
         if not new_voice:
             new_voice = brain.get_default_voice()
-            sorry = _("Sorry, I can't %(speak)s, let's %(speak)s instead.") % \
+            sorry = _("Sorry, I can't %(speak)s, let's %(talk)s instead.") % \
                     (old_voice.friendlyname, new_voice.friendlyname)
         else:
             new_voice = new_voice[0]

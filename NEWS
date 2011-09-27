@@ -1,3 +1,9 @@
+32
+
+* Set-english-rp-as-default-for-en_AU (Sebastian Silva)
+* avoiding gettext warning
+* New translations
+
 31
 
 * Remove KeepButton due to deprecation (Gonzalo Odiard)
