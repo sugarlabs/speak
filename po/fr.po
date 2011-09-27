@@ -42,8 +42,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
-"PO-Revision-Date: 2011-09-25 23:36+0200\n"
+"POT-Creation-Date: 2011-09-23 14:41-0500\n"
+"PO-Revision-Date: 2011-09-27 11:20+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
@@ -136,9 +136,9 @@ msgid "eyes changed"
 msgstr "yeux modifiés"
 
 #: activity.py:445
-#, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr "Désolé, je ne parle pas %s, parlons %s à la place."
+#, python-format, 
+msgid "Sorry, I can't %(speak)s, let's %(speak)s instead."
+msgstr "Désolé, je ne parle pas %(speak)s, parlons %(speak)s à la place."
 
 #: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
