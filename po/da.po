@@ -6,125 +6,263 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
-"PO-Revision-Date: 2011-06-02 18:30+0200\n"
-"Last-Translator: Aputsiaq <aj@isit.gl>\n"
+"POT-Creation-Date: 2011-09-27 19:38+0000\n"
+"PO-Revision-Date: 2011-09-28 17:22+0200\n"
+"Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
-
-#: activity.py:137
-msgid "Type something to hear it"
-msgstr "Indtast noget for at høre det"
-
-#: activity.py:144
-msgid "Ask robot any question"
-msgstr "Stil robot hvilket som helst spørgsmål"
-
-#: activity.py:152
-msgid "Voice chat"
-msgstr "Chat med lyd"
-
-#: activity.py:164
-msgid "Voice"
-msgstr "Stemme"
-
-#: activity.py:170
-msgid "Face"
-msgstr "Ansigt"
-
-#: activity.py:199
-#, python-format
-#, python-format,
-msgid "Hello %s. Please Type something."
-msgstr "Hej %s. Indtast venligst noget."
-
-#: activity.py:263
-msgid "Pitch:"
-msgstr "Tonehøjde:"
-
-#: activity.py:276
-msgid "Rate:"
-msgstr "Tonerate:"
-
-#: activity.py:284
-msgid "pitch adjusted"
-msgstr "tonehøjde tilpasset"
-
-#: activity.py:288
-msgid "rate adjusted"
-msgstr "tonerate tilpasset"
-
-#: activity.py:294
-msgid "Simple"
-msgstr "Simpel"
-
-#: activity.py:295
-msgid "Waveform"
-msgstr "Bølgeform"
-
-#: activity.py:296
-msgid "Frequency"
-msgstr "Frekvens"
-
-#: activity.py:301
-msgid "Mouth:"
-msgstr "Mund:"
-
-#: activity.py:305
-msgid "Round"
-msgstr "Rund"
-
-#: activity.py:306
-msgid "Glasses"
-msgstr "Briller"
-
-#: activity.py:311
-msgid "Eyes:"
-msgstr "Øjne:"
-
-#: activity.py:322
-msgid "Eyes number:"
-msgstr "Antal øjne:"
-
-#: activity.py:334
-msgid "mouth changed"
-msgstr "mund ændret"
-
-#: activity.py:346
-msgid "eyes changed"
-msgstr "øjne ændret"
-
-#: activity.py:445
-#, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr "Beklager, jeg kan ikke tale %s, lad os tale %s i stedet for."
-
-#: activity.py:473
-msgid "You are in off-line mode, share and invite someone."
-msgstr "Du er i frakoblet tilstand, del og invitér en person."
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
 msgstr "Tale"
 
-#: brain.py:33 voice.py:67
-msgid "Spanish"
-msgstr "Spansk"
+#: /home/rafael/Activities/speak/chatbox.py:248
+msgid "URL from Chat"
+msgstr "URL fra Chat"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: /home/rafael/Activities/speak/chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Kopiér til udklipsholder"
+
+#: /home/rafael/Activities/speak/activity.py:137
+msgid "Type something to hear it"
+msgstr "Indtast noget for at høre det"
+
+#: /home/rafael/Activities/speak/activity.py:144
+msgid "Ask robot any question"
+msgstr "Stil robot hvilket som helst spørgsmål"
+
+#: /home/rafael/Activities/speak/activity.py:152
+msgid "Voice chat"
+msgstr "Chat med lyd"
+
+#: /home/rafael/Activities/speak/activity.py:164
+msgid "Voice"
+msgstr "Stemme"
+
+#: /home/rafael/Activities/speak/activity.py:170
+msgid "Face"
+msgstr "Ansigt"
+
+#: /home/rafael/Activities/speak/activity.py:199
+#, python-format
+#, python-format,
+msgid "Hello %s. Please Type something."
+msgstr "Hej %s. Indtast venligst noget."
+
+#: /home/rafael/Activities/speak/activity.py:263
+msgid "Pitch:"
+msgstr "Tonehøjde:"
+
+#: /home/rafael/Activities/speak/activity.py:276
+msgid "Rate:"
+msgstr "Tonerate:"
+
+#: /home/rafael/Activities/speak/activity.py:284
+msgid "pitch adjusted"
+msgstr "tonehøjde tilpasset"
+
+#: /home/rafael/Activities/speak/activity.py:288
+msgid "rate adjusted"
+msgstr "tonerate tilpasset"
+
+#: /home/rafael/Activities/speak/activity.py:294
+msgid "Simple"
+msgstr "Simpel"
+
+#: /home/rafael/Activities/speak/activity.py:295
+msgid "Waveform"
+msgstr "Bølgeform"
+
+#: /home/rafael/Activities/speak/activity.py:296
+msgid "Frequency"
+msgstr "Frekvens"
+
+#: /home/rafael/Activities/speak/activity.py:301
+msgid "Mouth:"
+msgstr "Mund:"
+
+#: /home/rafael/Activities/speak/activity.py:305
+msgid "Round"
+msgstr "Rund"
+
+#: /home/rafael/Activities/speak/activity.py:306
+msgid "Glasses"
+msgstr "Briller"
+
+#: /home/rafael/Activities/speak/activity.py:311
+msgid "Eyes:"
+msgstr "Øjne:"
+
+#: /home/rafael/Activities/speak/activity.py:322
+msgid "Eyes number:"
+msgstr "Antal øjne:"
+
+#: /home/rafael/Activities/speak/activity.py:334
+msgid "mouth changed"
+msgstr "mund ændret"
+
+#: /home/rafael/Activities/speak/activity.py:346
+msgid "eyes changed"
+msgstr "øjne ændret"
+
+#: /home/rafael/Activities/speak/activity.py:445
+#, python-format, 
+msgid "Sorry, I can't speak %s, let's talk %s instead."
+msgstr "Beklager, jeg kan ikke tale %s, lad os tale %s i stedet for."
+
+#: /home/rafael/Activities/speak/activity.py:473
+msgid "You are in off-line mode, share and invite someone."
+msgstr "Du er i frakoblet tilstand, del og invitér en person."
+
+#: /home/rafael/Activities/speak/voice.py:37
+msgid "Brazil"
+msgstr "Brasiliansk"
+
+#: /home/rafael/Activities/speak/voice.py:38
+msgid "Swedish"
+msgstr "Svensk"
+
+#: /home/rafael/Activities/speak/voice.py:39
+msgid "Icelandic"
+msgstr "Islandsk"
+
+#: /home/rafael/Activities/speak/voice.py:40
+msgid "Romanian"
+msgstr "Rumænsk"
+
+#: /home/rafael/Activities/speak/voice.py:41
+msgid "Swahili"
+msgstr "Swahili"
+
+#: /home/rafael/Activities/speak/voice.py:42
+msgid "Hindi"
+msgstr "Hindi"
+
+#: /home/rafael/Activities/speak/voice.py:43
+msgid "Dutch"
+msgstr "Hollandsk"
+
+#: /home/rafael/Activities/speak/voice.py:44
+msgid "Latin"
+msgstr "Latin"
+
+#: /home/rafael/Activities/speak/voice.py:45
+msgid "Hungarian"
+msgstr "Ungarsk"
+
+#: /home/rafael/Activities/speak/voice.py:46
+msgid "Macedonian"
+msgstr "Makedonsk"
+
+#: /home/rafael/Activities/speak/voice.py:47
+msgid "Welsh"
+msgstr "Walisisk"
+
+#: /home/rafael/Activities/speak/voice.py:48
+msgid "French"
+msgstr "Fransk"
+
+#: /home/rafael/Activities/speak/voice.py:49
+msgid "Norwegian"
+msgstr "Norsk"
+
+#: /home/rafael/Activities/speak/voice.py:50
+msgid "Russian"
+msgstr "Russisk"
+
+#: /home/rafael/Activities/speak/voice.py:51
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: /home/rafael/Activities/speak/voice.py:52
+msgid "Finnish"
+msgstr "Finsk"
+
+#: /home/rafael/Activities/speak/voice.py:53
+#: /home/rafael/Activities/speak/voice.py:157
+msgid "Default"
+msgstr "Standard"
+
+#: /home/rafael/Activities/speak/voice.py:54
+msgid "Cantonese"
+msgstr "Kantonesisk"
+
+#: /home/rafael/Activities/speak/voice.py:55
+msgid "Scottish"
+msgstr "Skotsk"
+
+#: /home/rafael/Activities/speak/voice.py:56
+msgid "Greek"
+msgstr "Græsk"
+
+#: /home/rafael/Activities/speak/voice.py:57
+msgid "Vietnam"
+msgstr "Vietnamesisk"
+
+#: /home/rafael/Activities/speak/voice.py:58
+#: /home/rafael/Activities/speak/brain.py:37
+#: /home/rafael/Activities/speak/brain.py:52
+#: /home/rafael/Activities/speak/brain.py:54
+#: /home/rafael/Activities/speak/brain.py:64
 msgid "English"
 msgstr "Engelsk"
 
-#: brain.py:80
+#: /home/rafael/Activities/speak/voice.py:59
+msgid "Lancashire"
+msgstr "Lancashire"
+
+#: /home/rafael/Activities/speak/voice.py:60
+msgid "Italian"
+msgstr "Italiensk"
+
+#: /home/rafael/Activities/speak/voice.py:61
+msgid "Portugal"
+msgstr "Portugisisk"
+
+#: /home/rafael/Activities/speak/voice.py:62
+msgid "German"
+msgstr "Tysk"
+
+#: /home/rafael/Activities/speak/voice.py:63
+msgid "Whisper"
+msgstr "Hvisken"
+
+#: /home/rafael/Activities/speak/voice.py:64
+msgid "Croatian"
+msgstr "Kroatisk"
+
+#: /home/rafael/Activities/speak/voice.py:65
+msgid "Czech"
+msgstr "Tjekkisk"
+
+#: /home/rafael/Activities/speak/voice.py:66
+msgid "Slovak"
+msgstr "Slovakisk"
+
+#: /home/rafael/Activities/speak/voice.py:67
+#: /home/rafael/Activities/speak/brain.py:33
+msgid "Spanish"
+msgstr "Spansk"
+
+#: /home/rafael/Activities/speak/voice.py:68
+msgid "Polish"
+msgstr "Polsk"
+
+#: /home/rafael/Activities/speak/voice.py:69
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: /home/rafael/Activities/speak/brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "Beklager, jeg kan ikke forstå hvad du spørger om."
 
-#: brain.py:104
+#: /home/rafael/Activities/speak/brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -132,175 +270,43 @@ msgstr ""
 "Beklager, der er ikke fri hukommelse til indlæsning af min hjerne. Luk andre "
 "aktiviteter og forsøg en gang mere."
 
-#: brain.py:125
+#: /home/rafael/Activities/speak/brain.py:125
 #, python-format
 #, python-format,
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr "Hej, jeg er robot \"%s\". Venligst stil mig hvilket som helst spørgsmål."
 
-#: chatbox.py:248
-msgid "URL from Chat"
-msgstr "URL fra Chat"
-
-#: chatbox.py:299
-msgid "Copy to Clipboard"
-msgstr "Kopiér til udklipsholder"
-
-#: toolkit/activity_widgets.py:83
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:83
 msgid "Stop"
 msgstr "Stop"
 
-#: toolkit/activity_widgets.py:95
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:95
 msgid "Undo"
 msgstr "Fortryd"
 
-#: toolkit/activity_widgets.py:103
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:103
 msgid "Redo"
 msgstr "Omgør"
 
-#: toolkit/activity_widgets.py:110
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:110
 msgid "Copy"
 msgstr "Kopiér"
 
-#: toolkit/activity_widgets.py:117
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:117
 msgid "Paste"
 msgstr "Indsæt"
 
-#: toolkit/activity_widgets.py:127
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:127
 msgid "Private"
 msgstr "Privat"
 
-#: toolkit/activity_widgets.py:134
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
 msgstr "Mit nabolag"
 
-#: toolkit/activity_widgets.py:322
+#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:322
 msgid "Activity"
 msgstr "Aktivitet"
-
-#: voice.py:37
-msgid "Brazil"
-msgstr "Brasiliansk"
-
-#: voice.py:38
-msgid "Swedish"
-msgstr "Svensk"
-
-#: voice.py:39
-msgid "Icelandic"
-msgstr "Islandsk"
-
-#: voice.py:40
-msgid "Romanian"
-msgstr "Rumænsk"
-
-#: voice.py:41
-msgid "Swahili"
-msgstr "Swahili"
-
-#: voice.py:42
-msgid "Hindi"
-msgstr "Hindi"
-
-#: voice.py:43
-msgid "Dutch"
-msgstr "Hollandsk"
-
-#: voice.py:44
-msgid "Latin"
-msgstr "Latin"
-
-#: voice.py:45
-msgid "Hungarian"
-msgstr "Ungarsk"
-
-#: voice.py:46
-msgid "Macedonian"
-msgstr "Makedonsk"
-
-#: voice.py:47
-msgid "Welsh"
-msgstr "Walisisk"
-
-#: voice.py:48
-msgid "French"
-msgstr "Fransk"
-
-#: voice.py:49
-msgid "Norwegian"
-msgstr "Norsk"
-
-#: voice.py:50
-msgid "Russian"
-msgstr "Russisk"
-
-#: voice.py:51
-msgid "Afrikaans"
-msgstr "Afrikaans"
-
-#: voice.py:52
-msgid "Finnish"
-msgstr "Finsk"
-
-#: voice.py:53 voice.py:157
-msgid "Default"
-msgstr "Standard"
-
-#: voice.py:54
-msgid "Cantonese"
-msgstr "Kantonesisk"
-
-#: voice.py:55
-msgid "Scottish"
-msgstr "Skotsk"
-
-#: voice.py:56
-msgid "Greek"
-msgstr "Græsk"
-
-#: voice.py:57
-msgid "Vietnam"
-msgstr "Vietnamesisk"
-
-#: voice.py:59
-msgid "Lancashire"
-msgstr "Lancashire"
-
-#: voice.py:60
-msgid "Italian"
-msgstr "Italiensk"
-
-#: voice.py:61
-msgid "Portugal"
-msgstr "Portugisisk"
-
-#: voice.py:62
-msgid "German"
-msgstr "Tysk"
-
-#: voice.py:63
-msgid "Whisper"
-msgstr "Hvisken"
-
-#: voice.py:64
-msgid "Croatian"
-msgstr "Kroatisk"
-
-#: voice.py:65
-msgid "Czech"
-msgstr "Tjekkisk"
-
-#: voice.py:66
-msgid "Slovak"
-msgstr "Slovakisk"
-
-#: voice.py:68
-msgid "Polish"
-msgstr "Polsk"
-
-#: voice.py:69
-msgid "Esperanto"
-msgstr "Esperanto"
 
 #~ msgid "Keep"
 #~ msgstr "Behold"
