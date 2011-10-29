@@ -42,16 +42,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
-"PO-Revision-Date: 2011-06-03 07:54+0200\n"
+"POT-Creation-Date: 2011-10-07 00:32-0400\n"
+"PO-Revision-Date: 2011-10-30 01:44+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Speak"
+msgstr "Speak"
 
 #: activity.py:137
 msgid "Type something to hear it"
@@ -137,16 +141,12 @@ msgstr "eyes changed"
 
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr "Sorry, I can't speak %s, let's speak %s instead."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr "You are in off-line mode, share and invite someone."
-
-#: activity/activity.info:2
-msgid "Speak"
-msgstr "Speak"
 
 #: brain.py:33 voice.py:67
 msgid "Spanish"
@@ -337,6 +337,11 @@ msgstr "Polish"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
+
+#, python-format
+#, python-format,
+#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
+#~ msgstr "Sorry, I can't speak %s, let's talk %s instead."
 
 #~ msgid "Keep"
 #~ msgstr "Keep"
