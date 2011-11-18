@@ -155,7 +155,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-07 00:32-0400\n"
-"PO-Revision-Date: 2011-10-30 05:21+0200\n"
+"PO-Revision-Date: 2011-11-18 23:22+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -167,7 +167,7 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Speak"
-msgstr "HablarConSara"
+msgstr "Hablar"
 
 #: activity.py:137
 msgid "Type something to hear it"
