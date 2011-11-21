@@ -69,7 +69,7 @@ def get_default_voice():
 def get_voices():
     voices = ComboBox()
     for lang in sorted(BOTS.keys()):
-        voices.append_item(voice.allVoices()[lang], lang)
+        voices.append_item(voice.allVoices()[_(lang)], lang)
     return voices.get_model()
 
 
