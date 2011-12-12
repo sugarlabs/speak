@@ -34,9 +34,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-29 00:31-0400\n"
-"PO-Revision-Date: 2010-01-10 23:43-0400\n"
-"Last-Translator: Chris Leonard <cjl@laptop.org>\n"
+"POT-Creation-Date: 2011-10-07 00:32-0400\n"
+"PO-Revision-Date: 2011-12-12 02:48+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -44,289 +44,294 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 1.2.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
-msgstr ""
+msgstr "Mówić"
 
 #: activity.py:137
 msgid "Type something to hear it"
-msgstr ""
+msgstr "Wpisz coś żeby to usłyszeć"
 
 #: activity.py:144
 msgid "Ask robot any question"
-msgstr ""
+msgstr "Zapytaj robota o co chcesz"
 
 #: activity.py:152
 msgid "Voice chat"
-msgstr ""
+msgstr "Czat dźwiękowy"
 
 #: activity.py:164
 msgid "Voice"
-msgstr ""
+msgstr "Dźwięk"
 
 #: activity.py:170
 msgid "Face"
-msgstr ""
+msgstr "Twarz"
 
 #: activity.py:199
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr ""
+msgstr "Cześć %s. Proszę wpisz coś."
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr ""
+msgstr "Wysokość:"
 
 #: activity.py:276
 msgid "Rate:"
-msgstr ""
+msgstr "Częstotliwość:"
 
 #: activity.py:284
 msgid "pitch adjusted"
-msgstr ""
+msgstr "wysokość ustawiona"
 
 #: activity.py:288
 msgid "rate adjusted"
-msgstr ""
+msgstr "częstotliwość ustawiona"
 
 #: activity.py:294
 msgid "Simple"
-msgstr ""
+msgstr "Proste"
 
 #: activity.py:295
 msgid "Waveform"
-msgstr ""
+msgstr "Rodzaj fali"
 
 #: activity.py:296
 msgid "Frequency"
-msgstr ""
+msgstr "Częstotliwość"
 
 #: activity.py:301
 msgid "Mouth:"
-msgstr ""
+msgstr "Usta:"
 
 #: activity.py:305
 msgid "Round"
-msgstr ""
+msgstr "Okrągły"
 
 #: activity.py:306
 msgid "Glasses"
-msgstr ""
+msgstr "Okulary"
 
 #: activity.py:311
 msgid "Eyes:"
-msgstr ""
+msgstr "Oczy:"
 
 #: activity.py:322
 msgid "Eyes number:"
-msgstr ""
+msgstr "Ilość oczu:"
 
 #: activity.py:334
 msgid "mouth changed"
-msgstr ""
+msgstr "usta zmienione"
 
 #: activity.py:346
 msgid "eyes changed"
-msgstr ""
+msgstr "oczy zmienione"
 
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"Przepraszam, nie mówię po %(old_voice)s, porozmawiajmy po %(new_voice)s."
 
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr ""
+"Jesteś nie podłączony do sieci, zaproś kogoś albo udostępnij tę aktywność."
 
-#: brain.py:33 voice.py:66
+#: brain.py:33 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "Hiszpański"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
-msgstr ""
+msgstr "Angielski"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "Przepraszam ale nie rozumiem o co pytasz."
 
 #: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"Przykro mi ale nie ma wystarczająco wolnej pamięci żeby aktywować mój mózg. "
+"Zamknij inne aktywności i spróbuj jeszcze raz."
 
 #: brain.py:125
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "Cześć, jestem robotem \"%s\". Proszę zapytaj się mnie o coś."
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "Łącze URL z Czatu"
 
-#: chatbox.py:298
+#: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Kopiuj do schowka"
 
 #: toolkit/activity_widgets.py:83
 msgid "Stop"
-msgstr ""
+msgstr "Zatrzymaj"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
-msgstr ""
+msgstr "Cofnij"
 
 #: toolkit/activity_widgets.py:103
 msgid "Redo"
-msgstr ""
+msgstr "Ponów"
 
 #: toolkit/activity_widgets.py:110
 msgid "Copy"
-msgstr ""
+msgstr "Kopiuj"
 
 #: toolkit/activity_widgets.py:117
 msgid "Paste"
-msgstr ""
+msgstr "Wklej"
 
 #: toolkit/activity_widgets.py:127
 msgid "Private"
-msgstr ""
+msgstr "Prywatne"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
-msgstr ""
+msgstr "Moje sąsiedztwo"
 
-#: toolkit/activity_widgets.py:166
-msgid "Keep"
-msgstr ""
-
-#: toolkit/activity_widgets.py:344
+#: toolkit/activity_widgets.py:322
 msgid "Activity"
-msgstr ""
-
-#: voice.py:36
-msgid "Brazil"
-msgstr ""
+msgstr "Aktywność"
 
 #: voice.py:37
+msgid "Brazil"
+msgstr "Brazylia"
+
+#: voice.py:38
 msgid "Swedish"
 msgstr "szwedzki"
 
-#: voice.py:38
+#: voice.py:39
 msgid "Icelandic"
 msgstr "islandzki"
 
-#: voice.py:39
-msgid "Romanian"
-msgstr ""
-
 #: voice.py:40
+msgid "Romanian"
+msgstr "rumuński"
+
+#: voice.py:41
 msgid "Swahili"
 msgstr "suahili"
 
-#: voice.py:41
+#: voice.py:42
 msgid "Hindi"
 msgstr "hindi"
 
-#: voice.py:42
+#: voice.py:43
 msgid "Dutch"
 msgstr "holenderski"
 
-#: voice.py:43
-msgid "Latin"
-msgstr ""
-
 #: voice.py:44
-msgid "Hungarian"
-msgstr ""
+msgid "Latin"
+msgstr "łacina"
 
 #: voice.py:45
-msgid "Macedonian"
-msgstr ""
+msgid "Hungarian"
+msgstr "węgierski"
 
 #: voice.py:46
+msgid "Macedonian"
+msgstr "macedoński"
+
+#: voice.py:47
 msgid "Welsh"
 msgstr "walijski"
 
-#: voice.py:47
+#: voice.py:48
 msgid "French"
 msgstr "francuski"
 
-#: voice.py:48
-msgid "Norwegian"
-msgstr "norweski Nynorsk"
-
 #: voice.py:49
+msgid "Norwegian"
+msgstr "norweski"
+
+#: voice.py:50
 msgid "Russian"
 msgstr "rosyjski"
 
-#: voice.py:50
-msgid "Afrikaans"
-msgstr ""
-
 #: voice.py:51
+msgid "Afrikaans"
+msgstr "afrikaans"
+
+#: voice.py:52
 msgid "Finnish"
 msgstr "fiński"
 
-#: voice.py:52 voice.py:130
+#: voice.py:53 voice.py:157
 msgid "Default"
-msgstr ""
-
-#: voice.py:53
-msgid "Cantonese"
-msgstr ""
+msgstr "Domyślny"
 
 #: voice.py:54
-msgid "Scottish"
-msgstr ""
+msgid "Cantonese"
+msgstr "kantoński"
 
 #: voice.py:55
+msgid "Scottish"
+msgstr "szkocki"
+
+#: voice.py:56
 msgid "Greek"
 msgstr "grecki"
 
-#: voice.py:56
+#: voice.py:57
 msgid "Vietnam"
 msgstr "wietnamski"
 
-#: voice.py:58
-msgid "Lancashire"
-msgstr ""
-
 #: voice.py:59
+msgid "Lancashire"
+msgstr "Lancashire"
+
+#: voice.py:60
 msgid "Italian"
 msgstr "włoski"
 
-#: voice.py:60
+#: voice.py:61
 msgid "Portugal"
 msgstr "portugalski"
 
-#: voice.py:61
+#: voice.py:62
 msgid "German"
 msgstr "niemiecki"
 
-#: voice.py:62
-msgid "Whisper"
-msgstr ""
-
 #: voice.py:63
+msgid "Whisper"
+msgstr "Szept"
+
+#: voice.py:64
 msgid "Croatian"
 msgstr "chorwacki"
 
-#: voice.py:64
+#: voice.py:65
 msgid "Czech"
 msgstr "czeski"
 
-#: voice.py:65
+#: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "słowacki"
 
-#: voice.py:67
+#: voice.py:68
 msgid "Polish"
 msgstr "polski"
 
-#: voice.py:68
+#: voice.py:69
 msgid "Esperanto"
 msgstr "esperanto"
+
+#, python-format
+#, python-format, fuzzy
+#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
+#~ msgstr "Przepraszam, nie mówię po %(speak)s, porozmawiajmy po %(speak)s"
