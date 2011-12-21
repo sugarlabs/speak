@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-07 00:32-0400\n"
-"PO-Revision-Date: 2011-11-11 21:57+0200\n"
+"PO-Revision-Date: 2011-12-21 21:52+0200\n"
 "Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
@@ -43,7 +43,7 @@ msgstr "Խոսել"
 
 #: activity.py:137
 msgid "Type something to hear it"
-msgstr "Որեւէ բան տպել՝ այն լսելու նպատակով"
+msgstr "Որևէ բան տպել՝ այն լսելու նպատակով"
 
 #: activity.py:144
 msgid "Ask robot any question"
@@ -69,7 +69,7 @@ msgstr "Ողջույն %s: Տպագրեք որևէ բան, խնդրում ենք
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr "Տոնայնությունը."
+msgstr "Տոն."
 
 #: activity.py:276
 msgid "Rate:"
@@ -89,7 +89,7 @@ msgstr "Պարզ"
 
 #: activity.py:295
 msgid "Waveform"
-msgstr "Ազդանշանի ձեւաչափը"
+msgstr "Ազդանշանի ձևաչափը"
 
 #: activity.py:296
 msgid "Frequency"
@@ -113,7 +113,7 @@ msgstr "Աչքեր."
 
 #: activity.py:322
 msgid "Eyes number:"
-msgstr "Աչքերի համարը."
+msgstr "Աչքերի թիվը."
 
 #: activity.py:334
 msgid "mouth changed"
@@ -131,7 +131,7 @@ msgstr ""
 
 #: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
-msgstr "Դուք ցանցին միացած չեք, կիսվեք որեւէ մեկի հետ եւ հրավիրեք նրան:"
+msgstr "Դուք ցանցին միացած չեք, կիսվեք որևէ մեկի հետ և հրավիրեք նրան:"
 
 #: brain.py:33 voice.py:67
 msgid "Spanish"
@@ -173,7 +173,7 @@ msgstr "Կանգառ"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
-msgstr "Վերականգնել"
+msgstr "Չեղյալ համարել"
 
 #: toolkit/activity_widgets.py:103
 msgid "Redo"
@@ -181,7 +181,7 @@ msgstr "Վերստին կատարել"
 
 #: toolkit/activity_widgets.py:110
 msgid "Copy"
-msgstr "Կրկնօրինակել"
+msgstr "կրկնօրինակել"
 
 #: toolkit/activity_widgets.py:117
 msgid "Paste"
@@ -189,15 +189,15 @@ msgstr "Փակցնել"
 
 #: toolkit/activity_widgets.py:127
 msgid "Private"
-msgstr "Պրիվատ"
+msgstr "Անձնական"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
-msgstr "Իմ թաղը"
+msgstr "Իմ հարևանությունը"
 
 #: toolkit/activity_widgets.py:322
 msgid "Activity"
-msgstr "Գործողություն"
+msgstr "Գործունեություն"
 
 #: voice.py:37
 msgid "Brazil"
@@ -257,7 +257,7 @@ msgstr "Ռուսերեն"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr "Աֆրիկաանս"
+msgstr "Աֆրիկերեն"
 
 #: voice.py:52
 msgid "Finnish"
