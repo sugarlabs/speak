@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-07 00:32-0400\n"
-"PO-Revision-Date: 2011-12-21 21:52+0200\n"
-"Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
+"PO-Revision-Date: 2011-12-24 04:51+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "Խոսել"
 
 #: activity.py:137
 msgid "Type something to hear it"
-msgstr "Որևէ բան տպել՝ այն լսելու նպատակով"
+msgstr "Որևէ բան տպել՝ ատասանությունը լսելու նպատակով"
 
 #: activity.py:144
 msgid "Ask robot any question"
@@ -65,11 +65,11 @@ msgstr "Երես"
 #, python-format
 #, python-format,
 msgid "Hello %s. Please Type something."
-msgstr "Ողջույն %s: Տպագրեք որևէ բան, խնդրում ենք:"
+msgstr "Ողջույն %s: Տպագրեք որևէ բան, խնդրեմ:"
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr "Տոն."
+msgstr "Ձայնի տոնը."
 
 #: activity.py:276
 msgid "Rate:"
@@ -77,11 +77,11 @@ msgstr "Տեմպը."
 
 #: activity.py:284
 msgid "pitch adjusted"
-msgstr "տոնայնությունը կարգավորված է."
+msgstr "Տոնայնությունը կարգավորված է."
 
 #: activity.py:288
 msgid "rate adjusted"
-msgstr "տեմպը կարգավորված է."
+msgstr "Տեմպը կարգավորված է."
 
 #: activity.py:294
 msgid "Simple"
@@ -89,7 +89,7 @@ msgstr "Պարզ"
 
 #: activity.py:295
 msgid "Waveform"
-msgstr "Ազդանշանի ձևաչափը"
+msgstr "Ազդանշանային ալիքի ձևաչափը"
 
 #: activity.py:296
 msgid "Frequency"
@@ -117,11 +117,11 @@ msgstr "Աչքերի թիվը."
 
 #: activity.py:334
 msgid "mouth changed"
-msgstr "բերանը փոխվել է"
+msgstr "Բերանը փոխվել է"
 
 #: activity.py:346
 msgid "eyes changed"
-msgstr "աչքերը փոխվել են"
+msgstr "Աչքերը փոխվել են"
 
 #: activity.py:445
 #, python-format
@@ -165,7 +165,7 @@ msgstr "Զրույցի URL-ը"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr "Կրկնօրինակեք լուսատախտակին"
+msgstr "Պատճենեք ցուցատախտակին"
 
 #: toolkit/activity_widgets.py:83
 msgid "Stop"
@@ -173,7 +173,7 @@ msgstr "Կանգառ"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
-msgstr "Չեղյալ համարել"
+msgstr "Ետարկել"
 
 #: toolkit/activity_widgets.py:103
 msgid "Redo"
@@ -181,7 +181,7 @@ msgstr "Վերստին կատարել"
 
 #: toolkit/activity_widgets.py:110
 msgid "Copy"
-msgstr "կրկնօրինակել"
+msgstr "Պատճենել"
 
 #: toolkit/activity_widgets.py:117
 msgid "Paste"
@@ -221,7 +221,7 @@ msgstr "Սուահիլի"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr "Հնդկերեն"
+msgstr "Հինդի"
 
 #: voice.py:43
 msgid "Dutch"
@@ -255,9 +255,10 @@ msgstr "Նորվեգերեն"
 msgid "Russian"
 msgstr "Ռուսերեն"
 
+# Հարավաֆրիկյան Հանրապետության պաշտոնական լեզուն
 #: voice.py:51
 msgid "Afrikaans"
-msgstr "Աֆրիկերեն"
+msgstr "Աֆրիկաան"
 
 #: voice.py:52
 msgid "Finnish"
@@ -265,7 +266,7 @@ msgstr "Ֆիններեն"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
-msgstr "Ելման դիրք"
+msgstr "Նախորոշված"
 
 #: voice.py:54
 msgid "Cantonese"
@@ -283,9 +284,10 @@ msgstr "Հունարեն"
 msgid "Vietnam"
 msgstr "Վիետնամերեն"
 
+# Անգլերենի բարբառներից
 #: voice.py:59
 msgid "Lancashire"
-msgstr "Լանկաշիրերեն"
+msgstr "Լանկշիրի բարբառ"
 
 #: voice.py:60
 msgid "Italian"
