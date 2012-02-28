@@ -1,3 +1,5 @@
+- switch to standard JSON library
+
 - collaboration
 	- if performance is okay, should show multiple faces - one for each person
 	- if not, then just share settings and let any person type

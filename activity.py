@@ -210,16 +210,18 @@ class SpeakActivity(SharedActivity):
         self.eye_shape_combo.select(status.eyes[0])
         self.numeyesadj.value = len(status.eyes)
 
-        self.entry.props.text = cfg['text']
+        self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
         for i in cfg['history']:
-            self.entrycombo.append_text(i)
+            self.entrycombo.append_text(i.encode('utf-8', 'ignore'))
 
         self.new_instance()
 
     def save_instance(self, file_path):
         cfg = {'status': self.face.status.serialize(),
-                'text': self.entry.props.text,
-                'history': map(lambda i: i[0], self.entrycombo.get_model())}
+                'text': unicode(self.entry.props.text, 'utf-8', 'ignore'),
+                'history': [unicode(i[0], 'utf-8', 'ignore') \
+                        for i in self.entrycombo.get_model()],
+                }
         file(file_path, 'w').write(cjson.encode(cfg))
 
     def share_instance(self, connection, is_initiator):
