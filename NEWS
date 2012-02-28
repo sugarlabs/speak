@@ -1,3 +1,12 @@
+36
+
+* Fix pronunciation of unicode strings; keep history in unicode (Gonzalo Odiard)
+* Update translations
+
+35
+
+* Update translations
+
 34
 
 *Fix i18n warning (Aleksey Lim)
