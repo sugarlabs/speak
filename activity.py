@@ -120,10 +120,6 @@ class SpeakActivity(SharedActivity):
 
         toolbox.toolbar.insert(ActivityToolbarButton(self), -1)
 
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)
-        #toolbox.toolbar.insert(separator, -1)
-
         self.voices = ComboBox()
         for name in sorted(voice.allVoices().keys()):
             vn = voice.allVoices()[name]
@@ -155,9 +151,6 @@ class SpeakActivity(SharedActivity):
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
 
-        separator = gtk.SeparatorToolItem()
-        #toolbox.toolbar.insert(separator, -1)
-
         voices_toolitem = ToolWidget(widget=self.voices)
         toolbox.toolbar.insert(voices_toolitem, -1)
 
@@ -172,11 +165,6 @@ class SpeakActivity(SharedActivity):
                 label=_('Face'),
                 icon_name='face')
         toolbox.toolbar.insert(face_button, -1)
-
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)
-        separator.set_expand(True)
-        #toolbox.toolbar.insert(separator, -1)
 
         toolbox.toolbar.insert(StopButton(self), -1)
 
