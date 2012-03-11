@@ -116,18 +116,20 @@ class SpeakActivity(SharedActivity):
         self.entry.connect("changed", self._cursor_moved_cb)
 
         # toolbar
-
         toolbox = ToolbarBox()
 
         toolbox.toolbar.insert(ActivityToolbarButton(self), -1)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
-        toolbox.toolbar.insert(separator, -1)
+        #toolbox.toolbar.insert(separator, -1)
 
         self.voices = ComboBox()
         for name in sorted(voice.allVoices().keys()):
-            self.voices.append_item(voice.allVoices()[name], name)
+            vn = voice.allVoices()[name]
+            n = name [ : 27 ] + ".."
+            self.voices.append_item(vn, n)
+
         self.voices.select(voice.defaultVoice())
         all_voices = self.voices.get_model()
         brain_voices = brain.get_voices()
@@ -154,7 +156,7 @@ class SpeakActivity(SharedActivity):
         toolbox.toolbar.insert(mode_chat, -1)
 
         separator = gtk.SeparatorToolItem()
-        toolbox.toolbar.insert(separator, -1)
+        #toolbox.toolbar.insert(separator, -1)
 
         voices_toolitem = ToolWidget(widget=self.voices)
         toolbox.toolbar.insert(voices_toolitem, -1)
@@ -174,7 +176,7 @@ class SpeakActivity(SharedActivity):
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
-        toolbox.toolbar.insert(separator, -1)
+        #toolbox.toolbar.insert(separator, -1)
 
         toolbox.toolbar.insert(StopButton(self), -1)
 
