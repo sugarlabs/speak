@@ -35,8 +35,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-15 00:33-0500\n"
-"PO-Revision-Date: 2011-11-19 09:03+0200\n"
-"Last-Translator: fah <ifah.fah22@hotmail.com>\n"
+"PO-Revision-Date: 2012-03-16 04:51+0200\n"
+"Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -51,11 +51,11 @@ msgstr "อ่านออกเสียง"
 
 #: activity.py:137
 msgid "Type something to hear it"
-msgstr "พิมพ์บางสิ่งที่จะฟังมัน"
+msgstr "พิมพ์บางสิ่งที่ต้องการฟัง"
 
 #: activity.py:144
 msgid "Ask robot any question"
-msgstr "ถามคำถามหุ่นยนต์"
+msgstr "ถามคำถามอะไรก็ได้กับหุ่นยนต์"
 
 #: activity.py:152
 msgid "Voice chat"
@@ -67,36 +67,36 @@ msgstr "เสียง"
 
 #: activity.py:170
 msgid "Face"
-msgstr "รูปถ่าย"
+msgstr "หน้า"
 
 #: activity.py:199
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr "สวัสดี %s. กรุณาเขียนบางอย่าง"
+msgstr "สวัสดี %s. กรุณาพิมพ์บางอย่าง"
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr ""
+msgstr "ระดับเสียง:"
 
 #: activity.py:276
 msgid "Rate:"
-msgstr "อัตรา:"
+msgstr "อัตราความเร็ว:"
 
 #: activity.py:284
 msgid "pitch adjusted"
-msgstr ""
+msgstr "ระดับเสียงถูกปรับแล้ว"
 
 #: activity.py:288
 msgid "rate adjusted"
-msgstr ""
+msgstr "อัตราความเร็วถูกปรับแล้ว"
 
 #: activity.py:294
 msgid "Simple"
-msgstr "พื้นฐาน"
+msgstr "ปกติ"
 
 #: activity.py:295
 msgid "Waveform"
-msgstr ""
+msgstr "รูปแบบของคลื่น"
 
 #: activity.py:296
 msgid "Frequency"
@@ -104,7 +104,7 @@ msgstr "ความถี่"
 
 #: activity.py:301
 msgid "Mouth:"
-msgstr ""
+msgstr "ปาก:"
 
 #: activity.py:305
 msgid "Round"
@@ -112,7 +112,7 @@ msgstr "กลม"
 
 #: activity.py:306
 msgid "Glasses"
-msgstr "แก้ว"
+msgstr "แว่นตา"
 
 #: activity.py:311
 msgid "Eyes:"
@@ -124,47 +124,47 @@ msgstr "จำนวนตา:"
 
 #: activity.py:334
 msgid "mouth changed"
-msgstr ""
+msgstr "ปากถูกเปลี่ยน"
 
 #: activity.py:346
 msgid "eyes changed"
-msgstr ""
+msgstr "ตาถูกเปลี่ยน"
 
 #: activity.py:445
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
-msgstr ""
+msgstr "ขอโทษ ฉันไม่สามารถพูด %(old_voice)s ลอง %(new_voice)s แทน"
 
 #: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "คุณอยู่ในโหมดออฟไลน์ แบ่งปันและเชิญชวนบางคน"
 
 #: brain.py:33 voice.py:67
 msgid "Spanish"
-msgstr "สเปน"
+msgstr "ภาษาสเปน"
 
 #: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
-msgstr "อังกฤษ"
+msgstr "ภาษาอังกฤษ"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
-msgstr "ขออภัย, ไม่เข้าใจในสิ่งที่คุณหมายถึง"
+msgstr "ขออภัย ฉันไม่สามารถเข้าใจสิ่งที่คุณถาม"
 
 #: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
-msgstr "ขออภัย, ไม่มีที่ความจำให้สมอง. ปิดกิจกรรมอื่นและลองอีกครั้ง"
+msgstr "ขออภัย ไม่มีที่ความจำว่าง ปิดกิจกรรมอื่นและลองอีกครั้ง"
 
 #: brain.py:125
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "สวัสดี ฉันคือหุ่นยนต์ \"%s\" ถามคำถามอะไรก็ได้"
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "URL จากการสนทนา"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
@@ -176,7 +176,7 @@ msgstr "หยุด"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
-msgstr "เลิกทำ"
+msgstr "ทำกลับ"
 
 #: toolkit/activity_widgets.py:103
 msgid "Redo"
@@ -188,7 +188,7 @@ msgstr "คัดลอก"
 
 #: toolkit/activity_widgets.py:117
 msgid "Paste"
-msgstr ""
+msgstr "วาง"
 
 #: toolkit/activity_widgets.py:127
 msgid "Private"
@@ -196,7 +196,7 @@ msgstr "ส่วนตัว"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
-msgstr ""
+msgstr "เพื่อนบ้านของฉัน"
 
 #: toolkit/activity_widgets.py:322
 msgid "Activity"
@@ -204,19 +204,19 @@ msgstr "กิจกรรม"
 
 #: voice.py:37
 msgid "Brazil"
-msgstr "บราซิล"
+msgstr "ภาษาบราซิล"
 
 #: voice.py:38
 msgid "Swedish"
-msgstr "สวีเดน"
+msgstr "ภาษาสวีเดน"
 
 #: voice.py:39
 msgid "Icelandic"
-msgstr "ไอซ์แลนด์"
+msgstr "ภาษาไอซ์แลนด์"
 
 #: voice.py:40
 msgid "Romanian"
-msgstr "โรมาเนีย"
+msgstr "ภาษาโรมาเนีย"
 
 #: voice.py:41
 msgid "Swahili"
@@ -224,104 +224,104 @@ msgstr "ภาษาสวาฮีลี"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr "ฮินดี"
+msgstr "ภาษาฮินดี"
 
 #: voice.py:43
 msgid "Dutch"
-msgstr "ดัชต์"
+msgstr "ภาษาดัชต์"
 
 #: voice.py:44
 msgid "Latin"
-msgstr "ละติน"
+msgstr "ภาษาละติน"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr "ฮังการี"
+msgstr "ภาษาฮังการี"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr "มาซิโดเนีย"
+msgstr "ภาษามาซิโดเนีย"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr "เวลส์"
+msgstr "ภาษาเวลส์"
 
 #: voice.py:48
 msgid "French"
-msgstr "ฝรั่งเศส"
+msgstr "ภาษาฝรั่งเศส"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr "นอร์เวย์ (นีนอร์สก์)"
+msgstr "ภาษานอร์เวย์"
 
 #: voice.py:50
 msgid "Russian"
-msgstr "รัสเซีย"
+msgstr "ภาษารัสเซีย"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr "แอฟริกา"
+msgstr "ภาษาแอฟริกา"
 
 #: voice.py:52
 msgid "Finnish"
-msgstr "ฟินแลนด์"
+msgstr "ภาษาฟินแลนด์"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
-msgstr ""
+msgstr "ค่าเริ่มต้น"
 
 #: voice.py:54
 msgid "Cantonese"
-msgstr ""
+msgstr "ภาษากวางตุ้ง"
 
 #: voice.py:55
 msgid "Scottish"
-msgstr ""
+msgstr "ภาษาสก็อต"
 
 #: voice.py:56
 msgid "Greek"
-msgstr "กรีกสมัยใหม่"
+msgstr "ภาษากรีก"
 
 #: voice.py:57
 msgid "Vietnam"
-msgstr "เวียดนาม"
+msgstr "ภาษาเวียดนาม"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr ""
+msgstr "ภาษาแลนคาเชียร์"
 
 #: voice.py:60
 msgid "Italian"
-msgstr "อิตาลี"
+msgstr "ภาษาอิตาลี"
 
 #: voice.py:61
 msgid "Portugal"
-msgstr "โปรตุเกส"
+msgstr "ภาษาโปรตุเกส"
 
 #: voice.py:62
 msgid "German"
-msgstr "เยอรมัน"
+msgstr "ภาษาเยอรมัน"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "กระซิบ"
 
 #: voice.py:64
 msgid "Croatian"
-msgstr "โครเอเชีย"
+msgstr "ภาษาโครเอเชีย"
 
 #: voice.py:65
 msgid "Czech"
-msgstr "เช็ก"
+msgstr "ภาษาเช็ก"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr "สโลวัก"
+msgstr "ภาษาสโลวาเกีย"
 
 #: voice.py:68
 msgid "Polish"
-msgstr "โปแลนด์"
+msgstr "ภาษาโปแลนด์"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr "เอสเปอรันโต"
+msgstr "ภาษาเอสเปอรันโต"
