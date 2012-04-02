@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-07 00:32-0400\n"
-"PO-Revision-Date: 2012-01-16 10:19+0200\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"PO-Revision-Date: 2012-04-03 00:34+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -76,7 +76,7 @@ msgstr "Olá %s. Por favor Escreve algo."
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr "Tom:"
+msgstr "Altura:"
 
 #: activity.py:276
 msgid "Rate:"
@@ -84,7 +84,7 @@ msgstr "Velocidade:"
 
 #: activity.py:284
 msgid "pitch adjusted"
-msgstr "tom ajustado"
+msgstr "altura ajustada"
 
 #: activity.py:288
 msgid "rate adjusted"
@@ -157,7 +157,7 @@ msgid ""
 "try once more."
 msgstr ""
 "Desculpa, não há memória suficiente para carregar o meu cérebro. Fecha "
-"outras actividades e tenta outra vez."
+"outras atividades e tenta outra vez."
 
 #: brain.py:125
 #, python-format
@@ -198,11 +198,11 @@ msgstr "Privado"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
-msgstr "A minha Vizinhança"
+msgstr "A Minha Vizinhança"
 
 #: toolkit/activity_widgets.py:322
 msgid "Activity"
-msgstr "Actividade"
+msgstr "Atividade"
 
 #: voice.py:37
 msgid "Brazil"
@@ -222,7 +222,7 @@ msgstr "Romeno"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr "Ssuaíli"
+msgstr "Suaíli"
 
 #: voice.py:42
 msgid "Hindi"
