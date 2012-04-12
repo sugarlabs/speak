@@ -167,7 +167,7 @@ class ChatBox(hippo.CanvasScrollbars):
         if status_message:
             self._last_msg_sender = None
 
-        match = URL_REGEXP.search(text)
+        match = URL_REGEXP.match(text)
         while match:
             # there is a URL in the text
             starttext = text[:match.start()]
