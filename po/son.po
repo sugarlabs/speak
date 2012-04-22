@@ -2,20 +2,24 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"PO-Revision-Date: 2012-03-26 05:07+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: son\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Speak"
+msgstr ""
 
 #: activity.py:137
 msgid "Type something to hear it"
@@ -100,15 +104,11 @@ msgstr ""
 
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
-
-#: activity/activity.info:2
-msgid "Speak"
 msgstr ""
 
 #: brain.py:33 voice.py:67
@@ -232,7 +232,7 @@ msgstr ""
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afirikaŋsi"
 
 #: voice.py:52
 msgid "Finnish"

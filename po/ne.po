@@ -34,11 +34,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-29 00:31-0400\n"
-"PO-Revision-Date: 2011-04-12 05:47+0200\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"PO-Revision-Date: 2011-07-15 04:26+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ne\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,32 +47,32 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Speak"
-msgstr ""
+msgstr "बोल"
 
 #: activity.py:137
 msgid "Type something to hear it"
-msgstr ""
+msgstr "सुन्नको लागी केही लेख"
 
 #: activity.py:144
 msgid "Ask robot any question"
-msgstr ""
+msgstr "रोबटलागि कुनै प्रश्न सोध"
 
 #: activity.py:152
 msgid "Voice chat"
-msgstr ""
+msgstr "आवाज कुराकानी"
 
 #: activity.py:164
 msgid "Voice"
-msgstr ""
+msgstr "आवाज"
 
 #: activity.py:170
 msgid "Face"
-msgstr ""
+msgstr "अनुहार"
 
 #: activity.py:199
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr ""
+msgstr "हेलो %s। कृपया केहि टाइप गर्नुहोस् ।"
 
 #: activity.py:263
 msgid "Pitch:"
@@ -80,23 +80,23 @@ msgstr "पिच:"
 
 #: activity.py:276
 msgid "Rate:"
-msgstr ""
+msgstr "रेट:"
 
 #: activity.py:284
 msgid "pitch adjusted"
-msgstr ""
+msgstr "पिच समायोजन भयो"
 
 #: activity.py:288
 msgid "rate adjusted"
-msgstr ""
+msgstr "रेट समायोजन भयो"
 
 #: activity.py:294
 msgid "Simple"
-msgstr ""
+msgstr "साधारण"
 
 #: activity.py:295
 msgid "Waveform"
-msgstr ""
+msgstr "तरङ्ग"
 
 #: activity.py:296
 msgid "Frequency"
@@ -104,71 +104,74 @@ msgstr "आवृत्ति"
 
 #: activity.py:301
 msgid "Mouth:"
-msgstr ""
+msgstr "मुख:"
 
 #: activity.py:305
 msgid "Round"
-msgstr ""
+msgstr "डल्लो"
 
 #: activity.py:306
 msgid "Glasses"
-msgstr ""
+msgstr "चस्मा"
 
 #: activity.py:311
 msgid "Eyes:"
-msgstr ""
+msgstr "आँखा:"
 
 #: activity.py:322
 msgid "Eyes number:"
-msgstr ""
+msgstr "आँखा अंक:"
 
 #: activity.py:334
 msgid "mouth changed"
-msgstr ""
+msgstr "मुख परिवर्तित"
 
 #: activity.py:346
 msgid "eyes changed"
-msgstr ""
+msgstr "आँखा परिवर्तित"
 
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "तिमी अफलाइन  मोडमा छौ, अंश अनि कसैलागि निमन्त्रण पठाऊ ।"
 
-#: brain.py:33 voice.py:66
+#: brain.py:33 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "स्पानिस"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
-msgstr ""
+msgstr "अङ्ग्रेजी"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "माफ गर्नुहोस्, मैले तिपाइँले भनेको केहीपनि बुझिन।"
 
 #: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"माफ गर्नुहोस्, मेरो मगजमा लोड गर्न स्वतन्त्र स्मृति बाकीँ छैन । अरु "
+"क्रियाकलापहरु बन्द गर अनि फरि एक चोटि प्रयास गर ।"
 
 #: brain.py:125
 #, python-format
+#, python-format,
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "हेलो, म रोबट हुँ \"%s\" । कृपया मलाई कुनैपनि प्रश्न सोध्नुहोला ।"
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "कुराकानी देखि URL"
 
-#: chatbox.py:298
+#: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "क्लिपबोर्डमा प्रतिलिपी बनाउ"
 
 #: toolkit/activity_widgets.py:83
 msgid "Stop"
@@ -196,136 +199,140 @@ msgstr "निजी"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
-msgstr ""
+msgstr "मेरो छिमेक"
 
-#: toolkit/activity_widgets.py:166
-msgid "Keep"
-msgstr "राख"
-
-#: toolkit/activity_widgets.py:344
+#: toolkit/activity_widgets.py:322
 msgid "Activity"
 msgstr "क्रियाकलाप"
 
-#: voice.py:36
-msgid "Brazil"
-msgstr ""
-
 #: voice.py:37
-msgid "Swedish"
-msgstr ""
+msgid "Brazil"
+msgstr "ब्राजिल"
 
 #: voice.py:38
-msgid "Icelandic"
-msgstr ""
+msgid "Swedish"
+msgstr "स्विडिस्"
 
 #: voice.py:39
-msgid "Romanian"
-msgstr ""
+msgid "Icelandic"
+msgstr "आइसल्याण्डडिक्"
 
 #: voice.py:40
-msgid "Swahili"
-msgstr ""
+msgid "Romanian"
+msgstr "रोमानियन"
 
 #: voice.py:41
-msgid "Hindi"
-msgstr ""
+msgid "Swahili"
+msgstr "स्वाहिली"
 
 #: voice.py:42
-msgid "Dutch"
-msgstr ""
+msgid "Hindi"
+msgstr "हिन्दी"
 
 #: voice.py:43
-msgid "Latin"
-msgstr ""
+msgid "Dutch"
+msgstr "डच"
 
 #: voice.py:44
-msgid "Hungarian"
-msgstr ""
+msgid "Latin"
+msgstr "ल्याटिन"
 
 #: voice.py:45
-msgid "Macedonian"
-msgstr ""
+msgid "Hungarian"
+msgstr "हङ्गेरिएन"
 
 #: voice.py:46
-msgid "Welsh"
-msgstr ""
+msgid "Macedonian"
+msgstr "मेसेडोनियन"
 
 #: voice.py:47
-msgid "French"
-msgstr ""
+msgid "Welsh"
+msgstr "वेल्स"
 
 #: voice.py:48
-msgid "Norwegian"
-msgstr ""
+msgid "French"
+msgstr "फ्रेन्च"
 
 #: voice.py:49
-msgid "Russian"
-msgstr ""
+msgid "Norwegian"
+msgstr "नर्विजियन"
 
 #: voice.py:50
-msgid "Afrikaans"
-msgstr ""
+msgid "Russian"
+msgstr "रसियन"
 
 #: voice.py:51
+msgid "Afrikaans"
+msgstr "अफ्रिकानहरु"
+
+#: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "फिनिस"
 
-#: voice.py:52 voice.py:130
+#: voice.py:53 voice.py:157
 msgid "Default"
-msgstr ""
-
-#: voice.py:53
-msgid "Cantonese"
-msgstr ""
+msgstr "पूर्वनिर्धारित"
 
 #: voice.py:54
-msgid "Scottish"
-msgstr ""
+msgid "Cantonese"
+msgstr "कानटोनिस"
 
 #: voice.py:55
-msgid "Greek"
-msgstr ""
+msgid "Scottish"
+msgstr "स्कटिस"
 
 #: voice.py:56
-msgid "Vietnam"
-msgstr ""
+msgid "Greek"
+msgstr "ग्रीक"
 
-#: voice.py:58
-msgid "Lancashire"
-msgstr ""
+#: voice.py:57
+msgid "Vietnam"
+msgstr "भियत्नाम"
 
 #: voice.py:59
-msgid "Italian"
-msgstr ""
+msgid "Lancashire"
+msgstr "लान्कासायर"
 
 #: voice.py:60
-msgid "Portugal"
-msgstr ""
+msgid "Italian"
+msgstr "इटालियन"
 
 #: voice.py:61
-msgid "German"
-msgstr ""
+msgid "Portugal"
+msgstr "पोर्चुगल"
 
 #: voice.py:62
-msgid "Whisper"
-msgstr ""
+msgid "German"
+msgstr "जर्मन"
 
 #: voice.py:63
-msgid "Croatian"
-msgstr ""
+msgid "Whisper"
+msgstr "कानेखुसी"
 
 #: voice.py:64
-msgid "Czech"
-msgstr ""
+msgid "Croatian"
+msgstr "क्रोएशियन"
 
 #: voice.py:65
-msgid "Slovak"
-msgstr ""
+msgid "Czech"
+msgstr "चेक"
 
-#: voice.py:67
-msgid "Polish"
-msgstr ""
+#: voice.py:66
+msgid "Slovak"
+msgstr "स्लोभाक"
 
 #: voice.py:68
+msgid "Polish"
+msgstr "पोलिस"
+
+#: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "इस्पेरान्टो"
+
+#, python-format
+#, python-format, fuzzy
+#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
+#~ msgstr "माफ गर्नुहोस्, मलाई %s बोल्नआउदैन, बरु %s  बोलुम ।"
+
+#~ msgid "Keep"
+#~ msgstr "राख"

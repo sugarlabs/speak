@@ -34,264 +34,127 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 19:38+0000\n"
-"PO-Revision-Date: 2011-07-31 19:06+0200\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"PO-Revision-Date: 2012-03-09 10:08+0200\n"
 "Last-Translator: Thangamani <thangam.arunx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
 msgstr "பேசு"
 
-#: /home/rafael/Activities/speak/chatbox.py:248
-msgid "URL from Chat"
-msgstr "அரட்டையிலிருந்து யூஆர்எல்(URL)"
-
-#: /home/rafael/Activities/speak/chatbox.py:299
-msgid "Copy to Clipboard"
-msgstr "மறைப்பலகைக்கு பிரதியெடு"
-
-#: /home/rafael/Activities/speak/activity.py:137
+#: activity.py:137
 msgid "Type something to hear it"
 msgstr "கேட்க வேண்டுமாயின் எதையாவது தட்டச்ச செய்யவும்"
 
-#: /home/rafael/Activities/speak/activity.py:144
+#: activity.py:144
 msgid "Ask robot any question"
 msgstr "இயந்தர மனிதனிடம் எதாவது கேள்வி கேட்டகவும்"
 
-#: /home/rafael/Activities/speak/activity.py:152
+#: activity.py:152
 msgid "Voice chat"
 msgstr "பேச்சு அரட்டை"
 
-#: /home/rafael/Activities/speak/activity.py:164
+#: activity.py:164
 msgid "Voice"
 msgstr "பேச்சு"
 
-#: /home/rafael/Activities/speak/activity.py:170
+#: activity.py:170
 msgid "Face"
 msgstr "முகம்"
 
-#: /home/rafael/Activities/speak/activity.py:199
+#: activity.py:199
 #, python-format
 #, python-format,
 msgid "Hello %s. Please Type something."
 msgstr "ஹேலோ %s. தயவு செய்து எதாவது தட்டச்சு செய்யவும்."
 
-#: /home/rafael/Activities/speak/activity.py:263
+#: activity.py:263
 msgid "Pitch:"
 msgstr "சுருதி:"
 
-#: /home/rafael/Activities/speak/activity.py:276
+#: activity.py:276
 msgid "Rate:"
 msgstr "வீதம்:"
 
-#: /home/rafael/Activities/speak/activity.py:284
+#: activity.py:284
 msgid "pitch adjusted"
 msgstr "சுருதியை சரிசெய்யப்பட்டது"
 
-#: /home/rafael/Activities/speak/activity.py:288
+#: activity.py:288
 msgid "rate adjusted"
 msgstr "வீதம் சரிசெய்யப்பட்டது"
 
-#: /home/rafael/Activities/speak/activity.py:294
+#: activity.py:294
 msgid "Simple"
 msgstr "சாதாரணம்"
 
-#: /home/rafael/Activities/speak/activity.py:295
+#: activity.py:295
 msgid "Waveform"
 msgstr "அலை அமைப்பு"
 
-#: /home/rafael/Activities/speak/activity.py:296
+#: activity.py:296
 msgid "Frequency"
 msgstr "மீடிறன்"
 
-#: /home/rafael/Activities/speak/activity.py:301
+#: activity.py:301
 msgid "Mouth:"
 msgstr "வாய்:"
 
-#: /home/rafael/Activities/speak/activity.py:305
+#: activity.py:305
 msgid "Round"
 msgstr "வட்டம்"
 
-#: /home/rafael/Activities/speak/activity.py:306
+#: activity.py:306
 msgid "Glasses"
 msgstr "கண்ணாடிகள்"
 
-#: /home/rafael/Activities/speak/activity.py:311
+#: activity.py:311
 msgid "Eyes:"
 msgstr "கண்கள்:"
 
-#: /home/rafael/Activities/speak/activity.py:322
+#: activity.py:322
 msgid "Eyes number:"
 msgstr "கண்கள் எண்:"
 
-#: /home/rafael/Activities/speak/activity.py:334
+#: activity.py:334
 msgid "mouth changed"
 msgstr "வாய் மாற்றப்பட்டது"
 
-#: /home/rafael/Activities/speak/activity.py:346
+#: activity.py:346
 msgid "eyes changed"
 msgstr "கண்கள் மாற்றப்பட்டன."
 
-#: /home/rafael/Activities/speak/activity.py:445
+#: activity.py:445
 #, python-format
-#, python-format, fuzzy
-msgid "Sorry, I can't speak %s, let's talk %s instead."
-msgstr "மன்னிக்கவும் என்னால் பேச முடியவில்லை %s, இல்லையென்றால்பேசுங்க %s இப்ப ."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"மன்னிக்கவும், என்னால் பேச முடியவில்லை %(old_voice)s, இப்ப பேசு %(new_voice)s "
+"க்கு பதிலாக."
 
-#: /home/rafael/Activities/speak/activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr "நீங்க இப்ப இணையத்தில் இல்லை, எனவே யாரையாவது பகிர் மற்றும் அழைக்கவும்"
 
-#: /home/rafael/Activities/speak/voice.py:37
-msgid "Brazil"
-msgstr "பிறேசில்"
-
-#: /home/rafael/Activities/speak/voice.py:38
-msgid "Swedish"
-msgstr "சுவிடிஸ்"
-
-#: /home/rafael/Activities/speak/voice.py:39
-msgid "Icelandic"
-msgstr "அயர்லாந்திய"
-
-#: /home/rafael/Activities/speak/voice.py:40
-msgid "Romanian"
-msgstr "உரோமைய"
-
-#: /home/rafael/Activities/speak/voice.py:41
-msgid "Swahili"
-msgstr "சுவகிலி"
-
-#: /home/rafael/Activities/speak/voice.py:42
-msgid "Hindi"
-msgstr "கிந்தி"
-
-#: /home/rafael/Activities/speak/voice.py:43
-msgid "Dutch"
-msgstr "டச்"
-
-#: /home/rafael/Activities/speak/voice.py:44
-msgid "Latin"
-msgstr "லத்தீன்"
-
-#: /home/rafael/Activities/speak/voice.py:45
-msgid "Hungarian"
-msgstr "கங்கேரியன்"
-
-#: /home/rafael/Activities/speak/voice.py:46
-msgid "Macedonian"
-msgstr "மக்டோனியன்"
-
-#: /home/rafael/Activities/speak/voice.py:47
-msgid "Welsh"
-msgstr "வேல்ஸ்"
-
-#: /home/rafael/Activities/speak/voice.py:48
-msgid "French"
-msgstr "பிரான்சிய"
-
-#: /home/rafael/Activities/speak/voice.py:49
-msgid "Norwegian"
-msgstr "நோர்வேயின்"
-
-#: /home/rafael/Activities/speak/voice.py:50
-msgid "Russian"
-msgstr "ரசியன்"
-
-#: /home/rafael/Activities/speak/voice.py:51
-msgid "Afrikaans"
-msgstr "ஆவ்ப்ரிக்கன்"
-
-#: /home/rafael/Activities/speak/voice.py:52
-msgid "Finnish"
-msgstr "பின்லாந்திய"
-
-#: /home/rafael/Activities/speak/voice.py:53
-#: /home/rafael/Activities/speak/voice.py:157
-msgid "Default"
-msgstr "கொடாநிலை"
-
-#: /home/rafael/Activities/speak/voice.py:54
-msgid "Cantonese"
-msgstr "சீன மொழி"
-
-#: /home/rafael/Activities/speak/voice.py:55
-msgid "Scottish"
-msgstr "ஸ்கொட்லாந்திய"
-
-#: /home/rafael/Activities/speak/voice.py:56
-msgid "Greek"
-msgstr "கிரேக்க"
-
-#: /home/rafael/Activities/speak/voice.py:57
-msgid "Vietnam"
-msgstr "வியட்னாம்"
-
-#: /home/rafael/Activities/speak/voice.py:58
-#: /home/rafael/Activities/speak/brain.py:37
-#: /home/rafael/Activities/speak/brain.py:52
-#: /home/rafael/Activities/speak/brain.py:54
-#: /home/rafael/Activities/speak/brain.py:64
-msgid "English"
-msgstr "ஆங்கிலம்"
-
-#: /home/rafael/Activities/speak/voice.py:59
-msgid "Lancashire"
-msgstr "லான்சஸ்றி"
-
-#: /home/rafael/Activities/speak/voice.py:60
-msgid "Italian"
-msgstr "இத்தாலிய"
-
-#: /home/rafael/Activities/speak/voice.py:61
-msgid "Portugal"
-msgstr "போர்த்துக்கல்"
-
-#: /home/rafael/Activities/speak/voice.py:62
-msgid "German"
-msgstr "யேர்மன்"
-
-#: /home/rafael/Activities/speak/voice.py:63
-msgid "Whisper"
-msgstr "விஸ்பர்"
-
-#: /home/rafael/Activities/speak/voice.py:64
-msgid "Croatian"
-msgstr "குறோறியன்"
-
-#: /home/rafael/Activities/speak/voice.py:65
-msgid "Czech"
-msgstr "செச்"
-
-#: /home/rafael/Activities/speak/voice.py:66
-msgid "Slovak"
-msgstr "சலோவக்"
-
-#: /home/rafael/Activities/speak/voice.py:67
-#: /home/rafael/Activities/speak/brain.py:33
+#: brain.py:33 voice.py:67
 msgid "Spanish"
 msgstr "ஸ்பானிஸ்"
 
-#: /home/rafael/Activities/speak/voice.py:68
-msgid "Polish"
-msgstr "பொலிஸ்"
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+msgid "English"
+msgstr "ஆங்கிலம்"
 
-#: /home/rafael/Activities/speak/voice.py:69
-msgid "Esperanto"
-msgstr "எஸ்பிறன்ரோ"
-
-#: /home/rafael/Activities/speak/brain.py:80
+#: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "மன்னிக்கவும், நீங்கள் என்ன கேட்கறீர்கள் என்று முடியவில்லை."
 
-#: /home/rafael/Activities/speak/brain.py:104
+#: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -299,44 +162,181 @@ msgstr ""
 "மன்னிக்கவும், என்னுடைய மூளையை ஏற்ற காலியான நினைவகம் இல்லை. மற்ற செயற்பாடுகளை "
 "மூடிவிட்டு மறுபடியும் முயற்சிக்கவும்."
 
-#: /home/rafael/Activities/speak/brain.py:125
+#: brain.py:125
 #, python-format
 #, python-format,
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr ""
 "ஹேலோ. நான் ஒரு எந்திரன் \"%s\". தயவு செய்து என்னிடம் எதாவது கேள்வி கேட்கவும்."
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:83
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "அரட்டையிலிருந்து யூஆர்எல்(URL)"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "மறைப்பலகைக்கு பிரதியெடு"
+
+#: toolkit/activity_widgets.py:83
 msgid "Stop"
 msgstr "நிறுத்து"
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:95
+#: toolkit/activity_widgets.py:95
 msgid "Undo"
 msgstr "செயலை ரத்து செய்"
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:103
+#: toolkit/activity_widgets.py:103
 msgid "Redo"
 msgstr "மீழ் செய்"
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:110
+#: toolkit/activity_widgets.py:110
 msgid "Copy"
 msgstr "பிரதி செய்"
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:117
+#: toolkit/activity_widgets.py:117
 msgid "Paste"
 msgstr "ஒட்டு"
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:127
+#: toolkit/activity_widgets.py:127
 msgid "Private"
 msgstr "தனியார்"
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:134
+#: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
 msgstr "என் பக்கத்து"
 
-#: /home/rafael/Activities/speak/toolkit/activity_widgets.py:322
+#: toolkit/activity_widgets.py:322
 msgid "Activity"
 msgstr "செயற்பாடு"
+
+#: voice.py:37
+msgid "Brazil"
+msgstr "பிறேசில்"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "சுவிடிஸ்"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "அயர்லாந்திய"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "உரோமைய"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "சுவகிலி"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "கிந்தி"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "டச்"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "லத்தீன்"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "கங்கேரியன்"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "மக்டோனியன்"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "வேல்ஸ்"
+
+#: voice.py:48
+msgid "French"
+msgstr "பிரான்சிய"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "நோர்வேயின்"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "ரசியன்"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "ஆவ்ப்ரிக்கன்"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "பின்லாந்திய"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "கொடாநிலை"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "சீன மொழி"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "ஸ்கொட்லாந்திய"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "கிரேக்க"
+
+#: voice.py:57
+msgid "Vietnam"
+msgstr "வியட்னாம்"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "லான்சஸ்றி"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "இத்தாலிய"
+
+#: voice.py:61
+msgid "Portugal"
+msgstr "போர்த்துக்கல்"
+
+#: voice.py:62
+msgid "German"
+msgstr "யேர்மன்"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "விஸ்பர்"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "குறோறியன்"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "செச்"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "சலோவக்"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "பொலிஸ்"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "எஸ்பிறன்ரோ"
+
+#, python-format
+#, python-format, fuzzy
+#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
+#~ msgstr "மன்னிக்கவும் என்னால் பேச முடியவில்லை %s, இல்லையென்றால்பேசுங்க %s இப்ப ."
 
 #~ msgid "Keep"
 #~ msgstr "வைத்திரு"

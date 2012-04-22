@@ -1,8 +1,12 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
 "PO-Revision-Date: 2011-11-26 05:20+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,158 +17,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#  "Escribe algo para escucharlo"
+#: activity/activity.info:2
+msgid "Speak"
+msgstr ""
+
 #: activity.py:137
 msgid "Type something to hear it"
 msgstr ""
 
-#  "Hazle cualquier pregunta al robot"
 #: activity.py:144
 msgid "Ask robot any question"
 msgstr ""
 
-#  "Chat de voz"
 #: activity.py:152
 msgid "Voice chat"
 msgstr ""
 
-#  "Voz"
 #: activity.py:164
 msgid "Voice"
 msgstr ""
 
-#  "Cara"
 #: activity.py:170
 msgid "Face"
 msgstr ""
 
-#  "Hola %s. Escribe algo por favor."
 #: activity.py:199
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr ""
 
-#  "Tono:"
 #: activity.py:263
 msgid "Pitch:"
 msgstr ""
 
-#  "Velocidad:"
 #: activity.py:276
 msgid "Rate:"
 msgstr ""
 
-#  "tono ajustado"
 #: activity.py:284
 msgid "pitch adjusted"
 msgstr ""
 
-#  "velocidad ajustada"
 #: activity.py:288
 msgid "rate adjusted"
 msgstr ""
 
-#  "Simple"
 #: activity.py:294
 msgid "Simple"
 msgstr ""
 
-#  "Onda"
 #: activity.py:295
 msgid "Waveform"
 msgstr ""
 
-#  "Frecuencia"
 #: activity.py:296
 msgid "Frequency"
 msgstr ""
 
-#  "Boca:"
 #: activity.py:301
 msgid "Mouth:"
 msgstr ""
 
-#  "Redondos"
 #: activity.py:305
 msgid "Round"
 msgstr ""
 
-#  "Anteojos"
 #: activity.py:306
 msgid "Glasses"
 msgstr ""
 
-#  "Ojos:"
 #: activity.py:311
 msgid "Eyes:"
 msgstr ""
 
-#  "Número de ojos:"
 #: activity.py:322
 msgid "Eyes number:"
 msgstr ""
 
-#  "boca cambiada"
 #: activity.py:334
 msgid "mouth changed"
 msgstr ""
 
-#  "ojos cambiados"
 #: activity.py:346
 msgid "eyes changed"
 msgstr ""
 
-#  "Lo siento, no puedo hablar %s, mejor hablemos %s."
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
-#  "Estás en modo desconectado, comparte e invita a alguien."
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 
-#  "HablarConSara"
-#: activity/activity.info:2
-msgid "Speak"
-msgstr ""
-
-#  "Español"
 #: brain.py:33 voice.py:67
 msgid "Spanish"
 msgstr ""
 
-#  "Inglés"
 #: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
 msgstr ""
 
-#  "Lo siento, no puedo entender qué estás preguntando."
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
 msgstr ""
 
-#  "Lo siento, no hay memoria libre en mi cerebro. Cierra otras actividades e "
-#  "inténtalo de nuevo."
 #: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
 
-#  "Hola, soy un robot \"%s\". Pregúntame cualquier pregunta."
 #: brain.py:125
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr ""
 
-#  "URL a partir de chat"
 #: chatbox.py:248
 msgid "URL from Chat"
 msgstr ""
 
-#  "Copiar al portapapeles"
 #: chatbox.py:299
 msgid "Copy to Clipboard"
 msgstr ""
@@ -210,157 +183,126 @@ msgstr "Markasa"
 msgid "Activity"
 msgstr "Wakichäwi"
 
-#  "Brasileño"
 #: voice.py:37
 msgid "Brazil"
 msgstr ""
 
-#  "Sueco"
 #: voice.py:38
 msgid "Swedish"
 msgstr ""
 
-#  "Islandés"
 #: voice.py:39
 msgid "Icelandic"
 msgstr ""
 
-#  "Rumano"
 #: voice.py:40
 msgid "Romanian"
 msgstr ""
 
-#  "Suajili"
 #: voice.py:41
 msgid "Swahili"
 msgstr ""
 
-#  "Hindi"
 #: voice.py:42
 msgid "Hindi"
 msgstr ""
 
-#  "Holandés"
 #: voice.py:43
 msgid "Dutch"
 msgstr ""
 
-#  "Latino"
 #: voice.py:44
 msgid "Latin"
 msgstr ""
 
-#  "Húngaro"
 #: voice.py:45
 msgid "Hungarian"
 msgstr ""
 
-#  "Macedonio"
 #: voice.py:46
 msgid "Macedonian"
 msgstr ""
 
-#  "Galés"
 #: voice.py:47
 msgid "Welsh"
 msgstr ""
 
-#  "Francés"
 #: voice.py:48
 msgid "French"
 msgstr ""
 
-#  "Noruego"
 #: voice.py:49
 msgid "Norwegian"
 msgstr ""
 
-#  "Ruso"
 #: voice.py:50
 msgid "Russian"
 msgstr ""
 
-#  "Africaans"
 #: voice.py:51
 msgid "Afrikaans"
 msgstr ""
 
-#  "Finlandés"
 #: voice.py:52
 msgid "Finnish"
 msgstr ""
 
-#  "Predeterminado"
 #: voice.py:53 voice.py:157
 msgid "Default"
 msgstr ""
 
-#  "Cantonés"
 #: voice.py:54
 msgid "Cantonese"
 msgstr ""
 
-#  "Escocés"
 #: voice.py:55
 msgid "Scottish"
 msgstr ""
 
-#  "Griego"
 #: voice.py:56
 msgid "Greek"
 msgstr ""
 
-#  "Vietnamita"
 #: voice.py:57
 msgid "Vietnam"
 msgstr ""
 
-#  "Lancashire"
 #: voice.py:59
 msgid "Lancashire"
 msgstr ""
 
-#  "Italiano"
 #: voice.py:60
 msgid "Italian"
 msgstr ""
 
-#  "Portugués"
 #: voice.py:61
 msgid "Portugal"
 msgstr ""
 
-#  "Alemán"
 #: voice.py:62
 msgid "German"
 msgstr ""
 
-#  "Susurro"
 #: voice.py:63
 msgid "Whisper"
 msgstr ""
 
-#  "Croata"
 #: voice.py:64
 msgid "Croatian"
 msgstr ""
 
-#  "Checo"
 #: voice.py:65
 msgid "Czech"
 msgstr ""
 
-#  "Eslovaco"
 #: voice.py:66
 msgid "Slovak"
 msgstr ""
 
-#  "Polaco"
 #: voice.py:68
 msgid "Polish"
 msgstr ""
 
-#  "Esperanto"
 #: voice.py:69
 msgid "Esperanto"
 msgstr ""

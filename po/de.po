@@ -58,9 +58,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-07 00:32-0400\n"
-"PO-Revision-Date: 2012-02-11 22:46+0200\n"
-"Last-Translator: Markus <m.slg@gmx.de>\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"PO-Revision-Date: 2012-02-19 12:51+0200\n"
+"Last-Translator: olenz <olaf@lenz.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr "Augen:"
 
 #: activity.py:322
 msgid "Eyes number:"
-msgstr "Augennummer:"
+msgstr "Anzahl der Augen:"
 
 #: activity.py:334
 msgid "mouth changed"
@@ -176,15 +176,15 @@ msgstr "Englisch"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
-msgstr "Entschuldigung, Ich kann nicht verstehen, was du mich fragst."
+msgstr "Entschuldigung, ich kann nicht verstehen, was Du mich fragst."
 
 #: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
-"Entschuldigung, es ist nicht genug Arbeitsspeicher zum Laden meines Gehirns. "
-"Schließe bitte alle anderen Aktivitäten und versuche es noch einmal!"
+"Entschuldigung, es ist nicht genug Arbeitsspeicher zum Laden meines Gehirns "
+"frei. Schließe bitte alle anderen Aktivitäten und versuche es noch einmal!"
 
 #: brain.py:125
 #, python-format

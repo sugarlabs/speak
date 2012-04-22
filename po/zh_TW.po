@@ -34,16 +34,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-29 00:31-0400\n"
-"PO-Revision-Date: 2011-06-06 00:57+0200\n"
-"Last-Translator: Yuan Chao <yuanchao@gmail.com>\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"PO-Revision-Date: 2011-10-31 18:16+0200\n"
+"Last-Translator: Yuan <yuanchao@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
@@ -76,11 +76,11 @@ msgstr "你好 %s ，輸入些字吧。"
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr "音高: "
+msgstr "音高:"
 
 #: activity.py:276
 msgid "Rate:"
-msgstr "速度: "
+msgstr "速度:"
 
 #: activity.py:284
 msgid "pitch adjusted"
@@ -104,7 +104,7 @@ msgstr "頻率"
 
 #: activity.py:301
 msgid "Mouth:"
-msgstr "嘴巴: "
+msgstr "嘴巴:"
 
 #: activity.py:305
 msgid "Round"
@@ -116,11 +116,11 @@ msgstr "眼鏡"
 
 #: activity.py:311
 msgid "Eyes:"
-msgstr "眼睛: "
+msgstr "眼睛:"
 
 #: activity.py:322
 msgid "Eyes number:"
-msgstr "眼睛號碼: "
+msgstr "眼睛號碼:"
 
 #: activity.py:334
 msgid "mouth changed"
@@ -132,18 +132,18 @@ msgstr "眼睛已改變"
 
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr "抱歉，我不會說 %s ，讓我們改說 %s 吧。"
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr "對不起，我不會說 %(old_voice)s 。我們改說 %(new_voice)s 吧。"
 
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr "您現在是離線模式，分享或邀請朋友。"
 
-#: brain.py:33 voice.py:66
+#: brain.py:33 voice.py:67
 msgid "Spanish"
 msgstr "西班牙語"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
 msgstr "英語"
 
@@ -166,7 +166,7 @@ msgstr "你好，我是 %s 機器人，請問我任何問題。"
 msgid "URL from Chat"
 msgstr "聊天 URL"
 
-#: chatbox.py:298
+#: chatbox.py:299
 msgid "Copy to Clipboard"
 msgstr "複製到剪貼簿"
 
@@ -198,134 +198,138 @@ msgstr "私人"
 msgid "My Neighborhood"
 msgstr "我的鄰居"
 
-#: toolkit/activity_widgets.py:166
-msgid "Keep"
-msgstr "保存"
-
-#: toolkit/activity_widgets.py:344
+#: toolkit/activity_widgets.py:322
 msgid "Activity"
 msgstr "活動"
 
-#: voice.py:36
+#: voice.py:37
 msgid "Brazil"
 msgstr "巴西"
 
-#: voice.py:37
+#: voice.py:38
 msgid "Swedish"
 msgstr "瑞典語"
 
-#: voice.py:38
+#: voice.py:39
 msgid "Icelandic"
 msgstr "冰島語"
 
-#: voice.py:39
+#: voice.py:40
 msgid "Romanian"
 msgstr "羅馬尼亞語"
 
-#: voice.py:40
+#: voice.py:41
 msgid "Swahili"
 msgstr "史瓦西里語"
 
-#: voice.py:41
+#: voice.py:42
 msgid "Hindi"
 msgstr "印地語(北印度)"
 
-#: voice.py:42
+#: voice.py:43
 msgid "Dutch"
 msgstr "荷蘭語"
 
-#: voice.py:43
+#: voice.py:44
 msgid "Latin"
 msgstr "拉丁語"
 
-#: voice.py:44
+#: voice.py:45
 msgid "Hungarian"
 msgstr "匈牙利語"
 
-#: voice.py:45
+#: voice.py:46
 msgid "Macedonian"
 msgstr "馬其頓語"
 
-#: voice.py:46
+#: voice.py:47
 msgid "Welsh"
 msgstr "威爾斯語"
 
-#: voice.py:47
+#: voice.py:48
 msgid "French"
 msgstr "法語"
 
-#: voice.py:48
+#: voice.py:49
 msgid "Norwegian"
 msgstr "新挪威語"
 
-#: voice.py:49
+#: voice.py:50
 msgid "Russian"
 msgstr "俄語"
 
-#: voice.py:50
+#: voice.py:51
 msgid "Afrikaans"
 msgstr "南非語"
 
-#: voice.py:51
+#: voice.py:52
 msgid "Finnish"
 msgstr "芬蘭語"
 
-#: voice.py:52 voice.py:130
+#: voice.py:53 voice.py:157
 msgid "Default"
 msgstr "預設"
 
-#: voice.py:53
+#: voice.py:54
 msgid "Cantonese"
 msgstr "廣東話"
 
-#: voice.py:54
+#: voice.py:55
 msgid "Scottish"
 msgstr "蘇格蘭語"
 
-#: voice.py:55
+#: voice.py:56
 msgid "Greek"
 msgstr "現代希臘語"
 
-#: voice.py:56
+#: voice.py:57
 msgid "Vietnam"
 msgstr "越南語"
 
-#: voice.py:58
+#: voice.py:59
 msgid "Lancashire"
 msgstr "蘭開郡"
 
-#: voice.py:59
+#: voice.py:60
 msgid "Italian"
 msgstr "義大利語"
 
-#: voice.py:60
+#: voice.py:61
 msgid "Portugal"
 msgstr "葡萄牙語"
 
-#: voice.py:61
+#: voice.py:62
 msgid "German"
 msgstr "德語"
 
-#: voice.py:62
+#: voice.py:63
 msgid "Whisper"
 msgstr "悄悄話"
 
-#: voice.py:63
+#: voice.py:64
 msgid "Croatian"
 msgstr "克羅埃西亞語"
 
-#: voice.py:64
+#: voice.py:65
 msgid "Czech"
 msgstr "捷克語"
 
-#: voice.py:65
+#: voice.py:66
 msgid "Slovak"
 msgstr "斯洛伐克語"
 
-#: voice.py:67
+#: voice.py:68
 msgid "Polish"
 msgstr "波蘭語"
 
-#: voice.py:68
+#: voice.py:69
 msgid "Esperanto"
 msgstr "世界語"
+
+#, python-format
+#, python-format, fuzzy
+#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
+#~ msgstr "抱歉，我不會說 %s ，讓我們改說 %s 吧。"
+
+#~ msgid "Keep"
+#~ msgstr "保存"

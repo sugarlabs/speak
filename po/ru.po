@@ -35,10 +35,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-29 00:31-0400\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -132,19 +133,18 @@ msgstr "глаза изменены"
 
 #: activity.py:445
 #, python-format
-#, fuzzy
-msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr "Извини, я не знаю %s, давай использовать %s."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
 
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 
-#: brain.py:33 voice.py:66
+#: brain.py:33 voice.py:67
 msgid "Spanish"
 msgstr "Испанский"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:57
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
 msgstr "Английский"
 
@@ -168,7 +168,7 @@ msgstr "Привет, я робот \"%s\". Задавай мне любые в�
 msgid "URL from Chat"
 msgstr "Ссылка из Чата"
 
-#: chatbox.py:298
+#: chatbox.py:299
 msgid "Copy to Clipboard"
 msgstr "Скопировать в буфер обмена"
 
@@ -200,137 +200,138 @@ msgstr ""
 msgid "My Neighborhood"
 msgstr ""
 
-#: toolkit/activity_widgets.py:166
-msgid "Keep"
-msgstr ""
-
-#: toolkit/activity_widgets.py:344
+#: toolkit/activity_widgets.py:322
 msgid "Activity"
 msgstr ""
 
-#: voice.py:36
+#: voice.py:37
 msgid "Brazil"
 msgstr "Бразильский"
 
-#: voice.py:37
+#: voice.py:38
 msgid "Swedish"
 msgstr "Шведский"
 
-#: voice.py:38
+#: voice.py:39
 msgid "Icelandic"
 msgstr "Исландский"
 
-#: voice.py:39
+#: voice.py:40
 msgid "Romanian"
 msgstr "Румынский"
 
-#: voice.py:40
+#: voice.py:41
 msgid "Swahili"
 msgstr "Суахили"
 
-#: voice.py:41
+#: voice.py:42
 msgid "Hindi"
 msgstr "Хинди"
 
-#: voice.py:42
+#: voice.py:43
 msgid "Dutch"
 msgstr "Голландский"
 
-#: voice.py:43
+#: voice.py:44
 msgid "Latin"
 msgstr "Латинский"
 
-#: voice.py:44
+#: voice.py:45
 msgid "Hungarian"
 msgstr "Венгерский"
 
-#: voice.py:45
+#: voice.py:46
 msgid "Macedonian"
 msgstr "Македонский"
 
-#: voice.py:46
+#: voice.py:47
 msgid "Welsh"
 msgstr "Валлийский"
 
-#: voice.py:47
+#: voice.py:48
 msgid "French"
 msgstr "Французский"
 
-#: voice.py:48
+#: voice.py:49
 msgid "Norwegian"
 msgstr "Норвежский"
 
-#: voice.py:49
+#: voice.py:50
 msgid "Russian"
 msgstr "Русский"
 
-#: voice.py:50
+#: voice.py:51
 msgid "Afrikaans"
 msgstr "Африкаанс"
 
-#: voice.py:51
+#: voice.py:52
 msgid "Finnish"
 msgstr "Финский"
 
-#: voice.py:52 voice.py:130
+#: voice.py:53 voice.py:157
 msgid "Default"
 msgstr "По умолчанию"
 
-#: voice.py:53
+#: voice.py:54
 msgid "Cantonese"
 msgstr "Кантон"
 
-#: voice.py:54
+#: voice.py:55
 msgid "Scottish"
 msgstr "Шотландский"
 
-#: voice.py:55
+#: voice.py:56
 msgid "Greek"
 msgstr "Греческий"
 
-#: voice.py:56
+#: voice.py:57
 msgid "Vietnam"
 msgstr "Вьетнамский"
 
-#: voice.py:58
+#: voice.py:59
 msgid "Lancashire"
 msgstr "Ланкашир"
 
-#: voice.py:59
+#: voice.py:60
 msgid "Italian"
 msgstr "Итальянский"
 
-#: voice.py:60
+#: voice.py:61
 msgid "Portugal"
 msgstr "Португальский"
 
-#: voice.py:61
+#: voice.py:62
 msgid "German"
 msgstr "Немецкий"
 
-#: voice.py:62
+#: voice.py:63
 msgid "Whisper"
 msgstr "Шепот"
 
-#: voice.py:63
+#: voice.py:64
 msgid "Croatian"
 msgstr "Хорватский"
 
-#: voice.py:64
+#: voice.py:65
 msgid "Czech"
 msgstr "Чешский"
 
-#: voice.py:65
+#: voice.py:66
 msgid "Slovak"
 msgstr "Словацкий"
 
-#: voice.py:67
+#: voice.py:68
 msgid "Polish"
 msgstr "Польский"
 
-#: voice.py:68
+#: voice.py:69
 msgid "Esperanto"
 msgstr "Эсперанто"
+
+#, python-format
+#, fuzzy
+#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
+#~ msgstr "Извини, я не знаю %s, давай использовать %s."
 
 #~ msgid "Robot"
 #~ msgstr "Робот"

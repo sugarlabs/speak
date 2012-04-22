@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
 "PO-Revision-Date: 2011-11-21 05:42+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios quechuas Sugar Camp Lima\n"
@@ -13,6 +13,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 "X-Generator: Pootle 2.0.5\n"
+
+#  "HablarConSara"
+#: activity/activity.info:2
+msgid "Speak"
+msgstr "Rimay"
 
 #  "Escribe algo para escucharlo"
 #: activity.py:137
@@ -115,21 +120,15 @@ msgstr "Simi huknirasqa"
 msgid "eyes changed"
 msgstr "Ñawi huknirasqa"
 
-#  "Lo siento, no puedo hablar %s, mejor hablemos %s."
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr "Pampachaway, mana rimanichu %s, astawan %s simipi rimasun."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
 
 #  "Estás en modo desconectado, comparte e invita a alguien."
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Mana tinkusqachu kashanki, pitawanpis waqay."
-
-#  "HablarConSara"
-#: activity/activity.info:2
-msgid "Speak"
-msgstr "Rimay"
 
 #  "Español"
 #: brain.py:33 voice.py:67
@@ -366,3 +365,8 @@ msgstr "Poalco simi"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto simi"
+
+#  "Lo siento, no puedo hablar %s, mejor hablemos %s."
+#, python-format
+#~ msgid "Sorry, I can't speak %s, let's speak %s instead."
+#~ msgstr "Pampachaway, mana rimanichu %s, astawan %s simipi rimasun."

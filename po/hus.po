@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 13:41+0000\n"
-"PO-Revision-Date: 2011-08-19 08:00+0200\n"
+"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"PO-Revision-Date: 2012-03-01 08:57+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hus\n"
@@ -15,40 +15,44 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Speak"
+msgstr "Kaw k'al a Sara"
 
 #: activity.py:137
 msgid "Type something to hear it"
-msgstr "ka we' dhucha' abal ka ats'a'"
+msgstr "Ka we' dhucha' abal ka ats'a'"
 
 #: activity.py:144
 msgid "Ask robot any question"
-msgstr "ka t'ajchij jawak'ij tam konoxtlab an tsalpadh pat'al"
+msgstr "Ka t'ajchij jawak'ij tam konoxtlab an tsalpadh pat'al"
 
 #: activity.py:152
 msgid "Voice chat"
-msgstr "janidh t'ilomtaláb"
+msgstr "Janidh t'ilomtaláb"
 
 #: activity.py:164
 msgid "Voice"
-msgstr "kawímtal"
+msgstr "Kawímtal"
 
 #: activity.py:170
 msgid "Face"
-msgstr "wálek"
+msgstr "Wálek"
 
 #: activity.py:199
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr "Nenek %s. t'ajchij an alwa'talab Ka dhucha' jun jant'o"
+msgstr "Nenek %s. t'ajchij an alwa'talab Ka dhucha' jun jant'o."
 
 #: activity.py:263
 msgid "Pitch:"
-msgstr "alwa' in janidh."
+msgstr "Janidhtaláb:"
 
 #: activity.py:276
 msgid "Rate:"
-msgstr "adhík"
+msgstr "Adhík:"
 
 #: activity.py:284
 msgid "pitch adjusted"
@@ -60,7 +64,7 @@ msgstr "t'ojojodh in adhík"
 
 #: activity.py:294
 msgid "Simple"
-msgstr "alk'idh"
+msgstr "Alk'idh"
 
 #: activity.py:295
 msgid "Waveform"
@@ -68,27 +72,27 @@ msgstr "ik' bel"
 
 #: activity.py:296
 msgid "Frequency"
-msgstr "tsáp an ik' bel"
+msgstr "Tsáp an ik' bel"
 
 #: activity.py:301
 msgid "Mouth:"
-msgstr "wi'"
+msgstr "Wi':"
 
 #: activity.py:305
 msgid "Round"
-msgstr "kwechochik"
+msgstr "Kwechochik"
 
 #: activity.py:306
 msgid "Glasses"
-msgstr "tajwal"
+msgstr "Tajwal"
 
 #: activity.py:311
 msgid "Eyes:"
-msgstr "wal"
+msgstr "Wal:"
 
 #: activity.py:322
 msgid "Eyes number:"
-msgstr "jay in wal"
+msgstr "Jay in wal:"
 
 #: activity.py:334
 msgid "mouth changed"
@@ -96,20 +100,16 @@ msgstr "jaludh in wi'"
 
 #: activity.py:346
 msgid "eyes changed"
-msgstr "jaludh in walchik."
+msgstr "jaludh in walchik"
 
 #: activity.py:445
 #, python-format
-msgid "Sorry, I can't speak %s, let's speak %s instead."
-msgstr "Pakwlanchij yab u ejtowal kin kawin %s, alwa' ku kawin %s."
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
 
-#: activity.py:473
+#: activity.py:476
 msgid "You are in off-line mode, share and invite someone."
 msgstr "It k'wajat ti in alwa´yab ts'ot'k'odh, ts'ejlixna ani ka kániy jita'."
-
-#: activity/activity.info:2
-msgid "Speak"
-msgstr "kaw k'al a Sara."
 
 #: brain.py:33 voice.py:67
 msgid "Spanish"
@@ -121,7 +121,7 @@ msgstr "Inglés"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
-msgstr "Pawlanchij yab u ejtowal ku éxbay jawa' exom a konówyal"
+msgstr "Pawlanchij yab u ejtowal ku éxbay jawa' exom a konówyal."
 
 #: brain.py:104
 msgid ""
@@ -136,7 +136,7 @@ msgstr ""
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr ""
 "Nenek, nana' pel in atiklab pat'al \"%s\". Ti kin konowiy jawakitstom "
-"konowixtaláb"
+"konowixtaláb."
 
 #: chatbox.py:248
 msgid "URL from Chat"
@@ -144,23 +144,23 @@ msgstr "URB ma tin tújtal an dhuchad t'ilomtaláb"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr "K'ot'biy ani abna' ti dhaykol úw."
+msgstr "K'ot'biy ani abna' ti dhaykol úw"
 
 #: toolkit/activity_widgets.py:83
 msgid "Stop"
-msgstr "kuba'"
+msgstr "Kuba'"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
-msgstr "wichk'ow"
+msgstr "Wichk'ow"
 
 #: toolkit/activity_widgets.py:103
 msgid "Redo"
-msgstr "Tsáb ts'ejka."
+msgstr "Tsáb ts'ejka"
 
 #: toolkit/activity_widgets.py:110
 msgid "Copy"
-msgstr "k'ot'biy"
+msgstr "K'ot'biy"
 
 #: toolkit/activity_widgets.py:117
 msgid "Paste"
@@ -168,7 +168,7 @@ msgstr "Ts'at'ka'"
 
 #: toolkit/activity_widgets.py:127
 msgid "Private"
-msgstr "tsinat"
+msgstr "Tsinat"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
@@ -176,7 +176,7 @@ msgstr "Át kímadh"
 
 #: toolkit/activity_widgets.py:322
 msgid "Activity"
-msgstr "T'ojlab."
+msgstr "T'ojláb"
 
 #: voice.py:37
 msgid "Brazil"
@@ -216,7 +216,7 @@ msgstr "Húngaro"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr "Macedonio."
+msgstr "Macedonio"
 
 #: voice.py:47
 msgid "Welsh"
@@ -301,3 +301,8 @@ msgstr "Polaco"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Aychix"
+
+#, python-format
+#, python-format, fuzzy
+#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
+#~ msgstr "Pakwlanchij yab u ejtowal kin kawin %s, alwa' ku kawin %s."
