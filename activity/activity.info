@@ -19,7 +19,7 @@ exec      = sugar-activity activity.SpeakActivity
 requires  = base/gst-plugins-espeak; base/pyaiml
 
 # original activity.info options
-activity_version = 38
+activity_version = 39
 bundle_id = vu.lux.olpc.Speak
 
 [Source]
