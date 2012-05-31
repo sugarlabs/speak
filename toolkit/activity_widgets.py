@@ -30,6 +30,7 @@ from sugar.bundle.activitybundle import ActivityBundle
 from toolkit.toolbarbox import ToolbarButton
 from toolkit.radiopalette import RadioPalette
 from toolkit.radiopalette import RadioMenuButton
+from sugar.graphics import style
 
 _ = lambda msg: gettext.dgettext('sugar-toolkit', msg)
 
@@ -202,6 +203,71 @@ class TitleEntry(gtk.ToolItem):
         return False
 
 
+class DescriptionItem(gtk.ToolItem):
+
+    def __init__(self, activity, **kwargs):
+        gtk.ToolItem.__init__(self)
+
+        description_button = ToolButton('edit-description')
+        description_button.show()
+        description_button.set_tooltip(_('Description'))
+        self._palette = description_button.get_palette()
+
+        description_box = gtk.HBox()
+        sw = gtk.ScrolledWindow()
+        sw.set_size_request(int(gtk.gdk.screen_width() / 2),
+                            2 * style.GRID_CELL_SIZE)
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self._text_view = gtk.TextView()
+        self._text_view.set_left_margin(style.DEFAULT_PADDING)
+        self._text_view.set_right_margin(style.DEFAULT_PADDING)
+        text_buffer = gtk.TextBuffer()
+        if 'description' in activity.metadata:
+            text_buffer.set_text(activity.metadata['description'])
+        self._text_view.set_buffer(text_buffer)
+        self._text_view.connect('focus-out-event',
+                               self.__description_changed_cb, activity)
+        sw.add(self._text_view)
+        description_box.pack_start(sw, False, True, 0)
+        self._palette.set_content(description_box)
+        description_box.show_all()
+
+        self.add(description_button)
+        description_button.connect('clicked',
+                                   self.__description_button_clicked_cb)
+
+        activity.metadata.connect('updated', self.__jobject_updated_cb)
+
+    def _get_text_from_buffer(self):
+        buf = self._text_view.get_buffer()
+        start_iter = buf.get_start_iter()
+        end_iter = buf.get_end_iter()
+        return buf.get_text(start_iter, end_iter, False)
+
+    def __jobject_updated_cb(self, jobject):
+        if self._text_view.has_focus():
+            return
+        if 'description' not in jobject:
+            return
+        if self._get_text_from_buffer() == jobject['description']:
+            return
+        buf = self._text_view.get_buffer()
+        buf.set_text(jobject['description'])
+
+    def __description_button_clicked_cb(self, button):
+        self._palette.popup(immediate=True, state=1)
+
+    def __description_changed_cb(self, widget, event, activity):
+        description = self._get_text_from_buffer()
+        if 'description' in activity.metadata and \
+                description == activity.metadata['description']:
+            return
+
+        activity.metadata['description'] = description
+        activity.save()
+        return False
+
+
 class ActivityToolbar(gtk.Toolbar):
     """The Activity toolbar with the Journal entry title, sharing,
        and Stop buttons
@@ -227,6 +293,11 @@ class ActivityToolbar(gtk.Toolbar):
             separator.set_expand(True)
             self.insert(separator, -1)
             separator.show()
+
+        if activity.metadata:
+            description_item = DescriptionItem(activity)
+            description_item.show()
+            self.insert(description_item, -1)
 
         self.share = ShareButton(activity)
         self.share.show()
