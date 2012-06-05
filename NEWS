@@ -1,3 +1,20 @@
+40
+
+* Add DescriptionItem to the toolbar.
+
+39
+
+* Update translations
+
+38
+
+* Update translations
+
+37
+
+* Fixed combobox for voices, reduced to 28 chars max (Ariel Calzada)
+* Update translations
+
 36
 
 * Fix pronunciation of unicode strings; keep history in unicode (Gonzalo Odiard)
