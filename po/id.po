@@ -30,20 +30,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-15 00:33-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-05-22 03:09+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.5.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
@@ -66,8 +66,9 @@ msgid "Voice"
 msgstr ""
 
 #: activity.py:170
+#, fuzzy
 msgid "Face"
-msgstr ""
+msgstr "Wajah"
 
 #: activity.py:199
 #, python-format
@@ -91,12 +92,14 @@ msgid "rate adjusted"
 msgstr ""
 
 #: activity.py:294
+#, fuzzy
 msgid "Simple"
-msgstr ""
+msgstr "Sederhana"
 
 #: activity.py:295
+#, fuzzy
 msgid "Waveform"
-msgstr ""
+msgstr "Gelombang"
 
 #: activity.py:296
 msgid "Frequency"
@@ -140,12 +143,14 @@ msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 
 #: brain.py:33 voice.py:67
+#, fuzzy
 msgid "Spanish"
-msgstr ""
+msgstr "Spanyol"
 
 #: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#, fuzzy
 msgid "English"
-msgstr ""
+msgstr "Inggris"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
@@ -171,8 +176,9 @@ msgid "Copy to Clipboard"
 msgstr ""
 
 #: toolkit/activity_widgets.py:83
+#, fuzzy
 msgid "Stop"
-msgstr ""
+msgstr "Berhenti"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
@@ -183,24 +189,28 @@ msgid "Redo"
 msgstr ""
 
 #: toolkit/activity_widgets.py:110
+#, fuzzy
 msgid "Copy"
-msgstr ""
+msgstr "Salin"
 
 #: toolkit/activity_widgets.py:117
+#, fuzzy
 msgid "Paste"
-msgstr ""
+msgstr "Tempel"
 
 #: toolkit/activity_widgets.py:127
+#, fuzzy
 msgid "Private"
-msgstr ""
+msgstr "Pribadi"
 
 #: toolkit/activity_widgets.py:134
 msgid "My Neighborhood"
 msgstr ""
 
 #: toolkit/activity_widgets.py:322
+#, fuzzy
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitas"
 
 #: voice.py:37
 msgid "Brazil"
@@ -231,8 +241,9 @@ msgid "Dutch"
 msgstr ""
 
 #: voice.py:44
+#, fuzzy
 msgid "Latin"
-msgstr ""
+msgstr "Latin"
 
 #: voice.py:45
 msgid "Hungarian"
