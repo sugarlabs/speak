@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-15 00:33-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-06-06 03:25+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: nah\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
@@ -47,8 +47,9 @@ msgid "Hello %s. Please Type something."
 msgstr ""
 
 #: activity.py:263
+#, fuzzy
 msgid "Pitch:"
-msgstr ""
+msgstr "Chikotemoli:"
 
 #: activity.py:276
 msgid "Rate:"
@@ -143,8 +144,9 @@ msgid "Copy to Clipboard"
 msgstr ""
 
 #: toolkit/activity_widgets.py:83
+#, fuzzy
 msgid "Stop"
-msgstr ""
+msgstr "Moketsas"
 
 #: toolkit/activity_widgets.py:95
 msgid "Undo"
@@ -155,8 +157,9 @@ msgid "Redo"
 msgstr ""
 
 #: toolkit/activity_widgets.py:110
+#, fuzzy
 msgid "Copy"
-msgstr ""
+msgstr "Ixkopina"
 
 #: toolkit/activity_widgets.py:117
 msgid "Paste"
@@ -171,8 +174,9 @@ msgid "My Neighborhood"
 msgstr ""
 
 #: toolkit/activity_widgets.py:322
+#, fuzzy
 msgid "Activity"
-msgstr ""
+msgstr "Tekitlachiualistli"
 
 #: voice.py:37
 msgid "Brazil"
