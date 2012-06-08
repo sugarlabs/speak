@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
-"PO-Revision-Date: 2011-10-29 04:03+0200\n"
+"POT-Creation-Date: 2012-06-07 00:36-0400\n"
+"PO-Revision-Date: 2012-06-08 04:32+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -21,96 +21,96 @@ msgstr ""
 msgid "Speak"
 msgstr "Tale"
 
-#: activity.py:137
+#: activity.py:135
 msgid "Type something to hear it"
 msgstr "Indtast noget for at høre det"
 
-#: activity.py:144
+#: activity.py:142
 msgid "Ask robot any question"
 msgstr "Stil robot hvilket som helst spørgsmål"
 
-#: activity.py:152
+#: activity.py:150
 msgid "Voice chat"
 msgstr "Chat med lyd"
 
-#: activity.py:164
+#: activity.py:159
 msgid "Voice"
 msgstr "Stemme"
 
-#: activity.py:170
+#: activity.py:165
 msgid "Face"
 msgstr "Ansigt"
 
-#: activity.py:199
+#: activity.py:194
 #, python-format
 #, python-format,
 msgid "Hello %s. Please Type something."
 msgstr "Hej %s. Indtast venligst noget."
 
-#: activity.py:263
+#: activity.py:260
 msgid "Pitch:"
 msgstr "Tonehøjde:"
 
-#: activity.py:276
+#: activity.py:273
 msgid "Rate:"
 msgstr "Tonerate:"
 
-#: activity.py:284
+#: activity.py:281
 msgid "pitch adjusted"
 msgstr "tonehøjde tilpasset"
 
-#: activity.py:288
+#: activity.py:285
 msgid "rate adjusted"
 msgstr "tonerate tilpasset"
 
-#: activity.py:294
+#: activity.py:291
 msgid "Simple"
 msgstr "Simpel"
 
-#: activity.py:295
+#: activity.py:292
 msgid "Waveform"
 msgstr "Bølgeform"
 
-#: activity.py:296
+#: activity.py:293
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: activity.py:301
+#: activity.py:298
 msgid "Mouth:"
 msgstr "Mund:"
 
-#: activity.py:305
+#: activity.py:302
 msgid "Round"
 msgstr "Rund"
 
-#: activity.py:306
+#: activity.py:303
 msgid "Glasses"
 msgstr "Briller"
 
-#: activity.py:311
+#: activity.py:308
 msgid "Eyes:"
 msgstr "Øjne:"
 
-#: activity.py:322
+#: activity.py:319
 msgid "Eyes number:"
 msgstr "Antal øjne:"
 
-#: activity.py:334
+#: activity.py:331
 msgid "mouth changed"
 msgstr "mund ændret"
 
-#: activity.py:346
+#: activity.py:343
 msgid "eyes changed"
 msgstr "øjne ændret"
 
-#: activity.py:445
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 "Beklager, jeg kan ikke tale %(old_voice)s, lad os tale %(new_voice)s i "
 "stedet."
 
-#: activity.py:476
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Du er i frakoblet tilstand, del og invitér en person."
 
@@ -148,35 +148,39 @@ msgstr "URL fra Chat"
 msgid "Copy to Clipboard"
 msgstr "Kopiér til udklipsholder"
 
-#: toolkit/activity_widgets.py:83
+#: toolkit/activity_widgets.py:84
 msgid "Stop"
 msgstr "Stop"
 
-#: toolkit/activity_widgets.py:95
+#: toolkit/activity_widgets.py:96
 msgid "Undo"
 msgstr "Fortryd"
 
-#: toolkit/activity_widgets.py:103
+#: toolkit/activity_widgets.py:104
 msgid "Redo"
 msgstr "Omgør"
 
-#: toolkit/activity_widgets.py:110
+#: toolkit/activity_widgets.py:111
 msgid "Copy"
 msgstr "Kopiér"
 
-#: toolkit/activity_widgets.py:117
+#: toolkit/activity_widgets.py:118
 msgid "Paste"
 msgstr "Indsæt"
 
-#: toolkit/activity_widgets.py:127
+#: toolkit/activity_widgets.py:128
 msgid "Private"
 msgstr "Privat"
 
-#: toolkit/activity_widgets.py:134
+#: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
 msgstr "Mit nabolag"
 
-#: toolkit/activity_widgets.py:322
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "Aktivitet"
 
