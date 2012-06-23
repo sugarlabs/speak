@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"POT-Creation-Date: 2012-06-07 00:36-0400\n"
 "PO-Revision-Date: 2011-11-21 05:42+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios quechuas Sugar Camp Lima\n"
@@ -20,113 +20,113 @@ msgid "Speak"
 msgstr "Rimay"
 
 #  "Escribe algo para escucharlo"
-#: activity.py:137
+#: activity.py:135
 msgid "Type something to hear it"
 msgstr "Uyarinayqipaqqa imatapis qillqay"
 
 #  "Hazle cualquier pregunta al robot"
-#: activity.py:144
+#: activity.py:142
 msgid "Ask robot any question"
 msgstr "Robotchaman imallatapis tapuy"
 
 #  "Chat de voz"
-#: activity.py:152
+#: activity.py:150
 msgid "Voice chat"
 msgstr "Rimanakuy"
 
 #  "Voz"
-#: activity.py:164
+#: activity.py:159
 msgid "Voice"
 msgstr "Kunka"
 
 #  "Cara"
-#: activity.py:170
+#: activity.py:165
 msgid "Face"
 msgstr "Uya"
 
 #  "Hola %s. Escribe algo por favor."
-#: activity.py:199
+#: activity.py:194
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr "Allillanchu %s Imallatapis qillqay."
 
 #  "Tono:"
-#: activity.py:263
+#: activity.py:260
 msgid "Pitch:"
 msgstr "Kunkamanta:"
 
 #  "Velocidad:"
-#: activity.py:276
+#: activity.py:273
 msgid "Rate:"
 msgstr "Utqana:"
 
 #  "tono ajustado"
-#: activity.py:284
+#: activity.py:281
 msgid "pitch adjusted"
 msgstr "Ñañu kunka"
 
 #  "velocidad ajustada"
-#: activity.py:288
+#: activity.py:285
 msgid "rate adjusted"
 msgstr "Utqana mat'ichasqa"
 
 #  "Simple"
-#: activity.py:294
+#: activity.py:291
 msgid "Simple"
 msgstr "Yanqalla"
 
 #  "Onda"
-#: activity.py:295
+#: activity.py:292
 msgid "Waveform"
 msgstr "Onda nisqa"
 
 #  "Frecuencia"
-#: activity.py:296
+#: activity.py:293
 msgid "Frequency"
 msgstr "Frecuencia nisqa"
 
 #  "Boca:"
-#: activity.py:301
+#: activity.py:298
 msgid "Mouth:"
 msgstr "Simi:"
 
 #  "Redondos"
-#: activity.py:305
+#: activity.py:302
 msgid "Round"
 msgstr "Muyukuna"
 
 #  "Anteojos"
-#: activity.py:306
+#: activity.py:303
 msgid "Glasses"
 msgstr "Tawañawi"
 
 #  "Ojos:"
-#: activity.py:311
+#: activity.py:308
 msgid "Eyes:"
 msgstr "Ñawikuna:"
 
 #  "Número de ojos:"
-#: activity.py:322
+#: activity.py:319
 msgid "Eyes number:"
 msgstr "Hayk'a ñawikuna:"
 
 #  "boca cambiada"
-#: activity.py:334
+#: activity.py:331
 msgid "mouth changed"
 msgstr "Simi huknirasqa"
 
 #  "ojos cambiados"
-#: activity.py:346
+#: activity.py:343
 msgid "eyes changed"
 msgstr "Ñawi huknirasqa"
 
-#: activity.py:445
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
 #  "Estás en modo desconectado, comparte e invita a alguien."
-#: activity.py:476
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Mana tinkusqachu kashanki, pitawanpis waqay."
 
@@ -172,42 +172,46 @@ msgid "Copy to Clipboard"
 msgstr "Raphi apaqman kikinchay"
 
 #  "Detener"
-#: toolkit/activity_widgets.py:83
+#: toolkit/activity_widgets.py:84
 msgid "Stop"
 msgstr "Sayachiy"
 
 #  "Deshacer"
-#: toolkit/activity_widgets.py:95
+#: toolkit/activity_widgets.py:96
 msgid "Undo"
 msgstr "Pichay"
 
 #  "Rehacer"
-#: toolkit/activity_widgets.py:103
+#: toolkit/activity_widgets.py:104
 msgid "Redo"
 msgstr "Wakmanta ruway"
 
 #  "Copiar"
-#: toolkit/activity_widgets.py:110
+#: toolkit/activity_widgets.py:111
 msgid "Copy"
 msgstr "Kikinchay"
 
 #  "Pegar"
-#: toolkit/activity_widgets.py:117
+#: toolkit/activity_widgets.py:118
 msgid "Paste"
 msgstr "K'askachiy"
 
 #  "Privado"
-#: toolkit/activity_widgets.py:127
+#: toolkit/activity_widgets.py:128
 msgid "Private"
 msgstr "wakinkunallapaq"
 
 #  "Vecindario"
-#: toolkit/activity_widgets.py:134
+#: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
 msgstr "Ayllu"
 
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr ""
+
 #  "Actividad"
-#: toolkit/activity_widgets.py:322
+#: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "Ruwana"
 

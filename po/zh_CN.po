@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"POT-Creation-Date: 2012-06-07 00:36-0400\n"
 "PO-Revision-Date: 2011-12-13 19:11+0200\n"
 "Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,93 +53,93 @@ msgstr ""
 msgid "Speak"
 msgstr "说话"
 
-#: activity.py:137
+#: activity.py:135
 msgid "Type something to hear it"
 msgstr "输入后听听"
 
-#: activity.py:144
+#: activity.py:142
 msgid "Ask robot any question"
 msgstr "向机器人提问"
 
-#: activity.py:152
+#: activity.py:150
 msgid "Voice chat"
 msgstr "语音聊天"
 
-#: activity.py:164
+#: activity.py:159
 msgid "Voice"
 msgstr "语音"
 
-#: activity.py:170
+#: activity.py:165
 msgid "Face"
 msgstr "脸"
 
-#: activity.py:199
+#: activity.py:194
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr "你好%s。请输入。"
 
-#: activity.py:263
+#: activity.py:260
 msgid "Pitch:"
 msgstr "音高："
 
-#: activity.py:276
+#: activity.py:273
 msgid "Rate:"
 msgstr "速度："
 
-#: activity.py:284
+#: activity.py:281
 msgid "pitch adjusted"
 msgstr "音高调整"
 
-#: activity.py:288
+#: activity.py:285
 msgid "rate adjusted"
 msgstr "速度调整"
 
-#: activity.py:294
+#: activity.py:291
 msgid "Simple"
 msgstr "简单"
 
-#: activity.py:295
+#: activity.py:292
 msgid "Waveform"
 msgstr "波形"
 
-#: activity.py:296
+#: activity.py:293
 msgid "Frequency"
 msgstr "频率"
 
-#: activity.py:301
+#: activity.py:298
 msgid "Mouth:"
 msgstr "口形:"
 
-#: activity.py:305
+#: activity.py:302
 msgid "Round"
 msgstr "圆"
 
-#: activity.py:306
+#: activity.py:303
 msgid "Glasses"
 msgstr "眼镜"
 
-#: activity.py:311
+#: activity.py:308
 msgid "Eyes:"
 msgstr "眼睛："
 
-#: activity.py:322
+#: activity.py:319
 msgid "Eyes number:"
 msgstr "眼睛数量："
 
-#: activity.py:334
+#: activity.py:331
 msgid "mouth changed"
 msgstr "口形已改变"
 
-#: activity.py:346
+#: activity.py:343
 msgid "eyes changed"
 msgstr "眼睛已改变"
 
-#: activity.py:445
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr "对不起，我不能说%(old_voice)s，让我们来谈谈%(new_voice)s。"
 
-#: activity.py:476
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "您正在离线模式，请分享，并邀请其他人。"
 
@@ -174,35 +174,39 @@ msgstr "聊天中的URL"
 msgid "Copy to Clipboard"
 msgstr "复制到剪贴板"
 
-#: toolkit/activity_widgets.py:83
+#: toolkit/activity_widgets.py:84
 msgid "Stop"
 msgstr "停止"
 
-#: toolkit/activity_widgets.py:95
+#: toolkit/activity_widgets.py:96
 msgid "Undo"
 msgstr "撤消"
 
-#: toolkit/activity_widgets.py:103
+#: toolkit/activity_widgets.py:104
 msgid "Redo"
 msgstr "重做"
 
-#: toolkit/activity_widgets.py:110
+#: toolkit/activity_widgets.py:111
 msgid "Copy"
 msgstr "复制"
 
-#: toolkit/activity_widgets.py:117
+#: toolkit/activity_widgets.py:118
 msgid "Paste"
 msgstr "粘贴"
 
-#: toolkit/activity_widgets.py:127
+#: toolkit/activity_widgets.py:128
 msgid "Private"
 msgstr "私有"
 
-#: toolkit/activity_widgets.py:134
+#: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
 msgstr "我的邻居"
 
-#: toolkit/activity_widgets.py:322
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr ""
+
+#: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "活动"
 

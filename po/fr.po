@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"POT-Creation-Date: 2012-06-07 00:36-0400\n"
 "PO-Revision-Date: 2011-10-29 19:48+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,95 +57,95 @@ msgstr ""
 msgid "Speak"
 msgstr "Parler"
 
-#: activity.py:137
+#: activity.py:135
 msgid "Type something to hear it"
 msgstr "Tape quelque chose pour l'écouter"
 
-#: activity.py:144
+#: activity.py:142
 msgid "Ask robot any question"
 msgstr "Pose une question au robot"
 
-#: activity.py:152
+#: activity.py:150
 msgid "Voice chat"
 msgstr "Discussion vocale"
 
-#: activity.py:164
+#: activity.py:159
 msgid "Voice"
 msgstr "Voix"
 
-#: activity.py:170
+#: activity.py:165
 msgid "Face"
 msgstr "Face"
 
-#: activity.py:199
+#: activity.py:194
 #, python-format
 #, python-format,
 msgid "Hello %s. Please Type something."
 msgstr "Bonjour %s.  Tape quelque chose."
 
-#: activity.py:263
+#: activity.py:260
 msgid "Pitch:"
 msgstr "Hauteur :"
 
-#: activity.py:276
+#: activity.py:273
 msgid "Rate:"
 msgstr "Fréquence :"
 
-#: activity.py:284
+#: activity.py:281
 msgid "pitch adjusted"
 msgstr "hauteur ajustée"
 
-#: activity.py:288
+#: activity.py:285
 msgid "rate adjusted"
 msgstr "fréquence ajustée"
 
-#: activity.py:294
+#: activity.py:291
 msgid "Simple"
 msgstr "Simple"
 
-#: activity.py:295
+#: activity.py:292
 msgid "Waveform"
 msgstr "Type d'onde"
 
-#: activity.py:296
+#: activity.py:293
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: activity.py:301
+#: activity.py:298
 msgid "Mouth:"
 msgstr "Bouche :"
 
-#: activity.py:305
+#: activity.py:302
 msgid "Round"
 msgstr "Ronde"
 
-#: activity.py:306
+#: activity.py:303
 msgid "Glasses"
 msgstr "Lunettes"
 
-#: activity.py:311
+#: activity.py:308
 msgid "Eyes:"
 msgstr "Yeux :"
 
-#: activity.py:322
+#: activity.py:319
 msgid "Eyes number:"
 msgstr "Nombre d'yeux :"
 
-#: activity.py:334
+#: activity.py:331
 msgid "mouth changed"
 msgstr "bouche modifiée"
 
-#: activity.py:346
+#: activity.py:343
 msgid "eyes changed"
 msgstr "yeux modifiés"
 
-#: activity.py:445
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 "Je regrette. Je ne parle pas %(old_voice)s, parlons plutôt %(new_voice)s."
 
-#: activity.py:476
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Tu es en mode hors ligne. Partage et invite quelqu'un."
 
@@ -183,35 +183,39 @@ msgstr "URL de Discuter"
 msgid "Copy to Clipboard"
 msgstr "Copier vers le Presse-papier"
 
-#: toolkit/activity_widgets.py:83
+#: toolkit/activity_widgets.py:84
 msgid "Stop"
 msgstr "Arrêter"
 
-#: toolkit/activity_widgets.py:95
+#: toolkit/activity_widgets.py:96
 msgid "Undo"
 msgstr "Défaire"
 
-#: toolkit/activity_widgets.py:103
+#: toolkit/activity_widgets.py:104
 msgid "Redo"
 msgstr "Refaire"
 
-#: toolkit/activity_widgets.py:110
+#: toolkit/activity_widgets.py:111
 msgid "Copy"
 msgstr "Copier"
 
-#: toolkit/activity_widgets.py:117
+#: toolkit/activity_widgets.py:118
 msgid "Paste"
 msgstr "Coller"
 
-#: toolkit/activity_widgets.py:127
+#: toolkit/activity_widgets.py:128
 msgid "Private"
 msgstr "Privé"
 
-#: toolkit/activity_widgets.py:134
+#: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
 msgstr "Mon voisinage"
 
-#: toolkit/activity_widgets.py:322
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr ""
+
+#: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "Activité"
 

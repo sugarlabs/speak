@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"POT-Creation-Date: 2012-06-07 00:36-0400\n"
 "PO-Revision-Date: 2012-03-16 04:51+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,93 +49,93 @@ msgstr ""
 msgid "Speak"
 msgstr "อ่านออกเสียง"
 
-#: activity.py:137
+#: activity.py:135
 msgid "Type something to hear it"
 msgstr "พิมพ์บางสิ่งที่ต้องการฟัง"
 
-#: activity.py:144
+#: activity.py:142
 msgid "Ask robot any question"
 msgstr "ถามคำถามอะไรก็ได้กับหุ่นยนต์"
 
-#: activity.py:152
+#: activity.py:150
 msgid "Voice chat"
 msgstr "สนทนาด้วยเสียง"
 
-#: activity.py:164
+#: activity.py:159
 msgid "Voice"
 msgstr "เสียง"
 
-#: activity.py:170
+#: activity.py:165
 msgid "Face"
 msgstr "หน้า"
 
-#: activity.py:199
+#: activity.py:194
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr "สวัสดี %s. กรุณาพิมพ์บางอย่าง"
 
-#: activity.py:263
+#: activity.py:260
 msgid "Pitch:"
 msgstr "ระดับเสียง:"
 
-#: activity.py:276
+#: activity.py:273
 msgid "Rate:"
 msgstr "อัตราความเร็ว:"
 
-#: activity.py:284
+#: activity.py:281
 msgid "pitch adjusted"
 msgstr "ระดับเสียงถูกปรับแล้ว"
 
-#: activity.py:288
+#: activity.py:285
 msgid "rate adjusted"
 msgstr "อัตราความเร็วถูกปรับแล้ว"
 
-#: activity.py:294
+#: activity.py:291
 msgid "Simple"
 msgstr "ปกติ"
 
-#: activity.py:295
+#: activity.py:292
 msgid "Waveform"
 msgstr "รูปแบบของคลื่น"
 
-#: activity.py:296
+#: activity.py:293
 msgid "Frequency"
 msgstr "ความถี่"
 
-#: activity.py:301
+#: activity.py:298
 msgid "Mouth:"
 msgstr "ปาก:"
 
-#: activity.py:305
+#: activity.py:302
 msgid "Round"
 msgstr "กลม"
 
-#: activity.py:306
+#: activity.py:303
 msgid "Glasses"
 msgstr "แว่นตา"
 
-#: activity.py:311
+#: activity.py:308
 msgid "Eyes:"
 msgstr "ตา:"
 
-#: activity.py:322
+#: activity.py:319
 msgid "Eyes number:"
 msgstr "จำนวนตา:"
 
-#: activity.py:334
+#: activity.py:331
 msgid "mouth changed"
 msgstr "ปากถูกเปลี่ยน"
 
-#: activity.py:346
+#: activity.py:343
 msgid "eyes changed"
 msgstr "ตาถูกเปลี่ยน"
 
-#: activity.py:445
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr "ขอโทษ ฉันไม่สามารถพูด %(old_voice)s ลอง %(new_voice)s แทน"
 
-#: activity.py:476
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "คุณอยู่ในโหมดออฟไลน์ แบ่งปันและเชิญชวนบางคน"
 
@@ -170,35 +170,39 @@ msgstr "URL จากการสนทนา"
 msgid "Copy to Clipboard"
 msgstr "คัดลอกไปที่คลิปบอร์ด"
 
-#: toolkit/activity_widgets.py:83
+#: toolkit/activity_widgets.py:84
 msgid "Stop"
 msgstr "หยุด"
 
-#: toolkit/activity_widgets.py:95
+#: toolkit/activity_widgets.py:96
 msgid "Undo"
 msgstr "ทำกลับ"
 
-#: toolkit/activity_widgets.py:103
+#: toolkit/activity_widgets.py:104
 msgid "Redo"
 msgstr "ทำซ้ำ"
 
-#: toolkit/activity_widgets.py:110
+#: toolkit/activity_widgets.py:111
 msgid "Copy"
 msgstr "คัดลอก"
 
-#: toolkit/activity_widgets.py:117
+#: toolkit/activity_widgets.py:118
 msgid "Paste"
 msgstr "วาง"
 
-#: toolkit/activity_widgets.py:127
+#: toolkit/activity_widgets.py:128
 msgid "Private"
 msgstr "ส่วนตัว"
 
-#: toolkit/activity_widgets.py:134
+#: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
 msgstr "เพื่อนบ้านของฉัน"
 
-#: toolkit/activity_widgets.py:322
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr ""
+
+#: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "กิจกรรม"
 

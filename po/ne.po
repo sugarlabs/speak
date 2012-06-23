@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"POT-Creation-Date: 2012-06-07 00:36-0400\n"
 "PO-Revision-Date: 2011-07-15 04:26+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,93 +49,93 @@ msgstr ""
 msgid "Speak"
 msgstr "बोल"
 
-#: activity.py:137
+#: activity.py:135
 msgid "Type something to hear it"
 msgstr "सुन्नको लागी केही लेख"
 
-#: activity.py:144
+#: activity.py:142
 msgid "Ask robot any question"
 msgstr "रोबटलागि कुनै प्रश्न सोध"
 
-#: activity.py:152
+#: activity.py:150
 msgid "Voice chat"
 msgstr "आवाज कुराकानी"
 
-#: activity.py:164
+#: activity.py:159
 msgid "Voice"
 msgstr "आवाज"
 
-#: activity.py:170
+#: activity.py:165
 msgid "Face"
 msgstr "अनुहार"
 
-#: activity.py:199
+#: activity.py:194
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr "हेलो %s। कृपया केहि टाइप गर्नुहोस् ।"
 
-#: activity.py:263
+#: activity.py:260
 msgid "Pitch:"
 msgstr "पिच:"
 
-#: activity.py:276
+#: activity.py:273
 msgid "Rate:"
 msgstr "रेट:"
 
-#: activity.py:284
+#: activity.py:281
 msgid "pitch adjusted"
 msgstr "पिच समायोजन भयो"
 
-#: activity.py:288
+#: activity.py:285
 msgid "rate adjusted"
 msgstr "रेट समायोजन भयो"
 
-#: activity.py:294
+#: activity.py:291
 msgid "Simple"
 msgstr "साधारण"
 
-#: activity.py:295
+#: activity.py:292
 msgid "Waveform"
 msgstr "तरङ्ग"
 
-#: activity.py:296
+#: activity.py:293
 msgid "Frequency"
 msgstr "आवृत्ति"
 
-#: activity.py:301
+#: activity.py:298
 msgid "Mouth:"
 msgstr "मुख:"
 
-#: activity.py:305
+#: activity.py:302
 msgid "Round"
 msgstr "डल्लो"
 
-#: activity.py:306
+#: activity.py:303
 msgid "Glasses"
 msgstr "चस्मा"
 
-#: activity.py:311
+#: activity.py:308
 msgid "Eyes:"
 msgstr "आँखा:"
 
-#: activity.py:322
+#: activity.py:319
 msgid "Eyes number:"
 msgstr "आँखा अंक:"
 
-#: activity.py:334
+#: activity.py:331
 msgid "mouth changed"
 msgstr "मुख परिवर्तित"
 
-#: activity.py:346
+#: activity.py:343
 msgid "eyes changed"
 msgstr "आँखा परिवर्तित"
 
-#: activity.py:445
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
-#: activity.py:476
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "तिमी अफलाइन  मोडमा छौ, अंश अनि कसैलागि निमन्त्रण पठाऊ ।"
 
@@ -173,35 +173,39 @@ msgstr "कुराकानी देखि URL"
 msgid "Copy to Clipboard"
 msgstr "क्लिपबोर्डमा प्रतिलिपी बनाउ"
 
-#: toolkit/activity_widgets.py:83
+#: toolkit/activity_widgets.py:84
 msgid "Stop"
 msgstr "बन्द गर"
 
-#: toolkit/activity_widgets.py:95
+#: toolkit/activity_widgets.py:96
 msgid "Undo"
 msgstr "सच्याउ"
 
-#: toolkit/activity_widgets.py:103
+#: toolkit/activity_widgets.py:104
 msgid "Redo"
 msgstr "हटाएको परिवर्तन फर्काउ"
 
-#: toolkit/activity_widgets.py:110
+#: toolkit/activity_widgets.py:111
 msgid "Copy"
 msgstr "प्रतिलिपी बनाउ"
 
-#: toolkit/activity_widgets.py:117
+#: toolkit/activity_widgets.py:118
 msgid "Paste"
 msgstr "प्रतिलिपी सार"
 
-#: toolkit/activity_widgets.py:127
+#: toolkit/activity_widgets.py:128
 msgid "Private"
 msgstr "निजी"
 
-#: toolkit/activity_widgets.py:134
+#: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
 msgstr "मेरो छिमेक"
 
-#: toolkit/activity_widgets.py:322
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr ""
+
+#: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "क्रियाकलाप"
 
