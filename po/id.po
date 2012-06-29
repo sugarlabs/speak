@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2012-06-25 17:51+0200\n"
+"PO-Revision-Date: 2012-06-26 21:24+0200\n"
 "Last-Translator: andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -80,262 +80,256 @@ msgstr "Pitch:"
 
 #: activity.py:273
 msgid "Rate:"
-msgstr ""
+msgstr "Laju:"
 
 #: activity.py:281
 msgid "pitch adjusted"
-msgstr ""
+msgstr "pitch disesuaikan"
 
 #: activity.py:285
 msgid "rate adjusted"
-msgstr ""
+msgstr "laju disesuaikan"
 
 #: activity.py:291
-#, fuzzy
 msgid "Simple"
 msgstr "Sederhana"
 
 #: activity.py:292
-#, fuzzy
 msgid "Waveform"
-msgstr "Gelombang"
+msgstr "Bentuk gelombang"
 
 #: activity.py:293
 msgid "Frequency"
-msgstr ""
+msgstr "Frekuensi"
 
 #: activity.py:298
 msgid "Mouth:"
-msgstr ""
+msgstr "Mulut:"
 
 #: activity.py:302
 msgid "Round"
-msgstr ""
+msgstr "Bulat"
 
 #: activity.py:303
 msgid "Glasses"
-msgstr ""
+msgstr "Kaca mata"
 
 #: activity.py:308
 msgid "Eyes:"
-msgstr ""
+msgstr "Mata:"
 
 #: activity.py:319
 msgid "Eyes number:"
-msgstr ""
+msgstr "Cacah mata:"
 
 #: activity.py:331
 msgid "mouth changed"
-msgstr ""
+msgstr "mulut berubah"
 
 #: activity.py:343
 msgid "eyes changed"
-msgstr ""
+msgstr "mata berubah"
 
 #: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"Maaf, saya tak bisa bicara %(old_voice)s, mari kita bicara %(new_voice)s "
+"saja."
 
 #: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "Anda dalam mode luring, berbagi dan undang seseorang."
 
 #: brain.py:33 voice.py:67
-#, fuzzy
 msgid "Spanish"
-msgstr "Spanyol"
+msgstr "bahasa Spanyol"
 
 #: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
-#, fuzzy
 msgid "English"
-msgstr "Inggris"
+msgstr "bahasa Inggris"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "Maaf, saya tak paham tentang apa yang Anda tanyakan."
 
 #: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"Maaf, tak ada memori tersisa untuk memuat otak saya. Tutup aktivitas lain "
+"dan coba sekali lagi."
 
 #: brain.py:125
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "Halo, saya robot \"%s\". Tanyakan apapun kepadaku."
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "URL dari Obrolan"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Salin ke Papan klip"
 
 #: toolkit/activity_widgets.py:84
-#, fuzzy
 msgid "Stop"
 msgstr "Berhenti"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr ""
+msgstr "Tak jadi"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr ""
+msgstr "Jadi lagi"
 
 #: toolkit/activity_widgets.py:111
-#, fuzzy
 msgid "Copy"
 msgstr "Salin"
 
 #: toolkit/activity_widgets.py:118
-#, fuzzy
 msgid "Paste"
 msgstr "Tempel"
 
 #: toolkit/activity_widgets.py:128
-#, fuzzy
 msgid "Private"
 msgstr "Pribadi"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "Lingkunganku"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Deskripsi"
 
 #: toolkit/activity_widgets.py:393
-#, fuzzy
 msgid "Activity"
 msgstr "Aktivitas"
 
 #: voice.py:37
 msgid "Brazil"
-msgstr ""
+msgstr "bahasa Brasil"
 
 #: voice.py:38
 msgid "Swedish"
-msgstr ""
+msgstr "bahasa Swedia"
 
 #: voice.py:39
 msgid "Icelandic"
-msgstr ""
+msgstr "bahasa Islandia"
 
 #: voice.py:40
 msgid "Romanian"
-msgstr ""
+msgstr "bahasa Rumania"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr ""
+msgstr "bahasa Swahili"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr ""
+msgstr "bahasa Hindi"
 
 #: voice.py:43
 msgid "Dutch"
-msgstr ""
+msgstr "bahasa Belanda"
 
 #: voice.py:44
-#, fuzzy
 msgid "Latin"
-msgstr "Latin"
+msgstr "bahasa Latin"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "bahasa Hungaria"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr ""
+msgstr "bahasa Makedonia"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr ""
+msgstr "bahasa Wales"
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "bahasa Perancis"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "bahasa Norwegia"
 
 #: voice.py:50
 msgid "Russian"
-msgstr ""
+msgstr "bahasa Rusia"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr ""
+msgstr "bahasa Afrikaans"
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "bahasa Finlandia"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
-msgstr ""
+msgstr "Baku"
 
 #: voice.py:54
 msgid "Cantonese"
-msgstr ""
+msgstr "bahasa Kanton"
 
 #: voice.py:55
 msgid "Scottish"
-msgstr ""
+msgstr "bahasa Skot"
 
 #: voice.py:56
 msgid "Greek"
-msgstr ""
+msgstr "bahasa Yunani"
 
 #: voice.py:57
 msgid "Vietnam"
-msgstr ""
+msgstr "bahasa Vietnam"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr ""
+msgstr "bahasa Lancashire"
 
 #: voice.py:60
 msgid "Italian"
-msgstr ""
+msgstr "bahasa Italia"
 
 #: voice.py:61
 msgid "Portugal"
-msgstr ""
+msgstr "bahasa Portugis"
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "bahasa Jerman"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "bahasa bisikan"
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "bahasa Kroasia"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "bahasa Ceko"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "bahasa Slowakia"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "bahasa Polandia"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "bahasa Esperanto"
