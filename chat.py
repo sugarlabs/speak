@@ -58,11 +58,10 @@ class View(hippo.Canvas):
         # buddies box
 
         self._buddies_list = hippo.CanvasBox(
-                background_color = BUDDIES_COLOR.get_int(),
-                box_width = BUDDIES_WIDTH,
-                padding = ENTRY_YPAD,
-                spacing = ENTRY_YPAD
-                )
+                background_color=BUDDIES_COLOR.get_int(),
+                box_width=BUDDIES_WIDTH,
+                padding=ENTRY_YPAD,
+                spacing=ENTRY_YPAD)
 
         self._buddies_box = hippo.CanvasScrollbars()
         self._buddies_box.set_policy(hippo.ORIENTATION_HORIZONTAL,
@@ -84,33 +83,29 @@ class View(hippo.Canvas):
         chat_post.props.wrap_mode = gtk.WRAP_WORD_CHAR
         chat_post.set_size_request(-1, BUDDY_SIZE - ENTRY_YPAD * 2)
         chat_post_box = CanvasRoundBox(
-                background_color = style.COLOR_WHITE.get_int(),
-                padding_left = ENTRY_XPAD,
-                padding_right = ENTRY_XPAD,
-                padding_top = ENTRY_YPAD,
-                padding_bottom = ENTRY_YPAD
+                background_color=style.COLOR_WHITE.get_int(),
+                padding_left=ENTRY_XPAD,
+                padding_right=ENTRY_XPAD,
+                padding_top=ENTRY_YPAD,
+                padding_bottom=ENTRY_YPAD
                 )
         chat_post_box.props.border_color = ENTRY_COLOR.get_int()
         chat_post_box.append(hippo.CanvasWidget(widget=chat_post),
                 hippo.PACK_EXPAND)
 
-        chat_entry = CanvasRoundBox(
-                background_color = ENTRY_COLOR.get_int(),
-                padding_left = ENTRY_XPAD,
-                padding_right = ENTRY_XPAD,
-                padding_top = ENTRY_YPAD,
-                padding_bottom = ENTRY_YPAD,
-                spacing = ENTRY_YPAD
-                )
+        chat_entry = CanvasRoundBox(background_color=ENTRY_COLOR.get_int(),
+                                    padding_left=ENTRY_XPAD,
+                                    padding_right=ENTRY_XPAD,
+                                    padding_top=ENTRY_YPAD,
+                                    padding_bottom=ENTRY_YPAD,
+                                    spacing=ENTRY_YPAD)
         chat_entry.props.orientation = hippo.ORIENTATION_HORIZONTAL
         chat_entry.props.border_color = style.COLOR_WHITE.get_int()
         chat_entry.append(my_face_widget)
         chat_entry.append(chat_post_box, hippo.PACK_EXPAND)
 
-        chat_box = hippo.CanvasBox(
-                orientation = hippo.ORIENTATION_VERTICAL,
-                background_color = style.COLOR_WHITE.get_int(),
-                )
+        chat_box = hippo.CanvasBox(orientation=hippo.ORIENTATION_VERTICAL,
+                                  background_color=style.COLOR_WHITE.get_int())
         chat_box.append(self._chat, hippo.PACK_EXPAND)
         chat_box.append(chat_entry)
 
@@ -161,31 +156,23 @@ class View(hippo.Canvas):
 
     def shut_up(self):
         for i in self._buddies.values():
-            i['face'].shut_up();
-        self.me.shut_up();
+            i['face'].shut_up()
+        self.me.shut_up()
 
     def _add_buddy(self, buddy):
-        box = hippo.CanvasBox(
-                orientation = hippo.ORIENTATION_HORIZONTAL,
-                background_color = BUDDIES_COLOR.get_int(),
-                spacing = ENTRY_YPAD
-                )
+        box = hippo.CanvasBox(orientation=hippo.ORIENTATION_HORIZONTAL,
+                              background_color=BUDDIES_COLOR.get_int(),
+                              spacing=ENTRY_YPAD)
 
         buddy_face, buddy_widget = self._new_face(buddy, BUDDIES_COLOR)
 
-        char_box = hippo.CanvasBox(
-                orientation = hippo.ORIENTATION_VERTICAL,
-                )
-        nick = hippo.CanvasText(
-                text = buddy.props.nick,
-                xalign = hippo.ALIGNMENT_START,
-                yalign = hippo.ALIGNMENT_START
-                )
-        lang = hippo.CanvasText(
-                text = '',
-                xalign = hippo.ALIGNMENT_START,
-                yalign = hippo.ALIGNMENT_START
-                )
+        char_box = hippo.CanvasBox(orientation=hippo.ORIENTATION_VERTICAL)
+        nick = hippo.CanvasText(text=buddy.props.nick,
+                                xalign=hippo.ALIGNMENT_START,
+                                yalign=hippo.ALIGNMENT_START)
+        lang = hippo.CanvasText(text='',
+                                xalign=hippo.ALIGNMENT_START,
+                                yalign=hippo.ALIGNMENT_START)
         char_box.append(nick)
         char_box.append(lang)
 
@@ -226,18 +213,14 @@ class View(hippo.Canvas):
         buddy_face = face.View(fill_color)
         buddy_face.show_all()
 
-        inner = CanvasRoundBox(
-                background_color = fill_color.get_int(),
-                )
+        inner = CanvasRoundBox(background_color=fill_color.get_int())
         inner.props.border_color = fill_color.get_int()
         inner.append(hippo.CanvasWidget(widget=buddy_face), hippo.PACK_EXPAND)
         inner.props.border = BUDDY_PAD
 
-        outer = CanvasRoundBox(
-                background_color = stroke_color.get_int(),
-                box_width = BUDDY_SIZE,
-                box_height = BUDDY_SIZE,
-                )
+        outer = CanvasRoundBox(background_color=stroke_color.get_int(),
+                               box_width=BUDDY_SIZE,
+                               box_height=BUDDY_SIZE)
         outer.props.border_color = stroke_color.get_int()
         outer.append(inner, hippo.PACK_EXPAND)
         outer.props.border = BUDDY_PAD

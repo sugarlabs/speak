@@ -28,6 +28,7 @@ SERVICE = 'org.sugarlabs.Speak'
 IFACE = SERVICE
 PATH = '/org/sugarlabs/Speak'
 
+
 class Messenger(ExportedGObject):
     def __init__(self, tube, is_initiator, chat):
         ExportedGObject.__init__(self, tube, PATH)
@@ -61,10 +62,16 @@ class Messenger(ExportedGObject):
             if not self._entered:
                 self.me = self._tube.get_unique_name()
 
-                self._tube.add_signal_receiver(self._ping_cb, '_ping', IFACE, path=PATH,
-                        sender_keyword='sender')
-                self._tube.add_signal_receiver(self._post_cb, '_post', IFACE, path=PATH,
-                        sender_keyword='sender')
+                self._tube.add_signal_receiver(self._ping_cb,
+                                               '_ping',
+                                               IFACE,
+                                               path=PATH,
+                                               sender_keyword='sender')
+                self._tube.add_signal_receiver(self._post_cb,
+                                               '_post',
+                                               IFACE,
+                                               path=PATH,
+                                               sender_keyword='sender')
 
                 if not self.is_initiator:
                     self._ping(self.chat.me.status.serialize())
@@ -97,7 +104,8 @@ class Messenger(ExportedGObject):
 
         tp_handle = self._tube.bus_name_to_handle[sender]
         buddy = self._tube.get_buddy(tp_handle)
-        if not buddy: return
+        if not buddy:
+            return
         self._buddies[tp_handle] = buddy
 
         logger.debug('ping received from %s(%s) status=%s' \
@@ -116,7 +124,7 @@ class Messenger(ExportedGObject):
         tp_handle = self._tube.bus_name_to_handle[sender]
         buddy = self._buddies[tp_handle]
 
-        logger.debug('message received from %s(%s): %s' 
+        logger.debug('message received from %s(%s): %s'
                 % (sender, buddy.props.nick, text))
 
         self.chat.post(buddy, face.Status().deserialize(sender_status), text)

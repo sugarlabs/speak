@@ -23,6 +23,7 @@ import espeak
 PITCH_MAX = 200
 RATE_MAX = 200
 
+
 class AudioGrabGst(espeak.BaseAudioGrab):
     def speak(self, status, text):
         # XXX workaround for http://bugs.sugarlabs.org/ticket/1801
@@ -45,6 +46,7 @@ class AudioGrabGst(espeak.BaseAudioGrab):
         src.props.voice = status.voice.name
 
         self.restart_sound_device()
+
 
 def voices():
     out = []

@@ -7,22 +7,22 @@
 #
 # Parts of Speak.activity are based on code from Measure.activity
 # Copyright (C) 2007  Arjun Sarwal - arjun@laptop.org
-# 
+#
 #     Speak.activity is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
 #     (at your option) any later version.
-# 
+#
 #     Speak.activity is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import logging 
+import logging
 import gtk
 import cjson
 
@@ -40,6 +40,7 @@ logger = logging.getLogger('speak')
 
 FACE_PAD = 2
 
+
 class Status:
     def __init__(self):
         self.voice = voice.defaultVoice()
@@ -50,26 +51,26 @@ class Status:
         self.mouth = mouth.Mouth
 
     def serialize(self):
-        eyes    = { eye.Eye : 1,
-                    glasses.Glasses : 2 }
-        mouths  = { mouth.Mouth : 1,
-                    fft_mouth.FFTMouth : 2,
-                    waveform_mouth.WaveformMouth : 3 }
+        eyes = {eye.Eye: 1,
+                glasses.Glasses: 2}
+        mouths = {mouth.Mouth: 1,
+                  fft_mouth.FFTMouth: 2,
+                  waveform_mouth.WaveformMouth: 3}
 
         return cjson.encode({
-            'voice' : { 'language'  : self.voice.language,
-                        'name'      : self.voice.name },
-            'pitch' : self.pitch,
-            'rate'  : self.rate,
-            'eyes'  : [eyes[i] for i in self.eyes],
-            'mouth' : mouths[self.mouth] })
+            'voice': {'language': self.voice.language,
+                      'name': self.voice.name},
+            'pitch': self.pitch,
+            'rate': self.rate,
+            'eyes': [eyes[i] for i in self.eyes],
+            'mouth': mouths[self.mouth]})
 
     def deserialize(self, buf):
-        eyes    = { 1: eye.Eye,
-                    2: glasses.Glasses }
-        mouths  = { 1: mouth.Mouth,
-                    2: fft_mouth.FFTMouth,
-                    3: waveform_mouth.WaveformMouth }
+        eyes = {1: eye.Eye,
+                2: glasses.Glasses}
+        mouths = {1: mouth.Mouth,
+                  2: fft_mouth.FFTMouth,
+                  3: waveform_mouth.WaveformMouth}
 
         data = cjson.decode(buf)
         self.voice = voice.Voice(data['voice']['language'],
@@ -89,6 +90,7 @@ class Status:
         new.eyes = self.eyes
         new.mouth = self.mouth
         return new
+
 
 class View(gtk.EventBox):
     def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
@@ -142,7 +144,7 @@ class View(gtk.EventBox):
                 x, y = pos
             map(lambda e, x=x, y=y: e.look_at(x, y), self._eyes)
 
-    def update(self, status = None):
+    def update(self, status=None):
         if not status:
             status = self.status
         else:
@@ -169,7 +171,8 @@ class View(gtk.EventBox):
         self._mouth.show()
         self._mouthbox.add(self._mouth)
 
-        # enable mouse move events so we can track the eyes while the mouse is over the mouth
+        # enable mouse move events so we can track
+        # the eyes while the mouse is over the mouth
         #self._mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
 
     def set_voice(self, voice):
@@ -188,4 +191,5 @@ class View(gtk.EventBox):
         self._audio.stop_sound_device()
 
     def _size_allocate_cb(self, widget, allocation):
-        self._mouthbox.set_size_request(-1, int(allocation.height/2.5))
+        self._mouthbox.set_size_request(-1,
+                                        int(allocation.height / 2.5))

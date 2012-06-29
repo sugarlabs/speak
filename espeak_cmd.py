@@ -25,6 +25,7 @@ import espeak
 PITCH_MAX = 99
 RATE_MAX = 99
 
+
 class AudioGrabCmd(espeak.BaseAudioGrab):
     def speak(self, status, text):
         self.make_pipeline('filesrc name=file-source')
@@ -45,6 +46,7 @@ class AudioGrabCmd(espeak.BaseAudioGrab):
         # play
         self.restart_sound_device()
 
+
 def voices():
     out = []
     result = subprocess.Popen(["espeak", "--voices"], stdout=subprocess.PIPE) \
@@ -55,7 +57,7 @@ def voices():
         if not m:
             continue
         language, gender, name, stuff = m.groups()
-        if stuff.startswith('mb/'): #or \ 
+        if stuff.startswith('mb/'):  # or \
                 #name in ('en-rhotic','english_rp','english_wmids'):
             # these voices don't produce sound
             continue

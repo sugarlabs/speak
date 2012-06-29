@@ -99,8 +99,8 @@ class SpeakActivity(SharedActivity):
 
         # desktop
         self.notebook.show()
-        self.notebook.props.show_border=False
-        self.notebook.props.show_tabs=False
+        self.notebook.props.show_border = False
+        self.notebook.props.show_tabs = False
 
         box.show_all()
         self.notebook.append_page(box)
@@ -123,7 +123,7 @@ class SpeakActivity(SharedActivity):
         self.voices = ComboBox()
         for name in sorted(voice.allVoices().keys()):
             vn = voice.allVoices()[name]
-            n = name [ : 26 ] + ".."
+            n = name[:26] + ".."
             self.voices.append_item(vn, n)
 
         self.voices.select(voice.defaultVoice())
@@ -178,8 +178,10 @@ class SpeakActivity(SharedActivity):
 
     def new_instance(self):
         self.voices.connect('changed', self.__changed_voices_cb)
-        self.pitchadj.connect("value_changed", self.pitch_adjusted_cb, self.pitchadj)
-        self.rateadj.connect("value_changed", self.rate_adjusted_cb, self.rateadj)
+        self.pitchadj.connect("value_changed", self.pitch_adjusted_cb,
+                              self.pitchadj)
+        self.rateadj.connect("value_changed", self.rate_adjusted_cb,
+                             self.rateadj)
         self.mouth_shape_combo.connect('changed', self.mouth_changed_cb, False)
         self.mouth_changed_cb(self.mouth_shape_combo, True)
         self.numeyesadj.connect("value_changed", self.eyes_changed_cb, False)
@@ -248,7 +250,7 @@ class SpeakActivity(SharedActivity):
         voicebar = gtk.Toolbar()
 
         self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
-                espeak.PITCH_MAX, 1, espeak.PITCH_MAX/10, 0)
+                espeak.PITCH_MAX, 1, espeak.PITCH_MAX / 10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
         # pitchbar.set_inverted(True)
@@ -260,8 +262,8 @@ class SpeakActivity(SharedActivity):
                 label_text=_('Pitch:'))
         voicebar.insert(pitchbar_toolitem, -1)
 
-        self.rateadj = gtk.Adjustment(self.face.status.rate, 0, espeak.RATE_MAX,
-                1, espeak.RATE_MAX / 10, 0)
+        self.rateadj = gtk.Adjustment(self.face.status.rate, 0,
+                                   espeak.RATE_MAX, 1, espeak.RATE_MAX / 10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         # ratebar.set_inverted(True)
@@ -289,7 +291,8 @@ class SpeakActivity(SharedActivity):
 
         self.mouth_shape_combo = ComboBox()
         self.mouth_shape_combo.append_item(mouth.Mouth, _("Simple"))
-        self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth, _("Waveform"))
+        self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth,
+                                           _("Waveform"))
         self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, _("Frequency"))
         self.mouth_shape_combo.set_active(0)
 
@@ -357,15 +360,15 @@ class SpeakActivity(SharedActivity):
         keyname = gtk.gdk.keyval_name(event.keyval)
         if keyname == "Up":
             index = self.entrycombo.get_active()
-            if index>0:
-                index-=1
+            if index > 0:
+                index -= 1
             self.entrycombo.set_active(index)
-            self.entry.select_region(0,-1)
+            self.entry.select_region(0, -1)
             return True
         elif keyname == "Down":
             index = self.entrycombo.get_active()
-            if index<len(self.entrycombo.get_model())-1:
-                index+=1
+            if index < len(self.entrycombo.get_model()) - 1:
+                index += 1
             self.entrycombo.set_active(index)
             self.entry.select_region(0, -1)
             return True
@@ -384,15 +387,16 @@ class SpeakActivity(SharedActivity):
             else:
                 self.face.say(text)
 
-            # add this text to our history unless it is the same as the last item
+            # add this text to our history unless
+            # it is the same as the last item
             history = self.entrycombo.get_model()
-            if len(history)==0 or history[-1][0] != text:
+            if len(history) == 0 or history[-1][0] != text:
                 self.entrycombo.append_text(text)
                 # don't let the history get too big
-                while len(history)>20:
+                while len(history) > 20:
                     self.entrycombo.remove_text(0)
                 # select the new item
-                self.entrycombo.set_active(len(history)-1)
+                self.entrycombo.set_active(len(history) - 1)
             # select the whole text
             entry.select_region(0, -1)
 
