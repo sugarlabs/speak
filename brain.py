@@ -26,7 +26,7 @@ from gettext import gettext as _
 import logging
 logger = logging.getLogger('speak')
 
-from toolkit.combobox import ComboBox
+from combobox import ComboBox
 
 import aiml
 import voice
@@ -86,7 +86,7 @@ def load(activity, voice, sorry=None):
     if voice == _kernel_voice:
         return False
 
-    old_cursor = activity.get_cursor()
+    old_cursor = activity._cursor
     activity.set_cursor(gtk.gdk.WATCH)
 
     def load_brain():

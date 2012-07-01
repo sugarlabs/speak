@@ -31,16 +31,17 @@ import pango
 import cjson
 from gettext import gettext as _
 
-from sugar.graphics.toolbutton import ToolButton
+from sugar.graphics.toolbarbox import ToolbarButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
 
-from toolkit.toolitem import ToolWidget
-from toolkit.combobox import ComboBox
-from toolkit.toolbarbox import ToolbarBox
-from toolkit.activity import SharedActivity
-from toolkit.activity_widgets import *
+from combobox import ComboBox
+from sugar.graphics.toolbarbox import ToolbarBox
+from shared_activity import SharedActivity
+from sugar.activity.widgets import ActivityToolbarButton
+from sugar.activity.widgets import StopButton
 
+from toolitem import ToolWidget
 import eye
 import glasses
 import mouth
@@ -59,13 +60,39 @@ MODE_TYPE = 1
 MODE_BOT = 2
 MODE_CHAT = 3
 
+_NEW_INSTANCE = 0
+_NEW_INSTANCE = 1
+_PRE_INSTANCE = 2
+_POST_INSTANCE = 3
+
+
+class CursorFactory:
+
+    __shared_state = {"cursors": {}}
+
+    def __init__(self):
+        self.__dict__ = self.__shared_state
+
+    def get_cursor(self, cur_type):
+        if not cur_type in self.cursors:
+            cur = gtk.gdk.Cursor(cur_type)
+            self.cursors[cur_type] = cur
+        return self.cursors[cur_type]
+
 
 class SpeakActivity(SharedActivity):
     def __init__(self, handle):
         self.notebook = gtk.Notebook()
+        self.notebook.connect_after('map', self.__map_canvasactivity_cb)
 
         SharedActivity.__init__(self, self.notebook, SERVICE, handle)
 
+        self._cursor = None
+        self.set_cursor(gtk.gdk.LEFT_PTR)
+        self.__resume_filename = None
+        self.__postponed_share = []
+        self.__on_save_instance = []
+        self.__state = _NEW_INSTANCE
         self._mode = MODE_TYPE
         self.numeyesadj = None
 
@@ -175,6 +202,53 @@ class SpeakActivity(SharedActivity):
 
         toolbox.show_all()
         self.toolbar_box = toolbox
+
+    def set_cursor(self, cursor):
+        if not isinstance(cursor, gtk.gdk.Cursor):
+            cursor = CursorFactory().get_cursor(cursor)
+
+        if self._cursor != cursor:
+            self._cursor = cursor
+            self.window.set_cursor(self._cursor)
+
+    def __map_canvasactivity_cb(self, widget):
+        logging.debug('Activity.__map_canvasactivity_cb state=%s' % \
+                self.__state)
+
+        if self.__state == _NEW_INSTANCE:
+            self.__instance()
+        elif self.__state == _NEW_INSTANCE:
+            self.__state = _PRE_INSTANCE
+        elif self.__state == _PRE_INSTANCE:
+            self.__instance()
+
+        return False
+
+    def __instance(self):
+        logging.debug('Activity.__instance')
+
+        if self.__resume_filename:
+            self.resume_instance(self.__resume_filename)
+        else:
+            self.new_instance()
+
+        for i in self.__postponed_share:
+            self.share_instance(*i)
+        self.__postponed_share = []
+
+        self.__state = _POST_INSTANCE
+
+    def read_file(self, file_path):
+        self.__resume_filename = file_path
+        if self.__state == _NEW_INSTANCE:
+            self.__state = _PRE_INSTANCE
+        elif self.__state == _PRE_INSTANCE:
+            self.__instance()
+
+    def write_file(self, file_path):
+        for cb, args in self.__on_save_instance:
+            cb(*args)
+        self.save_instance(file_path)
 
     def new_instance(self):
         self.voices.connect('changed', self.__changed_voices_cb)
