@@ -38,9 +38,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2011-12-13 19:11+0200\n"
-"Last-Translator: lite <litekok@gmail.com>\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-07-03 13:10+0200\n"
+"Last-Translator: athurg <feng@jianbo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -73,98 +73,98 @@ msgstr "语音"
 msgid "Face"
 msgstr "脸"
 
-#: activity.py:194
+#: activity.py:196
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr "你好%s。请输入。"
 
-#: activity.py:260
+#: activity.py:262
 msgid "Pitch:"
 msgstr "音高："
 
-#: activity.py:273
+#: activity.py:275
 msgid "Rate:"
 msgstr "速度："
 
-#: activity.py:281
+#: activity.py:283
 msgid "pitch adjusted"
 msgstr "音高调整"
 
-#: activity.py:285
+#: activity.py:287
 msgid "rate adjusted"
 msgstr "速度调整"
 
-#: activity.py:291
+#: activity.py:293
 msgid "Simple"
 msgstr "简单"
 
-#: activity.py:292
+#: activity.py:295
 msgid "Waveform"
 msgstr "波形"
 
-#: activity.py:293
+#: activity.py:296
 msgid "Frequency"
 msgstr "频率"
 
-#: activity.py:298
+#: activity.py:301
 msgid "Mouth:"
 msgstr "口形:"
 
-#: activity.py:302
+#: activity.py:305
 msgid "Round"
 msgstr "圆"
 
-#: activity.py:303
+#: activity.py:306
 msgid "Glasses"
 msgstr "眼镜"
 
-#: activity.py:308
+#: activity.py:311
 msgid "Eyes:"
 msgstr "眼睛："
 
-#: activity.py:319
+#: activity.py:322
 msgid "Eyes number:"
 msgstr "眼睛数量："
 
-#: activity.py:331
+#: activity.py:334
 msgid "mouth changed"
 msgstr "口形已改变"
 
-#: activity.py:343
+#: activity.py:346
 msgid "eyes changed"
 msgstr "眼睛已改变"
 
-#: activity.py:442
+#: activity.py:446
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr "对不起，我不能说%(old_voice)s，让我们来谈谈%(new_voice)s。"
 
-#: activity.py:473
+#: activity.py:477
 msgid "You are in off-line mode, share and invite someone."
 msgstr "您正在离线模式，请分享，并邀请其他人。"
 
-#: brain.py:33 voice.py:67
+#: brain.py:34 voice.py:69
 msgid "Spanish"
 msgstr "西班牙"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: brain.py:38 brain.py:53 brain.py:55 brain.py:65 voice.py:60
 msgid "English"
 msgstr "英语"
 
-#: brain.py:80
+#: brain.py:81
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "对不起，我不明白你的问题。"
 
-#: brain.py:104
+#: brain.py:105
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr "很抱歉，没有空余的内存来载入我的大脑。请关闭其他的活动，并再试一次。"
 
-#: brain.py:125
+#: brain.py:126
 #, python-format
-msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr "你好，我是机器人“%s”。请向我提问题。"
+msgid "Hello, I'm a robot \"%s\". "
+msgstr "Hello，我是机器人“ %s ”"
 
 #: chatbox.py:248
 msgid "URL from Chat"
@@ -204,132 +204,136 @@ msgstr "我的邻居"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "描述："
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "活动"
 
-#: voice.py:37
+#: voice.py:39
 msgid "Brazil"
 msgstr "巴西"
 
-#: voice.py:38
+#: voice.py:40
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: voice.py:39
+#: voice.py:41
 msgid "Icelandic"
 msgstr "冰岛语"
 
-#: voice.py:40
+#: voice.py:42
 msgid "Romanian"
 msgstr "罗马尼亚语"
 
-#: voice.py:41
+#: voice.py:43
 msgid "Swahili"
 msgstr "斯瓦希里语"
 
-#: voice.py:42
+#: voice.py:44
 msgid "Hindi"
 msgstr "印地语"
 
-#: voice.py:43
+#: voice.py:45
 msgid "Dutch"
 msgstr "荷兰语"
 
-#: voice.py:44
+#: voice.py:46
 msgid "Latin"
 msgstr "拉丁语"
 
-#: voice.py:45
+#: voice.py:47
 msgid "Hungarian"
 msgstr "匈牙利语"
 
-#: voice.py:46
+#: voice.py:48
 msgid "Macedonian"
 msgstr "马其顿语"
 
-#: voice.py:47
+#: voice.py:49
 msgid "Welsh"
 msgstr "威尔士语"
 
-#: voice.py:48
+#: voice.py:50
 msgid "French"
 msgstr "法语"
 
-#: voice.py:49
+#: voice.py:51
 msgid "Norwegian"
 msgstr "新挪威语"
 
-#: voice.py:50
+#: voice.py:52
 msgid "Russian"
 msgstr "俄语"
 
-#: voice.py:51
+#: voice.py:53
 msgid "Afrikaans"
 msgstr "南非荷兰语"
 
-#: voice.py:52
+#: voice.py:54
 msgid "Finnish"
 msgstr "芬兰语"
 
-#: voice.py:53 voice.py:157
+#: voice.py:55 voice.py:158
 msgid "Default"
 msgstr "默认"
 
-#: voice.py:54
+#: voice.py:56
 msgid "Cantonese"
 msgstr "粤语"
 
-#: voice.py:55
+#: voice.py:57
 msgid "Scottish"
 msgstr "苏格兰语"
 
-#: voice.py:56
+#: voice.py:58
 msgid "Greek"
 msgstr "现代希腊语"
 
-#: voice.py:57
+#: voice.py:59
 msgid "Vietnam"
 msgstr "越南语"
 
-#: voice.py:59
+#: voice.py:61
 msgid "Lancashire"
 msgstr "兰开夏郡"
 
-#: voice.py:60
+#: voice.py:62
 msgid "Italian"
 msgstr "意大利语"
 
-#: voice.py:61
+#: voice.py:63
 msgid "Portugal"
 msgstr "葡萄牙语"
 
-#: voice.py:62
+#: voice.py:64
 msgid "German"
 msgstr "德语"
 
-#: voice.py:63
+#: voice.py:65
 msgid "Whisper"
 msgstr "悄悄话"
 
-#: voice.py:64
+#: voice.py:66
 msgid "Croatian"
 msgstr "克罗地亚语"
 
-#: voice.py:65
+#: voice.py:67
 msgid "Czech"
 msgstr "捷克语"
 
-#: voice.py:66
+#: voice.py:68
 msgid "Slovak"
 msgstr "斯洛伐克语"
 
-#: voice.py:68
+#: voice.py:70
 msgid "Polish"
 msgstr "波兰语"
 
-#: voice.py:69
+#: voice.py:71
 msgid "Esperanto"
 msgstr "世界语"
+
+#, python-format
+#~ msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+#~ msgstr "你好，我是机器人“%s”。请向我提问题。"
