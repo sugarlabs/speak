@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-30 00:32-0400\n"
-"PO-Revision-Date: 2012-07-06 06:26+0200\n"
+"PO-Revision-Date: 2012-07-06 06:29+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -137,7 +137,7 @@ msgstr ""
 #: brain.py:126
 #, python-format
 msgid "Hello, I'm a robot \"%s\". "
-msgstr "Hej, jeg er en robot \"%s\"."
+msgstr "Hej, jeg er en robot \"%s\". "
 
 #: chatbox.py:248
 msgid "URL from Chat"
