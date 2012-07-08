@@ -203,6 +203,18 @@ class SpeakActivity(SharedActivity):
         toolbox.show_all()
         self.toolbar_box = toolbox
 
+    def _share(self, tube_conn, initiator):
+        logging.debug('Activity._share state=%s' % self.__state)
+
+        if self.__state == _NEW_INSTANCE:
+            self.__postponed_share.append((tube_conn, initiator))
+            self.__state = _PRE_INSTANCE
+        elif self.__state == _PRE_INSTANCE:
+            self.__postponed_share.append((tube_conn, initiator))
+            self.__instance()
+        elif self.__state == _POST_INSTANCE:
+            self.share_instance(tube_conn, initiator)
+
     def set_cursor(self, cursor):
         if not isinstance(cursor, gtk.gdk.Cursor):
             cursor = CursorFactory().get_cursor(cursor)

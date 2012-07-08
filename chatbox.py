@@ -17,21 +17,20 @@
 # This code is a stripped down version of the Chat
 
 import gtk
-import hippo
 import logging
 import pango
 import re
 from datetime import datetime
-from gobject import SIGNAL_RUN_FIRST, TYPE_PYOBJECT
 from gettext import gettext as _
 
-import sugar.graphics.style as style
-from sugar.graphics.roundbox import CanvasRoundBox
-from sugar.graphics.palette import Palette, CanvasInvoker
+from sugar.graphics.style import style
+from sugar.graphics.palette import Palette
+from sugar.graphics.palette import CanvasInvoker
+from sugar.graphics.palette import MouseSpeedDetector
 from sugar.presence import presenceservice
-from sugar.graphics.style import (Color, COLOR_BLACK, COLOR_WHITE)
 from sugar.graphics.menuitem import MenuItem
 from sugar.activity.activity import get_activity_root
+from roundbox import RoundBox
 
 logger = logging.getLogger('speak')
 
@@ -40,9 +39,173 @@ URL_REGEXP = re.compile('((http|ftp)s?://)?'
     '(:[1-9][0-9]{0,4})?(/[-a-zA-Z0-9/%~@&_+=;:,.?#]*[a-zA-Z0-9/])?')
 
 
-class ChatBox(hippo.CanvasScrollbars):
+class TextBox(gtk.TextView):
+
+    hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
+
+    def __init__(self, color, bg_color, lang_rtl):
+        self._lang_rtl = lang_rtl
+        gtk.TextView.__init__(self)
+        self.set_editable(False)
+        self.set_cursor_visible(False)
+        self.set_wrap_mode(gtk.WRAP_WORD_CHAR)
+        self.get_buffer().set_text("", 0)
+        self.iter_text = self.get_buffer().get_iter_at_offset(0)
+        self.fg_tag = self.get_buffer().create_tag("foreground_color",
+            foreground=color.get_html())
+        self._subscript_tag = self.get_buffer().create_tag('subscript',
+                    rise=-7 * pango.SCALE)  # in pixels
+        self._empty = True
+        self.palette = None
+        self._mouse_detector = MouseSpeedDetector(self, 200, 5)
+        self._mouse_detector.connect('motion-slow', self.__mouse_slow_cb)
+        self.modify_base(gtk.STATE_NORMAL, bg_color.get_gdk_color())
+
+        self.add_events(gtk.gdk.POINTER_MOTION_MASK | \
+                        gtk.gdk.BUTTON_PRESS_MASK | \
+                        gtk.gdk.BUTTON_RELEASE_MASK | \
+                        gtk.gdk.LEAVE_NOTIFY_MASK)
+
+        self.connect('event-after', self.__event_after_cb)
+        self.connect('button-press-event', self.__button_press_cb)
+        self.motion_notify_id = self.connect('motion-notify-event', \
+                self.__motion_notify_cb)
+        self.connect('visibility-notify-event', self.__visibility_notify_cb)
+        self.connect('leave-notify-event', self.__leave_notify_event_cb)
+
+    def __leave_notify_event_cb(self, widget, event):
+        self._mouse_detector.stop()
+
+    def __button_press_cb(self, widget, event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            # To disable the standard textview popup
+            return True
+
+    # Links can be activated by clicking.
+    def __event_after_cb(self, widget, event):
+        if event.type != gtk.gdk.BUTTON_RELEASE:
+            return False
+
+        x, y = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+            int(event.x), int(event.y))
+        iter_tags = self.get_iter_at_location(x, y)
+
+        for tag in iter_tags.get_tags():
+            url = tag.get_data('url')
+            if url is not None:
+                if event.button == 3:
+                    palette = tag.get_data('palette')
+                    xw, yw = self.get_toplevel().get_pointer()
+                    palette.move(int(xw), int(yw))
+                    palette.popup()
+                else:
+                    self._show_via_journal(url)
+                break
+
+        return False
+
+    def check_url_hovering(self, x, y):
+        # Looks at all tags covering the position (x, y) in the text view,
+        # and if one of them is a link return True
+
+        hovering = False
+        # When check on_slow_mouse event, the position can be out
+        # of the widget and return negative values.
+        if x < 0 or y < 0:
+            return hovering
+
+        self.palette = None
+        iter_tags = self.get_iter_at_location(x, y)
+
+        tags = iter_tags.get_tags()
+        for tag in tags:
+            url = tag.get_data('url')
+            self.palette = tag.get_data('palette')
+            if url is not None:
+                hovering = True
+                break
+        return hovering
+
+    def set_cursor_if_appropriate(self, x, y):
+        # Looks at all tags covering the position (x, y) in the text view,
+        # and if one of them is a link, change the cursor to the "hands" cursor
+
+        hovering_over_link = self.check_url_hovering(x, y)
+        win = self.get_window(gtk.TEXT_WINDOW_TEXT)
+        if hovering_over_link:
+            win.set_cursor(self.hand_cursor)
+            self._mouse_detector.start()
+        else:
+            win.set_cursor(None)
+            self._mouse_detector.stop()
+
+    def __mouse_slow_cb(self, widget):
+        x, y = self.get_pointer()
+        hovering_over_link = self.check_url_hovering(x, y)
+        if hovering_over_link:
+            if self.palette is not None:
+                xw, yw = self.get_toplevel().get_pointer()
+                self.palette.move(xw, yw)
+                self.palette.popup()
+                self._mouse_detector.stop()
+        else:
+            if self.palette is not None:
+                self.palette.popdown()
+
+    # Update the cursor image if the pointer moved.
+    def __motion_notify_cb(self, widget, event):
+        x, y = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+            int(event.x), int(event.y))
+        self.set_cursor_if_appropriate(x, y)
+        self.window.get_pointer()
+        return False
+
+    def __visibility_notify_cb(self, widget, event):
+        # Also update the cursor image if the window becomes visible
+        # (e.g. when a window covering it got iconified).
+
+        wx, wy, __ = self.window.get_pointer()
+        bx, by = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET, wx, wy)
+        self.set_cursor_if_appropriate(bx, by)
+        return False
+
+    def __palette_mouse_enter_cb(self, widget, event):
+        self.handler_block(self.motion_notify_id)
+
+    def __palette_mouse_leave_cb(self, widget, event):
+        self.handler_unblock(self.motion_notify_id)
+
+    def add_text(self, text):
+        buf = self.get_buffer()
+
+        if not self._empty:
+            buf.insert(self.iter_text, '\n')
+
+        words = text.split()
+        for word in words:
+            buf.insert(self.iter_text, word)
+            buf.insert(self.iter_text, ' ')
+
+        self._empty = False
+
+
+class ColorLabel(gtk.Label):
+
+    def __init__(self, text, color=None):
+        self._color = color
+        if self._color is not None:
+            text = '<span foreground="%s">' % self._color.get_html() +\
+                    text + '</span>'
+        gtk.Label.__init__(self)
+        self.set_use_markup(True)
+        self.set_markup(text)
+        self.props.selectable = True
+
+
+class ChatBox(gtk.ScrolledWindow):
+
     def __init__(self):
-        hippo.CanvasScrollbars.__init__(self)
+        gtk.ScrolledWindow.__init__(self)
 
         self.owner = presenceservice.get_instance().get_owner()
 
@@ -54,15 +217,17 @@ class ChatBox(hippo.CanvasScrollbars):
         self._last_msg = None
         self._chat_log = ''
 
-        self._conversation = hippo.CanvasBox(
-                spacing=0,
-                background_color=COLOR_WHITE.get_int())
+        self._conversation = gtk.VBox()
+        self._conversation.set_homogeneous(False)
+        self._conversation.props.spacing = style.LINE_WIDTH
+        self._conversation.props.border_width = style.LINE_WIDTH
+        evbox = gtk.EventBox()
+        evbox.modify_bg(gtk.STATE_NORMAL, style.COLOR_WHITE.get_gdk_color())
+        evbox.add(self._conversation)
 
-        self.set_policy(hippo.ORIENTATION_HORIZONTAL,
-                hippo.SCROLLBAR_NEVER)
-        self.set_root(self._conversation)
-
-        vadj = self.props.widget.get_vadjustment()
+        self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        self.add_with_viewport(evbox)
+        vadj = self.get_vadjustment()
         vadj.connect('changed', self._scroll_changed_cb)
         vadj.connect('value-changed', self._scroll_value_changed_cb)
 
@@ -80,17 +245,12 @@ class ChatBox(hippo.CanvasScrollbars):
             False: show what buddy said
             True: show what buddy did
 
-        hippo layout:
         .------------- rb ---------------.
-        | +name_vbox+ +----msg_vbox----+ |
+        | +name_vbox+ +----align-----+ |
         | |         | |                | |
-        | | nick:   | | +--msg_hbox--+ | |
-        | |         | | | text       | | |
+        | | nick:   | | +--message---+ | |
+        | |         | | |  text      | | |
         | +---------+ | +------------+ | |
-        |             |                | |
-        |             | +--msg_hbox--+ | |
-        |             | | text | url | | |
-        |             | +------------+ | |
         |             +----------------+ |
         `--------------------------------'
         """
@@ -110,16 +270,15 @@ class ChatBox(hippo.CanvasScrollbars):
             color_stroke_html, color_fill_html = ('#000000', '#888888')
 
         # Select text color based on fill color:
-        color_fill_rgba = Color(color_fill_html).get_rgba()
+        color_fill_rgba = style.Color(color_fill_html).get_rgba()
         color_fill_gray = (color_fill_rgba[0] + color_fill_rgba[1] +
                            color_fill_rgba[2]) / 3
-        color_stroke = Color(color_stroke_html).get_int()
-        color_fill = Color(color_fill_html).get_int()
-
+        color_stroke = style.Color(color_stroke_html)
+        color_fill = style.Color(color_fill_html)
         if color_fill_gray < 0.5:
-            text_color = COLOR_WHITE.get_int()
+            text_color = style.COLOR_WHITE
         else:
-            text_color = COLOR_BLACK.get_int()
+            text_color = style.COLOR_BLACK
 
         self._add_log(nick, color, text, status_message)
 
@@ -139,81 +298,34 @@ class ChatBox(hippo.CanvasScrollbars):
 
         if not new_msg:
             rb = self._last_msg
-            msg_vbox = rb.get_children()[1]
-            msg_hbox = hippo.CanvasBox(
-                orientation=hippo.ORIENTATION_HORIZONTAL)
-            msg_vbox.append(msg_hbox)
+            self._last_msg.add_text(text)
         else:
-            rb = CanvasRoundBox(background_color=color_fill,
-                                border_color=color_stroke,
-                                padding=4)
-            rb.props.border_color = color_stroke  # Bug #3742
-            self._last_msg = rb
+            rb = RoundBox()
+            screen_width = gtk.gdk.screen_width()
+            # keep space to the scrollbar
+            rb.set_size_request(screen_width - 50, -1)
+            rb.props.border_width = style.DEFAULT_PADDING
+            rb.props.spacing = style.DEFAULT_SPACING
+            rb.background_color = color_fill
+            rb.border_color = color_stroke
             self._last_msg_sender = buddy
+            self._last_msg = rb
             if not status_message:
-                name = hippo.CanvasText(text=nick + ':   ',
-                    color=text_color)
-                name_vbox = hippo.CanvasBox(
-                    orientation=hippo.ORIENTATION_VERTICAL)
-                name_vbox.append(name)
-                rb.append(name_vbox)
-            msg_vbox = hippo.CanvasBox(
-                orientation=hippo.ORIENTATION_VERTICAL)
-            rb.append(msg_vbox)
-            msg_hbox = hippo.CanvasBox(
-                orientation=hippo.ORIENTATION_HORIZONTAL)
-            msg_vbox.append(msg_hbox)
+                name = ColorLabel(text=nick + ':', color=text_color)
+                name_vbox = gtk.VBox()
+                name_vbox.pack_start(name, False, False)
+                rb.pack_start(name_vbox, False, False)
+            message = TextBox(text_color, color_fill, lang_rtl)
+            vbox = gtk.VBox()
+            vbox.pack_start(message, True, True)
+            rb.pack_start(vbox, True, True)
+            self._last_msg = message
+            self._conversation.pack_start(rb, False, False)
+            message.add_text(text)
+            self._conversation.show_all()
 
         if status_message:
             self._last_msg_sender = None
-
-        match = URL_REGEXP.match(text)
-        while match:
-            # there is a URL in the text
-            starttext = text[:match.start()]
-            if starttext:
-                message = hippo.CanvasText(
-                    text=starttext,
-                    size_mode=hippo.CANVAS_SIZE_WRAP_WORD,
-                    color=text_color,
-                    xalign=hippo.ALIGNMENT_START)
-                msg_hbox.append(message)
-            url = text[match.start():match.end()]
-
-            message = CanvasLink(
-                text=url,
-                color=text_color)
-            attrs = pango.AttrList()
-            attrs.insert(pango.AttrUnderline(pango.UNDERLINE_SINGLE, 0, 32767))
-            message.set_property("attributes", attrs)
-            message.connect('activated', self._link_activated_cb)
-
-            # call interior magic which should mean just:
-            # CanvasInvoker().parent = message
-            CanvasInvoker(message)
-
-            msg_hbox.append(message)
-            text = text[match.end():]
-            match = URL_REGEXP.search(text)
-
-        if text:
-            message = hippo.CanvasText(
-                text=text,
-                size_mode=hippo.CANVAS_SIZE_WRAP_WORD,
-                color=text_color,
-                xalign=hippo.ALIGNMENT_START)
-            msg_hbox.append(message)
-
-        # Order of boxes for RTL languages:
-        if lang_rtl:
-            msg_hbox.reverse()
-            if new_msg:
-                rb.reverse()
-
-        if new_msg:
-            box = hippo.CanvasBox(padding=2)
-            box.append(rb)
-            self._conversation.append(box)
 
     def _scroll_value_changed_cb(self, adj, scroll=None):
         """Turn auto scrolling on or off.
@@ -280,58 +392,6 @@ class ChatBox(hippo.CanvasScrollbars):
         self._chat_log += '%s\t%s\t%s\t%d\t%s\n' % (
             datetime.strftime(datetime.now(), '%b %d %H:%M:%S'),
             nick, color, status_message, text)
-
-
-class CanvasLink(hippo.CanvasLink):
-    def __init__(self, **kwargs):
-        hippo.CanvasLink.__init__(self, **kwargs)
-
-    def create_palette(self):
-        return URLMenu(self.props.text)
-
-
-class URLMenu(Palette):
-    def __init__(self, url):
-        Palette.__init__(self, url)
-
-        self.url = url_check_protocol(url)
-
-        menu_item = MenuItem(_('Copy to Clipboard'), 'edit-copy')
-        menu_item.connect('activate', self._copy_to_clipboard_cb)
-        self.menu.append(menu_item)
-        menu_item.show()
-
-    def create_palette(self):
-        pass
-
-    def _copy_to_clipboard_cb(self, menuitem):
-        logger.debug('Copy %s to clipboard', self.url)
-        clipboard = gtk.clipboard_get()
-        targets = [("text/uri-list", 0, 0),
-                   ("UTF8_STRING", 0, 1)]
-
-        if not clipboard.set_with_data(targets,
-                                       self._clipboard_data_get_cb,
-                                       self._clipboard_clear_cb,
-                                       (self.url)):
-            logger.error('GtkClipboard.set_with_data failed!')
-        else:
-            self.owns_clipboard = True
-
-    def _clipboard_data_get_cb(self, clipboard, selection, info, data):
-        logger.debug('_clipboard_data_get_cb data=%s target=%s', data,
-                     selection.target)
-        if selection.target in ['text/uri-list']:
-            if not selection.set_uris([data]):
-                logger.debug('failed to set_uris')
-        else:
-            logger.debug('not uri')
-            if not selection.set_text(data):
-                logger.debug('failed to set_text')
-
-    def _clipboard_clear_cb(self, clipboard, data):
-        logger.debug('clipboard_clear_cb')
-        self.owns_clipboard = False
 
 
 def url_check_protocol(url):
