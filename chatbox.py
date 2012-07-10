@@ -23,7 +23,7 @@ import re
 from datetime import datetime
 from gettext import gettext as _
 
-from sugar.graphics.style import style
+from sugar.graphics import style
 from sugar.graphics.palette import Palette
 from sugar.graphics.palette import CanvasInvoker
 from sugar.graphics.palette import MouseSpeedDetector
