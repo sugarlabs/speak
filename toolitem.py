@@ -20,7 +20,7 @@
 import gtk
 import gobject
 
-from sugar.graphics import style
+from sugar3.graphics import style
 
 
 class ToolWidget(gtk.ToolItem):

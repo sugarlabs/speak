@@ -19,9 +19,9 @@ import pango
 import logging
 from gettext import gettext as _
 
-import sugar.graphics.style as style
+import sugar3.graphics.style as style
 from roundbox import RoundBox
-from sugar.graphics.toggletoolbutton import ToggleToolButton
+from sugar3.graphics.toggletoolbutton import ToggleToolButton
 
 import eye
 import glasses

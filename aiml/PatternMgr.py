@@ -124,7 +124,7 @@ class PatternMgr:
 
 		# add the template.
 		if not node.has_key(self._TEMPLATE):
-			self._templateCount += 1	
+			self._templateCount += 1
 		node[self._TEMPLATE] = template
 
 	def match(self, pattern, that, topic):
@@ -250,7 +250,7 @@ class PatternMgr:
 		at the root and leading to the matching pattern, and tem is the
 		matched template.
 
-		""" 
+		"""
 		# base-case: if the word list is empty, return the current node's
 		# template.
 		if len(words) == 0:

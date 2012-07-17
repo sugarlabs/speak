@@ -19,8 +19,8 @@
 import logging
 import telepathy
 
-from sugar.activity import activity
-from sugar.presence.sugartubeconn import SugarTubeConnection
+from sugar3.activity import activity
+from sugar3.presence.sugartubeconn import SugarTubeConnection
 
 
 class SharedActivity(activity.Activity):

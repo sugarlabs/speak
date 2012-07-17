@@ -1,6 +1,6 @@
 import math
 import gtk
-from sugar.graphics import style
+from sugar3.graphics import style
 
 
 class RoundBox(gtk.HBox):

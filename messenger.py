@@ -18,7 +18,7 @@ import logging
 from dbus.gobject_service import ExportedGObject
 from dbus.service import method, signal
 
-from sugar.presence import presenceservice
+from sugar3.presence import presenceservice
 
 import face
 

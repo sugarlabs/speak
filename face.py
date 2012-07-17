@@ -26,7 +26,7 @@ import logging
 import gtk
 import cjson
 
-import sugar.graphics.style as style
+import sugar3.graphics.style as style
 
 import espeak
 import eye

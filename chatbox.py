@@ -23,13 +23,13 @@ import re
 from datetime import datetime
 from gettext import gettext as _
 
-from sugar.graphics import style
-from sugar.graphics.palette import Palette
-from sugar.graphics.palette import CanvasInvoker
-from sugar.graphics.palette import MouseSpeedDetector
-from sugar.presence import presenceservice
-from sugar.graphics.menuitem import MenuItem
-from sugar.activity.activity import get_activity_root
+from sugar3.graphics import style
+from sugar3.graphics.palette import Palette
+from sugar3.graphics.palette import CanvasInvoker
+from sugar3.graphics.palette import MouseSpeedDetector
+from sugar3.presence import presenceservice
+from sugar3.graphics.menuitem import MenuItem
+from sugar3.activity.activity import get_activity_root
 from roundbox import RoundBox
 
 logger = logging.getLogger('speak')
@@ -351,9 +351,9 @@ class ChatBox(gtk.ScrolledWindow):
         """Ask the journal to display a URL"""
         import os
         import time
-        from sugar import profile
-        from sugar.activity.activity import show_object_in_journal
-        from sugar.datastore import datastore
+        from sugar3 import profile
+        from sugar3.activity.activity import show_object_in_journal
+        from sugar3.datastore import datastore
         logger.debug('Create journal entry for URL: %s', url)
         jobject = datastore.create()
         metadata = {
