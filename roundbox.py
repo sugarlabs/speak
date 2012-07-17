@@ -1,15 +1,15 @@
 import math
-import gtk
+from gi.repository import Gtk
 from sugar3.graphics import style
 
 
-class RoundBox(gtk.HBox):
+class RoundBox(Gtk.HBox):
     __gtype_name__ = 'RoundBox'
 
     _BORDER_DEFAULT = style.LINE_WIDTH
 
     def __init__(self, **kwargs):
-        gtk.HBox.__init__(self, **kwargs)
+        GObject.GObject.__init__(self, **kwargs)
 
         self._x = None
         self._y = None
@@ -20,7 +20,7 @@ class RoundBox(gtk.HBox):
         self.border_color = style.COLOR_BLACK
         self.background_color = None
         self.set_reallocate_redraws(True)
-        self.set_resize_mode(gtk.RESIZE_PARENT)
+        self.set_resize_mode(Gtk.RESIZE_PARENT)
         self.connect("expose_event", self.__expose_cb)
         self.connect("add", self.__add_cb)
 
@@ -74,20 +74,20 @@ class RoundBox(gtk.HBox):
 
 if __name__ == '__main__':
 
-    win = gtk.Window()
-    win.connect('destroy', gtk.main_quit)
+    win = Gtk.Window()
+    win.connect('destroy', Gtk.main_quit)
     win.set_default_size(450, 550)
-    vbox = gtk.VBox()
+    vbox = Gtk.VBox()
 
     box1 = RoundBox()
     vbox.add(box1)
-    label1 = gtk.Label("Test 1")
+    label1 = Gtk.Label(label="Test 1")
     box1.add(label1)
 
     rbox = RoundBox()
     rbox.background_color = style.Color('#FF0000')
     vbox.add(rbox)
-    label2 = gtk.Label("Test 2")
+    label2 = Gtk.Label(label="Test 2")
     rbox.add(label2)
 
     bbox = RoundBox()
@@ -97,4 +97,4 @@ if __name__ == '__main__':
 
     win.add(vbox)
     win.show_all()
-    gtk.main()
+    Gtk.main()

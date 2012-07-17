@@ -25,9 +25,9 @@
 from sugar3.activity import activity
 from sugar3.presence import presenceservice
 import logging
-import gtk
-import gobject
-import pango
+from gi.repository import Gtk
+from gi.repository import GObject
+from gi.repository import Pango
 import cjson
 from gettext import gettext as _
 
@@ -75,20 +75,20 @@ class CursorFactory:
 
     def get_cursor(self, cur_type):
         if not cur_type in self.cursors:
-            cur = gtk.gdk.Cursor(cur_type)
+            cur = Gdk.Cursor.new(cur_type)
             self.cursors[cur_type] = cur
         return self.cursors[cur_type]
 
 
 class SpeakActivity(SharedActivity):
     def __init__(self, handle):
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.connect_after('map', self.__map_canvasactivity_cb)
 
         SharedActivity.__init__(self, self.notebook, SERVICE, handle)
 
         self._cursor = None
-        self.set_cursor(gtk.gdk.LEFT_PTR)
+        self.set_cursor(Gdk.CursorType.LEFT_PTR)
         self.__resume_filename = None
         self.__postponed_share = []
         self.__on_save_instance = []
@@ -100,28 +100,28 @@ class SpeakActivity(SharedActivity):
         self.connect("notify::active", self._activeCb)
 
         # make a box to type into
-        self.entrycombo = gtk.combo_box_entry_new_text()
+        self.entrycombo = Gtk.combo_box_entry_new_text()
         self.entrycombo.connect("changed", self._combo_changed_cb)
-        self.entry = self.entrycombo.child
+        self.entry = self.entrycombo.get_child()
         self.entry.set_editable(True)
         self.entry.connect('activate', self._entry_activate_cb)
         self.entry.connect("key-press-event", self._entry_key_press_cb)
-        self.input_font = pango.FontDescription(str='sans bold 24')
+        self.input_font = Pango.FontDescription(str='sans bold 24')
         self.entry.modify_font(self.input_font)
 
         self.face = face.View()
         self.face.show()
 
         # layout the screen
-        box = gtk.VBox(homogeneous=False)
-        box.pack_start(self.face)
-        box.pack_start(self.entrycombo, expand=False)
+        box = Gtk.VBox(homogeneous=False)
+        box.pack_start(self.face, True, True, 0)
+        box.pack_start(self.entrycombo, False, True, 0)
 
-        self.add_events(gtk.gdk.POINTER_MOTION_HINT_MASK
-                | gtk.gdk.POINTER_MOTION_MASK)
+        self.add_events(Gdk.EventMask.POINTER_MOTION_HINT_MASK
+                | Gdk.EventMask.POINTER_MOTION_MASK)
         self.connect("motion_notify_event", self._mouse_moved_cb)
 
-        box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         box.connect("button_press_event", self._mouse_clicked_cb)
 
         # desktop
@@ -193,7 +193,7 @@ class SpeakActivity(SharedActivity):
                 icon_name='face')
         toolbox.toolbar.insert(face_button, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
         toolbox.toolbar.insert(separator, -1)
@@ -216,7 +216,7 @@ class SpeakActivity(SharedActivity):
             self.share_instance(tube_conn, initiator)
 
     def set_cursor(self, cursor):
-        if not isinstance(cursor, gtk.gdk.Cursor):
+        if not isinstance(cursor, Gdk.Cursor):
             cursor = CursorFactory().get_cursor(cursor)
 
         if self._cursor != cursor:
@@ -315,12 +315,12 @@ class SpeakActivity(SharedActivity):
         index = entry.props.cursor_position
         layout = entry.get_layout()
         pos = layout.get_cursor_pos(index)
-        x = pos[0][0] / pango.SCALE - entry.props.scroll_offset
+        x = pos[0][0] / Pango.SCALE - entry.props.scroll_offset
         y = entry.get_allocation().y
         self.face.look_at(pos=(x, y))
 
     def get_mouse(self):
-        display = gtk.gdk.display_get_default()
+        display = Gdk.Display.get_default()
         screen, mouseX, mouseY, modifiers = display.get_pointer()
         return mouseX, mouseY
 
@@ -333,14 +333,14 @@ class SpeakActivity(SharedActivity):
         pass
 
     def make_voice_bar(self):
-        voicebar = gtk.Toolbar()
+        voicebar = Gtk.Toolbar()
 
-        self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
+        self.pitchadj = Gtk.Adjustment(self.face.status.pitch, 0,
                 espeak.PITCH_MAX, 1, espeak.PITCH_MAX / 10, 0)
-        pitchbar = gtk.HScale(self.pitchadj)
+        pitchbar = Gtk.HScale(self.pitchadj)
         pitchbar.set_draw_value(False)
         # pitchbar.set_inverted(True)
-        pitchbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
+        pitchbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         pitchbar.set_size_request(240, 15)
 
         pitchbar_toolitem = ToolWidget(
@@ -348,12 +348,12 @@ class SpeakActivity(SharedActivity):
                 label_text=_('Pitch:'))
         voicebar.insert(pitchbar_toolitem, -1)
 
-        self.rateadj = gtk.Adjustment(self.face.status.rate, 0,
+        self.rateadj = Gtk.Adjustment(self.face.status.rate, 0,
                                    espeak.RATE_MAX, 1, espeak.RATE_MAX / 10, 0)
-        ratebar = gtk.HScale(self.rateadj)
+        ratebar = Gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         # ratebar.set_inverted(True)
-        ratebar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
+        ratebar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         ratebar.set_size_request(240, 15)
 
         ratebar_toolitem = ToolWidget(
@@ -373,7 +373,7 @@ class SpeakActivity(SharedActivity):
         self.face.say_notification(_("rate adjusted"))
 
     def make_face_bar(self):
-        facebar = gtk.Toolbar()
+        facebar = Gtk.Toolbar()
 
         self.mouth_shape_combo = ComboBox()
         self.mouth_shape_combo.append_item(mouth.Mouth, _("Simple"))
@@ -397,10 +397,10 @@ class SpeakActivity(SharedActivity):
                 label_text=_('Eyes:'))
         facebar.insert(eye_shape_toolitem, -1)
 
-        self.numeyesadj = gtk.Adjustment(2, 1, 5, 1, 1, 0)
-        numeyesbar = gtk.HScale(self.numeyesadj)
+        self.numeyesadj = Gtk.Adjustment(2, 1, 5, 1, 1, 0)
+        numeyesbar = Gtk.HScale(self.numeyesadj)
         numeyesbar.set_draw_value(False)
-        numeyesbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
+        numeyesbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         numeyesbar.set_size_request(240, 15)
 
         numeyesbar_toolitem = ToolWidget(
@@ -443,7 +443,7 @@ class SpeakActivity(SharedActivity):
 
     def _entry_key_press_cb(self, combo, event):
         # make the up/down arrows navigate through our history
-        keyname = gtk.gdk.keyval_name(event.keyval)
+        keyname = Gdk.keyval_name(event.keyval)
         if keyname == "Up":
             index = self.entrycombo.get_active()
             if index > 0:
@@ -548,7 +548,7 @@ class SpeakActivity(SharedActivity):
         if not button.props.active:
             return
 
-        is_first_session = not self.chat.me.flags() & gtk.MAPPED
+        is_first_session = not self.chat.me.get_mapped()
 
         self._mode = MODE_CHAT
         self.face.shut_up()
@@ -570,4 +570,4 @@ class SpeakActivity(SharedActivity):
 
 
 # activate gtk threads when this module loads
-gtk.gdk.threads_init()
+Gdk.threads_init()

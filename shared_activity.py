@@ -30,7 +30,7 @@ class SharedActivity(activity.Activity):
         """
         Initialise the Activity.
 
-        canvas -- gtk.Widget
+        canvas -- Gtk.Widget
             root widget for activity content
 
         service -- string

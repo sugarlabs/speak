@@ -17,28 +17,28 @@
 
 """A set of toolitem widets"""
 
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 
 from sugar3.graphics import style
 
 
-class ToolWidget(gtk.ToolItem):
+class ToolWidget(Gtk.ToolItem):
 
     def __init__(self, **kwargs):
         self._widget = None
         self._label = None
         self._label_text = None
-        self._box = gtk.HBox(False, style.DEFAULT_SPACING)
+        self._box = Gtk.HBox(False, style.DEFAULT_SPACING)
 
-        gobject.GObject.__init__(self, **kwargs)
+        GObject.GObject.__init__(self, **kwargs)
         self.props.border_width = style.DEFAULT_PADDING
 
         self._box.show()
         self.add(self._box)
 
         if self.label is None:
-            self.label = gtk.Label()
+            self.label = Gtk.Label()
 
     def get_label_text(self):
         return self._label_text
@@ -48,7 +48,7 @@ class ToolWidget(gtk.ToolItem):
         if self.label is not None and value:
             self.label.set_text(self._label_text)
 
-    label_text = gobject.property(getter=get_label_text, setter=set_label_text)
+    label_text = GObject.property(getter=get_label_text, setter=set_label_text)
 
     def get_label(self):
         return self._label
@@ -62,7 +62,7 @@ class ToolWidget(gtk.ToolItem):
         label.show()
         self.set_label_text(self._label_text)
 
-    label = gobject.property(getter=get_label, setter=set_label)
+    label = GObject.property(getter=get_label, setter=set_label)
 
     def get_widget(self):
         return self._widget
@@ -74,4 +74,4 @@ class ToolWidget(gtk.ToolItem):
         self._box.pack_end(widget)
         widget.show()
 
-    widget = gobject.property(getter=get_widget, setter=set_widget)
+    widget = GObject.property(getter=get_widget, setter=set_widget)

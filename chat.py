@@ -14,8 +14,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 import logging
 from gettext import gettext as _
 
@@ -32,8 +32,8 @@ from chatbox import ChatBox
 
 logger = logging.getLogger('speak')
 
-BUDDY_SIZE = min(100, min(gtk.gdk.screen_width(),
-        gtk.gdk.screen_height() - style.LARGE_ICON_SIZE) / 5)
+BUDDY_SIZE = min(100, min(Gdk.Screen.width(),
+        Gdk.Screen.height() - style.LARGE_ICON_SIZE) / 5)
 BUDDY_PAD = 5
 
 BUDDIES_WIDTH = int(BUDDY_SIZE * 2.5)
@@ -44,9 +44,9 @@ ENTRY_XPAD = 0
 ENTRY_YPAD = 7
 
 
-class View(gtk.EventBox):
+class View(Gtk.EventBox):
     def __init__(self):
-        gtk.EventBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.messenger = None
         self.me = None
@@ -56,15 +56,15 @@ class View(gtk.EventBox):
 
         # buddies box
 
-        self._buddies_list = gtk.VBox()
+        self._buddies_list = Gtk.VBox()
         self._buddies_list.set_homogeneous(False)
         self._buddies_list.props.spacing = ENTRY_YPAD
 
-        self._buddies_box = gtk.ScrolledWindow()
-        self._buddies_box.set_policy(gtk.POLICY_ALWAYS,
-                                     gtk.POLICY_NEVER)
-        evbox = gtk.EventBox()
-        evbox.modify_bg(gtk.STATE_NORMAL, BUDDIES_COLOR.get_gdk_color())
+        self._buddies_box = Gtk.ScrolledWindow()
+        self._buddies_box.set_policy(Gtk.PolicyType.ALWAYS,
+                                     Gtk.PolicyType.NEVER)
+        evbox = Gtk.EventBox()
+        evbox.modify_bg(Gtk.StateType.NORMAL, BUDDIES_COLOR.get_gdk_color())
         evbox.add(self._buddies_list)
         evbox.show()
         self._buddies_box.add_with_viewport(evbox)
@@ -75,13 +75,13 @@ class View(gtk.EventBox):
         self.me, my_face_widget = self._new_face(self._chat.owner,
                 ENTRY_COLOR)
 
-        chat_post = gtk.TextView()
-        chat_post.modify_bg(gtk.STATE_INSENSITIVE,
+        chat_post = Gtk.TextView()
+        chat_post.modify_bg(Gtk.StateType.INSENSITIVE,
                 style.COLOR_WHITE.get_gdk_color())
-        chat_post.modify_base(gtk.STATE_INSENSITIVE,
+        chat_post.modify_base(Gtk.StateType.INSENSITIVE,
                 style.COLOR_WHITE.get_gdk_color())
         chat_post.connect('key-press-event', self._key_press_cb)
-        chat_post.props.wrap_mode = gtk.WRAP_WORD_CHAR
+        chat_post.props.wrap_mode = Gtk.WrapMode.WORD_CHAR
         chat_post.set_size_request(-1, BUDDY_SIZE - ENTRY_YPAD * 2)
         chat_post_box = RoundBox()
         chat_post_box.background_color = style.COLOR_WHITE
@@ -93,23 +93,23 @@ class View(gtk.EventBox):
         chat_entry.background_color = ENTRY_COLOR
         chat_entry.border_color = style.COLOR_WHITE
         chat_entry.pack_start(my_face_widget, False, True, 0)
-        separator = gtk.EventBox()
-        separator.modify_bg(gtk.STATE_NORMAL, ENTRY_COLOR.get_gdk_color())
+        separator = Gtk.EventBox()
+        separator.modify_bg(Gtk.StateType.NORMAL, ENTRY_COLOR.get_gdk_color())
         separator.set_size_request(ENTRY_YPAD, -1)
         separator.show()
         chat_entry.pack_start(separator, False, False)
         chat_entry.pack_start(chat_post_box, True, True, ENTRY_XPAD)
 
-        evbox = gtk.EventBox()
-        evbox.modify_bg(gtk.STATE_NORMAL, style.COLOR_WHITE.get_gdk_color())
-        chat_box = gtk.VBox()
+        evbox = Gtk.EventBox()
+        evbox.modify_bg(Gtk.StateType.NORMAL, style.COLOR_WHITE.get_gdk_color())
+        chat_box = Gtk.VBox()
         chat_box.pack_start(self._chat, True, True)
         chat_box.pack_start(chat_entry, False, True)
         evbox.add(chat_box)
 
         # desk
 
-        self._desk = gtk.HBox()
+        self._desk = Gtk.HBox()
         self._desk.pack_start(evbox, True, True)
         self._desk.show_all()
 
@@ -158,17 +158,17 @@ class View(gtk.EventBox):
         self.me.shut_up()
 
     def _add_buddy(self, buddy):
-        evbox = gtk.EventBox()
-        evbox.modify_bg(gtk.STATE_NORMAL, BUDDIES_COLOR.get_gdk_color())
-        box = gtk.HBox()
+        evbox = Gtk.EventBox()
+        evbox.modify_bg(Gtk.StateType.NORMAL, BUDDIES_COLOR.get_gdk_color())
+        box = Gtk.HBox()
 
         buddy_face, buddy_widget = self._new_face(buddy, BUDDIES_COLOR)
 
-        char_box = gtk.VBox()
-        nick = gtk.Label(buddy.props.nick)
-        lang = gtk.Label()
-        char_box.pack_start(nick)
-        char_box.pack_start(lang)
+        char_box = Gtk.VBox()
+        nick = Gtk.Label(label=buddy.props.nick)
+        lang = Gtk.Label()
+        char_box.pack_start(nick, True, True, 0)
+        char_box.pack_start(lang, True, True, 0)
 
         box.pack_start(buddy_widget, False, False, ENTRY_YPAD)
         box.pack_start(char_box, True, True, ENTRY_YPAD)
@@ -178,14 +178,14 @@ class View(gtk.EventBox):
                 'face': buddy_face,
                 'lang': lang
                 }
-        self._buddies_list.pack_start(box)
+        self._buddies_list.pack_start(box, True, True, 0)
 
         if len(self._buddies) == 1:
-            self._desk.pack_start(self._buddies_box)
+            self._desk.pack_start(self._buddies_box, True, True, 0)
 
     def _key_press_cb(self, widget, event):
-        if event.keyval == gtk.keysyms.Return:
-            if not (event.state & gtk.gdk.CONTROL_MASK):
+        if event.keyval == Gdk.KEY_Return:
+            if not (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
                 text = widget.get_buffer().props.text
 
                 if text:

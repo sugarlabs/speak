@@ -16,9 +16,9 @@
 
 # This code is a stripped down version of the Chat
 
-import gtk
+from gi.repository import Gtk
 import logging
-import pango
+from gi.repository import Pango
 import re
 from datetime import datetime
 from gettext import gettext as _
@@ -39,32 +39,32 @@ URL_REGEXP = re.compile('((http|ftp)s?://)?'
     '(:[1-9][0-9]{0,4})?(/[-a-zA-Z0-9/%~@&_+=;:,.?#]*[a-zA-Z0-9/])?')
 
 
-class TextBox(gtk.TextView):
+class TextBox(Gtk.TextView):
 
-    hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
+    hand_cursor = Gdk.Cursor.new(Gdk.HAND2)
 
     def __init__(self, color, bg_color, lang_rtl):
         self._lang_rtl = lang_rtl
-        gtk.TextView.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_editable(False)
         self.set_cursor_visible(False)
-        self.set_wrap_mode(gtk.WRAP_WORD_CHAR)
+        self.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.get_buffer().set_text("", 0)
         self.iter_text = self.get_buffer().get_iter_at_offset(0)
         self.fg_tag = self.get_buffer().create_tag("foreground_color",
             foreground=color.get_html())
         self._subscript_tag = self.get_buffer().create_tag('subscript',
-                    rise=-7 * pango.SCALE)  # in pixels
+                    rise=-7 * Pango.SCALE)  # in pixels
         self._empty = True
         self.palette = None
         self._mouse_detector = MouseSpeedDetector(self, 200, 5)
         self._mouse_detector.connect('motion-slow', self.__mouse_slow_cb)
-        self.modify_base(gtk.STATE_NORMAL, bg_color.get_gdk_color())
+        self.modify_base(Gtk.StateType.NORMAL, bg_color.get_gdk_color())
 
-        self.add_events(gtk.gdk.POINTER_MOTION_MASK | \
-                        gtk.gdk.BUTTON_PRESS_MASK | \
-                        gtk.gdk.BUTTON_RELEASE_MASK | \
-                        gtk.gdk.LEAVE_NOTIFY_MASK)
+        self.add_events(Gdk.EventMask.POINTER_MOTION_MASK | \
+                        Gdk.EventMask.BUTTON_PRESS_MASK | \
+                        Gdk.EventMask.BUTTON_RELEASE_MASK | \
+                        Gdk.EventMask.LEAVE_NOTIFY_MASK)
 
         self.connect('event-after', self.__event_after_cb)
         self.connect('button-press-event', self.__button_press_cb)
@@ -77,16 +77,16 @@ class TextBox(gtk.TextView):
         self._mouse_detector.stop()
 
     def __button_press_cb(self, widget, event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             # To disable the standard textview popup
             return True
 
     # Links can be activated by clicking.
     def __event_after_cb(self, widget, event):
-        if event.type != gtk.gdk.BUTTON_RELEASE:
+        if event.type != Gdk.BUTTON_RELEASE:
             return False
 
-        x, y = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+        x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
             int(event.x), int(event.y))
         iter_tags = self.get_iter_at_location(x, y)
 
@@ -131,7 +131,7 @@ class TextBox(gtk.TextView):
         # and if one of them is a link, change the cursor to the "hands" cursor
 
         hovering_over_link = self.check_url_hovering(x, y)
-        win = self.get_window(gtk.TEXT_WINDOW_TEXT)
+        win = self.get_window(Gtk.TextWindowType.TEXT)
         if hovering_over_link:
             win.set_cursor(self.hand_cursor)
             self._mouse_detector.start()
@@ -154,7 +154,7 @@ class TextBox(gtk.TextView):
 
     # Update the cursor image if the pointer moved.
     def __motion_notify_cb(self, widget, event):
-        x, y = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+        x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
             int(event.x), int(event.y))
         self.set_cursor_if_appropriate(x, y)
         self.window.get_pointer()
@@ -165,7 +165,7 @@ class TextBox(gtk.TextView):
         # (e.g. when a window covering it got iconified).
 
         wx, wy, __ = self.window.get_pointer()
-        bx, by = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET, wx, wy)
+        bx, by = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET, wx, wy)
         self.set_cursor_if_appropriate(bx, by)
         return False
 
@@ -189,23 +189,23 @@ class TextBox(gtk.TextView):
         self._empty = False
 
 
-class ColorLabel(gtk.Label):
+class ColorLabel(Gtk.Label):
 
     def __init__(self, text, color=None):
         self._color = color
         if self._color is not None:
             text = '<span foreground="%s">' % self._color.get_html() +\
                     text + '</span>'
-        gtk.Label.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_use_markup(True)
         self.set_markup(text)
         self.props.selectable = True
 
 
-class ChatBox(gtk.ScrolledWindow):
+class ChatBox(Gtk.ScrolledWindow):
 
     def __init__(self):
-        gtk.ScrolledWindow.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.owner = presenceservice.get_instance().get_owner()
 
@@ -217,15 +217,15 @@ class ChatBox(gtk.ScrolledWindow):
         self._last_msg = None
         self._chat_log = ''
 
-        self._conversation = gtk.VBox()
+        self._conversation = Gtk.VBox()
         self._conversation.set_homogeneous(False)
         self._conversation.props.spacing = style.LINE_WIDTH
         self._conversation.props.border_width = style.LINE_WIDTH
-        evbox = gtk.EventBox()
-        evbox.modify_bg(gtk.STATE_NORMAL, style.COLOR_WHITE.get_gdk_color())
+        evbox = Gtk.EventBox()
+        evbox.modify_bg(Gtk.StateType.NORMAL, style.COLOR_WHITE.get_gdk_color())
         evbox.add(self._conversation)
 
-        self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.ALWAYS)
         self.add_with_viewport(evbox)
         vadj = self.get_vadjustment()
         vadj.connect('changed', self._scroll_changed_cb)
@@ -283,7 +283,7 @@ class ChatBox(gtk.ScrolledWindow):
         self._add_log(nick, color, text, status_message)
 
         # Check for Right-To-Left languages:
-        if pango.find_base_dir(nick, -1) == pango.DIRECTION_RTL:
+        if Pango.find_base_dir(nick, -1) == Pango.DIRECTION_RTL:
             lang_rtl = True
         else:
             lang_rtl = False
@@ -301,7 +301,7 @@ class ChatBox(gtk.ScrolledWindow):
             self._last_msg.add_text(text)
         else:
             rb = RoundBox()
-            screen_width = gtk.gdk.screen_width()
+            screen_width = Gdk.Screen.width()
             # keep space to the scrollbar
             rb.set_size_request(screen_width - 50, -1)
             rb.props.border_width = style.DEFAULT_PADDING
@@ -312,11 +312,11 @@ class ChatBox(gtk.ScrolledWindow):
             self._last_msg = rb
             if not status_message:
                 name = ColorLabel(text=nick + ':', color=text_color)
-                name_vbox = gtk.VBox()
+                name_vbox = Gtk.VBox()
                 name_vbox.pack_start(name, False, False)
                 rb.pack_start(name_vbox, False, False)
             message = TextBox(text_color, color_fill, lang_rtl)
-            vbox = gtk.VBox()
+            vbox = Gtk.VBox()
             vbox.pack_start(message, True, True)
             rb.pack_start(vbox, True, True)
             self._last_msg = message

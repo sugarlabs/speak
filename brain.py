@@ -19,8 +19,8 @@
 # along with HablarConSara.activity.
 # If not, see <http://www.gnu.org/licenses/>.
 
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 from gettext import gettext as _
 
 import logging
@@ -87,7 +87,7 @@ def load(activity, voice, sorry=None):
         return False
 
     old_cursor = activity._cursor
-    activity.set_cursor(gtk.gdk.WATCH)
+    activity.set_cursor(Gdk.WATCH)
 
     def load_brain():
         global _kernel
@@ -132,5 +132,5 @@ def load(activity, voice, sorry=None):
         elif sorry:
             activity.face.say_notification(sorry)
 
-    gobject.idle_add(load_brain)
+    GObject.idle_add(load_brain)
     return True

@@ -21,15 +21,15 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-import pygtk
-import gtk
-import gtk.gdk
+import gi
+from gi.repository import Gtk
+import Gtk.gdk
 import math
 
 
-class Eye(gtk.DrawingArea):
+class Eye(Gtk.DrawingArea):
     def __init__(self, fill_color):
-        gtk.DrawingArea.__init__(self)
+        GObject.GObject.__init__(self)
         self.connect("expose_event", self.expose)
         self.frame = 0
         self.blink = False
@@ -37,8 +37,8 @@ class Eye(gtk.DrawingArea):
         self.fill_color = fill_color
 
         # listen for clicks
-        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-        self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
+        self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
+        self.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
         self.connect("button_press_event", self._mouse_pressed_cb)
         self.connect("button_release_event", self._mouse_released_cb)
 
