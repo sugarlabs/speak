@@ -297,6 +297,7 @@ class SpeakActivity(SharedActivity):
         self.eye_shape_combo.select(status.eyes[0])
         self.numeyesadj.value = len(status.eyes)
 
+        # FIXME: gi._gobject.GProps object has no attribute text
         #self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
         for i in cfg['history']:
             self.entrycombo.append_text(i.encode('utf-8', 'ignore'))
@@ -344,6 +345,7 @@ class SpeakActivity(SharedActivity):
         pitchbar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
         pitchbar.set_adjustment(self.pitchadj)
         pitchbar.set_draw_value(False)
+        # FIXME: Gtk.UPDATE_DISCONTINUOUS
         # pitchbar.set_inverted(True)
         #pitchbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         pitchbar.set_size_request(240, 15)
@@ -358,6 +360,7 @@ class SpeakActivity(SharedActivity):
         ratebar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
         ratebar.set_adjustment(self.rateadj)
         ratebar.set_draw_value(False)
+        # FIXME: Gtk.UPDATE_DISCONTINUOUS
         # ratebar.set_inverted(True)
         #ratebar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         ratebar.set_size_request(240, 15)
@@ -407,6 +410,7 @@ class SpeakActivity(SharedActivity):
         numeyesbar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
         numeyesbar.set_adjustment(self.numeyesadj)
         numeyesbar.set_draw_value(False)
+        # FIXME: Gtk.UPDATE_DISCONTINUOUS
         #numeyesbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         numeyesbar.set_size_request(240, 15)
 

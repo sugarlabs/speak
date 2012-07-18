@@ -39,6 +39,7 @@ class ComboBox(Gtk.ComboBox):
                                     GObject.TYPE_BOOLEAN)
         self.set_model(model)
 
+        # FIXME: set_row_separator_func() takes exactly 3 arguments (2given)
         #self.set_row_separator_func(self._is_separator)
 
     def get_value(self):
