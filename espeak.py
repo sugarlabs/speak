@@ -14,10 +14,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gi
-gi.require_version('Gst', '1.0')
-
-from gi.repository import Gst
+import gst
 from gi.repository import GObject
 import subprocess
 
@@ -27,27 +24,27 @@ logger = logging.getLogger('speak')
 supported = True
 
 
-class BaseAudioGrab(GObject.Object):
+class BaseAudioGrab(GObject.GObject):
     __gsignals__ = {
         'new-buffer': (GObject.SIGNAL_RUN_FIRST, None, [GObject.TYPE_PYOBJECT])
     }
 
     def __init__(self):
-        GObject.Object.__init__(self)
+        GObject.GObject.__init__(self)
         self.pipeline = None
         self.quiet = True
 
     def restart_sound_device(self):
         self.quiet = False
 
-        self.pipeline.set_state(Gst.State.NULL)
-        self.pipeline.set_state(Gst.State.PLAYING)
+        self.pipeline.set_state(gst.STATE_NULL)
+        self.pipeline.set_state(gst.STATE_PLAYING)
 
     def stop_sound_device(self):
         if self.pipeline is None:
             return
 
-        self.pipeline.set_state(Gst.State.NULL)
+        self.pipeline.set_state(gst.STATE_NULL)
         # Shut theirs mouths down
         self._new_buffer('')
 
@@ -61,8 +58,7 @@ class BaseAudioGrab(GObject.Object):
         # build a pipeline that reads the given file
         # and sends it to both the real audio output
         # and a fake one that we use to draw from
-
-        self.pipeline = Gst.parse_launch(
+        self.pipeline = gst.parse_launch(
                 cmd + ' ' \
                 '! decodebin ' \
                 '! tee name=tee ' \
@@ -83,7 +79,7 @@ class BaseAudioGrab(GObject.Object):
         def gstmessage_cb(bus, message):
             self._was_message = True
 
-            if message.type == Gst.MessageType.WARNING:
+            if message.type == gst.MESSAGE_WARNING:
                 def check_after_warnings():
                     if not self._was_message:
                         self.stop_sound_device()
@@ -93,7 +89,7 @@ class BaseAudioGrab(GObject.Object):
                 self._was_message = False
                 GObject.timeout_add(500, self._new_buffer, str(buffer))
 
-            elif  message.type in (Gst.MessageType.EOS, Gst.MessageType.ERROR):
+            elif  message.type in (gst.MESSAGE_EOS, gst.MESSAGE_ERROR):
                 logger.debug(message.type)
                 self.stop_sound_device()
 
@@ -110,10 +106,8 @@ class BaseAudioGrab(GObject.Object):
 
 # load proper espeak plugin
 try:
-    import gi
-    gi.require_version('Gst', '1.0')
-    from gi.repository import Gst
-    Gst.element_factory_make('espeak', 'espeak')
+    import gst
+    gst.element_factory_make('espeak')
     from espeak_gst import AudioGrabGst as AudioGrab
     from espeak_gst import *
     logger.info('use gst-plugins-espeak')
