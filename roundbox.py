@@ -1,15 +1,16 @@
 import math
 from gi.repository import Gtk
+from gi.repository import GObject
 from sugar3.graphics import style
 
 
-class RoundBox(Gtk.HBox):
+class RoundBox(Gtk.Box):
     __gtype_name__ = 'RoundBox'
 
     _BORDER_DEFAULT = style.LINE_WIDTH
 
-    def __init__(self, **kwargs):
-        GObject.GObject.__init__(self, **kwargs)
+    def __init__(self):
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
         self._x = None
         self._y = None
@@ -20,8 +21,7 @@ class RoundBox(Gtk.HBox):
         self.border_color = style.COLOR_BLACK
         self.background_color = None
         self.set_reallocate_redraws(True)
-        self.set_resize_mode(Gtk.RESIZE_PARENT)
-        self.connect("expose_event", self.__expose_cb)
+        self.set_resize_mode(Gtk.ResizeMode.PARENT)
         self.connect("add", self.__add_cb)
 
     def __add_cb(self, child, params):
@@ -33,12 +33,11 @@ class RoundBox(Gtk.HBox):
         self._width = allocation.width
         self._height = allocation.height
 
-    def __expose_cb(self, widget, event):
-        context = widget.window.cairo_create()
-
+    def do_draw(self, context):
+        rect = self.get_allocation()
         # set a clip region for the expose event
-        context.rectangle(event.area.x, event.area.y,
-                               event.area.width, event.area.height)
+        context.rectangle(rect.x, rect.y,
+                               rect.width, rect.height)
         context.clip()
         self.draw(context)
         return False
@@ -81,13 +80,13 @@ if __name__ == '__main__':
 
     box1 = RoundBox()
     vbox.add(box1)
-    label1 = Gtk.Label(label="Test 1")
+    label1 = Gtk.Label("Test 1")
     box1.add(label1)
 
     rbox = RoundBox()
     rbox.background_color = style.Color('#FF0000')
     vbox.add(rbox)
-    label2 = Gtk.Label(label="Test 2")
+    label2 = Gtk.Label("Test 2")
     rbox.add(label2)
 
     bbox = RoundBox()

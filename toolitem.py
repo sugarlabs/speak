@@ -31,7 +31,7 @@ class ToolWidget(Gtk.ToolItem):
         self._label_text = None
         self._box = Gtk.HBox(False, style.DEFAULT_SPACING)
 
-        GObject.GObject.__init__(self, **kwargs)
+        Gtk.ToolItem.__init__(self)
         self.props.border_width = style.DEFAULT_PADDING
 
         self._box.show()
@@ -57,7 +57,7 @@ class ToolWidget(Gtk.ToolItem):
         if self._label is not None:
             self._box.remove(self._label)
         self._label = label
-        self._box.pack_start(label, False)
+        self._box.pack_start(label, False, False, 0)
         self._box.reorder_child(label, 0)
         label.show()
         self.set_label_text(self._label_text)

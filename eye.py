@@ -23,14 +23,14 @@
 
 import gi
 from gi.repository import Gtk
-import Gtk.gdk
+from gi.repository import Gdk
+from gi.repository import GObject
 import math
 
 
 class Eye(Gtk.DrawingArea):
     def __init__(self, fill_color):
-        GObject.GObject.__init__(self)
-        self.connect("expose_event", self.expose)
+        Gtk.DrawingArea.__init__(self)
         self.frame = 0
         self.blink = False
         self.x, self.y = 0, 0
@@ -66,7 +66,7 @@ class Eye(Gtk.DrawingArea):
 
         if self.x is None or self.y is None:
             # look ahead, but not *directly* in the middle
-            if a.x + a.width / 2 < self.parent.get_allocation().width / 2:
+            if a.x + a.width / 2 < self.get_allocation().width / 2:
                 cx = a.width * 0.6
             else:
                 cx = a.width * 0.4
@@ -96,7 +96,7 @@ class Eye(Gtk.DrawingArea):
 
         return a.width / 2 + dx, a.height / 2 + dy
 
-    def expose(self, widget, event):
+    def do_draw(self, context):
         self.frame += 1
         bounds = self.get_allocation()
 
@@ -112,15 +112,15 @@ class Eye(Gtk.DrawingArea):
             pupilX = bounds.width / 2 + dX * limit / distance
             pupilY = bounds.height / 2 + dY * limit / distance
 
-        self.context = widget.window.cairo_create()
+        self.context = context
         #self.context.set_antialias(cairo.ANTIALIAS_NONE)
 
         #set a clip region for the expose event.
         #This reduces redrawing work (and time)
-        self.context.rectangle(event.area.x,
-                               event.area.y,
-                               event.area.width,
-                               event.area.height)
+        self.context.rectangle(bounds.x,
+                               bounds.y,
+                               bounds.width,
+                               bounds.height)
         self.context.clip()
 
         # background

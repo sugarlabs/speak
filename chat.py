@@ -15,6 +15,8 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
 from gi.repository import Pango
 import logging
 from gettext import gettext as _
@@ -46,7 +48,7 @@ ENTRY_YPAD = 7
 
 class View(Gtk.EventBox):
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.EventBox.__init__(self)
 
         self.messenger = None
         self.me = None
@@ -97,20 +99,20 @@ class View(Gtk.EventBox):
         separator.modify_bg(Gtk.StateType.NORMAL, ENTRY_COLOR.get_gdk_color())
         separator.set_size_request(ENTRY_YPAD, -1)
         separator.show()
-        chat_entry.pack_start(separator, False, False)
+        chat_entry.pack_start(separator, False, False, 0)
         chat_entry.pack_start(chat_post_box, True, True, ENTRY_XPAD)
 
         evbox = Gtk.EventBox()
         evbox.modify_bg(Gtk.StateType.NORMAL, style.COLOR_WHITE.get_gdk_color())
         chat_box = Gtk.VBox()
-        chat_box.pack_start(self._chat, True, True)
-        chat_box.pack_start(chat_entry, False, True)
+        chat_box.pack_start(self._chat, True, True, 0)
+        chat_box.pack_start(chat_entry, False, True, 0)
         evbox.add(chat_box)
 
         # desk
 
         self._desk = Gtk.HBox()
-        self._desk.pack_start(evbox, True, True)
+        self._desk.pack_start(evbox, True, True, 0)
         self._desk.show_all()
 
         self.add(self._desk)

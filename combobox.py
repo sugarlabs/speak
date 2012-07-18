@@ -22,12 +22,13 @@ STABLE.
 
 from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import GdkPixbuf
 
 
 class ComboBox(Gtk.ComboBox):
 
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.ComboBox.__init__(self)
 
         self._text_renderer = None
         self._icon_renderer = None
@@ -38,7 +39,7 @@ class ComboBox(Gtk.ComboBox):
                                     GObject.TYPE_BOOLEAN)
         self.set_model(model)
 
-        self.set_row_separator_func(self._is_separator)
+        #self.set_row_separator_func(self._is_separator)
 
     def get_value(self):
         """

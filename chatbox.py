@@ -17,6 +17,7 @@
 # This code is a stripped down version of the Chat
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 import logging
 from gi.repository import Pango
 import re
@@ -25,7 +26,7 @@ from gettext import gettext as _
 
 from sugar3.graphics import style
 from sugar3.graphics.palette import Palette
-from sugar3.graphics.palette import CanvasInvoker
+#from sugar3.graphics.palette import CanvasInvoker
 from sugar3.graphics.palette import MouseSpeedDetector
 from sugar3.presence import presenceservice
 from sugar3.graphics.menuitem import MenuItem
@@ -41,11 +42,11 @@ URL_REGEXP = re.compile('((http|ftp)s?://)?'
 
 class TextBox(Gtk.TextView):
 
-    hand_cursor = Gdk.Cursor.new(Gdk.HAND2)
+    hand_cursor = Gdk.Cursor.new(Gdk.CursorType.HAND2)
 
     def __init__(self, color, bg_color, lang_rtl):
         self._lang_rtl = lang_rtl
-        GObject.GObject.__init__(self)
+        Gtk.TextView.__init__(self)
         self.set_editable(False)
         self.set_cursor_visible(False)
         self.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
@@ -196,7 +197,7 @@ class ColorLabel(Gtk.Label):
         if self._color is not None:
             text = '<span foreground="%s">' % self._color.get_html() +\
                     text + '</span>'
-        GObject.GObject.__init__(self)
+        Gtk.Label.__init__(self)
         self.set_use_markup(True)
         self.set_markup(text)
         self.props.selectable = True
@@ -205,7 +206,7 @@ class ColorLabel(Gtk.Label):
 class ChatBox(Gtk.ScrolledWindow):
 
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.ScrolledWindow.__init__(self)
 
         self.owner = presenceservice.get_instance().get_owner()
 
@@ -340,7 +341,7 @@ class ChatBox(Gtk.ScrolledWindow):
     def _scroll_changed_cb(self, adj, scroll=None):
         """Scroll the chat window to the bottom"""
         if self._scroll_auto:
-            adj.set_value(adj.upper - adj.page_size)
+            adj.set_value(adj.get_upper() - adj.get_page_size())
             self._scroll_value = adj.get_value()
 
     def _link_activated_cb(self, link):

@@ -32,8 +32,8 @@ import numpy.core
 class Mouth(Gtk.DrawingArea):
     def __init__(self, audioSource, fill_color):
 
-        GObject.GObject.__init__(self)
-        self.connect("expose_event", self.expose)
+        Gtk.DrawingArea.__init__(self)
+
         self.buffers = []
         self.buffer_size = 256
         self.main_buffers = []
@@ -63,7 +63,7 @@ class Mouth(Gtk.DrawingArea):
             self.volume = numpy.core.max(self.main_buffers)  # -\
             # numpy.core.min(self.main_buffers)
 
-    def expose(self, widget, event):
+    def do_draw(self, context):
         """This function is the "expose" event
         handler and does all the drawing."""
         bounds = self.get_allocation()
@@ -71,15 +71,15 @@ class Mouth(Gtk.DrawingArea):
         self.processBuffer(bounds)
 
         #Create context, disable antialiasing
-        self.context = widget.window.cairo_create()
+        self.context = context
         self.context.set_antialias(cairo.ANTIALIAS_NONE)
 
         # set a clip region for the expose event.
         # This reduces redrawing work (and time)
-        self.context.rectangle(event.area.x,
-                               event.area.y,
-                               event.area.width,
-                               event.area.height)
+        self.context.rectangle(bounds.x,
+                               bounds.y,
+                               bounds.width,
+                               bounds.height)
         self.context.clip()
 
         # background

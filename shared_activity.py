@@ -48,6 +48,8 @@ class SharedActivity(activity.Activity):
 
         self.connect('shared', self._shared_cb)
 
+        # FIXME: object has no attribute '_shared_activity
+        self._shared_activity = False
         # Owner.props.key
         if self._shared_activity:
             # We are joining the activity

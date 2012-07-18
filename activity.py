@@ -26,6 +26,7 @@ from sugar3.activity import activity
 from sugar3.presence import presenceservice
 import logging
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import GObject
 from gi.repository import Pango
 import cjson
@@ -100,20 +101,22 @@ class SpeakActivity(SharedActivity):
         self.connect("notify::active", self._activeCb)
 
         # make a box to type into
-        self.entrycombo = Gtk.combo_box_entry_new_text()
+        self.entrycombo = Gtk.ComboBoxText()
         self.entrycombo.connect("changed", self._combo_changed_cb)
         self.entry = self.entrycombo.get_child()
-        self.entry.set_editable(True)
-        self.entry.connect('activate', self._entry_activate_cb)
+        # FIXME: unknown signal name: activate
+        #self.entry.can_activate_accel(True)
+        #self.entry.connect('activate', self._entry_activate_cb)
         self.entry.connect("key-press-event", self._entry_key_press_cb)
-        self.input_font = Pango.FontDescription(str='sans bold 24')
+        self.input_font = Pango.FontDescription('sans bold 24')
         self.entry.modify_font(self.input_font)
 
         self.face = face.View()
         self.face.show()
 
         # layout the screen
-        box = Gtk.VBox(homogeneous=False)
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        box.set_homogeneous(False)
         box.pack_start(self.face, True, True, 0)
         box.pack_start(self.entrycombo, False, True, 0)
 
@@ -130,17 +133,18 @@ class SpeakActivity(SharedActivity):
         self.notebook.props.show_tabs = False
 
         box.show_all()
-        self.notebook.append_page(box)
+        self.notebook.append_page(box, Gtk.Label(""))
 
         self.chat = chat.View()
         self.chat.show_all()
-        self.notebook.append_page(self.chat)
+        self.notebook.append_page(self.chat, Gtk.Label(""))
 
         # make the text box active right away
         self.entry.grab_focus()
-
-        self.entry.connect("move-cursor", self._cursor_moved_cb)
-        self.entry.connect("changed", self._cursor_moved_cb)
+        # FIXME: unknown signal name: move-cursor
+        #self.entry.connect("move-cursor", self._cursor_moved_cb)
+        # FIXME: unknown signal name: changed
+        #self.entry.connect("changed", self._cursor_moved_cb)
 
         # toolbar
         toolbox = ToolbarBox()
@@ -221,7 +225,7 @@ class SpeakActivity(SharedActivity):
 
         if self._cursor != cursor:
             self._cursor = cursor
-            self.window.set_cursor(self._cursor)
+            self.get_property('window').set_cursor(self._cursor)
 
     def __map_canvasactivity_cb(self, widget):
         logging.debug('Activity.__map_canvasactivity_cb state=%s' % \
@@ -293,7 +297,7 @@ class SpeakActivity(SharedActivity):
         self.eye_shape_combo.select(status.eyes[0])
         self.numeyesadj.value = len(status.eyes)
 
-        self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
+        #self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
         for i in cfg['history']:
             self.entrycombo.append_text(i.encode('utf-8', 'ignore'))
 
@@ -337,10 +341,11 @@ class SpeakActivity(SharedActivity):
 
         self.pitchadj = Gtk.Adjustment(self.face.status.pitch, 0,
                 espeak.PITCH_MAX, 1, espeak.PITCH_MAX / 10, 0)
-        pitchbar = Gtk.HScale(self.pitchadj)
+        pitchbar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
+        pitchbar.set_adjustment(self.pitchadj)
         pitchbar.set_draw_value(False)
         # pitchbar.set_inverted(True)
-        pitchbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
+        #pitchbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         pitchbar.set_size_request(240, 15)
 
         pitchbar_toolitem = ToolWidget(
@@ -350,10 +355,11 @@ class SpeakActivity(SharedActivity):
 
         self.rateadj = Gtk.Adjustment(self.face.status.rate, 0,
                                    espeak.RATE_MAX, 1, espeak.RATE_MAX / 10, 0)
-        ratebar = Gtk.HScale(self.rateadj)
+        ratebar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
+        ratebar.set_adjustment(self.rateadj)
         ratebar.set_draw_value(False)
         # ratebar.set_inverted(True)
-        ratebar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
+        #ratebar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         ratebar.set_size_request(240, 15)
 
         ratebar_toolitem = ToolWidget(
@@ -398,9 +404,10 @@ class SpeakActivity(SharedActivity):
         facebar.insert(eye_shape_toolitem, -1)
 
         self.numeyesadj = Gtk.Adjustment(2, 1, 5, 1, 1, 0)
-        numeyesbar = Gtk.HScale(self.numeyesadj)
+        numeyesbar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
+        numeyesbar.set_adjustment(self.numeyesadj)
         numeyesbar.set_draw_value(False)
-        numeyesbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
+        #numeyesbar.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
         numeyesbar.set_size_request(240, 15)
 
         numeyesbar_toolitem = ToolWidget(

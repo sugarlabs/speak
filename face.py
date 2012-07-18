@@ -23,7 +23,8 @@
 
 
 import logging
-import gtk
+from gi.repository import Gtk
+from gi.repository import Gdk
 import cjson
 
 import sugar3.graphics.style as style
@@ -92,9 +93,9 @@ class Status:
         return new
 
 
-class View(gtk.EventBox):
+class View(Gtk.EventBox):
     def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
-        gtk.EventBox.__init__(self)
+        Gtk.EventBox.__init__(self)
 
         self.status = Status()
         self.fill_color = fill_color
@@ -105,20 +106,21 @@ class View(gtk.EventBox):
 
         # make an empty box for some eyes
         self._eyes = None
-        self._eyebox = gtk.HBox()
+        self._eyebox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self._eyebox.show()
 
         # make an empty box to put the mouth in
         self._mouth = None
-        self._mouthbox = gtk.HBox()
+        self._mouthbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self._mouthbox.show()
 
         # layout the screen
-        box = gtk.VBox(homogeneous=False)
-        box.pack_start(self._eyebox)
-        box.pack_start(self._mouthbox, False)
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        box.set_homogeneous(False)
+        box.pack_start(self._eyebox, True, True, 0)
+        box.pack_start(self._mouthbox, False, False, 0)
         box.set_border_width(FACE_PAD)
-        self.modify_bg(gtk.STATE_NORMAL, self.fill_color.get_gdk_color())
+        self.modify_bg(0, self.fill_color.get_gdk_color())
         self.add(box)
 
         self._peding = None
@@ -138,7 +140,7 @@ class View(gtk.EventBox):
     def look_at(self, pos=None):
         if self._eyes:
             if pos is None:
-                display = gtk.gdk.display_get_default()
+                display = Gdk.Display()
                 screen_, x, y, modifiers_ = display.get_pointer()
             else:
                 x, y = pos
@@ -148,9 +150,10 @@ class View(gtk.EventBox):
         if not status:
             status = self.status
         else:
-            if not self.flags() & gtk.MAPPED:
-                self._peding = status
-                return
+            # FIXME: view object has no attribute flags
+            #if not self.flags() & Gtk.MAPPED:
+            #    self._peding = status
+            #    return
             self.status = status
 
         if self._eyes:
@@ -164,7 +167,7 @@ class View(gtk.EventBox):
         for i in status.eyes:
             eye = i(self.fill_color)
             self._eyes.append(eye)
-            self._eyebox.pack_start(eye, padding=FACE_PAD)
+            self._eyebox.pack_start(eye, FACE_PAD, False, 0)
             eye.show()
 
         self._mouth = status.mouth(self._audio, self.fill_color)
