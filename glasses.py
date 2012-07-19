@@ -28,7 +28,7 @@ class Glasses(Eye):
     def __init__(self, fill_color):
         Eye.__init__(self, fill_color)
 
-    def expose(self, widget, event):
+    def do_draw(self, context):
         bounds = self.get_allocation()
 
         eyeSize = min(bounds.width, bounds.height)
@@ -43,15 +43,15 @@ class Glasses(Eye):
             pupilX = bounds.width / 2 + dX * limit / distance
             pupilY = bounds.height / 2 + dY * limit / distance
 
-        self.context = widget.window.cairo_create()
+        self.context = context
         #self.context.set_antialias(cairo.ANTIALIAS_NONE)
 
         #set a clip region for the expose event.
         # This reduces redrawing work (and time)
-        self.context.rectangle(event.area.x,
-                               event.area.y,
-                               event.area.width,
-                               event.area.height)
+        self.context.rectangle(bounds.x,
+                               bounds.y,
+                               bounds.width,
+                               bounds.height)
         self.context.clip()
 
         # background

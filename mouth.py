@@ -24,7 +24,7 @@
 # This code is a super-stripped down version of the waveform view from Measure
 
 from gi.repository import Gtk
-import cairo
+from gi.repository import cairo
 from struct import unpack
 import numpy.core
 
@@ -72,7 +72,7 @@ class Mouth(Gtk.DrawingArea):
 
         #Create context, disable antialiasing
         self.context = context
-        self.context.set_antialias(cairo.ANTIALIAS_NONE)
+        #self.context.set_antialias(cairo.ANTIALIAS_NONE)
 
         # set a clip region for the expose event.
         # This reduces redrawing work (and time)
