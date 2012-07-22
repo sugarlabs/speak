@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2011-12-13 19:11+0200\n"
+"PO-Revision-Date: 2012-06-24 01:47+0200\n"
 "Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -204,7 +204,7 @@ msgstr "我的邻居"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
