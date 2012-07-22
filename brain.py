@@ -1,23 +1,21 @@
 # HablarConSara.activity
 # A simple hack to attach a chatterbot to speak activity
-# Copyright (C) 2008
-#               Sebastian Silva Fundacion FuenteLibre sebastian@fuentelibre.org
+# Copyright (C) 2008 Sebastian Silva Fundacion FuenteLibre sebastian@fuentelibre.org
 #
 # Style and structure taken from Speak.activity Copyright (C) Joshua Minor
 #
-# HablarConSara.activity is free software: you can redistribute it and/or
-# modify it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     HablarConSara.activity is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
 #
-# HablarConSara.activity is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+#     HablarConSara.activity is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with HablarConSara.activity.
-# If not, see <http://www.gnu.org/licenses/>.
+#     You should have received a copy of the GNU General Public License
+#     along with HablarConSara.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 import gtk
 import gobject
@@ -26,19 +24,20 @@ from gettext import gettext as _
 import logging
 logger = logging.getLogger('speak')
 
-from combobox import ComboBox
+from toolkit.combobox import ComboBox
 
 import aiml
 import voice
 
-BOTS = {_('Spanish'): {'name': 'Sara',
-                       'brain': 'bot/sara.brn',
-                       'predicates': {'nombre_bot': 'Sara',
-                                      'botmaster': 'La comunidad Azucar'}},
-        _('English'): {'name': 'Alice',
-                       'brain': 'bot/alice.brn',
-                       'predicates': {'name': 'Alice',
-                                      'master': 'The Sugar Community'}}}
+BOTS = {
+    _('Spanish'): { 'name': 'Sara',
+                    'brain': 'bot/sara.brn',
+                    'predicates': { 'nombre_bot': 'Sara',
+                                    'botmaster': 'La comunidad Azucar' } },
+    _('English'): { 'name': 'Alice',
+                    'brain': 'bot/alice.brn',
+                    'predicates': { 'name': 'Alice',
+                                    'master': 'The Sugar Community' } } }
 
 
 def get_mem_info(tag):
@@ -86,7 +85,7 @@ def load(activity, voice, sorry=None):
     if voice == _kernel_voice:
         return False
 
-    old_cursor = activity._cursor
+    old_cursor = activity.get_cursor()
     activity.set_cursor(gtk.gdk.WATCH)
 
     def load_brain():
@@ -123,9 +122,8 @@ def load(activity, voice, sorry=None):
             activity.set_cursor(old_cursor)
 
         if is_first_session:
-            hello = _("Hello, I'm a robot \"%s\". " +\
-                      "Please ask me any question.") %\
-                      BOTS[voice.friendlyname]['name']
+            hello = _("Hello, I'm a robot \"%s\". Please ask me any question.") \
+                    % BOTS[voice.friendlyname]['name']
             if sorry:
                 hello += ' ' + sorry
             activity.face.say_notification(hello)

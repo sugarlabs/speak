@@ -22,6 +22,8 @@ import gobject
 
 from sugar.graphics import style
 
+from toolkit.combobox import ComboBox
+
 
 class ToolWidget(gtk.ToolItem):
 

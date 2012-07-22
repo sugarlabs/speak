@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 00:32-0400\n"
-"PO-Revision-Date: 2012-07-06 06:29+0200\n"
+"POT-Creation-Date: 2012-06-07 00:36-0400\n"
+"PO-Revision-Date: 2012-06-08 04:32+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -41,92 +41,92 @@ msgstr "Stemme"
 msgid "Face"
 msgstr "Ansigt"
 
-#: activity.py:196
+#: activity.py:194
 #, python-format
 #, python-format,
 msgid "Hello %s. Please Type something."
 msgstr "Hej %s. Indtast venligst noget."
 
-#: activity.py:262
+#: activity.py:260
 msgid "Pitch:"
 msgstr "Tonehøjde:"
 
-#: activity.py:275
+#: activity.py:273
 msgid "Rate:"
 msgstr "Tonerate:"
 
-#: activity.py:283
+#: activity.py:281
 msgid "pitch adjusted"
 msgstr "tonehøjde tilpasset"
 
-#: activity.py:287
+#: activity.py:285
 msgid "rate adjusted"
 msgstr "tonerate tilpasset"
 
-#: activity.py:293
+#: activity.py:291
 msgid "Simple"
 msgstr "Simpel"
 
-#: activity.py:295
+#: activity.py:292
 msgid "Waveform"
 msgstr "Bølgeform"
 
-#: activity.py:296
+#: activity.py:293
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: activity.py:301
+#: activity.py:298
 msgid "Mouth:"
 msgstr "Mund:"
 
-#: activity.py:305
+#: activity.py:302
 msgid "Round"
 msgstr "Rund"
 
-#: activity.py:306
+#: activity.py:303
 msgid "Glasses"
 msgstr "Briller"
 
-#: activity.py:311
+#: activity.py:308
 msgid "Eyes:"
 msgstr "Øjne:"
 
-#: activity.py:322
+#: activity.py:319
 msgid "Eyes number:"
 msgstr "Antal øjne:"
 
-#: activity.py:334
+#: activity.py:331
 msgid "mouth changed"
 msgstr "mund ændret"
 
-#: activity.py:346
+#: activity.py:343
 msgid "eyes changed"
 msgstr "øjne ændret"
 
-#: activity.py:446
+#: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 "Beklager, jeg kan ikke tale %(old_voice)s, lad os tale %(new_voice)s i "
 "stedet."
 
-#: activity.py:477
+#: activity.py:473
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Du er i frakoblet tilstand, del og invitér en person."
 
-#: brain.py:34 voice.py:69
+#: brain.py:33 voice.py:67
 msgid "Spanish"
 msgstr "Spansk"
 
-#: brain.py:38 brain.py:53 brain.py:55 brain.py:65 voice.py:60
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
 msgstr "Engelsk"
 
-#: brain.py:81
+#: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "Beklager, jeg kan ikke forstå hvad du spørger om."
 
-#: brain.py:105
+#: brain.py:104
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -134,10 +134,11 @@ msgstr ""
 "Beklager, der er ikke fri hukommelse til indlæsning af min hjerne. Luk andre "
 "aktiviteter og forsøg en gang mere."
 
-#: brain.py:126
+#: brain.py:125
 #, python-format
-msgid "Hello, I'm a robot \"%s\". "
-msgstr "Hej, jeg er en robot \"%s\". "
+#, python-format,
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "Hej, jeg er robot \"%s\". Venligst stil mig hvilket som helst spørgsmål."
 
 #: chatbox.py:248
 msgid "URL from Chat"
@@ -183,134 +184,129 @@ msgstr "Beskrivelse"
 msgid "Activity"
 msgstr "Aktivitet"
 
-#: voice.py:39
+#: voice.py:37
 msgid "Brazil"
 msgstr "Brasiliansk"
 
-#: voice.py:40
+#: voice.py:38
 msgid "Swedish"
 msgstr "Svensk"
 
-#: voice.py:41
+#: voice.py:39
 msgid "Icelandic"
 msgstr "Islandsk"
 
-#: voice.py:42
+#: voice.py:40
 msgid "Romanian"
 msgstr "Rumænsk"
 
-#: voice.py:43
+#: voice.py:41
 msgid "Swahili"
 msgstr "Swahili"
 
-#: voice.py:44
+#: voice.py:42
 msgid "Hindi"
 msgstr "Hindi"
 
-#: voice.py:45
+#: voice.py:43
 msgid "Dutch"
 msgstr "Hollandsk"
 
-#: voice.py:46
+#: voice.py:44
 msgid "Latin"
 msgstr "Latin"
 
-#: voice.py:47
+#: voice.py:45
 msgid "Hungarian"
 msgstr "Ungarsk"
 
-#: voice.py:48
+#: voice.py:46
 msgid "Macedonian"
 msgstr "Makedonsk"
 
-#: voice.py:49
+#: voice.py:47
 msgid "Welsh"
 msgstr "Walisisk"
 
-#: voice.py:50
+#: voice.py:48
 msgid "French"
 msgstr "Fransk"
 
-#: voice.py:51
+#: voice.py:49
 msgid "Norwegian"
 msgstr "Norsk"
 
-#: voice.py:52
+#: voice.py:50
 msgid "Russian"
 msgstr "Russisk"
 
-#: voice.py:53
+#: voice.py:51
 msgid "Afrikaans"
 msgstr "Afrikaans"
 
-#: voice.py:54
+#: voice.py:52
 msgid "Finnish"
 msgstr "Finsk"
 
-#: voice.py:55 voice.py:158
+#: voice.py:53 voice.py:157
 msgid "Default"
 msgstr "Standard"
 
-#: voice.py:56
+#: voice.py:54
 msgid "Cantonese"
 msgstr "Kantonesisk"
 
-#: voice.py:57
+#: voice.py:55
 msgid "Scottish"
 msgstr "Skotsk"
 
-#: voice.py:58
+#: voice.py:56
 msgid "Greek"
 msgstr "Græsk"
 
-#: voice.py:59
+#: voice.py:57
 msgid "Vietnam"
 msgstr "Vietnamesisk"
 
-#: voice.py:61
+#: voice.py:59
 msgid "Lancashire"
 msgstr "Lancashire"
 
-#: voice.py:62
+#: voice.py:60
 msgid "Italian"
 msgstr "Italiensk"
 
-#: voice.py:63
+#: voice.py:61
 msgid "Portugal"
 msgstr "Portugisisk"
 
-#: voice.py:64
+#: voice.py:62
 msgid "German"
 msgstr "Tysk"
 
-#: voice.py:65
+#: voice.py:63
 msgid "Whisper"
 msgstr "Hvisken"
 
-#: voice.py:66
+#: voice.py:64
 msgid "Croatian"
 msgstr "Kroatisk"
 
-#: voice.py:67
+#: voice.py:65
 msgid "Czech"
 msgstr "Tjekkisk"
 
-#: voice.py:68
+#: voice.py:66
 msgid "Slovak"
 msgstr "Slovakisk"
 
-#: voice.py:70
+#: voice.py:68
 msgid "Polish"
 msgstr "Polsk"
 
-#: voice.py:71
+#: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
-
-#, python-format
-#, python-format,
-#~ msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-#~ msgstr "Hej, jeg er robot \"%s\". Venligst stil mig hvilket som helst spørgsmål."
 
 #, python-format
 #, python-format,

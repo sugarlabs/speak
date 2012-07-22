@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2011-12-24 04:51+0200\n"
+"PO-Revision-Date: 2012-07-01 06:19+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
@@ -197,7 +197,7 @@ msgstr "Իմ հարևանությունը"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Նկարագրություն"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"

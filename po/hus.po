@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2012-03-01 08:57+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2012-06-24 02:20+0200\n"
+"Last-Translator: ing.arturo.lara <ing.arturo.lara@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hus\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "Alk'idh"
 
 #: activity.py:292
 msgid "Waveform"
-msgstr "ik' bel"
+msgstr "Ik' bel"
 
 #: activity.py:293
 msgid "Frequency"
@@ -113,7 +113,7 @@ msgstr "It k'wajat ti in alwa´yab ts'ot'k'odh, ts'ejlixna ani ka kániy jita'."
 
 #: brain.py:33 voice.py:67
 msgid "Spanish"
-msgstr "labkaw"
+msgstr "Labkaw"
 
 #: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
 msgid "English"
