@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2011-11-21 05:42+0200\n"
+"PO-Revision-Date: 2012-07-16 01:58+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios quechuas Sugar Camp Lima\n"
 "Language: quz\n"
@@ -204,11 +204,12 @@ msgstr "wakinkunallapaq"
 #  "Vecindario"
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr "Ayllu"
+msgstr "Aylluy"
 
 #: toolkit/activity_widgets.py:213
+#, fuzzy
 msgid "Description"
-msgstr ""
+msgstr "Riqsichinapaq"
 
 #  "Actividad"
 #: toolkit/activity_widgets.py:393
@@ -363,7 +364,7 @@ msgstr "Eslovaco simi"
 #  "Polaco"
 #: voice.py:68
 msgid "Polish"
-msgstr "Poalco simi"
+msgstr "Polaco simi"
 
 #  "Esperanto"
 #: voice.py:69

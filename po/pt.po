@@ -35,8 +35,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2012-04-03 00:34+0200\n"
-"Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
+"PO-Revision-Date: 2012-06-25 01:45+0200\n"
+"Last-Translator: Luis <valente.luis@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,7 @@ msgstr "A Minha Vizinhança"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
