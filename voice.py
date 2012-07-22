@@ -34,7 +34,7 @@ import espeak
 # If espeak actually has new or different names then they won't get translated, but they
 # should still show up in the interface.
 expectedVoiceNames = [
-    _("Brazil"),
+    _("Portuguese (Brazil)"),
     _("Swedish"),
     _("Icelandic"),
     _("Romanian"),
@@ -54,11 +54,11 @@ expectedVoiceNames = [
     _("Cantonese"),
     _("Scottish"),
     _("Greek"),
-    _("Vietnam"),
+    _("Vietnamese"),
     _("English"),
     _("Lancashire"),
     _("Italian"),
-    _("Portugal"),
+    _("Portuguese"),
     _("German"),
     _("Whisper"),
     _("Croatian"),
