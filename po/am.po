@@ -38,16 +38,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2011-04-17 03:56+0200\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
+"PO-Revision-Date: 2012-07-24 09:47+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
@@ -211,8 +211,8 @@ msgid "Activity"
 msgstr "ድርጊት"
 
 #: voice.py:37
-msgid "Brazil"
-msgstr "የብራዚል ፖርቱጋልኛ"
+msgid "Portuguese (Brazil)"
+msgstr ""
 
 #: voice.py:38
 msgid "Swedish"
@@ -228,7 +228,7 @@ msgstr "ሮማኒያን"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr ""
+msgstr "ስዋሂሊኛ"
 
 #: voice.py:42
 msgid "Hindi"
@@ -260,7 +260,7 @@ msgstr "ፈረንሳይኛ"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "ኖርዌጂያን"
 
 #: voice.py:50
 msgid "Russian"
@@ -291,8 +291,8 @@ msgid "Greek"
 msgstr "ግሪክኛ"
 
 #: voice.py:57
-msgid "Vietnam"
-msgstr ""
+msgid "Vietnamese"
+msgstr "ቪትናምኛ"
 
 #: voice.py:59
 msgid "Lancashire"
@@ -303,8 +303,8 @@ msgid "Italian"
 msgstr "ጣሊያንኛ"
 
 #: voice.py:61
-msgid "Portugal"
-msgstr ""
+msgid "Portuguese"
+msgstr "ፖርቱጋሊኛ"
 
 #: voice.py:62
 msgid "German"
@@ -333,6 +333,9 @@ msgstr "ፖሊሽ"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "ኤስፐራንቶ"
+
+#~ msgid "Brazil"
+#~ msgstr "የብራዚል ፖርቱጋልኛ"
 
 #~ msgid "Keep"
 #~ msgstr "ማቆየት"
