@@ -38,9 +38,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2012-06-24 01:47+0200\n"
-"Last-Translator: lite <litekok@gmail.com>\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
+"PO-Revision-Date: 2012-07-25 01:24+0200\n"
+"Last-Translator: Xin <dram.wang@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -211,8 +211,8 @@ msgid "Activity"
 msgstr "活动"
 
 #: voice.py:37
-msgid "Brazil"
-msgstr "巴西"
+msgid "Portuguese (Brazil)"
+msgstr "葡萄牙语（巴西）"
 
 #: voice.py:38
 msgid "Swedish"
@@ -291,7 +291,7 @@ msgid "Greek"
 msgstr "现代希腊语"
 
 #: voice.py:57
-msgid "Vietnam"
+msgid "Vietnamese"
 msgstr "越南语"
 
 #: voice.py:59
@@ -303,7 +303,7 @@ msgid "Italian"
 msgstr "意大利语"
 
 #: voice.py:61
-msgid "Portugal"
+msgid "Portuguese"
 msgstr "葡萄牙语"
 
 #: voice.py:62
@@ -333,3 +333,12 @@ msgstr "波兰语"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "世界语"
+
+#~ msgid "Brazil"
+#~ msgstr "巴西"
+
+#~ msgid "Vietnam"
+#~ msgstr "越南语"
+
+#~ msgid "Portugal"
+#~ msgstr "葡萄牙语"
