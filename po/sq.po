@@ -42,8 +42,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2011-11-28 07:25+0200\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
+"PO-Revision-Date: 2012-07-24 09:38+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sq\n"
@@ -182,23 +182,23 @@ msgstr "Kopjo tek klipi"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr ""
+msgstr "Ndal"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr ""
+msgstr "Kthe prapa"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr ""
+msgstr "Ribëj"
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr ""
+msgstr "Kopjo"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Vëj"
 
 #: toolkit/activity_widgets.py:128
 msgid "Private"
@@ -214,27 +214,27 @@ msgstr ""
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
-msgstr ""
+msgstr "Aktiviteti"
 
 #: voice.py:37
-msgid "Brazil"
-msgstr "Brazili"
+msgid "Portuguese (Brazil)"
+msgstr "Portugalisht (Brazil)"
 
 #: voice.py:38
 msgid "Swedish"
-msgstr ""
+msgstr "Suedisht"
 
 #: voice.py:39
 msgid "Icelandic"
-msgstr ""
+msgstr "Islandisht"
 
 #: voice.py:40
 msgid "Romanian"
-msgstr ""
+msgstr "Rumanisht"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr ""
+msgstr "Suahilisht"
 
 #: voice.py:42
 msgid "Hindi"
@@ -242,43 +242,43 @@ msgstr ""
 
 #: voice.py:43
 msgid "Dutch"
-msgstr ""
+msgstr "Holandisht"
 
 #: voice.py:44
 msgid "Latin"
-msgstr ""
+msgstr "Latinisht"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "Hungarisht"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr ""
+msgstr "Maqedonisht"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr ""
+msgstr "Uellsisht"
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "Frengjisht"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "Norvegjisht"
 
 #: voice.py:50
 msgid "Russian"
-msgstr ""
+msgstr "Rusisht"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikanisht"
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "Finlandisht"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
@@ -294,11 +294,11 @@ msgstr ""
 
 #: voice.py:56
 msgid "Greek"
-msgstr ""
+msgstr "Greqisht"
 
 #: voice.py:57
-msgid "Vietnam"
-msgstr ""
+msgid "Vietnamese"
+msgstr "Vietnamisht"
 
 #: voice.py:59
 msgid "Lancashire"
@@ -306,15 +306,16 @@ msgstr ""
 
 #: voice.py:60
 msgid "Italian"
-msgstr ""
+msgstr "Italisht"
 
 #: voice.py:61
-msgid "Portugal"
-msgstr ""
+#, fuzzy
+msgid "Portuguese"
+msgstr "Portugeze"
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "Gjermanisht"
 
 #: voice.py:63
 msgid "Whisper"
@@ -322,23 +323,26 @@ msgstr ""
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "Kroatisht"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "Çekisht"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "Sllovakisht"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "Polonisht"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "Esperanto"
+
+#~ msgid "Brazil"
+#~ msgstr "Brazili"
 
 #, python-format
 #, python-format, fuzzy
