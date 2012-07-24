@@ -291,11 +291,11 @@ class SpeakActivity(SharedActivity):
 
         status = self.face.status = face.Status().deserialize(cfg['status'])
         self.voices.select(status.voice)
-        self.pitchadj.value = self.face.status.pitch
-        self.rateadj.value = self.face.status.rate
+        self.pitchadj.set_value(self.face.status.pitch)
+        self.rateadj.set_value(self.face.status.rate)
         self.mouth_shape_combo.select(status.mouth)
         self.eye_shape_combo.select(status.eyes[0])
-        self.numeyesadj.value = len(status.eyes)
+        self.numeyesadj.set_value(len(status.eyes))
 
         # FIXME: gi._gobject.GProps object has no attribute text
         #self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
@@ -435,7 +435,7 @@ class SpeakActivity(SharedActivity):
             return
 
         self.face.status.eyes = [self.eye_shape_combo.props.value] \
-                * int(self.numeyesadj.value)
+                * int(self.numeyesadj.get_value())
         self._update_face()
 
         # this SegFaults: self.face.say(self.eye_shape_combo.get_active_text())
