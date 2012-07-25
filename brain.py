@@ -20,6 +20,7 @@
 # If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import GObject
 from gettext import gettext as _
 
@@ -87,7 +88,7 @@ def load(activity, voice, sorry=None):
         return False
 
     old_cursor = activity._cursor
-    activity.set_cursor(Gdk.WATCH)
+    activity.set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
 
     def load_brain():
         global _kernel

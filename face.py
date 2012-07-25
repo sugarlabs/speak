@@ -141,7 +141,9 @@ class View(Gtk.EventBox):
         if self._eyes:
             if pos is None:
                 display = Gdk.Display()
-                screen_, x, y, modifiers_ = display.get_pointer()
+                # FIXME: Bug in gi
+                # screen_, x, y, modifiers_ = display.get_pointer()
+                x, y = (0,0)
             else:
                 x, y = pos
             map(lambda e, x=x, y=y: e.look_at(x, y), self._eyes)

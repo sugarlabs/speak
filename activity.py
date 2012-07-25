@@ -122,6 +122,7 @@ class SpeakActivity(SharedActivity):
 
         self.add_events(Gdk.EventMask.POINTER_MOTION_HINT_MASK
                 | Gdk.EventMask.POINTER_MOTION_MASK)
+        
         self.connect("motion_notify_event", self._mouse_moved_cb)
 
         box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -305,12 +306,14 @@ class SpeakActivity(SharedActivity):
         self.new_instance()
 
     def save_instance(self, file_path):
-        cfg = {'status': self.face.status.serialize(),
-                'text': unicode(self.entry.props.text, 'utf-8', 'ignore'),
-                'history': [unicode(i[0], 'utf-8', 'ignore') \
-                        for i in self.entrycombo.get_model()],
-                }
-        file(file_path, 'w').write(cjson.encode(cfg))
+        # FIXME: object has no attribute text
+        #cfg = {'status': self.face.status.serialize(),
+        #        'text': unicode(self.entry.props.text, 'utf-8', 'ignore'),
+        #        'history': [unicode(i[0], 'utf-8', 'ignore') \
+        #                for i in self.entrycombo.get_model()],
+        #        }
+        #file(file_path, 'w').write(cjson.encode(cfg))
+        pass
 
     def share_instance(self, connection, is_initiator):
         self.chat.messenger = Messenger(connection, is_initiator, self.chat)
@@ -333,7 +336,7 @@ class SpeakActivity(SharedActivity):
         # make the eyes track the motion of the mouse cursor
         self.face.look_at()
         self.chat.look_at()
-
+    
     def _mouse_clicked_cb(self, widget, event):
         pass
 
@@ -450,7 +453,8 @@ class SpeakActivity(SharedActivity):
         # when a new item is chosen, make sure the text is selected
         if not self.entry.is_focus():
             self.entry.grab_focus()
-            self.entry.select_region(0, -1)
+            # FIXME: CellView object has no attribute select_region
+            #self.entry.select_region(0, -1)
 
     def _entry_key_press_cb(self, combo, event):
         # make the up/down arrows navigate through our history
