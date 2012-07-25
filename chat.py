@@ -58,7 +58,7 @@ class View(Gtk.EventBox):
 
         # buddies box
 
-        self._buddies_list = Gtk.VBox()
+        self._buddies_list = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self._buddies_list.set_homogeneous(False)
         self._buddies_list.props.spacing = ENTRY_YPAD
 
@@ -104,14 +104,14 @@ class View(Gtk.EventBox):
 
         evbox = Gtk.EventBox()
         evbox.modify_bg(Gtk.StateType.NORMAL, style.COLOR_WHITE.get_gdk_color())
-        chat_box = Gtk.VBox()
+        chat_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         chat_box.pack_start(self._chat, True, True, 0)
         chat_box.pack_start(chat_entry, False, True, 0)
         evbox.add(chat_box)
 
         # desk
 
-        self._desk = Gtk.HBox()
+        self._desk = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self._desk.pack_start(evbox, True, True, 0)
         self._desk.show_all()
 
@@ -162,11 +162,11 @@ class View(Gtk.EventBox):
     def _add_buddy(self, buddy):
         evbox = Gtk.EventBox()
         evbox.modify_bg(Gtk.StateType.NORMAL, BUDDIES_COLOR.get_gdk_color())
-        box = Gtk.HBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
         buddy_face, buddy_widget = self._new_face(buddy, BUDDIES_COLOR)
 
-        char_box = Gtk.VBox()
+        char_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         nick = Gtk.Label(label=buddy.props.nick)
         lang = Gtk.Label()
         char_box.pack_start(nick, True, True, 0)
