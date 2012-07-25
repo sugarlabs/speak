@@ -38,6 +38,7 @@ from sugar3.graphics.toolbarbox import ToolbarBox
 from shared_activity import SharedActivity
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
+from sugar3.activity.widgets import DescriptionItem
 
 from toolitem import ToolWidget
 import eye
@@ -194,12 +195,17 @@ class SpeakActivity(SharedActivity):
                 label=_('Face'),
                 icon_name='face')
         toolbox.toolbar.insert(face_button, -1)
-
+       
+        #toolbar: description item
+        description_item = DescriptionItem(self)
+        toolbox.toolbar.insert(description_item, -1) 
+        description_item.show()
+        
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
         toolbox.toolbar.insert(separator, -1)
-
+                
         toolbox.toolbar.insert(StopButton(self), -1)
 
         toolbox.show_all()
