@@ -143,7 +143,7 @@ class View(Gtk.EventBox):
                 display = Gdk.Display()
                 # FIXME: Bug in gi
                 # screen_, x, y, modifiers_ = display.get_pointer()
-                x, y = (0,0)
+                x, y = self.get_pointer()
             else:
                 x, y = pos
             map(lambda e, x=x, y=y: e.look_at(x, y), self._eyes)

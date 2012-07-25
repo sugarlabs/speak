@@ -58,7 +58,7 @@ class TextBox(Gtk.TextView):
                     rise=-7 * Pango.SCALE)  # in pixels
         self._empty = True
         self.palette = None
-        self._mouse_detector = MouseSpeedDetector(self, 200, 5)
+        self._mouse_detector = MouseSpeedDetector(200, 5)
         self._mouse_detector.connect('motion-slow', self.__mouse_slow_cb)
         self.modify_base(Gtk.StateType.NORMAL, bg_color.get_gdk_color())
 
@@ -84,7 +84,7 @@ class TextBox(Gtk.TextView):
 
     # Links can be activated by clicking.
     def __event_after_cb(self, widget, event):
-        if event.type != Gdk.BUTTON_RELEASE:
+        if event.type != Gdk.EventType.BUTTON_RELEASE:
             return False
 
         x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
@@ -158,14 +158,13 @@ class TextBox(Gtk.TextView):
         x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
             int(event.x), int(event.y))
         self.set_cursor_if_appropriate(x, y)
-        self.window.get_pointer()
         return False
 
     def __visibility_notify_cb(self, widget, event):
         # Also update the cursor image if the window becomes visible
         # (e.g. when a window covering it got iconified).
 
-        wx, wy, __ = self.window.get_pointer()
+        wx, wy = self.get_pointer()
         bx, by = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET, wx, wy)
         self.set_cursor_if_appropriate(bx, by)
         return False
@@ -284,7 +283,7 @@ class ChatBox(Gtk.ScrolledWindow):
         self._add_log(nick, color, text, status_message)
 
         # Check for Right-To-Left languages:
-        if Pango.find_base_dir(nick, -1) == Pango.DIRECTION_RTL:
+        if Pango.find_base_dir(nick, -1) == Pango.Direction.RTL:
             lang_rtl = True
         else:
             lang_rtl = False
@@ -314,14 +313,14 @@ class ChatBox(Gtk.ScrolledWindow):
             if not status_message:
                 name = ColorLabel(text=nick + ':', color=text_color)
                 name_vbox = Gtk.VBox()
-                name_vbox.pack_start(name, False, False)
-                rb.pack_start(name_vbox, False, False)
+                name_vbox.pack_start(name, False, False, 0)
+                rb.pack_start(name_vbox, False, False, 0)
             message = TextBox(text_color, color_fill, lang_rtl)
             vbox = Gtk.VBox()
-            vbox.pack_start(message, True, True)
-            rb.pack_start(vbox, True, True)
+            vbox.pack_start(message, True, True, 0)
+            rb.pack_start(vbox, True, True, 0)
             self._last_msg = message
-            self._conversation.pack_start(rb, False, False)
+            self._conversation.pack_start(rb, False, False, 0)
             message.add_text(text)
             self._conversation.show_all()
 
@@ -335,7 +334,7 @@ class ChatBox(Gtk.ScrolledWindow):
         """
         if adj.get_value() < self._scroll_value:
             self._scroll_auto = False
-        elif adj.get_value() == adj.upper - adj.page_size:
+        elif adj.get_value() == adj.get_upper() - adj.get_page_size():
             self._scroll_auto = True
 
     def _scroll_changed_cb(self, adj, scroll=None):
