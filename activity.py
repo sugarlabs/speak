@@ -22,18 +22,15 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from sugar3.activity import activity
 from sugar3.presence import presenceservice
 import logging
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import GObject
 from gi.repository import Pango
 import cjson
 from gettext import gettext as _
 
 from sugar3.graphics.toolbarbox import ToolbarButton
-from sugar3.graphics.toggletoolbutton import ToggleToolButton
 from sugar3.graphics.radiotoolbutton import RadioToolButton
 
 from combobox import ComboBox
