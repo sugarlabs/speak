@@ -49,7 +49,7 @@ class WaveformMouth(Mouth):
 
         #Create context, disable antialiasing
         self.context = context
-        self.context.set_antialias(cairo.ANTIALIAS_NONE)
+        #self.context.set_antialias(cairo.ANTIALIAS_NONE)
 
         #set a clip region for the expose event.
         #This reduces redrawing work (and time)
@@ -78,7 +78,7 @@ class WaveformMouth(Mouth):
                 peak = 0
 
             x = count / buflen * bounds.width
-            self.context.line_to(x, bounds. height - peak)
+            self.context.line_to(x, bounds.height - peak)
 
             count += 1
         self.context.set_source_rgb(0, 0, 0)

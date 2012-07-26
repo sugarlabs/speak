@@ -24,7 +24,6 @@
 # This code is a super-stripped down version of the waveform view from Measure
 
 from gi.repository import Gtk
-from gi.repository import cairo
 from struct import unpack
 import numpy.core
 
@@ -33,7 +32,7 @@ class Mouth(Gtk.DrawingArea):
     def __init__(self, audioSource, fill_color):
 
         Gtk.DrawingArea.__init__(self)
-
+        
         self.buffers = []
         self.buffer_size = 256
         self.main_buffers = []

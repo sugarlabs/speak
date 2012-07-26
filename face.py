@@ -96,7 +96,6 @@ class Status:
 class View(Gtk.EventBox):
     def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
         Gtk.EventBox.__init__(self)
-
         self.status = Status()
         self.fill_color = fill_color
 
@@ -169,9 +168,9 @@ class View(Gtk.EventBox):
         for i in status.eyes:
             eye = i(self.fill_color)
             self._eyes.append(eye)
-            self._eyebox.pack_start(eye, FACE_PAD, False, 0)
+            self._eyebox.pack_start(eye, True, True, 0)
             eye.show()
-
+            
         self._mouth = status.mouth(self._audio, self.fill_color)
         self._mouth.show()
         self._mouthbox.add(self._mouth)
