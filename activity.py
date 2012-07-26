@@ -159,12 +159,14 @@ class SpeakActivity(SharedActivity):
         all_voices = self.voices.get_model()
         brain_voices = brain.get_voices()
 
+        #toolbar: speak mode button
         mode_type = RadioToolButton(
                 named_icon='mode-type',
                 tooltip=_('Type something to hear it'))
         mode_type.connect('toggled', self.__toggled_mode_type_cb, all_voices)
         toolbox.toolbar.insert(mode_type, -1)
 
+        #toolbar: robot mode button
         mode_robot = RadioToolButton(
                 named_icon='mode-robot',
                 group=mode_type,
@@ -173,6 +175,7 @@ class SpeakActivity(SharedActivity):
                 brain_voices)
         toolbox.toolbar.insert(mode_robot, -1)
 
+        #toolbar: mode chat button
         mode_chat = RadioToolButton(
                 named_icon='mode-chat',
                 group=mode_type,
@@ -183,23 +186,26 @@ class SpeakActivity(SharedActivity):
         voices_toolitem = ToolWidget(widget=self.voices)
         toolbox.toolbar.insert(voices_toolitem, -1)
 
+        #toolbar: voice button
         voice_button = ToolbarButton(
                 page=self.make_voice_bar(),
                 label=_('Voice'),
                 icon_name='voice')
         toolbox.toolbar.insert(voice_button, -1)
 
+        #toolbar: face button
         face_button = ToolbarButton(
                 page=self.make_face_bar(),
                 label=_('Face'),
                 icon_name='face')
         toolbox.toolbar.insert(face_button, -1)
-
+       
+        #separator
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
         toolbox.toolbar.insert(separator, -1)
-
+                
         toolbox.toolbar.insert(StopButton(self), -1)
 
         toolbox.show_all()
