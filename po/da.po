@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2012-06-08 04:32+0200\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
+"PO-Revision-Date: 2012-07-26 20:40+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -185,8 +185,8 @@ msgid "Activity"
 msgstr "Aktivitet"
 
 #: voice.py:37
-msgid "Brazil"
-msgstr "Brasiliansk"
+msgid "Portuguese (Brazil)"
+msgstr "Portugisisk (Brasilien)"
 
 #: voice.py:38
 msgid "Swedish"
@@ -265,7 +265,7 @@ msgid "Greek"
 msgstr "Græsk"
 
 #: voice.py:57
-msgid "Vietnam"
+msgid "Vietnamese"
 msgstr "Vietnamesisk"
 
 #: voice.py:59
@@ -277,7 +277,7 @@ msgid "Italian"
 msgstr "Italiensk"
 
 #: voice.py:61
-msgid "Portugal"
+msgid "Portuguese"
 msgstr "Portugisisk"
 
 #: voice.py:62
@@ -307,6 +307,15 @@ msgstr "Polsk"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
+
+#~ msgid "Brazil"
+#~ msgstr "Brasiliansk"
+
+#~ msgid "Vietnam"
+#~ msgstr "Vietnamesisk"
+
+#~ msgid "Portugal"
+#~ msgstr "Portugisisk"
 
 #, python-format
 #, python-format,
