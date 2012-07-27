@@ -98,7 +98,7 @@ class SpeakActivity(SharedActivity):
         # make an audio device for playing back and rendering audio
         self.connect("notify::active", self._activeCb)
 
-        # make a box to type into - combo for user
+        # make a box to type into - combo for user to type
         self.entrycombo = Gtk.ComboBoxText.new_with_entry()
         self.entrycombo.connect("changed", self._combo_changed_cb)
         self.entry = self.entrycombo.get_child()
@@ -181,7 +181,7 @@ class SpeakActivity(SharedActivity):
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
         
-        #toolbar: vouces combo (not working)
+        #toolbar: voices combo (not working)
         voices_toolitem = ToolWidget(widget=self.voices)
         toolbox.toolbar.insert(voices_toolitem, -1)
 
