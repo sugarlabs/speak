@@ -18,60 +18,18 @@
 """A set of toolitem widets"""
 
 from gi.repository import Gtk
-from gi.repository import GObject
-
-from sugar3.graphics import style
-
 
 class ToolWidget(Gtk.ToolItem):
 
-    def __init__(self, **kwargs):
-        self._widget = None
-        self._label = None
-        self._label_text = None
-        self._box = Gtk.HBox(False, style.DEFAULT_SPACING)
-
+    def __init__(self, widget=None, label_text=""):
         Gtk.ToolItem.__init__(self)
-        self.props.border_width = style.DEFAULT_PADDING
-
-        self._box.show()
+        
+        self.wid = widget
+        self.label = Gtk.Label(label_text)
+        self._box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        
+        if self.label: self._box.pack_start(self.label, True, True, 5)
+        if self.wid: self._box.pack_start(self.wid, True, True, 5)
+        
         self.add(self._box)
-
-        if self.label is None:
-            self.label = Gtk.Label()
-
-    def get_label_text(self):
-        return self._label_text
-
-    def set_label_text(self, value):
-        self._label_text = value
-        if self.label is not None and value:
-            self.label.set_text(self._label_text)
-
-    label_text = GObject.property(getter=get_label_text, setter=set_label_text)
-
-    def get_label(self):
-        return self._label
-
-    def set_label(self, label):
-        if self._label is not None:
-            self._box.remove(self._label)
-        self._label = label
-        self._box.pack_start(label, False, False, 0)
-        self._box.reorder_child(label, 0)
-        label.show()
-        self.set_label_text(self._label_text)
-
-    label = GObject.property(getter=get_label, setter=set_label)
-
-    def get_widget(self):
-        return self._widget
-
-    def set_widget(self, widget):
-        if self._widget is not None:
-            self._box.remove(self._widget)
-        self._widget = widget
-        self._box.pack_end(widget)
-        widget.show()
-
-    widget = GObject.property(getter=get_widget, setter=set_widget)
+        self.show_all()
