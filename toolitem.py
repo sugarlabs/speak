@@ -19,11 +19,11 @@
 
 from gi.repository import Gtk
 
+
 class ToolWidget(Gtk.ToolItem):
 
     def __init__(self, widget=None, label_text=""):
         Gtk.ToolItem.__init__(self)
-        
         self.wid = widget
         self.label = Gtk.Label(label_text)
         self._box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
