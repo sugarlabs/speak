@@ -21,11 +21,11 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import logging
+import cjson
+
 from gi.repository import Gtk
 from gi.repository import Gdk
-import cjson
 
 import sugar3.graphics.style as style
 
