@@ -147,6 +147,7 @@ class SpeakActivity(SharedActivity):
 
         toolbox.toolbar.insert(ActivityToolbarButton(self), -1)
 
+        #importing voices to combobox
         self.voices = ComboBox()
         for name in sorted(voice.allVoices().keys()):
             vn = voice.allVoices()[name]
