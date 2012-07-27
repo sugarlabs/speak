@@ -98,12 +98,11 @@ class SpeakActivity(SharedActivity):
         self.connect("notify::active", self._activeCb)
 
         # make a box to type into
-        self.entrycombo = Gtk.ComboBoxText()
+        self.entrycombo = Gtk.ComboBoxText.new_with_entry()
         self.entrycombo.connect("changed", self._combo_changed_cb)
         self.entry = self.entrycombo.get_child()
-        # FIXME: unknown signal name: activate
-        #self.entry.can_activate_accel(True)
-        #self.entry.connect('activate', self._entry_activate_cb)
+        self.entry.can_activate_accel(True)
+        self.entry.connect('activate', self._entry_activate_cb)
         self.entry.connect("key-press-event", self._entry_key_press_cb)
         self.input_font = Pango.FontDescription('sans bold 24')
         self.entry.modify_font(self.input_font)
@@ -139,10 +138,8 @@ class SpeakActivity(SharedActivity):
 
         # make the text box active right away
         self.entry.grab_focus()
-        # FIXME: unknown signal name: move-cursor
-        #self.entry.connect("move-cursor", self._cursor_moved_cb)
-        # FIXME: unknown signal name: changed
-        #self.entry.connect("changed", self._cursor_moved_cb)
+        self.entry.connect("move-cursor", self._cursor_moved_cb)
+        self.entry.connect("changed", self._cursor_moved_cb)
 
         # toolbar
         toolbox = ToolbarBox()
@@ -301,22 +298,19 @@ class SpeakActivity(SharedActivity):
         self.eye_shape_combo.select(status.eyes[0])
         self.numeyesadj.set_value(len(status.eyes))
 
-        # FIXME: gi._gobject.GProps object has no attribute text
-        #self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
+        self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
         for i in cfg['history']:
             self.entrycombo.append_text(i.encode('utf-8', 'ignore'))
 
         self.new_instance()
 
     def save_instance(self, file_path):
-        # FIXME: object has no attribute text
-        #cfg = {'status': self.face.status.serialize(),
-        #        'text': unicode(self.entry.props.text, 'utf-8', 'ignore'),
-        #        'history': [unicode(i[0], 'utf-8', 'ignore') \
-        #                for i in self.entrycombo.get_model()],
-        #        }
-        #file(file_path, 'w').write(cjson.encode(cfg))
-        pass
+        cfg = {'status': self.face.status.serialize(),
+                'text': unicode(self.entry.props.text, 'utf-8', 'ignore'),
+                'history': [unicode(i[0], 'utf-8', 'ignore') \
+                        for i in self.entrycombo.get_model()],
+                }
+        file(file_path, 'w').write(cjson.encode(cfg))
 
     def share_instance(self, connection, is_initiator):
         self.chat.messenger = Messenger(connection, is_initiator, self.chat)
@@ -326,7 +320,7 @@ class SpeakActivity(SharedActivity):
         index = entry.props.cursor_position
         layout = entry.get_layout()
         pos = layout.get_cursor_pos(index)
-        x = pos[0][0] / Pango.SCALE - entry.props.scroll_offset
+        x = pos[0].x / Pango.SCALE - entry.props.scroll_offset
         y = entry.get_allocation().y
         self.face.look_at(pos=(x, y))
 
@@ -456,8 +450,7 @@ class SpeakActivity(SharedActivity):
         # when a new item is chosen, make sure the text is selected
         if not self.entry.is_focus():
             self.entry.grab_focus()
-            # FIXME: CellView object has no attribute select_region
-            #self.entry.select_region(0, -1)
+            self.entry.select_region(0, -1)
 
     def _entry_key_press_cb(self, combo, event):
         # make the up/down arrows navigate through our history
