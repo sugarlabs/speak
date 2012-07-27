@@ -117,7 +117,7 @@ class View(Gtk.EventBox):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_homogeneous(False)
         box.pack_start(self._eyebox, expand=True, fill=True, padding=0)
-        box.pack_start(self._mouthbox, exapand=False, fill=False, padding=0)
+        box.pack_start(self._mouthbox, expand=True, fill=True, padding=0)
         box.set_border_width(FACE_PAD)
         self.modify_bg(0, self.fill_color.get_gdk_color())
         self.add(box)
