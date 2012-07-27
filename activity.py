@@ -21,25 +21,26 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-
-from sugar3.presence import presenceservice
-import logging
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
-import cjson
-from gettext import gettext as _
 
+import logging
+import cjson
+
+from sugar3.presence import presenceservice
 from sugar3.graphics.toolbarbox import ToolbarButton
 from sugar3.graphics.radiotoolbutton import RadioToolButton
-
-from combobox import ComboBox
 from sugar3.graphics.toolbarbox import ToolbarBox
-from shared_activity import SharedActivity
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
+from shared_activity import SharedActivity
+from combobox import ComboBox
 from toolitem import ToolWidget
+from messenger import Messenger, SERVICE
+from gettext import gettext as _
+
 import eye
 import glasses
 import mouth
@@ -50,7 +51,7 @@ import face
 import brain
 import chat
 import espeak
-from messenger import Messenger, SERVICE
+
 
 logger = logging.getLogger('speak')
 
@@ -97,7 +98,7 @@ class SpeakActivity(SharedActivity):
         # make an audio device for playing back and rendering audio
         self.connect("notify::active", self._activeCb)
 
-        # make a box to type into
+        # make a box to type into - combo for user
         self.entrycombo = Gtk.ComboBoxText.new_with_entry()
         self.entrycombo.connect("changed", self._combo_changed_cb)
         self.entry = self.entrycombo.get_child()
@@ -179,7 +180,8 @@ class SpeakActivity(SharedActivity):
                 tooltip=_('Voice chat'))
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
-
+        
+        #toolbar: vouces combo (not working)
         voices_toolitem = ToolWidget(widget=self.voices)
         toolbox.toolbar.insert(voices_toolitem, -1)
 
