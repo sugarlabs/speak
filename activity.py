@@ -384,6 +384,7 @@ class SpeakActivity(SharedActivity):
         self.face.status.rate = get.value
         self.face.say_notification(_("rate adjusted"))
 
+    # face subtoolbar
     def make_face_bar(self):
         facebar = Gtk.Toolbar()
 
@@ -425,6 +426,7 @@ class SpeakActivity(SharedActivity):
         facebar.show_all()
         return facebar
 
+    # mouth changed callback
     def mouth_changed_cb(self, combo, quiet):
         self.face.status.mouth = combo.props.value
         self._update_face()
@@ -433,6 +435,7 @@ class SpeakActivity(SharedActivity):
         if not quiet:
             self.face.say_notification(_("mouth changed"))
 
+    # eyes changed callback
     def eyes_changed_cb(self, ignored, quiet):
         if self.numeyesadj is None:
             return
