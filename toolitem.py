@@ -19,17 +19,19 @@
 
 from gi.repository import Gtk
 
+
 class ToolWidget(Gtk.ToolItem):
 
     def __init__(self, widget=None, label_text=""):
         Gtk.ToolItem.__init__(self)
-        
         self.wid = widget
         self.label = Gtk.Label(label_text)
         self._box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         
-        if self.label: self._box.pack_start(self.label, True, True, 5)
-        if self.wid: self._box.pack_start(self.wid, True, True, 5)
+        if self.label:
+                self._box.pack_start(self.label, True, True, 5)
+        if self.wid:
+                self._box.pack_start(self.wid, True, True, 5)
         
         self.add(self._box)
         self.show_all()
