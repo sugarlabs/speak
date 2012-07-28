@@ -376,12 +376,12 @@ class SpeakActivity(SharedActivity):
         voicebar.show_all()
         return voicebar
 
-    def pitch_adjusted_cb(self, get, data=None):
-        self.face.status.pitch = get.value
+    def pitch_adjusted_cb(self, adj, data=None):
+        self.face.status.pitch = adj.get_value()
         self.face.say_notification(_("pitch adjusted"))
 
-    def rate_adjusted_cb(self, get, data=None):
-        self.face.status.rate = get.value
+    def rate_adjusted_cb(self, adj, data=None):
+        self.face.status.rate = adj.get_value()
         self.face.say_notification(_("rate adjusted"))
 
     def make_face_bar(self):
@@ -436,7 +436,6 @@ class SpeakActivity(SharedActivity):
     def eyes_changed_cb(self, ignored, quiet):
         if self.numeyesadj is None:
             return
-
         self.face.status.eyes = [self.eye_shape_combo.props.value] \
                 * int(self.numeyesadj.get_value())
         self._update_face()
