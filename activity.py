@@ -35,7 +35,8 @@ from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
-from shared_activity import SharedActivity
+#from shared_activity import SharedActivity
+from sugar3.activity import activity
 from combobox import ComboBox
 from toolitem import ToolWidget
 from messenger import Messenger, SERVICE
@@ -79,12 +80,15 @@ class CursorFactory:
         return self.cursors[cur_type]
 
 
-class SpeakActivity(SharedActivity):
+class SpeakActivity(activity.Activity):
+    
     def __init__(self, handle):
+        activity.Activity.__init__(self, handle)
+        
         self.notebook = Gtk.Notebook()
         self.notebook.connect_after('map', self.__map_canvasactivity_cb)
 
-        SharedActivity.__init__(self, self.notebook, SERVICE, handle)
+        #SharedActivity.__init__(self, self.notebook, SERVICE, handle)
 
         self._cursor = None
         self.set_cursor(Gdk.CursorType.LEFT_PTR)
@@ -208,6 +212,7 @@ class SpeakActivity(SharedActivity):
                 
         toolbox.toolbar.insert(StopButton(self), -1)
 
+        self.set_canvas(self.notebook)
         toolbox.show_all()
         self.toolbar_box = toolbox
 

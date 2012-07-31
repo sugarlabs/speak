@@ -27,55 +27,49 @@ from gi.repository import Gdk
 from gi.repository import GObject
 import math
 
-
 class Eye(Gtk.DrawingArea):
+    """Eye."""
+    
     def __init__(self, fill_color):
         Gtk.DrawingArea.__init__(self)
-        self.frame = 0
-        self.blink = False
+        
         self.x, self.y = 0, 0
         self.fill_color = fill_color
-
-        # listen for clicks
-        self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-        self.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
-        self.connect("button_press_event", self._mouse_pressed_cb)
-        self.connect("button_release_event", self._mouse_released_cb)
-
-    def _mouse_pressed_cb(self, widget, event):
-        self.blink = True
-        self.queue_draw()
-
-    def _mouse_released_cb(self, widget, event):
-        self.blink = False
-        self.queue_draw()
+        
+        self.show_all()
 
     def look_at(self, x, y):
+        """ Look. . ."""
+        
         self.x = x
         self.y = y
         self.queue_draw()
 
     def look_ahead(self):
+        """ Look. . ."""
+        
         self.x = None
         self.y = None
         self.queue_draw()
 
     # Thanks to xeyes :)
     def computePupil(self):
-        a = self.get_allocation()
+        """pupil."""
+        
+        rect = self.get_allocation()
 
         if self.x is None or self.y is None:
             # look ahead, but not *directly* in the middle
-            if a.x + a.width / 2 < self.get_allocation().width / 2:
-                cx = a.width * 0.6
+            if rect.x + rect.width / 2 < rect.width / 2:
+                cx = rect.width * 0.6
             else:
-                cx = a.width * 0.4
-            return cx, a.height * 0.6
+                cx = rect.width * 0.4
+            return cx, rect.height * 0.6
 
         EYE_X, EYE_Y = self.translate_coordinates(
-                self.get_toplevel(), a.width / 2, a.height / 2)
-        EYE_HWIDTH = a.width
-        EYE_HHEIGHT = a.height
+                self.get_toplevel(), rect.width / 2, rect.height / 2)
+        EYE_HWIDTH = rect.width
+        EYE_HHEIGHT = rect.height
         BALL_DIST = EYE_HWIDTH / 4
 
         dx = self.x - EYE_X
@@ -94,64 +88,49 @@ class Eye(Gtk.DrawingArea):
                 dx = dist * cosa
                 dy = dist * sina
 
-        return a.width / 2 + dx, a.height / 2 + dy
+        return rect.width / 2 + dx, rect.height / 2 + dy
 
     def do_draw(self, context):
-        self.frame += 1
-        bounds = self.get_allocation()
-
-        eyeSize = min(bounds.width, bounds.height)
+        rect = self.get_allocation()
+        
+        eyeSize = min(rect.width, rect.height)
+        
         outlineWidth = eyeSize / 20.0
         pupilSize = eyeSize / 10.0
         pupilX, pupilY = self.computePupil()
-        dX = pupilX - bounds.width / 2.
-        dY = pupilY - bounds.height / 2.
+        dX = pupilX - rect.width / 2.
+        dY = pupilY - rect.height / 2.
         distance = math.sqrt(dX * dX + dY * dY)
         limit = eyeSize / 2 - outlineWidth * 2 - pupilSize
         if distance > limit:
-            pupilX = bounds.width / 2 + dX * limit / distance
-            pupilY = bounds.height / 2 + dY * limit / distance
-
-        self.context = context
-        #self.context.set_antialias(cairo.ANTIALIAS_NONE)
-
-        #set a clip region for the expose event.
-        #This reduces redrawing work (and time)
-        self.context.rectangle(bounds.x,
-                               bounds.y,
-                               bounds.width,
-                               bounds.height)
-        self.context.clip()
-
-        # background
-        self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0, 0, bounds.width, bounds.height)
-        self.context.fill()
-
+            pupilX = rect.width / 2 + dX * limit / distance
+            pupilY = rect.height / 2 + dY * limit / distance
+            
+        context.set_source_rgba(*self.fill_color.get_rgba())
+        context.rectangle(0, 0, rect.width, rect.height)
+        context.fill()
+        
         # eye ball
-        self.context.arc(bounds.width / 2,
-                         bounds.height / 2,
-                         eyeSize / 2 - outlineWidth / 2,
-                         0,
-                         360)
-        self.context.set_source_rgb(1, 1, 1)
-        self.context.fill()
-
+        context.set_source_rgb(1, 1, 1)
+        context.arc(rect.width / 2,
+            rect.height / 2,
+            eyeSize / 2 - outlineWidth / 2,
+            0, 360)
+        context.fill()
+        
         # outline
-        self.context.set_line_width(outlineWidth)
-        self.context.arc(bounds.width / 2,
-                         bounds.height / 2,
-                         eyeSize / 2 - outlineWidth / 2,
-                         0,
-                         360)
-        self.context.set_source_rgb(0, 0, 0)
-        self.context.stroke()
-
+        context.set_source_rgb(0, 0, 0)
+        context.set_line_width(outlineWidth)
+        context.arc(rect.width / 2,
+            rect.height / 2,
+            eyeSize / 2 - outlineWidth / 2,
+            0, 360)
+        context.stroke()
+        
         # pupil
-        self.context.arc(pupilX, pupilY, pupilSize, 0, 360)
-        self.context.set_source_rgb(0, 0, 0)
-        self.context.fill()
-
-        self.blink = False
-
+        context.set_source_rgb(0, 0, 0)
+        context.arc(pupilX, pupilY, pupilSize, 0, 360)
+        context.fill()
+        
         return True
+    

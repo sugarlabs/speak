@@ -40,48 +40,32 @@ class WaveformMouth(Mouth):
         self.y_mag = 0.7
 
     def do_draw(self, context):
-        """This function is the "expose"
-        event handler and does all the drawing."""
-
-        bounds = self.get_allocation()
-        self.param1 = bounds.height / 65536.0
-        self.param2 = bounds.height / 2.0
-
-        #Create context, disable antialiasing
-        self.context = context
-        #self.context.set_antialias(cairo.ANTIALIAS_NONE)
-
-        #set a clip region for the expose event.
-        #This reduces redrawing work (and time)
-        self.context.rectangle(bounds.x,
-                               bounds.y,
-                               bounds.width,
-                               bounds.height)
-        self.context.clip()
-
+        rect = self.get_allocation()
+        self.param1 = rect.height / 65536.0
+        self.param2 = rect.height / 2.0
+        
         # background
-        self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0, 0, bounds.width, bounds.height)
-        self.context.fill()
-
+        context.set_source_rgba(*self.fill_color.get_rgba())
+        context.paint()
+        
         # Draw the waveform
-        self.context.set_line_width(min(bounds.height / 10.0, 10))
+        context.set_line_width(min(rect.height / 10.0, 10))
         count = 0
         buflen = float(len(self.main_buffers))
         for value in self.main_buffers:
             peak = float(self.param1 * value * self.y_mag) +\
                    self.y_mag_bias_multiplier * self.param2
-
-            if peak >= bounds.height:
-                peak = bounds.height
+                
+            if peak >= rect.height:
+                peak = rect.height
             if peak <= 0:
                 peak = 0
-
-            x = count / buflen * bounds.width
-            self.context.line_to(x, bounds.height - peak)
-
+                
+            x = count / buflen * rect.width
+            context.line_to(x, rect.height - peak)
+            
             count += 1
-        self.context.set_source_rgb(0, 0, 0)
-        self.context.stroke()
-
+        context.set_source_rgb(0, 0, 0)
+        context.stroke()
+        
         return True

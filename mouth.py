@@ -24,13 +24,14 @@
 # This code is a super-stripped down version of the waveform view from Measure
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 from struct import unpack
 import numpy.core
 
 
 class Mouth(Gtk.DrawingArea):
+    
     def __init__(self, audioSource, fill_color):
-
         Gtk.DrawingArea.__init__(self)
         
         self.buffers = []
@@ -38,7 +39,9 @@ class Mouth(Gtk.DrawingArea):
         self.main_buffers = []
         self.newest_buffer = []
         self.fill_color = fill_color
-
+        
+        self.show_all()
+        
         audioSource.connect("new-buffer", self._new_buffer)
 
     def _new_buffer(self, obj, buf):
@@ -55,7 +58,7 @@ class Mouth(Gtk.DrawingArea):
         self.queue_draw()
         return True
 
-    def processBuffer(self, bounds):
+    def processBuffer(self):
         if len(self.main_buffers) == 0 or len(self.newest_buffer) == 0:
             self.volume = 0
         else:
@@ -63,46 +66,31 @@ class Mouth(Gtk.DrawingArea):
             # numpy.core.min(self.main_buffers)
 
     def do_draw(self, context):
-        """This function is the "expose" event
-        handler and does all the drawing."""
-        bounds = self.get_allocation()
-
-        self.processBuffer(bounds)
-
-        #Create context, disable antialiasing
-        self.context = context
-        #self.context.set_antialias(cairo.ANTIALIAS_NONE)
-
-        # set a clip region for the expose event.
-        # This reduces redrawing work (and time)
-        self.context.rectangle(bounds.x,
-                               bounds.y,
-                               bounds.width,
-                               bounds.height)
-        self.context.clip()
-
+        rect = self.get_allocation()
+        
+        self.processBuffer()
+        
         # background
-        self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0, 0, bounds.width, bounds.height)
-        self.context.fill()
+        context.set_source_rgba(*self.fill_color.get_rgba())
+        context.paint()
 
         # Draw the mouth
         volume = self.volume / 30000.
-        mouthH = volume * bounds.height
-        mouthW = volume ** 2 * (bounds.width / 2.) + bounds.width / 2.
+        mouthH = volume * rect.height
+        mouthW = volume ** 2 * (rect.width / 2.) + rect.width / 2.
         #        T
         #  L          R
         #        B
-        Lx, Ly = bounds.width / 2 - mouthW / 2, bounds.height / 2
-        Tx, Ty = bounds.width / 2, bounds.height / 2 - mouthH / 2
-        Rx, Ry = bounds.width / 2 + mouthW / 2, bounds.height / 2
-        Bx, By = bounds.width / 2, bounds.height / 2 + mouthH / 2
-        self.context.set_line_width(min(bounds.height / 10.0, 10))
-        self.context.move_to(Lx, Ly)
-        self.context.curve_to(Tx, Ty, Tx, Ty, Rx, Ry)
-        self.context.curve_to(Bx, By, Bx, By, Lx, Ly)
-        self.context.set_source_rgb(0, 0, 0)
-        self.context.close_path()
-        self.context.stroke()
-
+        Lx, Ly = rect.width / 2 - mouthW / 2, rect.height / 2
+        Tx, Ty = rect.width / 2, rect.height / 2 - mouthH / 2
+        Rx, Ry = rect.width / 2 + mouthW / 2, rect.height / 2
+        Bx, By = rect.width / 2, rect.height / 2 + mouthH / 2
+        context.set_line_width(min(rect.height / 10.0, 10))
+        context.move_to(Lx, Ly)
+        context.curve_to(Tx, Ty, Tx, Ty, Rx, Ry)
+        context.curve_to(Bx, By, Bx, By, Lx, Ly)
+        context.set_source_rgb(0, 0, 0)
+        context.close_path()
+        context.stroke()
+        
         return True

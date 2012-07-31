@@ -56,9 +56,9 @@ class FFTMouth(Mouth):
         self.scaleX = "10"
         self.scaleY = "10"
 
-    def processBuffer(self, bounds):
-        self.param1 = bounds.height / 65536.0
-        self.param2 = bounds.height / 2.0
+    def processBuffer(self, rect):
+        self.param1 = rect.height / 65536.0
+        self.param2 = rect.height / 2.0
 
         if(self.stop == False):
 
@@ -68,7 +68,7 @@ class FFTMouth(Mouth):
             self.fftx = fft(self.newest_buffer, 256, -1)
 
             self.fftx = self.fftx[0:self.freq_range * 2]
-            self.draw_interval = bounds.width / (self.freq_range * 2.)
+            self.draw_interval = rect.width / (self.freq_range * 2.)
 
             NumUniquePts = ceil((nfft + 1) / 2)
             self.buffers = abs(self.fftx) * 0.02
@@ -85,8 +85,8 @@ class FFTMouth(Mouth):
             temp_val_float = float(self.param1 * i * self.y_mag) +\
                              self.y_mag_bias_multiplier * self.param2
 
-            if(temp_val_float >= bounds.height):
-                temp_val_float = bounds.height - 25
+            if(temp_val_float >= rect.height):
+                temp_val_float = rect.height - 25
             if(temp_val_float <= 0):
                 temp_val_float = 25
             val.append(temp_val_float)
@@ -94,44 +94,28 @@ class FFTMouth(Mouth):
         self.peaks = val
 
     def do_draw(self, context):
-        """This function is the "expose" event
-        handler and does all the drawing."""
-
-        bounds = self.get_allocation()
-
-        self.processBuffer(bounds)
-
-        #Create context, disable antialiasing
-        self.context = context
-        #self.context.set_antialias(cairo.ANTIALIAS_NONE)
-
-        #set a clip region for the expose event.
-        #This reduces redrawing work (and time)
-        self.context.rectangle(bounds.x,
-                               bounds.y,
-                               bounds.width,
-                               bounds.height)
-        self.context.clip()
-
+        rect = self.get_allocation()
+        
+        self.processBuffer(rect)
+        
         # background
-        self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0, 0, bounds.width, bounds.height)
-        self.context.fill()
-
+        context.set_source_rgba(*self.fill_color.get_rgba())
+        context.paint()
+        
         # Draw the waveform
-        self.context.set_line_width(min(bounds.height / 10.0, 10))
-        self.context.set_source_rgb(0, 0, 0)
+        context.set_line_width(min(rect.height / 10.0, 10))
+        context.set_source_rgb(0, 0, 0)
         count = 0
         for peak in self.peaks:
-            self.context.line_to(bounds.width / 2 + count,
-                                 bounds.height / 2 - peak)
+            context.line_to(rect.width / 2 + count,
+                                 rect.height / 2 - peak)
             count += self.draw_interval
-        self.context.stroke()
+        context.stroke()
         count = 0
         for peak in self.peaks:
-            self.context.line_to(bounds.width / 2 - count,
-                                 bounds.height / 2 - peak)
+            context.line_to(rect.width / 2 - count,
+                rect.height / 2 - peak)
             count += self.draw_interval
-        self.context.stroke()
-
+        context.stroke()
+        
         return True
