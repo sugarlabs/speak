@@ -87,8 +87,6 @@ class BaseAudioGrab(GObject.GObject):
                     self._new_buffer, str(buffer))
             return True
         
-        sink = self.pipeline.get_by_name('sink')
-        
         def gstmessage_cb(bus, message):
             self._was_message = True
             
@@ -105,7 +103,10 @@ class BaseAudioGrab(GObject.GObject):
                     self.andle2 = GObject.timeout_add(500,
                         self._new_buffer, str(buffer))
                         
-            elif  message.type in (Gst.MessageType.EOS, Gst.MessageType.ERROR):
+            elif  message.type == Gst.MessageType.EOS:
+                pass
+            
+            elif message.type == Gst.MessageType.ERROR:
                 logger.debug(message.type)
                 self.stop_sound_device()
                 

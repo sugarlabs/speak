@@ -38,7 +38,6 @@ from sugar3.activity.widgets import StopButton
 #from shared_activity import SharedActivity
 from sugar3.activity import activity
 from combobox import ComboBox
-from toolitem import ToolWidget
 from messenger import Messenger, SERVICE
 from gettext import gettext as _
 
@@ -589,6 +588,22 @@ class SpeakActivity(activity.Activity):
         if self._mode == MODE_BOT:
             brain.load(self, voice)
 
-
 # activate gtk threads when this module loads
 Gdk.threads_init()
+
+class ToolWidget(Gtk.ToolItem):
+
+    def __init__(self, widget=None, label_text=""):
+        Gtk.ToolItem.__init__(self)
+        self.wid = widget
+        self.label = Gtk.Label(label_text)
+        self._box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        
+        if self.label:
+                self._box.pack_start(self.label, True, True, 5)
+        if self.wid:
+                self._box.pack_start(self.wid, True, True, 5)
+        
+        self.add(self._box)
+        self.show_all()
+        
