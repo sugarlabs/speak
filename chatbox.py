@@ -221,12 +221,14 @@ class ChatBox(Gtk.ScrolledWindow):
         self._conversation.set_homogeneous(False)
         self._conversation.props.spacing = style.LINE_WIDTH
         self._conversation.props.border_width = style.LINE_WIDTH
+        
         evbox = Gtk.EventBox()
         evbox.modify_bg(Gtk.StateType.NORMAL, style.COLOR_WHITE.get_gdk_color())
         evbox.add(self._conversation)
 
         self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.ALWAYS)
         self.add_with_viewport(evbox)
+        
         vadj = self.get_vadjustment()
         vadj.connect('changed', self._scroll_changed_cb)
         vadj.connect('value-changed', self._scroll_value_changed_cb)
@@ -272,7 +274,7 @@ class ChatBox(Gtk.ScrolledWindow):
         # Select text color based on fill color:
         color_fill_rgba = style.Color(color_fill_html).get_rgba()
         color_fill_gray = (color_fill_rgba[0] + color_fill_rgba[1] +
-                           color_fill_rgba[2]) / 3
+            color_fill_rgba[2]) / 3
         color_stroke = style.Color(color_stroke_html)
         color_fill = style.Color(color_fill_html)
         if color_fill_gray < 0.5:

@@ -10,7 +10,7 @@ class RoundBox(Gtk.Box):
     _BORDER_DEFAULT = style.LINE_WIDTH
 
     def __init__(self):
-        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.HORIZONTAL)
 
         self._x = None
         self._y = None

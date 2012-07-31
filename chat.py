@@ -54,14 +54,14 @@ class View(Gtk.EventBox):
         self._buddies = {}
 
         # buddies box
-
         self._buddies_list = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self._buddies_list.set_homogeneous(False)
         self._buddies_list.props.spacing = ENTRY_YPAD
 
         self._buddies_box = Gtk.ScrolledWindow()
         self._buddies_box.set_policy(Gtk.PolicyType.ALWAYS,
-                                     Gtk.PolicyType.NEVER)
+            Gtk.PolicyType.NEVER)
+            
         evbox = Gtk.EventBox()
         evbox.modify_bg(Gtk.StateType.NORMAL, BUDDIES_COLOR.get_gdk_color())
         evbox.add(self._buddies_list)
@@ -69,7 +69,6 @@ class View(Gtk.EventBox):
         self._buddies_box.add_with_viewport(evbox)
 
         # chat entry
-
         self._chat = ChatBox()
         self.me, my_face_widget = self._new_face(self._chat.owner,
                 ENTRY_COLOR)
@@ -107,12 +106,13 @@ class View(Gtk.EventBox):
         evbox.add(chat_box)
 
         # desk
-
         self._desk = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self._desk.pack_start(evbox, True, True, 0)
         self._desk.show_all()
 
         self.add(self._desk)
+        
+        self.show_all()
 
     def update(self, status):
         self.me.update(status)
@@ -135,8 +135,6 @@ class View(Gtk.EventBox):
         if text:
             self._chat.add_text(buddy, text)
             if not self.quiet:
-                # and self.props.window \
-                #    and self.props.window.is_visible():
                 face.say(text)
 
     def farewell(self, buddy):
