@@ -14,7 +14,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gst
+import gi
+gi.require_version('Gst', '1.0')
+
+from gi.repository import Gst
 from gi.repository import GObject
 import subprocess
 
@@ -23,91 +26,85 @@ logger = logging.getLogger('speak')
 
 supported = True
 
+GObject.threads_init()
+Gst.init(None)
 
 class BaseAudioGrab(GObject.GObject):
     __gsignals__ = {
-        'new-buffer': (GObject.SIGNAL_RUN_FIRST, None, [GObject.TYPE_PYOBJECT])
-    }
+        'new-buffer': (GObject.SIGNAL_RUN_FIRST,
+        None, [GObject.TYPE_PYOBJECT])}
 
     def __init__(self):
         GObject.GObject.__init__(self)
         self.pipeline = None
-        self.quiet = True
-
+        self.handle1 = None
+        self.handle2 = None
+        
     def restart_sound_device(self):
-        self.quiet = False
-
-        self.pipeline.set_state(gst.STATE_NULL)
-        self.pipeline.set_state(gst.STATE_PLAYING)
+        self.pipeline.set_state(Gst.State.NULL)
+        self.pipeline.set_state(Gst.State.PLAYING)
 
     def stop_sound_device(self):
         if self.pipeline is None:
             return
-
-        self.pipeline.set_state(gst.STATE_NULL)
-        # Shut theirs mouths down
+        self.pipeline.set_state(Gst.State.NULL)
         self._new_buffer('')
 
-        self.quiet = True
-
-    def make_pipeline(self, cmd):
+    def make_pipeline(self, wavpath):
         if self.pipeline is not None:
             self.stop_sound_device()
             del self.pipeline
 
-        # build a pipeline that reads the given file
-        # and sends it to both the real audio output
-        # and a fake one that we use to draw from
-        self.pipeline = gst.parse_launch(
-                cmd + ' ' \
-                '! decodebin ' \
-                '! tee name=tee ' \
-                'tee.! audioconvert ' \
-                    '! alsasink ' \
-                'tee.! queue ' \
-                    '! audioconvert ! fakesink name=sink')
-
+        self.pipeline = Gst.Pipeline()
+        self.player = Gst.ElementFactory.make("playbin", "espeak")
+        self.pipeline.add(self.player)
+        self.player.set_property("uri", Gst.filename_to_uri(wavpath))
+        self.pipeline.set_state(Gst.State.PLAYING)
+        
         def on_buffer(element, buffer, pad):
-            # we got a new buffer of data, ask for another
-            GObject.timeout_add(100, self._new_buffer, str(buffer))
+            if self.andle1:
+                GObject.source_remove(self.self.andle1)
+                self.andle1 = GObject.timeout_add(100,
+                    self._new_buffer, str(buffer))
             return True
-
+        
         sink = self.pipeline.get_by_name('sink')
-        sink.props.signal_handoffs = True
-        sink.connect('handoff', on_buffer)
-
+        
         def gstmessage_cb(bus, message):
             self._was_message = True
-
-            if message.type == gst.MESSAGE_WARNING:
+            
+            if message.type == Gst.MessageType.WARNING:
                 def check_after_warnings():
                     if not self._was_message:
                         self.stop_sound_device()
                     return True
-
+                
                 logger.debug(message.type)
                 self._was_message = False
-                GObject.timeout_add(500, self._new_buffer, str(buffer))
-
-            elif  message.type in (gst.MESSAGE_EOS, gst.MESSAGE_ERROR):
+                if self.andle2:
+                    GObject.source_remove(self.self.andle2)
+                    self.andle2 = GObject.timeout_add(500,
+                        self._new_buffer, str(buffer))
+                        
+            elif  message.type in (Gst.MessageType.EOS, Gst.MessageType.ERROR):
                 logger.debug(message.type)
                 self.stop_sound_device()
-
+                
         self._was_message = False
         bus = self.pipeline.get_bus()
         bus.add_signal_watch()
         bus.connect('message', gstmessage_cb)
-
+        
     def _new_buffer(self, buf):
-        if not self.quiet:
-            # pass captured audio to anyone who is interested
-            self.emit("new-buffer", buf)
+        self.emit("new-buffer", buf)
         return False
 
 # load proper espeak plugin
 try:
-    import gst
-    gst.element_factory_make('espeak')
+    import gi
+    gi.require_version('Gst', '1.0')
+    from gi.repository import Gst
+    Gst.element_factory_make('espeak', 'espeak')
     from espeak_gst import AudioGrabGst as AudioGrab
     from espeak_gst import *
     logger.info('use gst-plugins-espeak')

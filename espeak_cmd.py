@@ -27,9 +27,8 @@ RATE_MAX = 99
 
 
 class AudioGrabCmd(espeak.BaseAudioGrab):
+    
     def speak(self, status, text):
-        self.make_pipeline('filesrc name=file-source')
-
         # 175 is default value, min is 80
         rate = 60 + int(((175 - 80) * 2) * status.rate / RATE_MAX)
         wavpath = "/tmp/speak.wav"
@@ -37,12 +36,11 @@ class AudioGrabCmd(espeak.BaseAudioGrab):
         subprocess.call(["espeak", "-w", wavpath, "-p", str(status.pitch),
                 "-s", str(rate), "-v", status.voice.name, text],
                 stdout=subprocess.PIPE)
-
+                
         self.stop_sound_device()
-
-        # set the source file
-        self.pipeline.get_by_name("file-source").props.location = wavpath
-
+        
+        self.make_pipeline(wavpath)
+        
         # play
         self.restart_sound_device()
 
