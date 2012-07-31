@@ -34,9 +34,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: 2012-06-25 01:45+0200\n"
-"Last-Translator: Luis <valente.luis@gmail.com>\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
+"PO-Revision-Date: 2012-07-31 21:00+0200\n"
+"Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -209,8 +209,8 @@ msgid "Activity"
 msgstr "Atividade"
 
 #: voice.py:37
-msgid "Brazil"
-msgstr "Brasil"
+msgid "Portuguese (Brazil)"
+msgstr "Português (Brasil)"
 
 #: voice.py:38
 msgid "Swedish"
@@ -289,7 +289,7 @@ msgid "Greek"
 msgstr "Grego"
 
 #: voice.py:57
-msgid "Vietnam"
+msgid "Vietnamese"
 msgstr "Vietnamita"
 
 #: voice.py:59
@@ -301,8 +301,8 @@ msgid "Italian"
 msgstr "Italiano"
 
 #: voice.py:61
-msgid "Portugal"
-msgstr "Portugal"
+msgid "Portuguese"
+msgstr "Português"
 
 #: voice.py:62
 msgid "German"
@@ -331,3 +331,12 @@ msgstr "Polaco"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
+
+#~ msgid "Brazil"
+#~ msgstr "Brasil"
+
+#~ msgid "Vietnam"
+#~ msgstr "Vietnamita"
+
+#~ msgid "Portugal"
+#~ msgstr "Portugal"
