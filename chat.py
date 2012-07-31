@@ -25,9 +25,6 @@ import sugar3.graphics.style as style
 from roundbox import RoundBox
 from sugar3.graphics.toggletoolbutton import ToggleToolButton
 
-import eye
-import glasses
-import mouth
 import face
 import messenger
 from chatbox import ChatBox

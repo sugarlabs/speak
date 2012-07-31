@@ -133,4 +133,61 @@ class Eye(Gtk.DrawingArea):
         context.fill()
         
         return True
-    
+
+class Glasses(Eye):
+    def __init__(self, fill_color):
+        Eye.__init__(self, fill_color)
+        
+        self.show_all()
+        self.connect('draw', self.do_draw)
+
+    def do_draw(self, widget, context):
+        rect = self.get_allocation()
+
+        eyeSize = min(rect.width, rect.height)
+        outlineWidth = eyeSize / 20.0
+        pupilSize = eyeSize / 10.0
+        pupilX, pupilY = self.computePupil()
+        dX = pupilX - rect.width / 2.
+        dY = pupilY - rect.height / 2.
+        distance = math.sqrt(dX * dX + dY * dY)
+        limit = eyeSize / 2 - outlineWidth * 2 - pupilSize
+        if distance > limit:
+            pupilX = rect.width / 2 + dX * limit / distance
+            pupilY = rect.height / 2 + dY * limit / distance
+
+        # background
+        context.set_source_rgba(*self.fill_color.get_rgba())
+        context.paint()
+
+        def roundrect(x1, y1, x2, y2):
+            context.move_to(x1, (y1 + y2) / 2.)
+            context.curve_to(x1, y1, x1, y1, (x1 + x2) / 2., y1)
+            context.curve_to(x2, y1, x2, y1, x2, (y1 + y2) / 2.)
+            context.curve_to(x2, y2, x2, y2, (x1 + x2) / 2., y2)
+            context.curve_to(x1, y2, x1, y2, x1, (y1 + y2) / 2.)
+
+        # eye ball
+        context.set_source_rgb(1, 1, 1)
+        roundrect(outlineWidth,
+                  outlineWidth,
+                  rect.width - outlineWidth,
+                  rect.height - outlineWidth)
+        context.fill()
+
+        # outline
+        context.set_source_rgb(0, 0, 0)
+        context.set_line_width(outlineWidth)
+        roundrect(outlineWidth,
+                  outlineWidth,
+                  rect.width - outlineWidth,
+                  rect.height - outlineWidth)
+        #roundrect(0,0, rect.width,rect.height)
+        context.stroke()
+
+        # pupil
+        context.arc(pupilX, pupilY, pupilSize, 0, 360)
+        context.set_source_rgb(0, 0, 0)
+        context.fill()
+
+        return True

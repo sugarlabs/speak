@@ -31,7 +31,8 @@ import sugar3.graphics.style as style
 
 import espeak
 import eye
-import glasses
+from eye import Eye
+from eye import Glasses
 from mouth import Mouth
 from mouth import FFTMouth
 from mouth import WaveformMouth
@@ -52,7 +53,7 @@ class Status():
         self.mouth = Mouth
 
     def serialize(self):
-        eyes = {eye.Eye: 1, glasses.Glasses: 2}
+        eyes = {Eye: 1, Glasses: 2}
         
         mouths = {Mouth: 1,
             FFTMouth: 2,
@@ -67,7 +68,7 @@ class Status():
             'mouth': mouths[self.mouth]})
 
     def deserialize(self, buf):
-        eyes = {1: eye.Eye, 2: glasses.Glasses}
+        eyes = {1: Eye, 2: Glasses}
         
         mouths = {1: Mouth,
             2: FFTMouth,
@@ -141,11 +142,13 @@ class View(Gtk.EventBox):
         
         if status: self.status = status
         
-        for eye in self._eyes:
-            self._eyebox.remove(eye)
+        for child in self._eyebox.get_children():
+            self._eyebox.remove(child)
+            child.destroy()
             
         for child in self._mouthbox.get_children():
             self._mouthbox.remove(child)
+            child.destroy()
             
         self._eyes = []
         for i in self.status.eyes:

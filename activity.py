@@ -42,8 +42,8 @@ from toolitem import ToolWidget
 from messenger import Messenger, SERVICE
 from gettext import gettext as _
 
-import eye
-import glasses
+from eye import Eye
+from eye import Glasses
 from mouth import Mouth
 from mouth import FFTMouth
 from mouth import WaveformMouth
@@ -406,8 +406,8 @@ class SpeakActivity(activity.Activity):
         facebar.insert(mouth_shape_toolitem, -1)
 
         self.eye_shape_combo = ComboBox()
-        self.eye_shape_combo.append_item(eye.Eye, _("Round"))
-        self.eye_shape_combo.append_item(glasses.Glasses, _("Glasses"))
+        self.eye_shape_combo.append_item(Eye, _("Round"))
+        self.eye_shape_combo.append_item(Glasses, _("Glasses"))
         self.eye_shape_combo.set_active(0)
 
         eye_shape_toolitem = ToolWidget(
