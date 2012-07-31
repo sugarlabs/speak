@@ -28,6 +28,13 @@ from gi.repository import Gdk
 from struct import unpack
 import numpy.core
 
+try:
+    from numpy.oldnumeric import ceil
+    from numpy.fft import *
+except:
+    from Numeric import ceil
+    from FFT import *
+    
 
 class Mouth(Gtk.DrawingArea):
     
@@ -91,6 +98,136 @@ class Mouth(Gtk.DrawingArea):
         context.curve_to(Bx, By, Bx, By, Lx, Ly)
         context.set_source_rgb(0, 0, 0)
         context.close_path()
+        context.stroke()
+        
+        return True
+    
+class WaveformMouth(Mouth):
+    def __init__(self, audioSource, fill_color):
+
+        Mouth.__init__(self, audioSource, fill_color)
+
+        self.buffer_size = 100
+        self.peaks = []
+
+        self.stop = False
+
+        self.y_mag_bias_multiplier = 1
+        self.y_mag = 0.7
+
+    def do_draw(self, context):
+        rect = self.get_allocation()
+        self.param1 = rect.height / 65536.0
+        self.param2 = rect.height / 2.0
+        
+        # background
+        context.set_source_rgba(*self.fill_color.get_rgba())
+        context.paint()
+        
+        # Draw the waveform
+        context.set_line_width(min(rect.height / 10.0, 10))
+        count = 0
+        buflen = float(len(self.main_buffers))
+        for value in self.main_buffers:
+            peak = float(self.param1 * value * self.y_mag) +\
+                   self.y_mag_bias_multiplier * self.param2
+                
+            if peak >= rect.height:
+                peak = rect.height
+            if peak <= 0:
+                peak = 0
+                
+            x = count / buflen * rect.width
+            context.line_to(x, rect.height - peak)
+            
+            count += 1
+        context.set_source_rgb(0, 0, 0)
+        context.stroke()
+        
+        return True
+
+class FFTMouth(Mouth):
+    def __init__(self, audioSource, fill_color):
+
+        Mouth.__init__(self, audioSource, fill_color)
+
+        self.peaks = []
+
+        self.y_mag = 1.7
+        self.freq_range = 70
+        self.draw_interval = 1
+        self.num_of_points = 105
+
+        self.stop = False
+
+        #constant to multiply with self.param2 while scaling values
+        self.y_mag_bias_multiplier = 1
+
+        self.fftx = []
+
+        self.scaleX = "10"
+        self.scaleY = "10"
+
+    def processBuffer(self, rect):
+        self.param1 = rect.height / 65536.0
+        self.param2 = rect.height / 2.0
+
+        if(self.stop == False):
+
+            Fs = 48000
+            nfft = 65536
+            self.newest_buffer = self.newest_buffer[0:256]
+            self.fftx = fft(self.newest_buffer, 256, -1)
+
+            self.fftx = self.fftx[0:self.freq_range * 2]
+            self.draw_interval = rect.width / (self.freq_range * 2.)
+
+            NumUniquePts = ceil((nfft + 1) / 2)
+            self.buffers = abs(self.fftx) * 0.02
+            self.y_mag_bias_multiplier = 0.1
+            self.scaleX = "hz"
+            self.scaleY = ""
+
+        if(len(self.buffers) == 0):
+            return False
+
+        # Scaling the values
+        val = []
+        for i in self.buffers:
+            temp_val_float = float(self.param1 * i * self.y_mag) +\
+                             self.y_mag_bias_multiplier * self.param2
+
+            if(temp_val_float >= rect.height):
+                temp_val_float = rect.height - 25
+            if(temp_val_float <= 0):
+                temp_val_float = 25
+            val.append(temp_val_float)
+
+        self.peaks = val
+
+    def do_draw(self, context):
+        rect = self.get_allocation()
+        
+        self.processBuffer(rect)
+        
+        # background
+        context.set_source_rgba(*self.fill_color.get_rgba())
+        context.paint()
+        
+        # Draw the waveform
+        context.set_line_width(min(rect.height / 10.0, 10))
+        context.set_source_rgb(0, 0, 0)
+        count = 0
+        for peak in self.peaks:
+            context.line_to(rect.width / 2 + count,
+                                 rect.height / 2 - peak)
+            count += self.draw_interval
+        context.stroke()
+        count = 0
+        for peak in self.peaks:
+            context.line_to(rect.width / 2 - count,
+                rect.height / 2 - peak)
+            count += self.draw_interval
         context.stroke()
         
         return True

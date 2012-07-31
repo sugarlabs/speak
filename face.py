@@ -32,10 +32,10 @@ import sugar3.graphics.style as style
 import espeak
 import eye
 import glasses
-import mouth
+from mouth import Mouth
+from mouth import FFTMouth
+from mouth import WaveformMouth
 import voice
-import fft_mouth
-import waveform_mouth
 
 logger = logging.getLogger('speak')
 
@@ -49,14 +49,14 @@ class Status():
         self.rate = espeak.RATE_MAX / 2
 
         self.eyes = [eye.Eye] * 2
-        self.mouth = mouth.Mouth
+        self.mouth = Mouth
 
     def serialize(self):
         eyes = {eye.Eye: 1, glasses.Glasses: 2}
         
-        mouths = {mouth.Mouth: 1,
-            fft_mouth.FFTMouth: 2,
-            waveform_mouth.WaveformMouth: 3}
+        mouths = {Mouth: 1,
+            FFTMouth: 2,
+            WaveformMouth: 3}
 
         return cjson.encode({
             'voice': {'language': self.voice.language,
@@ -69,9 +69,9 @@ class Status():
     def deserialize(self, buf):
         eyes = {1: eye.Eye, 2: glasses.Glasses}
         
-        mouths = {1: mouth.Mouth,
-            2: fft_mouth.FFTMouth,
-            3: waveform_mouth.WaveformMouth}
+        mouths = {1: Mouth,
+            2: FFTMouth,
+            3: WaveformMouth}
 
         data = cjson.decode(buf)
         self.voice = voice.Voice(data['voice']['language'],

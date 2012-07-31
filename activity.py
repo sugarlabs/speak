@@ -44,9 +44,9 @@ from gettext import gettext as _
 
 import eye
 import glasses
-import mouth
-import fft_mouth
-import waveform_mouth
+from mouth import Mouth
+from mouth import FFTMouth
+from mouth import WaveformMouth
 import voice
 import face
 import brain
@@ -394,10 +394,10 @@ class SpeakActivity(activity.Activity):
         facebar = Gtk.Toolbar()
 
         self.mouth_shape_combo = ComboBox()
-        self.mouth_shape_combo.append_item(mouth.Mouth, _("Simple"))
-        self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth,
+        self.mouth_shape_combo.append_item(Mouth, _("Simple"))
+        self.mouth_shape_combo.append_item(WaveformMouth,
                                            _("Waveform"))
-        self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, _("Frequency"))
+        self.mouth_shape_combo.append_item(FFTMouth, _("Frequency"))
         self.mouth_shape_combo.set_active(0)
 
         mouth_shape_toolitem = ToolWidget(
