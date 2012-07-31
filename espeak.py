@@ -22,9 +22,12 @@ from gi.repository import GObject
 import subprocess
 
 import logging
+import re
+
 logger = logging.getLogger('speak')
 
-supported = True
+PITCH_MAX = 200
+RATE_MAX = 200
 
 GObject.threads_init()
 Gst.init(None)
@@ -39,6 +42,22 @@ class BaseAudioGrab(GObject.GObject):
         self.pipeline = None
         self.handle1 = None
         self.handle2 = None
+        
+    def speak(self, status, text):
+        # 175 is default value, min is 80
+        rate = 60 + int(((175 - 80) * 2) * status.rate / RATE_MAX)
+        wavpath = "/tmp/speak.wav"
+
+        subprocess.call(["espeak", "-w", wavpath, "-p", str(status.pitch),
+                "-s", str(rate), "-v", status.voice.name, text],
+                stdout=subprocess.PIPE)
+                
+        self.stop_sound_device()
+        
+        self.make_pipeline(wavpath)
+        
+        # play
+        self.restart_sound_device()
         
     def restart_sound_device(self):
         self.pipeline.set_state(Gst.State.NULL)
@@ -98,21 +117,21 @@ class BaseAudioGrab(GObject.GObject):
     def _new_buffer(self, buf):
         self.emit("new-buffer", buf)
         return False
+    
+def voices():
+    out = []
+    result = subprocess.Popen(["espeak", "--voices"],
+        stdout=subprocess.PIPE).communicate()[0]
 
-# load proper espeak plugin
-try:
-    import gi
-    gi.require_version('Gst', '1.0')
-    from gi.repository import Gst
-    Gst.element_factory_make('espeak', 'espeak')
-    from espeak_gst import AudioGrabGst as AudioGrab
-    from espeak_gst import *
-    logger.info('use gst-plugins-espeak')
-except Exception, e:
-    logger.info('disable gst-plugins-espeak: %s' % e)
-    if subprocess.call('which espeak', shell=True) == 0:
-        from espeak_cmd import AudioGrabCmd as AudioGrab
-        from espeak_cmd import *
-    else:
-        logger.info('disable espeak_cmd')
-        supported = False
+    for line in result.split('\n'):
+        m = re.match(r'\s*\d+\s+([\w-]+)\s+([MF])\s+([\w_-]+)\s+(.+)', line)
+        if not m:
+            continue
+        language, gender, name, stuff = m.groups()
+        if stuff.startswith('mb/'):  # or \
+                #name in ('en-rhotic','english_rp','english_wmids'):
+            # these voices don't produce sound
+            continue
+        out.append((language, name))
+
+    return out

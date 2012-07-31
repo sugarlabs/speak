@@ -48,6 +48,7 @@ class Mouth(Gtk.DrawingArea):
         self.fill_color = fill_color
         
         self.show_all()
+        self.connect('draw', self.draw_mouth)
         
         audioSource.connect("new-buffer", self._new_buffer)
 
@@ -72,8 +73,8 @@ class Mouth(Gtk.DrawingArea):
             self.volume = numpy.core.max(self.main_buffers)  # -\
             # numpy.core.min(self.main_buffers)
 
-    def do_draw(self, context):
-        rect = self.get_allocation()
+    def draw_mouth(self, widget, context):
+        rect = widget.get_allocation()
         
         self.processBuffer()
         
@@ -114,8 +115,10 @@ class WaveformMouth(Mouth):
 
         self.y_mag_bias_multiplier = 1
         self.y_mag = 0.7
+        
+        self.show_all()
 
-    def do_draw(self, context):
+    def draw_wave(self, context):
         rect = self.get_allocation()
         self.param1 = rect.height / 65536.0
         self.param2 = rect.height / 2.0
@@ -167,8 +170,11 @@ class FFTMouth(Mouth):
 
         self.scaleX = "10"
         self.scaleY = "10"
+        
+        self.show_all()
+        self.connect('draw', self.draw_fftmouth)
 
-    def processBuffer(self, rect):
+    def newprocessBuffer(self, rect):
         self.param1 = rect.height / 65536.0
         self.param2 = rect.height / 2.0
 
@@ -205,10 +211,10 @@ class FFTMouth(Mouth):
 
         self.peaks = val
 
-    def do_draw(self, context):
-        rect = self.get_allocation()
+    def draw_fftmouth(self, widget, context):
+        rect = widget.get_allocation()
         
-        self.processBuffer(rect)
+        self.newprocessBuffer(rect)
         
         # background
         context.set_source_rgba(*self.fill_color.get_rgba())

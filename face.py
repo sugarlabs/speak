@@ -30,6 +30,7 @@ from gi.repository import Gdk
 import sugar3.graphics.style as style
 
 import espeak
+from espeak import BaseAudioGrab
 import eye
 from eye import Eye
 from eye import Glasses
@@ -104,7 +105,7 @@ class View(Gtk.EventBox):
         self.fill_color = fill_color
         self.modify_bg(0, self.fill_color.get_gdk_color())
         
-        self._audio = espeak.AudioGrab()
+        self._audio = BaseAudioGrab()
         
         self._eyes = []
         self._eyebox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)

@@ -139,10 +139,10 @@ class Glasses(Eye):
         Eye.__init__(self, fill_color)
         
         self.show_all()
-        self.connect('draw', self.do_draw)
+        self.connect('draw', self.draw_glass)
 
-    def do_draw(self, widget, context):
-        rect = self.get_allocation()
+    def draw_glass(self, widget, context):
+        rect = widget.get_allocation()
 
         eyeSize = min(rect.width, rect.height)
         outlineWidth = eyeSize / 20.0
