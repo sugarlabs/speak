@@ -349,7 +349,7 @@ class SpeakActivity(activity.Activity):
 
         self.pitchadj = Gtk.Adjustment(self.face.status.pitch, 0,
                 espeak.PITCH_MAX, 1, espeak.PITCH_MAX / 10, 0)
-        pitchbar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
+        pitchbar = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL)
         pitchbar.set_adjustment(self.pitchadj)
         pitchbar.set_draw_value(False)
         # FIXME: Gtk.UPDATE_DISCONTINUOUS
@@ -364,7 +364,7 @@ class SpeakActivity(activity.Activity):
 
         self.rateadj = Gtk.Adjustment(self.face.status.rate, 0,
                                    espeak.RATE_MAX, 1, espeak.RATE_MAX / 10, 0)
-        ratebar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
+        ratebar = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL)
         ratebar.set_adjustment(self.rateadj)
         ratebar.set_draw_value(False)
         # FIXME: Gtk.UPDATE_DISCONTINUOUS
@@ -415,7 +415,7 @@ class SpeakActivity(activity.Activity):
         facebar.insert(eye_shape_toolitem, -1)
 
         self.numeyesadj = Gtk.Adjustment(2, 1, 5, 1, 1, 0)
-        numeyesbar = Gtk.Scale(orientation = Gtk.Orientation.HORIZONTAL)
+        numeyesbar = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL)
         numeyesbar.set_adjustment(self.numeyesadj)
         numeyesbar.set_draw_value(False)
         # FIXME: Gtk.UPDATE_DISCONTINUOUS
@@ -591,6 +591,7 @@ class SpeakActivity(activity.Activity):
 # activate gtk threads when this module loads
 Gdk.threads_init()
 
+
 class ToolWidget(Gtk.ToolItem):
 
     def __init__(self, widget=None, label_text=""):
@@ -606,4 +607,3 @@ class ToolWidget(Gtk.ToolItem):
         
         self.add(self._box)
         self.show_all()
-        
