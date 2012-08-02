@@ -21,10 +21,7 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-import gi
 from gi.repository import Gtk
-from gi.repository import Gdk
-from gi.repository import GObject
 import math
 
 class Eye(Gtk.DrawingArea):
