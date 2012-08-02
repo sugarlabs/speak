@@ -76,7 +76,7 @@ if __name__ == '__main__':
     win = Gtk.Window()
     win.connect('destroy', Gtk.main_quit)
     win.set_default_size(450, 550)
-    vbox = Gtk.VBox()
+    vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
     box1 = RoundBox()
     vbox.add(box1)
