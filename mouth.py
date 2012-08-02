@@ -101,7 +101,8 @@ class Mouth(Gtk.DrawingArea):
         context.stroke()
         
         return True
-    
+
+
 class WaveformMouth(Mouth):
     def __init__(self, audioSource, fill_color):
 
@@ -147,6 +148,7 @@ class WaveformMouth(Mouth):
         context.stroke()
         
         return True
+
 
 class FFTMouth(Mouth):
     def __init__(self, audioSource, fill_color):
