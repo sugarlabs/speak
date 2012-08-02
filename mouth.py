@@ -24,7 +24,6 @@
 # This code is a super-stripped down version of the waveform view from Measure
 
 from gi.repository import Gtk
-from gi.repository import Gdk
 from struct import unpack
 import numpy.core
 
