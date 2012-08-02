@@ -217,7 +217,7 @@ class ChatBox(Gtk.ScrolledWindow):
         self._last_msg = None
         self._chat_log = ''
 
-        self._conversation = Gtk.VBox()
+        self._conversation = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self._conversation.set_homogeneous(False)
         self._conversation.props.spacing = style.LINE_WIDTH
         self._conversation.props.border_width = style.LINE_WIDTH
@@ -314,11 +314,11 @@ class ChatBox(Gtk.ScrolledWindow):
             self._last_msg = rb
             if not status_message:
                 name = ColorLabel(text=nick + ':', color=text_color)
-                name_vbox = Gtk.VBox()
+                name_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
                 name_vbox.pack_start(name, False, False, 0)
                 rb.pack_start(name_vbox, False, False, 0)
             message = TextBox(text_color, color_fill, lang_rtl)
-            vbox = Gtk.VBox()
+            vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             vbox.pack_start(message, True, True, 0)
             rb.pack_start(vbox, True, True, 0)
             self._last_msg = message
