@@ -141,7 +141,8 @@ class View(Gtk.EventBox):
     def update(self, status=None):
         """ Re packaged the mouth and eyes according to quantity."""
         
-        if status: self.status = status
+        if status:
+                self.status = status
         
         for child in self._eyebox.get_children():
             self._eyebox.remove(child)
