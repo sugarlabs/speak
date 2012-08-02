@@ -18,18 +18,18 @@
 
 from gi.repository import Gtk
 from gi.repository import Gdk
-import logging
 from gi.repository import Pango
+
+import logging
 import re
+
 from datetime import datetime
 from gettext import gettext as _
 
 from sugar3.graphics import style
-from sugar3.graphics.palette import Palette
 #from sugar3.graphics.palette import CanvasInvoker
 from sugar3.graphics.palette import MouseSpeedDetector
 from sugar3.presence import presenceservice
-from sugar3.graphics.menuitem import MenuItem
 from sugar3.activity.activity import get_activity_root
 from roundbox import RoundBox
 
