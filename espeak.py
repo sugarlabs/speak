@@ -32,6 +32,7 @@ RATE_MAX = 200
 GObject.threads_init()
 Gst.init(None)
 
+
 class BaseAudioGrab(GObject.GObject):
     __gsignals__ = {
         'new-buffer': (GObject.SIGNAL_RUN_FIRST,
@@ -118,7 +119,8 @@ class BaseAudioGrab(GObject.GObject):
     def _new_buffer(self, buf):
         self.emit("new-buffer", buf)
         return False
-    
+
+
 def voices():
     out = []
     result = subprocess.Popen(["espeak", "--voices"],
