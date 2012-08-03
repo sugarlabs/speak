@@ -82,9 +82,9 @@ class BaseAudioGrab(GObject.GObject):
         self.pipeline.set_state(Gst.State.PLAYING)
         
         def on_buffer(element, buffer, pad):
-            if self.andle1:
+            if self.handle1:
                 GObject.source_remove(self.self.andle1)
-                self.andle1 = GObject.timeout_add(100,
+                self.handle1 = GObject.timeout_add(100,
                     self._new_buffer, str(buffer))
             return True
         
@@ -99,9 +99,9 @@ class BaseAudioGrab(GObject.GObject):
                 
                 logger.debug(message.type)
                 self._was_message = False
-                if self.andle2:
+                if self.handle2:
                     GObject.source_remove(self.self.andle2)
-                    self.andle2 = GObject.timeout_add(500,
+                    self.handle2 = GObject.timeout_add(500,
                         self._new_buffer, str(buffer))
                         
             elif  message.type == Gst.MessageType.EOS:
