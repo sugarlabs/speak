@@ -32,34 +32,30 @@ class RoundBox(Gtk.Box):
         self._y = allocation.y
         self._width = allocation.width
         self._height = allocation.height
-
-    def do_draw(self, context):
+        
+    def do_draw(self, cr):
         rect = self.get_allocation()
-        # set a clip region for the expose event
-        context.rectangle(rect.x, rect.y,
-                               rect.width, rect.height)
-        context.clip()
-        self.draw(context)
-        return False
-
-    def draw(self, cr):
-        rect = self.get_allocation()
+        cr.rectangle(rect.x, rect.y, rect.width, rect.height)
+        cr.clip()
+        
         x = rect.x + self._BORDER_DEFAULT / 2
         y = rect.y + self._BORDER_DEFAULT / 2
         width = rect.width - self._BORDER_DEFAULT
         height = rect.height - self._BORDER_DEFAULT
 
         cr.move_to(x + self._radius, y)
+        
         cr.arc(x + width - self._radius, y + self._radius,
-               self._radius, math.pi * 1.5, math.pi * 2)
+            self._radius, math.pi * 1.5, math.pi * 2)
         cr.arc(x + width - self._radius, y + height - self._radius,
-               self._radius, 0, math.pi * 0.5)
+            self._radius, 0, math.pi * 0.5)
         cr.arc(x + self._radius, y + height - self._radius,
-               self._radius, math.pi * 0.5, math.pi)
+            self._radius, math.pi * 0.5, math.pi)
         cr.arc(x + self._radius, y + self._radius, self._radius,
-               math.pi, math.pi * 1.5)
+            math.pi, math.pi * 1.5)
+            
         cr.close_path()
-
+        
         if self.background_color is not None:
             r, g, b, __ = self.background_color.get_rgba()
             cr.set_source_rgb(r, g, b)

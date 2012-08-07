@@ -199,7 +199,7 @@ class ColorLabel(Gtk.Label):
         Gtk.Label.__init__(self)
         self.set_use_markup(True)
         self.set_markup(text)
-        self.props.selectable = True
+        self.set_selectable(True)
 
 
 class ChatBox(Gtk.ScrolledWindow):
@@ -219,8 +219,8 @@ class ChatBox(Gtk.ScrolledWindow):
 
         self._conversation = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self._conversation.set_homogeneous(False)
-        self._conversation.props.spacing = style.LINE_WIDTH
-        self._conversation.props.border_width = style.LINE_WIDTH
+        self._conversation.set_spacing(style.LINE_WIDTH)
+        self._conversation.set_border_width(style.LINE_WIDTH)
         
         evbox = Gtk.EventBox()
         evbox.modify_bg(Gtk.StateType.NORMAL, style.COLOR_WHITE.get_gdk_color())
@@ -306,8 +306,8 @@ class ChatBox(Gtk.ScrolledWindow):
             screen_width = Gdk.Screen.width()
             # keep space to the scrollbar
             rb.set_size_request(screen_width - 50, -1)
-            rb.props.border_width = style.DEFAULT_PADDING
-            rb.props.spacing = style.DEFAULT_SPACING
+            rb.set_border_width(style.DEFAULT_PADDING)
+            rb.set_spacing(style.DEFAULT_SPACING)
             rb.background_color = color_fill
             rb.border_color = color_stroke
             self._last_msg_sender = buddy

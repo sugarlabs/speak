@@ -56,7 +56,7 @@ class View(Gtk.EventBox):
         # buddies box
         self._buddies_list = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self._buddies_list.set_homogeneous(False)
-        self._buddies_list.props.spacing = ENTRY_YPAD
+        self._buddies_list.set_spacing(ENTRY_YPAD)
 
         self._buddies_box = Gtk.ScrolledWindow()
         self._buddies_box.set_policy(Gtk.PolicyType.ALWAYS,
@@ -79,7 +79,7 @@ class View(Gtk.EventBox):
         chat_post.modify_base(Gtk.StateType.INSENSITIVE,
                 style.COLOR_WHITE.get_gdk_color())
         chat_post.connect('key-press-event', self._key_press_cb)
-        chat_post.props.wrap_mode = Gtk.WrapMode.WORD_CHAR
+        chat_post.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         chat_post.set_size_request(-1, BUDDY_SIZE - ENTRY_YPAD * 2)
         chat_post_box = RoundBox()
         chat_post_box.background_color = style.COLOR_WHITE

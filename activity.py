@@ -35,7 +35,7 @@ from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 
-#from shared_activity import SharedActivity
+from shared_activity import SharedActivity
 from sugar3.activity import activity
 from combobox import ComboBox
 from messenger import Messenger, SERVICE
@@ -79,16 +79,15 @@ class CursorFactory:
         return self.cursors[cur_type]
 
 
-class SpeakActivity(activity.Activity):
+class SpeakActivity(SharedActivity):
     
     def __init__(self, handle):
-        activity.Activity.__init__(self, handle)
         
         self.notebook = Gtk.Notebook()
         self.notebook.connect_after('map', self.__map_canvasactivity_cb)
-
-        #SharedActivity.__init__(self, self.notebook, SERVICE, handle)
-
+        
+        SharedActivity.__init__(self, self.notebook, SERVICE, handle)
+        
         self._cursor = None
         self.set_cursor(Gdk.CursorType.LEFT_PTR)
         self.__resume_filename = None
@@ -97,10 +96,10 @@ class SpeakActivity(activity.Activity):
         self.__state = _NEW_INSTANCE
         self._mode = MODE_TYPE
         self.numeyesadj = None
-
+        
         # make an audio device for playing back and rendering audio
         self.connect("notify::active", self._activeCb)
-
+        
         # make a box to type into - combo for user to type
         self.entrycombo = Gtk.ComboBoxText.new_with_entry()
         self.entrycombo.connect("changed", self._combo_changed_cb)
@@ -130,8 +129,8 @@ class SpeakActivity(activity.Activity):
 
         # desktop
         self.notebook.show()
-        self.notebook.props.show_border = False
-        self.notebook.props.show_tabs = False
+        self.notebook.set_show_border(False)
+        self.notebook.set_show_tabs(False)
 
         box.show_all()
         self.notebook.append_page(box, Gtk.Label(""))
@@ -210,8 +209,7 @@ class SpeakActivity(activity.Activity):
         toolbox.toolbar.insert(separator, -1)
                 
         toolbox.toolbar.insert(StopButton(self), -1)
-
-        self.set_canvas(self.notebook)
+        
         toolbox.show_all()
         self.toolbar_box = toolbox
 
@@ -305,7 +303,7 @@ class SpeakActivity(activity.Activity):
         self.eye_shape_combo.select(status.eyes[0])
         self.numeyesadj.set_value(len(status.eyes))
 
-        self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
+        self.entry.set_text(cfg['text'].encode('utf-8', 'ignore'))
         for i in cfg['history']:
             self.entrycombo.append_text(i.encode('utf-8', 'ignore'))
 
@@ -313,7 +311,7 @@ class SpeakActivity(activity.Activity):
 
     def save_instance(self, file_path):
         cfg = {'status': self.face.status.serialize(),
-                'text': unicode(self.entry.props.text, 'utf-8', 'ignore'),
+                'text': unicode(self.entry.get_text(), 'utf-8', 'ignore'),
                 'history': [unicode(i[0], 'utf-8', 'ignore') \
                         for i in self.entrycombo.get_model()],
                 }
@@ -324,10 +322,10 @@ class SpeakActivity(activity.Activity):
 
     def _cursor_moved_cb(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
-        index = entry.props.cursor_position
+        index = entry.get_property('cursor_position')
         layout = entry.get_layout()
         pos = layout.get_cursor_pos(index)
-        x = pos[0].x / Pango.SCALE - entry.props.scroll_offset
+        x = pos[0].x / Pango.SCALE - entry.get_property('scroll_offset')
         y = entry.get_allocation().y
         self.face.look_at(pos=(x, y))
 
@@ -482,14 +480,14 @@ class SpeakActivity(activity.Activity):
 
     def _entry_activate_cb(self, entry):
         # the user pressed Return, say the text and clear it out
-        text = entry.props.text
+        text = entry.get_text()
         if text:
             self.face.look_ahead()
 
             # speak the text
             if self._mode == MODE_BOT:
                 self.face.say(
-                        brain.respond(self.voices.props.value, text))
+                        brain.respond(self.voices.get_value(), text))
             else:
                 self.face.say(text)
 
@@ -500,7 +498,7 @@ class SpeakActivity(activity.Activity):
                 self.entrycombo.append_text(text)
                 # don't let the history get too big
                 while len(history) > 20:
-                    self.entrycombo.remove_text(0)
+                    self.entrycombo.remove(0)
                 # select the new item
                 self.entrycombo.set_active(len(history) - 1)
             # select the whole text
@@ -508,7 +506,7 @@ class SpeakActivity(activity.Activity):
 
     def _activeCb(self, widget, pspec):
         # only generate sound when this activity is active
-        if not self.props.active:
+        if not self.is_active():
             self.face.shut_up()
             self.chat.shut_up()
 
@@ -529,7 +527,7 @@ class SpeakActivity(activity.Activity):
         self.face.shut_up()
         self.notebook.set_current_page(0)
 
-        old_voice = self.voices.props.value
+        old_voice = self.voices.get_value()
         self.voices.set_model(voices_model)
         self._set_voice(old_voice)
 
@@ -542,7 +540,7 @@ class SpeakActivity(activity.Activity):
         self.face.shut_up()
         self.notebook.set_current_page(0)
 
-        old_voice = self.voices.props.value
+        old_voice = self.voices.get_value()
         self.voices.set_model(voices_model)
 
         new_voice = [i[0] for i in voices_model
@@ -560,7 +558,7 @@ class SpeakActivity(activity.Activity):
 
         self._set_voice(new_voice)
 
-        if not brain.load(self, self.voices.props.value, sorry):
+        if not brain.load(self, self.voices.get_value(), sorry):
             if sorry:
                 self.face.say_notification(sorry)
 
@@ -574,7 +572,7 @@ class SpeakActivity(activity.Activity):
         self.face.shut_up()
         self.notebook.set_current_page(1)
 
-        old_voice = self.voices.props.value
+        old_voice = self.voices.get_value()
         self.voices.set_model(voices_model)
         self._set_voice(old_voice)
 

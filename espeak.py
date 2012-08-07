@@ -41,8 +41,8 @@ class BaseAudioGrab(GObject.GObject):
     def __init__(self):
         GObject.GObject.__init__(self)
         self.pipeline = None
-        self.handle1 = None
-        self.handle2 = None
+        self.handle = None
+        self._was_message = False
         
     def speak(self, status, text):
         # 175 is default value, min is 80
@@ -57,70 +57,108 @@ class BaseAudioGrab(GObject.GObject):
         
         self.make_pipeline(wavpath)
         
-        # play
-        self.restart_sound_device()
-        
     def restart_sound_device(self):
-        self.pipeline.set_state(Gst.State.NULL)
-        self.pipeline.set_state(Gst.State.PLAYING)
+        try:
+            self.pipeline.set_state(Gst.State.NULL)
+            self.pipeline.set_state(Gst.State.READY)
+            self.pipeline.set_state(Gst.State.PLAYING)
+        except:
+            pass
 
     def stop_sound_device(self):
         if self.pipeline is None:
             return
-        self.pipeline.set_state(Gst.State.NULL)
-        self._new_buffer('')
+        try:
+            self.pipeline.set_state(Gst.State.NULL)
+            self.pipeline.set_state(Gst.State.READY)
+            self._new_buffer('')
+        except:
+            pass
 
     def make_pipeline(self, wavpath):
         if self.pipeline is not None:
-            self.stop_sound_device()
-            del self.pipeline
-
+            self.pipeline.set_state(Gst.State.NULL)
+            del(self.pipeline)
+            
         self.pipeline = Gst.Pipeline()
-        self.player = Gst.ElementFactory.make("playbin", "espeak")
-        self.pipeline.add(self.player)
-        self.player.set_property("uri", Gst.filename_to_uri(wavpath))
-        self.pipeline.set_state(Gst.State.PLAYING)
         
-        def on_buffer(element, buffer, pad):
-            if self.handle1:
-                GObject.source_remove(self.self.andle1)
-                self.handle1 = GObject.timeout_add(100,
-                    self._new_buffer, str(buffer))
-            return True
+        file = Gst.ElementFactory.make("filesrc", "espeak")
+        wavparse = Gst.ElementFactory.make("wavparse", "wavparse")
+        audioconvert = Gst.ElementFactory.make("audioconvert", "audioconvert")
+        tee = Gst.ElementFactory.make('tee', "tee")
+        # FIXME: alsasink no more, pulseaudio causes:
+        # gst_object_unref: assertion `((GObject *) object)->ref_count > 0' failed
+        playsink = Gst.ElementFactory.make("playsink", "playsink")
+        queue1 = Gst.ElementFactory.make("queue", "queue1")
+        fakesink = Gst.ElementFactory.make("fakesink", "fakesink")
+        queue2 = Gst.ElementFactory.make("queue", "queue2")
         
-        def gstmessage_cb(bus, message):
-            self._was_message = True
-            
-            if message.type == Gst.MessageType.WARNING:
-                def check_after_warnings():
-                    if not self._was_message:
-                        self.stop_sound_device()
-                    return True
-                
-                logger.debug(message.type)
-                self._was_message = False
-                if self.handle2:
-                    GObject.source_remove(self.self.andle2)
-                    self.handle2 = GObject.timeout_add(500,
-                        self._new_buffer, str(buffer))
-                        
-            elif  message.type == Gst.MessageType.EOS:
-                pass
-            
-            elif message.type == Gst.MessageType.ERROR:
-                logger.debug(message.type)
-                self.stop_sound_device()
-                
+        self.pipeline.add(file)
+        self.pipeline.add(wavparse)
+        self.pipeline.add(audioconvert)
+        self.pipeline.add(tee)
+        self.pipeline.add(queue1)
+        self.pipeline.add(playsink)
+        self.pipeline.add(queue2)
+        self.pipeline.add(fakesink)
+        
+        file.link(wavparse)
+        wavparse.link(tee)
+        
+        tee.link(queue1)
+        queue1.link(audioconvert)
+        audioconvert.link(playsink)
+        
+        tee.link(queue2)
+        queue2.link(fakesink)
+        
+        file.set_property("location", wavpath)
+        
+        fakesink.connect('handoff', self.on_buffer)
+        
         self._was_message = False
         bus = self.pipeline.get_bus()
         bus.add_signal_watch()
-        bus.connect('message', gstmessage_cb)
+        bus.connect('message', self.gstmessage_cb)
         
+        self.pipeline.set_state(Gst.State.PLAYING)
+    
+    def gstmessage_cb(self, bus, message):
+        self._was_message = True
+        
+        if message.type == Gst.MessageType.WARNING:
+            def check_after_warnings():
+                if not self._was_message:
+                    self.stop_sound_device()
+                return True
+            
+            logger.debug(message.type)
+            self._was_message = False
+            if self.handle:
+                GObject.source_remove(self.handle)
+                self.handle = GObject.timeout_add(500,
+                    self._new_buffer, str(buffer))
+                    
+        elif  message.type == Gst.MessageType.EOS:
+            self.pipeline.set_state(Gst.State.NULL)
+            
+        elif message.type == Gst.MessageType.ERROR:
+            err, debug = message.parse_error()
+            logger.debug(err)
+            self.stop_sound_device()
+            
+    def on_buffer(self, element, buffer, pad):
+        # FIXME: currently not running handoff
+        if self.handle:
+            GObject.source_remove(self.handle)
+            self.handle = GObject.timeout_add(100,
+                self._new_buffer, str(buffer))
+        return True
+    
     def _new_buffer(self, buf):
         self.emit("new-buffer", buf)
         return False
-
-
+    
 def voices():
     out = []
     result = subprocess.Popen(["espeak", "--voices"],
