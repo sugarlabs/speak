@@ -22,7 +22,7 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import cjson
+import json
 
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -60,7 +60,7 @@ class Status():
             FFTMouth: 2,
             WaveformMouth: 3}
 
-        return cjson.encode({
+        return json.dumps({
             'voice': {'language': self.voice.language,
             'name': self.voice.name},
             'pitch': self.pitch,
@@ -75,7 +75,7 @@ class Status():
             2: FFTMouth,
             3: WaveformMouth}
 
-        data = cjson.decode(buf)
+        data = json.loads(buf)
         self.voice = voice.Voice(data['voice']['language'],
                 data['voice']['name'])
         self.pitch = data['pitch']
