@@ -33,7 +33,7 @@ try:
 except:
     from Numeric import ceil
     from FFT import *
-    
+
 
 class Mouth(Gtk.DrawingArea):
     

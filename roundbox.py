@@ -32,7 +32,7 @@ class RoundBox(Gtk.Box):
         self._y = allocation.y
         self._width = allocation.width
         self._height = allocation.height
-        
+    
     def do_draw(self, cr):
         rect = self.get_allocation()
         cr.rectangle(rect.x, rect.y, rect.width, rect.height)

@@ -158,7 +158,8 @@ class BaseAudioGrab(GObject.GObject):
     def _new_buffer(self, buf):
         self.emit("new-buffer", buf)
         return False
-    
+
+
 def voices():
     out = []
     result = subprocess.Popen(["espeak", "--voices"],
