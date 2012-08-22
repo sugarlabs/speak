@@ -34,20 +34,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
+"PO-Revision-Date: 2012-07-25 07:54+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Speak"
@@ -144,12 +144,14 @@ msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 
 #: brain.py:33 voice.py:67
+#, fuzzy
 msgid "Spanish"
-msgstr ""
+msgstr "স্পেনীয়"
 
 #: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#, fuzzy
 msgid "English"
-msgstr ""
+msgstr "ইংরেজি"
 
 #: brain.py:80
 msgid "Sorry, I can't understand what you are asking about."
@@ -175,28 +177,33 @@ msgid "Copy to Clipboard"
 msgstr ""
 
 #: toolkit/activity_widgets.py:84
+#, fuzzy
 msgid "Stop"
-msgstr ""
+msgstr "থামো"
 
 #: toolkit/activity_widgets.py:96
+#, fuzzy
 msgid "Undo"
-msgstr ""
+msgstr "বাতিল"
 
 #: toolkit/activity_widgets.py:104
+#, fuzzy
 msgid "Redo"
-msgstr ""
+msgstr "আবার করো"
 
 #: toolkit/activity_widgets.py:111
+#, fuzzy
 msgid "Copy"
-msgstr ""
+msgstr "কপি"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
 msgstr ""
 
 #: toolkit/activity_widgets.py:128
+#, fuzzy
 msgid "Private"
-msgstr ""
+msgstr "লোকানো"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
@@ -207,11 +214,12 @@ msgid "Description"
 msgstr ""
 
 #: toolkit/activity_widgets.py:393
+#, fuzzy
 msgid "Activity"
-msgstr ""
+msgstr "সক্রিয়তা"
 
 #: voice.py:37
-msgid "Brazil"
+msgid "Portuguese (Brazil)"
 msgstr ""
 
 #: voice.py:38
@@ -291,7 +299,7 @@ msgid "Greek"
 msgstr ""
 
 #: voice.py:57
-msgid "Vietnam"
+msgid "Vietnamese"
 msgstr ""
 
 #: voice.py:59
@@ -303,7 +311,7 @@ msgid "Italian"
 msgstr ""
 
 #: voice.py:61
-msgid "Portugal"
+msgid "Portuguese"
 msgstr ""
 
 #: voice.py:62

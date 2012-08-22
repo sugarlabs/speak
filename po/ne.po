@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
 "PO-Revision-Date: 2011-07-15 04:26+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,8 +210,8 @@ msgid "Activity"
 msgstr "क्रियाकलाप"
 
 #: voice.py:37
-msgid "Brazil"
-msgstr "ब्राजिल"
+msgid "Portuguese (Brazil)"
+msgstr ""
 
 #: voice.py:38
 msgid "Swedish"
@@ -290,8 +290,8 @@ msgid "Greek"
 msgstr "ग्रीक"
 
 #: voice.py:57
-msgid "Vietnam"
-msgstr "भियत्नाम"
+msgid "Vietnamese"
+msgstr ""
 
 #: voice.py:59
 msgid "Lancashire"
@@ -302,8 +302,8 @@ msgid "Italian"
 msgstr "इटालियन"
 
 #: voice.py:61
-msgid "Portugal"
-msgstr "पोर्चुगल"
+msgid "Portuguese"
+msgstr ""
 
 #: voice.py:62
 msgid "German"
@@ -332,6 +332,15 @@ msgstr "पोलिस"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "इस्पेरान्टो"
+
+#~ msgid "Brazil"
+#~ msgstr "ब्राजिल"
+
+#~ msgid "Vietnam"
+#~ msgstr "भियत्नाम"
+
+#~ msgid "Portugal"
+#~ msgstr "पोर्चुगल"
 
 #, python-format
 #, python-format, fuzzy

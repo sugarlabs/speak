@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
 "PO-Revision-Date: 2011-04-14 06:07+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,7 +211,7 @@ msgid "Activity"
 msgstr "Činnost"
 
 #: voice.py:37
-msgid "Brazil"
+msgid "Portuguese (Brazil)"
 msgstr ""
 
 #: voice.py:38
@@ -291,8 +291,8 @@ msgid "Greek"
 msgstr "řečtina"
 
 #: voice.py:57
-msgid "Vietnam"
-msgstr "Vietnamština"
+msgid "Vietnamese"
+msgstr ""
 
 #: voice.py:59
 msgid "Lancashire"
@@ -303,8 +303,8 @@ msgid "Italian"
 msgstr "Italština"
 
 #: voice.py:61
-msgid "Portugal"
-msgstr "Portugalština"
+msgid "Portuguese"
+msgstr ""
 
 #: voice.py:62
 msgid "German"
@@ -333,6 +333,12 @@ msgstr "Polština"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
+
+#~ msgid "Vietnam"
+#~ msgstr "Vietnamština"
+
+#~ msgid "Portugal"
+#~ msgstr "Portugalština"
 
 #~ msgid "Keep"
 #~ msgstr "Ponechat"

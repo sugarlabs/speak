@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
 "PO-Revision-Date: 2011-04-10 16:04+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,8 +179,8 @@ msgid "Activity"
 msgstr "សកម្មភាព"
 
 #: voice.py:37
-msgid "Brazil"
-msgstr "ប្រេស៊ីល"
+msgid "Portuguese (Brazil)"
+msgstr ""
 
 #: voice.py:38
 msgid "Swedish"
@@ -259,8 +259,8 @@ msgid "Greek"
 msgstr "ក្រិក (el)"
 
 #: voice.py:57
-msgid "Vietnam"
-msgstr "​វៀតណាម​"
+msgid "Vietnamese"
+msgstr ""
 
 #: voice.py:59
 msgid "Lancashire"
@@ -271,8 +271,8 @@ msgid "Italian"
 msgstr "អ៊ីតាលី (it)"
 
 #: voice.py:61
-msgid "Portugal"
-msgstr "ព័រទុយហ្គាល់"
+msgid "Portuguese"
+msgstr ""
 
 #: voice.py:62
 msgid "German"
@@ -301,3 +301,12 @@ msgstr "ប៉ូឡូញ (pl)"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "អេស្ពេរ៉ាន់តូ (eo)"
+
+#~ msgid "Brazil"
+#~ msgstr "ប្រេស៊ីល"
+
+#~ msgid "Vietnam"
+#~ msgstr "​វៀតណាម​"
+
+#~ msgid "Portugal"
+#~ msgstr "ព័រទុយហ្គាល់"

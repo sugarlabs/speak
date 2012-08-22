@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-07 00:36-0400\n"
+"POT-Creation-Date: 2012-07-23 00:30-0400\n"
 "PO-Revision-Date: 2012-07-16 01:58+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios quechuas Sugar Camp Lima\n"
@@ -216,10 +216,9 @@ msgstr "Riqsichinapaq"
 msgid "Activity"
 msgstr "Ruwana"
 
-#  "Brasileño"
 #: voice.py:37
-msgid "Brazil"
-msgstr "Portugues simi"
+msgid "Portuguese (Brazil)"
+msgstr ""
 
 #  "Sueco"
 #: voice.py:38
@@ -316,10 +315,9 @@ msgstr "Escocés simi"
 msgid "Greek"
 msgstr "Griego simi"
 
-#  "Vietnamita"
 #: voice.py:57
-msgid "Vietnam"
-msgstr "Vietnamita simi"
+msgid "Vietnamese"
+msgstr ""
 
 #  "Lancashire"
 #: voice.py:59
@@ -331,10 +329,9 @@ msgstr "Lancshiri simi"
 msgid "Italian"
 msgstr "Itslisno simi"
 
-#  "Portugués"
 #: voice.py:61
-msgid "Portugal"
-msgstr "Portugués Simi"
+msgid "Portuguese"
+msgstr ""
 
 #  "Alemán"
 #: voice.py:62
@@ -370,6 +367,18 @@ msgstr "Polaco simi"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto simi"
+
+#  "Brasileño"
+#~ msgid "Brazil"
+#~ msgstr "Portugues simi"
+
+#  "Vietnamita"
+#~ msgid "Vietnam"
+#~ msgstr "Vietnamita simi"
+
+#  "Portugués"
+#~ msgid "Portugal"
+#~ msgstr "Portugués Simi"
 
 #  "Lo siento, no puedo hablar %s, mejor hablemos %s."
 #, python-format
