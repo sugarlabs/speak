@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-23 00:30-0400\n"
-"PO-Revision-Date: 2012-08-21 23:04+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2012-08-28 20:24+0200\n"
+"Last-Translator: usuariopame04 <proyecto.olpc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pbs\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Kutaú"
 #: activity.py:194
 #, python-format, , fuzzy
 msgid "Hello %s. Please Type something."
-msgstr "Vichjaut majau gyist sad-ia'."
+msgstr "vichjaut majau gyist sad-ia'."
 
 #: activity.py:260
 msgid "Pitch:"
