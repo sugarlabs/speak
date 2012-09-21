@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-23 00:30-0400\n"
-"PO-Revision-Date: 2012-09-06 00:28+0200\n"
+"PO-Revision-Date: 2012-09-21 19:57+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: aym\n"
@@ -23,11 +23,11 @@ msgstr "Arsuña"
 
 #: activity.py:135
 msgid "Type something to hear it"
-msgstr "ist'añataki maski kuna tuqitsa qillqantma"
+msgstr "Ist'añataki maski kuna tuqitsa qillqantma"
 
 #: activity.py:142
 msgid "Ask robot any question"
-msgstr "robot wakichata jaqiru maski kuna tuqitsa jiskht'ma"
+msgstr "Robot wakichata jaqiru maski kuna tuqitsa jiskht'ma"
 
 #: activity.py:150
 msgid "Voice chat"
@@ -56,11 +56,11 @@ msgstr "Sarayäwi:"
 
 #: activity.py:281
 msgid "pitch adjusted"
-msgstr "Ist'añataki wakichata"
+msgstr "ist'añataki wakichata"
 
 #: activity.py:285
 msgid "rate adjusted"
-msgstr "Tantiyu sarayañataki wakichata"
+msgstr "tantiyu sarayañataki wakichata"
 
 #: activity.py:291
 msgid "Simple"
