@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-23 00:30-0400\n"
-"PO-Revision-Date: 2012-08-20 13:16+0200\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"PO-Revision-Date: 2012-10-03 21:07+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -49,9 +49,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Speak"
 msgstr "Spreek"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Een aninatiegezicht dat alles zegt wat je typt"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Speak is een pratend gezicht voor de XO laptop. Alles wat je typt wordt "
+"hardop uitgesproken met XO's spraaksynthesizer espeak. Je kunt het accent, "
+"de snelheid en de hoogte van de stem aanpassen alsmede de vorm van de ogen "
+"en de mond. Dit is een mooie manier om met de spraaksynthesizer te "
+"experimenteren, leren te typen of alleen maar plezier maken door een grappig "
+"gezicht te maken voor je XO."
 
 #: activity.py:135
 msgid "Type something to hear it"
