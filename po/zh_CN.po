@@ -38,9 +38,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-23 00:30-0400\n"
-"PO-Revision-Date: 2012-07-25 01:24+0200\n"
-"Last-Translator: Xin <dram.wang@gmail.com>\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"PO-Revision-Date: 2012-10-02 06:03+0200\n"
+"Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -49,9 +49,24 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Speak"
 msgstr "说话"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "一张会读出你所输入文字的面孔"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"说话活动是XO笔记本电脑上一张会说话的脸。使用XO的语音合成器espeak,你的任何输入都会被大声读出。您可以调整口音，速度和音调的声音以及眼睛和嘴巴的"
+"形状。这是一个很好的语音合成实验的方式，学会打字或者只是为你的XO制作一张有趣的面孔。"
 
 #: activity.py:135
 msgid "Type something to hear it"
