@@ -1,0 +1,330 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"PO-Revision-Date: 2012-09-21 19:57+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: aym\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#. TRANS: "name" option from activity.info file
+msgid "Speak"
+msgstr "Arsuña"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr ""
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+
+#: activity.py:135
+msgid "Type something to hear it"
+msgstr "Ist'añataki maski kuna tuqitsa qillqantma"
+
+#: activity.py:142
+msgid "Ask robot any question"
+msgstr "Robot wakichata jaqiru maski kuna tuqitsa jiskht'ma"
+
+#: activity.py:150
+msgid "Voice chat"
+msgstr "Arsusiñampi jakist'aña"
+
+#: activity.py:159
+msgid "Voice"
+msgstr "Aru"
+
+#: activity.py:165
+msgid "Face"
+msgstr "Uñanaqa"
+
+#: activity.py:194
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "Kamisaki %s. Mira suma maski kuna tuqitsa qillqt'anma."
+
+#: activity.py:260
+msgid "Pitch:"
+msgstr "Ist'añataki:"
+
+#: activity.py:273
+msgid "Rate:"
+msgstr "Sarayäwi:"
+
+#: activity.py:281
+msgid "pitch adjusted"
+msgstr "ist'añataki wakichata"
+
+#: activity.py:285
+msgid "rate adjusted"
+msgstr "tantiyu sarayañataki wakichata"
+
+#: activity.py:291
+msgid "Simple"
+msgstr "Phisna"
+
+#: activity.py:292
+msgid "Waveform"
+msgstr "Wayra"
+
+#: activity.py:293
+msgid "Frequency"
+msgstr "Thaqaña chimpu wakichata"
+
+#: activity.py:298
+msgid "Mouth:"
+msgstr "Laka:"
+
+#: activity.py:302
+msgid "Round"
+msgstr "Muruq'unaka"
+
+#: activity.py:303
+msgid "Glasses"
+msgstr "Nayruru uchasiña qhispillu"
+
+#: activity.py:308
+msgid "Eyes:"
+msgstr "Nayranaka:"
+
+#: activity.py:319
+msgid "Eyes number:"
+msgstr "Nayranaka jakhu:"
+
+#: activity.py:331
+msgid "mouth changed"
+msgstr "jaqukipata laka"
+
+#: activity.py:343
+msgid "eyes changed"
+msgstr "jaqukipata nayranaka"
+
+#: activity.py:442
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"Pampachita, janiwa arskajati %(old_voice)s, jichhaxa arsupxajawa %"
+"(new_voice)s wakisiripanjama."
+
+#: activity.py:473
+msgid "You are in off-line mode, share and invite someone."
+msgstr "Jani mayachasitawa uñasta, chikachasisa yaqharu jawsma."
+
+#: brain.py:33 voice.py:67
+msgid "Spanish"
+msgstr "Español aru"
+
+#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+msgid "English"
+msgstr "Inglés aru"
+
+#: brain.py:80
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Pampachita, kuna tuqitpuni jiskht'aschistha janiwa suma katuqsmati."
+
+#: brain.py:104
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Pampachita, p'iqijana janiwa juk'ampi amuyu katuqañaxa utjxiti. Maya qhawqha "
+"yaqha luräwinaka wakichaña tukuyasina mayampi yant'ma."
+
+#: brain.py:125
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr ""
+"Kamisaki, nayaxa robot sata lurata jaqithwa \"%s\". Maski kuna tuqitsa "
+"jiskht'ita."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "Qillqasisa jakisiñataki URL wakichata"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Qillqatani laphinaka imatanaka apaqaña"
+
+#  "Detener"
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "Sayt'ayaña"
+
+#  "Deshacer"
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "Jani wali lurjaña"
+
+#  "Rehacer"
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "Wasitata luraña"
+
+#  "Copiar"
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "Apaqaña"
+
+#  "Pegar"
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "Lip'katayaña"
+
+#  "Privado"
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "Yaqhankiri"
+
+#  "Vecindario"
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "Utjäwisa jak'ankiri masinakasa"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Yatiyaña"
+
+#  "Actividad"
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "Wakichäwi"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "Portugués (Brasil) Aru"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Sueco Aru"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Islandés Aru"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Rumano Aru"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Suajili Aru"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Hindi Aru"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Holandés Aru"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Latino Aru"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Húngaro Aru"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Macedonio Aru"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Galés Aru"
+
+#: voice.py:48
+msgid "French"
+msgstr "Francés Aru"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "Noruego Aru"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Ruso Aru"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Africano Aru"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Finlandés Aru"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "Ukhamañapataki wakichata"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Cantonés Aru"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Escosés Aru"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Griego Aru"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "Vietnamita Aru"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Lancashire Aru"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Italiano Aru"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "Portugués Aru"
+
+#: voice.py:62
+msgid "German"
+msgstr "Alemán Aru"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "Susurro Aru"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Croata Aru"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Checo Aru"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Eslovaco Aru"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Polaco Aru"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Esperanto Aru"
