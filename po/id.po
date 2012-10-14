@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-23 00:30-0400\n"
-"PO-Revision-Date: 2012-07-26 07:52+0200\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"PO-Revision-Date: 2012-09-29 17:05+0200\n"
 "Last-Translator: andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -45,9 +45,28 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Speak"
 msgstr "Bicara"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Wajah beranimasi yang mengucapkan apapun yang Anda ketikkan"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Bicara adalah wajah berucap bagi laptop XO. Apapun yang Anda ketikkan akan "
+"diucapkan secara keras memakai synthesizer ucapan XO, espeak. Anda dapat "
+"menyetel aksen, laju, dan pitch suara maupun bentuk mata dan mulut. Ini "
+"adalah cara yang hebat untuk bereksperimen dengan synthesizer ucapan, "
+"belajar mengetik, atau sekedar bersenang-senang dengan membuat wajah yang "
+"lucu bagi XO Anda."
 
 #: activity.py:135
 msgid "Type something to hear it"
