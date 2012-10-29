@@ -125,18 +125,20 @@ class Eye(gtk.DrawingArea):
         self.context.fill()
 
         # eye ball
-        self.context.arc(bounds.width / 2, bounds.height / 2, eyeSize / 2 - outlineWidth / 2, 0, 360)
+        self.context.arc(bounds.width / 2, bounds.height / 2,
+                         eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
         self.context.set_source_rgb(1, 1, 1)
         self.context.fill()
 
         # outline
         self.context.set_line_width(outlineWidth)
-        self.context.arc(bounds.width / 2, bounds.height / 2, eyeSize / 2 - outlineWidth / 2, 0, 360)
+        self.context.arc(bounds.width / 2, bounds.height / 2,
+                         eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
         self.context.set_source_rgb(0, 0, 0)
         self.context.stroke()
 
         # pupil
-        self.context.arc(pupilX, pupilY, pupilSize, 0, 360)
+        self.context.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
         self.context.set_source_rgb(0, 0, 0)
         self.context.fill()
 
