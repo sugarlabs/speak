@@ -34,9 +34,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-23 00:30-0400\n"
-"PO-Revision-Date: 2011-12-12 02:48+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"PO-Revision-Date: 2012-10-01 21:44+0200\n"
+"Last-Translator: KatSitko <xanthe1808@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -46,9 +46,27 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Speak"
 msgstr "Mówić"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Animowana bużka, która mówi cokolwiek, co zostanie wpisane"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Mówić to mówiąca buźka na laptopie XO. Wszystko zostanie wypowiedziane na "
+"głos przy użyciu syntezatora mowy, emowa. Możesz dosotoswać akcent, tempo "
+"oraz  ton głosu, a także kształt oczu oraz ust. To wspaniały sposób, aby "
+"poksperymentować z syntezatorem mowy, aby nauczyć się pisać na klawiaturze "
+"oraz, aby dobrze się bawić przy tworzeniu śmiesznej buźki dla własnego XO."
 
 #: activity.py:135
 msgid "Type something to hear it"
@@ -205,7 +223,7 @@ msgstr "Moje sąsiedztwo"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
@@ -213,7 +231,7 @@ msgstr "Aktywność"
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "portugalski (Brazylia)"
 
 #: voice.py:38
 msgid "Swedish"
@@ -293,7 +311,7 @@ msgstr "grecki"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "wietnamski"
 
 #: voice.py:59
 msgid "Lancashire"
@@ -305,7 +323,7 @@ msgstr "włoski"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "portugalski"
 
 #: voice.py:62
 msgid "German"

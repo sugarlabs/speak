@@ -154,8 +154,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-23 00:30-0400\n"
-"PO-Revision-Date: 2012-08-06 21:59+0200\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"PO-Revision-Date: 2012-09-30 07:43+0200\n"
 "Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -165,9 +165,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Speak"
 msgstr "Hablar"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Una cara animada que habla todo lo que se escribe"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Hablar es una cara que habla en la computadora XO. Cualquier cosa que "
+"escribas será hablado en voz alta utilizando el sintetizador de la XO, "
+"espeak. Se puede ajustar el acento, el ritmo y tono de la voz, así como la "
+"forma de los ojos y la boca. Esta es una gran manera de experimentar con el "
+"sintetizador de voz, aprender a escribir o simplemente divertirse haciendo "
+"una cara divertida para tu XO."
 
 #: activity.py:135
 msgid "Type something to hear it"
