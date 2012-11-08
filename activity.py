@@ -28,7 +28,7 @@ import logging
 import gtk
 import gobject
 import pango
-import cjson
+import json
 from gettext import gettext as _
 
 from sugar.graphics.toolbutton import ToolButton
@@ -195,7 +195,7 @@ class SpeakActivity(SharedActivity):
                 % xoOwner.props.nick)
 
     def resume_instance(self, file_path):
-        cfg = cjson.decode(file(file_path, 'r').read())
+        cfg = json.loads(file(file_path, 'r').read())
 
         status = self.face.status = face.Status().deserialize(cfg['status'])
         self.voices.select(status.voice)
@@ -217,7 +217,7 @@ class SpeakActivity(SharedActivity):
                 'history': [unicode(i[0], 'utf-8', 'ignore') \
                         for i in self.entrycombo.get_model()],
                 }
-        file(file_path, 'w').write(cjson.encode(cfg))
+        file(file_path, 'w').write(json.dumps(cfg))
 
     def share_instance(self, connection, is_initiator):
         self.chat.messenger = Messenger(connection, is_initiator, self.chat)
