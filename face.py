@@ -24,7 +24,7 @@
 
 import logging 
 import gtk
-import cjson
+import json
 
 import sugar.graphics.style as style
 
@@ -56,7 +56,7 @@ class Status:
                     fft_mouth.FFTMouth : 2,
                     waveform_mouth.WaveformMouth : 3 }
 
-        return cjson.encode({
+        return json.dumps({
             'voice' : { 'language'  : self.voice.language,
                         'name'      : self.voice.name },
             'pitch' : self.pitch,
@@ -71,7 +71,7 @@ class Status:
                     2: fft_mouth.FFTMouth,
                     3: waveform_mouth.WaveformMouth }
 
-        data = cjson.decode(buf)
+        data = json.loads(buf)
         self.voice = voice.Voice(data['voice']['language'],
                 data['voice']['name'])
         self.pitch = data['pitch']
