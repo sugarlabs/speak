@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2012-07-16 01:58+0200\n"
+"PO-Revision-Date: 2012-11-15 06:48+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios quechuas Sugar Camp Lima\n"
 "Language: quz\n"
@@ -19,10 +19,18 @@ msgstr ""
 msgid "Speak"
 msgstr "Rimay"
 
+#  [ES] "Una cara animada que habla todo lo que se escribe"
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Llapan qillqasqaykitam kay uyachaqa rima"
 
+#  [ES] ""
+#  [ES] "Hablar es una cara que habla en la computadora XO. Cualquier cosa que "
+#  [ES] "escribas será hablado en voz alta utilizando el sintetizador de la XO, "
+#  [ES] "espeak. Se puede ajustar el acento, el ritmo y tono de la voz, así como la "
+#  [ES] "forma de los ojos y la boca. Esta es una gran manera de experimentar con el "
+#  [ES] "sintetizador de voz, aprender a escribir o simplemente divertirse haciendo "
+#  [ES] "una cara divertida para tu XO."
 #. TRANS: "description" option from activity.info file
 msgid ""
 "Speak is a talking face for the XO laptop. Anything you type will be spoken "
@@ -31,6 +39,9 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"RIMAY nisqaqa, computadora XO nisqapi sumaq rimaq uyacham. Imachatapas "
+"qillqanki chayqa, payqa huk programa ESPEAK nisqawanmi rimariyta qallarin. "
+"Rimarinanpaqqa, munasqaykimanhina imatapas akllariwaq."
 
 #  "Escribe algo para escucharlo"
 #: activity.py:135
@@ -133,10 +144,15 @@ msgstr "Simi huknirasqa"
 msgid "eyes changed"
 msgstr "Ñawi huknirasqa"
 
+#  [ES] ""
+#  [ES] "Lo sentimos, no puedo hablar %(old_voice)s, vamos a hablar %(new_voice)s en "
+#  [ES] "su lugar."
 #: activity.py:442
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"Pampachawan, manam kay %(old_voice)s simitaqa rimanichu, aswanmi kay %"
+"(new_voice)s simipi rimarisunman."
 
 #  "Estás en modo desconectado, comparte e invita a alguien."
 #: activity.py:473
@@ -219,19 +235,20 @@ msgstr "wakinkunallapaq"
 msgid "My Neighborhood"
 msgstr "Aylluy"
 
+#  [ES] "Descripción"
 #: toolkit/activity_widgets.py:213
-#, fuzzy
 msgid "Description"
-msgstr "Riqsichinapaq"
+msgstr "Kasqanta niranapaq"
 
 #  "Actividad"
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
 msgstr "Ruwana"
 
+#  [ES] "Portugués (Brasil)"
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugués (Brasil)"
 
 #  "Sueco"
 #: voice.py:38
@@ -328,9 +345,10 @@ msgstr "Escocés simi"
 msgid "Greek"
 msgstr "Griego simi"
 
+#  [ES] "Vietnamita"
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamita"
 
 #  "Lancashire"
 #: voice.py:59
@@ -344,7 +362,7 @@ msgstr "Itslisno simi"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugués simi"
 
 #  "Alemán"
 #: voice.py:62
