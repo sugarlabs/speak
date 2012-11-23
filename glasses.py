@@ -75,7 +75,7 @@ class Glasses(Eye):
         self.context.stroke()
 
         # pupil
-        self.context.arc(pupilX, pupilY, pupilSize, 0, 360)
+        self.context.arc(pupilX, pupilY, pupilSize, 0, 2*math.pi)
         self.context.set_source_rgb(0, 0, 0)
         self.context.fill()
 
