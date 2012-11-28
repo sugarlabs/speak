@@ -21,6 +21,6 @@ import aiml
 import os.path
 
 k = aiml.Kernel()
-k.loadBrain("sara.brn")
+k.loadBrain("alice.brn")
 
 while True: print k.respond(raw_input("Pregunta > ")) 
