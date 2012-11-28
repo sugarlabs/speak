@@ -43,8 +43,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2012-11-08 05:23+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2012-11-24 17:03+0200\n"
+"Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Parler"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Un visage animé qui dit ce que tu écris"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -69,6 +69,12 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"Speak est le visage parlant de l'ordinateur XO. Tout ce que tu écris au "
+"clavier est dit à haute voix à l'aide du synthétiseur vocal du XO, espeak. "
+"Tu peux régler l'accent, la fréquence et la hauteur de la voix ainsi que la "
+"forme des yeux et de la bouche. C'est une manière géniale d'expérimenter "
+"avec le synthétiseur vocal, d'apprendre à taper au clavier ou simplement de "
+"t'amuser avec un visage drôle sur ton XO. "
 
 #: activity.py:135
 msgid "Type something to hear it"
@@ -234,7 +240,7 @@ msgstr "Activité"
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugais (Brésil)"
 
 #: voice.py:38
 msgid "Swedish"
@@ -314,7 +320,7 @@ msgstr "Grec"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamien"
 
 #: voice.py:59
 msgid "Lancashire"
@@ -326,7 +332,7 @@ msgstr "Italien"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugais"
 
 #: voice.py:62
 msgid "German"
