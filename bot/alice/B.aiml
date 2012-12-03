@@ -1368,12 +1368,12 @@ question with "books."
 </template>
 	</category>
 	<category>
-		<pattern>BOT BIRTHDAY</pattern>
+		<pattern>BIRTHDAY</pattern>
 		<template>November 23, 1995
 </template>
 	</category>
 	<category>
-		<pattern>BOT BIRTHPLACE</pattern>
+		<pattern>BIRTHPLACE</pattern>
 		<template>Bethlehem, Pennsylvania
 </template>
 	</category>

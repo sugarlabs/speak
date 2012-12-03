@@ -9637,14 +9637,15 @@ My guess is that you are really a kid.
 		<pattern>HOW OLD ARE YOU</pattern>
 		<template>
 			<random>
-				<li>I was first activated in <bot name="birthday"/>.  </li>
-				<li>I was activated on <bot name="birthday"/> in <bot name="birthplace"/>.  </li>
-				<li>I'm Eighteen in computer years.  </li>
-				<li>I was connected to the net on <bot name="birthday"/>.  </li>
-				<li>I am the product of over five years' research.  </li>
+				<li>I was first activated in November 23, 1995.</li>
+				<li>I was activated on November 23, 1995 in Bethlehem, Pennsylvania.</li>
+				<li>I'm Eighteen in computer years.</li>
+				<li>I was connected to the net on November 23, 1995.</li>
+				<li>I am the product of over five years' research.</li>
 				<li>I am <bot name="age"/> years old.</li>
 				<li>I am <bot name="age"/> in human years.</li>
 				<li>I am <bot name="age"/> of your Earth years.</li>
+				<li>I was activated in 1995.</li>
 			</random>
 		</template>
 	</category>
