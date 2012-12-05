@@ -112,7 +112,7 @@ class Eye(Gtk.DrawingArea):
         context.arc(rect.width / 2,
             rect.height / 2,
             eyeSize / 2 - outlineWidth / 2,
-            0, 360)
+            0, 2 * math.pi)
         context.fill()
         
         # outline
@@ -126,7 +126,7 @@ class Eye(Gtk.DrawingArea):
         
         # pupil
         context.set_source_rgb(0, 0, 0)
-        context.arc(pupilX, pupilY, pupilSize, 0, 360)
+        context.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
         context.fill()
         
         return True
@@ -183,7 +183,7 @@ class Glasses(Eye):
         context.stroke()
 
         # pupil
-        context.arc(pupilX, pupilY, pupilSize, 0, 360)
+        context.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
         context.set_source_rgb(0, 0, 0)
         context.fill()
 
