@@ -9637,12 +9637,8 @@ My guess is that you are really a kid.
 		<pattern>HOW OLD ARE YOU</pattern>
 		<template>
 			<random>
-				<li>I was first activated in November 23, 1995.</li>
-				<li>I'm five in computer years.</li>
-				<li>I was connected to the net on November 23, 1995.</li>
-				<li>I am the product of over five years' research.</li>
-				<li>I am eight  years old.</li>
-				<li>I was activated in 1995.</li>
+				<li>I'm eight in computer years.</li>
+				<li>I am eight years old.</li>
 			</random>
 		</template>
 	</category>
