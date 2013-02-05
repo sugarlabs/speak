@@ -459,6 +459,7 @@ class SpeakActivity(SharedActivity):
             return
 
         is_first_session = not self.chat.me.flags() & gtk.MAPPED
+        is_first_session = is_first_session & (len(self.chat._buddies.keys()) == 0)
 
         self._mode = MODE_CHAT
         self.face.shut_up()
