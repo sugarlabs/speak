@@ -16,7 +16,7 @@ stability = stable
 
 icon      = activity-speak
 exec      = sugar-activity activity.SpeakActivity
-requires  = gst-plugins-espeak
+requires  = gst-plugins-espeak; numpy
 
 # original activity.info options
 activity_version = 44.4
