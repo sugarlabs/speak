@@ -25,12 +25,15 @@
 from sugar.activity import activity
 from sugar.presence import presenceservice
 import logging
+import os
+import subprocess
 import gtk
 import gobject
 import pango
 import json
 from gettext import gettext as _
 
+from sugar.graphics import style
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
@@ -58,6 +61,23 @@ logger = logging.getLogger('speak')
 MODE_TYPE = 1
 MODE_BOT = 2
 MODE_CHAT = 3
+MOUTHS = [mouth.Mouth, fft_mouth.FFTMouth, waveform_mouth.WaveformMouth]
+EYES = [eye.Eye, glasses.Glasses]
+DELAY_BEFORE_SPEAKING = 1500  # milleseconds
+
+
+def _is_tablet_mode():
+    if not os.path.exists('/dev/input/event4'):
+        return False
+    try:
+        output = subprocess.call(
+            ['evtest', '--query', '/dev/input/event4', 'EV_SW',
+             'SW_TABLET_MODE'])
+    except (OSError, subprocess.CalledProcessError):
+        return False
+    if str(output) == '10':
+        return True
+    return False
 
 
 class SpeakActivity(SharedActivity):
@@ -67,28 +87,42 @@ class SpeakActivity(SharedActivity):
         SharedActivity.__init__(self, self.notebook, SERVICE, handle)
 
         self._mode = MODE_TYPE
+        # self._tablet_mode = _is_tablet_mode()
+        self._tablet_mode = _is_tablet_mode()
         self.numeyesadj = None
 
         # make an audio device for playing back and rendering audio
         self.connect("notify::active", self._activeCb)
 
+
         # make a box to type into
-        self.entrycombo = gtk.combo_box_entry_new_text()
-        self.entrycombo.connect("changed", self._combo_changed_cb)
-        self.entry = self.entrycombo.child
+        hbox = gtk.HBox()
+        if self._tablet_mode:
+            self.entry = gtk.Entry()
+            hbox.pack_start(self.entry, expand=True)
+            talk_button = ToolButton('microphone')
+            talk_button.set_tooltip(_('Speak'))
+            talk_button.connect('clicked', self._talk_cb)
+            hbox.pack_end(talk_button, expand=False)
+        else:
+            self.entrycombo = gtk.combo_box_entry_new_text()
+            self.entrycombo.connect("changed", self._combo_changed_cb)
+            self.entry = self.entrycombo.child
+            hbox.pack_start(self.entrycombo, expand=True)
         self.entry.set_editable(True)
         self.entry.connect('activate', self._entry_activate_cb)
         self.entry.connect("key-press-event", self._entry_key_press_cb)
         self.input_font = pango.FontDescription(str='sans bold 24')
         self.entry.modify_font(self.input_font)
+        hbox.show()
 
         self.face = face.View()
         self.face.show()
 
         # layout the screen
         box = gtk.VBox(homogeneous=False)
+        box.pack_start(hbox, expand=False)
         box.pack_start(self.face)
-        box.pack_start(self.entrycombo, expand=False)
 
         self.add_events(gtk.gdk.POINTER_MOTION_HINT_MASK
                 | gtk.gdk.POINTER_MOTION_MASK)
@@ -110,7 +144,8 @@ class SpeakActivity(SharedActivity):
         self.notebook.append_page(self.chat)
 
         # make the text box active right away
-        self.entry.grab_focus()
+        if not self._tablet_mode:
+            self.entry.grab_focus()
 
         self.entry.connect("move-cursor", self._cursor_moved_cb)
         self.entry.connect("changed", self._cursor_moved_cb)
@@ -151,9 +186,12 @@ class SpeakActivity(SharedActivity):
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
 
-        voices_toolitem = ToolWidget(widget=self.voices)
-        toolbox.toolbar.insert(voices_toolitem, -1)
-
+        language_button = ToolbarButton(
+                page=self.make_language_bar(),
+                label=_('Language'),
+                icon_name='module-language')
+        toolbox.toolbar.insert(language_button, -1)
+        
         voice_button = ToolbarButton(
                 page=self.make_voice_bar(),
                 label=_('Voice'),
@@ -176,46 +214,71 @@ class SpeakActivity(SharedActivity):
         toolbox.show_all()
         self.toolbar_box = toolbox
 
+        gtk.gdk.screen_get_default().connect('size-changed',
+                                             self._configure_cb)
+
+        self._configure_cb()
+
+    def _configure_cb(self, event=None):
+        logger.debug('configure_cb')
+        if gtk.gdk.screen_width() / 14 < style.GRID_CELL_SIZE:
+            self.numeyesbar_label.set_label('')
+        else:
+            self.numeyesbar_label.set_label(_('Eyes number:'))
+
     def new_instance(self):
         self.voices.connect('changed', self.__changed_voices_cb)
-        self.pitchadj.connect("value_changed", self.pitch_adjusted_cb, self.pitchadj)
-        self.rateadj.connect("value_changed", self.rate_adjusted_cb, self.rateadj)
-        self.mouth_shape_combo.connect('changed', self.mouth_changed_cb, False)
-        self.mouth_changed_cb(self.mouth_shape_combo, True)
+        self.pitchadj.connect("value_changed", self.pitch_adjusted_cb,
+                              self.pitchadj)
+        self.rateadj.connect("value_changed", self.rate_adjusted_cb,
+                             self.rateadj)
         self.numeyesadj.connect("value_changed", self.eyes_changed_cb, False)
-        self.eye_shape_combo.connect('changed', self.eyes_changed_cb, False)
         self.eyes_changed_cb(None, True)
+        self.mouth_changed_cb(None, True)
 
         self.face.look_ahead()
 
         # say hello to the user
         presenceService = presenceservice.get_instance()
         xoOwner = presenceService.get_owner()
+        if self._tablet_mode:
+            self.entry.props.text = _("Hello %s.") \
+                % xoOwner.props.nick.encode('utf-8', 'ignore')
         self.face.say_notification(_("Hello %s. Please Type something.") \
-                % xoOwner.props.nick)
+                                       % xoOwner.props.nick)
 
     def resume_instance(self, file_path):
-        cfg = json.loads(file(file_path, 'r').read())
+        self.cfg = json.loads(file(file_path, 'r').read())
 
-        status = self.face.status = face.Status().deserialize(cfg['status'])
+        status = self.face.status = \
+            face.Status().deserialize(self.cfg['status'])
         self.voices.select(status.voice)
         self.pitchadj.value = self.face.status.pitch
         self.rateadj.value = self.face.status.rate
-        self.mouth_shape_combo.select(status.mouth)
-        self.eye_shape_combo.select(status.eyes[0])
         self.numeyesadj.value = len(status.eyes)
-
-        self.entry.props.text = cfg['text'].encode('utf-8', 'ignore')
-        for i in cfg['history']:
-            self.entrycombo.append_text(i.encode('utf-8', 'ignore'))
+        if status.mouth in MOUTHS:
+            self.mouth_type[MOUTHS.index(status.mouth)].set_active(True)
+        if status.eyes[0] in EYES:
+            self.eye_type[EYES.index(status.eyes[0])].set_active(True)
+        self.entry.props.text = self.cfg['text'].encode('utf-8', 'ignore')
+        if not self._tablet_mode:
+            for i in self.cfg['history']:
+                self.entrycombo.append_text(i.encode('utf-8', 'ignore'))
 
         self.new_instance()
 
     def save_instance(self, file_path):
+        if self._tablet_mode:
+            if 'history' in self.cfg:
+                history = self.cfg['history']  # retain old history
+            else:
+                history = []
+        else:
+            history = [unicode(i[0], 'utf-8', 'ignore') \
+                           for i in self.entrycombo.get_model()]
         cfg = {'status': self.face.status.serialize(),
                 'text': unicode(self.entry.props.text, 'utf-8', 'ignore'),
-                'history': [unicode(i[0], 'utf-8', 'ignore') \
-                        for i in self.entrycombo.get_model()],
+                'history': history,
                 }
         file(file_path, 'w').write(json.dumps(cfg))
 
@@ -243,6 +306,14 @@ class SpeakActivity(SharedActivity):
 
     def _mouse_clicked_cb(self, widget, event):
         pass
+
+    def make_language_bar(self):
+        languagebar = gtk.Toolbar()
+
+        voices_toolitem = ToolWidget(widget=self.voices)
+        languagebar.insert(voices_toolitem, -1)
+        languagebar.show_all()
+        return languagebar
 
     def make_voice_bar(self):
         voicebar = gtk.Toolbar()
@@ -287,55 +358,102 @@ class SpeakActivity(SharedActivity):
     def make_face_bar(self):
         facebar = gtk.Toolbar()
 
-        self.mouth_shape_combo = ComboBox()
-        self.mouth_shape_combo.append_item(mouth.Mouth, _("Simple"))
-        self.mouth_shape_combo.append_item(waveform_mouth.WaveformMouth, _("Waveform"))
-        self.mouth_shape_combo.append_item(fft_mouth.FFTMouth, _("Frequency"))
-        self.mouth_shape_combo.set_active(0)
+        self.mouth_type = []
+        self.mouth_type.append(RadioToolButton(
+            named_icon='mouth',
+            group=None,
+            tooltip=_('Simple')))
+        self.mouth_type[-1].connect('clicked', self.mouth_changed_cb, False)
+        facebar.insert(self.mouth_type[-1], -1)
 
-        mouth_shape_toolitem = ToolWidget(
-                widget=self.mouth_shape_combo,
-                label_text=_('Mouth:'))
-        facebar.insert(mouth_shape_toolitem, -1)
+        self.mouth_type.append(RadioToolButton(
+            named_icon='waveform',
+            group=self.mouth_type[0],
+            tooltip=_('Waveform')))
+        self.mouth_type[-1].connect('clicked', self.mouth_changed_cb, False)
+        facebar.insert(self.mouth_type[-1], -1)
 
-        self.eye_shape_combo = ComboBox()
-        self.eye_shape_combo.append_item(eye.Eye, _("Round"))
-        self.eye_shape_combo.append_item(glasses.Glasses, _("Glasses"))
-        self.eye_shape_combo.set_active(0)
+        self.mouth_type.append(RadioToolButton(
+            named_icon='frequency',
+            group=self.mouth_type[0],
+            tooltip=_('Frequency')))
+        self.mouth_type[-1].connect('clicked', self.mouth_changed_cb, False)
+        facebar.insert(self.mouth_type[-1], -1)
 
-        eye_shape_toolitem = ToolWidget(
-                widget=self.eye_shape_combo,
-                label_text=_('Eyes:'))
-        facebar.insert(eye_shape_toolitem, -1)
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        separator.set_expand(False)
+        facebar.insert(separator, -1)
+
+        self.eye_type = []
+        self.eye_type.append(RadioToolButton(
+            named_icon='eyes',
+            group=None,
+            tooltip=_('Round')))
+        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
+        facebar.insert(self.eye_type[-1], -1)
+
+        self.eye_type.append(RadioToolButton(
+            named_icon='glasses',
+            group=self.eye_type[0],
+            tooltip=_('Glasses')))
+        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
+        facebar.insert(self.eye_type[-1], -1)
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(False)
+        separator.set_expand(False)
+        facebar.insert(separator, -1)
+
+        self.numeyesbar_label = gtk.Label()
+        self.numeyesbar_label.set_text(_('Eyes number:'))
+        toolitem = gtk.ToolItem()
+        toolitem.add(self.numeyesbar_label)
+        facebar.insert(toolitem, -1)
 
         self.numeyesadj = gtk.Adjustment(2, 1, 5, 1, 1, 0)
         numeyesbar = gtk.HScale(self.numeyesadj)
         numeyesbar.set_draw_value(False)
         numeyesbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
         numeyesbar.set_size_request(240, 15)
-
-        numeyesbar_toolitem = ToolWidget(
-                widget=numeyesbar,
-                label_text=_('Eyes number:'))
-        facebar.insert(numeyesbar_toolitem, -1)
+        toolitem = gtk.ToolItem()
+        toolitem.add(numeyesbar)
+        facebar.insert(toolitem, -1)
 
         facebar.show_all()
         return facebar
 
-    def mouth_changed_cb(self, combo, quiet):
-        self.face.status.mouth = combo.props.value
+    def _get_active_mouth(self):
+        for i, button in enumerate(self.mouth_type):
+            if button.get_active():
+                return MOUTHS[i]
+
+    def mouth_changed_cb(self, ignored, quiet):
+        value = self._get_active_mouth()
+        if value is None:
+            return
+
+        self.face.status.mouth = value
         self._update_face()
 
         # this SegFaults: self.face.say(combo.get_active_text())
         if not quiet:
             self.face.say_notification(_("mouth changed"))
 
+    def _get_active_eyes(self):
+        for i, button in enumerate(self.eye_type):
+            if button.get_active():
+                return EYES[i]
+
     def eyes_changed_cb(self, ignored, quiet):
         if self.numeyesadj is None:
             return
 
-        self.face.status.eyes = [self.eye_shape_combo.props.value] \
-                * int(self.numeyesadj.value)
+        value = self._get_active_eyes()
+        if value is None:
+            return
+
+        self.face.status.eyes = [value] * int(self.numeyesadj.value)
         self._update_face()
 
         # this SegFaults: self.face.say(self.eye_shape_combo.get_active_text())
@@ -349,11 +467,14 @@ class SpeakActivity(SharedActivity):
     def _combo_changed_cb(self, combo):
         # when a new item is chosen, make sure the text is selected
         if not self.entry.is_focus():
-            self.entry.grab_focus()
+            if not self._tablet_mode:
+                self.entry.grab_focus()
             self.entry.select_region(0, -1)
 
     def _entry_key_press_cb(self, combo, event):
         # make the up/down arrows navigate through our history
+        if self._tablet_mode:
+            return
         keyname = gtk.gdk.keyval_name(event.keyval)
         if keyname == "Up":
             index = self.entrycombo.get_active()
@@ -374,6 +495,22 @@ class SpeakActivity(SharedActivity):
     def _entry_activate_cb(self, entry):
         # the user pressed Return, say the text and clear it out
         text = entry.props.text
+        if self._tablet_mode:
+            self._dismiss_OSK(entry)
+            timeout = DELAY_BEFORE_SPEAKING
+        else:
+            timeout = 100
+        gobject.timeout_add(timeout, self._speak_the_text, entry, text)
+
+    def _dismiss_OSK(self, entry):
+        entry.hide()
+        entry.show()
+
+    def _talk_cb(self, button):
+        text = self.entry.props.text
+        self._speak_the_text(self.entry, text)
+
+    def _speak_the_text(self, entry, text):
         if text:
             self.face.look_ahead()
 
@@ -384,7 +521,9 @@ class SpeakActivity(SharedActivity):
             else:
                 self.face.say(text)
 
-            # add this text to our history unless it is the same as the last item
+        if text and not self._tablet_mode:
+            # add this text to our history unless it is the same as
+            # the last item
             history = self.entrycombo.get_model()
             if len(history)==0 or history[-1][0] != text:
                 self.entrycombo.append_text(text)
@@ -393,6 +532,7 @@ class SpeakActivity(SharedActivity):
                     self.entrycombo.remove_text(0)
                 # select the new item
                 self.entrycombo.set_active(len(history)-1)
+        if text:
             # select the whole text
             entry.select_region(0, -1)
 
@@ -459,7 +599,6 @@ class SpeakActivity(SharedActivity):
             return
 
         is_first_session = not self.chat.me.flags() & gtk.MAPPED
-        is_first_session = is_first_session & (len(self.chat._buddies.keys()) == 0)
 
         self._mode = MODE_CHAT
         self.face.shut_up()
