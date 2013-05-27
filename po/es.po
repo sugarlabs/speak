@@ -154,8 +154,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2012-09-30 07:43+0200\n"
+"POT-Creation-Date: 2013-04-01 00:30-0400\n"
+"PO-Revision-Date: 2013-04-03 17:35+0200\n"
 "Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -166,6 +166,7 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
+#: activity.py:104
 msgid "Speak"
 msgstr "Hablar"
 
@@ -188,96 +189,97 @@ msgstr ""
 "sintetizador de voz, aprender a escribir o simplemente divertirse haciendo "
 "una cara divertida para tu XO."
 
-#: activity.py:135
+#: activity.py:170
 msgid "Type something to hear it"
 msgstr "Escribe algo para escucharlo"
 
-#: activity.py:142
+#: activity.py:177
 msgid "Ask robot any question"
 msgstr "Hazle cualquier pregunta al robot"
 
-#: activity.py:150
+#: activity.py:185
 msgid "Voice chat"
 msgstr "Chat de voz"
 
-#: activity.py:159
+#: activity.py:191
+msgid "Language"
+msgstr "Lenguaje"
+
+#: activity.py:197
 msgid "Voice"
 msgstr "Voz"
 
-#: activity.py:165
+#: activity.py:203
 msgid "Face"
 msgstr "Cara"
 
-#: activity.py:194
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Número de ojos:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr "Hola %s."
+
+#: activity.py:247
 #, python-format
 #, python-format,
 msgid "Hello %s. Please Type something."
 msgstr "Hola %s. Escribe algo por favor."
 
-#: activity.py:260
+#: activity.py:331
 msgid "Pitch:"
 msgstr "Tono:"
 
-#: activity.py:273
+#: activity.py:344
 msgid "Rate:"
 msgstr "Velocidad:"
 
-#: activity.py:281
+#: activity.py:352
 msgid "pitch adjusted"
 msgstr "tono ajustado"
 
-#: activity.py:285
+#: activity.py:356
 msgid "rate adjusted"
 msgstr "velocidad ajustada"
 
-#: activity.py:291
+#: activity.py:365
 msgid "Simple"
 msgstr "Simple"
 
-#: activity.py:292
+#: activity.py:372
 msgid "Waveform"
 msgstr "Onda"
 
-#: activity.py:293
+#: activity.py:379
 msgid "Frequency"
 msgstr "Frecuencia"
 
-#: activity.py:298
-msgid "Mouth:"
-msgstr "Boca:"
-
-#: activity.py:302
+#: activity.py:392
 msgid "Round"
 msgstr "Redondos"
 
-#: activity.py:303
+#: activity.py:399
 msgid "Glasses"
 msgstr "Anteojos"
 
-#: activity.py:308
-msgid "Eyes:"
-msgstr "Ojos:"
-
-#: activity.py:319
-msgid "Eyes number:"
-msgstr "Número de ojos:"
-
-#: activity.py:331
+#: activity.py:441
 msgid "mouth changed"
 msgstr "boca cambiada"
 
-#: activity.py:343
+#: activity.py:461
 msgid "eyes changed"
 msgstr "ojos cambiados"
 
-#: activity.py:442
+#: activity.py:582
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 "Lo sentimos, no puedo hablar %(old_voice)s, vamos a hablar %(new_voice)s en "
 "su lugar."
 
-#: activity.py:473
+#: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Estás en modo desconectado, comparte e invita a alguien."
 
@@ -474,6 +476,12 @@ msgstr "Polaco"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
+
+#~ msgid "Mouth:"
+#~ msgstr "Boca:"
+
+#~ msgid "Eyes:"
+#~ msgstr "Ojos:"
 
 #~ msgid "Brazil"
 #~ msgstr "Brasileño"
