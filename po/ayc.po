@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-01 00:30-0400\n"
-"PO-Revision-Date: 2012-09-21 19:57+0200\n"
+"PO-Revision-Date: 2013-06-07 19:34+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: aym\n"
+"Language: ayc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgstr "Arsuña"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Taqi kuna qillqata arsuri maya unuqiri ajanu"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -34,6 +34,12 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"Arsuña wakichataxa maya arsuri ajanuwa computadora XO taypina utji. Maski "
+"kuna qillqatamasa jach'ata arsutaniwa uka XO arsuri taypina. Jach'ata "
+"arsuñasa, ira ukata lankhu arusa, ukhamaraki nayra laka unuqiñasa "
+"khuskhachasispawa. Ukasti jach'ata arsutanaka suma khuskhachañawa, qillqaña "
+"yatiqaña jani ukaxa suma kusisisa lurañawa maya suma k'uchi ajanu wakichasa "
+"XO taypina."
 
 #: activity.py:170
 msgid "Type something to hear it"
@@ -49,7 +55,7 @@ msgstr "Arsusiñampi jakist'aña"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Arsüwi"
 
 #: activity.py:197
 msgid "Voice"
@@ -66,7 +72,7 @@ msgstr "Nayranaka jakhu:"
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "Kamisaraki %s."
 
 #: activity.py:247
 #, python-format
