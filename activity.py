@@ -93,7 +93,7 @@ class SpeakActivity(SharedActivity):
 
         # make an audio device for playing back and rendering audio
         self.connect("notify::active", self._activeCb)
-
+        self.cfg = {}
 
         # make a box to type into
         hbox = gtk.HBox()
