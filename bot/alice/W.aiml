@@ -19654,8 +19654,7 @@ the doughty Mrs. W. greets them.
 	</category>
 	<category>
 		<pattern>WHAT IS MY NAME</pattern>
-		<template>Your name is <get name="name"/>, seeker.
-</template>
+		<template>Your name is <get name="name"/></template>
 	</category>
 	<category>
 		<pattern>WHAT IS MY NICKNAME</pattern>

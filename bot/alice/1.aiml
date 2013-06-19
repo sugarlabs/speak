@@ -116,8 +116,4 @@
 <pattern>19</pattern>
 <template><srai>I AM 19 YEARS OLD</srai>
 </template></category>
-<category>
-<pattern>1999</pattern>
-<template>This year.
-</template></category>
 </aiml>

@@ -9636,12 +9636,8 @@ My guess is that you are really a kid.
 	<category>
 		<pattern>HOW OLD ARE YOU</pattern>
 		<template>
-			<random>
-				<li>I'm eight in computer years.</li>
-				<li>I am eight years old.</li>
-			</random>
-		</template>
-	</category>
+		  I am <get name="age"/> years old.</template>
+    </category>
 	<category>
 		<pattern>HOW OLD ARE YOU IN HUMAN YEARS</pattern>
 		<template>I was activated on <bot name="birthday"/>.

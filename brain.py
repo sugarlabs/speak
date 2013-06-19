@@ -19,12 +19,16 @@
 
 import gtk
 import gobject
+import gconf
+import time
 from gettext import gettext as _
 
 import logging
 logger = logging.getLogger('speak')
 
 from toolkit.combobox import ComboBox
+
+from sugar import profile
 
 import aiml
 import voice
@@ -56,6 +60,19 @@ if get_mem_info('MemTotal:') < 524288:
 
 _kernel = None
 _kernel_voice = None
+
+
+def _get_age():
+    client = gconf.client_get_default()
+    birth_timestamp = client.get_int('/desktop/sugar/user/birth_timestamp')
+    if birth_timestamp == None or birth_timestamp == 0:
+        return 8
+    else:
+        current_timestamp = time.time()
+        age = (current_timestamp - birth_timestamp) / (365. * 24 * 60 * 60)
+        if age < 5 or age > 16:
+            age = 8
+        return int(age)
 
 
 def get_default_voice():
@@ -122,8 +139,11 @@ def load(activity, voice, sorry=None):
             activity.set_cursor(old_cursor)
 
         if is_first_session:
-            hello = _("Hello, I'm a robot \"%s\". Please ask me any question.") \
-                    % BOTS[voice.friendlyname]['name']
+            _kernel.respond(_('my name is %s') % (profile.get_nick_name()))
+            _kernel.respond(_('I am %d years old') % (_get_age()))
+            hello = \
+                _("Hello, I'm a robot \"%s\". Please ask me any question.") \
+                % BOTS[voice.friendlyname]['name']
             if sorry:
                 hello += ' ' + sorry
             activity.face.say_notification(hello)
