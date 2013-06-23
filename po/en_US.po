@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-01 00:30-0400\n"
-"PO-Revision-Date: 2013-04-03 08:16+0200\n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2013-06-23 03:26+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_US\n"
@@ -156,19 +156,19 @@ msgstr "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgid "You are in off-line mode, share and invite someone."
 msgstr "You are in off-line mode, share and invite someone."
 
-#: brain.py:33 voice.py:67
+#: brain.py:37 voice.py:67
 msgid "Spanish"
 msgstr "Spanish"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
 msgstr "English"
 
-#: brain.py:80
+#: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "Sorry, I can't understand what you are asking about."
 
-#: brain.py:104
+#: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -176,7 +176,17 @@ msgstr ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 
-#: brain.py:125
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "my name is %s"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "I am %d years old"
+
+#: brain.py:145
 #, python-format
 #, python-format,
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
