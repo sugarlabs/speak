@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-01 00:30-0400\n"
-"PO-Revision-Date: 2013-04-18 20:37+0200\n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2013-06-24 14:20+0200\n"
 "Last-Translator: anushnur <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
@@ -154,19 +154,19 @@ msgstr ""
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Դուք ցանցին միացած չեք, կիսվեք որևէ մեկի հետ և հրավիրեք նրան:"
 
-#: brain.py:33 voice.py:67
+#: brain.py:37 voice.py:67
 msgid "Spanish"
 msgstr "Իսպաներեն"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
 msgstr "Անգլերեն"
 
-#: brain.py:80
+#: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "Ներողություն, չեմ հասկանում Ձեր հարցի բնույթը:"
 
-#: brain.py:104
+#: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -174,7 +174,17 @@ msgstr ""
 "Ներողություն, չկա ազատ հիշողություն իմ միտքը բեռնելու համար. Փակեք մյուս "
 "գործողությունները և փորձենք մեկ անգամ ևս."
 
-#: brain.py:125
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "Իմ անունը %s է"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "Ես  %d տարեկան եմ"
+
+#: brain.py:145
 #, python-format
 #, python-format,
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
