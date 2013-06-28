@@ -154,8 +154,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-01 00:30-0400\n"
-"PO-Revision-Date: 2013-04-03 17:35+0200\n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2013-06-25 18:46+0200\n"
 "Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -283,19 +283,19 @@ msgstr ""
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Estás en modo desconectado, comparte e invita a alguien."
 
-#: brain.py:33 voice.py:67
+#: brain.py:37 voice.py:67
 msgid "Spanish"
 msgstr "Español"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
 msgstr "Inglés"
 
-#: brain.py:80
+#: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "Lo siento, no puedo entender qué estás preguntando."
 
-#: brain.py:104
+#: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -303,7 +303,17 @@ msgstr ""
 "Lo siento, no hay memoria libre en mi cerebro. Cierra otras actividades e "
 "inténtalo de nuevo."
 
-#: brain.py:125
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "mi nombre es %s"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "Tengo %d años"
+
+#: brain.py:145
 #, python-format
 #, python-format,
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."

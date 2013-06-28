@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
 "PO-Revision-Date: 2012-11-15 06:48+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Voluntarios quechuas Sugar Camp Lima\n"
@@ -16,6 +16,7 @@ msgstr ""
 
 #  "HablarConSara"
 #. TRANS: "name" option from activity.info file
+#: activity.py:104
 msgid "Speak"
 msgstr "Rimay"
 
@@ -44,110 +45,109 @@ msgstr ""
 "Rimarinanpaqqa, munasqaykimanhina imatapas akllariwaq."
 
 #  "Escribe algo para escucharlo"
-#: activity.py:135
+#: activity.py:170
 msgid "Type something to hear it"
 msgstr "Uyarinayqipaqqa imatapis qillqay"
 
 #  "Hazle cualquier pregunta al robot"
-#: activity.py:142
+#: activity.py:177
 msgid "Ask robot any question"
 msgstr "Robotchaman imallatapis tapuy"
 
 #  "Chat de voz"
-#: activity.py:150
+#: activity.py:185
 msgid "Voice chat"
 msgstr "Rimanakuy"
 
+#: activity.py:191
+msgid "Language"
+msgstr ""
+
 #  "Voz"
-#: activity.py:159
+#: activity.py:197
 msgid "Voice"
 msgstr "Kunka"
 
 #  "Cara"
-#: activity.py:165
+#: activity.py:203
 msgid "Face"
 msgstr "Uya"
 
+#  "Número de ojos:"
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Hayk'a ñawikuna:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr ""
+
 #  "Hola %s. Escribe algo por favor."
-#: activity.py:194
+#: activity.py:247
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr "Allillanchu %s Imallatapis qillqay."
 
 #  "Tono:"
-#: activity.py:260
+#: activity.py:331
 msgid "Pitch:"
 msgstr "Kunkamanta:"
 
 #  "Velocidad:"
-#: activity.py:273
+#: activity.py:344
 msgid "Rate:"
 msgstr "Utqana:"
 
 #  "tono ajustado"
-#: activity.py:281
+#: activity.py:352
 msgid "pitch adjusted"
 msgstr "Ñañu kunka"
 
 #  "velocidad ajustada"
-#: activity.py:285
+#: activity.py:356
 msgid "rate adjusted"
 msgstr "Utqana mat'ichasqa"
 
 #  "Simple"
-#: activity.py:291
+#: activity.py:365
 msgid "Simple"
 msgstr "Yanqalla"
 
 #  "Onda"
-#: activity.py:292
+#: activity.py:372
 msgid "Waveform"
 msgstr "Onda nisqa"
 
 #  "Frecuencia"
-#: activity.py:293
+#: activity.py:379
 msgid "Frequency"
 msgstr "Frecuencia nisqa"
 
-#  "Boca:"
-#: activity.py:298
-msgid "Mouth:"
-msgstr "Simi:"
-
 #  "Redondos"
-#: activity.py:302
+#: activity.py:392
 msgid "Round"
 msgstr "Muyukuna"
 
 #  "Anteojos"
-#: activity.py:303
+#: activity.py:399
 msgid "Glasses"
 msgstr "Tawañawi"
 
-#  "Ojos:"
-#: activity.py:308
-msgid "Eyes:"
-msgstr "Ñawikuna:"
-
-#  "Número de ojos:"
-#: activity.py:319
-msgid "Eyes number:"
-msgstr "Hayk'a ñawikuna:"
-
 #  "boca cambiada"
-#: activity.py:331
+#: activity.py:441
 msgid "mouth changed"
 msgstr "Simi huknirasqa"
 
 #  "ojos cambiados"
-#: activity.py:343
+#: activity.py:461
 msgid "eyes changed"
 msgstr "Ñawi huknirasqa"
 
 #  [ES] ""
 #  [ES] "Lo sentimos, no puedo hablar %(old_voice)s, vamos a hablar %(new_voice)s en "
 #  [ES] "su lugar."
-#: activity.py:442
+#: activity.py:582
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
@@ -155,28 +155,28 @@ msgstr ""
 "(new_voice)s simipi rimarisunman."
 
 #  "Estás en modo desconectado, comparte e invita a alguien."
-#: activity.py:473
+#: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Mana tinkusqachu kashanki, pitawanpis waqay."
 
 #  "Español"
-#: brain.py:33 voice.py:67
+#: brain.py:37 voice.py:67
 msgid "Spanish"
 msgstr "Castilla simi"
 
 #  "Inglés"
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
 msgstr "Inglish simi"
 
 #  "Lo siento, no puedo entender qué estás preguntando."
-#: brain.py:80
+#: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "pampachaway mana yachachkanichu tapuwasqaykitaqa."
 
 #  "Lo siento, no hay memoria libre en mi cerebro. Cierra otras actividades e "
 #  "inténtalo de nuevo."
-#: brain.py:104
+#: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -184,8 +184,18 @@ msgstr ""
 "Pampachaway, umachayqa hunt'añam kachkan. Huk ruwanakunata wisq'ay, ichaqa "
 "wakmanta qhallariwaq."
 
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr ""
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr ""
+
 #  "Hola, soy un robot \"%s\". Pregúntame cualquier pregunta."
-#: brain.py:125
+#: brain.py:145
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr "Allilanchu, robotmi kani \"%s\". Imallatapis tapuway."
@@ -398,6 +408,14 @@ msgstr "Polaco simi"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto simi"
+
+#  "Boca:"
+#~ msgid "Mouth:"
+#~ msgstr "Simi:"
+
+#  "Ojos:"
+#~ msgid "Eyes:"
+#~ msgstr "Ñawikuna:"
 
 #  "Brasileño"
 #~ msgid "Brazil"

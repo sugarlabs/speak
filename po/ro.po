@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
 "PO-Revision-Date: 2010-01-02 19:23-0400\n"
 "Last-Translator: Chris Leonard <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,7 @@ msgstr ""
 "X-Generator: Pootle 1.2.1\n"
 
 #. TRANS: "name" option from activity.info file
+#: activity.py:104
 msgid "Speak"
 msgstr ""
 
@@ -63,115 +64,126 @@ msgid ""
 "just have fun making a funny face for your XO."
 msgstr ""
 
-#: activity.py:135
+#: activity.py:170
 msgid "Type something to hear it"
 msgstr ""
 
-#: activity.py:142
+#: activity.py:177
 msgid "Ask robot any question"
 msgstr ""
 
-#: activity.py:150
+#: activity.py:185
 msgid "Voice chat"
 msgstr ""
 
-#: activity.py:159
+#: activity.py:191
+msgid "Language"
+msgstr ""
+
+#: activity.py:197
 msgid "Voice"
 msgstr ""
 
-#: activity.py:165
+#: activity.py:203
 msgid "Face"
 msgstr ""
 
-#: activity.py:194
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr ""
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr ""
+
+#: activity.py:247
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr ""
 
-#: activity.py:260
+#: activity.py:331
 msgid "Pitch:"
 msgstr ""
 
-#: activity.py:273
+#: activity.py:344
 msgid "Rate:"
 msgstr ""
 
-#: activity.py:281
+#: activity.py:352
 msgid "pitch adjusted"
 msgstr ""
 
-#: activity.py:285
+#: activity.py:356
 msgid "rate adjusted"
 msgstr ""
 
-#: activity.py:291
+#: activity.py:365
 msgid "Simple"
 msgstr ""
 
-#: activity.py:292
+#: activity.py:372
 msgid "Waveform"
 msgstr ""
 
-#: activity.py:293
+#: activity.py:379
 msgid "Frequency"
 msgstr ""
 
-#: activity.py:298
-msgid "Mouth:"
-msgstr ""
-
-#: activity.py:302
+#: activity.py:392
 msgid "Round"
 msgstr ""
 
-#: activity.py:303
+#: activity.py:399
 msgid "Glasses"
 msgstr ""
 
-#: activity.py:308
-msgid "Eyes:"
-msgstr ""
-
-#: activity.py:319
-msgid "Eyes number:"
-msgstr ""
-
-#: activity.py:331
+#: activity.py:441
 msgid "mouth changed"
 msgstr ""
 
-#: activity.py:343
+#: activity.py:461
 msgid "eyes changed"
 msgstr ""
 
-#: activity.py:442
+#: activity.py:582
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
-#: activity.py:473
+#: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 
-#: brain.py:33 voice.py:67
+#: brain.py:37 voice.py:67
 msgid "Spanish"
 msgstr "Spaniolă"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
 msgstr "Engleză"
 
-#: brain.py:80
+#: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
 msgstr ""
 
-#: brain.py:104
+#: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
 
-#: brain.py:125
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr ""
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr ""
+
+#: brain.py:145
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-01 00:30-0400\n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
 "PO-Revision-Date: 2012-08-28 20:24+0200\n"
 "Last-Translator: usuariopame04 <proyecto.olpc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,19 +129,19 @@ msgstr ""
 msgid "You are in off-line mode, share and invite someone."
 msgstr "Kad-ep mvaka'am, kiejelt su'ua'."
 
-#: brain.py:33 voice.py:67
+#: brain.py:37 voice.py:67
 msgid "Spanish"
 msgstr "Man'eiñ"
 
-#: brain.py:37 brain.py:52 brain.py:54 brain.py:64 voice.py:58
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
 msgstr "kuné kad-ua nan'eiñ"
 
-#: brain.py:80
+#: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
 msgstr "Kad-ep lau'u kad-er ki'iajaun'."
 
-#: brain.py:104
+#: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
@@ -149,7 +149,17 @@ msgstr ""
 "Kad-ep tumei tijiap nganaung, viviun' kad-er nichjau. tsukuet tame'et "
 "vichjaut."
 
-#: brain.py:125
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr ""
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr ""
+
+#: brain.py:145
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr "Gyu't kauk talee chipia\"%s\" gyajaun sania' niñja."
