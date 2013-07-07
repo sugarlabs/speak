@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2013-04-06 08:37+0200\n"
+"PO-Revision-Date: 2013-07-05 06:04+0200\n"
 "Last-Translator: andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -168,7 +168,7 @@ msgstr "bahasa Spanyol"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
-msgstr "bahasa Inggris"
+msgstr "Bahasa Inggris"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
@@ -185,12 +185,12 @@ msgstr ""
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "nama saya %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "saya berusia %d tahun"
 
 #: brain.py:145
 #, python-format
