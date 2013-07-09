@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2013-04-10 13:45+0200\n"
+"PO-Revision-Date: 2013-07-09 10:20+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -157,12 +157,12 @@ msgstr ""
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "mit navn er %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "Jeg er %d år gammel"
 
 #: brain.py:145
 #, python-format
