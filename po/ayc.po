@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2013-06-07 19:34+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2013-07-29 15:06+0200\n"
+"Last-Translator: EdgarQuispeChambi <quispedgar@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ayc\n"
 "MIME-Version: 1.0\n"
@@ -157,12 +157,12 @@ msgstr ""
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "Nayana sutijaxa %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "Nayaxa %d maranïthwa"
 
 #: brain.py:145
 #, python-format
