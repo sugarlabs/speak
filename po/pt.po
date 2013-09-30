@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2012-07-31 21:00+0200\n"
+"PO-Revision-Date: 2013-09-30 23:06+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -52,7 +52,7 @@ msgstr "Falar"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Uma cara animada que fala o que escreves"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -62,6 +62,12 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"Falar é uma cara falante para o portátil XO. Tudo que escrevas será falado "
+"em voz alta utilizando o sintetizador de voz do XO, o espeak. Podes ajustar "
+"o sotaque, o ritmo e o tom da voz, assim como a forma dos olhos e da boca. "
+"Esta é uma ótima maneira de experimentares com o sintetizador de voz, "
+"aprenderes a escrever ou simplesmente divertires-te fazendo uma cara "
+"engraçada para o teu XO."
 
 #: activity.py:170
 msgid "Type something to hear it"
@@ -77,7 +83,7 @@ msgstr "Conversar com voz"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Língua"
 
 #: activity.py:197
 msgid "Voice"
@@ -94,7 +100,7 @@ msgstr "Número de olhos:"
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "Olá %s."
 
 #: activity.py:247
 #, python-format
@@ -177,12 +183,12 @@ msgstr ""
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "o meu nome é %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "Eu tenho %d anos"
 
 #: brain.py:145
 #, python-format
