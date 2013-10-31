@@ -96,6 +96,7 @@ msgid "Hello %s."
 msgstr "Haló %s."
 
 #: activity.py:247
+#, python-format
 #, python-format, python-format
 msgid "Hello %s. Please Type something."
 msgstr "Haló %s. Bo por taip algu?"
@@ -186,6 +187,7 @@ msgid "I am %d years old"
 msgstr "Mi tin %d aña"
 
 #: brain.py:145
+#, python-format
 #, python-format, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr "Haló, ami ta un robòt \"%s\". Bo por hasi mi kualke pregunta."
