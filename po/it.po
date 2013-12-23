@@ -104,7 +104,7 @@ msgstr "Ciao %s."
 
 #: activity.py:247
 #, python-format
-#, python-format, 
+#, python-format,
 msgid "Hello %s. Please Type something."
 msgstr "Ciao %s. Scrivi qualcosa."
 
@@ -194,7 +194,7 @@ msgstr "Ho %d anni."
 
 #: brain.py:145
 #, python-format
-#, python-format, 
+#, python-format,
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr "Ciao, io sono il robot \"%s\". Fammi una domanda."
 
