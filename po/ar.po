@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2012-07-24 09:51+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2014-02-07 13:47+0200\n"
+"Last-Translator: elxrashedy <abdXelrhman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +25,11 @@ msgstr ""
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
 msgid "Speak"
-msgstr "تكلم"
+msgstr "التحدث"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "يمكنك من صناعه وجوه متحركه تنطق ما تكتبه أنت !"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -39,22 +39,28 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"\"التحدث\" هو ببساطه وجه متكلم لحواسيب XO المحموله ! أى شيئ تكتبه سوف يُنطَق "
+"بإستخدام مازج خطابات XO وبمساعده من eSpeak. يمكنك التحكم فى اللهجه وسرعه "
+"التحدث والنعمه الصوتيه ، أما بالنسبه لصناعه الوجوه فيمكنك التحكم فى مظهر "
+"العيون والفم. أجمع العديد من الخبراء أن هذه وسيله رائعه لتنميه مهارات اﻷطفال "
+"السمعيه والكتابيه وأيضاً وسيله جيده لتضميه الوقت من خِلال إنشاء الوجوه "
+"والتحكم بها."
 
 #: activity.py:170
 msgid "Type something to hear it"
-msgstr "قم بكتابة كلمة لسماع نطقها"
+msgstr "اُكتب كلمه وستسمع نطقها"
 
 #: activity.py:177
 msgid "Ask robot any question"
-msgstr "أسئل الروبوت أي سؤال"
+msgstr "إسئل الإنسان الآلى أى سؤال تريده"
 
 #: activity.py:185
 msgid "Voice chat"
-msgstr "المحادثة الصوتية"
+msgstr "الدردشه الصوتيه"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "اللغه"
 
 #: activity.py:197
 msgid "Voice"
@@ -66,34 +72,33 @@ msgstr "الوجه"
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
-msgstr ""
+msgstr "عدد العيون :"
 
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "أهلاً %s."
 
 #: activity.py:247
 #, python-format
-#, python-format, fuzzy
 msgid "Hello %s. Please Type something."
-msgstr "مرحبا %s.  قم بكتابة شيء ما."
+msgstr "أهلاً  %s ، اُكتب أى شيئ تريده."
 
 #: activity.py:331
 msgid "Pitch:"
-msgstr ""
+msgstr "النغمه :"
 
 #: activity.py:344
 msgid "Rate:"
-msgstr "السرعة:"
+msgstr "السرعه :"
 
 #: activity.py:352
 msgid "pitch adjusted"
-msgstr ""
+msgstr "ضُبِطَت النغمه"
 
 #: activity.py:356
 msgid "rate adjusted"
-msgstr ""
+msgstr "ضُبِطَت السرعه"
 
 #: activity.py:365
 msgid "Simple"
@@ -101,7 +106,7 @@ msgstr "بسيط"
 
 #: activity.py:372
 msgid "Waveform"
-msgstr ""
+msgstr "نمط الموجه الصوتيه"
 
 #: activity.py:379
 msgid "Frequency"
@@ -113,28 +118,30 @@ msgstr "دائري"
 
 #: activity.py:399
 msgid "Glasses"
-msgstr "النظارة"
+msgstr "نظاره"
 
 #: activity.py:441
 msgid "mouth changed"
-msgstr ""
+msgstr "غُيِرَ الفم"
 
 #: activity.py:461
 msgid "eyes changed"
-msgstr ""
+msgstr "غُيِرَت العيون"
 
 #: activity.py:582
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"لا يمكننى التحدث بصوت %(old_voice)s ، ولكن يمكننى التحدث بصوت %(new_voice)s "
+"بدلاً منه."
 
 #: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "أنت حالياً فى الوضع خارج الخط ، شارك و إدعى أحدهم."
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
-msgstr "الإسبانية"
+msgstr "اﻷسبانيه"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
@@ -142,28 +149,30 @@ msgstr "الإنجليزية"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "آسف ، لا أفهم سؤالك."
 
 #: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"لا تتوافر ذاكره وصول عشوائى كافيه للتحميل. يُرجى إغلاق أى نشاطات اخرى مفتوحه "
+"وإعاده المحاوله."
 
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "إسمى %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "أنا أبلغ من العمر %d عاماً(أعوام)"
 
 #: brain.py:145
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "أهلاً ، انا إنسان آلى \"%s\". يمكنك أن تطرح على أى سؤال تريده."
 
 #: chatbox.py:248
 msgid "URL from Chat"
@@ -171,47 +180,47 @@ msgstr ""
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr "نسخ إلى الحافظة"
+msgstr "إنسخ إلى الحافظه"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr ""
+msgstr "أوقف"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr ""
+msgstr "تراجع"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr ""
+msgstr "إلغ التراجع"
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr ""
+msgstr "إنسخ"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr ""
+msgstr "إلصق"
 
 #: toolkit/activity_widgets.py:128
 msgid "Private"
-msgstr ""
+msgstr "خاص"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "الحى الذى أعيش فيه"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "الوصف"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
-msgstr ""
+msgstr "النشاط"
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "البرتغالية (البرازيل)"
 
 #: voice.py:38
 msgid "Swedish"
@@ -227,7 +236,7 @@ msgstr "الرومانية"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr "السواحلي"
+msgstr "السواحليه"
 
 #: voice.py:42
 msgid "Hindi"
@@ -239,7 +248,7 @@ msgstr "الهولندية"
 
 #: voice.py:44
 msgid "Latin"
-msgstr "الاتينية"
+msgstr "اللاتينيه"
 
 #: voice.py:45
 msgid "Hungarian"
@@ -275,7 +284,7 @@ msgstr "الفلندية"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
-msgstr ""
+msgstr "المبدئى"
 
 #: voice.py:54
 msgid "Cantonese"
@@ -295,7 +304,7 @@ msgstr "الفيتنامية"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr "لانكشاير"
+msgstr "اللانكشاريه"
 
 #: voice.py:60
 msgid "Italian"
@@ -311,7 +320,7 @@ msgstr "الألمانية"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "إهمس"
 
 #: voice.py:64
 msgid "Croatian"
@@ -331,7 +340,7 @@ msgstr "البولندية"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr "الإسبرانتو"
+msgstr "الإسبرانتوريه"
 
 #~ msgid "Mouth:"
 #~ msgstr "الفم:"
@@ -349,6 +358,5 @@ msgstr "الإسبرانتو"
 #~ msgstr "البرتغالية"
 
 #, python-format
-#, python-format, fuzzy
 #~ msgid "Sorry, I can't speak %s, let's talk %s instead."
 #~ msgstr "آسف، أنا لا استطيع التكلم %s، دعنا نتكلم %s بدلاً."
