@@ -202,9 +202,7 @@ class SpeakActivity(SharedActivity):
         self.entry.connect("move-cursor", self._cursor_moved_cb)
         self.entry.connect("changed", self._cursor_moved_cb)
 
-        # toolbar
         toolbox = ToolbarBox()
-
         toolbox.toolbar.insert(ActivityToolbarButton(self), -1)
 
         self.voices = ComboBox()
@@ -215,6 +213,7 @@ class SpeakActivity(SharedActivity):
 
         self.voices.select(voice.defaultVoice())
         all_voices = self.voices.get_model()
+
         brain_voices = brain.get_voices()
 
         mode_type = RadioToolButton(
@@ -408,6 +407,55 @@ class SpeakActivity(SharedActivity):
     def make_voice_bar(self):
         voicebar = gtk.Toolbar()
 
+        # A palette for the voice selection
+        voice_box = gtk.HBox()
+        vboxes = [gtk.VBox(), gtk.VBox(), gtk.VBox()]
+        count = len(voice.allVoices().keys())
+        for i, name in enumerate(sorted(voice.allVoices().keys())):
+            vn = voice.allVoices()[name]
+            if len(name) > 26:
+                n = name[:26] + '...'
+            else:
+                n = name
+            label = gtk.Label()
+            label.set_use_markup(True)
+            label.set_justify(gtk.JUSTIFY_LEFT)
+            span = '<span size="large">'
+            label.set_markup(span + n + '</span>')
+
+            alignment = gtk.Alignment(0, 0, 0, 0)
+            alignment.add(label)
+            label.show()
+
+            evbox = gtk.EventBox()
+            evbox.connect('button-press-event', self.voices_changed_event_cb,
+                          vn, n)
+            evbox.add(alignment)
+            alignment.show()
+            if i < count / 3:
+                vboxes[0].pack_start(evbox)
+            elif i < 2 * count / 3:
+                vboxes[1].pack_start(evbox)
+            else:
+                vboxes[2].pack_start(evbox)
+        voice_box.pack_start(vboxes[0], padding=style.DEFAULT_PADDING)
+        voice_box.pack_start(vboxes[1], padding=style.DEFAULT_PADDING)
+        voice_box.pack_start(vboxes[2], padding=style.DEFAULT_PADDING)
+
+        voice_palette_button = ToolButton('module-language')
+        voice_palette_button.set_tooltip(_('Choose voice:'))
+        palette = voice_palette_button.get_palette()
+        palette.set_content(voice_box)
+        voice_box.show_all()
+        voice_palette_button.connect('clicked', self._face_palette_cb)
+        voicebar.insert(voice_palette_button, -1)
+        voice_palette_button.show()
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        separator.set_expand(False)
+        voicebar.insert(separator, -1)
+
         self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
                 espeak.PITCH_MAX, 1, espeak.PITCH_MAX/10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
@@ -561,10 +609,14 @@ class SpeakActivity(SharedActivity):
         if not quiet:
             self.face.say_notification(_("mouth changed"))
 
+    def voices_changed_event_cb(self, widget, event, voice_name, name):
+        pass
+
     def _get_active_eyes(self):
         for name in EYE_DICT.keys():
             if EYE_DICT[name]['index'] == self.active_eyes:
                 return EYE_DICT[name]['widget']
+        return None
 
     def eyes_changed_event_cb(self, widget, event, name, quiet):
         if self.active_eyes is not None:
@@ -659,7 +711,7 @@ class SpeakActivity(SharedActivity):
             gobject.source_remove(self._robot_idle_id)
             value = self._get_active_eyes()
             if value is not None:
-                self.face.status.eyes = [value] * int(self.numeyesadj.value)
+                self.face.status.eyes = [value] * self.active_number_of_eyes
                 self._update_face()
 
         if text:
@@ -693,7 +745,7 @@ class SpeakActivity(SharedActivity):
 
     def _load_sleeping_face(self):
         current_eyes = self.face.status.eyes
-        self.face.status.eyes = [SLEEPY_EYES] * int(self.numeyesadj.value)
+        self.face.status.eyes = [SLEEPY_EYES] * self.active_number_of_eyes
         self._update_face()
         self.face.status.eyes = current_eyes
 
