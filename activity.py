@@ -237,12 +237,14 @@ class SpeakActivity(SharedActivity):
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
 
+        '''
         language_button = ToolbarButton(
                 page=self.make_language_bar(),
                 label=_('Language'),
                 icon_name='module-language')
         toolbox.toolbar.insert(language_button, -1)
-        
+        '''
+
         voice_button = ToolbarButton(
                 page=self.make_voice_bar(),
                 label=_('Voice'),
@@ -278,7 +280,7 @@ class SpeakActivity(SharedActivity):
             pass
 
     def new_instance(self):
-        self.voices.connect('changed', self.__changed_voices_cb)
+        # self.voices.connect('changed', self.__changed_voices_cb)
         self.pitchadj.connect("value_changed", self.pitch_adjusted_cb,
                               self.pitchadj)
         self.rateadj.connect("value_changed", self.rate_adjusted_cb,
@@ -309,7 +311,13 @@ class SpeakActivity(SharedActivity):
         status = self.face.status = \
             face.Status().deserialize(self.cfg['status'])
 
-        self.voices.select(status.voice)
+        logging.error(status.voice)
+        for name in self._voice_evboxes.keys():
+            if self._voice_evboxes[name][1] == status.voice:
+                self._voice_evboxes[name][0].modify_bg(
+                    0, style.COLOR_BUTTON_GREY.get_gdk_color())
+                break
+        # self.voices.select(status.voice)
 
         self.pitchadj.value = self.face.status.pitch
         self.rateadj.value = self.face.status.rate
@@ -396,6 +404,7 @@ class SpeakActivity(SharedActivity):
     def _mouse_clicked_cb(self, widget, event):
         pass
 
+    '''
     def make_language_bar(self):
         languagebar = gtk.Toolbar()
 
@@ -403,14 +412,19 @@ class SpeakActivity(SharedActivity):
         languagebar.insert(voices_toolitem, -1)
         languagebar.show_all()
         return languagebar
+    '''
 
     def make_voice_bar(self):
         voicebar = gtk.Toolbar()
 
         # A palette for the voice selection
+        logging.error(self.face.status.voice)
+
+        self._voice_evboxes = {}
         voice_box = gtk.HBox()
         vboxes = [gtk.VBox(), gtk.VBox(), gtk.VBox()]
         count = len(voice.allVoices().keys())
+        found_my_voice = False
         for i, name in enumerate(sorted(voice.allVoices().keys())):
             vn = voice.allVoices()[name]
             if len(name) > 26:
@@ -428,6 +442,11 @@ class SpeakActivity(SharedActivity):
             label.show()
 
             evbox = gtk.EventBox()
+            self._voice_evboxes[n] = [evbox, vn]
+            if vn == self.face.status.voice and not found_my_voice:
+                evbox.modify_bg(
+                    0, style.COLOR_BUTTON_GREY.get_gdk_color())
+                found_my_voice = True
             evbox.connect('button-press-event', self.voices_changed_event_cb,
                           vn, n)
             evbox.add(alignment)
@@ -609,8 +628,20 @@ class SpeakActivity(SharedActivity):
         if not quiet:
             self.face.say_notification(_("mouth changed"))
 
-    def voices_changed_event_cb(self, widget, event, voice_name, name):
-        pass
+    def voices_changed_event_cb(self, widget, event, voice, name):
+        logging.error('voices_changed_event_cb %r %s' % (voice, name))
+        for old_voice in self._voice_evboxes.keys():
+            if self._voice_evboxes[old_voice][1] == self.face.status.voice:
+                self._voice_evboxes[old_voice][0].modify_bg(
+                    0, style.COLOR_BLACK.get_gdk_color())
+                break
+
+        self._voice_evboxes[name][0].modify_bg(
+            0, style.COLOR_BUTTON_GREY.get_gdk_color())
+
+        self.face.set_voice(voice)
+        if self._mode == MODE_BOT:
+            brain.load(self, voice)
 
     def _get_active_eyes(self):
         for name in EYE_DICT.keys():
@@ -767,6 +798,7 @@ class SpeakActivity(SharedActivity):
             self.chat.shut_up()
 
     def _set_voice(self, new_voice):
+        logging.error('set_voice %r' % (new_voice))
         try:
             self.voices.handler_block_by_func(self.__changed_voices_cb)
             self.voices.select(new_voice)
@@ -838,6 +870,7 @@ class SpeakActivity(SharedActivity):
 
     def __changed_voices_cb(self, combo):
         voice = combo.props.value
+        logging.error('changed_voices_cb %r' % (voice))
         self.face.set_voice(voice)
         if self._mode == MODE_BOT:
             brain.load(self, voice)
