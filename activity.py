@@ -70,9 +70,8 @@ MODE_TYPE = 1
 MODE_BOT = 2
 MODE_CHAT = 3
 MOUTHS = [mouth.Mouth, fft_mouth.FFTMouth, waveform_mouth.WaveformMouth]
-# sleepy must be last
-EYES = [eye.Eye, glasses.Glasses, eyelashes.Eyelashes, halfmoon.Halfmoon,
-        sunglasses.Sunglasses, wireframes.Wireframes, sleepy.Sleepy]
+NUMBERS = ['one', 'two', 'three', 'four', 'five']
+SLEEPY_EYES = sleepy.Sleepy
 EYE_DICT = {
     'eyes': {'label': _('Round'), 'widget': eye.Eye, 'index': 1},
     'glasses': {'label': _('Glasses'), 'widget': glasses.Glasses, 'index': 2},
@@ -141,6 +140,7 @@ class SpeakActivity(SharedActivity):
         self.numeyesadj = None
         self._robot_idle_id = None
         self.active_eyes = None
+        self.active_number_of_eyes = None
 
         # make an audio device for playing back and rendering audio
         self.connect("notify::active", self._activeCb)
@@ -317,10 +317,6 @@ class SpeakActivity(SharedActivity):
                 self.eye_type[name].set_icon(name + '-selected')
                 self.eyes_changed_event_cb(None, None, name, False)
                 break
-        '''
-        if status.eyes[0] in EYES:
-            self.eye_type[EYES.index(status.eyes[0])].set_active(True)
-        '''
         self.entry.props.text = self.cfg['text'].encode('utf-8', 'ignore')
         if not self._tablet_mode:
             for i in self.cfg['history']:
@@ -471,7 +467,6 @@ class SpeakActivity(SharedActivity):
         facebar.insert(separator, -1)
 
         eye_box = gtk.VBox()
-
         self.eye_type = {}
         for name in EYE_DICT.keys():
             self.eye_type[name] = ToolButton(name)
@@ -490,99 +485,6 @@ class SpeakActivity(SharedActivity):
             hbox.show()
             eye_box.pack_start(evbox)
 
-        '''
-        self.eye_type.append(RadioToolButton(
-            named_icon='eyes',
-            group=None,
-            tooltip=_('Round')))
-        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        # facebar.insert(self.eye_type[-1], -1)
-        hbox = gtk.HBox()
-        label = gtk.Label(_('Round'))
-        hbox.pack_start(self.eye_type[-1])
-        self.eye_type[-1].show()
-        hbox.pack_start(label)
-        label.show()
-        eye_box.pack_start(hbox)
-        hbox.show()
-
-        self.eye_type.append(RadioToolButton(
-            named_icon='glasses',
-            group=self.eye_type[0],
-            tooltip=_('Glasses')))
-        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        # facebar.insert(self.eye_type[-1], -1)
-        hbox = gtk.HBox()
-        label = gtk.Label(_('Glasses'))
-        hbox.pack_start(self.eye_type[-1])
-        self.eye_type[-1].show()
-        hbox.pack_start(label)
-        label.show()
-        eye_box.pack_start(hbox)
-        hbox.show()
-
-        self.eye_type.append(RadioToolButton(
-            named_icon='eyelashes',
-            group=self.eye_type[0],
-            tooltip=_('Eyelashes')))
-        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        # facebar.insert(self.eye_type[-1], -1)
-        hbox = gtk.HBox()
-        label = gtk.Label(_('Eyelashes'))
-        hbox.pack_start(self.eye_type[-1])
-        self.eye_type[-1].show()
-        hbox.pack_start(label)
-        label.show()
-        eye_box.pack_start(hbox)
-        hbox.show()
-
-        self.eye_type.append(RadioToolButton(
-            named_icon='halfmoon',
-            group=self.eye_type[0],
-            tooltip=_('Halfmoon')))
-        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        # facebar.insert(self.eye_type[-1], -1)
-        hbox = gtk.HBox()
-        label = gtk.Label(_('Half moon'))
-        hbox.pack_start(self.eye_type[-1])
-        self.eye_type[-1].show()
-        hbox.pack_start(label)
-        label.show()
-        eye_box.pack_start(hbox)
-        hbox.show()
-
-        self.eye_type.append(RadioToolButton(
-            named_icon='sunglasses',
-            group=self.eye_type[0],
-            tooltip=_('Sunglasses')))
-        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        # facebar.insert(self.eye_type[-1], -1)
-        hbox = gtk.HBox()
-        label = gtk.Label(_('Sun glasses'))
-        hbox.pack_start(self.eye_type[-1])
-        self.eye_type[-1].show()
-        hbox.pack_start(label)
-        label.show()
-        eye_box.pack_start(hbox)
-        hbox.show()
-
-        self.eye_type.append(RadioToolButton(
-            named_icon='wireframes',
-            group=self.eye_type[0],
-            tooltip=_('Wireframes')))
-        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        # facebar.insert(self.eye_type[-1], -1)
-        hbox = gtk.HBox()
-        label = gtk.Label(_('Wireframes'))
-        hbox.pack_start(self.eye_type[-1])
-        self.eye_type[-1].show()
-        hbox.pack_start(label)
-        label.show()
-        eye_box.pack_start(hbox)
-        hbox.show()
-
-        '''
-
         eye_palette_button = ToolButton('eyes')
         eye_palette_button.set_tooltip(_('Choose eyes:'))
         palette = eye_palette_button.get_palette()
@@ -591,6 +493,36 @@ class SpeakActivity(SharedActivity):
         eye_palette_button.connect('clicked', self._face_palette_cb)
         facebar.insert(eye_palette_button, -1)
         eye_palette_button.show()
+
+        number_of_eyes_box = gtk.VBox()
+        self.number_of_eyes_type = {}
+        for name in NUMBERS:
+            self.number_of_eyes_type[name] = ToolButton(name)
+            self.number_of_eyes_type[name].connect(
+                'clicked', self.number_of_eyes_changed_event_cb,
+                None, name, False)
+            label = gtk.Label(name)
+            hbox = gtk.HBox()
+            hbox.pack_start(self.number_of_eyes_type[name])
+            self.number_of_eyes_type[name].show()
+            hbox.pack_start(label)
+            label.show()
+            evbox = gtk.EventBox()
+            evbox.connect('button-press-event',
+                          self.number_of_eyes_changed_event_cb,
+                          name, False)
+            evbox.add(hbox)
+            hbox.show()
+            number_of_eyes_box.pack_start(evbox)
+
+        number_of_eyes_palette_button = ToolButton('number')
+        number_of_eyes_palette_button.set_tooltip(_('Eyes number:'))
+        palette = number_of_eyes_palette_button.get_palette()
+        palette.set_content(number_of_eyes_box)
+        number_of_eyes_box.show_all()
+        number_of_eyes_palette_button.connect('clicked', self._face_palette_cb)
+        facebar.insert(number_of_eyes_palette_button, -1)
+        number_of_eyes_palette_button.show()
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
@@ -641,11 +573,6 @@ class SpeakActivity(SharedActivity):
             self.face.say_notification(_("mouth changed"))
 
     def _get_active_eyes(self):
-        '''
-        for i, button in enumerate(self.eye_type):
-            if button.get_active(): 
-               return EYES[i]
-        '''
         for name in EYE_DICT.keys():
             if EYE_DICT[name]['index'] == self.active_eyes:
                 return EYE_DICT[name]['widget']
@@ -665,20 +592,24 @@ class SpeakActivity(SharedActivity):
         if not quiet:
             self.face.say_notification(_("eyes changed"))
 
-    def eyes_changed_cb(self, ignored, quiet):
-        if self.numeyesadj is None:
-            return
+    def number_of_eyes_changed_event_cb(self, widget, event, name, quiet):
+        if self.active_number_of_eyes is not None:
+            old_name = NUMBERS[self.active_number_of_eyes - 1]
+            self.number_of_eyes_type[old_name].set_icon(old_name)
 
-        value = self._get_active_eyes()
-        if value is None:
-            return
-
-        self.face.status.eyes = [value] * int(self.numeyesadj.value)
-        self._update_face()
-
-        # this SegFaults: self.face.say(self.eye_shape_combo.get_active_text())
-        if not quiet:
-            self.face.say_notification(_("eyes changed"))
+        if name in NUMBERS:
+            self.active_number_of_eyes = NUMBERS.index(name) + 1
+            self.number_of_eyes_type[name].set_icon(name + '-selected')
+            if self.active_eyes is not None:
+                for eye_name in EYE_DICT.keys():
+                    if EYE_DICT[eye_name]['index'] == self.active_eyes:
+                        value = EYE_DICT[eye_name]['widget']
+                        self.face.status.eyes = \
+                            [value] * self.active_number_of_eyes
+                        self._update_face()
+                        if not quiet:
+                            self.face.say_notification(_("eyes changed"))
+                        break
 
     def _update_face(self):
         self.face.update()
@@ -769,7 +700,7 @@ class SpeakActivity(SharedActivity):
 
     def _load_sleeping_face(self):
         current_eyes = self.face.status.eyes
-        self.face.status.eyes = [EYES[-1]] * int(self.numeyesadj.value)
+        self.face.status.eyes = [SLEEPY_EYES] * int(self.numeyesadj.value)
         self._update_face()
         self.face.status.eyes = current_eyes
 
