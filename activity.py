@@ -31,12 +31,14 @@ import gtk
 import gobject
 import pango
 import json
+import random
 from gettext import gettext as _
 
 from sugar.graphics import style
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
+from sugar import profile
 
 from toolkit.toolitem import ToolWidget
 from toolkit.combobox import ComboBox
@@ -46,6 +48,11 @@ from toolkit.activity_widgets import *
 
 import eye
 import glasses
+import eyelashes
+import halfmoon
+import sleepy
+import sunglasses
+import wireframes
 import mouth
 import fft_mouth
 import waveform_mouth
@@ -58,12 +65,51 @@ from messenger import Messenger, SERVICE
 
 logger = logging.getLogger('speak')
 
+ACCELEROMETER_DEVICE = '/sys/devices/platform/lis3lv02d/position'
 MODE_TYPE = 1
 MODE_BOT = 2
 MODE_CHAT = 3
 MOUTHS = [mouth.Mouth, fft_mouth.FFTMouth, waveform_mouth.WaveformMouth]
-EYES = [eye.Eye, glasses.Glasses]
+# sleepy must be last
+EYES = [eye.Eye, glasses.Glasses, eyelashes.Eyelashes, halfmoon.Halfmoon,
+        sunglasses.Sunglasses, wireframes.Wireframes, sleepy.Sleepy]
+EYE_DICT = {
+    'eyes': {'label': _('Round'), 'widget': eye.Eye, 'index': 1},
+    'glasses': {'label': _('Glasses'), 'widget': glasses.Glasses, 'index': 2},
+    'halfmoon': {'label': _('Half moon'), 'widget': halfmoon.Halfmoon,
+                 'index': 3},
+    'eyelashes': {'label': _('Eye lashes'), 'widget': eyelashes.Eyelashes,
+                  'index': 4},
+    'sunglasses': {'label': _('Sunglasses'), 'widget': sunglasses.Sunglasses,
+                   'index': 5},
+    'wireframes': {'label': _('Wire frames'), 'widget': wireframes.Wireframes,
+                   'index': 6},
+    }
 DELAY_BEFORE_SPEAKING = 1500  # milleseconds
+IDLE_DELAY = 120000  # milleseconds
+IDLE_PHRASES = ['zzzzzzzzz', _('I am bored.'), _('Talk to me.'),
+                _('I am sleepy.'), _('Are you still there?'),
+                _('Please type something.'),
+                _('Do you have anything to say to me?'), _('Hello?')]
+SIDEWAYS_PHRASES = [_('Whoa! Sideways!'), _("I'm on my side."), _('Uh oh.'),
+                    _('Wheeeee!'), _('Hey! Put me down!'), _('Falling over!')]
+
+
+def _luminance(color):
+    ''' Calculate luminance value '''
+    return int(color[1:3], 16) * 0.3 + int(color[3:5], 16) * 0.6 + \
+        int(color[5:7], 16) * 0.1
+
+
+def lighter_color(colors):
+    ''' Which color is lighter? Use that one for the text nick color '''
+    if _luminance(colors[0]) > _luminance(colors[1]):
+        return 0
+    return 1
+
+
+def _has_accelerometer():
+    return os.path.exists(ACCELEROMETER_DEVICE) and _is_tablet_mode()
 
 
 def _is_tablet_mode():
@@ -86,10 +132,15 @@ class SpeakActivity(SharedActivity):
 
         SharedActivity.__init__(self, self.notebook, SERVICE, handle)
 
+        self._colors = profile.get_color().to_string().split(',')
+        lighter = style.Color(self._colors[
+            lighter_color(self._colors)])
+
         self._mode = MODE_TYPE
-        # self._tablet_mode = _is_tablet_mode()
         self._tablet_mode = _is_tablet_mode()
         self.numeyesadj = None
+        self._robot_idle_id = None
+        self.active_eyes = None
 
         # make an audio device for playing back and rendering audio
         self.connect("notify::active", self._activeCb)
@@ -97,6 +148,7 @@ class SpeakActivity(SharedActivity):
 
         # make a box to type into
         hbox = gtk.HBox()
+
         if self._tablet_mode:
             self.entry = gtk.Entry()
             hbox.pack_start(self.entry, expand=True)
@@ -116,7 +168,7 @@ class SpeakActivity(SharedActivity):
         self.entry.modify_font(self.input_font)
         hbox.show()
 
-        self.face = face.View()
+        self.face = face.View(fill_color=lighter)
         self.face.show()
 
         # layout the screen
@@ -218,6 +270,7 @@ class SpeakActivity(SharedActivity):
                                              self._configure_cb)
 
         self._configure_cb()
+        self._poll_accelerometer()
 
     def _configure_cb(self, event=None):
         logger.debug('configure_cb')
@@ -246,6 +299,7 @@ class SpeakActivity(SharedActivity):
                 % xoOwner.props.nick.encode('utf-8', 'ignore')
         self.face.say_notification(_("Hello %s. Please Type something.") \
                                        % xoOwner.props.nick)
+        self._set_idle_phrase(speak=False)
 
     def resume_instance(self, file_path):
         self.cfg = json.loads(file(file_path, 'r').read())
@@ -258,8 +312,15 @@ class SpeakActivity(SharedActivity):
         self.numeyesadj.value = len(status.eyes)
         if status.mouth in MOUTHS:
             self.mouth_type[MOUTHS.index(status.mouth)].set_active(True)
+        for name in EYE_DICT.keys():
+            if status.eyes[0] == EYE_DICT[name]['widget']:
+                self.eye_type[name].set_icon(name + '-selected')
+                self.eyes_changed_event_cb(None, None, name, False)
+                break
+        '''
         if status.eyes[0] in EYES:
             self.eye_type[EYES.index(status.eyes[0])].set_active(True)
+        '''
         self.entry.props.text = self.cfg['text'].encode('utf-8', 'ignore')
         if not self._tablet_mode:
             for i in self.cfg['history']:
@@ -293,6 +354,30 @@ class SpeakActivity(SharedActivity):
         x = pos[0][0] / pango.SCALE - entry.props.scroll_offset
         y = entry.get_allocation().y
         self.face.look_at(pos=(x, y))
+
+    def _poll_accelerometer(self):
+        if _has_accelerometer():
+            idle_time = self._test_orientation()
+            gobject.timeout_add(idle_time, self._poll_accelerometer)
+
+    def _test_orientation(self):
+        if _has_accelerometer():
+            fh = open(ACCELEROMETER_DEVICE)
+            string = fh.read()
+            fh.close()
+            xyz = string[1:-2].split(',')
+            x = int(xyz[0])
+            y = int(xyz[1])
+            # DO SOMETHING HERE
+            if ((gtk.gdk.screen_width() > gtk.gdk.screen_height() and
+                 abs(x) > abs(y)) or
+                (gtk.gdk.screen_width() < gtk.gdk.screen_height() and
+                 abs(x) < abs(y))):
+                sideways_phrase = SIDEWAYS_PHRASES[
+                    random.randint(0, len(SIDEWAYS_PHRASES) - 1)]
+                self.face.say(SIDEWAYS_PHRASES[sideways_phrase])
+                return IDLE_DELAY  # Don't repeat the message for a while
+            return 1000  # Test again soon
 
     def get_mouse(self):
         display = gtk.gdk.display_get_default()
@@ -385,20 +470,127 @@ class SpeakActivity(SharedActivity):
         separator.set_expand(False)
         facebar.insert(separator, -1)
 
-        self.eye_type = []
+        eye_box = gtk.VBox()
+
+        self.eye_type = {}
+        for name in EYE_DICT.keys():
+            self.eye_type[name] = ToolButton(name)
+            self.eye_type[name].connect('clicked', self.eyes_changed_event_cb,
+                                        None, name, False)
+            label = gtk.Label(EYE_DICT[name]['label'])
+            hbox = gtk.HBox()
+            hbox.pack_start(self.eye_type[name])
+            self.eye_type[name].show()
+            hbox.pack_start(label)
+            label.show()
+            evbox = gtk.EventBox()
+            evbox.connect('button-press-event', self.eyes_changed_event_cb,
+                          name, False)
+            evbox.add(hbox)
+            hbox.show()
+            eye_box.pack_start(evbox)
+
+        '''
         self.eye_type.append(RadioToolButton(
             named_icon='eyes',
             group=None,
             tooltip=_('Round')))
         self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        facebar.insert(self.eye_type[-1], -1)
+        # facebar.insert(self.eye_type[-1], -1)
+        hbox = gtk.HBox()
+        label = gtk.Label(_('Round'))
+        hbox.pack_start(self.eye_type[-1])
+        self.eye_type[-1].show()
+        hbox.pack_start(label)
+        label.show()
+        eye_box.pack_start(hbox)
+        hbox.show()
 
         self.eye_type.append(RadioToolButton(
             named_icon='glasses',
             group=self.eye_type[0],
             tooltip=_('Glasses')))
         self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
-        facebar.insert(self.eye_type[-1], -1)
+        # facebar.insert(self.eye_type[-1], -1)
+        hbox = gtk.HBox()
+        label = gtk.Label(_('Glasses'))
+        hbox.pack_start(self.eye_type[-1])
+        self.eye_type[-1].show()
+        hbox.pack_start(label)
+        label.show()
+        eye_box.pack_start(hbox)
+        hbox.show()
+
+        self.eye_type.append(RadioToolButton(
+            named_icon='eyelashes',
+            group=self.eye_type[0],
+            tooltip=_('Eyelashes')))
+        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
+        # facebar.insert(self.eye_type[-1], -1)
+        hbox = gtk.HBox()
+        label = gtk.Label(_('Eyelashes'))
+        hbox.pack_start(self.eye_type[-1])
+        self.eye_type[-1].show()
+        hbox.pack_start(label)
+        label.show()
+        eye_box.pack_start(hbox)
+        hbox.show()
+
+        self.eye_type.append(RadioToolButton(
+            named_icon='halfmoon',
+            group=self.eye_type[0],
+            tooltip=_('Halfmoon')))
+        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
+        # facebar.insert(self.eye_type[-1], -1)
+        hbox = gtk.HBox()
+        label = gtk.Label(_('Half moon'))
+        hbox.pack_start(self.eye_type[-1])
+        self.eye_type[-1].show()
+        hbox.pack_start(label)
+        label.show()
+        eye_box.pack_start(hbox)
+        hbox.show()
+
+        self.eye_type.append(RadioToolButton(
+            named_icon='sunglasses',
+            group=self.eye_type[0],
+            tooltip=_('Sunglasses')))
+        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
+        # facebar.insert(self.eye_type[-1], -1)
+        hbox = gtk.HBox()
+        label = gtk.Label(_('Sun glasses'))
+        hbox.pack_start(self.eye_type[-1])
+        self.eye_type[-1].show()
+        hbox.pack_start(label)
+        label.show()
+        eye_box.pack_start(hbox)
+        hbox.show()
+
+        self.eye_type.append(RadioToolButton(
+            named_icon='wireframes',
+            group=self.eye_type[0],
+            tooltip=_('Wireframes')))
+        self.eye_type[-1].connect('clicked', self.eyes_changed_cb, False)
+        # facebar.insert(self.eye_type[-1], -1)
+        hbox = gtk.HBox()
+        label = gtk.Label(_('Wireframes'))
+        hbox.pack_start(self.eye_type[-1])
+        self.eye_type[-1].show()
+        hbox.pack_start(label)
+        label.show()
+        eye_box.pack_start(hbox)
+        hbox.show()
+
+        '''
+
+        eye_palette_button = ToolButton('eyes')
+        eye_palette_button.set_tooltip(_('Choose eyes:'))
+        palette = eye_palette_button.get_palette()
+        palette.set_content(eye_box)
+        eye_box.show_all()
+        eye_palette_button.connect('clicked', self._face_palette_cb)
+        facebar.insert(eye_palette_button, -1)
+        eye_palette_button.show()
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
@@ -423,6 +615,14 @@ class SpeakActivity(SharedActivity):
         facebar.show_all()
         return facebar
 
+    def _face_palette_cb(self, button):
+        palette = button.get_palette()
+        if palette:
+            if not palette.is_up():
+                palette.popup(immediate=True, state=palette.SECONDARY)
+            else:
+                palette.popdown(immediate=True)
+
     def _get_active_mouth(self):
         for i, button in enumerate(self.mouth_type):
             if button.get_active():
@@ -441,9 +641,29 @@ class SpeakActivity(SharedActivity):
             self.face.say_notification(_("mouth changed"))
 
     def _get_active_eyes(self):
+        '''
         for i, button in enumerate(self.eye_type):
-            if button.get_active():
-                return EYES[i]
+            if button.get_active(): 
+               return EYES[i]
+        '''
+        for name in EYE_DICT.keys():
+            if EYE_DICT[name]['index'] == self.active_eyes:
+                return EYE_DICT[name]['widget']
+
+    def eyes_changed_event_cb(self, widget, event, name, quiet):
+        if self.active_eyes is not None:
+            for old_name in EYE_DICT.keys():
+                if EYE_DICT[old_name]['index'] == self.active_eyes:
+                    self.eye_type[old_name].set_icon(old_name)
+                    break
+
+        self.active_eyes = EYE_DICT[name]['index']
+        self.eye_type[name].set_icon(name + '-selected')
+        value = EYE_DICT[name]['widget']
+        self.face.status.eyes = [value] * int(self.numeyesadj.value)
+        self._update_face()
+        if not quiet:
+            self.face.say_notification(_("eyes changed"))
 
     def eyes_changed_cb(self, ignored, quiet):
         if self.numeyesadj is None:
@@ -511,6 +731,13 @@ class SpeakActivity(SharedActivity):
         self._speak_the_text(self.entry, text)
 
     def _speak_the_text(self, entry, text):
+        if self._robot_idle_id is not None:
+            gobject.source_remove(self._robot_idle_id)
+            value = self._get_active_eyes()
+            if value is not None:
+                self.face.status.eyes = [value] * int(self.numeyesadj.value)
+                self._update_face()
+
         if text:
             self.face.look_ahead()
 
@@ -536,9 +763,30 @@ class SpeakActivity(SharedActivity):
             # select the whole text
             entry.select_region(0, -1)
 
+        # Launch an robot idle phase after 2 minutes
+        self._robot_idle_id = gobject.timeout_add(IDLE_DELAY,
+                                                  self._set_idle_phrase)
+
+    def _load_sleeping_face(self):
+        current_eyes = self.face.status.eyes
+        self.face.status.eyes = [EYES[-1]] * int(self.numeyesadj.value)
+        self._update_face()
+        self.face.status.eyes = current_eyes
+
+    def _set_idle_phrase(self, speak=True):
+        if speak:
+            self._load_sleeping_face()
+            idle_phrase = IDLE_PHRASES[random.randint(0, len(IDLE_PHRASES) - 1)]
+            if self.props.active:
+                self.face.say(idle_phrase)
+
+        self._robot_idle_id = gobject.timeout_add(IDLE_DELAY,
+                                                  self._set_idle_phrase)
+
     def _activeCb(self, widget, pspec):
         # only generate sound when this activity is active
         if not self.props.active:
+            self._load_sleeping_face()
             self.face.shut_up()
             self.chat.shut_up()
 

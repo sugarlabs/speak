@@ -42,6 +42,12 @@ class Eye(gtk.DrawingArea):
         self.connect("button_press_event", self._mouse_pressed_cb)
         self.connect("button_release_event", self._mouse_released_cb)
 
+    def has_padding(self):
+        return True
+
+    def has_left_center_right(self):
+        return False
+
     def _mouse_pressed_cb(self, widget, event):
         self.blink = True
         self.queue_draw()

@@ -31,6 +31,11 @@ import sugar.graphics.style as style
 import espeak
 import eye
 import glasses
+import eyelashes
+import halfmoon
+import sleepy
+import sunglasses
+import wireframes
 import mouth
 import voice
 import fft_mouth
@@ -38,7 +43,7 @@ import waveform_mouth
 
 logger = logging.getLogger('speak')
 
-FACE_PAD = 2
+FACE_PAD = style.GRID_CELL_SIZE
 
 class Status:
     def __init__(self):
@@ -50,23 +55,33 @@ class Status:
         self.mouth = mouth.Mouth
 
     def serialize(self):
-        eyes    = { eye.Eye : 1,
-                    glasses.Glasses : 2 }
-        mouths  = { mouth.Mouth : 1,
-                    fft_mouth.FFTMouth : 2,
-                    waveform_mouth.WaveformMouth : 3 }
+        eyes    = { eye.Eye: 1,
+                    glasses.Glasses: 2,
+                    eyelashes.Eyelashes: 3,
+                    halfmoon.Halfmoon: 4,
+                    sunglasses.Sunglasses: 5,
+                    wireframes.Wireframes: 6,
+                    sleepy.Sleepy: 7}
+        mouths  = { mouth.Mouth: 1,
+                    fft_mouth.FFTMouth: 2,
+                    waveform_mouth.WaveformMouth: 3 }
 
         return json.dumps({
-            'voice' : { 'language'  : self.voice.language,
-                        'name'      : self.voice.name },
-            'pitch' : self.pitch,
-            'rate'  : self.rate,
-            'eyes'  : [eyes[i] for i in self.eyes],
-            'mouth' : mouths[self.mouth] })
+            'voice': {'language': self.voice.language,
+                        'name': self.voice.name},
+            'pitch': self.pitch,
+            'rate': self.rate,
+            'eyes': [eyes[i] for i in self.eyes],
+            'mouth': mouths[self.mouth]})
 
     def deserialize(self, buf):
         eyes    = { 1: eye.Eye,
-                    2: glasses.Glasses }
+                    2: glasses.Glasses,
+                    3: eyelashes.Eyelashes,
+                    4: halfmoon.Halfmoon,
+                    5: sunglasses.Sunglasses,
+                    6: wireframes.Wireframes,
+                    7: sleepy.Sleepy}
         mouths  = { 1: mouth.Mouth,
                     2: fft_mouth.FFTMouth,
                     3: waveform_mouth.WaveformMouth }
@@ -159,10 +174,20 @@ class View(gtk.EventBox):
 
         self._eyes = []
 
-        for i in status.eyes:
+        for e, i in enumerate(status.eyes):
             eye = i(self.fill_color)
+            if eye.has_left_center_right():
+                if e == 0:
+                    eye.set_eye(0)
+                elif e == len(status.eyes) - 1:
+                    eye.set_eye(1)
+                else:
+                    eye.set_eye(2)
             self._eyes.append(eye)
-            self._eyebox.pack_start(eye, padding=FACE_PAD)
+            if eye.has_padding():
+                self._eyebox.pack_start(eye, padding=int(FACE_PAD / 2))
+            else:
+                self._eyebox.pack_start(eye)
             eye.show()
 
         self._mouth = status.mouth(self._audio, self.fill_color)
@@ -177,7 +202,8 @@ class View(gtk.EventBox):
         self.say_notification(voice.friendlyname)
 
     def say(self, something):
-        self._audio.speak(self._peding or self.status, something)
+        curse_free = remove_curses(something)
+        self._audio.speak(self._peding or self.status, curse_free)
 
     def say_notification(self, something):
         status = (self._peding or self.status).clone()
@@ -189,3 +215,38 @@ class View(gtk.EventBox):
 
     def _size_allocate_cb(self, widget, allocation):
         self._mouthbox.set_size_request(-1, int(allocation.height/2.5))
+
+
+CURSES = ['fuck', 'fucks', 'fucking', 'fucker', 'fucked', 'fuckk', 'fuckks',
+          'fuckking', 'fuckker', 'shit', 'shits', 'shitting', 'shitter',
+          'shitt', 'shitts', 'cunt', 'cunts', 'cunting', 'cunted', 'cuntt',
+          'cunnt', 'asshole', 'assholes', 'arsehole', 'arseholes', 'dickhead',
+          'dickheads', 'shithead', 'shitheads', 'fuckhead', 'fuckheads',
+          'fuckwit', 'fuckwits', 'twat', 'twatted', 'twatter', 'twatting',
+          'kunt', 'kunts', 'kunting', 'kuntz', 'fuk', 'fukn', 'fuker', 'fukr',
+          'fukker', 'fukkr', 'fuks', 'fukk', 'phuk', 'phukker', 'phukking',
+          'fukin', 'piss', 'pissed', 'fag', 'fags', 'gaylord', 'gaylords',
+          'pissing', 'poofter', 'softcock', 'wanker', 'wankers', 'shiiiit',
+          'pisses', 'nigger', 'niggers', 'nigga', 'niggas', 'motherfuck',
+          'mutherfuck', 'muthafuck', 'motherfuk', 'mutherfuk', 'muthafuk',
+          'motherfucker', 'mutherfucker', 'muthafucker', 'motherfukr',
+          'motherfuker', 'motherfukker', 'motherfukkr', 'mutherfukr',
+          'mutherfukker', 'mutherfukkr', 'muthafukr', 'muthafukkr',
+          'muthafuckr', 'shiit', 'motherfuckerz', 'mutherfuckerz',
+          'mothafuckerz', 'motherfukrz', 'motherfukkrz', 'muthafukrz',
+          'muthafuking', 'motherfucking', 'mothafucking', 'muthafuking',
+          'mothafuking', 'motherfuking', 'mothafukking', 'muthafukking',
+          'motherfukking']
+
+
+def remove_curses(something):
+    ''' Speak Swear Filter List '''
+    curse_free = ''
+    words = something.split()
+    for word in words:
+        if word in CURSES:
+            curse_free += '#!#! '
+        else:
+            curse_free += word
+            curse_free += ' '
+    return curse_free
