@@ -287,12 +287,8 @@ class SpeakActivity(SharedActivity):
 
         if self.active_number_of_eyes is None:
             self.number_of_eyes_changed_event_cb(None, None, 'two', True)
-        else:
-            self.number_of_eyes_changed_event_cb(None, None, None, True)
-        if self.active_number_of_eyes is None:
+        if self.active_eyes is None:
             self.eyes_changed_event_cb(None, None, 'eyes', True)
-        else:
-            self.eyes_changed_event_cb(None, None, None, True)
 
         self.mouth_changed_cb(None, True)
 
