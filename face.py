@@ -105,6 +105,7 @@ class Status:
         new.mouth = self.mouth
         return new
 
+
 class View(gtk.EventBox):
     def __init__(self, fill_color=style.COLOR_BUTTON_GREY):
         gtk.EventBox.__init__(self)
@@ -194,8 +195,9 @@ class View(gtk.EventBox):
         self._mouth.show()
         self._mouthbox.add(self._mouth)
 
-        # enable mouse move events so we can track the eyes while the mouse is over the mouth
-        #self._mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
+        # enable mouse move events so we can track the eyes while the
+        # mouse is over the mouth
+        # self._mouth.add_events(gtk.gdk.POINTER_MOTION_MASK)
 
     def set_voice(self, voice):
         self.status.voice = voice

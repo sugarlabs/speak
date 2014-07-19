@@ -273,11 +273,10 @@ class SpeakActivity(SharedActivity):
         self._poll_accelerometer()
 
     def _configure_cb(self, event=None):
-        logger.debug('configure_cb')
         if gtk.gdk.screen_width() / 14 < style.GRID_CELL_SIZE:
-            self.numeyesbar_label.set_label('')
+            pass
         else:
-            self.numeyesbar_label.set_label(_('Eyes number:'))
+            pass
 
     def new_instance(self):
         self.voices.connect('changed', self.__changed_voices_cb)
@@ -285,8 +284,16 @@ class SpeakActivity(SharedActivity):
                               self.pitchadj)
         self.rateadj.connect("value_changed", self.rate_adjusted_cb,
                              self.rateadj)
-        self.numeyesadj.connect("value_changed", self.eyes_changed_cb, False)
-        self.eyes_changed_cb(None, True)
+
+        if self.active_number_of_eyes is None:
+            self.number_of_eyes_changed_event_cb(None, None, 'two', True)
+        else:
+            self.number_of_eyes_changed_event_cb(None, None, None, True)
+        if self.active_number_of_eyes is None:
+            self.eyes_changed_event_cb(None, None, 'eyes', True)
+        else:
+            self.eyes_changed_event_cb(None, None, None, True)
+
         self.mouth_changed_cb(None, True)
 
         self.face.look_ahead()
@@ -306,17 +313,23 @@ class SpeakActivity(SharedActivity):
 
         status = self.face.status = \
             face.Status().deserialize(self.cfg['status'])
+
         self.voices.select(status.voice)
+
         self.pitchadj.value = self.face.status.pitch
         self.rateadj.value = self.face.status.rate
-        self.numeyesadj.value = len(status.eyes)
+
         if status.mouth in MOUTHS:
             self.mouth_type[MOUTHS.index(status.mouth)].set_active(True)
+
+        self.number_of_eyes_changed_event_cb(
+            None, None, NUMBERS[len(status.eyes) - 1], True)
         for name in EYE_DICT.keys():
             if status.eyes[0] == EYE_DICT[name]['widget']:
                 self.eye_type[name].set_icon(name + '-selected')
-                self.eyes_changed_event_cb(None, None, name, False)
+                self.eyes_changed_event_cb(None, None, name, True)
                 break
+
         self.entry.props.text = self.cfg['text'].encode('utf-8', 'ignore')
         if not self._tablet_mode:
             for i in self.cfg['history']:
@@ -524,26 +537,6 @@ class SpeakActivity(SharedActivity):
         facebar.insert(number_of_eyes_palette_button, -1)
         number_of_eyes_palette_button.show()
 
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)
-        separator.set_expand(False)
-        facebar.insert(separator, -1)
-
-        self.numeyesbar_label = gtk.Label()
-        self.numeyesbar_label.set_text(_('Eyes number:'))
-        toolitem = gtk.ToolItem()
-        toolitem.add(self.numeyesbar_label)
-        facebar.insert(toolitem, -1)
-
-        self.numeyesadj = gtk.Adjustment(2, 1, 5, 1, 1, 0)
-        numeyesbar = gtk.HScale(self.numeyesadj)
-        numeyesbar.set_draw_value(False)
-        numeyesbar.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
-        numeyesbar.set_size_request(240, 15)
-        toolitem = gtk.ToolItem()
-        toolitem.add(numeyesbar)
-        facebar.insert(toolitem, -1)
-
         facebar.show_all()
         return facebar
 
@@ -584,13 +577,17 @@ class SpeakActivity(SharedActivity):
                     self.eye_type[old_name].set_icon(old_name)
                     break
 
-        self.active_eyes = EYE_DICT[name]['index']
-        self.eye_type[name].set_icon(name + '-selected')
-        value = EYE_DICT[name]['widget']
-        self.face.status.eyes = [value] * int(self.numeyesadj.value)
-        self._update_face()
-        if not quiet:
-            self.face.say_notification(_("eyes changed"))
+        if self.active_number_of_eyes is None:
+            self.active_number_of_eyes = 2
+
+        if name is not None:
+            self.active_eyes = EYE_DICT[name]['index']
+            self.eye_type[name].set_icon(name + '-selected')
+            value = EYE_DICT[name]['widget']
+            self.face.status.eyes = [value] * self.active_number_of_eyes
+            self._update_face()
+            if not quiet:
+                self.face.say_notification(_("eyes changed"))
 
     def number_of_eyes_changed_event_cb(self, widget, event, name, quiet):
         if self.active_number_of_eyes is not None:
