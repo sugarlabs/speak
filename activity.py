@@ -210,7 +210,10 @@ class SpeakActivity(SharedActivity):
         self.entry.connect("changed", self._cursor_moved_cb)
 
         toolbox = ToolbarBox()
-        toolbox.toolbar.insert(ActivityToolbarButton(self), -1)
+        self.activity_button = ActivityToolbarButton(self)
+        self.activity_button.connect('clicked', self._configure_cb)
+
+        toolbox.toolbar.insert(self.activity_button, -1)
 
         self.voices = ComboBox()
         for name in sorted(voice.allVoices().keys()):
@@ -244,17 +247,19 @@ class SpeakActivity(SharedActivity):
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
 
-        voice_button = ToolbarButton(
+        self.voice_button = ToolbarButton(
                 page=self.make_voice_bar(),
                 label=_('Voice'),
                 icon_name='voice')
-        toolbox.toolbar.insert(voice_button, -1)
+        self.voice_button.connect('clicked', self._configure_cb)
+        toolbox.toolbar.insert(self.voice_button, -1)
 
-        face_button = ToolbarButton(
+        self.face_button = ToolbarButton(
                 page=self.make_face_bar(),
                 label=_('Face'),
                 icon_name='face')
-        toolbox.toolbar.insert(face_button, -1)
+        self.face_button.connect('clicked', self._configure_cb)
+        toolbox.toolbar.insert(self.face_button, -1)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
@@ -272,14 +277,29 @@ class SpeakActivity(SharedActivity):
         self._configure_cb()
         self._poll_accelerometer()
 
+    def toolbar_expanded(self):
+        if self.activity_button.is_expanded():
+            return True
+        if self.voice_button.is_expanded():
+            return True
+        if self.face_button.is_expanded():
+            return True
+        return False
+
     def _configure_cb(self, event=None):
+        '''
         if gtk.gdk.screen_width() / 14 < style.GRID_CELL_SIZE:
             pass
         else:
             pass
+        '''
         self.entry.set_size_request(-1, style.GRID_CELL_SIZE)
-        self.face.set_size_request(
-            -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
+        if self.toolbar_expanded():
+            self.face.set_size_request(
+                -1, gtk.gdk.screen_height() - 3 * style.GRID_CELL_SIZE)
+        else:
+            self.face.set_size_request(
+                -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
 
     def new_instance(self):
         # self.voices.connect('changed', self.__changed_voices_cb)
