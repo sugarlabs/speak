@@ -425,6 +425,7 @@ class SpeakActivity(SharedActivity):
         vboxes = [gtk.VBox(), gtk.VBox(), gtk.VBox()]
         count = len(voice.allVoices().keys())
         found_my_voice = False
+        self._handler_ids = []
         for i, name in enumerate(sorted(voice.allVoices().keys())):
             vn = voice.allVoices()[name]
             if len(name) > 26:
@@ -447,8 +448,8 @@ class SpeakActivity(SharedActivity):
                 evbox.modify_bg(
                     0, style.COLOR_BUTTON_GREY.get_gdk_color())
                 found_my_voice = True
-            evbox.connect('button-press-event', self.voices_changed_event_cb,
-                          vn, n)
+            self._handler_ids.append(evbox.connect(
+                'button-press-event', self.voices_changed_event_cb, vn, n))
             evbox.add(alignment)
             alignment.show()
             if i < count / 3:
@@ -799,12 +800,16 @@ class SpeakActivity(SharedActivity):
 
     def _set_voice(self, new_voice):
         logging.error('set_voice %r' % (new_voice))
+        self.voices.select(new_voice)
+        self.face.status.voice = new_voice
+        '''
         try:
-            self.voices.handler_block_by_func(self.__changed_voices_cb)
+            self.voices.handler_block_by_func(self.voices_changed_event_cb)
             self.voices.select(new_voice)
             self.face.status.voice = new_voice
         finally:
-            self.voices.handler_unblock_by_func(self.__changed_voices_cb)
+            self.voices.handler_unblock_by_func(self.voices_changed_event_cb)
+        '''
 
     def __toggled_mode_type_cb(self, button, voices_model):
         if not button.props.active:
