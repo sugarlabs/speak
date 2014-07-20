@@ -330,16 +330,24 @@ class SpeakActivity(SharedActivity):
     def resume_instance(self, file_path):
         self.cfg = json.loads(file(file_path, 'r').read())
 
+        current_voice = self.face.status.voice 
+
         status = self.face.status = \
             face.Status().deserialize(self.cfg['status'])
 
-        logging.error(status.voice)
+        found_my_voice = False
         for name in self._voice_evboxes.keys():
-            if self._voice_evboxes[name][1] == status.voice:
+            if self._voice_evboxes[name][1] == current_voice:
+                self._voice_evboxes[name][0].modify_bg(
+                    0, style.COLOR_BLACK.get_gdk_color())
+            if self._voice_evboxes[name][1] == status.voice and \
+               not found_my_voice:
                 self._voice_evboxes[name][0].modify_bg(
                     0, style.COLOR_BUTTON_GREY.get_gdk_color())
-                break
-        # self.voices.select(status.voice)
+                self.face.set_voice(status.voice)
+                if self._mode == MODE_BOT:
+                    brain.load(self, status.voice)
+                found_my_voice = True
 
         self.pitchadj.value = self.face.status.pitch
         self.rateadj.value = self.face.status.rate
