@@ -425,7 +425,6 @@ class SpeakActivity(SharedActivity):
         vboxes = [gtk.VBox(), gtk.VBox(), gtk.VBox()]
         count = len(voice.allVoices().keys())
         found_my_voice = False
-        self._handler_ids = []
         for i, name in enumerate(sorted(voice.allVoices().keys())):
             vn = voice.allVoices()[name]
             if len(name) > 26:
@@ -448,8 +447,6 @@ class SpeakActivity(SharedActivity):
                 evbox.modify_bg(
                     0, style.COLOR_BUTTON_GREY.get_gdk_color())
                 found_my_voice = True
-            self._handler_ids.append(evbox.connect(
-                'button-press-event', self.voices_changed_event_cb, vn, n))
             evbox.add(alignment)
             alignment.show()
             if i < count / 3:
