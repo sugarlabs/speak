@@ -82,12 +82,25 @@ class Sunglasses(Eye):
             w, h, gtk.gdk.INTERP_BILINEAR)
         self.context.translate(x + w / 2., y + h / 2.)
         self.context.translate(-x - w / 2., -y - h / 2.)
-        self.context.set_source_pixbuf(pixbuf, x, y)
-        self.context.rectangle(x, y, w, h)
+
+        if self._which_eye == 0:
+            x = bounds.width - w
+            dx = x - int((bounds.width - w) / 2)
+            self.context.set_source_pixbuf(pixbuf, x, y)
+            self.context.rectangle(x, y, w, h)
+        elif self._which_eye == 1:
+            dx = -x
+            self.context.set_source_pixbuf(pixbuf, 0, y)
+            self.context.rectangle(0, y, w, h)
+        else:
+            dx = 0
+            self.context.set_source_pixbuf(pixbuf, x, y)
+            self.context.rectangle(x, y, w, h)
+
         self.context.fill()
 
         # pupil
-        self.context.arc(pupilX, pupilY, pupilSize, 0, 2*math.pi)
+        self.context.arc(pupilX + dx, pupilY, pupilSize, 0, 2*math.pi)
         self.context.set_source_rgb(255, 255, 255)
         self.context.fill()
 
