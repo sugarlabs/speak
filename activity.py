@@ -160,6 +160,7 @@ class SpeakActivity(SharedActivity):
             self.entrycombo = gtk.combo_box_entry_new_text()
             self.entrycombo.connect("changed", self._combo_changed_cb)
             self.entry = self.entrycombo.child
+            self.entry.set_size_request(-1, style.GRID_CELL_SIZE)
             hbox.pack_start(self.entrycombo, expand=True)
         self.entry.set_editable(True)
         self.entry.connect('activate', self._entry_activate_cb)
@@ -169,12 +170,18 @@ class SpeakActivity(SharedActivity):
         hbox.show()
 
         self.face = face.View(fill_color=lighter)
+        self.face.set_size_request(
+            -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
         self.face.show()
 
         # layout the screen
         box = gtk.VBox(homogeneous=False)
-        box.pack_start(hbox, expand=False)
-        box.pack_start(self.face)
+        if self._tablet_mode:
+            box.pack_start(hbox, expand=False)
+            box.pack_start(self.face)
+        else:
+            box.pack_start(self.face, expand=True)
+            box.pack_start(hbox)
 
         self.add_events(gtk.gdk.POINTER_MOTION_HINT_MASK
                 | gtk.gdk.POINTER_MOTION_MASK)
@@ -270,6 +277,9 @@ class SpeakActivity(SharedActivity):
             pass
         else:
             pass
+        self.entry.set_size_request(-1, style.GRID_CELL_SIZE)
+        self.face.set_size_request(
+            -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
 
     def new_instance(self):
         # self.voices.connect('changed', self.__changed_voices_cb)
