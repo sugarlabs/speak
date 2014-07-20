@@ -237,14 +237,6 @@ class SpeakActivity(SharedActivity):
         mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
         toolbox.toolbar.insert(mode_chat, -1)
 
-        '''
-        language_button = ToolbarButton(
-                page=self.make_language_bar(),
-                label=_('Language'),
-                icon_name='module-language')
-        toolbox.toolbar.insert(language_button, -1)
-        '''
-
         voice_button = ToolbarButton(
                 page=self.make_voice_bar(),
                 label=_('Voice'),
@@ -404,16 +396,6 @@ class SpeakActivity(SharedActivity):
     def _mouse_clicked_cb(self, widget, event):
         pass
 
-    '''
-    def make_language_bar(self):
-        languagebar = gtk.Toolbar()
-
-        voices_toolitem = ToolWidget(widget=self.voices)
-        languagebar.insert(voices_toolitem, -1)
-        languagebar.show_all()
-        return languagebar
-    '''
-
     def make_voice_bar(self):
         voicebar = gtk.Toolbar()
 
@@ -443,6 +425,8 @@ class SpeakActivity(SharedActivity):
 
             evbox = gtk.EventBox()
             self._voice_evboxes[n] = [evbox, vn]
+            self._voice_evboxes[n][0].connect(
+                'button-press-event', self.voices_changed_event_cb, vn, n)
             if vn == self.face.status.voice and not found_my_voice:
                 evbox.modify_bg(
                     0, style.COLOR_BUTTON_GREY.get_gdk_color())
