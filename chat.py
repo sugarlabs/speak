@@ -116,11 +116,18 @@ class View(gtk.EventBox):
         chat_entry.pack_start(chat_post_box)
         chat_post_box.show()
 
-        chat_box = gtk.VBox()
-        chat_box.pack_start(self._chat, expand=True)
-        self._chat.show()
-        chat_box.pack_start(chat_entry)
-        chat_entry.show()
+        if _is_tablet_mode():
+            chat_box = gtk.VBox()
+            chat_box.pack_start(chat_entry)
+            chat_entry.show()
+            chat_box.pack_start(self._chat, expand=True)
+            self._chat.show()
+        else:
+            chat_box = gtk.VBox()
+            chat_box.pack_start(self._chat, expand=True)
+            self._chat.show()
+            chat_box.pack_start(chat_entry)
+            chat_entry.show()
 
         # desk
         self._desk = gtk.HBox()
