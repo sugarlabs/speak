@@ -293,6 +293,7 @@ class SpeakActivity(SharedActivity):
                 # we have already joined
                 self._joined_cb(self)
             self._mode_chat.set_active(True)
+            self._setup_chat_mode(all_voices)
         elif handle.uri:
             # XMPP non-sugar3 incoming chat, not sharable
             self.activity_button.props.page.share.props.visible = \

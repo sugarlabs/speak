@@ -195,7 +195,7 @@ class View(gtk.EventBox):
         self._buddies[buddy] = {
                 'box': box,
                 'face': buddy_face,
-                'lang': lang
+                'lang': ''
                 }
         self._buddies_list.append(box)
         box.show()
