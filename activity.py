@@ -248,12 +248,13 @@ class SpeakActivity(SharedActivity):
                 brain_voices)
         toolbox.toolbar.insert(mode_robot, -1)
 
-        mode_chat = RadioToolButton(
+        self._mode_chat = RadioToolButton(
                 named_icon='mode-chat',
                 group=mode_type,
                 tooltip=_('Voice chat'))
-        mode_chat.connect('toggled', self.__toggled_mode_chat_cb, all_voices)
-        toolbox.toolbar.insert(mode_chat, -1)
+        self._mode_chat.connect('toggled', self.__toggled_mode_chat_cb,
+                                all_voices)
+        toolbox.toolbar.insert(self._mode_chat, -1)
 
         self.voice_button = ToolbarButton(
                 page=self.make_voice_bar(),
@@ -291,6 +292,7 @@ class SpeakActivity(SharedActivity):
             if self.get_shared():
                 # we have already joined
                 self._joined_cb(self)
+            self._mode_chat.set_active(True)
         elif handle.uri:
             # XMPP non-sugar3 incoming chat, not sharable
             self.activity_button.props.page.share.props.visible = \
@@ -342,12 +344,12 @@ class SpeakActivity(SharedActivity):
 
         # say hello to the user
         presenceService = presenceservice.get_instance()
-        xoOwner = presenceService.get_owner()
+        self.owner = presenceService.get_owner()
         if self._tablet_mode:
             self.entry.props.text = _("Hello %s.") \
-                % xoOwner.props.nick.encode('utf-8', 'ignore')
+                % self.owner.props.nick.encode('utf-8', 'ignore')
         self.face.say_notification(_("Hello %s. Please Type something.") \
-                                       % xoOwner.props.nick)
+                                       % self.owner.props.nick)
         self._set_idle_phrase(speak=False)
 
     def resume_instance(self, file_path):
@@ -903,6 +905,13 @@ class SpeakActivity(SharedActivity):
 
         is_first_session = not self.chat.me.flags() & gtk.MAPPED
 
+        self.setup_chat_mode(voices_model)
+
+        if is_first_session:
+            self.chat.me.say_notification(
+                    _("You are in off-line mode, share and invite someone."))
+
+    def setup_chat_mode(self, voices_model):
         self._mode = MODE_CHAT
         self.face.shut_up()
         self.notebook.set_current_page(1)
@@ -910,10 +919,6 @@ class SpeakActivity(SharedActivity):
         old_voice = self.voices.props.value
         self.voices.set_model(voices_model)
         self._set_voice(old_voice)
-
-        if is_first_session:
-            self.chat.me.say_notification(
-                    _("You are in off-line mode, share and invite someone."))
 
     def __changed_voices_cb(self, combo):
         voice = combo.props.value
@@ -949,7 +954,7 @@ class SpeakActivity(SharedActivity):
 
         # XXX How do we detect the sender going offline?
         self.chat.chat_post.set_sensitive(True)
-        self.chat.chat_post.props.placeholder_text = None
+        # self.chat.chat_post.props.placeholder_text = None
         self.chat.chat_post.grab_focus()
 
     def _one_to_one_connection_closed_cb(self):
@@ -964,7 +969,7 @@ class SpeakActivity(SharedActivity):
         self.shared_activity.connect('buddy-joined', self._buddy_joined_cb)
         self.shared_activity.connect('buddy-left', self._buddy_left_cb)
         self.chat.chat_post.set_sensitive(True)
-        self.chat.chat_post.props.placeholder_text = None
+        # self.chat.chat_post.props.placeholder_text = None
         self.chat.chat_post.grab_focus()
 
     def _buddy_joined_cb(self, sender, buddy):
