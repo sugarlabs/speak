@@ -954,20 +954,34 @@ class SpeakActivity(SharedActivity):
 
     def _one_to_one_connection_closed_cb(self):
         '''Callback for when the text channel closes.'''
-        self._alert(_('Off-line'), _('left the chat'))
+        pass
 
     def _setup(self):
         self.text_channel = TextChannelWrapper(
             self.shared_activity.telepathy_text_chan,
             self.shared_activity.telepathy_conn)
         self.text_channel.set_received_callback(self._received_cb)
-        self._alert(_('On-line'), _('Connected'))
         self.shared_activity.connect('buddy-joined', self._buddy_joined_cb)
         self.shared_activity.connect('buddy-left', self._buddy_left_cb)
-        self._chat_is_room = True
         self.chat.chat_post.set_sensitive(True)
         self.chat.chat_post.props.placeholder_text = None
         self.chat.chat_post.grab_focus()
+
+    def _buddy_joined_cb(self, sender, buddy):
+        '''Show a buddy who joined'''
+        if buddy == self.owner:
+            return
+        self.chat.post(
+            buddy, None, _('%s joined the chat') % buddy.props.nick,
+            status_message=True)
+
+    def _buddy_left_cb(self, sender, buddy):
+        '''Show a buddy who joined'''
+        if buddy == self.owner:
+            return
+        self.chat.post(
+            buddy, None, _('%s left the chat') % buddy.props.nick,
+            status_message=True)
 
     def _joined_cb(self, sender):
         '''Joined a shared activity.'''
@@ -988,7 +1002,7 @@ class SpeakActivity(SharedActivity):
         else:
             nick = '???'
         logger.debug('Received message from %s: %s', nick, text)
-        self.chat.post.add_text(buddy, None, text)
+        self.chat.post(buddy, None, text)
 
 
 # activate gtk threads when this module loads

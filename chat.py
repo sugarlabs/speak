@@ -140,7 +140,7 @@ class View(gtk.EventBox):
         if self.messenger:
             self.messenger.post(None)
 
-    def post(self, buddy, status, text):
+    def post(self, buddy, status, text, status_message=False):
         i = self._buddies.get(buddy)
         if not i:
             self._add_buddy(buddy)
@@ -154,7 +154,7 @@ class View(gtk.EventBox):
             if lang_box:
                 lang_box.props.text = status.voice.friendlyname
         if text:
-            self._chat.add_text(buddy, text)
+            self._chat.add_text(buddy, text, status_message)
             if not self.quiet:
                 # and self.props.window \
                 #    and self.props.window.is_visible():
