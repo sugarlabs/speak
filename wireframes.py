@@ -32,9 +32,9 @@ class Wireframes(Eye):
 
         self._pixbufs = []
         self._pixbufs.append(svg_str_to_pixbuf(lefteye_svg()))
-        self._pixbufs.append(svg_str_to_pixbuf(righteye_svg()))
         self._pixbufs.append(svg_str_to_pixbuf(centereye_svg()))
-        self._which_eye = 2
+        self._pixbufs.append(svg_str_to_pixbuf(righteye_svg()))
+        self._which_eye = 1
 
     def has_padding(self):
         return False
@@ -44,7 +44,7 @@ class Wireframes(Eye):
 
     def set_eye(self, which_eye):
         if which_eye < 0 or which_eye > len(self._pixbufs) - 1:
-            which_eye = 2
+            which_eye = 1
         self._which_eye = which_eye
 
     def expose(self, widget, event):
@@ -88,7 +88,7 @@ class Wireframes(Eye):
             dx = x - int((bounds.width - w) / 2)
             self.context.set_source_pixbuf(pixbuf, x, y)
             self.context.rectangle(x, y, w, h)
-        elif self._which_eye == 1:
+        elif self._which_eye == 2:
             dx = -x
             self.context.set_source_pixbuf(pixbuf, 0, y)
             self.context.rectangle(0, y, w, h)

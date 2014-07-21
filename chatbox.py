@@ -1,4 +1,8 @@
-# Copyright (C) 2009, Aleksey Lim
+# Copyright 2007-2008 One Laptop Per Child
+# Copyright 2009, Aleksey Lim
+# Copyright 2010, Mukesh Gupta
+# Copyright 2014, Walter Bender
+# Copyright 2014, Gonzalo Odiard
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,37 +18,167 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-# This code is a stripped down version of the Chat
-
-import gtk
-import hippo
-import logging
-import pango
 import re
+import time
+import logging
 from datetime import datetime
-from gobject import SIGNAL_RUN_FIRST, TYPE_PYOBJECT
 from gettext import gettext as _
 
-import sugar.graphics.style as style
-from sugar.graphics.roundbox import CanvasRoundBox
-from sugar.graphics.palette import Palette, CanvasInvoker
-from sugar.presence import presenceservice
-from sugar.graphics.style import (Color, COLOR_BLACK, COLOR_WHITE)
-from sugar.graphics.menuitem import MenuItem
-from sugar.activity.activity import get_activity_root
+import gobject
+import gtk
+import pango
 
-logger = logging.getLogger('speak')
+from sugar.graphics import style
+'''
+from sugar.graphics.palette import Palette, Invoker
+from sugar.graphics.palettemenu import PaletteMenuItem
+from sugar.graphics.palette import MouseSpeedDetector
+'''
+from sugar.util import timestamp_to_elapsed_string
+from sugar import profile
 
-URL_REGEXP = re.compile('((http|ftp)s?://)?'
+from roundbox import RoundBox
+
+
+_URL_REGEXP = re.compile(
+    '((http|ftp)s?://)?'
     '(([-a-zA-Z0-9]+[.])+[-a-zA-Z0-9]{2,}|([0-9]{1,3}[.]){3}[0-9]{1,3})'
     '(:[1-9][0-9]{0,4})?(/[-a-zA-Z0-9/%~@&_+=;:,.?#]*[a-zA-Z0-9/])?')
 
 
-class ChatBox(hippo.CanvasScrollbars):
-    def __init__(self):
-        hippo.CanvasScrollbars.__init__(self)
+def _luminance(color):
+    ''' Calculate luminance value '''
+    return int(color[1:3], 16) * 0.3 + int(color[3:5], 16) * 0.6 + \
+        int(color[5:7], 16) * 0.1
 
-        self.owner = presenceservice.get_instance().get_owner()
+
+def is_low_contrast(colors):
+    ''' We require lots of luminance contrast to make color text legible. '''
+    # To turn off color on color, always return False
+    return _luminance(colors[0]) - _luminance(colors[1]) < 96
+
+
+def is_dark_too_light(color):
+    return _luminance(color) > 96
+
+
+def lighter_color(colors):
+    ''' Which color is lighter? Use that one for the text nick color '''
+    if _luminance(colors[0]) > _luminance(colors[1]):
+        return 0
+    return 1
+
+
+def darker_color(colors):
+    ''' Which color is darker? Use that one for the text background '''
+    return 1 - lighter_color(colors)
+
+
+class TextBox(gtk.EventBox):
+
+    '''
+    __gsignals__ = {
+        'open-on-journal': (gobject.SignalFlags.RUN_FIRST, None, ([str])), }
+
+    # hand_cursor = gtk.gdk.Cursor.new(Gdk.CursorType.HAND2)
+    '''
+
+    def __init__(self, parent,
+                 name_color, text_color, bg_color, highlight_color,
+                 lang_rtl, nick_name=None, text=None):
+        gtk.EventBox.__init__(self)
+
+        self.textview = gtk.TextView()
+
+        self.set_size_request(-1, style.GRID_CELL_SIZE)
+        self.add(self.textview)
+        self.textview.show()
+
+        self._parent = parent
+        self._buffer = gtk.TextBuffer()
+        self._empty_buffer = gtk.TextBuffer()
+        self._empty_buffer.set_text('')
+        self._empty = True
+        self._name_tag = self._buffer.create_tag(
+            'name', foreground=name_color.get_html(), weight=pango.WEIGHT_BOLD,
+            background=bg_color.get_html())
+        self._fg_tag = self._buffer.create_tag(
+            'foreground_color', foreground=text_color.get_html(),
+            background=bg_color.get_html())
+        self._subscript_tag = self.textview.get_buffer().create_tag(
+            'subscript', foreground=text_color.get_html(),
+            background=bg_color.get_html(),
+            rise=-7 * pango.SCALE)  # in pixels
+
+        if nick_name:
+            self._add_name(nick_name)
+            self.add_text(text, newline=False)
+        elif text:
+            self.add_text(text)
+
+        self.resize_box()
+
+        self._lang_rtl = lang_rtl
+        self.textview.set_editable(False)
+        self.textview.set_cursor_visible(False)
+        self.textview.set_wrap_mode(gtk.WRAP_WORD)
+
+        self.textview.modify_base(gtk.STATE_NORMAL, bg_color.get_gdk_color())
+        # self.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(int(0), int(0), int(0)))
+
+
+        self.connect('size-allocate', self.__size_allocate_cb)
+
+    def __size_allocate_cb(self, widget, allocation):
+        ''' Load buffer after resize to circumvent race condition '''
+        self.textview.set_buffer(self._buffer)
+        self._parent.resize_rb()
+
+    def resize_box(self):
+        self.textview.set_buffer(self._empty_buffer)
+        self.set_size_request(gtk.gdk.screen_width() - style.GRID_CELL_SIZE
+                              - 2 * style.DEFAULT_SPACING, -1)
+
+    def _add_name(self, name):
+        buf = self._buffer
+        self.iter_text = self._buffer.get_iter_at_offset(0)
+        words = name.split()
+        for word in words:
+            buf.insert_with_tags(self.iter_text, word, self._name_tag)
+            buf.insert_with_tags(self.iter_text, ' ', self._fg_tag)
+
+        self._empty = False
+
+    def add_text(self, text, newline=True):
+        buf = self._buffer
+        self.iter_text = self._buffer.get_end_iter()
+
+        if not self._empty:
+            if newline:
+                buf.insert(self.iter_text, '\n')
+            else:
+                buf.insert(self.iter_text, ' ')
+
+        words = text.split()
+        for word in words:
+            buf.insert_with_tags(self.iter_text, word, self._fg_tag)
+            buf.insert_with_tags(self.iter_text, ' ', self._fg_tag)
+
+        self._empty = False
+
+
+class ChatBox(gtk.ScrolledWindow):
+
+    def __init__(self, owner, tablet_mode):
+        gtk.ScrolledWindow.__init__(self)
+
+        if owner is None:
+            self._owner = {'nick': profile.get_nick_name(),
+                           'color': profile.get_color().to_string()}
+        else:
+            self._owner = owner
+
+        self._tablet_mode = tablet_mode
 
         # Auto vs manual scrolling:
         self._scroll_auto = True
@@ -53,16 +187,34 @@ class ChatBox(hippo.CanvasScrollbars):
         # Track last message, to combine several messages:
         self._last_msg = None
         self._chat_log = ''
+        self._row_counter = 0
 
-        self._conversation = hippo.CanvasBox(
-                spacing=0,
-                background_color=COLOR_WHITE.get_int())
+        # We need access to individual messages for resizing
+        # TODO: use a signal for this
+        self._rb_list = []
+        self._grid_list = []
+        self._message_list = []
 
-        self.set_policy(hippo.ORIENTATION_HORIZONTAL,
-                hippo.SCROLLBAR_NEVER)
-        self.set_root(self._conversation)
+        self._conversation = gtk.VBox()
+        # self._conversation.set_row_spacing(style.DEFAULT_PADDING)
+        # self._conversation.set_border_width(0)
+        self._conversation.set_size_request(
+            gtk.gdk.screen_width() - style.GRID_CELL_SIZE, -1)
 
-        vadj = self.props.widget.get_vadjustment()
+        # OSK padding for conversation
+        self._dy = 0
+
+        evbox = gtk.EventBox()
+        evbox.modify_bg(
+            gtk.STATE_NORMAL, style.COLOR_WHITE.get_gdk_color())
+        evbox.add(self._conversation)
+        self._conversation.show()
+
+        self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        self.add_with_viewport(evbox)
+        evbox.show()
+
+        vadj = self.get_vadjustment()
         vadj.connect('changed', self._scroll_changed_cb)
         vadj.connect('value-changed', self._scroll_value_changed_cb)
 
@@ -70,37 +222,49 @@ class ChatBox(hippo.CanvasScrollbars):
         return self._chat_log
 
     def add_text(self, buddy, text, status_message=False):
-        """Display text on screen, with name and colors.
-
+        '''Display text on screen, with name and colors.
         buddy -- buddy object or dict {nick: string, color: string}
-                 (The dict is for loading the chat log from the journal,
-                 when we don't have the buddy object any more.)
+        (The dict is for loading the chat log from the journal,
+        when we don't have the buddy object any more.)
         text -- string, what the buddy said
         status_message -- boolean
-            False: show what buddy said
-            True: show what buddy did
+        False: show what buddy said
+        True: show what buddy did
 
-        hippo layout:
-        .------------- rb ---------------.
-        | +name_vbox+ +----msg_vbox----+ |
-        | |         | |                | |
-        | | nick:   | | +--msg_hbox--+ | |
-        | |         | | | text       | | |
-        | +---------+ | +------------+ | |
-        |             |                | |
-        |             | +--msg_hbox--+ | |
-        |             | | text | url | | |
-        |             | +------------+ | |
-        |             +----------------+ |
-        `--------------------------------'
-        """
+        .----- rb ------------.
+        |  +----align-------+ |
+        |  | +--message---+ | |
+        |  | | nick:      | | |
+        |  | | text 1     | | |
+        |  | | text 2     | | |
+        |  | +------------+ | |
+        |  +----------------+ |
+        `----------------- +--'
+                          \|
+
+        The color scheme for owner messages is:
+        nick in lighter of stroke and fill colors
+        background in darker of stroke and fill colors
+        text in white
+
+        The color scheme for buddy messages is:
+        nick in darker of stroke and fill colors
+        background in light gray
+        text in black
+
+        rb has a tail on the right for owner messages and the left for
+        buddy messages.
+        '''
         if not buddy:
-            buddy = self.owner
+            buddy = self._owner
 
         if type(buddy) is dict:
             # dict required for loading chat log from journal
             nick = buddy['nick']
             color = buddy['color']
+        elif buddy is None:
+            nick = 'unknown'
+            color = '#000000,#808080'
         else:
             nick = buddy.props.nick
             color = buddy.props.color
@@ -109,17 +273,45 @@ class ChatBox(hippo.CanvasScrollbars):
         except ValueError:
             color_stroke_html, color_fill_html = ('#000000', '#888888')
 
-        # Select text color based on fill color:
-        color_fill_rgba = Color(color_fill_html).get_rgba()
-        color_fill_gray = (color_fill_rgba[0] + color_fill_rgba[1] +
-                           color_fill_rgba[2]) / 3
-        color_stroke = Color(color_stroke_html).get_int()
-        color_fill = Color(color_fill_html).get_int()
+        lighter = lighter_color(color.split(','))
+        darker = 1 - lighter
 
-        if color_fill_gray < 0.5:
-            text_color = COLOR_WHITE.get_int()
+        if len(text) > 3 and text[0:4] == '/me ':
+            me_message = True
         else:
-            text_color = COLOR_BLACK.get_int()
+            me_message = False
+
+        if status_message or me_message:
+            text_color = style.COLOR_WHITE
+            nick_color = style.COLOR_WHITE
+            color_fill = style.Color('#808080')
+            highlight_fill = style.COLOR_WHITE
+            tail = None
+        else:
+            highlight_fill = style.COLOR_BUTTON_GREY
+            if is_dark_too_light(color.split(',')[darker]):
+                text_color = style.COLOR_BLACK
+                darker = lighter  # use black on lighter of the two colors
+            else:
+                text_color = style.COLOR_WHITE
+            if darker == 0:
+                color_fill = style.Color(color_stroke_html)
+                if is_low_contrast(color.split(',')):
+                    nick_color = text_color
+                else:
+                    nick_color = style.Color(color_fill_html)
+            else:
+                color_fill = style.Color(color_fill_html)
+                if is_low_contrast(color.split(',')):
+                    nick_color = text_color
+                else:
+                    nick_color = style.Color(color_stroke_html)
+            if nick == profile.get_nick_name():
+                tail = 'right'
+            else:
+                tail = 'left'
+
+        color_stroke = None
 
         self._add_log(nick, color, text, status_message)
 
@@ -131,144 +323,112 @@ class ChatBox(hippo.CanvasScrollbars):
 
         # Check if new message box or add text to previous:
         new_msg = True
-        if self._last_msg_sender:
-            if not status_message:
-                if buddy == self._last_msg_sender:
-                    # Add text to previous message
-                    new_msg = False
+        if self._last_msg_sender and buddy == self._last_msg_sender:
+            # Add text to previous message
+            if not (me_message or status_message):
+                new_msg = False
 
         if not new_msg:
-            rb = self._last_msg
-            msg_vbox = rb.get_children()[1]
-            msg_hbox = hippo.CanvasBox(
-                orientation=hippo.ORIENTATION_HORIZONTAL)
-            msg_vbox.append(msg_hbox)
+            message = self._last_msg
+            message.add_text(text)
         else:
-            rb = CanvasRoundBox(background_color=color_fill,
-                                border_color=color_stroke,
-                                padding=4)
-            rb.props.border_color = color_stroke  # Bug #3742
-            self._last_msg = rb
+            rb = RoundBox()
+            rb.background_color = color_fill
+            rb.border_color = color_stroke
+            rb.tail = tail
+            self._rb_list.append(rb)
+
+            grid_internal = gtk.VBox()
+            grid_internal.set_size_request(
+                gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
+                style.GRID_CELL_SIZE)  # -1)
+            self._grid_list.append(grid_internal)
+
+            row = 0
+
+            if status_message:
+                nick = None
+            elif me_message:
+                text = text[4:]
+
+            message = TextBox(self, nick_color, text_color, color_fill,
+                              highlight_fill, lang_rtl, nick, text)
+            self._message_list.append(message)
+
             self._last_msg_sender = buddy
-            if not status_message:
-                name = hippo.CanvasText(text=nick + ':   ',
-                    color=text_color)
-                name_vbox = hippo.CanvasBox(
-                    orientation=hippo.ORIENTATION_VERTICAL)
-                name_vbox.append(name)
-                rb.append(name_vbox)
-            msg_vbox = hippo.CanvasBox(
-                orientation=hippo.ORIENTATION_VERTICAL)
-            rb.append(msg_vbox)
-            msg_hbox = hippo.CanvasBox(
-                orientation=hippo.ORIENTATION_HORIZONTAL)
-            msg_vbox.append(msg_hbox)
+            self._last_msg = message
+
+            grid_internal.pack_start(message, expand=False, padding=0)
+            row += 1
+
+            align = gtk.Alignment(0.0, 0.0, 1.0, 1.0)
+            if rb.tail is None:
+                bottom_padding = style.zoom(7)
+            else:
+                bottom_padding = style.zoom(50)
+            align.set_padding(style.zoom(7), bottom_padding, style.zoom(30),
+                              style.zoom(30))
+
+            align.add(grid_internal)
+            grid_internal.show()
+
+            rb.pack_start(align, True, True, 0)
+            align.show()
+
+            self._conversation.pack_start(rb, expand=False,
+                                          padding=style.DEFAULT_PADDING)
+            rb.show()
+            self._row_counter += 1
+            message.show()
 
         if status_message:
             self._last_msg_sender = None
 
-        match = URL_REGEXP.match(text)
-        while match:
-            # there is a URL in the text
-            starttext = text[:match.start()]
-            if starttext:
-                message = hippo.CanvasText(
-                    text=starttext,
-                    size_mode=hippo.CANVAS_SIZE_WRAP_WORD,
-                    color=text_color,
-                    xalign=hippo.ALIGNMENT_START)
-                msg_hbox.append(message)
-            url = text[match.start():match.end()]
+    def add_separator(self, timestamp):
+        '''Add whitespace and timestamp between chat sessions.'''
+        time_with_current_year = \
+            (time.localtime(time.time())[0], ) + \
+            time.strptime(timestamp, '%b %d %H:%M:%S')[1:]
 
-            message = CanvasLink(
-                text=url,
-                color=text_color)
-            attrs = pango.AttrList()
-            attrs.insert(pango.AttrUnderline(pango.UNDERLINE_SINGLE, 0, 32767))
-            message.set_property("attributes", attrs)
-            message.connect('activated', self._link_activated_cb)
+        timestamp_seconds = time.mktime(time_with_current_year)
+        if timestamp_seconds > time.time():
+            time_with_previous_year = \
+                (time.localtime(time.time())[0] - 1, ) + \
+                time.strptime(timestamp, '%b %d %H:%M:%S')[1:]
+            timestamp_seconds = time.mktime(time_with_previous_year)
 
-            # call interior magic which should mean just:
-            # CanvasInvoker().parent = message
-            CanvasInvoker(message)
+        message = TextBox(self,
+                          style.COLOR_BUTTON_GREY, style.COLOR_BUTTON_GREY,
+                          style.COLOR_WHITE, style.COLOR_BUTTON_GREY, False,
+                          None, timestamp_to_elapsed_string(timestamp_seconds))
+        self._message_list.append(message)
+        box = gtk.HBox()
+        align = gtk.Alignment(0.5, 0.0, 0.0, 0.0)
+        box.pack_start(align, True, True, 0)
+        align.show()
+        align.add(message)
+        message.show()
+        self._conversation.pack_start(box)
+        box.show()
+        self._row_counter += 1
+        self.add_log_timestamp(timestamp)
+        self._last_msg_sender = None
 
-            msg_hbox.append(message)
-            text = text[match.end():]
-            match = URL_REGEXP.search(text)
-
-        if text:
-            message = hippo.CanvasText(
-                text=text,
-                size_mode=hippo.CANVAS_SIZE_WRAP_WORD,
-                color=text_color,
-                xalign=hippo.ALIGNMENT_START)
-            msg_hbox.append(message)
-
-        # Order of boxes for RTL languages:
-        if lang_rtl:
-            msg_hbox.reverse()
-            if new_msg:
-                rb.reverse()
-
-        if new_msg:
-            box = hippo.CanvasBox(padding=2)
-            box.append(rb)
-            self._conversation.append(box)
-
-    def _scroll_value_changed_cb(self, adj, scroll=None):
-        """Turn auto scrolling on or off.
-        If the user scrolled up, turn it off.
-        If the user scrolled to the bottom, turn it back on.
-        """
-        if adj.get_value() < self._scroll_value:
-            self._scroll_auto = False
-        elif adj.get_value() == adj.upper - adj.page_size:
-            self._scroll_auto = True
-
-    def _scroll_changed_cb(self, adj, scroll=None):
-        """Scroll the chat window to the bottom"""
-        if self._scroll_auto:
-            adj.set_value(adj.upper - adj.page_size)
-            self._scroll_value = adj.get_value()
-
-    def _link_activated_cb(self, link):
-        url = url_check_protocol(link.props.text)
-        self._show_via_journal(url)
-
-    def _show_via_journal(self, url):
-        """Ask the journal to display a URL"""
-        import os
-        import time
-        from sugar import profile
-        from sugar.activity.activity import show_object_in_journal
-        from sugar.datastore import datastore
-        logger.debug('Create journal entry for URL: %s', url)
-        jobject = datastore.create()
-        metadata = {
-            'title': "%s: %s" % (_('URL from Chat'), url),
-            'title_set_by_user': '1',
-            'icon-color': profile.get_color().to_string(),
-            'mime_type': 'text/uri-list',
-            }
-        for k, v in metadata.items():
-            jobject.metadata[k] = v
-        file_path = os.path.join(get_activity_root(), 'instance',
-                                 '%i_' % time.time())
-        open(file_path, 'w').write(url + '\r\n')
-        os.chmod(file_path, 0755)
-        jobject.set_file_path(file_path)
-        datastore.write(jobject)
-        show_object_in_journal(jobject.object_id)
-        jobject.destroy()
-        os.unlink(file_path)
+    def add_log_timestamp(self, existing_timestamp=None):
+        '''Add a timestamp entry to the chat log.'''
+        if existing_timestamp is not None:
+            self._chat_log += '%s\t\t\n' % existing_timestamp
+        else:
+            self._chat_log += '%s\t\t\n' % (
+                datetime.strftime(datetime.now(), '%b %d %H:%M:%S'))
 
     def _add_log(self, nick, color, text, status_message):
-        """Add the text to the chat log.
+        '''Add the text to the chat log.
         nick -- string, buddy nickname
         color -- string, buddy.props.color
         text -- string, body of message
         status_message -- boolean
-        """
+        '''
         if not nick:
             nick = '???'
         if not color:
@@ -281,71 +441,48 @@ class ChatBox(hippo.CanvasScrollbars):
             datetime.strftime(datetime.now(), '%b %d %H:%M:%S'),
             nick, color, status_message, text)
 
+    def _scroll_value_changed_cb(self, adj, scroll=None):
+        '''Turn auto scrolling on or off.
+        If the user scrolled up, turn it off.
+        If the user scrolled to the bottom, turn it back on.
+        '''
+        if adj.get_value() < self._scroll_value:
+            self._scroll_auto = False
+        elif adj.get_value() == adj.get_upper() - adj.get_page_size():
+            self._scroll_auto = True
 
-class CanvasLink(hippo.CanvasLink):
-    def __init__(self, **kwargs):
-        hippo.CanvasLink.__init__(self, **kwargs)
+    def _scroll_changed_cb(self, adj, scroll=None):
+        '''Scroll the chat window to the bottom'''
+        if self._scroll_auto:
+            adj.set_value(adj.get_upper() - adj.get_page_size())
+            self._scroll_value = adj.get_value()
 
-    def create_palette(self):
-        return URLMenu(self.props.text)
+    def resize_all(self):
+        for message in self._message_list:
+            message.resize_box()
+        self.resize_rb()
 
+    def resize_rb(self):
+        for grid in self._grid_list:
+            grid.set_size_request(
+                gtk.gdk.screen_width() - style.GRID_CELL_SIZE, -1)
+        for rb in self._rb_list:
+            rb.set_size_request(
+                gtk.gdk.screen_width() - style.GRID_CELL_SIZE, -1)
+        self.resize_conversation()
 
-class URLMenu(Palette):
-    def __init__(self, url):
-        Palette.__init__(self, url)
-
-        self.url = url_check_protocol(url)
-
-        menu_item = MenuItem(_('Copy to Clipboard'), 'edit-copy')
-        menu_item.connect('activate', self._copy_to_clipboard_cb)
-        self.menu.append(menu_item)
-        menu_item.show()
-
-    def create_palette(self):
-        pass
-
-    def _copy_to_clipboard_cb(self, menuitem):
-        logger.debug('Copy %s to clipboard', self.url)
-        clipboard = gtk.clipboard_get()
-        targets = [("text/uri-list", 0, 0),
-                   ("UTF8_STRING", 0, 1)]
-
-        if not clipboard.set_with_data(targets,
-                                       self._clipboard_data_get_cb,
-                                       self._clipboard_clear_cb,
-                                       (self.url)):
-            logger.error('GtkClipboard.set_with_data failed!')
+    def resize_conversation(self, dy=None):
+        ''' Take into account OSK (dy) '''
+        if dy is None:
+            dy = self._dy
         else:
-            self.owns_clipboard = True
+            self._dy = dy
 
-    def _clipboard_data_get_cb(self, clipboard, selection, info, data):
-        logger.debug('_clipboard_data_get_cb data=%s target=%s', data,
-                     selection.target)
-        if selection.target in ['text/uri-list']:
-            if not selection.set_uris([data]):
-                logger.debug('failed to set_uris')
+        if self._tablet_mode:
+            self._conversation.set_size_request(
+                gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
+                int(gtk.gdk.screen_height() - 2.5 * style.GRID_CELL_SIZE) - dy)
         else:
-            logger.debug('not uri')
-            if not selection.set_text(data):
-                logger.debug('failed to set_text')
-
-    def _clipboard_clear_cb(self, clipboard, data):
-        logger.debug('clipboard_clear_cb')
-        self.owns_clipboard = False
-
-
-def url_check_protocol(url):
-    """Check that the url has a protocol, otherwise prepend https://
-
-    url -- string
-
-    Returns url -- string
-    """
-    protocols = ['http://', 'https://', 'ftp://', 'ftps://']
-    no_protocol = True
-    for protocol in protocols:
-        if url.startswith(protocol):
-            no_protocol = False
-    if no_protocol:
-        url = 'http://' + url
-    return url
+            self._conversation.set_size_request(
+                gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
+                gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE - dy)

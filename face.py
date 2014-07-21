@@ -128,17 +128,23 @@ class View(gtk.EventBox):
         self._mouthbox.show()
 
         # layout the screen
-        box = gtk.VBox(homogeneous=False)
-        box.pack_start(self._eyebox)
-        box.pack_start(self._mouthbox, False)
-        box.set_border_width(FACE_PAD)
+        self._box = gtk.VBox(homogeneous=False)
+        self._box.pack_start(self._eyebox)
+        self._box.pack_start(self._mouthbox, False)
+        self._box.set_border_width(FACE_PAD)
         self.modify_bg(gtk.STATE_NORMAL, self.fill_color.get_gdk_color())
-        self.add(box)
+        self.add(self._box)
 
         self._peding = None
         self.connect('map', self.__map_cb)
 
         self.update()
+
+    def set_border_state(self, state):
+        if state:
+            self._box.set_border_width(FACE_PAD)
+        else:
+            self._box.set_border_width(0)
 
     def __map_cb(self, widget):
         if self._peding:
@@ -179,14 +185,17 @@ class View(gtk.EventBox):
             eye = i(self.fill_color)
             if eye.has_left_center_right():
                 if e == 0:
-                    eye.set_eye(0)
-                elif e == len(status.eyes) - 1:
-                    eye.set_eye(1)
-                else:
+                    if len(status.eyes) > 1:  # Left
+                        eye.set_eye(0)
+                    else:
+                        eye.set_eye(1)  # Center if only 1 eye
+                elif e == len(status.eyes) - 1:  # Right
                     eye.set_eye(2)
+                else:  # Center
+                    eye.set_eye(1)
             self._eyes.append(eye)
             if eye.has_padding():
-                self._eyebox.pack_start(eye, padding=int(FACE_PAD / 2))
+                self._eyebox.pack_start(eye, padding=int(FACE_PAD / 4))
             else:
                 self._eyebox.pack_start(eye)
             eye.show()

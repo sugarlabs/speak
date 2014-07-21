@@ -21,6 +21,14 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
+from telepathy.interfaces import CHANNEL_INTERFACE
+from telepathy.interfaces import CHANNEL_INTERFACE_GROUP
+from telepathy.interfaces import CHANNEL_TYPE_TEXT
+from telepathy.interfaces import CONN_INTERFACE_ALIASING
+from telepathy.constants import CHANNEL_GROUP_FLAG_CHANNEL_SPECIFIC_HANDLES
+from telepathy.constants import CHANNEL_TEXT_MESSAGE_TYPE_NORMAL
+from telepathy.client import Connection
+from telepathy.client import Channel
 
 from sugar.activity import activity
 from sugar.presence import presenceservice
@@ -898,6 +906,76 @@ class SpeakActivity(SharedActivity):
         self.face.set_voice(voice)
         if self._mode == MODE_BOT:
             brain.load(self, voice)
+
+    #############
+
+    def _shared_cb(self, sender):
+        self._setup()
+
+    def _one_to_one_connection(self, tp_channel):
+        '''Handle a private invite from a non-sugar3 XMPP client.'''
+        if self.shared_activity or self.text_channel:
+            return
+        bus_name, connection, channel = json.loads(tp_channel)
+        logger.debug('GOT XMPP: %s %s %s', bus_name, connection, channel)
+        Connection(bus_name, connection, ready_handler=lambda conn:
+                   self._one_to_one_connection_ready_cb(
+                       bus_name, channel, conn))
+
+    def _one_to_one_connection_ready_cb(self, bus_name, channel, conn):
+        '''Callback for Connection for one to one connection'''
+        text_channel = Channel(bus_name, channel)
+        self.text_channel = TextChannelWrapper(text_channel, conn)
+        self.text_channel.set_received_callback(self._received_cb)
+        self.text_channel.handle_pending_messages()
+        self.text_channel.set_closed_callback(
+            self._one_to_one_connection_closed_cb)
+        self._chat_is_room = False
+        self._alert(_('On-line'), _('Private Chat'))
+
+        # XXX How do we detect the sender going offline?
+        self._entry.set_sensitive(True)
+        self._entry.props.placeholder_text = None
+        self._entry.grab_focus()
+
+    def _one_to_one_connection_closed_cb(self):
+        '''Callback for when the text channel closes.'''
+        self._alert(_('Off-line'), _('left the chat'))
+
+    def _setup(self):
+        self.text_channel = TextChannelWrapper(
+            self.shared_activity.telepathy_text_chan,
+            self.shared_activity.telepathy_conn)
+        self.text_channel.set_received_callback(self._received_cb)
+        self._alert(_('On-line'), _('Connected'))
+        self.shared_activity.connect('buddy-joined', self._buddy_joined_cb)
+        self.shared_activity.connect('buddy-left', self._buddy_left_cb)
+        self._chat_is_room = True
+        self._entry.set_sensitive(True)
+        self._entry.props.placeholder_text = None
+        self._entry.grab_focus()
+
+    def _joined_cb(self, sender):
+        '''Joined a shared activity.'''
+        if not self.shared_activity:
+            return
+        logger.debug('Joined a shared chat')
+        for buddy in self.shared_activity.get_joined_buddies():
+            self._buddy_already_exists(buddy)
+        self._setup()
+
+    def _received_cb(self, buddy, text):
+        '''Show message that was received.'''
+        if buddy:
+            if type(buddy) is dict:
+                nick = buddy['nick']
+            else:
+                nick = buddy.props.nick
+        else:
+            nick = '???'
+        logger.debug('Received message from %s: %s', nick, text)
+        self.chatbox.add_text(buddy, text)
+
 
 
 # activate gtk threads when this module loads
