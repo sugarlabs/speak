@@ -124,8 +124,6 @@ class TextBox(gtk.EventBox):
         self.textview.set_wrap_mode(gtk.WRAP_WORD)
 
         self.textview.modify_base(gtk.STATE_NORMAL, bg_color.get_gdk_color())
-        # self.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(int(0), int(0), int(0)))
-
 
         self.connect('size-allocate', self.__size_allocate_cb)
 
@@ -478,11 +476,6 @@ class ChatBox(gtk.ScrolledWindow):
         else:
             self._dy = dy
 
-        if self._tablet_mode:
-            self._conversation.set_size_request(
-                gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
-                int(gtk.gdk.screen_height() - 2.5 * style.GRID_CELL_SIZE) - dy)
-        else:
-            self._conversation.set_size_request(
-                gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
-                gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE - dy)
+        self._conversation.set_size_request(
+            gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
+            int(gtk.gdk.screen_height() - 2.5 * style.GRID_CELL_SIZE) - dy)
