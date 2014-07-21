@@ -285,6 +285,21 @@ class SpeakActivity(SharedActivity):
         self._configure_cb()
         self._poll_accelerometer()
 
+        if self.shared_activity:
+            # we are joining the activity
+            self.connect('joined', self._joined_cb)
+            if self.get_shared():
+                # we have already joined
+                self._joined_cb(self)
+        elif handle.uri:
+            # XMPP non-sugar3 incoming chat, not sharable
+            self.activity_button.props.page.share.props.visible = \
+                False
+            self._one_to_one_connection(handle.uri)
+        else:
+            # we are creating the activity
+            self.connect('shared', self._shared_cb)
+
     def toolbar_expanded(self):
         if self.activity_button.is_expanded():
             return True
@@ -931,12 +946,11 @@ class SpeakActivity(SharedActivity):
         self.text_channel.set_closed_callback(
             self._one_to_one_connection_closed_cb)
         self._chat_is_room = False
-        self._alert(_('On-line'), _('Private Chat'))
 
         # XXX How do we detect the sender going offline?
-        self._entry.set_sensitive(True)
-        self._entry.props.placeholder_text = None
-        self._entry.grab_focus()
+        self.chat.chat_post.set_sensitive(True)
+        self.chat.chat_post.props.placeholder_text = None
+        self.chat.chat_post.grab_focus()
 
     def _one_to_one_connection_closed_cb(self):
         '''Callback for when the text channel closes.'''
@@ -951,9 +965,9 @@ class SpeakActivity(SharedActivity):
         self.shared_activity.connect('buddy-joined', self._buddy_joined_cb)
         self.shared_activity.connect('buddy-left', self._buddy_left_cb)
         self._chat_is_room = True
-        self._entry.set_sensitive(True)
-        self._entry.props.placeholder_text = None
-        self._entry.grab_focus()
+        self.chat.chat_post.set_sensitive(True)
+        self.chat.chat_post.props.placeholder_text = None
+        self.chat.chat_post.grab_focus()
 
     def _joined_cb(self, sender):
         '''Joined a shared activity.'''
@@ -974,8 +988,7 @@ class SpeakActivity(SharedActivity):
         else:
             nick = '???'
         logger.debug('Received message from %s: %s', nick, text)
-        self.chatbox.add_text(buddy, text)
-
+        self.chat.post.add_text(buddy, None, text)
 
 
 # activate gtk threads when this module loads

@@ -92,15 +92,19 @@ class View(gtk.EventBox):
                 ENTRY_COLOR)
         my_face_widget.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
 
-        self.chat_post = gtk.TextView()
-        self.chat_post.modify_bg(gtk.STATE_INSENSITIVE,
+        self.chat_post = gtk.Entry()
+        entry_height = int(BUDDY_SIZE)
+        entry_width = gtk.gdk.screen_width() - \
+                      max(1, min(5, len(self._buddies_list))) * BUDDY_SIZE
+        self.chat_post.set_size_request(entry_width, entry_height)
+        self.chat_post.modify_bg(gtk.STATE_NORMAL,
                                  style.COLOR_WHITE.get_gdk_color())
-        self.chat_post.modify_base(gtk.STATE_INSENSITIVE,
+        self.chat_post.modify_base(gtk.STATE_NORMAL,
                                    style.COLOR_WHITE.get_gdk_color())
+        self.chat_post.modify_font(pango.FontDescription(str='sans bold 24'))
+        self.chat_post.connect('activate', self._activate_cb)
         self.chat_post.connect('key-press-event', self._key_press_cb)
-        self.chat_post.props.wrap_mode = gtk.WRAP_WORD_CHAR
-        self.chat_post.set_size_request(gtk.gdk.screen_width() - BUDDY_SIZE,
-                                        BUDDY_SIZE - ENTRY_YPAD * 2)
+
         chat_post_box = gtk.VBox()
         chat_post_box.pack_start(self.chat_post, padding=ENTRY_XPAD)
         self.chat_post.show()
@@ -193,20 +197,21 @@ class View(gtk.EventBox):
         if len(self._buddies) == 1:
             self._desk.append(self._buddies_box)
 
+    def _activate_cb(self, widget, event):
+        text = widget.get_buffer().props.text
+        if text:
+            self._chat.add_text(None, text)
+            widget.get_buffer().props.text = ''
+            if not self.quiet:
+                self.me.say(text)
+            if self.messenger:
+                self.messenger.post(text)
+        return True
+
     def _key_press_cb(self, widget, event):
         if event.keyval == gtk.keysyms.Return:
             if not (event.state & gtk.gdk.CONTROL_MASK):
-                text = widget.get_buffer().props.text
-
-                if text:
-                    self._chat.add_text(None, text)
-                    widget.get_buffer().props.text = ''
-                    if not self.quiet:
-                        self.me.say(text)
-                    if self.messenger:
-                        self.messenger.post(text)
-
-                return True
+                return self._activate_cb(widget, event)
         return False
 
     def _new_face(self, buddy, color):
