@@ -179,9 +179,6 @@ class View(gtk.EventBox):
         del self._buddies[buddy]
         self._resize_buddy_list()
 
-        if len(self._buddies) == 0:
-            self._desk.remove(self._buddies_box)
-
     def shut_up(self):
         for i in self._buddies.values():
             i['face'].shut_up();
@@ -200,9 +197,6 @@ class View(gtk.EventBox):
         self._buddies_list.pack_start(box)
         box.show()
         self._resize_buddy_list()
-
-        if len(self._buddies) == 1:
-            self._desk.append(self._buddies_box)
 
     def _activate_cb(self, widget, event):
         text = widget.get_buffer().props.text
