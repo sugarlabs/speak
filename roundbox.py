@@ -39,11 +39,11 @@ class RoundBox(gtk.HBox):
         child.set_border_width(style.zoom(5))
 
     def __expose_cb(self, widget, event):
-        cr = self.get_window().cairo_create()
+        cr = widget.window.cairo_create()
         rect = self.get_allocation()
         hmargin = style.zoom(15)
-        x = hmargin
-        y = 0
+        x = rect.x + hmargin
+        y = rect.y
         width = rect.width - _BORDER_DEFAULT * 2. - hmargin * 2
         if self.tail is None:
             height = rect.height - _BORDER_DEFAULT * 2.
