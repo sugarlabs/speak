@@ -241,9 +241,9 @@ class ChatBox(gtk.ScrolledWindow):
                           \|
 
         The color scheme for owner messages is:
-        nick in lighter of stroke and fill colors
-        background in darker of stroke and fill colors
-        text in white
+        nick in darker of stroke and fill colors
+        background in lighter of stroke and fill colors
+        text in black
 
         The color scheme for buddy messages is:
         nick in darker of stroke and fill colors
@@ -287,12 +287,8 @@ class ChatBox(gtk.ScrolledWindow):
             tail = None
         else:
             highlight_fill = style.COLOR_BUTTON_GREY
-            if is_dark_too_light(color.split(',')[darker]):
-                text_color = style.COLOR_BLACK
-                darker = lighter  # use black on lighter of the two colors
-            else:
-                text_color = style.COLOR_WHITE
-            if darker == 0:
+            text_color = style.COLOR_BLACK
+            if darker == 1:
                 color_fill = style.Color(color_stroke_html)
                 if is_low_contrast(color.split(',')):
                     nick_color = text_color
@@ -363,7 +359,7 @@ class ChatBox(gtk.ScrolledWindow):
             if rb.tail is None:
                 bottom_padding = style.zoom(7)
             else:
-                bottom_padding = style.zoom(50)
+                bottom_padding = style.zoom(40)
             align.set_padding(style.zoom(7), bottom_padding, style.zoom(30),
                               style.zoom(30))
 

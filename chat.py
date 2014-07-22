@@ -40,6 +40,19 @@ ENTRY_XPAD = 0
 ENTRY_YPAD = 7
 
 
+def _luminance(color):
+    ''' Calculate luminance value '''
+    return int(color[1:3], 16) * 0.3 + int(color[3:5], 16) * 0.6 + \
+        int(color[5:7], 16) * 0.1
+
+
+def _lighter_color(colors):
+    ''' Which color is lighter? Use that one for the text nick color '''
+    if _luminance(colors[0]) > _luminance(colors[1]):
+        return 0
+    return 1
+
+
 def _is_tablet_mode():
     if not os.path.exists('/dev/input/event4'):
         return False
@@ -244,11 +257,10 @@ class View(gtk.EventBox):
         return False
 
     def _new_face(self, buddy, color):
-        stroke_color, fill_color = buddy.props.color.split(',')
-        stroke_color = style.Color(stroke_color)
-        fill_color = style.Color(fill_color)
+        colors = buddy.props.color.split(',')
+        lighter = style.Color(colors[_lighter_color(colors)])
 
-        buddy_face = face.View(fill_color)
+        buddy_face = face.View(lighter)
         buddy_face.set_border_state(False)
         buddy_face.set_size_request(BUDDY_SIZE - style.DEFAULT_PADDING,
                                     BUDDY_SIZE - style.DEFAULT_PADDING)

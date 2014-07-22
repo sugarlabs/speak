@@ -827,12 +827,7 @@ class SpeakActivity(activity.Activity):
         self._speak_the_text(self._entry, text)
 
     def _speak_the_text(self, entry, text):
-        if self._robot_idle_id is not None:
-            gobject.source_remove(self._robot_idle_id)
-            value = self._get_active_eyes()
-            if value is not None:
-                self.face.status.eyes = [value] * self._active_number_of_eyes
-                self._update_face()
+        self._remove_idle()
 
         if text:
             self.face.look_ahead()
@@ -911,6 +906,8 @@ class SpeakActivity(activity.Activity):
         if not button.props.active:
             return
 
+        self._remove_idle()
+
         self._mode = MODE_BOT
         self._chat.shut_up()
         self.face.shut_up()
@@ -955,18 +952,12 @@ class SpeakActivity(activity.Activity):
                 self.face.say_notification(sorry)
 
     def __toggled_mode_chat_cb(self, button):
-        if self._robot_idle_id is not None:
-            gobject.source_remove(self._robot_idle_id)
-            value = self._get_active_eyes()
-            if value is not None:
-                self.face.status.eyes = [value] * self._active_number_of_eyes
-                self._update_face()
-
         if not button.props.active:
             return
 
+        self._remove_idle()
+
         is_first_session = not self.shared_activity
-        # self._chat.me.flags() & gtk.MAPPED
 
         self._setup_chat_mode()
 
@@ -974,8 +965,17 @@ class SpeakActivity(activity.Activity):
             self._chat.me.say_notification(
                 _('You are in off-line mode, share and invite someone.'))
 
+    def _remove_idle(self):
+        if self._robot_idle_id is not None:
+            gobject.source_remove(self._robot_idle_id)
+            value = self._get_active_eyes()
+            if value is not None:
+                self.face.status.eyes = [value] * self._active_number_of_eyes
+                self._update_face()
+
     def _setup_chat_mode(self):
         self._mode = MODE_CHAT
+        self._remove_idle()
         self.face.shut_up()
         self._notebook.set_current_page(1)
 
