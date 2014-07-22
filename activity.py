@@ -906,13 +906,13 @@ class SpeakActivity(SharedActivity):
 
         is_first_session = not self.chat.me.flags() & gtk.MAPPED
 
-        self.setup_chat_mode(voices_model)
+        self._setup_chat_mode(voices_model)
 
         if is_first_session:
             self.chat.me.say_notification(
                     _("You are in off-line mode, share and invite someone."))
 
-    def setup_chat_mode(self, voices_model):
+    def _setup_chat_mode(self, voices_model):
         self._mode = MODE_CHAT
         self.face.shut_up()
         self.notebook.set_current_page(1)
@@ -993,7 +993,7 @@ class SpeakActivity(SharedActivity):
         '''Show a buddy already in the chat.'''
         if buddy == self.owner:
             return
-        self.chatbox.add_text(
+        self.chat.post(
             buddy, None, _('%s is here') % buddy.props.nick,
             status_message=True)
 

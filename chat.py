@@ -95,7 +95,7 @@ class View(gtk.EventBox):
         self.chat_post = gtk.Entry()
         entry_height = int(BUDDY_SIZE)
         entry_width = gtk.gdk.screen_width() - \
-                      max(1, min(5, len(self._buddies_list))) * BUDDY_SIZE
+                      max(1, min(5, len(self._buddies))) * BUDDY_SIZE
         self.chat_post.set_size_request(entry_width, entry_height)
         self.chat_post.modify_bg(gtk.STATE_NORMAL,
                                  style.COLOR_WHITE.get_gdk_color())
@@ -162,12 +162,12 @@ class View(gtk.EventBox):
 
     def _resize_buddy_list(self):
         self._buddies_list.set_size_request(
-            len(self._buddies_list) * BUDDY_SIZE, -1)
+            len(self._buddies) * BUDDY_SIZE, -1)
         self._buddies_box.set_size_request(
-            min(5, len(self._buddies_list)) * BUDDY_SIZE, -1)
+            min(5, len(self._buddies)) * BUDDY_SIZE, -1)
         self.chat_post.set_size_request(
             gtk.gdk.screen_width() -
-            min(5, len(self._buddies_list)) * BUDDY_SIZE, -1)
+            min(5, len(self._buddies)) * BUDDY_SIZE, -1)
 
     def farewell(self, buddy):
         i = self._buddies.get(buddy)
@@ -197,7 +197,7 @@ class View(gtk.EventBox):
                 'face': buddy_face,
                 'lang': ''
                 }
-        self._buddies_list.append(box)
+        self._buddies_list.pack_start(box)
         box.show()
         self._resize_buddy_list()
 
