@@ -158,15 +158,7 @@ class View(gtk.EventBox):
         logging.error(text)
         logging.error(status_message)
 
-        i = self._buddies.get(buddy)
-        if not i:
-            '''
-            if status_message:
-                i = self._buddies[self._owner]
-            else:
-            '''
-            self._add_buddy(buddy)
-            i = self._buddies[buddy]
+        i = self._find_buddy(buddy)
 
         buddy_face = i['face']
         lang_box = i['lang']
@@ -182,6 +174,22 @@ class View(gtk.EventBox):
                 #    and self.props.window.is_visible():
                 buddy_face.say(text)
 
+    def _find_buddy(self, buddy):
+        i = self._buddies.get(buddy)
+        if not i:
+            # Sometimes the same buddy has a different dbus instance,
+            # so walk through the list
+            nick = buddy.props.nick
+            color = buddy.props.color
+            for old_buddy in self._buddies.keys():
+                if old_buddy.props.nick == nick and \
+                   old_buddy.props.color == color:
+                    i = self._buddies.get(old_buddy)
+            if not i:  # No match, so add a new buddy
+                self._add_buddy(buddy)
+                i = self._buddies[buddy]
+        return i
+
     def _resize_buddy_list(self):
         self._buddies_box.set_size_request(
             len(self._buddies) * BUDDY_SIZE, -1)
@@ -190,7 +198,7 @@ class View(gtk.EventBox):
         self.chat_post.set_size_request(gtk.gdk.screen_width() - size, -1)
 
     def farewell(self, buddy):
-        i = self._buddies.get(buddy)
+        i = self._find_buddy(buddy)
         if not i:
             logger.debug('farewell: cannot find buddy %s' % buddy.props.nick)
             return
