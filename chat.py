@@ -73,14 +73,14 @@ class View(gtk.EventBox):
 
         # buddies box
 
-        self._buddies_box = gtk.ScrolledWindow()
-        self._buddies_box.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_NEVER)
-        self._buddies_box.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
+        self._buddies_sw = gtk.ScrolledWindow()
+        self._buddies_sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_NEVER)
+        self._buddies_sw.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
 
-        self._buddies_list = gtk.HBox()
-        self._buddies_list.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
-        self._buddies_box.add_with_viewport(self._buddies_list)
-        self._buddies_list.show()
+        self._buddies_box = gtk.HBox()
+        self._buddies_box.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
+        self._buddies_sw.add_with_viewport(self._buddies_box)
+        self._buddies_box.show()
 
         # chat entry
 
@@ -88,9 +88,16 @@ class View(gtk.EventBox):
         self._chat = ChatBox(self.owner, _is_tablet_mode())
         self._chat.set_size_request(
             -1, gtk.gdk.screen_height() - style.GRID_CELL_SIZE - BUDDY_SIZE)
-        self.me, my_face_widget = self._new_face(self.owner, # self._chat.owner,
+        self.me, my_face_widget = self._new_face(self.owner,
                 ENTRY_COLOR)
         my_face_widget.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
+
+        # add owner to buddy list
+        self._buddies[self.owner] = {
+                'box': my_face_widget,
+                'face': self.me,
+                'lang': ''
+                }
 
         self.chat_post = gtk.Entry()
         entry_height = int(BUDDY_SIZE)
@@ -110,8 +117,8 @@ class View(gtk.EventBox):
         self.chat_post.show()
 
         chat_entry = gtk.HBox()
-        self._buddies_list.pack_start(my_face_widget)
-        chat_entry.pack_start(self._buddies_box)
+        self._buddies_box.pack_start(my_face_widget)
+        chat_entry.pack_start(self._buddies_sw)
         my_face_widget.show()
         chat_entry.pack_start(chat_post_box)
         chat_post_box.show()
@@ -141,6 +148,9 @@ class View(gtk.EventBox):
             self.messenger.post(None)
 
     def post(self, buddy, status, text, status_message=False):
+        logging.error('POST')
+        logging.error(buddy)
+        logging.error(text)
         i = self._buddies.get(buddy)
         if not i:
             self._add_buddy(buddy)
@@ -161,13 +171,11 @@ class View(gtk.EventBox):
                 face.say(text)
 
     def _resize_buddy_list(self):
-        self._buddies_list.set_size_request(
-            len(self._buddies) * BUDDY_SIZE, -1)
         self._buddies_box.set_size_request(
-            min(5, len(self._buddies)) * BUDDY_SIZE, -1)
-        self.chat_post.set_size_request(
-            gtk.gdk.screen_width() -
-            min(5, len(self._buddies)) * BUDDY_SIZE, -1)
+            len(self._buddies) * BUDDY_SIZE, -1)
+        size = min(5, len(self._buddies)) * BUDDY_SIZE
+        self._buddies_sw.set_size_request(size, -1)
+        self.chat_post.set_size_request(gtk.gdk.screen_width() - size, -1)
 
     def farewell(self, buddy):
         i = self._buddies.get(buddy)
@@ -175,7 +183,7 @@ class View(gtk.EventBox):
             logger.debug('farewell: cannot find buddy %s' % buddy.props.nick)
             return
 
-        self._buddies_list.remove(i['box'])
+        self._buddies_box.remove(i['box'])
         del self._buddies[buddy]
         self._resize_buddy_list()
 
@@ -194,7 +202,7 @@ class View(gtk.EventBox):
                 'face': buddy_face,
                 'lang': ''
                 }
-        self._buddies_list.pack_start(box)
+        self._buddies_box.pack_start(box)
         box.show()
         self._resize_buddy_list()
 

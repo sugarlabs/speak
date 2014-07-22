@@ -100,6 +100,7 @@ IDLE_PHRASES = ['zzzzzzzzz', _('I am bored.'), _('Talk to me.'),
                 _('Do you have anything to say to me?'), _('Hello?')]
 SIDEWAYS_PHRASES = [_('Whoa! Sideways!'), _("I'm on my side."), _('Uh oh.'),
                     _('Wheeeee!'), _('Hey! Put me down!'), _('Falling over!')]
+SLASH = '-x-SLASH-x-'  # slash safe encoding
 
 
 def _luminance(color):
@@ -534,8 +535,9 @@ class SpeakActivity(SharedActivity):
                 label_text=_('Pitch:'))
         voicebar.insert(pitchbar_toolitem, -1)
 
-        self.rateadj = gtk.Adjustment(self.face.status.rate, 0, espeak.RATE_MAX,
-                1, espeak.RATE_MAX / 10, 0)
+        self.rateadj = gtk.Adjustment(self.face.status.rate, 0,
+                                      espeak.RATE_MAX,
+                                      1, espeak.RATE_MAX / 10, 0)
         ratebar = gtk.HScale(self.rateadj)
         ratebar.set_draw_value(False)
         # ratebar.set_inverted(True)
@@ -829,7 +831,8 @@ class SpeakActivity(SharedActivity):
     def _set_idle_phrase(self, speak=True):
         if speak:
             self._load_sleeping_face()
-            idle_phrase = IDLE_PHRASES[random.randint(0, len(IDLE_PHRASES) - 1)]
+            idle_phrase = IDLE_PHRASES[random.randint(
+                0, len(IDLE_PHRASES) - 1)]
             if self.props.active:
                 self.face.say(idle_phrase)
 
@@ -901,6 +904,13 @@ class SpeakActivity(SharedActivity):
                 self.face.say_notification(sorry)
 
     def __toggled_mode_chat_cb(self, button, voices_model):
+        if self._robot_idle_id is not None:
+            gobject.source_remove(self._robot_idle_id)
+            value = self._get_active_eyes()
+            if value is not None:
+                self.face.status.eyes = [value] * self.active_number_of_eyes
+                self._update_face()
+
         if not button.props.active:
             return
 
@@ -969,6 +979,7 @@ class SpeakActivity(SharedActivity):
         self.text_channel.set_received_callback(self._received_cb)
         self.shared_activity.connect('buddy-joined', self._buddy_joined_cb)
         self.shared_activity.connect('buddy-left', self._buddy_left_cb)
+        self.chat.messenger = self.text_channel
         self.chat.chat_post.set_sensitive(True)
         # self.chat.chat_post.props.placeholder_text = None
         self.chat.chat_post.grab_focus()
@@ -1034,6 +1045,10 @@ class TextChannelWrapper(object):
         m = self._text_chan[CHANNEL_INTERFACE].connect_to_signal(
             'Closed', self._closed_cb)
         self._signal_matches.append(m)
+
+    def post(self, text):
+        if text is not None:
+            self.send(text)
 
     def send(self, text):
         '''Send text over the Telepathy text channel.'''
