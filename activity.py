@@ -3,6 +3,7 @@
 # http://wiki.laptop.org/go/Speak
 #
 # Copyright (C) 2008  Joshua Minor
+# Copyright (C) 2014  Walter Bender (major refactoring)
 # This file is part of Speak.activity
 #
 # Parts of Speak.activity are based on code from Measure.activity
@@ -30,8 +31,6 @@ from telepathy.constants import CHANNEL_TEXT_MESSAGE_TYPE_NORMAL
 from telepathy.client import Connection
 from telepathy.client import Channel
 
-from sugar.activity import activity
-from sugar.presence import presenceservice
 import logging
 import os
 import subprocess
@@ -42,17 +41,17 @@ import json
 import random
 from gettext import gettext as _
 
+from sugar.activity import activity
+from sugar.presence import presenceservice
 from sugar.graphics import style
 from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
-from sugar import profile
+from sugar.graphics.combobox import ComboBox
+from sugar.graphics.toolbarbox import ToolbarBox, ToolbarButton
+from sugar.activity.widgets import ActivityToolbarButton
+from sugar.activity.widgets import StopButton
 
-from toolkit.toolitem import ToolWidget
-from toolkit.combobox import ComboBox
-from toolkit.toolbarbox import ToolbarBox
-from toolkit.activity import SharedActivity
-from toolkit.activity_widgets import *
+from sugar import profile
 
 import eye
 import glasses
@@ -69,7 +68,10 @@ import face
 import brain
 import chat
 import espeak
-from messenger import Messenger, SERVICE
+
+SERVICE = 'org.sugarlabs.Speak'
+IFACE = SERVICE
+PATH = '/org/sugarlabs/Speak'
 
 logger = logging.getLogger('speak')
 
@@ -134,11 +136,13 @@ def _is_tablet_mode():
     return False
 
 
-class SpeakActivity(SharedActivity):
+class SpeakActivity(activity.Activity):
     def __init__(self, handle):
-        self.notebook = gtk.Notebook()
+        super(SpeakActivity, self).__init__(handle)
 
-        SharedActivity.__init__(self, self.notebook, SERVICE, handle)
+        self.notebook = gtk.Notebook()
+        self.set_canvas(self.notebook)
+        self.notebook.show()
 
         self._colors = profile.get_color().to_string().split(',')
         lighter = style.Color(self._colors[
@@ -224,15 +228,14 @@ class SpeakActivity(SharedActivity):
 
         toolbox.toolbar.insert(self.activity_button, -1)
 
+        # FIXME: don't really need this any more
         self.voices = ComboBox()
         for name in sorted(voice.allVoices().keys()):
             vn = voice.allVoices()[name]
-            n = name [ : 26 ] + ".."
+            n = name [:26] + "..."
             self.voices.append_item(vn, n)
 
-        self.voices.select(voice.defaultVoice())
         all_voices = self.voices.get_model()
-
         brain_voices = brain.get_voices()
 
         mode_type = RadioToolButton(
@@ -284,6 +287,9 @@ class SpeakActivity(SharedActivity):
         gtk.gdk.screen_get_default().connect('size-changed',
                                              self._configure_cb)
 
+        self._first_time = True
+        self.new_instance()
+
         self._configure_cb()
         self._poll_accelerometer()
 
@@ -328,12 +334,20 @@ class SpeakActivity(SharedActivity):
             self.face.set_size_request(
                 -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
 
+    def read_file(self, file_path):
+        self.resume_instance(file_path)
+
+    def write_file(self, file_path):
+        self.save_instance(file_path)
+
     def new_instance(self):
-        # self.voices.connect('changed', self.__changed_voices_cb)
-        self.pitchadj.connect("value_changed", self.pitch_adjusted_cb,
-                              self.pitchadj)
-        self.rateadj.connect("value_changed", self.rate_adjusted_cb,
-                             self.rateadj)
+        logging.error('NEW INSTANCE')
+        if self._first_time:
+            # self.voices.connect('changed', self.__changed_voices_cb)
+            self.pitchadj.connect("value_changed", self.pitch_adjusted_cb,
+                                  self.pitchadj)
+            self.rateadj.connect("value_changed", self.rate_adjusted_cb,
+                                 self.rateadj)
 
         if self.active_number_of_eyes is None:
             self.number_of_eyes_changed_event_cb(None, None, 'two', True)
@@ -344,17 +358,26 @@ class SpeakActivity(SharedActivity):
 
         self.face.look_ahead()
 
-        # say hello to the user
         presenceService = presenceservice.get_instance()
         self.owner = presenceService.get_owner()
-        if self._tablet_mode:
-            self.entry.props.text = _("Hello %s.") \
-                % self.owner.props.nick.encode('utf-8', 'ignore')
-        self.face.say_notification(_("Hello %s. Please Type something.") \
+        if self._first_time:
+            # say hello to the user
+            if self._tablet_mode:
+                self.entry.props.text = _("Hello %s.") \
+                    % self.owner.props.nick.encode('utf-8', 'ignore')
+            self.face.say_notification(_("Hello %s. Please Type something.") \
+                                       % self.owner.props.nick)
+        else:
+            if self._tablet_mode:
+                self.entry.props.text = _("Welcome back %s.") \
+                    % self.owner.props.nick.encode('utf-8', 'ignore')
+            self.face.say_notification(_("Welcome back %s.") \
                                        % self.owner.props.nick)
         self._set_idle_phrase(speak=False)
+        self._first_time = False
 
     def resume_instance(self, file_path):
+        logging.error('RESUME INSTANCE')
         self.cfg = json.loads(file(file_path, 'r').read())
 
         current_voice = self.face.status.voice 
@@ -412,8 +435,10 @@ class SpeakActivity(SharedActivity):
                 }
         file(file_path, 'w').write(json.dumps(cfg))
 
+    '''
     def share_instance(self, connection, is_initiator):
         self.chat.messenger = Messenger(connection, is_initiator, self.chat)
+    '''
 
     def _cursor_moved_cb(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
@@ -848,7 +873,6 @@ class SpeakActivity(SharedActivity):
 
     def _set_voice(self, new_voice):
         logging.error('set_voice %r' % (new_voice))
-        self.voices.select(new_voice)
         self.face.status.voice = new_voice
         '''
         try:
@@ -938,10 +962,18 @@ class SpeakActivity(SharedActivity):
         if self._mode == MODE_BOT:
             brain.load(self, voice)
 
-    #############
-
     def _shared_cb(self, sender):
-        self._setup()
+        logging.error('SHARED A CHAT')
+        self._setup_text_channel()
+
+    def _joined_cb(self, sender):
+        '''Joined a shared activity.'''
+        if not self.shared_activity:
+            return
+        logger.error('JOINED A SHARED CHAT')
+        for buddy in self.shared_activity.get_joined_buddies():
+            self._buddy_already_exists(buddy)
+        self._setup_text_channel()
 
     def _one_to_one_connection(self, tp_channel):
         '''Handle a private invite from a non-sugar3 XMPP client.'''
@@ -972,7 +1004,8 @@ class SpeakActivity(SharedActivity):
         '''Callback for when the text channel closes.'''
         pass
 
-    def _setup(self):
+    def _setup_text_channel(self):
+        logging.error('_SETUP_TEXTCHANNEL')
         self.text_channel = TextChannelWrapper(
             self.shared_activity.telepathy_text_chan,
             self.shared_activity.telepathy_conn)
@@ -999,6 +1032,7 @@ class SpeakActivity(SharedActivity):
         self.chat.post(
             buddy, None, _('%s left the chat') % buddy.props.nick,
             status_message=True)
+        self.chat.farewell(buddy)
 
     def _buddy_already_exists(self, buddy):
         '''Show a buddy already in the chat.'''
@@ -1007,15 +1041,6 @@ class SpeakActivity(SharedActivity):
         self.chat.post(
             buddy, None, _('%s is here') % buddy.props.nick,
             status_message=True)
-
-    def _joined_cb(self, sender):
-        '''Joined a shared activity.'''
-        if not self.shared_activity:
-            return
-        logger.debug('Joined a shared chat')
-        for buddy in self.shared_activity.get_joined_buddies():
-            self._buddy_already_exists(buddy)
-        self._setup()
 
     def _received_cb(self, buddy, text):
         '''Show message that was received.'''
@@ -1164,6 +1189,60 @@ class TextChannelWrapper(object):
 
         return pservice.get_buddy_by_telepathy_handle(
             tp_name, tp_path, handle)
+
+
+class ToolWidget(gtk.ToolItem):
+
+    def __init__(self, **kwargs):
+        self._widget = None
+        self._label = None
+        self._label_text = None
+        self._box = gtk.HBox(False, style.DEFAULT_SPACING)
+
+        gobject.GObject.__init__(self, **kwargs)
+        self.props.border_width = style.DEFAULT_PADDING
+
+        self._box.show()
+        self.add(self._box)
+
+        if self.label is None:
+            self.label = gtk.Label()
+
+    def get_label_text(self):
+        return self._label_text
+
+    def set_label_text(self, value):
+        self._label_text = value
+        if self.label is not None and value:
+            self.label.set_text(self._label_text)
+
+    label_text = gobject.property(getter=get_label_text, setter=set_label_text)
+
+    def get_label(self):
+        return self._label
+
+    def set_label(self, label):
+        if self._label is not None:
+            self._box.remove(self._label)
+        self._label = label
+        self._box.pack_start(label, False)
+        self._box.reorder_child(label, 0)
+        label.show()
+        self.set_label_text(self._label_text)
+
+    label = gobject.property(getter=get_label, setter=set_label)
+
+    def get_widget(self):
+        return self._widget
+
+    def set_widget(self, widget):
+        if self._widget is not None:
+            self._box.remove(self._widget)
+        self._widget = widget
+        self._box.pack_end(widget)
+        widget.show()
+
+    widget = gobject.property(getter=get_widget, setter=set_widget)
 
 
 # activate gtk threads when this module loads

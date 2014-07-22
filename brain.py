@@ -26,8 +26,7 @@ from gettext import gettext as _
 import logging
 logger = logging.getLogger('speak')
 
-from toolkit.combobox import ComboBox
-
+from sugar.graphics.combobox import ComboBox
 from sugar import profile
 
 import aiml
