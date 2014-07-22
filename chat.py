@@ -77,16 +77,16 @@ class View(gtk.EventBox):
 
         # chat entry
 
-        self.owner = presenceservice.get_instance().get_owner()
-        self._chat = ChatBox(self.owner, _is_tablet_mode())
+        self._owner = presenceservice.get_instance().get_owner()
+        self._chat = ChatBox(self._owner, _is_tablet_mode())
         self._chat.set_size_request(
             -1, gtk.gdk.screen_height() - style.GRID_CELL_SIZE - BUDDY_SIZE)
-        self.me, my_face_widget = self._new_face(self.owner,
+        self.me, my_face_widget = self._new_face(self._owner,
                 ENTRY_COLOR)
         my_face_widget.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
 
         # add owner to buddy list
-        self._buddies[self.owner] = {
+        self._buddies[self._owner] = {
                 'box': my_face_widget,
                 'face': self.me,
                 'lang': ''
@@ -146,7 +146,6 @@ class View(gtk.EventBox):
                 -1,
                 gtk.gdk.screen_height() - style.GRID_CELL_SIZE - BUDDY_SIZE)
 
-
     def update(self, status):
         self.me.update(status)
         if self.messenger:
@@ -155,9 +154,17 @@ class View(gtk.EventBox):
     def post(self, buddy, status, text, status_message=False):
         logging.error('POST')
         logging.error(buddy)
+        logging.error(status)
         logging.error(text)
+        logging.error(status_message)
+
         i = self._buddies.get(buddy)
-        if status_message and not i:
+        if not i:
+            '''
+            if status_message:
+                i = self._buddies[self._owner]
+            else:
+            '''
             self._add_buddy(buddy)
             i = self._buddies[buddy]
 
@@ -173,7 +180,7 @@ class View(gtk.EventBox):
             if not self.quiet:
                 # and self.props.window \
                 #    and self.props.window.is_visible():
-                face.say(text)
+                buddy_face.say(text)
 
     def _resize_buddy_list(self):
         self._buddies_box.set_size_request(
