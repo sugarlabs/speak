@@ -300,8 +300,6 @@ class SpeakActivity(activity.Activity):
         else:
             # we are creating the activity
             self.connect('shared', self._shared_cb)
-            self._mode_chat.set_active(True)
-            self._setup_chat_mode()
 
     def _toolbar_expanded(self):
         if self._activity_button.is_expanded():
