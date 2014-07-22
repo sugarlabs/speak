@@ -26,7 +26,6 @@ from gettext import gettext as _
 import logging
 logger = logging.getLogger('speak')
 
-from sugar.graphics.combobox import ComboBox
 from sugar import profile
 
 import aiml
@@ -82,14 +81,7 @@ def get_default_voice():
         return default_voice
 
 
-def get_voices():
-    voices = ComboBox()
-    for lang in sorted(BOTS.keys()):
-        voices.append_item(voice.allVoices()[_(lang)], lang)
-    return voices.get_model()
-
-
-def respond(voice, text):
+def respond(text):
     if _kernel is not None:
         text = _kernel.respond(text)
     if _kernel is None or not text:
@@ -101,8 +93,8 @@ def load(activity, voice, sorry=None):
     if voice == _kernel_voice:
         return False
 
-    old_cursor = activity.get_cursor()
-    activity.set_cursor(gtk.gdk.WATCH)
+    old_cursor = activity.get_window().get_cursor()
+    activity.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
     def load_brain():
         global _kernel
@@ -111,7 +103,12 @@ def load(activity, voice, sorry=None):
         is_first_session = _kernel is None
 
         try:
-            brain = BOTS[voice.friendlyname]
+            if voice.friendlyname in BOTS:
+                brain = BOTS[voice.friendlyname]
+                brain_name = BOTS[voice.friendlyname]['name']
+            else:
+                brain = BOTS[_('English')]
+                brain_name = BOTS[_('English')]['name']
             logger.debug('Load bot: %s' % brain)
 
             kernel = aiml.Kernel()
@@ -135,14 +132,14 @@ def load(activity, voice, sorry=None):
             _kernel = kernel
             _kernel_voice = voice
         finally:
-            activity.set_cursor(old_cursor)
+            activity.get_window().set_cursor(old_cursor)
 
         if is_first_session:
             _kernel.respond(_('my name is %s') % (profile.get_nick_name()))
             _kernel.respond(_('I am %d years old') % (_get_age()))
             hello = \
                 _("Hello, I'm a robot \"%s\". Please ask me any question.") \
-                % BOTS[voice.friendlyname]['name']
+                % brain_name
             if sorry:
                 hello += ' ' + sorry
             activity.face.say_notification(hello)

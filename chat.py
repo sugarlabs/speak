@@ -20,17 +20,10 @@ import gtk
 import pango
 import subprocess
 import logging
-from gettext import gettext as _
 
 import sugar.graphics.style as style
-from sugar.graphics.roundbox import CanvasRoundBox
-from sugar.graphics.toggletoolbutton import ToggleToolButton
 
-import eye
-import glasses
-import mouth
 import face
-import messenger
 from chatbox import ChatBox
 from sugar.presence import presenceservice
 
@@ -168,11 +161,11 @@ class View(gtk.EventBox):
             self._add_buddy(buddy)
             i = self._buddies[buddy]
 
-        face = i['face']
+        buddy_face = i['face']
         lang_box = i['lang']
 
         if status:
-            face.update(status)
+            buddy_face.update(status)
             if lang_box:
                 lang_box.props.text = status.voice.friendlyname
         if text:

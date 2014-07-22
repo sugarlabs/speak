@@ -60,13 +60,17 @@ import halfmoon
 import sleepy
 import sunglasses
 import wireframes
+
 import mouth
 import fft_mouth
 import waveform_mouth
-import voice
+
 import face
+
+import voice as voice_model
 import brain
 import chat
+
 import espeak
 
 SERVICE = 'org.sugarlabs.Speak'
@@ -153,6 +157,7 @@ class SpeakActivity(activity.Activity):
         self._robot_idle_id = None
         self._active_eyes = None
         self._active_number_of_eyes = None
+        self._current_voice = None
 
         # make an audio device for playing back and rendering audio
         self.connect('notify::active', self._active_cb)
@@ -180,18 +185,18 @@ class SpeakActivity(activity.Activity):
         self._entry.modify_font(pango.FontDescription(str='sans bold 24'))
         hbox.show()
 
-        self._face = face.View(fill_color=lighter)
-        self._face.set_size_request(
+        self.face = face.View(fill_color=lighter)
+        self.face.set_size_request(
             -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
-        self._face.show()
+        self.face.show()
 
         # layout the screen
         box = gtk.VBox(homogeneous=False)
         if self._tablet_mode:
             box.pack_start(hbox, expand=False)
-            box.pack_start(self._face)
+            box.pack_start(self.face)
         else:
-            box.pack_start(self._face, expand=True)
+            box.pack_start(self.face, expand=True)
             box.pack_start(hbox)
 
         self.add_events(gtk.gdk.POINTER_MOTION_HINT_MASK
@@ -226,36 +231,24 @@ class SpeakActivity(activity.Activity):
 
         toolbox.toolbar.insert(self._activity_button, -1)
 
-        # FIXME: don't really need this any more
-        self.voices = ComboBox()
-        for name in sorted(voice.allVoices().keys()):
-            vn = voice.allVoices()[name]
-            n = name[:26] + '...'
-            self.voices.append_item(vn, n)
-
-        all_voices = self.voices.get_model()
-        brain_voices = brain.get_voices()
-
         mode_type = RadioToolButton(
             named_icon='mode-type',
             tooltip=_('Type something to hear it'))
-        mode_type.connect('toggled', self.__toggled_mode_type_cb, all_voices)
+        mode_type.connect('toggled', self.__toggled_mode_type_cb)
         toolbox.toolbar.insert(mode_type, -1)
 
         mode_robot = RadioToolButton(
             named_icon='mode-robot',
             group=mode_type,
             tooltip=_('Ask robot any question'))
-        mode_robot.connect('toggled', self.__toggled_mode_robot_cb,
-                           brain_voices)
+        mode_robot.connect('toggled', self.__toggled_mode_robot_cb)
         toolbox.toolbar.insert(mode_robot, -1)
 
         self._mode_chat = RadioToolButton(
             named_icon='mode-chat',
             group=mode_type,
             tooltip=_('Voice chat'))
-        self._mode_chat.connect('toggled', self.__toggled_mode_chat_cb,
-                                all_voices)
+        self._mode_chat.connect('toggled', self.__toggled_mode_chat_cb)
         toolbox.toolbar.insert(self._mode_chat, -1)
 
         self._voice_button = ToolbarButton(
@@ -298,7 +291,7 @@ class SpeakActivity(activity.Activity):
                 # we have already joined
                 self._joined_cb(self)
             self._mode_chat.set_active(True)
-            self._setup_chat_mode(all_voices)
+            self._setup_chat_mode()
         elif handle.uri:
             # XMPP non-sugar3 incoming chat, not sharable
             self._activity_button.props.page.share.props.visible = \
@@ -320,11 +313,11 @@ class SpeakActivity(activity.Activity):
     def _configure_cb(self, event=None):
         self._entry.set_size_request(-1, style.GRID_CELL_SIZE)
         if self._toolbar_expanded():
-            self._face.set_size_request(
+            self.face.set_size_request(
                 -1, gtk.gdk.screen_height() - 3 * style.GRID_CELL_SIZE)
             self._chat.resize_chat_box(expanded=True)
         else:
-            self._face.set_size_request(
+            self.face.set_size_request(
                 -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
             self._chat.resize_chat_box()
 
@@ -342,7 +335,7 @@ class SpeakActivity(activity.Activity):
 
         self._mouth_changed_cb(None, True)
 
-        self._face.look_ahead()
+        self.face.look_ahead()
 
         presenceService = presenceservice.get_instance()
         self.owner = presenceService.get_owner()
@@ -351,13 +344,13 @@ class SpeakActivity(activity.Activity):
             if self._tablet_mode:
                 self._entry.props.text = _('Hello %s.') \
                     % self.owner.props.nick.encode('utf-8', 'ignore')
-            self._face.say_notification(_('Hello %s. Please Type something.')
+            self.face.say_notification(_('Hello %s. Please Type something.')
                                        % self.owner.props.nick)
         else:
             if self._tablet_mode:
                 self._entry.props.text = _('Welcome back %s.') \
                     % self.owner.props.nick.encode('utf-8', 'ignore')
-            self._face.say_notification(_('Welcome back %s.')
+            self.face.say_notification(_('Welcome back %s.')
                                        % self.owner.props.nick)
         self._set_idle_phrase(speak=False)
         self._first_time = False
@@ -365,9 +358,9 @@ class SpeakActivity(activity.Activity):
     def read_file(self, file_path):
         self._cfg = json.loads(file(file_path, 'r').read())
 
-        current_voice = self._face.status.voice
+        current_voice = self.face.status.voice
 
-        status = self._face.status = \
+        status = self.face.status = \
             face.Status().deserialize(self._cfg['status'])
 
         found_my_voice = False
@@ -379,13 +372,13 @@ class SpeakActivity(activity.Activity):
                not found_my_voice:
                 self._voice_evboxes[name][0].modify_bg(
                     0, style.COLOR_BUTTON_GREY.get_gdk_color())
-                self._face.set_voice(status.voice)
+                self.face.set_voice(status.voice)
                 if self._mode == MODE_BOT:
                     brain.load(self, status.voice)
                 found_my_voice = True
 
-        self.pitchadj.value = self._face.status.pitch
-        self.rateadj.value = self._face.status.rate
+        self.pitchadj.value = self.face.status.pitch
+        self.rateadj.value = self.face.status.rate
 
         if status.mouth in MOUTHS:
             self._mouth_type[MOUTHS.index(status.mouth)].set_active(True)
@@ -414,7 +407,7 @@ class SpeakActivity(activity.Activity):
         else:
             history = [unicode(i[0], 'utf-8', 'ignore')
                        for i in self._entrycombo.get_model()]
-        cfg = {'status': self._face.status.serialize(),
+        cfg = {'status': self.face.status.serialize(),
                'text': unicode(self._entry.props.text, 'utf-8', 'ignore'),
                'history': history, }
         file(file_path, 'w').write(json.dumps(cfg))
@@ -426,7 +419,7 @@ class SpeakActivity(activity.Activity):
         pos = layout.get_cursor_pos(index)
         x = pos[0][0] / pango.SCALE - entry.props.scroll_offset
         y = entry.get_allocation().y
-        self._face.look_at(pos=(x, y))
+        self.face.look_at(pos=(x, y))
 
     def _poll_accelerometer(self):
         if _has_accelerometer():
@@ -448,7 +441,7 @@ class SpeakActivity(activity.Activity):
                  abs(x) < abs(y))):
                 sideways_phrase = SIDEWAYS_PHRASES[
                     random.randint(0, len(SIDEWAYS_PHRASES) - 1)]
-                self._face.say(SIDEWAYS_PHRASES[sideways_phrase])
+                self.face.say(SIDEWAYS_PHRASES[sideways_phrase])
                 return IDLE_DELAY  # Don't repeat the message for a while
             return 1000  # Test again soon
 
@@ -459,7 +452,7 @@ class SpeakActivity(activity.Activity):
 
     def _mouse_moved_cb(self, widget, event):
         # make the eyes track the motion of the mouse cursor
-        self._face.look_at()
+        self.face.look_at()
         self._chat.look_at()
 
     def _mouse_clicked_cb(self, widget, event):
@@ -468,34 +461,38 @@ class SpeakActivity(activity.Activity):
     def _make_voice_bar(self):
         voicebar = gtk.Toolbar()
 
+        all_voices = []
+        for name in sorted(voice_model.allVoices().keys()):
+            if len(name) < 26:
+                friendly_name = name
+            else:
+                friendly_name = name[:26] + '...'
+            all_voices.append([voice_model.allVoices()[name], friendly_name])
+
         # A palette for the voice selection
-        logging.error(self._face.status.voice)
+        logging.error(self.face.status.voice)
 
         self._voice_evboxes = {}
-        voice_box = gtk.HBox()
+        self._voice_box = gtk.HBox()
         vboxes = [gtk.VBox(), gtk.VBox(), gtk.VBox()]
-        count = len(voice.allVoices().keys())
+        count = len(voice_model.allVoices().keys())
         found_my_voice = False
-        for i, name in enumerate(sorted(voice.allVoices().keys())):
-            vn = voice.allVoices()[name]
-            if len(name) > 26:
-                text = name[:26] + '...'
-            else:
-                text = name
+        for i, voice in enumerate(sorted(all_voices)):
             label = gtk.Label()
             label.set_use_markup(True)
             label.set_justify(gtk.JUSTIFY_LEFT)
-            label.set_markup('<span size="large">%s</span>' % text)
+            label.set_markup('<span size="large">%s</span>' % voice[1])
 
             alignment = gtk.Alignment(0, 0, 0, 0)
             alignment.add(label)
             label.show()
 
             evbox = gtk.EventBox()
-            self._voice_evboxes[text] = [evbox, vn]
-            self._voice_evboxes[text][0].connect(
-                'button-press-event', self._voices_changed_event_cb, vn, text)
-            if vn == self._face.status.voice and not found_my_voice:
+            self._voice_evboxes[voice[1]] = [evbox, voice[0]]
+            self._voice_evboxes[voice[1]][0].connect(
+                'button-press-event', self._voices_changed_event_cb, voice)
+            if voice[0] == self.face.status.voice and not found_my_voice:
+                self._current_voice = voice
                 evbox.modify_bg(
                     0, style.COLOR_BUTTON_GREY.get_gdk_color())
                 found_my_voice = True
@@ -507,25 +504,58 @@ class SpeakActivity(activity.Activity):
                 vboxes[1].pack_start(evbox)
             else:
                 vboxes[2].pack_start(evbox)
-        voice_box.pack_start(vboxes[0], padding=style.DEFAULT_PADDING)
-        voice_box.pack_start(vboxes[1], padding=style.DEFAULT_PADDING)
-        voice_box.pack_start(vboxes[2], padding=style.DEFAULT_PADDING)
+        self._voice_box.pack_start(vboxes[0], padding=style.DEFAULT_PADDING)
+        self._voice_box.pack_start(vboxes[1], padding=style.DEFAULT_PADDING)
+        self._voice_box.pack_start(vboxes[2], padding=style.DEFAULT_PADDING)
 
         voice_palette_button = ToolButton('module-language')
         voice_palette_button.set_tooltip(_('Choose voice:'))
-        palette = voice_palette_button.get_palette()
-        palette.set_content(voice_box)
-        voice_box.show_all()
+        self._voice_palette = voice_palette_button.get_palette()
+        self._voice_palette.set_content(self._voice_box)
+        self._voice_box.show_all()
         voice_palette_button.connect('clicked', self._face_palette_cb)
         voicebar.insert(voice_palette_button, -1)
         voice_palette_button.show()
+
+        brain_voices = []
+        for name in sorted(brain.BOTS.keys()):
+            brain_voices.append([voice_model.allVoices()[name], name])
+
+        self._brain_evboxes = {}
+        self._brain_box = gtk.HBox()
+        vboxes = gtk.VBox()
+        count = brain.BOTS.keys()
+        found_my_voice = False
+        for i, voice in enumerate(brain_voices):
+            label = gtk.Label()
+            label.set_use_markup(True)
+            label.set_justify(gtk.JUSTIFY_LEFT)
+            label.set_markup('<span size="large">%s</span>' % voice[1])
+
+            alignment = gtk.Alignment(0, 0, 0, 0)
+            alignment.add(label)
+            label.show()
+
+            evbox = gtk.EventBox()
+            self._brain_evboxes[voice[1]] = [evbox, voice[0]]
+            self._brain_evboxes[voice[1]][0].connect(
+                'button-press-event', self._voices_changed_event_cb, voice)
+            if voice[0] == self.face.status.voice and not found_my_voice:
+                evbox.modify_bg(
+                    0, style.COLOR_BUTTON_GREY.get_gdk_color())
+                found_my_voice = True
+            evbox.add(alignment)
+            alignment.show()
+            vboxes.pack_start(evbox)
+        self._brain_box.pack_start(vboxes, padding=style.DEFAULT_PADDING)
+        self._brain_box.show_all()
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
         voicebar.insert(separator, -1)
 
-        self.pitchadj = gtk.Adjustment(self._face.status.pitch, 0,
+        self.pitchadj = gtk.Adjustment(self.face.status.pitch, 0,
                                        espeak.PITCH_MAX, 1,
                                        espeak.PITCH_MAX/10, 0)
         pitchbar = gtk.HScale(self.pitchadj)
@@ -537,7 +567,7 @@ class SpeakActivity(activity.Activity):
         pitchbar_toolitem = ToolWidget(widget=pitchbar, label_text=_('Pitch:'))
         voicebar.insert(pitchbar_toolitem, -1)
 
-        self.rateadj = gtk.Adjustment(self._face.status.rate, 0,
+        self.rateadj = gtk.Adjustment(self.face.status.rate, 0,
                                       espeak.RATE_MAX,
                                       1, espeak.RATE_MAX / 10, 0)
         ratebar = gtk.HScale(self.rateadj)
@@ -553,12 +583,12 @@ class SpeakActivity(activity.Activity):
         return voicebar
 
     def _pitch_adjusted_cb(self, get, data=None):
-        self._face.status.pitch = get.value
-        self._face.say_notification(_('pitch adjusted'))
+        self.face.status.pitch = get.value
+        self.face.say_notification(_('pitch adjusted'))
 
     def _rate_adjusted_cb(self, get, data=None):
-        self._face.status.rate = get.value
-        self._face.say_notification(_('rate adjusted'))
+        self.face.status.rate = get.value
+        self.face.say_notification(_('rate adjusted'))
 
     def _make_face_bar(self):
         facebar = gtk.Toolbar()
@@ -670,27 +700,33 @@ class SpeakActivity(activity.Activity):
         if value is None:
             return
 
-        self._face.status.mouth = value
+        self.face.status.mouth = value
         self._update_face()
 
-        # this SegFaults: self._face.say(combo.get_active_text())
+        # this SegFaults: self.face.say(combo.get_active_text())
         if not quiet:
-            self._face.say_notification(_('mouth changed'))
+            self.face.say_notification(_('mouth changed'))
 
-    def _voices_changed_event_cb(self, widget, event, voice, name):
-        logging.error('voices_changed_event_cb %r %s' % (voice, name))
-        for old_voice in self._voice_evboxes.keys():
-            if self._voice_evboxes[old_voice][1] == self._face.status.voice:
-                self._voice_evboxes[old_voice][0].modify_bg(
+    def _voices_changed_event_cb(self, widget, event, voice):
+        logging.error('voices_changed_event_cb %r %s' % (voice[0], voice[1]))
+        if self._mode == MODE_BOT:
+            evboxes = self._brain_evboxes
+        else:
+            evboxes = self._voice_evboxes
+        for old_voice in evboxes.keys():
+            if evboxes[old_voice][1] == self.face.status.voice:
+                evboxes[old_voice][0].modify_bg(
                     0, style.COLOR_BLACK.get_gdk_color())
                 break
 
-        self._voice_evboxes[name][0].modify_bg(
+        evboxes[voice[1]][0].modify_bg(
             0, style.COLOR_BUTTON_GREY.get_gdk_color())
 
-        self._face.set_voice(voice)
+        self.face.set_voice(voice[0])
         if self._mode == MODE_BOT:
-            brain.load(self, voice)
+            brain.load(self, voice[0])
+        else:
+            self._current_voice = voice
 
     def _get_active_eyes(self):
         for name in EYE_DICT.keys():
@@ -712,10 +748,10 @@ class SpeakActivity(activity.Activity):
             self._active_eyes = EYE_DICT[name]['index']
             self._eye_type[name].set_icon(name + '-selected')
             value = EYE_DICT[name]['widget']
-            self._face.status.eyes = [value] * self._active_number_of_eyes
+            self.face.status.eyes = [value] * self._active_number_of_eyes
             self._update_face()
             if not quiet:
-                self._face.say_notification(_('eyes changed'))
+                self.face.say_notification(_('eyes changed'))
 
     def _number_of_eyes_changed_event_cb(self, widget, event, name, quiet):
         if self._active_number_of_eyes is not None:
@@ -729,16 +765,16 @@ class SpeakActivity(activity.Activity):
                 for eye_name in EYE_DICT.keys():
                     if EYE_DICT[eye_name]['index'] == self._active_eyes:
                         value = EYE_DICT[eye_name]['widget']
-                        self._face.status.eyes = \
+                        self.face.status.eyes = \
                             [value] * self._active_number_of_eyes
                         self._update_face()
                         if not quiet:
-                            self._face.say_notification(_('eyes changed'))
+                            self.face.say_notification(_('eyes changed'))
                         break
 
     def _update_face(self):
-        self._face.update()
-        self._chat.update(self._face.status)
+        self.face.update()
+        self._chat.update(self.face.status)
 
     def _combo_changed_cb(self, combo):
         # when a new item is chosen, make sure the text is selected
@@ -791,18 +827,17 @@ class SpeakActivity(activity.Activity):
             gobject.source_remove(self._robot_idle_id)
             value = self._get_active_eyes()
             if value is not None:
-                self._face.status.eyes = [value] * self._active_number_of_eyes
+                self.face.status.eyes = [value] * self._active_number_of_eyes
                 self._update_face()
 
         if text:
-            self._face.look_ahead()
+            self.face.look_ahead()
 
             # speak the text
             if self._mode == MODE_BOT:
-                self._face.say(
-                    brain.respond(self.voices.props.value, text))
+                self.face.say(brain.respond(text))
             else:
-                self._face.say(text)
+                self.face.say(text)
 
         if text and not self._tablet_mode:
             # add this text to our history unless it is the same as
@@ -824,10 +859,10 @@ class SpeakActivity(activity.Activity):
                                                   self._set_idle_phrase)
 
     def _load_sleeping_face(self):
-        current_eyes = self._face.status.eyes
-        self._face.status.eyes = [SLEEPY_EYES] * self._active_number_of_eyes
+        current_eyes = self.face.status.eyes
+        self.face.status.eyes = [SLEEPY_EYES] * self._active_number_of_eyes
         self._update_face()
-        self._face.status.eyes = current_eyes
+        self.face.status.eyes = current_eyes
 
     def _set_idle_phrase(self, speak=True):
         if speak:
@@ -835,7 +870,7 @@ class SpeakActivity(activity.Activity):
             idle_phrase = IDLE_PHRASES[random.randint(
                 0, len(IDLE_PHRASES) - 1)]
             if self.props.active:
-                self._face.say(idle_phrase)
+                self.face.say(idle_phrase)
 
         self._robot_idle_id = gobject.timeout_add(IDLE_DELAY,
                                                   self._set_idle_phrase)
@@ -844,71 +879,83 @@ class SpeakActivity(activity.Activity):
         # only generate sound when this activity is active
         if not self.props.active:
             self._load_sleeping_face()
-            self._face.shut_up()
+            self.face.shut_up()
             self._chat.shut_up()
 
-    def _set_voice(self, new_voice):
-        logging.error('set_voice %r' % (new_voice))
-        self._face.status.voice = new_voice
-        '''
-        try:
-            self.voices.handler_block_by_func(self.voices_changed_event_cb)
-            self.voices.select(new_voice)
-            self._face.status.voice = new_voice
-        finally:
-            self.voices.handler_unblock_by_func(self.voices_changed_event_cb)
-        '''
+    def _set_voice(self, new_voice=None):
+        if new_voice is not None:
+            logging.error('set_voice %r' % new_voice)
+            self.face.status.voice = new_voice
+        else:
+            logging.error('set_voice to current voice %s' %
+                          self._current_voice[1])
+            self.face.status.voice = self._current_voice[0]
 
-    def __toggled_mode_type_cb(self, button, voices_model):
+    def __toggled_mode_type_cb(self, button):
         if not button.props.active:
             return
 
         self._mode = MODE_TYPE
         self._chat.shut_up()
-        self._face.shut_up()
+        self.face.shut_up()
         self._notebook.set_current_page(0)
 
-        old_voice = self.voices.props.value
-        self.voices.set_model(voices_model)
-        self._set_voice(old_voice)
+        self._voice_palette.set_content(self._voice_box)
+        self._set_voice()
 
-    def __toggled_mode_robot_cb(self, button, voices_model):
+    def __toggled_mode_robot_cb(self, button):
         if not button.props.active:
             return
 
         self._mode = MODE_BOT
         self._chat.shut_up()
-        self._face.shut_up()
+        self.face.shut_up()
         self._notebook.set_current_page(0)
 
-        old_voice = self.voices.props.value
-        self.voices.set_model(voices_model)
+        self._voice_palette.set_content(self._brain_box)
 
-        new_voice = [i[0] for i in voices_model
-                     if i[0].short_name == old_voice.short_name]
-        if not new_voice:
+        new_voice = None
+        for name in brain.BOTS.keys():
+            if self._current_voice[0].short_name == name:
+                new_voice == self._current_voice[0]
+                break
+        if new_voice is None:
             new_voice = brain.get_default_voice()
-            sorry = _("Sorry, I can't speak %(old_voice)s, "
-                      "let's talk %(new_voice)s instead.") % {
-                          'old_voice': old_voice.friendlyname,
-                          'new_voice': new_voice.friendlyname,
-                      }
+            if new_voice.friendlyname in self._current_voice[0].friendlyname:
+                logging.debug('skipping sorry message for %s %s' %
+                              (new_voice.friendlyname,
+                               self._current_voice[0].friendlyname))
+                sorry = None
+            else:
+                sorry = _("Sorry, I can't speak %(old_voice)s, "
+                          "let's talk %(new_voice)s instead.") % {
+                              'old_voice': self._current_voice[0].friendlyname,
+                              'new_voice': new_voice.friendlyname}
         else:
             new_voice = new_voice[0]
             sorry = None
 
         self._set_voice(new_voice)
 
-        if not brain.load(self, self.voices.props.value, sorry):
-            if sorry:
-                self._face.say_notification(sorry)
+        evboxes = self._brain_evboxes
+        for old_voice in evboxes.keys():
+            evboxes[old_voice][0].modify_bg(
+                0, style.COLOR_BLACK.get_gdk_color())
 
-    def __toggled_mode_chat_cb(self, button, voices_model):
+        if new_voice.short_name in evboxes:
+            evboxes[new_voice.short_name][0].modify_bg(
+                0, style.COLOR_BUTTON_GREY.get_gdk_color())
+
+        if not brain.load(self, new_voice, sorry):
+            if sorry:
+                self.face.say_notification(sorry)
+
+    def __toggled_mode_chat_cb(self, button):
         if self._robot_idle_id is not None:
             gobject.source_remove(self._robot_idle_id)
             value = self._get_active_eyes()
             if value is not None:
-                self._face.status.eyes = [value] * self._active_number_of_eyes
+                self.face.status.eyes = [value] * self._active_number_of_eyes
                 self._update_face()
 
         if not button.props.active:
@@ -917,27 +964,19 @@ class SpeakActivity(activity.Activity):
         is_first_session = not self.shared_activity
         # self._chat.me.flags() & gtk.MAPPED
 
-        self._setup_chat_mode(voices_model)
+        self._setup_chat_mode()
 
         if is_first_session:
             self._chat.me.say_notification(
                 _('You are in off-line mode, share and invite someone.'))
 
-    def _setup_chat_mode(self, voices_model):
+    def _setup_chat_mode(self):
         self._mode = MODE_CHAT
-        self._face.shut_up()
+        self.face.shut_up()
         self._notebook.set_current_page(1)
 
-        old_voice = self.voices.props.value
-        self.voices.set_model(voices_model)
-        self._set_voice(old_voice)
-
-    def __changed_voices_cb(self, combo):
-        voice = combo.props.value
-        logging.error('changed_voices_cb %r' % (voice))
-        self._face.set_voice(voice)
-        if self._mode == MODE_BOT:
-            brain.load(self, voice)
+        self._voice_palette.set_content(self._voice_box)
+        self._set_voice()
 
     def _shared_cb(self, sender):
         logging.error('SHARED A CHAT')
