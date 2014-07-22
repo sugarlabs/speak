@@ -300,6 +300,8 @@ class SpeakActivity(activity.Activity):
         else:
             # we are creating the activity
             self.connect('shared', self._shared_cb)
+            self._mode_chat.set_active(True)
+            self._setup_chat_mode()
 
     def _toolbar_expanded(self):
         if self._activity_button.is_expanded():
@@ -316,10 +318,12 @@ class SpeakActivity(activity.Activity):
             self.face.set_size_request(
                 -1, gtk.gdk.screen_height() - 3 * style.GRID_CELL_SIZE)
             self._chat.resize_chat_box(expanded=True)
+            self._chat.resize_buddy_list()
         else:
             self.face.set_size_request(
                 -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
             self._chat.resize_chat_box()
+            self._chat.resize_buddy_list()
 
     def _new_instance(self):
         if self._first_time:
@@ -1029,13 +1033,13 @@ class SpeakActivity(activity.Activity):
         self.shared_activity.connect('buddy-left', self._buddy_left_cb)
         self._chat.messenger = self.text_channel
         self._chat.chat_post.set_sensitive(True)
-        # self._chat.chat_post.props.placeholder_text = None
         self._chat.chat_post.grab_focus()
 
     def _buddy_joined_cb(self, sender, buddy):
         '''Show a buddy who joined'''
         if buddy == self.owner:
             return
+        logging.error('%s joined the chat (%r)' % (buddy.props.nick, buddy))
         self._chat.post(
             buddy, None, _('%s joined the chat') % buddy.props.nick,
             status_message=True)
@@ -1044,6 +1048,7 @@ class SpeakActivity(activity.Activity):
         '''Show a buddy who joined'''
         if buddy == self.owner:
             return
+        logging.error('%s left the chat (%r)' % (buddy.props.nick, buddy))
         self._chat.post(
             buddy, None, _('%s left the chat') % buddy.props.nick,
             status_message=True)
@@ -1053,6 +1058,7 @@ class SpeakActivity(activity.Activity):
         '''Show a buddy already in the chat.'''
         if buddy == self.owner:
             return
+        logging.error('%s is here (%r)' % (buddy.props.nick, buddy))
         self._chat.post(
             buddy, None, _('%s is here') % buddy.props.nick,
             status_message=True)
@@ -1160,10 +1166,14 @@ class TextChannelWrapper(object):
                 nick = self._conn[
                     CONN_INTERFACE_ALIASING].RequestAliases([sender])[0]
                 buddy = {'nick': nick, 'color': '#000000,#808080'}
+                logging.error('Exception: recieved from sender %r buddy %r' %
+                              (sender, buddy))
             else:
-                # Normal sugar3 MUC chat
+                # Normal sugar MUC chat
                 # XXX: cache these
                 buddy = self._get_buddy(sender)
+                logging.error('Else: recieved from sender %r buddy %r' %
+                              (sender, buddy))
             self._activity_cb(buddy, text)
             self._text_chan[
                 CHANNEL_TYPE_TEXT].AcknowledgePendingMessages([identity])

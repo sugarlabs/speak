@@ -190,7 +190,7 @@ class View(gtk.EventBox):
                 i = self._buddies[buddy]
         return i
 
-    def _resize_buddy_list(self):
+    def resize_buddy_list(self):
         self._buddies_box.set_size_request(
             len(self._buddies) * BUDDY_SIZE, -1)
         size = min(5, len(self._buddies)) * BUDDY_SIZE
@@ -205,7 +205,7 @@ class View(gtk.EventBox):
 
         self._buddies_box.remove(i['box'])
         del self._buddies[buddy]
-        self._resize_buddy_list()
+        self.resize_buddy_list()
 
     def shut_up(self):
         for i in self._buddies.values():
@@ -224,7 +224,7 @@ class View(gtk.EventBox):
                 }
         self._buddies_box.pack_start(box)
         box.show()
-        self._resize_buddy_list()
+        self.resize_buddy_list()
 
     def _activate_cb(self, widget, event):
         text = widget.get_buffer().props.text
