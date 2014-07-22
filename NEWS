@@ -1,10 +1,13 @@
 48
 
-* Add idle-time chatter
-* Add some accelerometer fun
-* Add more eye styles
-* Use XO color for background
-* Use palettes instead of radio buttons
+* Added idle-time chatter
+* Added some accelerometer fun
+* Added more eye styles
+* Using XO color for background
+* Redesigned chat look and feel
+* Using palettes instead of radio buttons
+* Using palettes instead of combo boxes
+* Removed deprecated code
 
 41
 
