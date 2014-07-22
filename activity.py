@@ -330,25 +330,19 @@ class SpeakActivity(activity.Activity):
         if self.toolbar_expanded():
             self.face.set_size_request(
                 -1, gtk.gdk.screen_height() - 3 * style.GRID_CELL_SIZE)
+            self.chat.resize_chat_box(expanded=True)
         else:
             self.face.set_size_request(
                 -1, gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE)
-
-    def read_file(self, file_path):
-        self.resume_instance(file_path)
-
-    def write_file(self, file_path):
-        self.save_instance(file_path)
+            self.chat.resize_chat_box()
 
     def new_instance(self):
-        logging.error('NEW INSTANCE')
         if self._first_time:
             # self.voices.connect('changed', self.__changed_voices_cb)
             self.pitchadj.connect("value_changed", self.pitch_adjusted_cb,
                                   self.pitchadj)
             self.rateadj.connect("value_changed", self.rate_adjusted_cb,
                                  self.rateadj)
-
         if self.active_number_of_eyes is None:
             self.number_of_eyes_changed_event_cb(None, None, 'two', True)
         if self.active_eyes is None:
@@ -376,8 +370,7 @@ class SpeakActivity(activity.Activity):
         self._set_idle_phrase(speak=False)
         self._first_time = False
 
-    def resume_instance(self, file_path):
-        logging.error('RESUME INSTANCE')
+    def read_file(self, file_path):
         self.cfg = json.loads(file(file_path, 'r').read())
 
         current_voice = self.face.status.voice 
@@ -420,7 +413,7 @@ class SpeakActivity(activity.Activity):
 
         self.new_instance()
 
-    def save_instance(self, file_path):
+    def write_file(self, file_path):
         if self._tablet_mode:
             if 'history' in self.cfg:
                 history = self.cfg['history']  # retain old history
@@ -434,11 +427,6 @@ class SpeakActivity(activity.Activity):
                 'history': history,
                 }
         file(file_path, 'w').write(json.dumps(cfg))
-
-    '''
-    def share_instance(self, connection, is_initiator):
-        self.chat.messenger = Messenger(connection, is_initiator, self.chat)
-    '''
 
     def _cursor_moved_cb(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
@@ -938,13 +926,14 @@ class SpeakActivity(activity.Activity):
         if not button.props.active:
             return
 
-        is_first_session = not self.chat.me.flags() & gtk.MAPPED
+        is_first_session = not self.shared_activity
+        # self.chat.me.flags() & gtk.MAPPED
 
         self._setup_chat_mode(voices_model)
 
         if is_first_session:
             self.chat.me.say_notification(
-                    _("You are in off-line mode, share and invite someone."))
+                _("You are in off-line mode, share and invite someone."))
 
     def _setup_chat_mode(self, voices_model):
         self._mode = MODE_CHAT

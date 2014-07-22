@@ -142,6 +142,18 @@ class View(gtk.EventBox):
         self.add(self._desk)
         self._desk.show()
 
+    def resize_chat_box(self, expanded=False):
+        if expanded:
+            self._chat.set_size_request(
+                -1,
+                gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE
+                - BUDDY_SIZE)
+        else:
+            self._chat.set_size_request(
+                -1,
+                gtk.gdk.screen_height() - style.GRID_CELL_SIZE - BUDDY_SIZE)
+
+
     def update(self, status):
         self.me.update(status)
         if self.messenger:
@@ -152,7 +164,7 @@ class View(gtk.EventBox):
         logging.error(buddy)
         logging.error(text)
         i = self._buddies.get(buddy)
-        if not i:
+        if status_message and not i:
             self._add_buddy(buddy)
             i = self._buddies[buddy]
 
