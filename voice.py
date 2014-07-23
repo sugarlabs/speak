@@ -162,6 +162,10 @@ def defaultVoice():
             if voice.friendlyname=='English (Received Pronunciation)':
                 best = voice
                 break
+        if lang[0:2] == 'es':
+            if voice.friendlyname==_('Spanish'):
+                best = voice
+                break
         if voiceMetric > bestMetric:
             best = voice
 
