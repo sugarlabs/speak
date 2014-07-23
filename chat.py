@@ -38,7 +38,7 @@ BUDDIES_COLOR = style.COLOR_SELECTION_GREY
 ENTRY_COLOR = style.COLOR_PANEL_GREY
 ENTRY_XPAD = 0
 ENTRY_YPAD = 7
-
+STATUS_MSG = '++STATUS++'
 
 def _luminance(color):
     ''' Calculate luminance value '''
@@ -162,25 +162,30 @@ class View(gtk.EventBox):
     def update(self, status):
         self.me.update(status)
         if self.messenger:
-            self.messenger.post(None)
+            self.messenger.post('%s:%s' %
+                                (STATUS_MSG, status.serialize()))
 
-    def post(self, buddy, status, text, status_message=False):
-        logging.error('POST')
-        logging.error(buddy)
-        logging.error(status)
-        logging.error(text)
-        logging.error(status_message)
-
+    def post(self, buddy, text, status_message=False):
         i = self._find_buddy(buddy)
 
         buddy_face = i['face']
         lang_box = i['lang']
 
-        if status:
-            buddy_face.update(status)
-            if lang_box:
-                lang_box.props.text = status.voice.friendlyname
-        if text:
+        if not text:
+            return
+
+        ascii_text = text.encode('ascii', 'ignore')
+        if STATUS_MSG in asciitext:
+            try:
+                status = face.Status().deserialize(
+                    ascii_text[len(STATUS_MSG) + 1:])
+                buddy_face.update(status)
+                if lang_box:
+                    lang_box.props.text = status.voice.friendlyname
+            except:
+                logging.error('Could not parse status message %s' %
+                              text)
+        else:
             self._chat.add_text(buddy, text, status_message)
             if not self.quiet:
                 # and self.props.window \

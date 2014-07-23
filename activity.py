@@ -1039,7 +1039,7 @@ class SpeakActivity(activity.Activity):
             return
         logging.error('%s joined the chat (%r)' % (buddy.props.nick, buddy))
         self._chat.post(
-            buddy, None, _('%s joined the chat') % buddy.props.nick,
+            buddy, _('%s joined the chat') % buddy.props.nick,
             status_message=True)
 
     def _buddy_left_cb(self, sender, buddy):
@@ -1048,7 +1048,7 @@ class SpeakActivity(activity.Activity):
             return
         logging.error('%s left the chat (%r)' % (buddy.props.nick, buddy))
         self._chat.post(
-            buddy, None, _('%s left the chat') % buddy.props.nick,
+            buddy, _('%s left the chat') % buddy.props.nick,
             status_message=True)
         self._chat.farewell(buddy)
 
@@ -1058,7 +1058,7 @@ class SpeakActivity(activity.Activity):
             return
         logging.error('%s is here (%r)' % (buddy.props.nick, buddy))
         self._chat.post(
-            buddy, None, _('%s is here') % buddy.props.nick,
+            buddy, _('%s is here') % buddy.props.nick,
             status_message=True)
 
     def _received_cb(self, buddy, text):
@@ -1071,7 +1071,7 @@ class SpeakActivity(activity.Activity):
         else:
             nick = '???'
         logger.debug('Received message from %s: %s', nick, text)
-        self._chat.post(buddy, None, text)
+        self._chat.post(buddy, text)
 
 
 class TextChannelWrapper(object):
