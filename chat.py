@@ -175,7 +175,7 @@ class View(gtk.EventBox):
             return
 
         ascii_text = text.encode('ascii', 'ignore')
-        if STATUS_MSG in asciitext:
+        if STATUS_MSG in ascii_text:
             try:
                 status = face.Status().deserialize(
                     ascii_text[len(STATUS_MSG) + 1:])
