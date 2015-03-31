@@ -619,13 +619,13 @@ class SpeakActivity(activity.Activity):
     def _make_face_bar(self):
         facebar = gtk.Toolbar()
 
-        self._photo_face = ToolButton('face')
+        self._photo_face = ToolButton('photoface')
         self._photo_face.set_tooltip(_('Set face from photo'))
         self._photo_face.connect('clicked', self._photo_face_cb)
         facebar.insert(self._photo_face, -1)
         self._photo_face.show()
 
-        self._clear = ToolButton('edit-delete')
+        self._clear = ToolButton('face')
         self._clear.set_tooltip(_('Clear photo face'))
         self._clear.set_sensitive(False)
         self._clear.connect('clicked', self._clear_photo_cb)

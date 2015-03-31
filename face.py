@@ -8,6 +8,10 @@
 # Parts of Speak.activity are based on code from Measure.activity
 # Copyright (C) 2007  Arjun Sarwal - arjun@laptop.org
 # 
+# New face features
+# Copyright (C) 2014  Walter Bender
+# Copyright (C) 2014  Sam Parkinson
+#
 #     Speak.activity is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
