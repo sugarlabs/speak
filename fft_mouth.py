@@ -24,14 +24,9 @@
 # This code is a stripped down version of the fft view from Measure
 
 from mouth import *
+from math import ceil
+from numpy.fft import *
 
-# Newer OLPC builds (and Fedora) have numpy instead of numeric:
-try:
-    from numpy.oldnumeric import ceil
-    from numpy.fft import *
-except:
-    from Numeric import ceil
-    from FFT import *
 
 class FFTMouth(Mouth):
     def __init__(self, audioSource, fill_color):
