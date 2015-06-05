@@ -33,7 +33,7 @@ import numpy.core
 import sugar.graphics.style as style
 
 import voice
-import espeak
+import local_espeak as espeak
 from faceselect import Eye
 from faceselect import Mouth
 from face import remove_curses
