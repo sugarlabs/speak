@@ -28,7 +28,7 @@ from gettext import gettext as _
 import logging
 logger = logging.getLogger('speak')
 
-import espeak
+import local_espeak as espeak
 
 # Lets trick gettext into generating entries for the voice names we expect espeak to have
 # If espeak actually has new or different names then they won't get translated, but they

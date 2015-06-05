@@ -32,7 +32,7 @@ import json
 
 import sugar.graphics.style as style
 
-import espeak
+import local_espeak as espeak
 import eye
 import glasses
 import eyelashes

@@ -18,7 +18,7 @@ import logging
 logger = logging.getLogger('speak')
 
 import gst
-import espeak
+import local_espeak as espeak
 
 PITCH_MAX = 200
 RATE_MAX = 200

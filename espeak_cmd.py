@@ -20,7 +20,7 @@ import subprocess
 import logging
 logger = logging.getLogger('speak')
 
-import espeak
+import local_espeak as espeak
 
 PITCH_MAX = 99
 RATE_MAX = 99
