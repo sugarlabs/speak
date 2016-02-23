@@ -43,24 +43,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2011-08-08 02:40+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2015-09-20 18:09+0000\n"
+"Last-Translator: Robert <rbuj@fedoraproject.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1442772592.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
 msgid "Speak"
-msgstr "Pronuncia"
+msgstr "Parlaire"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Una cara animada que parla qualsevol cosa que escriviu"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -70,14 +71,20 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"El Parlaire és una cara que parla per al portàtil XO. Tot el que escriviu "
+"serà parlat en veu alta utilitzant el sintetitzador de veu del XO. Podeu "
+"ajustar l'accent, el ritme i to de la veu, així com la forma dels ulls i la "
+"boca. Aquesta és una gran manera d'experimentar amb el sintetitzador de veu, "
+"aprendre a escriure o simplement divertir-se en crear una cara divertida per "
+"al vostre XO."
 
 #: activity.py:170
 msgid "Type something to hear it"
-msgstr ""
+msgstr "Escriviu qualsevol cosa per escoltar-ho"
 
 #: activity.py:177
 msgid "Ask robot any question"
-msgstr ""
+msgstr "Feu qualsevol pregunta al robot"
 
 #: activity.py:185
 msgid "Voice chat"
@@ -85,7 +92,7 @@ msgstr "Xat de veu"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: activity.py:197
 msgid "Voice"
@@ -97,41 +104,41 @@ msgstr "Cara"
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
-msgstr ""
+msgstr "Nombre d'ulls:"
 
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "Hola %s."
 
 #: activity.py:247
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr ""
+msgstr "Hola %s. Si us plau, escriviu alguna cosa."
 
 #: activity.py:331
 msgid "Pitch:"
-msgstr ""
+msgstr "To:"
 
 #: activity.py:344
 msgid "Rate:"
-msgstr "Velocitat:"
+msgstr "Ritme:"
 
 #: activity.py:352
 msgid "pitch adjusted"
-msgstr ""
+msgstr "s'ha ajustat el to"
 
 #: activity.py:356
 msgid "rate adjusted"
-msgstr ""
+msgstr "s'ha ajustat el ritme"
 
 #: activity.py:365
 msgid "Simple"
-msgstr "Simple"
+msgstr "Senzill"
 
 #: activity.py:372
 msgid "Waveform"
-msgstr ""
+msgstr "Forma d'ona"
 
 #: activity.py:379
 msgid "Frequency"
@@ -143,28 +150,30 @@ msgstr "Rodó"
 
 #: activity.py:399
 msgid "Glasses"
-msgstr ""
+msgstr "Ulleres"
 
 #: activity.py:441
 msgid "mouth changed"
-msgstr ""
+msgstr "s'ha canviat la boca"
 
 #: activity.py:461
 msgid "eyes changed"
-msgstr ""
+msgstr "s'han canviat els ulls"
 
 #: activity.py:582
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"Ho sento, no puc parlar %(old_voice)s, en lloc seu anem a parlar "
+"%(new_voice)s."
 
 #: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "Esteu en mode desconnexió, compartiu i inviteu a algú."
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
-msgstr "Espanyol"
+msgstr "Castellà"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
@@ -172,32 +181,35 @@ msgstr "Anglès"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "Ho sento, no puc entendre el que m'esteu preguntant."
 
 #: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"Ho sento, no hi ha prou memòria per carregar el meu cervell. Tanqueu totes "
+"les activitats i torneu-ho a intentar un altre cop."
 
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "em dic %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "Tinc %d anys"
 
 #: brain.py:145
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "Hola, sóc un robot \"%s\". Si us plau, pregunteu-me qualsevol cosa."
 
+# well-spelled: URL
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "URL del xat"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
@@ -205,43 +217,43 @@ msgstr "Copia al porta-retalls"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr ""
+msgstr "Atura"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr ""
+msgstr "Desfés"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr ""
+msgstr "Refés"
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Enganxa"
 
 #: toolkit/activity_widgets.py:128
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "El meu veïnat"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
-msgstr ""
+msgstr "Activitat"
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portuguès (Brasil)"
 
 #: voice.py:38
 msgid "Swedish"
@@ -273,7 +285,7 @@ msgstr "Llatí"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr "Hungarès"
+msgstr "Hongarès"
 
 #: voice.py:46
 msgid "Macedonian"
@@ -321,11 +333,11 @@ msgstr "Grec"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamita"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr ""
+msgstr "Lancashire"
 
 #: voice.py:60
 msgid "Italian"
@@ -333,7 +345,7 @@ msgstr "Italià"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "Portuguès"
 
 #: voice.py:62
 msgid "German"
@@ -341,7 +353,7 @@ msgstr "Alemany"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "Xiuxiueig"
 
 #: voice.py:64
 msgid "Croatian"
