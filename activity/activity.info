@@ -11,15 +11,12 @@ description = Speak is a talking face for the XO laptop. Anything you type will
 homepage  = http://wiki.sugarlabs.org/go/Activities/Speak
 license   = GPLv3+
 categories = language
-
 version   = %(activity_version)s
 stability = stable
-
 icon      = activity-speak
 exec      = sugar-activity activity.SpeakActivity
 requires  = gst-plugins-espeak; numpy
-
-# original activity.info options
-activity_version = 51
+activity_version = 52
 bundle_id = vu.lux.olpc.Speak
 category = language
+repository = https://github.com/walterbender/speak
