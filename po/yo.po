@@ -2,29 +2,30 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-09-24 09:24+0000\n"
+"Last-Translator: Samson <samsongoddy@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: yo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1474709053.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
 msgid "Speak"
-msgstr ""
+msgstr "Sọ"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "An ti ere idaraya oju ti sọrọ ohunkohun ti o tẹ"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -34,295 +35,302 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"Sọ ni a sọrọ oju fun awọn XO kọmputa. Ohunkohun ti o tẹ ni yoo sọ sókè lilo "
+"awọn XO ká oro patako itẹwe, espeak. O le ṣatunṣe awọn ohun, oṣuwọn ati "
+"ipolowo ti ohùn bi daradara bi awọn apẹrẹ ti awọn oju ati ẹnu. Yi ni a nla "
+"ona lati ṣàdánwò pẹlu awọn ọrọ patako itẹwe, kọ ẹkọ lati tẹ tabi o kan ni "
+"fun ṣiṣe a funny oju fun nyin XO."
 
 #: activity.py:170
 msgid "Type something to hear it"
-msgstr ""
+msgstr "Tẹ nkankan lati gbọ ti o"
 
 #: activity.py:177
 msgid "Ask robot any question"
-msgstr ""
+msgstr "Beere robot ni eyikeyi ibeere"
 
 #: activity.py:185
 msgid "Voice chat"
-msgstr ""
+msgstr "Ohùn iwiregbe"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Èdè"
 
 #: activity.py:197
 msgid "Voice"
-msgstr ""
+msgstr "Ohùn"
 
 #: activity.py:203
 msgid "Face"
-msgstr ""
+msgstr "Oju"
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
-msgstr ""
+msgstr "Oju nọmba:"
 
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "Bawo %s."
 
 #: activity.py:247
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr ""
+msgstr "Bawo %s. Jọwọ Tẹ nkankan."
 
 #: activity.py:331
 msgid "Pitch:"
-msgstr ""
+msgstr "Ipolowo:"
 
 #: activity.py:344
 msgid "Rate:"
-msgstr ""
+msgstr "Iwọn:"
 
 #: activity.py:352
 msgid "pitch adjusted"
-msgstr ""
+msgstr "ipolowo ni titunse"
 
 #: activity.py:356
 msgid "rate adjusted"
-msgstr ""
+msgstr "oṣuwọn ni titunse"
 
 #: activity.py:365
 msgid "Simple"
-msgstr ""
+msgstr "O rọrun"
 
 #: activity.py:372
 msgid "Waveform"
-msgstr ""
+msgstr "Àfetígbọ"
 
 #: activity.py:379
 msgid "Frequency"
-msgstr ""
+msgstr "Igbohunsafẹfẹ"
 
 #: activity.py:392
 msgid "Round"
-msgstr ""
+msgstr "Yika"
 
 #: activity.py:399
 msgid "Glasses"
-msgstr ""
+msgstr "Gilaasi"
 
 #: activity.py:441
 msgid "mouth changed"
-msgstr ""
+msgstr "ẹnu yi pada"
 
 #: activity.py:461
 msgid "eyes changed"
-msgstr ""
+msgstr "oju yi pada"
 
 #: activity.py:582
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
-msgstr ""
+msgstr "Binu, Emi ko le sọ %(old_voice)s, jẹ ki ká soro %(new_voice)s dipo."
 
 #: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "Ti o ba wa ni pipa-ila mode, pin ati pe ẹnikan."
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "Èdè Spéìn"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
-msgstr ""
+msgstr "Èdè Gẹẹsì"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "Binu, Emi ko le ni oye ohun ti o ti wa ni béèrè nipa."
 
 #: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"Binu, nibẹ ni ko si free iranti lati fifuye mi ọpọlọ. Pa miiran akitiyan ki "
+"o si gbiyanju lẹẹkan siwaju sii."
 
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "orukọ mi ni %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "Emi li %d ọdún"
 
 #: brain.py:145
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "Bawo, Mo wa a robot \" %s \". Jọwọ beere mi ni eyikeyi ibeere."
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "Itọkasi lati Awo"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Da to sileti"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr ""
+msgstr "Duro"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr ""
+msgstr "Mu"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr ""
+msgstr "Túnṣe"
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr ""
+msgstr "Ẹda-iwe"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Lẹ"
 
 #: toolkit/activity_widgets.py:128
 msgid "Private"
-msgstr ""
+msgstr "Ikọkọ"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "Mi adugbo"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Apejuwe"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
-msgstr ""
+msgstr "Aṣayan iṣẹ-ṣiṣe"
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Èdè Pọtogí (Bàràsílì)"
 
 #: voice.py:38
 msgid "Swedish"
-msgstr ""
+msgstr "Èdè Suwidiisi"
 
 #: voice.py:39
 msgid "Icelandic"
-msgstr ""
+msgstr "Èdè Aṣilandi"
 
 #: voice.py:40
 msgid "Romanian"
-msgstr ""
+msgstr "Èdè Romaníà"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr ""
+msgstr "Èdè Swàhílì"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr ""
+msgstr "Èdè Híndì"
 
 #: voice.py:43
 msgid "Dutch"
-msgstr ""
+msgstr "Èdè Duki"
 
 #: voice.py:44
 msgid "Latin"
-msgstr ""
+msgstr "Èdè Latini"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "Èdè Húngárì"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr ""
+msgstr "Èdè Masidoniya"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr ""
+msgstr "Èdè Welshi"
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "Èdè Faransé"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "Èdè ará Nọ́rwèy"
 
 #: voice.py:50
 msgid "Russian"
-msgstr ""
+msgstr "Èdè Rọ́síà"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr ""
+msgstr "Èdè Afrikani"
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "Èdè Filandi"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
-msgstr ""
+msgstr "Aiyipada"
 
 #: voice.py:54
 msgid "Cantonese"
-msgstr ""
+msgstr "Èdè Ṣáínà"
 
 #: voice.py:55
 msgid "Scottish"
-msgstr ""
+msgstr "Èdè Gẹẹsi Scotland"
 
 #: voice.py:56
 msgid "Greek"
-msgstr ""
+msgstr "Èdè Giriki"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "Èdè Fiẹtnám"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr ""
+msgstr "Èdè Gẹẹsì Lancashire"
 
 #: voice.py:60
 msgid "Italian"
-msgstr ""
+msgstr "Èdè Italiani"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "Èdè Pọtogí (Pọtugi)"
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "Èdè Jẹ́mánì"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "isọrọ kẹlẹkẹlẹ"
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "Èdè Kroatíà"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "Èdè Tsẹ́kì"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "Èdè Slofákíà"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "Èdè Pólándì"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "Èdè Esperanto"
