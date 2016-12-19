@@ -24,20 +24,21 @@ import logging
 from datetime import datetime
 from gettext import gettext as _
 
-import gobject
-import gtk
-import pango
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
+from gi.repository import Pango
 
-from sugar.graphics import style
-'''
-from sugar.graphics.palette import Palette, Invoker
-from sugar.graphics.palettemenu import PaletteMenuItem
-from sugar.graphics.palette import MouseSpeedDetector
-'''
-from sugar.util import timestamp_to_elapsed_string
-from sugar import profile
+from sugar3.graphics import style
+from sugar3.graphics.palette import Palette, Invoker
+from sugar3.graphics.palettemenu import PaletteMenuItem
+from sugar3.graphics.palette import MouseSpeedDetector
+from sugar3.util import timestamp_to_elapsed_string
+from sugar3 import profile
 
-from roundbox import RoundBox
+import smilies
+import roundbox
 
 
 _URL_REGEXP = re.compile(
@@ -74,41 +75,29 @@ def darker_color(colors):
     return 1 - lighter_color(colors)
 
 
-class TextBox(gtk.EventBox):
+class TextBox(Gtk.TextView):
 
-    '''
     __gsignals__ = {
-        'open-on-journal': (gobject.SignalFlags.RUN_FIRST, None, ([str])), }
+        'open-on-journal': (GObject.SignalFlags.RUN_FIRST, None, ([str])), }
 
-    # hand_cursor = gtk.gdk.Cursor.new(Gdk.CursorType.HAND2)
-    '''
+    hand_cursor = Gdk.Cursor.new(Gdk.CursorType.HAND2)
 
     def __init__(self, parent,
                  name_color, text_color, bg_color, highlight_color,
                  lang_rtl, nick_name=None, text=None):
-        gtk.EventBox.__init__(self)
-
-        self.textview = gtk.TextView()
-
-        self.set_size_request(-1, style.GRID_CELL_SIZE)
-        self.add(self.textview)
-        self.textview.show()
-
+        Gtk.TextView.__init__(self)
         self._parent = parent
-        self._buffer = gtk.TextBuffer()
-        self._empty_buffer = gtk.TextBuffer()
+        self._buffer = Gtk.TextBuffer()
+        self._empty_buffer = Gtk.TextBuffer()
         self._empty_buffer.set_text('')
         self._empty = True
         self._name_tag = self._buffer.create_tag(
-            'name', foreground=name_color.get_html(), weight=pango.WEIGHT_BOLD,
-            background=bg_color.get_html())
+            'name', foreground=name_color.get_html(), weight=Pango.Weight.BOLD)
         self._fg_tag = self._buffer.create_tag(
-            'foreground_color', foreground=text_color.get_html(),
-            background=bg_color.get_html())
-        self._subscript_tag = self.textview.get_buffer().create_tag(
+            'foreground_color', foreground=text_color.get_html())
+        self._subscript_tag = self.get_buffer().create_tag(
             'subscript', foreground=text_color.get_html(),
-            background=bg_color.get_html(),
-            rise=-7 * pango.SCALE)  # in pixels
+            rise=-7 * Pango.SCALE)  # in pixels
 
         if nick_name:
             self._add_name(nick_name)
@@ -119,23 +108,152 @@ class TextBox(gtk.EventBox):
         self.resize_box()
 
         self._lang_rtl = lang_rtl
-        self.textview.set_editable(False)
-        self.textview.set_cursor_visible(False)
-        self.textview.set_wrap_mode(gtk.WRAP_WORD)
+        self.set_editable(False)
+        self.set_cursor_visible(False)
+        self.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
 
-        self.textview.modify_base(gtk.STATE_NORMAL, bg_color.get_gdk_color())
+        self.palette = None
 
+        self._mouse_detector = MouseSpeedDetector(200, 5)
+        self._mouse_detector.connect('motion-slow', self.__mouse_slow_cb)
+
+        self.modify_bg(0, bg_color.get_gdk_color())
+
+        rgba = Gdk.RGBA()
+        rgba.red, rgba.green, rgba.blue, rgba.alpha = \
+            highlight_color.get_rgba()
+        self.override_background_color(Gtk.StateFlags.SELECTED, rgba)
+
+        self.add_events(Gdk.EventMask.POINTER_MOTION_MASK |
+                        Gdk.EventMask.BUTTON_PRESS_MASK |
+                        Gdk.EventMask.BUTTON_RELEASE_MASK |
+                        Gdk.EventMask.LEAVE_NOTIFY_MASK)
+
+        self.connect('event-after', self.__event_after_cb)
+        self.connect('button-press-event', self.__button_press_cb)
+        self.motion_notify_id = \
+            self.connect('motion-notify-event', self.__motion_notify_cb)
+        self.connect('visibility-notify-event', self.__visibility_notify_cb)
+        self.connect('leave-notify-event', self.__leave_notify_event_cb)
         self.connect('size-allocate', self.__size_allocate_cb)
 
     def __size_allocate_cb(self, widget, allocation):
         ''' Load buffer after resize to circumvent race condition '''
-        self.textview.set_buffer(self._buffer)
+        self.set_buffer(self._buffer)
         self._parent.resize_rb()
 
     def resize_box(self):
-        self.textview.set_buffer(self._empty_buffer)
-        self.set_size_request(gtk.gdk.screen_width() - style.GRID_CELL_SIZE
+        self.set_buffer(self._empty_buffer)
+        self.set_size_request(Gdk.Screen.width() - style.GRID_CELL_SIZE
                               - 2 * style.DEFAULT_SPACING, -1)
+
+    def __leave_notify_event_cb(self, widget, event):
+        self._mouse_detector.stop()
+
+    def __button_press_cb(self, widget, event):
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+            # To disable the standard textview popup
+            return True
+
+    # Links can be activated by clicking.
+    def __event_after_cb(self, widget, event):
+        if event.type.value_name != 'GDK_BUTTON_RELEASE':
+            return False
+
+        x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
+                                            int(event.x), int(event.y))
+        iter_tags = self.get_iter_at_location(x, y)
+
+        for tag in iter_tags.get_tags():
+            try:
+                url = tag.url
+            except:
+                url = None
+            if url is not None:
+                if event.button == 3:
+                    palette = tag.palette
+                    xw, yw = self.get_toplevel().get_pointer()
+                    palette.popup()
+                else:
+                    self._show_via_journal(url)
+                break
+
+        return False
+
+    def _show_via_journal(self, url):
+        self.emit('open-on-journal', url)
+
+    def check_url_hovering(self, x, y):
+        # Looks at all tags covering the position (x, y) in the text view,
+        # and if one of them is a link return True
+
+        hovering = False
+        # When check on_slow_mouse event, the position can be out
+        # of the widget and return negative values.
+        if x < 0 or y < 0:
+            return hovering
+
+        self.palette = None
+        iter_tags = self.get_iter_at_location(x, y)
+
+        tags = iter_tags.get_tags()
+        for tag in tags:
+            try:
+                url = tag.url
+                self.palette = tag.palette
+            except:
+                url = None
+            if url is not None:
+                hovering = True
+                break
+        return hovering
+
+    def set_cursor_if_appropriate(self, x, y):
+        # Looks at all tags covering the position (x, y) in the text view,
+        # and if one of them is a link, change the cursor to the 'hands' cursor
+
+        hovering_over_link = self.check_url_hovering(x, y)
+        win = self.get_window(Gtk.TextWindowType.TEXT)
+        if hovering_over_link:
+            win.set_cursor(self.hand_cursor)
+            self._mouse_detector.start()
+        else:
+            win.set_cursor(None)
+            self._mouse_detector.stop()
+
+    def __mouse_slow_cb(self, widget):
+        x, y = self.get_pointer()
+        hovering_over_link = self.check_url_hovering(x, y)
+        if hovering_over_link:
+            if self.palette is not None:
+                xw, yw = self.get_toplevel().get_pointer()
+                self.palette.popup()
+                self._mouse_detector.stop()
+        else:
+            if self.palette is not None:
+                self.palette.popdown()
+
+    # Update the cursor image if the pointer moved.
+    def __motion_notify_cb(self, widget, event):
+        x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
+                                            int(event.x), int(event.y))
+        self.set_cursor_if_appropriate(x, y)
+        self.get_pointer()
+        return False
+
+    def __visibility_notify_cb(self, widget, event):
+        # Also update the cursor image if the window becomes visible
+        # (e.g. when a window covering it got iconified).
+        bx, by = self.window_to_buffer_coords(
+            Gtk.TextWindowType.WIDGET, 200, 200)
+        self.set_cursor_if_appropriate(bx, by)
+        return False
+
+    def __palette_mouse_enter_cb(self, widget, event):
+        self.handler_block(self.motion_notify_id)
+
+    def __palette_mouse_leave_cb(self, widget, event):
+        self.handler_unblock(self.motion_notify_id)
 
     def _add_name(self, name):
         buf = self._buffer
@@ -159,23 +277,43 @@ class TextBox(gtk.EventBox):
 
         words = text.split()
         for word in words:
-            buf.insert_with_tags(self.iter_text, word, self._fg_tag)
+            if _URL_REGEXP.match(word) is not None:
+                tag = buf.create_tag(None, underline=Pango.Underline.SINGLE)
+                tag.url = word
+                palette = _URLMenu(word)
+                # FIXME: TypeError: _URLMenu: unknown signal name:
+                # enter-notify-event - leave-notify-event
+                # palette.connect('enter-notify-event',
+                #                 self.__palette_mouse_enter_cb)
+                # palette.connect('leave-notify-event',
+                #                 self.__palette_mouse_leave_cb)
+                tag.palette = palette
+                buf.insert_with_tags(self.iter_text, word, tag, self._fg_tag)
+            else:
+                for i in smilies.parse(word):
+                    if isinstance(i, GdkPixbuf.Pixbuf):
+                        start = self.iter_text.get_offset()
+                        buf.insert_pixbuf(self.iter_text, i)
+                        buf.apply_tag(self._subscript_tag,
+                                      buf.get_iter_at_offset(start),
+                                      self.iter_text)
+                    else:
+                        buf.insert_with_tags(self.iter_text, i, self._fg_tag)
             buf.insert_with_tags(self.iter_text, ' ', self._fg_tag)
 
         self._empty = False
 
 
-class ChatBox(gtk.ScrolledWindow):
+class ChatBox(Gtk.ScrolledWindow):
+
+    __gsignals__ = {
+        'foo': (GObject.SignalFlags.RUN_FIRST, None, ([])),
+        'open-on-journal': (GObject.SignalFlags.RUN_FIRST, None, ([str])), }
 
     def __init__(self, owner, tablet_mode):
-        gtk.ScrolledWindow.__init__(self)
+        Gtk.ScrolledWindow.__init__(self)
 
-        if owner is None:
-            self._owner = {'nick': profile.get_nick_name(),
-                           'color': profile.get_color().to_string()}
-        else:
-            self._owner = owner
-
+        self._owner = owner
         self._tablet_mode = tablet_mode
 
         # Auto vs manual scrolling:
@@ -193,28 +331,33 @@ class ChatBox(gtk.ScrolledWindow):
         self._grid_list = []
         self._message_list = []
 
-        self._conversation = gtk.VBox()
-        # self._conversation.set_row_spacing(style.DEFAULT_PADDING)
-        # self._conversation.set_border_width(0)
+        self._conversation = Gtk.Grid()
+        self._conversation.set_row_spacing(style.DEFAULT_PADDING)
+        self._conversation.set_border_width(0)
         self._conversation.set_size_request(
-            gtk.gdk.screen_width() - style.GRID_CELL_SIZE, -1)
+            Gdk.Screen.width() - style.GRID_CELL_SIZE, -1)
 
         # OSK padding for conversation
         self._dy = 0
 
-        evbox = gtk.EventBox()
+        evbox = Gtk.EventBox()
         evbox.modify_bg(
-            gtk.STATE_NORMAL, style.COLOR_WHITE.get_gdk_color())
+            Gtk.StateType.NORMAL, style.COLOR_WHITE.get_gdk_color())
         evbox.add(self._conversation)
         self._conversation.show()
 
-        self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.ALWAYS)
         self.add_with_viewport(evbox)
         evbox.show()
 
         vadj = self.get_vadjustment()
         vadj.connect('changed', self._scroll_changed_cb)
         vadj.connect('value-changed', self._scroll_value_changed_cb)
+
+        self.connect('foo', self.resize_rb)
+
+    def __open_on_journal(self, widget, url):
+        self.emit('open-on-journal', url)
 
     def get_log(self):
         return self._chat_log
@@ -310,7 +453,7 @@ class ChatBox(gtk.ScrolledWindow):
         self._add_log(nick, color, text, status_message)
 
         # Check for Right-To-Left languages:
-        if pango.find_base_dir(nick, -1) == pango.DIRECTION_RTL:
+        if Pango.find_base_dir(nick, -1) == Pango.Direction.RTL:
             lang_rtl = True
         else:
             lang_rtl = False
@@ -326,16 +469,17 @@ class ChatBox(gtk.ScrolledWindow):
             message = self._last_msg
             message.add_text(text)
         else:
-            rb = RoundBox()
+            rb = roundbox.RoundBox()
             rb.background_color = color_fill
             rb.border_color = color_stroke
             rb.tail = tail
             self._rb_list.append(rb)
 
-            grid_internal = gtk.VBox()
+            grid_internal = Gtk.Grid()
+            grid_internal.set_row_spacing(0)
+            grid_internal.set_border_width(style.DEFAULT_PADDING)
             grid_internal.set_size_request(
-                gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
-                style.GRID_CELL_SIZE)  # -1)
+                Gdk.Screen.width() - style.GRID_CELL_SIZE, -1)
             self._grid_list.append(grid_internal)
 
             row = 0
@@ -348,18 +492,20 @@ class ChatBox(gtk.ScrolledWindow):
             message = TextBox(self, nick_color, text_color, color_fill,
                               highlight_fill, lang_rtl, nick, text)
             self._message_list.append(message)
+            message.connect('open-on-journal', self.__open_on_journal)
 
             self._last_msg_sender = buddy
             self._last_msg = message
 
-            grid_internal.pack_start(message, expand=False, padding=0)
+            grid_internal.attach(message, 0, row, 1, 1)
             row += 1
 
-            align = gtk.Alignment(0.0, 0.0, 1.0, 1.0)
+            align = Gtk.Alignment.new(xalign=0.0, yalign=0.0, xscale=1.0,
+                                      yscale=1.0)
             if rb.tail is None:
                 bottom_padding = style.zoom(7)
             else:
-                bottom_padding = style.zoom(40)
+                bottom_padding = style.zoom(35)
             align.set_padding(style.zoom(7), bottom_padding, style.zoom(30),
                               style.zoom(30))
 
@@ -369,8 +515,7 @@ class ChatBox(gtk.ScrolledWindow):
             rb.pack_start(align, True, True, 0)
             align.show()
 
-            self._conversation.pack_start(rb, expand=False,
-                                          padding=style.DEFAULT_PADDING)
+            self._conversation.attach(rb, 0, self._row_counter, 1, 1)
             rb.show()
             self._row_counter += 1
             message.show()
@@ -396,13 +541,14 @@ class ChatBox(gtk.ScrolledWindow):
                           style.COLOR_WHITE, style.COLOR_BUTTON_GREY, False,
                           None, timestamp_to_elapsed_string(timestamp_seconds))
         self._message_list.append(message)
-        box = gtk.HBox()
-        align = gtk.Alignment(0.5, 0.0, 0.0, 0.0)
+        box = Gtk.HBox()
+        align = Gtk.Alignment.new(
+            xalign=0.5, yalign=0.0, xscale=0.0, yscale=0.0)
         box.pack_start(align, True, True, 0)
         align.show()
         align.add(message)
         message.show()
-        self._conversation.pack_start(box)
+        self._conversation.attach(box, 0, self._row_counter, 1, 1)
         box.show()
         self._row_counter += 1
         self.add_log_timestamp(timestamp)
@@ -459,10 +605,10 @@ class ChatBox(gtk.ScrolledWindow):
     def resize_rb(self):
         for grid in self._grid_list:
             grid.set_size_request(
-                gtk.gdk.screen_width() - style.GRID_CELL_SIZE, -1)
+                Gdk.Screen.width() - style.GRID_CELL_SIZE, -1)
         for rb in self._rb_list:
             rb.set_size_request(
-                gtk.gdk.screen_width() - style.GRID_CELL_SIZE, -1)
+                Gdk.Screen.width() - style.GRID_CELL_SIZE, -1)
         self.resize_conversation()
 
     def resize_conversation(self, dy=None):
@@ -472,6 +618,79 @@ class ChatBox(gtk.ScrolledWindow):
         else:
             self._dy = dy
 
-        self._conversation.set_size_request(
-            gtk.gdk.screen_width() - style.GRID_CELL_SIZE,
-            int(gtk.gdk.screen_height() - 2.5 * style.GRID_CELL_SIZE) - dy)
+        width = Gdk.Screen.width() - style.GRID_CELL_SIZE
+        height = int(Gdk.Screen.height() - 3 * style.GRID_CELL_SIZE) - dy
+        self._conversation.set_size_request(width, height)
+
+
+class ContentInvoker(Invoker):
+    def __init__(self):
+        Invoker.__init__(self)
+        self._position_hint = self.AT_CURSOR
+
+    def get_default_position(self):
+        return self.AT_CURSOR
+
+    def get_toplevel(self):
+        return None
+
+
+class _URLMenu(Palette):
+
+    def __init__(self, url):
+        Palette.__init__(self, url)
+        self.owns_clipboard = False
+        self.url = self._url_check_protocol(url)
+
+        menu_box = Gtk.VBox()
+        self.set_content(menu_box)
+        menu_box.show()
+        self._content.set_border_width(1)
+        menu_item = PaletteMenuItem(_('Copy to Clipboard'), 'edit-copy')
+        menu_item.connect('activate', self._copy_to_clipboard_cb)
+        menu_box.pack_start(menu_item, False, False, 0)
+        menu_item.show()
+        self.props.invoker = ContentInvoker()
+
+    def create_palette(self):
+        pass
+
+    def _copy_to_clipboard_cb(self, menuitem):
+        logging.debug('Copy %s to clipboard', self.url)
+        clipboard = Gtk.clipboard_get()
+        targets = [('text/uri-list', 0, 0), ('UTF8_STRING', 0, 1)]
+
+        if not clipboard.set_with_data(targets, self._clipboard_data_get_cb,
+                                       self._clipboard_clear_cb, (self.url)):
+            logging.debug('GtkClipboard.set_with_data failed!')
+        else:
+            self.owns_clipboard = True
+
+    def _clipboard_data_get_cb(self, clipboard, selection, info, data):
+        logging.debug('_clipboard_data_get_cb data=%s target=%s', data,
+                      selection.target)
+        if selection.target in ['text/uri-list']:
+            if not selection.set_uris([data]):
+                logging.debug('failed to set_uris')
+        else:
+            logging.debug('not uri')
+            if not selection.set_text(data):
+                logging.debug('failed to set_text')
+
+    def _clipboard_clear_cb(self, clipboard, data):
+        logging.debug('clipboard_clear_cb')
+        self.owns_clipboard = False
+
+    def _url_check_protocol(self, url):
+        '''Check that the url has a protocol, otherwise prepend https://
+        url -- string
+        Returns url -- string
+        '''
+        protocols = ['http://', 'https://', 'ftp://', 'ftps://']
+        no_protocol = True
+        for protocol in protocols:
+            if url.startswith(protocol):
+                no_protocol = False
+        if no_protocol:
+            url = 'http://' + url
+        return url

@@ -16,29 +16,38 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import os
-import gtk
-import pango
 import subprocess
 import logging
+import time
+from gettext import gettext as _
 
-import sugar.graphics.style as style
+import gi
+gi.require_version("Gtk", "3.0")
+
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import Pango
+
+from sugar3.graphics import style
+from sugar3.presence import presenceservice
+from sugar3.activity.activity import get_activity_root
+from sugar3.activity.activity import show_object_in_journal
+from sugar3.datastore import datastore
+from sugar3 import profile
 
 import face
 from chatbox import ChatBox
-from sugar.presence import presenceservice
 
 logger = logging.getLogger('speak')
 
 BUDDY_SIZE = int(style.GRID_CELL_SIZE * 1.5)
-BUDDY_PAD = 5
 
 BUDDIES_WIDTH = int(BUDDY_SIZE * 5)
 BUDDIES_COLOR = style.COLOR_SELECTION_GREY
 
 ENTRY_COLOR = style.COLOR_PANEL_GREY
-ENTRY_XPAD = 0
-ENTRY_YPAD = 7
 STATUS_MSG = '++STATUS++'
+
 
 def _luminance(color):
     ''' Calculate luminance value '''
@@ -54,22 +63,26 @@ def _lighter_color(colors):
 
 
 def _is_tablet_mode():
-    if not os.path.exists('/dev/input/event4'):
+    try:
+        fp = open('/dev/input/event4', 'rb')
+        fp.close()
+    except IOError:
         return False
+
     try:
         output = subprocess.call(
             ['evtest', '--query', '/dev/input/event4', 'EV_SW',
              'SW_TABLET_MODE'])
     except (OSError, subprocess.CalledProcessError):
         return False
-    if str(output) == '10':
+    if output == 10:
         return True
     return False
 
 
-class View(gtk.EventBox):
+class View(Gtk.VBox):
     def __init__(self):
-        gtk.EventBox.__init__(self)
+        Gtk.VBox.__init__(self)
 
         self.messenger = None
         self.me = None
@@ -77,87 +90,47 @@ class View(gtk.EventBox):
 
         self._buddies = {}
 
-        # buddies box
-
-        self._buddies_sw = gtk.ScrolledWindow()
-        self._buddies_sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_NEVER)
-        self._buddies_sw.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
-
-        self._buddies_box = gtk.HBox()
-        self._buddies_box.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
-        self._buddies_sw.add_with_viewport(self._buddies_box)
-        self._buddies_box.show()
-
         # chat entry
 
-        self._owner = presenceservice.get_instance().get_owner()
-        self._chat = ChatBox(self._owner, _is_tablet_mode())
-        self._chat.set_size_request(
-            -1, gtk.gdk.screen_height() - style.GRID_CELL_SIZE - BUDDY_SIZE)
-        self.me, my_face_widget = self._new_face(self._owner,
-                ENTRY_COLOR)
-        my_face_widget.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
+        owner = presenceservice.get_instance().get_owner()
+        self._chat = ChatBox(owner, _is_tablet_mode())
+        self._chat.connect('open-on-journal', self.__open_on_journal)
+        self.me = self._new_face(owner, ENTRY_COLOR)
 
         # add owner to buddy list
-        self._buddies[self._owner] = {
-                'box': my_face_widget,
-                'face': self.me,
-                'lang': ''
-                }
+        self._buddies[owner] = self.me
 
-        self.chat_post = gtk.Entry()
-        entry_height = int(BUDDY_SIZE)
-        entry_width = gtk.gdk.screen_width() - \
-                      max(1, min(5, len(self._buddies))) * BUDDY_SIZE
-        self.chat_post.set_size_request(entry_width, entry_height)
-        self.chat_post.modify_bg(gtk.STATE_NORMAL,
-                                 style.COLOR_WHITE.get_gdk_color())
-        self.chat_post.modify_base(gtk.STATE_NORMAL,
-                                   style.COLOR_WHITE.get_gdk_color())
-        self.chat_post.modify_font(pango.FontDescription(str='sans bold 24'))
+        # buddies box
+
+        self._buddies_box = Gtk.HBox()
+        self._buddies_box.pack_end(self.me, True, True, 0)
+
+        self._buddies_sw = Gtk.ScrolledWindow()
+        self._buddies_sw.set_policy(Gtk.PolicyType.AUTOMATIC,
+                                    Gtk.PolicyType.NEVER)
+        self._buddies_sw.add_with_viewport(self._buddies_box)
+
+        self.chat_post = Gtk.Entry()
+        self.chat_post.modify_font(Pango.FontDescription('sans bold 24'))
         self.chat_post.connect('activate', self._activate_cb)
         self.chat_post.connect('key-press-event', self._key_press_cb)
 
-        chat_post_box = gtk.VBox()
-        chat_post_box.pack_start(self.chat_post, padding=ENTRY_XPAD)
-        self.chat_post.show()
-
-        chat_entry = gtk.HBox()
-        self._buddies_box.pack_start(my_face_widget)
-        chat_entry.pack_start(self._buddies_sw)
-        my_face_widget.show()
-        chat_entry.pack_start(chat_post_box)
-        chat_post_box.show()
+        self._entry = Gtk.HBox()
+        self._entry.pack_start(self._buddies_sw, False, False, 0)
+        self._entry.pack_start(self.chat_post, True, True, 0)
 
         if _is_tablet_mode():
-            chat_box = gtk.VBox()
-            chat_box.pack_start(chat_entry)
-            chat_entry.show()
-            chat_box.pack_start(self._chat, expand=True)
-            self._chat.show()
+            self.pack_start(self._entry, False, False, 0)
+            self.pack_end(self._chat, True, True, 0)
         else:
-            chat_box = gtk.VBox()
-            chat_box.pack_start(self._chat, expand=True)
-            self._chat.show()
-            chat_box.pack_start(chat_entry)
-            chat_entry.show()
+            self.pack_start(self._chat, True, True, 0)
+            self.pack_end(self._entry, False, False, 0)
 
-        # desk
-        self._desk = gtk.HBox()
-        self._desk.pack_start(chat_box)
-        self.add(self._desk)
-        self._desk.show()
+        self.resize_chat_box(expanded=False)
+        self.show_all()
 
     def resize_chat_box(self, expanded=False):
-        if expanded:
-            self._chat.set_size_request(
-                -1,
-                gtk.gdk.screen_height() - 2 * style.GRID_CELL_SIZE
-                - BUDDY_SIZE)
-        else:
-            self._chat.set_size_request(
-                -1,
-                gtk.gdk.screen_height() - style.GRID_CELL_SIZE - BUDDY_SIZE)
+        pass
 
     def update(self, status):
         self.me.update(status)
@@ -166,10 +139,7 @@ class View(gtk.EventBox):
                                 (STATUS_MSG, status.serialize()))
 
     def post(self, buddy, text, status_message=False):
-        i = self._find_buddy(buddy)
-
-        buddy_face = i['face']
-        lang_box = i['lang']
+        buddy_face = self._find_buddy(buddy)
 
         if not text:
             return
@@ -180,8 +150,7 @@ class View(gtk.EventBox):
                 status = face.Status().deserialize(
                     ascii_text[len(STATUS_MSG) + 1:])
                 buddy_face.update(status)
-                if lang_box:
-                    lang_box.props.text = status.voice.friendlyname
+                self.resize_buddy_list()
             except:
                 logging.error('Could not parse status message %s' %
                               text)
@@ -209,11 +178,11 @@ class View(gtk.EventBox):
         return i
 
     def resize_buddy_list(self):
-        self._buddies_box.set_size_request(
-            len(self._buddies) * BUDDY_SIZE, -1)
-        size = min(5, len(self._buddies)) * BUDDY_SIZE
-        self._buddies_sw.set_size_request(size, -1)
-        self.chat_post.set_size_request(gtk.gdk.screen_width() - size, -1)
+        """ maintain the buddy list width """
+        size = min(BUDDIES_WIDTH, len(self._buddies) * BUDDY_SIZE)
+        self._buddies_sw.set_size_request(size, BUDDY_SIZE)
+        for buddy in self._buddies.values():
+            buddy.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
 
     def farewell(self, buddy):
         i = self._find_buddy(buddy)
@@ -221,27 +190,18 @@ class View(gtk.EventBox):
             logger.debug('farewell: cannot find buddy %s' % buddy.props.nick)
             return
 
-        self._buddies_box.remove(i['box'])
+        self._buddies_box.remove(i)
         del self._buddies[buddy]
         self.resize_buddy_list()
 
     def shut_up(self):
         for i in self._buddies.values():
-            i['face'].shut_up();
+            i.shut_up();
         self.me.shut_up();
 
     def _add_buddy(self, buddy):
-        box = gtk.VBox()
-        buddy_face, buddy_widget = self._new_face(buddy, BUDDIES_COLOR)
-        box.pack_start(buddy_widget)
-        buddy_widget.show()
-        self._buddies[buddy] = {
-                'box': box,
-                'face': buddy_face,
-                'lang': ''
-                }
-        self._buddies_box.pack_start(box)
-        box.show()
+        self._buddies[buddy] = self._new_face(buddy, BUDDIES_COLOR)
+        self._buddies_box.pack_start(self._buddies[buddy], True, True, 0)
         self.resize_buddy_list()
 
     def _activate_cb(self, widget, event):
@@ -256,8 +216,8 @@ class View(gtk.EventBox):
         return True
 
     def _key_press_cb(self, widget, event):
-        if event.keyval == gtk.keysyms.Return:
-            if not (event.state & gtk.gdk.CONTROL_MASK):
+        if event.keyval == Gdk.KEY_Return:
+            if not (event.state & Gdk.ModifierType.CONTROL_MASK):
                 return self._activate_cb(widget, event)
         return False
 
@@ -266,18 +226,37 @@ class View(gtk.EventBox):
         lighter = style.Color(colors[_lighter_color(colors)])
 
         buddy_face = face.View(lighter)
+        # FIXME: omit set_border_state causes main face alignment problems
         buddy_face.set_border_state(False)
-        buddy_face.set_size_request(BUDDY_SIZE - style.DEFAULT_PADDING,
-                                    BUDDY_SIZE - style.DEFAULT_PADDING)
+        # FIXME: non-me faces have no mouth
 
-        outer = gtk.VBox()
-        outer.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
-        outer.pack_start(buddy_face)
         buddy_face.show_all()
 
-        return (buddy_face, outer)
+        return buddy_face
 
     def look_at(self):
         self.me.look_at()
         for i in self._buddies.values():
-            i['face'].look_at()
+            i.look_at()
+
+    def __open_on_journal(self, widget, url):
+        '''Ask the journal to display a URL'''
+        jobject = datastore.create()
+        metadata = {
+            'title': '%s: %s' % (_('URL from Speak'), url),
+            'title_set_by_user': '1',
+            'icon-color': profile.get_color().to_string(),
+            'mime_type': 'text/uri-list',
+            }
+        for k, v in metadata.items():
+            jobject.metadata[k] = v
+        file_path = os.path.join(get_activity_root(), 'instance',
+                                 '%i_' % time.time())
+        open(file_path, 'w').write(url + '\r\n')
+        os.chmod(file_path, 0755)
+        jobject.set_file_path(file_path)
+        datastore.write(jobject)
+        show_object_in_journal(jobject.object_id)
+        jobject.destroy()
+        os.unlink(file_path)
+
