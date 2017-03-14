@@ -8,22 +8,30 @@
 #
 # Parts of Speak.activity are based on code from Measure.activity
 # Copyright (C) 2007  Arjun Sarwal - arjun@laptop.org
-# 
+#
 #     Speak.activity is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
 #     (at your option) any later version.
-# 
+#
 #     Speak.activity is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-from eye import *
-import logging
+import math
+
+import gi
+gi.require_version("Gdk", "3.0")
+
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
+
+from eye import Eye
+from utils import svg_str_to_pixbuf
 
 
 class Sunglasses(Eye):
@@ -47,7 +55,7 @@ class Sunglasses(Eye):
             which_eye = 1
         self._which_eye = which_eye
 
-    def expose(self, widget, event):
+    def expose(self, widget, cr):
         bounds = self.get_allocation()
 
         eyeSize = min(bounds.width, bounds.height)
@@ -62,58 +70,41 @@ class Sunglasses(Eye):
             pupilX = bounds.width / 2 + dX * limit / distance
             pupilY = bounds.height / 2 + dY * limit / distance
 
-        self.context = widget.window.cairo_create()
-
-        #set a clip region for the expose event. This reduces
-        #redrawing work (and time)
-        self.context.rectangle(event.area.x, event.area.y,
-                               event.area.width, event.area.height)
-        self.context.clip()
-
         # background
-        self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0, 0, bounds.width, bounds.height)
-        self.context.fill()
+        cr.set_source_rgba(*self.fill_color.get_rgba())
+        cr.rectangle(0, 0, bounds.width, bounds.height)
+        cr.fill()
 
         w = h = min(bounds.width, bounds.height)
         x = int((bounds.width - w) / 2)
         y = int((bounds.height - h) / 2)
         pixbuf = self._pixbufs[self._which_eye].scale_simple(
-            w, h, gtk.gdk.INTERP_BILINEAR)
-        self.context.translate(x + w / 2., y + h / 2.)
-        self.context.translate(-x - w / 2., -y - h / 2.)
+            w, h, GdkPixbuf.InterpType.BILINEAR)
+        cr.translate(x + w / 2., y + h / 2.)
+        cr.translate(-x - w / 2., -y - h / 2.)
 
         if self._which_eye == 0:
             x = bounds.width - w
             dx = x - int((bounds.width - w) / 2)
-            self.context.set_source_pixbuf(pixbuf, x, y)
-            self.context.rectangle(x, y, w, h)
+            Gdk.cairo_set_source_pixbuf(cr, pixbuf, x, y)
+            cr.rectangle(x, y, w, h)
         elif self._which_eye == 2:
             dx = -x
-            self.context.set_source_pixbuf(pixbuf, 0, y)
-            self.context.rectangle(0, y, w, h)
+            Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, y)
+            cr.rectangle(0, y, w, h)
         else:
             dx = 0
-            self.context.set_source_pixbuf(pixbuf, x, y)
-            self.context.rectangle(x, y, w, h)
+            Gdk.cairo_set_source_pixbuf(cr, pixbuf, x, y)
+            cr.rectangle(x, y, w, h)
 
-        self.context.fill()
+        cr.fill()
 
         # pupil
-        self.context.arc(pupilX + dx, pupilY, pupilSize, 0, 2*math.pi)
-        self.context.set_source_rgb(255, 255, 255)
-        self.context.fill()
+        cr.arc(pupilX + dx, pupilY, pupilSize, 0, 2*math.pi)
+        cr.set_source_rgb(255, 255, 255)
+        cr.fill()
 
         return True
-
-
-def svg_str_to_pixbuf(svg_string):
-    """ Load pixbuf from SVG string """
-    pl = gtk.gdk.PixbufLoader('svg')
-    pl.write(svg_string)
-    pl.close()
-    pixbuf = pl.get_pixbuf()
-    return pixbuf
 
 
 def lefteye_svg():

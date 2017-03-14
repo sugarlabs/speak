@@ -12,49 +12,36 @@
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
 #     (at your option) any later version.
-# 
+#
 #     Speak.activity is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-import pygtk
-import gtk
-import gtk.gdk
 import math
 
+import gi
+gi.require_version("Gtk", "3.0")
 
-class Eye(gtk.DrawingArea):
+from gi.repository import Gtk
+from gi.repository import Gdk
+
+
+class Eye(Gtk.DrawingArea):
     def __init__(self, fill_color):
-        gtk.DrawingArea.__init__(self)
-        self.connect("expose_event", self.expose)
-        self.frame = 0
-        self.blink = False
+        Gtk.DrawingArea.__init__(self)
+        self.connect("draw", self.expose)
         self.x, self.y = 0, 0
         self.fill_color = fill_color
-
-        # listen for clicks
-        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-        self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
-        self.connect("button_press_event", self._mouse_pressed_cb)
-        self.connect("button_release_event", self._mouse_released_cb)
 
     def has_padding(self):
         return True
 
     def has_left_center_right(self):
         return False
-
-    def _mouse_pressed_cb(self, widget, event):
-        self.blink = True
-        self.queue_draw()
-
-    def _mouse_released_cb(self, widget, event):
-        self.blink = False
-        self.queue_draw()
 
     def look_at(self, x, y):
         self.x = x
@@ -72,7 +59,8 @@ class Eye(gtk.DrawingArea):
 
         if self.x is None or self.y is None:
             # look ahead, but not *directly* in the middle
-            if a.x + a.width / 2 < self.parent.get_allocation().width / 2:
+            pw = self.get_parent().get_allocation().width
+            if a.x + a.width / 2 < pw / 2:
                 cx = a.width * 0.6
             else:
                 cx = a.width * 0.4
@@ -102,8 +90,7 @@ class Eye(gtk.DrawingArea):
 
         return a.width / 2 + dx, a.height / 2 + dy
 
-    def expose(self, widget, event):
-        self.frame += 1
+    def expose(self, widget, cr):
         bounds = self.get_allocation()
 
         eyeSize = min(bounds.width, bounds.height)
@@ -118,36 +105,27 @@ class Eye(gtk.DrawingArea):
             pupilX = bounds.width / 2 + dX * limit / distance
             pupilY = bounds.height / 2 + dY * limit / distance
 
-        self.context = widget.window.cairo_create()
-        #self.context.set_antialias(cairo.ANTIALIAS_NONE)
-
-        #set a clip region for the expose event. This reduces redrawing work (and time)
-        self.context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
-        self.context.clip()
-
         # background
-        self.context.set_source_rgba(*self.fill_color.get_rgba())
-        self.context.rectangle(0, 0, bounds.width, bounds.height)
-        self.context.fill()
+        cr.set_source_rgba(*self.fill_color.get_rgba())
+        cr.rectangle(0, 0, bounds.width, bounds.height)
+        cr.fill()
 
         # eye ball
-        self.context.arc(bounds.width / 2, bounds.height / 2,
+        cr.arc(bounds.width / 2, bounds.height / 2,
                          eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
-        self.context.set_source_rgb(1, 1, 1)
-        self.context.fill()
+        cr.set_source_rgb(1, 1, 1)
+        cr.fill()
 
         # outline
-        self.context.set_line_width(outlineWidth)
-        self.context.arc(bounds.width / 2, bounds.height / 2,
+        cr.set_line_width(outlineWidth)
+        cr.arc(bounds.width / 2, bounds.height / 2,
                          eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
-        self.context.set_source_rgb(0, 0, 0)
-        self.context.stroke()
+        cr.set_source_rgb(0, 0, 0)
+        cr.stroke()
 
         # pupil
-        self.context.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
-        self.context.set_source_rgb(0, 0, 0)
-        self.context.fill()
-
-        self.blink = False
+        cr.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
+        cr.set_source_rgb(0, 0, 0)
+        cr.fill()
 
         return True

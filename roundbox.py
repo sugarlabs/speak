@@ -15,35 +15,39 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import math
-import gtk
-from sugar.graphics import style
+
+import gi
+gi.require_version("Gtk", "3.0")
+
+from gi.repository import Gtk
+
+from sugar3.graphics import style
 
 _BORDER_DEFAULT = style.LINE_WIDTH
 
 
-class RoundBox(gtk.HBox):
+class RoundBox(Gtk.HBox):
     __gtype_name__ = 'RoundBox'
 
     def __init__(self, **kwargs):
-        gtk.HBox.__init__(self, **kwargs)
+        Gtk.HBox.__init__(self, **kwargs)
         self._radius = style.zoom(15)
         self.border_color = style.COLOR_BLACK
         self.tail = None
         self.background_color = None
-        self.set_resize_mode(gtk.RESIZE_PARENT)
+        self.set_resize_mode(Gtk.ResizeMode.PARENT)
         self.set_reallocate_redraws(True)
-        self.connect('expose-event', self.__expose_cb)
+        self.connect('draw', self.__draw_cb)
         self.connect('add', self.__add_cb)
 
     def __add_cb(self, child, params):
         child.set_border_width(style.zoom(5))
 
-    def __expose_cb(self, widget, event):
-        cr = widget.window.cairo_create()
+    def __draw_cb(self, widget, cr):
         rect = self.get_allocation()
         hmargin = style.zoom(15)
-        x = rect.x + hmargin
-        y = rect.y
+        x = hmargin
+        y = 0
         width = rect.width - _BORDER_DEFAULT * 2. - hmargin * 2
         if self.tail is None:
             height = rect.height - _BORDER_DEFAULT * 2.
@@ -95,22 +99,22 @@ class RoundBox(gtk.HBox):
 
 if __name__ == '__main__':
 
-    win = gtk.Window()
-    win.connect('destroy', gtk.main_quit)
+    win = Gtk.Window()
+    win.connect('destroy', Gtk.main_quit)
     win.set_default_size(450, 450)
-    vbox = gtk.VBox()
+    vbox = Gtk.VBox()
 
     box1 = RoundBox()
     box1.tail = 'right'
     vbox.add(box1)
-    label1 = gtk.Label("Test 1")
+    label1 = Gtk.Label("Test 1")
     box1.add(label1)
 
     rbox = RoundBox()
     rbox.tail = 'left'
     rbox.background_color = style.Color('#FF0000')
     vbox.add(rbox)
-    label2 = gtk.Label("Test 2")
+    label2 = Gtk.Label("Test 2")
     rbox.add(label2)
 
     bbox = RoundBox()
@@ -120,4 +124,4 @@ if __name__ == '__main__':
 
     win.add(vbox)
     win.show_all()
-    gtk.main()
+    Gtk.main()

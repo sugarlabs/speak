@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-
 # Speak.activity
 # A simple front end to the espeak text-to-speech engine on the XO laptop
 # http://wiki.laptop.org/go/Speak
 #
 # Copyright (C) 2008  Joshua Minor
+# Copyright (C) 2014  Walter Bender (major refactoring)
 # This file is part of Speak.activity
 #
 # Parts of Speak.activity are based on code from Measure.activity
@@ -23,5 +22,16 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-from sugar3.activity import bundlebuilder
-bundlebuilder.start()
+import gi
+gi.require_version("Gdk", "3.0")
+
+from gi.repository import GdkPixbuf
+
+
+def svg_str_to_pixbuf(svg_string):
+    """ Load pixbuf from SVG string """
+    pl = GdkPixbuf.PixbufLoader.new_with_type('svg')
+    pl.write(svg_string)
+    pl.close()
+    pixbuf = pl.get_pixbuf()
+    return pixbuf

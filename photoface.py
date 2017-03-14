@@ -4,17 +4,17 @@
 #
 # Copyright (C) 2014 Sam Parkinson
 # This file is part of Speak.activity
-# 
+#
 #     Speak.activity is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
 #     (at your option) any later version.
-# 
+#
 #     Speak.activity is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -24,19 +24,22 @@ import json
 import math
 import uuid
 import base64
-import logging 
-import cStringIO
-from struct import unpack
+import logging
 
-import gtk
-import numpy.core
-import sugar.graphics.style as style
+import sugar3.graphics.style as style
 
 import voice
-import local_espeak as espeak
+import espeak
 from faceselect import Eye
 from faceselect import Mouth
 from face import remove_curses
+
+import gi
+gi.require_version("Gtk", "3.0")
+
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 
 logger = logging.getLogger('speak')
 
@@ -47,11 +50,11 @@ _BALL_DIST_CIRC_RATIO = 27
 
 def _b64_to_pixbuf(b64):
     data = base64.b64decode(b64)
-    path = '/tmp/{}.jpeg'.format(uuid.uuid4())
+    path = '/tmp/{}.png'.format(uuid.uuid4())
 
     with open(path, 'wb') as f:
         f.write(data)
-    pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+    pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
 
     os.remove(path)
     return pixbuf
@@ -65,15 +68,13 @@ class Status(object):
         self.rate = espeak.RATE_MAX / 2
 
     def serialize(self):
-        fake_file = cStringIO.StringIO()
-        self.pixbuf.save_to_callback(fake_file.write, 'jpeg')
-        pixbuf_b64 = base64.b64encode(fake_file.getvalue())
+        success, data = self.pixbuf.save_to_bufferv('png', [], [])
+        pixbuf_b64 = base64.b64encode(data)
 
-        fake_file = cStringIO.StringIO()
-        self.mouth.pixbuf.save_to_callback(fake_file.write, 'jpeg')
-        mouth_pixbuf_b64 = base64.b64encode(fake_file.getvalue())
+        success, data = self.mouth.pixbuf.save_to_bufferv('png', [], [])
+        mouth_pixbuf_b64 = base64.b64encode(data)
 
-        mouth_dict = self.mouth.__dict__
+        mouth_dict = self.mouth.__dict__.copy()
         mouth_dict['pixbuf'] = mouth_pixbuf_b64
 
         return json.dumps({
@@ -89,9 +90,8 @@ class Status(object):
     def deserialize(self, buf):
         data = json.loads(buf)
 
-
         self.voice = voice.Voice(data['voice']['language'],
-                data['voice']['name'])
+                                 data['voice']['name'])
         self.pitch = data['pitch']
         self.rate = data['rate']
 
@@ -123,10 +123,10 @@ class Status(object):
         return [self.pixbuf, self.left_eye, self.right_eye, self.mouth]
 
 
-class View(gtk.DrawingArea):
+class View(Gtk.DrawingArea):
     def __init__(self, pixbuf, left_eye, right_eye, mouth,
                  fill_color=style.COLOR_BUTTON_GREY):
-        gtk.DrawingArea.__init__(self)
+        Gtk.DrawingArea.__init__(self)
 
 
         self.status = Status()
@@ -145,34 +145,28 @@ class View(gtk.DrawingArea):
         self._look_y = None
 
         self._audio = espeak.AudioGrab()
-        self._audio.connect('new-buffer', self.__new_buffer_cb)
+        self._audio.connect('peak', self.__peak_cb)
         self._pending = None
 
-        self.connect('expose-event', self.__draw_cb)
-
-    def _redraw(self):
-        alloc = self.get_allocation()
-        self.queue_draw_area(0, 0, alloc.width, alloc.height)
+        self.connect('draw', self.__draw_cb)
 
     def __draw_cb(self, widget, cr):
-        cr = widget.window.cairo_create()
-        alloc = widget.get_allocation()
+        bounds = widget.get_allocation()
 
-        offset_x = (alloc.width - self.status.pixbuf.get_width()) / 2
-        offset_y = (alloc.height - self.status.pixbuf.get_height()) / 2
+        offset_x = (bounds.width - self.status.pixbuf.get_width()) / 2
+        offset_y = (bounds.height - self.status.pixbuf.get_height()) / 2
 
         # Background Color
-        cr.rectangle(0, 0, alloc.width, alloc.height)
-        cr.set_source_color(self._color.get_gdk_color())
+        cr.rectangle(0, 0, bounds.width, bounds.height)
+        cr.set_source_rgba(*self._color.get_rgba())
         cr.fill()
 
         # Face Pixbuf
-        cr.rectangle(offset_x, offset_y, alloc.width, alloc.height)
-        cr.set_source_pixbuf(self.status.pixbuf, offset_x, offset_y)
+        cr.rectangle(offset_x, offset_y, bounds.width, bounds.height)
+        Gdk.cairo_set_source_pixbuf(cr, self.status.pixbuf, offset_x, offset_y)
         cr.fill()
 
         # Mouth
-        self._process_buffer()
         volume = min(self._volume / 30000.0, 1.0)
 
         # Draw a background for when the mouth moves
@@ -180,7 +174,7 @@ class View(gtk.DrawingArea):
                      offset_y + self.status.mouth.y,
                      self.status.mouth.w,
                      self.status.mouth.h)
-        cr.set_source_color(self._color.get_gdk_color())
+        cr.set_source_rgba(*self._color.get_rgba())
         cr.fill()
 
         volume_offset = 100.0 * volume
@@ -188,9 +182,10 @@ class View(gtk.DrawingArea):
                      offset_y + self.status.mouth.y + volume_offset,
                      self.status.mouth.w,
                      self.status.mouth.h)
-        cr.set_source_pixbuf(self.status.mouth.pixbuf,
-                             offset_x + self.status.mouth.x,
-                             offset_y + self.status.mouth.y + volume_offset)
+        Gdk.cairo_set_source_pixbuf(cr, self.status.mouth.pixbuf,
+                                    offset_x + self.status.mouth.x,
+                                    offset_y + self.status.mouth.y + \
+                                    volume_offset)
         cr.fill()
 
         # Eye centers
@@ -201,14 +196,14 @@ class View(gtk.DrawingArea):
             cr.fill()
 
             if self._look_x is None or self._look_y is None:
-                look_x = eye.center[0] + offset_x + alloc.x
-                look_y = eye.center[1] + offset_y + alloc.y
+                look_x = eye.center[0] + offset_x + bounds.x
+                look_y = eye.center[1] + offset_y + bounds.y
                 x, y, circ = self._compute_pupil(eye, offset_x, offset_y,
                                                  look_x, look_y)
             else:
                 x, y, circ = self._compute_pupil(eye, offset_x, offset_y,
                                                  self._look_x, self._look_y)
-            cr.arc(x - alloc.x, y - alloc.y, circ, 0, 2 * math.pi)
+            cr.arc(x - bounds.x, y - bounds.y, circ, 0, 2 * math.pi)
             cr.set_source_rgb(0.0, 0.0, 0.0)
             cr.fill()
 
@@ -241,25 +236,9 @@ class View(gtk.DrawingArea):
 
         return dx + EYE_X, dy + EYE_Y, CIRC
 
-    def _process_buffer(self):
-        if len(self._main_buffers) == 0 or len(self._newest_buffer) == 0:
-            self._volume = 0
-        else:
-            self._volume = numpy.core.max(self._main_buffers)
-
-    def __new_buffer_cb(self, obj, buf):
-        if len(buf) < 28:
-            self._newest_buffer = []
-        else:
-            self._newest_buffer = list(
-                unpack(str(int(len(buf)) / 2) + 'h', buf))
-            self._main_buffers += self._newest_buffer
-            if(len(self._main_buffers) > self._buffer_size):
-                del self._main_buffers[0:(len(self._main_buffers) - \
-                        self._buffer_size)]
-
-        self._redraw()
-        return True
+    def __peak_cb(self, me, volume):
+        self._volume = volume
+        self.queue_draw()
 
     def set_border_state(self, state):
         pass
@@ -267,16 +246,15 @@ class View(gtk.DrawingArea):
     def look_ahead(self):
         self._look_x = None
         self._look_y = None
-        self._redraw()
+        self.queue_draw()
 
     def look_at(self, pos=None):
         if pos is None:
-            display = gtk.gdk.display_get_default()
+            display = Gdk.Display.get_default()
             screen, self._look_x, self._look_y, mods = display.get_pointer()
         else:
             self._look_x, self._look_y = pos
-        self._redraw()
-        
+        self.queue_draw()
 
     def update(self, status=None):
         pass

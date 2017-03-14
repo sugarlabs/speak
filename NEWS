@@ -1,3 +1,13 @@
+53
+
+* New translations
+* Fix repository in activity.info
+* Port to GTK 3 and GStreamer 1.0
+* Make mouth animation follow sound more closely
+* Enable URL clicking in chat view
+* Fix accelerometer fun (v48)
+* Fix swap of waveform and frequency mouth buttons
+
 52
 
 * New translations
