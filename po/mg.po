@@ -30,29 +30,30 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-02-08 16:00+0000\n"
+"Last-Translator: Riella <zafimamy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: mg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1454947222.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
 msgid "Speak"
-msgstr ""
+msgstr "Miteny"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Tarehy sarimiaina iray izay miteny izay rehetra soratinao"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -65,85 +66,85 @@ msgstr ""
 
 #: activity.py:170
 msgid "Type something to hear it"
-msgstr ""
+msgstr "Manorata zavatra handrenesana azy"
 
 #: activity.py:177
 msgid "Ask robot any question"
-msgstr ""
+msgstr "Ametraho fanontaniana ny robot"
 
 #: activity.py:185
 msgid "Voice chat"
-msgstr ""
+msgstr "Korana am-peo"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Fiteny"
 
 #: activity.py:197
 msgid "Voice"
-msgstr ""
+msgstr "Feo"
 
 #: activity.py:203
 msgid "Face"
-msgstr ""
+msgstr "Tarehy"
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
-msgstr ""
+msgstr "Isan'ny maso"
 
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "Salama %s."
 
 #: activity.py:247
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr ""
+msgstr "Manahoana i %s. Manorata zavatra azafady."
 
 #: activity.py:331
 msgid "Pitch:"
-msgstr ""
+msgstr "Haavo:"
 
 #: activity.py:344
 msgid "Rate:"
-msgstr ""
+msgstr "Fitosaka:"
 
 #: activity.py:352
 msgid "pitch adjusted"
-msgstr ""
+msgstr "haavo namboarina"
 
 #: activity.py:356
 msgid "rate adjusted"
-msgstr ""
+msgstr "fitosaka namboarina"
 
 #: activity.py:365
 msgid "Simple"
-msgstr ""
+msgstr "Tsotra"
 
 #: activity.py:372
 msgid "Waveform"
-msgstr ""
+msgstr "Karazan'onja"
 
 #: activity.py:379
 msgid "Frequency"
-msgstr ""
+msgstr "Hatetika"
 
 #: activity.py:392
 msgid "Round"
-msgstr ""
+msgstr "Boribory"
 
 #: activity.py:399
 msgid "Glasses"
-msgstr ""
+msgstr "Solomaso"
 
 #: activity.py:441
 msgid "mouth changed"
-msgstr ""
+msgstr "vava novaina"
 
 #: activity.py:461
 msgid "eyes changed"
-msgstr ""
+msgstr "maso novaina"
 
 #: activity.py:582
 #, python-format
@@ -156,11 +157,11 @@ msgstr ""
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "Espaniola"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
-msgstr ""
+msgstr "Anglisy"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
@@ -189,39 +190,39 @@ msgstr ""
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr ""
+msgstr "URL avy amin'ny Korana"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Hadika amin'ny Solaitra fandikana"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr ""
+msgstr "Ajanony"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr ""
+msgstr "Foano"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr ""
+msgstr "Avereno"
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr ""
+msgstr "Adikao"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Apetaho"
 
 #: toolkit/activity_widgets.py:128
 msgid "Private"
-msgstr ""
+msgstr "Tsiambaratelo"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "Ny Manodidina Ahy"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
@@ -261,39 +262,39 @@ msgstr ""
 
 #: voice.py:44
 msgid "Latin"
-msgstr ""
+msgstr "Latina"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "Hongroa"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr ""
+msgstr "Masedonianina"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr ""
+msgstr "Galoà"
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "Frantsay"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "Norvezianina"
 
 #: voice.py:50
 msgid "Russian"
-msgstr ""
+msgstr "Rosianina"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaans"
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "Finoa"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
@@ -329,28 +330,28 @@ msgstr ""
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "Alemana"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "Bitsibitsika"
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "Kroaty"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "Tseky"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "Slovaky"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "Pôlôney"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "Esperanto"

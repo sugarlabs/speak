@@ -2,12 +2,7 @@
 implement = %(bundle_id)s
 name      = Speak
 summary   = An animated face that speaks whatever you type
-description = Speak is a talking face for the XO laptop. Anything you type will
-            be spoken aloud using the XO's speech synthesizer, espeak. You can
-            adjust the accent, rate and pitch of the voice as well as the shape
-            of the eyes and mouth.
-            This is a great way to experiment with the speech synthesizer,
-            learn to type or just have fun making a funny face for your XO.
+description = A talking face. What you type will be spoken aloud using a speech synthesizer. You can change the accent, rate and pitch of the voice as well as the shape of the eyes and mouth.  A great way to experiment with the speech synthesizer, learn to type or just have fun making a funny face.
 homepage  = http://wiki.sugarlabs.org/go/Activities/Speak
 license   = GPLv3+
 categories = language

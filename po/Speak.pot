@@ -8,320 +8,699 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"POT-Creation-Date: 2017-03-15 11:58+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. TRANS: "name" option from activity.info file
-#: activity.py:104
+#: activity/activity.info:2 activity.py:194
 msgid "Speak"
 msgstr ""
 
-#. TRANS: "summary" option from activity.info file
+#: activity/activity.info:3
 msgid "An animated face that speaks whatever you type"
 msgstr ""
 
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:4
 msgid ""
-"Speak is a talking face for the XO laptop. Anything you type will be spoken "
-"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
-"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
-"is a great way to experiment with the speech synthesizer, learn to type or "
-"just have fun making a funny face for your XO."
+"A talking face. What you type will be spoken aloud using a speech "
+"synthesizer. You can change the accent, rate and pitch of the voice as well "
+"as the shape of the eyes and mouth.  A great way to experiment with the "
+"speech synthesizer, learn to type or just have fun making a funny face."
 msgstr ""
 
-#: activity.py:170
+#: chat.py:246
+msgid "URL from Speak"
+msgstr ""
+
+#: activity.py:106
+msgid "Round"
+msgstr ""
+
+#: activity.py:107
+msgid "Glasses"
+msgstr ""
+
+#: activity.py:108
+msgid "Half moon"
+msgstr ""
+
+#: activity.py:110
+msgid "Eye lashes"
+msgstr ""
+
+#: activity.py:112
+msgid "Sunglasses"
+msgstr ""
+
+#: activity.py:114
+msgid "Wire frames"
+msgstr ""
+
+#: activity.py:119
+msgid "I am bored."
+msgstr ""
+
+#: activity.py:119
+msgid "Talk to me."
+msgstr ""
+
+#: activity.py:120
+msgid "I am sleepy."
+msgstr ""
+
+#: activity.py:120
+msgid "Are you still there?"
+msgstr ""
+
+#: activity.py:121
+msgid "Please type something."
+msgstr ""
+
+#: activity.py:122
+msgid "Do you have anything to say to me?"
+msgstr ""
+
+#: activity.py:122
+msgid "Hello?"
+msgstr ""
+
+#: activity.py:123
+msgid "Whoa! Sideways!"
+msgstr ""
+
+#: activity.py:123
+msgid "I'm on my side."
+msgstr ""
+
+#: activity.py:123
+msgid "Uh oh."
+msgstr ""
+
+#: activity.py:124
+msgid "Wheeeee!"
+msgstr ""
+
+#: activity.py:124
+msgid "Hey! Put me down!"
+msgstr ""
+
+#: activity.py:124
+msgid "Falling over!"
+msgstr ""
+
+#: activity.py:258
 msgid "Type something to hear it"
 msgstr ""
 
-#: activity.py:177
+#: activity.py:265
 msgid "Ask robot any question"
 msgstr ""
 
-#: activity.py:185
+#: activity.py:272
 msgid "Voice chat"
 msgstr ""
 
-#: activity.py:191
-msgid "Language"
-msgstr ""
-
-#: activity.py:197
+#: activity.py:278
 msgid "Voice"
 msgstr ""
 
-#: activity.py:203
+#: activity.py:285
 msgid "Face"
 msgstr ""
 
-#: activity.py:227 activity.py:409
-msgid "Eyes number:"
-msgstr ""
-
-#: activity.py:245
+#: activity.py:367
 #, python-format
 msgid "Hello %s."
 msgstr ""
 
-#: activity.py:247
+#: activity.py:369
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr ""
 
-#: activity.py:331
+#: activity.py:373 activity.py:375
+#, python-format
+msgid "Welcome back %s."
+msgstr ""
+
+#: activity.py:553
+msgid "Choose voice:"
+msgstr ""
+
+#: activity.py:606
 msgid "Pitch:"
 msgstr ""
 
-#: activity.py:344
+#: activity.py:616
 msgid "Rate:"
 msgstr ""
 
-#: activity.py:352
+#: activity.py:624
 msgid "pitch adjusted"
 msgstr ""
 
-#: activity.py:356
+#: activity.py:628
 msgid "rate adjusted"
 msgstr ""
 
-#: activity.py:365
+#: activity.py:634
+msgid "Set face from photo"
+msgstr ""
+
+#: activity.py:640
+msgid "Clear photo face"
+msgstr ""
+
+#: activity.py:655
 msgid "Simple"
 msgstr ""
 
-#: activity.py:372
+#: activity.py:663
 msgid "Waveform"
 msgstr ""
 
-#: activity.py:379
+#: activity.py:671
 msgid "Frequency"
 msgstr ""
 
-#: activity.py:392
-msgid "Round"
+#: activity.py:702
+msgid "Choose eyes:"
 msgstr ""
 
-#: activity.py:399
-msgid "Glasses"
+#: activity.py:732
+msgid "Eyes number:"
 msgstr ""
 
-#: activity.py:441
+#: activity.py:835
 msgid "mouth changed"
 msgstr ""
 
-#: activity.py:461
+#: activity.py:884 activity.py:905
 msgid "eyes changed"
 msgstr ""
 
-#: activity.py:582
+#: activity.py:1062
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
-#: activity.py:613
+#: activity.py:1097
 msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 
-#: brain.py:37 voice.py:67
-msgid "Spanish"
+#: activity.py:1180
+#, python-format
+msgid "%s joined the chat"
 msgstr ""
 
-#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+#: activity.py:1189
+#, python-format
+msgid "%s left the chat"
+msgstr ""
+
+#: activity.py:1199
+#, python-format
+msgid "%s is here"
+msgstr ""
+
+#: chatbox.py:649
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: voice.py:38
+msgid "Portuguese (Brazil)"
+msgstr ""
+
+#: voice.py:39
+msgid "Swedish"
+msgstr ""
+
+#: voice.py:40
+msgid "Icelandic"
+msgstr ""
+
+#: voice.py:41
+msgid "Romanian"
+msgstr ""
+
+#: voice.py:42
+msgid "Swahili"
+msgstr ""
+
+#: voice.py:43
+msgid "Hindi"
+msgstr ""
+
+#: voice.py:44
+msgid "Dutch"
+msgstr ""
+
+#: voice.py:45
+msgid "Latin"
+msgstr ""
+
+#: voice.py:46
+msgid "Hungarian"
+msgstr ""
+
+#: voice.py:47
+msgid "Macedonian"
+msgstr ""
+
+#: voice.py:48
+msgid "Welsh"
+msgstr ""
+
+#: voice.py:49
+msgid "French"
+msgstr ""
+
+#: voice.py:50
+msgid "Norwegian"
+msgstr ""
+
+#: voice.py:51
+msgid "Russian"
+msgstr ""
+
+#: voice.py:52
+msgid "Afrikaans"
+msgstr ""
+
+#: voice.py:53
+msgid "Finnish"
+msgstr ""
+
+#: voice.py:54 voice.py:158
+msgid "Default"
+msgstr ""
+
+#: voice.py:55
+msgid "Cantonese"
+msgstr ""
+
+#: voice.py:56
+msgid "Scottish"
+msgstr ""
+
+#: voice.py:57
+msgid "Greek"
+msgstr ""
+
+#: voice.py:58
+msgid "Vietnamese"
+msgstr ""
+
+#: voice.py:59 brain.py:46 brain.py:61 brain.py:63 brain.py:86 brain.py:117
+#: brain.py:118
 msgid "English"
 msgstr ""
 
-#: brain.py:97
+#: voice.py:60
+msgid "Lancashire"
+msgstr ""
+
+#: voice.py:61
+msgid "Italian"
+msgstr ""
+
+#: voice.py:62
+msgid "Portuguese"
+msgstr ""
+
+#: voice.py:63
+msgid "German"
+msgstr ""
+
+#: voice.py:64
+msgid "Whisper"
+msgstr ""
+
+#: voice.py:65
+msgid "Croatian"
+msgstr ""
+
+#: voice.py:66
+msgid "Czech"
+msgstr ""
+
+#: voice.py:67
+msgid "Slovak"
+msgstr ""
+
+#: voice.py:68 voice.py:167 brain.py:42
+msgid "Spanish"
+msgstr ""
+
+#: voice.py:69
+msgid "Polish"
+msgstr ""
+
+#: voice.py:70
+msgid "Esperanto"
+msgstr ""
+
+#: brain.py:95
 msgid "Sorry, I can't understand what you are asking about."
 msgstr ""
 
-#: brain.py:121
+#: brain.py:124
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
 
-#: brain.py:142
+#: brain.py:145
 #, python-format
 msgid "my name is %s"
 msgstr ""
 
-#: brain.py:143
+#: brain.py:146
 #, python-format
 msgid "I am %d years old"
 msgstr ""
 
-#: brain.py:145
+#: brain.py:148
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr ""
 
-#: chatbox.py:248
-msgid "URL from Chat"
+#: faceselect.py:48
+msgid "Draw a line from the center to the edge of the left eye's iris"
 msgstr ""
 
-#: chatbox.py:299
-msgid "Copy to Clipboard"
+#: faceselect.py:49
+msgid "Draw a line from the center to the edge of the right eye's iris"
 msgstr ""
 
-#: toolkit/activity_widgets.py:84
-msgid "Stop"
+#: faceselect.py:50
+msgid "Draw a line across the mouth"
 msgstr ""
 
-#: toolkit/activity_widgets.py:96
-msgid "Undo"
+#: faceselect.py:123
+msgid "Cancel"
 msgstr ""
 
-#: toolkit/activity_widgets.py:104
-msgid "Redo"
+#: faceselect.py:128
+msgid "Next"
 msgstr ""
 
-#: toolkit/activity_widgets.py:111
-msgid "Copy"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-) and :)
+#: smilies.py:29
+msgid "Smile"
 msgstr ""
 
-#: toolkit/activity_widgets.py:118
-msgid "Paste"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are ;-) and ;)
+#: smilies.py:32
+msgid "Winking"
 msgstr ""
 
-#: toolkit/activity_widgets.py:128
-msgid "Private"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-/ and :/
+#: smilies.py:35
+msgid "Confused"
 msgstr ""
 
-#: toolkit/activity_widgets.py:135
-msgid "My Neighborhood"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-( and :(
+#: smilies.py:38
+msgid "Sad"
 msgstr ""
 
-#: toolkit/activity_widgets.py:213
-msgid "Description"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-D and :D
+#: smilies.py:41
+msgid "Grin"
 msgstr ""
 
-#: toolkit/activity_widgets.py:393
-msgid "Activity"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-| and :|
+#: smilies.py:44
+msgid "Neutral"
 msgstr ""
 
-#: voice.py:37
-msgid "Portuguese (Brazil)"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-O, :O, =-O and =O
+#: smilies.py:47
+msgid "Shock"
 msgstr ""
 
-#: voice.py:38
-msgid "Swedish"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are B-), B), 8-) and 8)
+#: smilies.py:50
+msgid "Cool"
 msgstr ""
 
-#: voice.py:39
-msgid "Icelandic"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-P and :P
+#: smilies.py:53
+msgid "Tongue"
 msgstr ""
 
-#: voice.py:40
-msgid "Romanian"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :">
+#: smilies.py:56
+msgid "Blushing"
 msgstr ""
 
-#: voice.py:41
-msgid "Swahili"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :'-( and :'(
+#: smilies.py:59
+msgid "Weeping"
 msgstr ""
 
-#: voice.py:42
-msgid "Hindi"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are O-), O), O:-) and O:)
+#: smilies.py:62
+msgid "Angel"
 msgstr ""
 
-#: voice.py:43
-msgid "Dutch"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-$ and :-$
+#: smilies.py:65
+msgid "Don't tell anyone"
 msgstr ""
 
-#: voice.py:44
-msgid "Latin"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are x-(, x(, X-( and x-(
+#: smilies.py:68
+msgid "Angry"
 msgstr ""
 
-#: voice.py:45
-msgid "Hungarian"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are >:> and >:)
+#: smilies.py:71
+msgid "Devil"
 msgstr ""
 
-#: voice.py:46
-msgid "Macedonian"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-B, :B
+#: smilies.py:74
+msgid "Nerd"
 msgstr ""
 
-#: voice.py:47
-msgid "Welsh"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-*, :*
+#: smilies.py:77
+msgid "Kiss"
 msgstr ""
 
-#: voice.py:48
-msgid "French"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :))
+#: smilies.py:80
+msgid "Laughing"
 msgstr ""
 
-#: voice.py:49
-msgid "Norwegian"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are I-)
+#: smilies.py:83
+msgid "Sleepy"
 msgstr ""
 
-#: voice.py:50
-msgid "Russian"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are :-&
+#: smilies.py:86
+msgid "Sick"
 msgstr ""
 
-#: voice.py:51
-msgid "Afrikaans"
+#. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
+#. TRANS: ASCII-art equivalents are /:)
+#: smilies.py:89
+msgid "Raised eyebrows"
 msgstr ""
 
-#: voice.py:52
-msgid "Finnish"
+#: smilies.py:90
+msgid "Heart"
 msgstr ""
 
-#: voice.py:53 voice.py:157
-msgid "Default"
+#: smilies.py:91
+msgid "Airplane"
 msgstr ""
 
-#: voice.py:54
-msgid "Cantonese"
+#: smilies.py:92
+msgid "Music"
 msgstr ""
 
-#: voice.py:55
-msgid "Scottish"
+#: smilies.py:93
+msgid "Check box"
 msgstr ""
 
-#: voice.py:56
-msgid "Greek"
+#: smilies.py:94
+msgid "Spade"
 msgstr ""
 
-#: voice.py:57
-msgid "Vietnamese"
+#: smilies.py:95
+msgid "Telephone"
 msgstr ""
 
-#: voice.py:59
-msgid "Lancashire"
+#: smilies.py:96
+msgid "X box"
 msgstr ""
 
-#: voice.py:60
-msgid "Italian"
+#: smilies.py:97
+msgid "Cadusis"
 msgstr ""
 
-#: voice.py:61
-msgid "Portuguese"
+#: smilies.py:98
+msgid "Female"
 msgstr ""
 
-#: voice.py:62
-msgid "German"
+#: smilies.py:99 smilies.py:104
+msgid "Star"
 msgstr ""
 
-#: voice.py:63
-msgid "Whisper"
+#: smilies.py:100
+msgid "Letter"
 msgstr ""
 
-#: voice.py:64
-msgid "Croatian"
+#: smilies.py:101
+msgid "Poison"
 msgstr ""
 
-#: voice.py:65
-msgid "Czech"
+#: smilies.py:102
+msgid "Check mark"
 msgstr ""
 
-#: voice.py:66
-msgid "Slovak"
+#: smilies.py:103
+msgid "Male"
 msgstr ""
 
-#: voice.py:68
-msgid "Polish"
+#: smilies.py:105
+msgid "Shamrock"
 msgstr ""
 
-#: voice.py:69
-msgid "Esperanto"
+#: smilies.py:106
+msgid "Recycle"
+msgstr ""
+
+#: smilies.py:107
+msgid "X"
+msgstr ""
+
+#: smilies.py:108
+msgid "Fire"
+msgstr ""
+
+#: smilies.py:109
+msgid "Leaf"
+msgstr ""
+
+#: smilies.py:110
+msgid "Cloud"
+msgstr ""
+
+#: smilies.py:111
+msgid "V"
+msgstr ""
+
+#: smilies.py:112
+msgid "Crown"
+msgstr ""
+
+#: smilies.py:113 smilies.py:117 smilies.py:121 smilies.py:125 smilies.py:129
+#: smilies.py:132 smilies.py:135
+msgid "Floret"
+msgstr ""
+
+#: smilies.py:114
+msgid "Star and crescent"
+msgstr ""
+
+#: smilies.py:115
+msgid "Umbrella"
+msgstr ""
+
+#: smilies.py:116
+msgid "Pencil"
+msgstr ""
+
+#: smilies.py:118
+msgid "Snowman"
+msgstr ""
+
+#: smilies.py:119
+msgid "Point right"
+msgstr ""
+
+#: smilies.py:120
+msgid "Horse"
+msgstr ""
+
+#: smilies.py:122
+msgid "Peace sign"
+msgstr ""
+
+#: smilies.py:123
+msgid "Sun"
+msgstr ""
+
+#: smilies.py:124
+msgid "Point left"
+msgstr ""
+
+#: smilies.py:126
+msgid "Yin yang"
+msgstr ""
+
+#: smilies.py:127
+msgid "Moon"
+msgstr ""
+
+#: smilies.py:128
+msgid "Point up"
+msgstr ""
+
+#: smilies.py:130
+msgid "Meteor"
+msgstr ""
+
+#: smilies.py:131
+msgid "Point down"
+msgstr ""
+
+#: smilies.py:133
+msgid "Scissors"
+msgstr ""
+
+#: smilies.py:134
+msgid "Pen"
+msgstr ""
+
+#: smilies.py:136
+msgid "Stars"
+msgstr ""
+
+#: smilies.py:137
+msgid "Place"
+msgstr ""
+
+#: smilies.py:138
+msgid "High voltage"
 msgstr ""

@@ -43,24 +43,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2012-07-24 09:38+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2016-11-28 13:17+0000\n"
+"Last-Translator: Besnik_b <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1480339048.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
 msgid "Speak"
-msgstr "Fol"
+msgstr "Flisni"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Një fytyrë e animuar që thotë çfarëdo që shtypni"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -70,14 +71,20 @@ msgid ""
 "is a great way to experiment with the speech synthesizer, learn to type or "
 "just have fun making a funny face for your XO."
 msgstr ""
+"Flisni është një fytyrë që flet, për laptop XO. Çfarëdo që shtypni, do të "
+"thuhet me zë duke përdorur sintetizatorin XO të të folurës, espeak. Mund të "
+"përimtoni theksin, shpjetësinë dhe lartësinë e zërit, si dhe formën e syve "
+"dhe të gojës. Përbën një mënyrë të goditur të eksperimentohet me "
+"sintetizatorin e të folurës, të mësohet të shtypet ose thjesht për krijimin "
+"e një fytyre zbavitëse për XO-në tuaj."
 
 #: activity.py:170
 msgid "Type something to hear it"
-msgstr "Shkruaj diqka që ta dëgjosh"
+msgstr "Shkruani diçka që ta dëgjoni"
 
 #: activity.py:177
 msgid "Ask robot any question"
-msgstr "Pyete Robotin diqka"
+msgstr "Bëjini robotit çfarëdo pyetje"
 
 #: activity.py:185
 msgid "Voice chat"
@@ -85,7 +92,7 @@ msgstr "Bisedë me zë"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Gjuhë"
 
 #: activity.py:197
 msgid "Voice"
@@ -97,34 +104,33 @@ msgstr "Fytyrë"
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
-msgstr "Numri i syve:"
+msgstr "Numër sysh:"
 
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "Tungjatjeta %s."
 
 #: activity.py:247
-#, python-format
-#, python-format, fuzzy
+#, python-format, python-format
 msgid "Hello %s. Please Type something."
-msgstr "Përshendetje %s. Shkruaj diqka."
+msgstr "Tungjatjeta %s. Ju lutemi, Shtypni diçka."
 
 #: activity.py:331
 msgid "Pitch:"
-msgstr "Shkallëzo:"
+msgstr "Lartësi:"
 
 #: activity.py:344
 msgid "Rate:"
-msgstr "Vlerëso:"
+msgstr "Shpejtësi:"
 
 #: activity.py:352
 msgid "pitch adjusted"
-msgstr "shkallëzim i rregulluar"
+msgstr "lartësia u rregullua"
 
 #: activity.py:356
 msgid "rate adjusted"
-msgstr "vlerësim i rregulluar"
+msgstr "shpejtësia u rregullua"
 
 #: activity.py:365
 msgid "Simple"
@@ -148,20 +154,21 @@ msgstr "Syze"
 
 #: activity.py:441
 msgid "mouth changed"
-msgstr "goja u ndrryshua"
+msgstr "goja ndryshoi"
 
 #: activity.py:461
 msgid "eyes changed"
-msgstr "sytë u ndrryshuan"
+msgstr "sytë ndryshuan"
 
 #: activity.py:582
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"Më ndjeni, s’flas dot %(old_voice)s, le të flasim %(new_voice)s më mirë."
 
 #: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
-msgstr "Ju jeni jashtë linje, fto dikën."
+msgstr "Gjendeni nën mënyrën jashtë linje, ndajeni dhe ftoni dikë."
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
@@ -173,69 +180,70 @@ msgstr "Anglisht"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "Më ndjeni, s’kuptoj dot çfarë po pyesni."
 
 #: brain.py:121
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"Më ndjeni, s’ka kujtesë të lirë që të ngarkohet truri im. Mbyllni veprimtari "
+"të tjera dhe provoni edhe një herë."
 
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "emri im është %s"
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "Jam %d vjeç"
 
 #: brain.py:145
-#, python-format
-#, python-format, fuzzy
+#, python-format, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr "Përshendetje, Unë jam një robot \"%s\". Më pyet diqka."
+msgstr "Tungjatjeta,  jam një robot \"%s\". Ju lutem, pyetmëni diçka."
 
 #: chatbox.py:248
 msgid "URL from Chat"
-msgstr "Linku i Bisedës"
+msgstr "URL prej Fjalosje"
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr "Kopjo tek klipi"
+msgstr "Kopjoje në të Papastër"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr "Ndal"
+msgstr "Ndale"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr "Kthe prapa"
+msgstr "Zhbëje"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr "Ribëj"
+msgstr "Ribëje"
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr "Kopjo"
+msgstr "Kopjoje"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr "Vëj"
+msgstr "Ngjite"
 
 #: toolkit/activity_widgets.py:128
 msgid "Private"
-msgstr ""
+msgstr "Private"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "Lagja Ime"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Përshkrim"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
@@ -263,7 +271,7 @@ msgstr "Suahilisht"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr ""
+msgstr "Hindu"
 
 #: voice.py:43
 msgid "Dutch"
@@ -287,7 +295,7 @@ msgstr "Uellsisht"
 
 #: voice.py:48
 msgid "French"
-msgstr "Frengjisht"
+msgstr "Frëngjisht"
 
 #: voice.py:49
 msgid "Norwegian"
@@ -299,7 +307,7 @@ msgstr "Rusisht"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr "Afrikanisht"
+msgstr "Afrikaans"
 
 #: voice.py:52
 msgid "Finnish"
@@ -307,15 +315,15 @@ msgstr "Finlandisht"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
-msgstr ""
+msgstr "Parazgjedhje"
 
 #: voice.py:54
 msgid "Cantonese"
-msgstr ""
+msgstr "Kantoneze"
 
 #: voice.py:55
 msgid "Scottish"
-msgstr ""
+msgstr "Skotisht "
 
 #: voice.py:56
 msgid "Greek"
@@ -327,16 +335,15 @@ msgstr "Vietnamisht"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr ""
+msgstr "Lankashajër"
 
 #: voice.py:60
 msgid "Italian"
 msgstr "Italisht"
 
 #: voice.py:61
-#, fuzzy
 msgid "Portuguese"
-msgstr "Portugeze"
+msgstr "Portugalisht"
 
 #: voice.py:62
 msgid "German"
@@ -344,7 +351,7 @@ msgstr "Gjermanisht"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "Pëshpërimë"
 
 #: voice.py:64
 msgid "Croatian"
@@ -356,7 +363,7 @@ msgstr "Çekisht"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr "Sllovakisht"
+msgstr "Sllovakisht "
 
 #: voice.py:68
 msgid "Polish"
