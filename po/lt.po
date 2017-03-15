@@ -2,20 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-04-28 09:22+0000\n"
+"Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1461835369.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
@@ -37,15 +39,15 @@ msgstr ""
 
 #: activity.py:170
 msgid "Type something to hear it"
-msgstr ""
+msgstr "Įrašykite ką nors, kad tai išgirstumėte"
 
 #: activity.py:177
 msgid "Ask robot any question"
-msgstr ""
+msgstr "Užduokite robotui bet kokį klausimą"
 
 #: activity.py:185
 msgid "Voice chat"
-msgstr ""
+msgstr "Balso pokalbis"
 
 #: activity.py:191
 msgid "Language"
@@ -61,7 +63,7 @@ msgstr ""
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
-msgstr ""
+msgstr "Akių skaičius:"
 
 #: activity.py:245
 #, python-format
@@ -115,7 +117,7 @@ msgstr ""
 
 #: activity.py:461
 msgid "eyes changed"
-msgstr ""
+msgstr "akys pakeistos"
 
 #: activity.py:582
 #, python-format
@@ -147,7 +149,7 @@ msgstr ""
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "mano vardas %s"
 
 #: brain.py:143
 #, python-format
@@ -165,7 +167,7 @@ msgstr ""
 
 #: chatbox.py:299
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Kopijuoti į iškarpinę"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
@@ -173,19 +175,19 @@ msgstr ""
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
-msgstr ""
+msgstr "Atšaukti"
 
 #: toolkit/activity_widgets.py:104
 msgid "Redo"
-msgstr ""
+msgstr "Grąžinti"
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr ""
+msgstr "Kopijuoti"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Įdėti"
 
 #: toolkit/activity_widgets.py:128
 msgid "Private"

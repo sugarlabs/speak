@@ -30,25 +30,26 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-05-28 03:18+0000\n"
+"Last-Translator: mimibg <emilymariebg@amschool.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1464405481.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
 msgid "Speak"
-msgstr ""
+msgstr "말하기"
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
@@ -77,19 +78,19 @@ msgstr ""
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "언어"
 
 #: activity.py:197
 msgid "Voice"
-msgstr ""
+msgstr "목소리"
 
 #: activity.py:203
 msgid "Face"
-msgstr ""
+msgstr "얼굴"
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
-msgstr ""
+msgstr "눈 번호:"
 
 #: activity.py:245
 #, python-format
@@ -156,11 +157,11 @@ msgstr ""
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "스페인어"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
-msgstr ""
+msgstr "영어"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
@@ -175,12 +176,12 @@ msgstr ""
 #: brain.py:142
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "제 이름은 %s 입니다."
 
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "저는 %d살 입니다."
 
 #: brain.py:145
 #, python-format
@@ -197,7 +198,7 @@ msgstr ""
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr ""
+msgstr "중지"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
@@ -209,19 +210,20 @@ msgstr ""
 
 #: toolkit/activity_widgets.py:111
 msgid "Copy"
-msgstr ""
+msgstr "복사"
 
 #: toolkit/activity_widgets.py:118
 msgid "Paste"
-msgstr ""
+msgstr "붙이기"
 
 #: toolkit/activity_widgets.py:128
+#, fuzzy
 msgid "Private"
-msgstr ""
+msgstr "개인"
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "제 동네"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
@@ -245,39 +247,39 @@ msgstr ""
 
 #: voice.py:40
 msgid "Romanian"
-msgstr ""
+msgstr "루마니아어"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr ""
+msgstr "스와힐리어"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr ""
+msgstr "힌디어"
 
 #: voice.py:43
 msgid "Dutch"
-msgstr ""
+msgstr "네델란드어"
 
 #: voice.py:44
 msgid "Latin"
-msgstr ""
+msgstr "라틴어"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "헝가리어"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr ""
+msgstr "마케도니아어"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr ""
+msgstr "웨일즈어"
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "프랑스어"
 
 #: voice.py:49
 msgid "Norwegian"
@@ -293,7 +295,7 @@ msgstr ""
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "핀란드어"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
@@ -301,19 +303,19 @@ msgstr ""
 
 #: voice.py:54
 msgid "Cantonese"
-msgstr ""
+msgstr "광동어"
 
 #: voice.py:55
 msgid "Scottish"
-msgstr ""
+msgstr "스코틀랜드어"
 
 #: voice.py:56
 msgid "Greek"
-msgstr ""
+msgstr "그리스어"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "베트남어"
 
 #: voice.py:59
 msgid "Lancashire"
@@ -321,15 +323,15 @@ msgstr ""
 
 #: voice.py:60
 msgid "Italian"
-msgstr ""
+msgstr "이탈리아어"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "포르투갈어"
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "독일어"
 
 #: voice.py:63
 msgid "Whisper"
@@ -337,20 +339,20 @@ msgstr ""
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "크로아티아어"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "체코어"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "슬로바키아어"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "폴란드어"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "에스페란토어"
