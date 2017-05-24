@@ -1,0 +1,339 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2017-01-02 16:46+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1483375612.000000\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "Tal"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Andlit með hreyfingum sem segir allt sem þú skrifar"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Tal er talandi haus fyrir XO-fartölvuna. Allt sem þú skrifar verður lesið "
+"upphátt með talgerflinum í XO, sem heitir espeak. Þú getur stillt til "
+"framburð, hraða og tónhæð raddarinnar, auk þess að breyta lögun augna og "
+"munns. Þetta er skemmtileg aðferð við að kynnast talgerflinum, læra á "
+"lyklaborð eða bara skemmta sér við að búa til fyndið andlit á XO-tölvuna "
+"þína."
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "Skrifaðu eitthvað til að heyra það"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "Spyrja vélmenni einhverrar spurningar"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "Raddskilaboð"
+
+#: activity.py:191
+msgid "Language"
+msgstr "Tungumál"
+
+#: activity.py:197
+msgid "Voice"
+msgstr "Raddskilaboð"
+
+#: activity.py:203
+msgid "Face"
+msgstr "Andlit"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Fjöldi augna:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr "Halló %s."
+
+#: activity.py:247
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "Halló %s. Skrifaðu eitthvað."
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "Tónhæð:"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "Talhraði:"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "tónhæð breyttist"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "hraði breyttist"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "Einfalt"
+
+#: activity.py:372
+msgid "Waveform"
+msgstr "Bylgjuform"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "Tíðni"
+
+#: activity.py:392
+msgid "Round"
+msgstr "Rúnnað"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "Gleraugu"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "munnur breyttist"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "augu breyttust"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"Því miður, ég tala ekki %(old_voice)s, eigum við ekki að tala %(new_voice)s "
+"í staðinn."
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr "Þú ert í ótengdum ham, deildu og bjóddu einhverjum."
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "Spænsku"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "Ensku"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Því miður, ég skil ekki hvað þú ert að spyrja um."
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Æ, því miður, það eru ekki meira minni laust í heilanum mínum. Lokaðu "
+"einhverjum öðrum verkefnum og prófaðu svo aftur."
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "ég heiti %s"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "Ég er %d ára"
+
+#: brain.py:145
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "Halló, ég er \"%s\" vélmenni. Spyrðu mig einhverrar spurningar."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "Slóð úr spjalli"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Afrita á klippispjald"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "Stöðva"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "Afturkalla"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "Endurgera"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "Afrita"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "Líma"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "Einkamál"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "Nágrennið mitt"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Lýsing"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "Virkni"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "Brasílískri portúgölsku"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Sænsku"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Íslensku"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Rúmensku"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Svahílí"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Hindí"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Hollensku"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Latínu"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Ungversku"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Makedónsku"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Velsku"
+
+#: voice.py:48
+msgid "French"
+msgstr "Frönsku"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "Norsku"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Rússnesku"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Afríkönsku"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Finnsku"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "Sjálfgefið"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Kantónsku"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Skosku"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Grísku"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "Víetnömsku"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Lancashire-mállýsku"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Ítölsku"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "Portúgölsku"
+
+#: voice.py:62
+msgid "German"
+msgstr "Þýsku"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "Hvísl"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Króatísku"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Tékknesku"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Slóvakísku"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Pólsku"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Esperantó"

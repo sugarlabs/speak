@@ -1,0 +1,333 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2012-10-01 06:38+0200\n"
+"Last-Translator: hariru <hariruroa@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: mi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "Whakahua"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "He kanohi whakahākori ka whakakōrero i tō patonga"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "Patohia tētahi mea kia rangona"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "Pātai atu ki te mihini karetao tētahi pātai"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "Kōrerorero reo"
+
+#: activity.py:191
+msgid "Language"
+msgstr ""
+
+#: activity.py:197
+msgid "Voice"
+msgstr "Reo"
+
+#: activity.py:203
+msgid "Face"
+msgstr "Kanohi"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Tau karu:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr ""
+
+#: activity.py:247
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "Kia Ora %s. Pato mai i tētahi mea."
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "Rangi:"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "Mokatere:"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "whakarite rangi"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "whakarite mokatere"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "Mataiti"
+
+#: activity.py:372
+msgid "Waveform"
+msgstr "Pukangaru"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "Auautanga"
+
+#: activity.py:392
+msgid "Round"
+msgstr "Porohita"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "Mōwhiti"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "waha kua huri"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "karu kua huri"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"Aroha mai, kāore e taea e au te kōrero %(old_voice)s, me kōrero %"
+"(new_voice)s kē tāua."
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr ""
+"Kei roto koe i te aratau rārangi-weto, tiri me te pōwhiri ki tētahi atu."
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "Pāniora"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "Ingarihi"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Aroha mai, kāore e mārama ana ki tō pātai."
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Aroha mai, kāore he pūmahara wātea hei uta ki taku roro. Katia ērā atu hohe "
+"ka ngana anō."
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr ""
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr ""
+
+#: brain.py:145
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "Kia Ora, he mihini karetao \"%s\" ahau. Uia mai he pātai."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "URL mai i te Kōrerorero"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Tārua ki Papatopenga"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "Tū"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "Wete"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "Mahi Anō"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "Tārua"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "Whakapiri"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "Tūmataiti"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "Taku Takiwā"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Whakaaturanga"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "Hohenga"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "Potukariana - Parihiana"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Huitihi"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Tiorangiana"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Romaniana"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Huahīri"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Hiniri"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Tatimana"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Rātini"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Hanekariana"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Makerōnia"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Wēra"
+
+#: voice.py:48
+msgid "French"
+msgstr "Wīwī"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "NowīhianaNowīhiana"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Ruhiana"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Awherikāna"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Whinihi"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "Taunoa"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Kanetonihi"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Kotiana"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Kariki"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "Whitināmu"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Rānekahire"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Ītariana"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "Pōtukara"
+
+#: voice.py:62
+msgid "German"
+msgstr "Tiamana"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "HuipaHuipa"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Koroātiana"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Tiekerowākia"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Horowāka"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Pourihi"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Eperānato"

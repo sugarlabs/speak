@@ -1,0 +1,340 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# MARISELLE <maber56>, 2013.
+# User <juneleonora@yahoo.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2013-09-06 19:39-0400\n"
+"Last-Translator: User <juneleonora@yahoo.com>\n"
+"Language-Team: JuneLeonora\n"
+"Language: pap\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "Speak"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Un kara animá ku ta bisa kiko ku bo taip"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Speak ta un kara ku ta papia pa léptòp XO. Tur loke bo taip bo ta tendé na "
+"bos haltu via e sintetisadó di abla XO, espeak. Bo por adaptá e aksènt, "
+"ritmo i tono di e bos i tambe e forma di e wowonan i e boka. Esaki ta un "
+"gran manera pa eksperimentá ku sintetisadó di abla, siña taip òf simplemente "
+"dibertí trahando kara prèt pa bo XO."
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "Taip algu pa skuch´é"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "Hasi robòt kualke pregunta"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "Chèt ku bos"
+
+#: activity.py:191
+msgid "Language"
+msgstr "Idioma"
+
+#: activity.py:197
+msgid "Voice"
+msgstr "Bos"
+
+#: activity.py:203
+msgid "Face"
+msgstr "Kara"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Number di wowo:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr "Haló %s."
+
+#: activity.py:247
+#, python-format
+#, python-format, python-format
+msgid "Hello %s. Please Type something."
+msgstr "Haló %s. Bo por taip algu?"
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "Tono:"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "Ritmo:"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "tono adaptá"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "ritmo adaptá"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "Simpel"
+
+#: activity.py:372
+msgid "Waveform"
+msgstr "Forma di ola"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "Frekuensia"
+
+#: activity.py:392
+msgid "Round"
+msgstr "Rondó"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "Brel"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "boka kambiá"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "wowo kambiá"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"Despensa, mi no por papia %(old_voice)s, laga nos papia %(new_voice)s na su "
+"lugá"
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr "Bo ta den modo off-line, kompartí i invitá un hende."
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "Spañó"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "Ingles"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Despensa, mi no ta komprondé kiko bo ke puntra."
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Despensa, no tin memoria liber pa karga mi serebro. Sera otro aktividat i "
+"purba un biaha mas."
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "mi nòmber ta %s"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "Mi tin %d aña"
+
+#: brain.py:145
+#, python-format
+#, python-format, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "Haló, ami ta un robòt \"%s\". Bo por hasi mi kualke pregunta."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "URL di Chèt"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Kopia pa klepbòrt"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "Stòp"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "Deshasí"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "Rehasí"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "Kopia"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "Pega"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "Privá"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "Mi besindario"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Deskripshon"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "Aktividat"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "Portugues (Brasil)"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Sueko"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Islándiko"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Rumano"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Swahili"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Hindi"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Hulandes"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Latin"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Húngaro"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Macedonio"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Gales"
+
+#: voice.py:48
+msgid "French"
+msgstr "Franses"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "Norwechi"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Ruso"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Afrikano"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Finlandes"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "Stándart"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Kantones"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Eskoses"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Griego"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "Vietnames"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Lancashire"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Italiano"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "Portugues"
+
+#: voice.py:62
+msgid "German"
+msgstr "Aleman"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "Susurá"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Kroata"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Cheko"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Slovako"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Polako"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Esperanto"

@@ -1,0 +1,340 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# escuelab <amalia.tur1@hotmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2015-12-01 21:45+0000\n"
+"Last-Translator: Roger <contacto@somosazucar.org>\n"
+"Language-Team: Voluntarios quechuas Sugar Camp Lima\n"
+"Language: quz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1449006309.000000\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "Rimay"
+
+# TRAD.ANT.- Llapan qillqasqaykitam kay uyachaqa rima
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Llapan ima qillqasqaykitam rimaq uyacha"
+
+# TRAD. ANT.- RIMAY nisqaqa, computadora XO nisqapi sumaq rimaq uyacham. Imachatapas qillqanki chayqa, payqa huk programa ESPEAK nisqawanmi rimariyta qallarin. Rimarinanpaqqa, munasqaykimanhina imatapas akllariwaq.
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Rimay nisqa rurayqa kay XO nisqa kumputarurapi imaymana sumaq rimaq uyacham. "
+"Imachatapas qillqanki chayqa, payqa huk programa espeak nisqawanmi rimariyta "
+"qallarin. Rimarinanpaqqa, munasqaykimanhina imatapas akllariwaq. Chayri "
+"allin asiyhinam."
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "Uyarinaykipaqqa imatapis qillqay"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "Robotchaman imallatapis tapuy"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "Rimanakuy"
+
+#: activity.py:191
+msgid "Language"
+msgstr "Runa simi"
+
+#: activity.py:197
+msgid "Voice"
+msgstr "Kunka"
+
+#: activity.py:203
+msgid "Face"
+msgstr "Uya"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Hayk'a ñawikuna:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr "Imaynalla %s."
+
+#: activity.py:247
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "Allillanchu %s. Imallatapis qillqariy."
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "Tono nisqa:"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "Utqay kay:"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "mat'ichisqa kunka"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "mat'ichisqa utqay kay"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "Yanqalla"
+
+# Ola _ PUQCHI en C-P y G-H.
+#: activity.py:372
+msgid "Waveform"
+msgstr "Puqchi"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "Wayriku"
+
+#: activity.py:392
+msgid "Round"
+msgstr "Muyukuna"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "Tawañawi"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "huknirasqa simi"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "huknirasqa ñawikuna"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"Pampachawan, manam kay %(old_voice)s simitaqa rimanichu, aswanmi kay %"
+"(new_voice)s simipi rimarisunman."
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr "Mana tinkusqachu kachkanki, pitawanpas waqyay."
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "Kastilla simi"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "Inglés simi"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Pampachaway, mana yachachkanichu tapuwasqaykitaqa."
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Pampachaway, umachayqa hunt'añam kachkan. Huk ruranakunata wichq'ay, ichaqa "
+"wakmanta qhallariwaq."
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "sutiyqa %s chaymi"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "Ñuqaqa %d watayuqmi kani"
+
+#: brain.py:145
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "Allillanchu, robotmi kani \"%s\". Imallatapis tapuchkallaway."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "Rimanakuymanta huk URL"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Raphi waqaychaqman kikinchay"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "Sayachiy"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "Pichay"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "Wakmanta ruray"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "Kikinchay"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "K'askachiy"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "Wakinkunallapaq"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "Llaqtamasichakuna"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Sut’iyachiy"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "Rurana"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "Portugués simi (Brasil)"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Sueco simi"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Islandés simi"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Rumano simi"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Suajli simi"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Hindi simi"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Holandés simi"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Latino simi"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Húngaro simi"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Macedonio simi"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Galés simi"
+
+#: voice.py:48
+msgid "French"
+msgstr "Francés simi"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "Noruego simi"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Ruso simi"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Africaans simi"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Finlandés simi"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "Kasqanmantapacha kikin"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Cantonés simi"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Escocés simi"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Griego simi"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "Vietnamita"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Lancashiri simi"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Italiano simi"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "Portugués simi"
+
+#: voice.py:62
+msgid "German"
+msgstr "Alemán simi"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "Ch'iwiwiwiy"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Croata simi"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Checo simi"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Eslovaco simi"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Polaco simi"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Esperanto simi"
