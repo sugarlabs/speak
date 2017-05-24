@@ -1,0 +1,339 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2013-06-23 19:54+0200\n"
+"Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "Parler"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Un visage animé qui dit ce que tu écris"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Speak est le visage parlant de l'ordinateur XO. Tout ce que tu écris au "
+"clavier est dit à haute voix à l'aide du synthétiseur vocal du XO, espeak. "
+"Tu peux régler l'accent, la fréquence et la hauteur de la voix ainsi que la "
+"forme des yeux et de la bouche. C'est une manière géniale d'expérimenter "
+"avec le synthétiseur vocal, d'apprendre à taper au clavier ou simplement de "
+"t'amuser avec un visage drôle sur ton XO."
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "Tape quelque chose pour l'écouter"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "Pose une question au robot"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "Discussion vocale"
+
+#: activity.py:191
+msgid "Language"
+msgstr "Langue"
+
+#: activity.py:197
+msgid "Voice"
+msgstr "Voix"
+
+#: activity.py:203
+msgid "Face"
+msgstr "Face"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Nombre d'yeux :"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr "Bonjour %s."
+
+#: activity.py:247
+#, python-format
+#, python-format,
+msgid "Hello %s. Please Type something."
+msgstr "Bonjour %s. Tape quelque chose."
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "Hauteur :"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "Fréquence :"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "hauteur ajustée"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "fréquence ajustée"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "Simple"
+
+#: activity.py:372
+msgid "Waveform"
+msgstr "Type d'onde"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "Fréquence"
+
+#: activity.py:392
+msgid "Round"
+msgstr "Ronde"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "Lunettes"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "bouche modifiée"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "yeux modifiés"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"Je regrette. Je ne parle pas %(old_voice)s, parlons plutôt %(new_voice)s."
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr "Tu es en mode hors ligne. Partage et invite quelqu'un."
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "Anglais"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Je regrette. Je ne comprends pas ce que tu demandes."
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Je suis désolé. Il n'y a plus assez de mémoire libre pour charger mon "
+"cerveau. Ferme les autres activités et recommence."
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "Je m'appelle %s"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "J'ai %d ans"
+
+#: brain.py:145
+#, python-format
+#, python-format,
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "Bonjour, je suis un robot \"%s\". Pose-moi une question."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "URL de Discuter"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Copier vers le Presse-papier"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "Arrêter"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "Défaire"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "Refaire"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "Copier"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "Coller"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "Privé"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "Mon voisinage"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Description"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "Activité"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "Portugais (Brésil)"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Suédois"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Islandais"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Roumain"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Swahili"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Hindi"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Néerlandais"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Latin"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Hongrois"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Macédonien"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Gallois"
+
+#: voice.py:48
+msgid "French"
+msgstr "Français"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "Norvégien"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Russe"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Finnois"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "Défaut"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Cantonais"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Écossais"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Grec"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "Vietnamien"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Lancashire"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Italien"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "Portugais"
+
+#: voice.py:62
+msgid "German"
+msgstr "Allemand"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "Chuchoté"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Croate"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Tchèque"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Slovaque"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Polonais"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Espéranto"

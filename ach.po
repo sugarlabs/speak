@@ -1,0 +1,337 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2017-05-23 01:47+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ach\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1495504044.000000\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "Loki"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "Wange ma otware maloko ginma in i goyo"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"Lok obedo wange maloko pi laptop XO. Ginmoo keken ma in i goyo bilok ki dwon "
+"ma lamal kun tiyo ki keto tyen lok, elok. I twero dwoko kit rwom mukato "
+"angec and ododo me dwon kakare calo kit mawange tye kwede ki dog. Man en "
+"obedo yore a piretek pi tiyo tic kikome ki laket lok, nong ngec me goyo nyo "
+"bed kwede ceko mamino wange bedo mamwonya pi XO mamegi."
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "Co ginmo wek i winy ne maber"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "Peny robot lapeny moo keken"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "Leyo lok ki dwon"
+
+#: activity.py:191
+msgid "Language"
+msgstr "Leb"
+
+#: activity.py:197
+msgid "Voice"
+msgstr "Dwon"
+
+#: activity.py:203
+msgid "Face"
+msgstr "Wange"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "Namba me Wang mapol:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr "Hello %s."
+
+#: activity.py:247
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "Hello %s. Tim ber i coo ginmo."
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "Ododo:"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "Ket rwome:"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "kityeko dwoko ododo cen"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "kidwoko cen rwome"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "Yot odoco"
+
+#: activity.py:372
+msgid "Waveform"
+msgstr "Waveform"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "Kabeo ne"
+
+#: activity.py:392
+msgid "Round"
+msgstr "Ogur"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "Gilaci mapol"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "kityeko loko dog"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "kiloko wang mapol"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"Sori, Pe atwero lok kadi wa acel %(old_voice)s, waloki %(new_voice)s akaka."
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr "In itye ii off-kit pa layin, nywak ci i lwong ngatmoo."
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "Leb Spain"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "Leb munu"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "Sori, Pe atwero niang gin ma in iti kapenyo."
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"Sori, kabedo pe ii lapoo wic pi keto adam mamega. Lor tic mukene mapol ci i "
+"tem dok i cel."
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "nyinga obedo %s"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "An abedo %d atego dong ki mwaka"
+
+#: brain.py:145
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "Hello, An abedo robot ''%s''. Tim ber i penya ki lapeny moo keken."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "URL aa ki i kalok"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "Lok i dwok i bao nyime"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "Cung"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "Pe i tim"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "Nwo timo"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "Lok"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "Dan"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "Pirken"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "Ejirani Mamega"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "Lok i kome"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "Tic atia"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "Leb me Portugal (Brazil)"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "Leb Sweden"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "Leb Iceland"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "Leb Romania"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "Leb Swahili"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "Leb Uyindi"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "Leb me Netherland"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "Leb Latin"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "Leb Hungary"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "Leb Macedonia"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "Leb Wales"
+
+#: voice.py:48
+msgid "French"
+msgstr "Leb me France"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "Leb jo Norwey"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "Leb Russia"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "Leb Afrikaner"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "Leb Finland"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "Cik"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "Leb Canton"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "Leb Scotland"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "Leb Greece"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "Leb Vietnam"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "Leb Lancaster"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "Leb I taly"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "Leb Portugal"
+
+#: voice.py:62
+msgid "German"
+msgstr "Leb Germany"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "Whisper"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "Leb Croatia"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "Leb jo Czech Republic"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "Leb Slovakia"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "Leb Poland"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "Leb Esperanto"

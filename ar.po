@@ -1,0 +1,340 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2017-05-22 05:29+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1495430987.000000\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "التحدث"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr "يمكنك من صناعه وجوه متحركه تنطق ما تكتبه أنت !"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"\"التحدث\" هو ببساطه وجه متكلم لحواسيب XO المحموله ! أى شيئ تكتبه سوف يُنطَق "
+"بإستخدام مازج خطابات XO وبمساعده من eSpeak. يمكنك التحكم فى اللهجه وسرعه "
+"التحدث والنعمه الصوتيه ، أما بالنسبه لصناعه الوجوه فيمكنك التحكم فى مظهر "
+"العيون والفم. أجمع العديد من الخبراء أن هذه وسيله رائعه لتنميه مهارات اﻷطفال "
+"السمعيه والكتابيه وأيضاً وسيله جيده لتضميه الوقت من خِلال إنشاء الوجوه "
+"والتحكم بها."
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "اُكتب كلمه وستسمع نطقها"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "إسئل الإنسان الآلى أى سؤال تريده"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "الدردشه الصوتيه"
+
+#: activity.py:191
+msgid "Language"
+msgstr "اللغه"
+
+#: activity.py:197
+msgid "Voice"
+msgstr "الصوت"
+
+#: activity.py:203
+msgid "Face"
+msgstr "الوجه"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "عدد العيون :"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr "أهلاً %s."
+
+#: activity.py:247
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "أهلاً %s ، اُكتب أى شيئ تريده."
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "النغمه :"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "السرعه :"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "ضُبِطَت النغمه"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "ضُبِطَت السرعه"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "بسيط"
+
+#: activity.py:372
+msgid "Waveform"
+msgstr "نمط الموجه الصوتيه"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "التردد"
+
+#: activity.py:392
+msgid "Round"
+msgstr "دائري"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "نظاره"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "غُيِرَ الفم"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "غُيِرَت العيون"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+"لا يمكننى التحدث بصوت %(old_voice)s ، ولكن يمكننى التحدث بصوت %(new_voice)s "
+"بدلاً منه."
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr "أنت حالياً فى الوضع خارج الخط ، شارك و إدعى أحدهم."
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "اﻷسبانيه"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "الإنجليزية"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "آسف ، لا أفهم سؤالك."
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+"لا تتوافر ذاكره وصول عشوائى كافيه للتحميل. يُرجى إغلاق أى نشاطات اخرى مفتوحه "
+"وإعاده المحاوله."
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr "إسمى %s"
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr "أنا أبلغ من العمر %d عاماً(أعوام)"
+
+#: brain.py:145
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "أهلاً ، انا إنسان آلى \"%s\". يمكنك أن تطرح على أى سؤال تريده."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr ""
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "إنسخ إلى الحافظه"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "أوقف"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "تراجع"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "إلغ التراجع"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "إنسخ"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "إلصق"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "خاص"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "الحى الذى أعيش فيه"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "الوصف"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "النشاط"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr "البرتغالية (البرازيل)"
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "السويدية"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "الإيسلندية"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "الرومانية"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "السواحليه"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "الهندية"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "الهولندية"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "اللاتينيه"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "الهنغارية"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "المقدونية"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "الولزية"
+
+#: voice.py:48
+msgid "French"
+msgstr "الفرنسية"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "النرويجية"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "الروسية"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "الأفريقية"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "الفلندية"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "المبدئى"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "الكانتونيه"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "السكوتلندية"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "اليونانية"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr "الفيتنامية"
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "اللانكشاريه"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "الإيطالية"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr "البرتغالية"
+
+#: voice.py:62
+msgid "German"
+msgstr "الألمانية"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "إهمس"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "الكرواتية"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "التشيكية"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "السلوفاكية"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "البولندية"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "الإسبرانتوريه"

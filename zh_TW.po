@@ -1,0 +1,328 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-20 00:31-0400\n"
+"PO-Revision-Date: 2011-10-31 18:16+0200\n"
+"Last-Translator: Yuan <yuanchao@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Speak"
+msgstr "合成語音"
+
+#. TRANS: "summary" option from activity.info file
+msgid "An animated face that speaks whatever you type"
+msgstr ""
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+
+#: activity.py:170
+msgid "Type something to hear it"
+msgstr "輸入句子來聆聽"
+
+#: activity.py:177
+msgid "Ask robot any question"
+msgstr "詢問機器人任何問題"
+
+#: activity.py:185
+msgid "Voice chat"
+msgstr "語音聊天"
+
+#: activity.py:191
+msgid "Language"
+msgstr ""
+
+#: activity.py:197
+msgid "Voice"
+msgstr "語音"
+
+#: activity.py:203
+msgid "Face"
+msgstr "表情"
+
+#: activity.py:227 activity.py:409
+msgid "Eyes number:"
+msgstr "眼睛號碼:"
+
+#: activity.py:245
+#, python-format
+msgid "Hello %s."
+msgstr ""
+
+#: activity.py:247
+#, python-format
+msgid "Hello %s. Please Type something."
+msgstr "你好 %s ，輸入些字吧。"
+
+#: activity.py:331
+msgid "Pitch:"
+msgstr "音高:"
+
+#: activity.py:344
+msgid "Rate:"
+msgstr "速度:"
+
+#: activity.py:352
+msgid "pitch adjusted"
+msgstr "音高調整"
+
+#: activity.py:356
+msgid "rate adjusted"
+msgstr "速度調整"
+
+#: activity.py:365
+msgid "Simple"
+msgstr "簡易"
+
+#: activity.py:372
+msgid "Waveform"
+msgstr "波形"
+
+#: activity.py:379
+msgid "Frequency"
+msgstr "頻率"
+
+#: activity.py:392
+msgid "Round"
+msgstr "圓形"
+
+#: activity.py:399
+msgid "Glasses"
+msgstr "眼鏡"
+
+#: activity.py:441
+msgid "mouth changed"
+msgstr "嘴型已改變"
+
+#: activity.py:461
+msgid "eyes changed"
+msgstr "眼睛已改變"
+
+#: activity.py:582
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr "對不起，我不會說 %(old_voice)s 。我們改說 %(new_voice)s 吧。"
+
+#: activity.py:613
+msgid "You are in off-line mode, share and invite someone."
+msgstr "您現在是離線模式，分享或邀請朋友。"
+
+#: brain.py:37 voice.py:67
+msgid "Spanish"
+msgstr "西班牙語"
+
+#: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
+msgid "English"
+msgstr "英語"
+
+#: brain.py:97
+msgid "Sorry, I can't understand what you are asking about."
+msgstr "抱歉，我不懂你在說什麼。"
+
+#: brain.py:121
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr "抱歉，記憶體容量不足。請先關閉其他活動之後再試一次。"
+
+#: brain.py:142
+#, python-format
+msgid "my name is %s"
+msgstr ""
+
+#: brain.py:143
+#, python-format
+msgid "I am %d years old"
+msgstr ""
+
+#: brain.py:145
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr "你好，我是 %s 機器人，請問我任何問題。"
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "聊天 URL"
+
+#: chatbox.py:299
+msgid "Copy to Clipboard"
+msgstr "複製到剪貼簿"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "停止"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "復原"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "取消復原"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "複製"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "貼上"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "私人"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "我的鄰居"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr ""
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "活動"
+
+#: voice.py:37
+msgid "Portuguese (Brazil)"
+msgstr ""
+
+#: voice.py:38
+msgid "Swedish"
+msgstr "瑞典語"
+
+#: voice.py:39
+msgid "Icelandic"
+msgstr "冰島語"
+
+#: voice.py:40
+msgid "Romanian"
+msgstr "羅馬尼亞語"
+
+#: voice.py:41
+msgid "Swahili"
+msgstr "史瓦西里語"
+
+#: voice.py:42
+msgid "Hindi"
+msgstr "印地語(北印度)"
+
+#: voice.py:43
+msgid "Dutch"
+msgstr "荷蘭語"
+
+#: voice.py:44
+msgid "Latin"
+msgstr "拉丁語"
+
+#: voice.py:45
+msgid "Hungarian"
+msgstr "匈牙利語"
+
+#: voice.py:46
+msgid "Macedonian"
+msgstr "馬其頓語"
+
+#: voice.py:47
+msgid "Welsh"
+msgstr "威爾斯語"
+
+#: voice.py:48
+msgid "French"
+msgstr "法語"
+
+#: voice.py:49
+msgid "Norwegian"
+msgstr "新挪威語"
+
+#: voice.py:50
+msgid "Russian"
+msgstr "俄語"
+
+#: voice.py:51
+msgid "Afrikaans"
+msgstr "南非語"
+
+#: voice.py:52
+msgid "Finnish"
+msgstr "芬蘭語"
+
+#: voice.py:53 voice.py:157
+msgid "Default"
+msgstr "預設"
+
+#: voice.py:54
+msgid "Cantonese"
+msgstr "廣東話"
+
+#: voice.py:55
+msgid "Scottish"
+msgstr "蘇格蘭語"
+
+#: voice.py:56
+msgid "Greek"
+msgstr "現代希臘語"
+
+#: voice.py:57
+msgid "Vietnamese"
+msgstr ""
+
+#: voice.py:59
+msgid "Lancashire"
+msgstr "蘭開郡"
+
+#: voice.py:60
+msgid "Italian"
+msgstr "義大利語"
+
+#: voice.py:61
+msgid "Portuguese"
+msgstr ""
+
+#: voice.py:62
+msgid "German"
+msgstr "德語"
+
+#: voice.py:63
+msgid "Whisper"
+msgstr "悄悄話"
+
+#: voice.py:64
+msgid "Croatian"
+msgstr "克羅埃西亞語"
+
+#: voice.py:65
+msgid "Czech"
+msgstr "捷克語"
+
+#: voice.py:66
+msgid "Slovak"
+msgstr "斯洛伐克語"
+
+#: voice.py:68
+msgid "Polish"
+msgstr "波蘭語"
+
+#: voice.py:69
+msgid "Esperanto"
+msgstr "世界語"
