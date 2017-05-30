@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-28 14:45+1100\n"
+"POT-Creation-Date: 2017-05-30 15:58+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,24 +34,137 @@ msgid ""
 "a funny face."
 msgstr ""
 
-#: faceselect.py:48
-msgid "Draw a line from the center to the edge of the left eye's iris"
+#: voice.py:38
+msgid "Portuguese (Brazil)"
 msgstr ""
 
-#: faceselect.py:49
-msgid "Draw a line from the center to the edge of the right eye's iris"
+#: voice.py:39
+msgid "Swedish"
 msgstr ""
 
-#: faceselect.py:50
-msgid "Draw a line across the mouth"
+#: voice.py:40
+msgid "Icelandic"
 msgstr ""
 
-#: faceselect.py:123
-msgid "Cancel"
+#: voice.py:41
+msgid "Romanian"
 msgstr ""
 
-#: faceselect.py:128
-msgid "Next"
+#: voice.py:42
+msgid "Swahili"
+msgstr ""
+
+#: voice.py:43
+msgid "Hindi"
+msgstr ""
+
+#: voice.py:44
+msgid "Dutch"
+msgstr ""
+
+#: voice.py:45
+msgid "Latin"
+msgstr ""
+
+#: voice.py:46
+msgid "Hungarian"
+msgstr ""
+
+#: voice.py:47
+msgid "Macedonian"
+msgstr ""
+
+#: voice.py:48
+msgid "Welsh"
+msgstr ""
+
+#: voice.py:49
+msgid "French"
+msgstr ""
+
+#: voice.py:50
+msgid "Norwegian"
+msgstr ""
+
+#: voice.py:51
+msgid "Russian"
+msgstr ""
+
+#: voice.py:52
+msgid "Afrikaans"
+msgstr ""
+
+#: voice.py:53
+msgid "Finnish"
+msgstr ""
+
+#: voice.py:54 voice.py:158
+msgid "Default"
+msgstr ""
+
+#: voice.py:55
+msgid "Cantonese"
+msgstr ""
+
+#: voice.py:56
+msgid "Scottish"
+msgstr ""
+
+#: voice.py:57
+msgid "Greek"
+msgstr ""
+
+#: voice.py:58
+msgid "Vietnamese"
+msgstr ""
+
+#: voice.py:59 brain.py:46 brain.py:61 brain.py:63 brain.py:86 brain.py:117
+#: brain.py:118
+msgid "English"
+msgstr ""
+
+#: voice.py:60
+msgid "Lancashire"
+msgstr ""
+
+#: voice.py:61
+msgid "Italian"
+msgstr ""
+
+#: voice.py:62
+msgid "Portuguese"
+msgstr ""
+
+#: voice.py:63
+msgid "German"
+msgstr ""
+
+#: voice.py:64
+msgid "Whisper"
+msgstr ""
+
+#: voice.py:65
+msgid "Croatian"
+msgstr ""
+
+#: voice.py:66
+msgid "Czech"
+msgstr ""
+
+#: voice.py:67
+msgid "Slovak"
+msgstr ""
+
+#: voice.py:68 voice.py:167 brain.py:42
+msgid "Spanish"
+msgstr ""
+
+#: voice.py:69
+msgid "Polish"
+msgstr ""
+
+#: voice.py:70
+msgid "Esperanto"
 msgstr ""
 
 #. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
@@ -349,6 +462,55 @@ msgstr ""
 msgid "High voltage"
 msgstr ""
 
+#: faceselect.py:48
+msgid "Draw a line from the center to the edge of the left eye's iris"
+msgstr ""
+
+#: faceselect.py:49
+msgid "Draw a line from the center to the edge of the right eye's iris"
+msgstr ""
+
+#: faceselect.py:50
+msgid "Draw a line across the mouth"
+msgstr ""
+
+#: faceselect.py:123
+msgid "Cancel"
+msgstr ""
+
+#: faceselect.py:128
+msgid "Next"
+msgstr ""
+
+#: chatbox.py:649
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: brain.py:95
+msgid "Sorry, I can't understand what you are asking about."
+msgstr ""
+
+#: brain.py:124
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+
+#: brain.py:145
+#, python-format
+msgid "my name is %s"
+msgstr ""
+
+#: brain.py:146
+#, python-format
+msgid "I am %d years old"
+msgstr ""
+
+#: brain.py:148
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr ""
+
 #: chat.py:246
 msgid "URL from Speak"
 msgstr ""
@@ -542,166 +704,4 @@ msgstr ""
 #: activity.py:1199
 #, python-format
 msgid "%s is here"
-msgstr ""
-
-#: voice.py:38
-msgid "Portuguese (Brazil)"
-msgstr ""
-
-#: voice.py:39
-msgid "Swedish"
-msgstr ""
-
-#: voice.py:40
-msgid "Icelandic"
-msgstr ""
-
-#: voice.py:41
-msgid "Romanian"
-msgstr ""
-
-#: voice.py:42
-msgid "Swahili"
-msgstr ""
-
-#: voice.py:43
-msgid "Hindi"
-msgstr ""
-
-#: voice.py:44
-msgid "Dutch"
-msgstr ""
-
-#: voice.py:45
-msgid "Latin"
-msgstr ""
-
-#: voice.py:46
-msgid "Hungarian"
-msgstr ""
-
-#: voice.py:47
-msgid "Macedonian"
-msgstr ""
-
-#: voice.py:48
-msgid "Welsh"
-msgstr ""
-
-#: voice.py:49
-msgid "French"
-msgstr ""
-
-#: voice.py:50
-msgid "Norwegian"
-msgstr ""
-
-#: voice.py:51
-msgid "Russian"
-msgstr ""
-
-#: voice.py:52
-msgid "Afrikaans"
-msgstr ""
-
-#: voice.py:53
-msgid "Finnish"
-msgstr ""
-
-#: voice.py:54 voice.py:158
-msgid "Default"
-msgstr ""
-
-#: voice.py:55
-msgid "Cantonese"
-msgstr ""
-
-#: voice.py:56
-msgid "Scottish"
-msgstr ""
-
-#: voice.py:57
-msgid "Greek"
-msgstr ""
-
-#: voice.py:58
-msgid "Vietnamese"
-msgstr ""
-
-#: voice.py:59 brain.py:46 brain.py:61 brain.py:63 brain.py:86 brain.py:117
-#: brain.py:118
-msgid "English"
-msgstr ""
-
-#: voice.py:60
-msgid "Lancashire"
-msgstr ""
-
-#: voice.py:61
-msgid "Italian"
-msgstr ""
-
-#: voice.py:62
-msgid "Portuguese"
-msgstr ""
-
-#: voice.py:63
-msgid "German"
-msgstr ""
-
-#: voice.py:64
-msgid "Whisper"
-msgstr ""
-
-#: voice.py:65
-msgid "Croatian"
-msgstr ""
-
-#: voice.py:66
-msgid "Czech"
-msgstr ""
-
-#: voice.py:67
-msgid "Slovak"
-msgstr ""
-
-#: voice.py:68 voice.py:167 brain.py:42
-msgid "Spanish"
-msgstr ""
-
-#: voice.py:69
-msgid "Polish"
-msgstr ""
-
-#: voice.py:70
-msgid "Esperanto"
-msgstr ""
-
-#: brain.py:95
-msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
-
-#: brain.py:124
-msgid ""
-"Sorry, there is no free memory to load my brain. Close other activities and "
-"try once more."
-msgstr ""
-
-#: brain.py:145
-#, python-format
-msgid "my name is %s"
-msgstr ""
-
-#: brain.py:146
-#, python-format
-msgid "I am %d years old"
-msgstr ""
-
-#: brain.py:148
-#, python-format
-msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
-
-#: chatbox.py:649
-msgid "Copy to Clipboard"
 msgstr ""
