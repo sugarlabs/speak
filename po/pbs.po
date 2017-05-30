@@ -331,9 +331,3 @@ msgstr "Polaco"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
-
-#~ msgid "Mouth:"
-#~ msgstr "Kuné:"
-
-#~ msgid "Eyes:"
-#~ msgstr "Ndáu:"

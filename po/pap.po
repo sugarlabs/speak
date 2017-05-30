@@ -1,27 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
 # MARISELLE <maber56>, 2013.
 # User <juneleonora@yahoo.com>, 2013.
 msgid ""
@@ -359,23 +338,3 @@ msgstr "Polako"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
-
-#~ msgid "Mouth:"
-#~ msgstr "Boka:"
-
-#~ msgid "Eyes:"
-#~ msgstr "Wowo:"
-
-#~ msgid "Brazil"
-#~ msgstr "Brasil"
-
-#~ msgid "Vietnam"
-#~ msgstr "vietnames"
-
-#~ msgid "Portugal"
-#~ msgstr "Portugal"
-
-#, python-format
-#, python-format, fuzzy
-#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
-#~ msgstr "disculpami, mi no por papia %s, laga nos papia %s na su luga."

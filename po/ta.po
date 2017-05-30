@@ -2,34 +2,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -361,26 +333,3 @@ msgstr "பொலிஸ்"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "எஸ்பிறன்ரோ"
-
-#~ msgid "Mouth:"
-#~ msgstr "வாய்:"
-
-#~ msgid "Eyes:"
-#~ msgstr "கண்கள்:"
-
-#~ msgid "Brazil"
-#~ msgstr "பிறேசில்"
-
-#~ msgid "Vietnam"
-#~ msgstr "வியட்னாம்"
-
-#~ msgid "Portugal"
-#~ msgstr "போர்த்துக்கல்"
-
-#, python-format
-#, python-format, fuzzy
-#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
-#~ msgstr "மன்னிக்கவும் என்னால் பேச முடியவில்லை %s, இல்லையென்றால்பேசுங்க %s இப்ப ."
-
-#~ msgid "Keep"
-#~ msgstr "வைத்திரு"

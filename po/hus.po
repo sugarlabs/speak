@@ -330,23 +330,3 @@ msgstr "Polaco"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Aychix"
-
-#~ msgid "Mouth:"
-#~ msgstr "Wi':"
-
-#~ msgid "Eyes:"
-#~ msgstr "Wal:"
-
-#~ msgid "Brazil"
-#~ msgstr "Brasileño"
-
-#~ msgid "Vietnam"
-#~ msgstr "Vietnamita"
-
-#~ msgid "Portugal"
-#~ msgstr "Portugués"
-
-#, python-format
-#, python-format, fuzzy
-#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
-#~ msgstr "Pakwlanchij yab u ejtowal kin kawin %s, alwa' ku kawin %s."

@@ -326,15 +326,3 @@ msgstr "ប៉ូឡូញ (pl)"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "អេស្ពេរ៉ាន់តូ (eo)"
-
-#~ msgid "Eyes:"
-#~ msgstr "ភ្នែក ៖"
-
-#~ msgid "Brazil"
-#~ msgstr "ប្រេស៊ីល"
-
-#~ msgid "Vietnam"
-#~ msgstr "​វៀតណាម​"
-
-#~ msgid "Portugal"
-#~ msgstr "ព័រទុយហ្គាល់"

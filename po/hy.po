@@ -2,40 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2013-06-24 14:20+0200\n"
-"Last-Translator: anushnur <anush.mkrtchyan@ca1492.com>\n"
+"PO-Revision-Date: 2017-05-22 05:30+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1495431032.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
@@ -182,7 +163,7 @@ msgstr "Իմ անունը %s է"
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr "Ես  %d տարեկան եմ"
+msgstr "Ես %d տարեկան եմ"
 
 #: brain.py:145
 #, python-format
@@ -359,26 +340,3 @@ msgstr "Լեհերեն"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Էսպերանտո"
-
-#~ msgid "Mouth:"
-#~ msgstr "Բերանը."
-
-#~ msgid "Eyes:"
-#~ msgstr "Աչքեր."
-
-#~ msgid "Brazil"
-#~ msgstr "Բրազիլիա"
-
-#~ msgid "Vietnam"
-#~ msgstr "Վիետնամերեն"
-
-#~ msgid "Portugal"
-#~ msgstr "Պորտուգալերեն"
-
-#, python-format
-#, python-format, fuzzy
-#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
-#~ msgstr "Ներողություն, ես %s չեմ կարող խոսել, փոխարենը եկեք խոսենք %s:"
-
-#~ msgid "Keep"
-#~ msgstr "Պահել"

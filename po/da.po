@@ -337,26 +337,3 @@ msgstr "Polsk"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Esperanto"
-
-#~ msgid "Mouth:"
-#~ msgstr "Mund:"
-
-#~ msgid "Eyes:"
-#~ msgstr "Øjne:"
-
-#~ msgid "Brazil"
-#~ msgstr "Brasiliansk"
-
-#~ msgid "Vietnam"
-#~ msgstr "Vietnamesisk"
-
-#~ msgid "Portugal"
-#~ msgstr "Portugisisk"
-
-#, python-format
-#, python-format,
-#~ msgid "Sorry, I can't speak %s, let's talk %s instead."
-#~ msgstr "Beklager, jeg kan ikke tale %s, lad os tale %s i stedet for."
-
-#~ msgid "Keep"
-#~ msgstr "Behold"

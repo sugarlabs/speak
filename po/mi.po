@@ -331,9 +331,3 @@ msgstr "Pourihi"
 #: voice.py:69
 msgid "Esperanto"
 msgstr "Eperānato"
-
-#~ msgid "Mouth:"
-#~ msgstr "Waha:"
-
-#~ msgid "Eyes:"
-#~ msgstr "Karu:"

@@ -2,24 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-10-09 00:41+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1475973671.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
@@ -53,11 +51,11 @@ msgstr ""
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: activity.py:197
 msgid "Voice"
-msgstr ""
+msgstr "Glas"
 
 #: activity.py:203
 msgid "Face"
@@ -132,11 +130,11 @@ msgstr ""
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "španski"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
-msgstr ""
+msgstr "engleski"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
@@ -197,79 +195,79 @@ msgstr ""
 
 #: toolkit/activity_widgets.py:135
 msgid "My Neighborhood"
-msgstr ""
+msgstr "Moj komšiluk"
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
-msgstr ""
+msgstr "Aktivnost"
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "portugalski (brazilski)"
 
 #: voice.py:38
 msgid "Swedish"
-msgstr ""
+msgstr "švedski"
 
 #: voice.py:39
 msgid "Icelandic"
-msgstr ""
+msgstr "islandski"
 
 #: voice.py:40
 msgid "Romanian"
-msgstr ""
+msgstr "rumunski"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr ""
+msgstr "svahili"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr ""
+msgstr "hindi"
 
 #: voice.py:43
 msgid "Dutch"
-msgstr ""
+msgstr "holandski"
 
 #: voice.py:44
 msgid "Latin"
-msgstr ""
+msgstr "latinski"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "mađarski"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr ""
+msgstr "makedonski"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr ""
+msgstr "velški"
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "francuski"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "norveški"
 
 #: voice.py:50
 msgid "Russian"
-msgstr ""
+msgstr "ruski"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr ""
+msgstr "afrikanerski"
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "finski"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
@@ -277,19 +275,19 @@ msgstr ""
 
 #: voice.py:54
 msgid "Cantonese"
-msgstr ""
+msgstr "kineski kantonski"
 
 #: voice.py:55
 msgid "Scottish"
-msgstr ""
+msgstr "škotski"
 
 #: voice.py:56
 msgid "Greek"
-msgstr ""
+msgstr "grčki"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "vijetnamski"
 
 #: voice.py:59
 msgid "Lancashire"
@@ -297,15 +295,15 @@ msgstr ""
 
 #: voice.py:60
 msgid "Italian"
-msgstr ""
+msgstr "italijanski"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "portugalski"
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "njemački"
 
 #: voice.py:63
 msgid "Whisper"
@@ -313,20 +311,20 @@ msgstr ""
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "hrvatski"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "češki"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "slovački"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "poljski"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "esperanto"
