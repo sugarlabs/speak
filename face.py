@@ -227,8 +227,7 @@ class View(Gtk.EventBox):
         self.say_notification(voice.friendlyname)
 
     def say(self, something):
-        curse_free = remove_curses(something)
-        self._audio.speak(self._peding or self.status, curse_free)
+        self._audio.speak(self._peding or self.status, something)
 
     def say_notification(self, something):
         status = (self._peding or self.status).clone()
@@ -240,38 +239,3 @@ class View(Gtk.EventBox):
 
     def _size_allocate_cb(self, widget, allocation):
         self._mouthbox.set_size_request(-1, int(allocation.height/2.5))
-
-
-CURSES = ['fuck', 'fucks', 'fucking', 'fucker', 'fucked', 'fuckk', 'fuckks',
-          'fuckking', 'fuckker', 'shit', 'shits', 'shitting', 'shitter',
-          'shitt', 'shitts', 'cunt', 'cunts', 'cunting', 'cunted', 'cuntt',
-          'cunnt', 'asshole', 'assholes', 'arsehole', 'arseholes', 'dickhead',
-          'dickheads', 'shithead', 'shitheads', 'fuckhead', 'fuckheads',
-          'fuckwit', 'fuckwits', 'twat', 'twatted', 'twatter', 'twatting',
-          'kunt', 'kunts', 'kunting', 'kuntz', 'fuk', 'fukn', 'fuker', 'fukr',
-          'fukker', 'fukkr', 'fuks', 'fukk', 'phuk', 'phukker', 'phukking',
-          'fukin', 'piss', 'pissed', 'fag', 'fags', 'gaylord', 'gaylords',
-          'pissing', 'poofter', 'softcock', 'wanker', 'wankers', 'shiiiit',
-          'pisses', 'nigger', 'niggers', 'nigga', 'niggas', 'motherfuck',
-          'mutherfuck', 'muthafuck', 'motherfuk', 'mutherfuk', 'muthafuk',
-          'motherfucker', 'mutherfucker', 'muthafucker', 'motherfukr',
-          'motherfuker', 'motherfukker', 'motherfukkr', 'mutherfukr',
-          'mutherfukker', 'mutherfukkr', 'muthafukr', 'muthafukkr',
-          'muthafuckr', 'shiit', 'motherfuckerz', 'mutherfuckerz',
-          'mothafuckerz', 'motherfukrz', 'motherfukkrz', 'muthafukrz',
-          'muthafuking', 'motherfucking', 'mothafucking', 'muthafuking',
-          'mothafuking', 'motherfuking', 'mothafukking', 'muthafukking',
-          'motherfukking']
-
-
-def remove_curses(something):
-    ''' Speak Swear Filter List '''
-    curse_free = ''
-    words = something.split()
-    for word in words:
-        if word in CURSES:
-            curse_free += '#!#! '
-        else:
-            curse_free += word
-            curse_free += ' '
-    return curse_free

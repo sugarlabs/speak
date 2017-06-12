@@ -32,7 +32,6 @@ import voice
 import espeak
 from faceselect import Eye
 from faceselect import Mouth
-from face import remove_curses
 
 import gi
 gi.require_version("Gtk", "3.0")
@@ -264,8 +263,7 @@ class View(Gtk.DrawingArea):
         self.say_notification(voice.friendlyname)
 
     def say(self, something):
-        curse_free = remove_curses(something)
-        self._audio.speak(self._pending or self.status, curse_free)
+        self._audio.speak(self._pending or self.status, something)
 
     def say_notification(self, something):
         status = (self._pending or self.status).clone()
