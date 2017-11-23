@@ -22,21 +22,17 @@
 import time
 from gettext import gettext as _
 
-import gi
-gi.require_version("Gdk", "3.0")
-gi.require_version('GConf', '2.0')
-
 from gi.repository import Gdk
 from gi.repository import GConf
 from gi.repository import GObject
-
-import logging
-logger = logging.getLogger('speak')
 
 from sugar3 import profile
 
 import aiml
 import voice
+
+import logging
+logger = logging.getLogger('speak')
 
 BOTS = {
     _('Spanish'): {'name': 'Sara',
