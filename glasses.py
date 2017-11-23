@@ -67,12 +67,11 @@ class Glasses(Eye):
         cr.set_line_width(outlineWidth)
         roundrect(outlineWidth, outlineWidth,
                   bounds.width - outlineWidth, bounds.height - outlineWidth)
-        #roundrect(0,0, bounds.width,bounds.height)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
 
         # pupil
-        cr.arc(pupilX, pupilY, pupilSize, 0, 2*math.pi)
+        cr.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.fill()
 

@@ -144,8 +144,8 @@ class TextBox(Gtk.TextView):
 
     def resize_box(self):
         self.set_buffer(self._empty_buffer)
-        self.set_size_request(Gdk.Screen.width() - style.GRID_CELL_SIZE
-                              - 2 * style.DEFAULT_SPACING, -1)
+        self.set_size_request(Gdk.Screen.width() - style.GRID_CELL_SIZE -
+                              2 * style.DEFAULT_SPACING, -1)
 
     def __leave_notify_event_cb(self, widget, event):
         self._mouse_detector.stop()

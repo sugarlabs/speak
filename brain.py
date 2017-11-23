@@ -39,14 +39,14 @@ import aiml
 import voice
 
 BOTS = {
-    _('Spanish'): { 'name': 'Sara',
-                    'brain': 'bot/sara.brn',
-                    'predicates': { 'nombre_bot': 'Sara',
-                                    'botmaster': 'La comunidad Azucar' } },
-    _('English'): { 'name': 'Alice',
-                    'brain': 'bot/alice.brn',
-                    'predicates': { 'name': 'Alice',
-                                    'master': 'The Sugar Community' } } }
+    _('Spanish'): {'name': 'Sara',
+                   'brain': 'bot/sara.brn',
+                   'predicates': {'nombre_bot': 'Sara',
+                                  'botmaster': 'La comunidad Azucar'}},
+    _('English'): {'name': 'Alice',
+                   'brain': 'bot/alice.brn',
+                   'predicates': {'name': 'Alice',
+                                  'master': 'The Sugar Community'}}}
 
 
 def get_mem_info(tag):
@@ -70,7 +70,7 @@ _kernel_voice = None
 def _get_age():
     client = GConf.Client.get_default()
     birth_timestamp = client.get_int('/desktop/sugar/user/birth_timestamp')
-    if birth_timestamp == None or birth_timestamp == 0:
+    if birth_timestamp is None or birth_timestamp == 0:
         return 8
     else:
         current_timestamp = time.time()
@@ -121,7 +121,7 @@ def load(activity, voice, sorry=None):
             kernel = aiml.Kernel()
 
             if brain['brain'] is None:
-                warning = _("Sorry, there is no free memory to load my " \
+                warning = _("Sorry, there is no free memory to load my "
                             "brain. Close other activities and try once more.")
                 activity.face.say_notification(warning)
                 return

@@ -71,7 +71,7 @@ class Halfmoon(Eye):
         cr.fill()
 
         # pupil
-        cr.arc(pupilX, pupilY, pupilSize, 0, 2*math.pi)
+        cr.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.fill()
 

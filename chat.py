@@ -196,8 +196,8 @@ class View(Gtk.VBox):
 
     def shut_up(self):
         for i in self._buddies.values():
-            i.shut_up();
-        self.me.shut_up();
+            i.shut_up()
+        self.me.shut_up()
 
     def _add_buddy(self, buddy):
         self._buddies[buddy] = self._new_face(buddy, BUDDIES_COLOR)
@@ -247,7 +247,7 @@ class View(Gtk.VBox):
             'title_set_by_user': '1',
             'icon-color': profile.get_color().to_string(),
             'mime_type': 'text/uri-list',
-            }
+        }
         for k, v in metadata.items():
             jobject.metadata[k] = v
         file_path = os.path.join(get_activity_root(), 'instance',
@@ -259,4 +259,3 @@ class View(Gtk.VBox):
         show_object_in_journal(jobject.object_id)
         jobject.destroy()
         os.unlink(file_path)
-

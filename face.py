@@ -65,38 +65,36 @@ class Status:
         self.mouth = mouth.Mouth
 
     def serialize(self):
-        eyes    = { eye.Eye: 1,
-                    glasses.Glasses: 2,
-                    eyelashes.Eyelashes: 3,
-                    halfmoon.Halfmoon: 4,
-                    sunglasses.Sunglasses: 5,
-                    wireframes.Wireframes: 6,
-                    sleepy.Sleepy: 7}
-        mouths  = { mouth.PeakMouth: 1,
-                    waveform_mouth.WaveformMouth: 2,
-                    fft_mouth.FFTMouth: 3,
-                    }
+        eyes = {eye.Eye: 1,
+                glasses.Glasses: 2,
+                eyelashes.Eyelashes: 3,
+                halfmoon.Halfmoon: 4,
+                sunglasses.Sunglasses: 5,
+                wireframes.Wireframes: 6,
+                sleepy.Sleepy: 7}
+        mouths = {mouth.PeakMouth: 1,
+                  waveform_mouth.WaveformMouth: 2,
+                  fft_mouth.FFTMouth: 3}
 
         return json.dumps({
             'voice': {'language': self.voice.language,
-                        'name': self.voice.name},
+                      'name': self.voice.name},
             'pitch': self.pitch,
             'rate': self.rate,
             'eyes': [eyes[i] for i in self.eyes],
             'mouth': mouths[self.mouth]})
 
     def deserialize(self, buf):
-        eyes    = { 1: eye.Eye,
-                    2: glasses.Glasses,
-                    3: eyelashes.Eyelashes,
-                    4: halfmoon.Halfmoon,
-                    5: sunglasses.Sunglasses,
-                    6: wireframes.Wireframes,
-                    7: sleepy.Sleepy}
-        mouths  = { 1: mouth.PeakMouth,
-                    2: waveform_mouth.WaveformMouth,
-                    3: fft_mouth.FFTMouth,
-                    }
+        eyes = {1: eye.Eye,
+                2: glasses.Glasses,
+                3: eyelashes.Eyelashes,
+                4: halfmoon.Halfmoon,
+                5: sunglasses.Sunglasses,
+                6: wireframes.Wireframes,
+                7: sleepy.Sleepy}
+        mouths = {1: mouth.PeakMouth,
+                  2: waveform_mouth.WaveformMouth,
+                  3: fft_mouth.FFTMouth}
 
         data = json.loads(buf)
         self.voice = voice.Voice(data['voice']['language'],
@@ -176,7 +174,7 @@ class View(Gtk.EventBox):
                 x, y = pos
             map(lambda e, x=x, y=y: e.look_at(x, y), self._eyes)
 
-    def update(self, status = None):
+    def update(self, status=None):
         if not status:
             status = self.status
         else:
@@ -238,4 +236,4 @@ class View(Gtk.EventBox):
         self._audio.stop_sound_device()
 
     def _size_allocate_cb(self, widget, allocation):
-        self._mouthbox.set_size_request(-1, int(allocation.height/2.5))
+        self._mouthbox.set_size_request(-1, int(allocation.height / 2.5))

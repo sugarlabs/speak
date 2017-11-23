@@ -78,7 +78,7 @@ class Status(object):
 
         return json.dumps({
             'voice': {'language': self.voice.language,
-                        'name': self.voice.name},
+                      'name': self.voice.name},
             'pitch': self.pitch,
             'rate': self.rate,
             'left_eye': self.left_eye.__dict__,
@@ -126,7 +126,6 @@ class View(Gtk.DrawingArea):
     def __init__(self, pixbuf, left_eye, right_eye, mouth,
                  fill_color=style.COLOR_BUTTON_GREY):
         Gtk.DrawingArea.__init__(self)
-
 
         self.status = Status()
         self._color = fill_color
@@ -183,7 +182,7 @@ class View(Gtk.DrawingArea):
                      self.status.mouth.h)
         Gdk.cairo_set_source_pixbuf(cr, self.status.mouth.pixbuf,
                                     offset_x + self.status.mouth.x,
-                                    offset_y + self.status.mouth.y + \
+                                    offset_y + self.status.mouth.y +
                                     volume_offset)
         cr.fill()
 
@@ -210,9 +209,9 @@ class View(Gtk.DrawingArea):
     def _compute_pupil(self, eye, offset_x, offset_y, look_x, look_y):
         CIRC = eye.circ / _EYE_CIRCUMFERENCE
         EYE_X, EYE_Y = self.translate_coordinates(
-                self.get_toplevel(),
-                int(eye.center[0] + offset_x),
-                int(eye.center[1] + offset_y))
+            self.get_toplevel(),
+            int(eye.center[0] + offset_x),
+            int(eye.center[1] + offset_y))
         EYE_HWIDTH = CIRC
         EYE_HHEIGHT = CIRC
         BALL_DIST = EYE_HWIDTH / (eye.circ / _BALL_DIST_CIRC_RATIO * 4)

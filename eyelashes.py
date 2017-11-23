@@ -54,7 +54,7 @@ class Eyelashes(Eye):
         if distance > limit:
             pupilX = bounds.width / 2 + dX * limit / distance
             pupilY = bounds.height / 2 + dY * limit / distance + \
-                     int(bounds.height * 0.1)
+                int(bounds.height * 0.1)
 
         # background
         cr.set_source_rgba(*self.fill_color.get_rgba())
@@ -72,7 +72,7 @@ class Eyelashes(Eye):
         cr.fill()
 
         # pupil
-        cr.arc(pupilX, pupilY, pupilSize, 0, 2*math.pi)
+        cr.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.fill()
 

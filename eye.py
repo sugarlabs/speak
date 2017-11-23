@@ -27,7 +27,6 @@ import gi
 gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gtk
-from gi.repository import Gdk
 
 
 class Eye(Gtk.DrawingArea):
@@ -67,7 +66,7 @@ class Eye(Gtk.DrawingArea):
             return cx, a.height * 0.6
 
         EYE_X, EYE_Y = self.translate_coordinates(
-                self.get_toplevel(), a.width / 2, a.height / 2)
+            self.get_toplevel(), a.width / 2, a.height / 2)
         EYE_HWIDTH = a.width
         EYE_HHEIGHT = a.height
         BALL_DIST = EYE_HWIDTH / 4
@@ -112,14 +111,14 @@ class Eye(Gtk.DrawingArea):
 
         # eye ball
         cr.arc(bounds.width / 2, bounds.height / 2,
-                         eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
+               eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
         cr.set_source_rgb(1, 1, 1)
         cr.fill()
 
         # outline
         cr.set_line_width(outlineWidth)
         cr.arc(bounds.width / 2, bounds.height / 2,
-                         eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
+               eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
 

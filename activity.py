@@ -113,7 +113,7 @@ EYE_DICT = {
                    'index': 5},
     'wireframes': {'label': _('Wire frames'), 'widget': wireframes.Wireframes,
                    'index': 6},
-    }
+}
 DELAY_BEFORE_SPEAKING = 1500  # milleseconds
 IDLE_DELAY = 120000  # milleseconds
 IDLE_PHRASES = ['zzzzzzzzz', _('I am bored.'), _('Talk to me.'),
@@ -221,8 +221,8 @@ class SpeakActivity(activity.Activity):
             self._box.pack_start(self.face, True, False, 0)
             self._box.pack_start(self._entry_box, True, True, 0)
 
-        self.add_events(Gdk.EventMask.POINTER_MOTION_HINT_MASK
-                        | Gdk.EventMask.POINTER_MOTION_MASK)
+        self.add_events(Gdk.EventMask.POINTER_MOTION_HINT_MASK |
+                        Gdk.EventMask.POINTER_MOTION_MASK)
         self.connect('motion_notify_event', self._mouse_moved_cb)
 
         self._box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -298,7 +298,7 @@ class SpeakActivity(activity.Activity):
         self.toolbar_box = toolbox
 
         Gdk.Screen.get_default().connect('size-changed',
-                                             self._configure_cb)
+                                         self._configure_cb)
 
         self._first_time = True
         self._new_instance()
@@ -761,7 +761,7 @@ class SpeakActivity(activity.Activity):
                 num = self._notebook.page_num(selector)
                 self._notebook.set_current_page(num)
         chooser.destroy()
-                
+
     def _photo_face_processed_cb(self, widget, *face_data):
         lighter = style.Color(self._colors[_lighter_color(self._colors)])
         self._set_face(photoface.View(*face_data, fill_color=lighter),
@@ -1334,7 +1334,7 @@ class TextChannelWrapper(object):
         if my_csh == cs_handle:
             handle = conn.GetSelfHandle()
         elif group.GetGroupFlags() & \
-             CHANNEL_GROUP_FLAG_CHANNEL_SPECIFIC_HANDLES:
+                CHANNEL_GROUP_FLAG_CHANNEL_SPECIFIC_HANDLES:
             handle = group.GetHandleOwners([cs_handle])[0]
         else:
             handle = cs_handle

@@ -25,7 +25,7 @@
 
 import cairo
 from mouth import Mouth
-from numpy.fft import *
+from numpy.fft import fft
 
 
 class FFTMouth(Mouth):

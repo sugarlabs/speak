@@ -136,7 +136,7 @@ THEME = [
     ('unicode-47', _('Stars'), ['⁂']),
     ('unicode-48', _('Place'), ['⌘']),
     ('unicode-49', _('High voltage'), ['⚡']),
-    ]
+]
 
 SMILIES_SIZE = int(style.STANDARD_ICON_SIZE * 0.75)
 _catalog = {}
@@ -198,7 +198,7 @@ def init():
                     fd = open(archivo, 'w')
                     fd.write(_generate_svg(codes[0]))
                     fd.close()
-                except IOError as e:
+                except IOError:
                     pass
         else:
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(

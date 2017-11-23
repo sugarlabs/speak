@@ -84,10 +84,10 @@ class BaseAudioGrab(GObject.GObject):
         # and sends it to both the audio output
         # and a fake one that we use to draw from
         cmd = 'espeak name=espeak' \
-          ' ! capsfilter name=caps' \
-          ' ! tee name=me' \
-          ' me.! queue ! autoaudiosink name=ears' \
-          ' me.! queue ! fakesink name=sink'
+            ' ! capsfilter name=caps' \
+            ' ! tee name=me' \
+            ' me.! queue ! autoaudiosink name=ears' \
+            ' me.! queue ! fakesink name=sink'
         self.pipeline = Gst.parse_launch(cmd)
 
         # force a sample bit width to match our numpy code below

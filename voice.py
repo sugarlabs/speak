@@ -25,10 +25,9 @@ import re
 import os
 from gettext import gettext as _
 
+import espeak
 import logging
 logger = logging.getLogger('speak')
-
-import espeak
 
 # Lets trick gettext into generating entries for the voice names we
 # expect espeak to have. If espeak actually has new or different names
@@ -79,13 +78,13 @@ class Voice:
         self.language = language
         self.name = name
         friendlyname = name
-        friendlyname = friendlyname.replace('-test','')
-        friendlyname = friendlyname.replace('_test','')
-        friendlyname = friendlyname.replace('en-','')
-        friendlyname = friendlyname.replace('english-wisper','whisper')
+        friendlyname = friendlyname.replace('-test', '')
+        friendlyname = friendlyname.replace('_test', '')
+        friendlyname = friendlyname.replace('en-', '')
+        friendlyname = friendlyname.replace('english-wisper', 'whisper')
         friendlyname = friendlyname.replace('english-us', 'us')
 
-        friendlynameRP = name # friendlyname for RP
+        friendlynameRP = name  # friendlyname for RP
         friendlynameRP = friendlynameRP.replace('english_rp', 'rp')
         friendlynameRP = friendlynameRP.replace('english_wmids', 'wmids')
 
@@ -141,11 +140,11 @@ def defaultVoice():
 
     voices = allVoices()
 
-    def fit(a,b):
+    def fit(a, b):
         "Compare two language ids to see if they are similar."
         as_ = re.split(r'[^a-z]+', a.lower())
         bs = re.split(r'[^a-z]+', b.lower())
-        for count in range(0, min(len(as_),len(bs))):
+        for count in range(0, min(len(as_), len(bs))):
             if as_[count] != bs[count]:
                 count -= 1
                 break
@@ -161,19 +160,17 @@ def defaultVoice():
         best = voices[_("Default")]  # espeak 1.48
     for voice in voices.values():
         voiceMetric = fit(voice.language, lang)
-        bestMetric  = fit(best.language, lang)
-        if lang=='en_AU.UTF-8':
-            if voice.friendlyname=='English (Received Pronunciation)':
+        bestMetric = fit(best.language, lang)
+        if lang == 'en_AU.UTF-8':
+            if voice.friendlyname == 'English (Received Pronunciation)':
                 best = voice
                 break
         if lang[0:2] == 'es':
-            if voice.friendlyname==_('Spanish'):
+            if voice.friendlyname == _('Spanish'):
                 best = voice
                 break
         if voiceMetric > bestMetric:
             best = voice
 
-    print "Best voice for LANG %s seems to be %s %s" % \
-      (lang, best.language, best.friendlyname)
-    _defaultVoice =  best
+    _defaultVoice = best
     return best

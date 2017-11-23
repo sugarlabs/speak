@@ -100,7 +100,7 @@ class Sunglasses(Eye):
         cr.fill()
 
         # pupil
-        cr.arc(pupilX + dx, pupilY, pupilSize, 0, 2*math.pi)
+        cr.arc(pupilX + dx, pupilY, pupilSize, 0, 2 * math.pi)
         cr.set_source_rgb(255, 255, 255)
         cr.fill()
 
