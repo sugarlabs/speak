@@ -806,9 +806,7 @@ class SpeakActivity(activity.Activity):
             bnt.set_sensitive(cartoon)
         self._mode_chat.set_sensitive(cartoon)
 
-
     def _clear_photo_cb(self, widget):
-        lighter = style.Color(self._colors[_lighter_color(self._colors)])
         self._set_face(self._cartoon_face, FACE_CARTOON)
 
     def _face_palette_cb(self, button):
