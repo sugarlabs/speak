@@ -173,6 +173,7 @@ class BaseAudioGrab(GObject.GObject):
             elif message.type in (Gst.MessageType.EOS, Gst.MessageType.ERROR):
                 logger.debug(message.type)
                 self.stop_sound_device()
+            return True
 
         self._was_message = False
         bus = self.pipeline.get_bus()
