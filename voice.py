@@ -143,9 +143,9 @@ def defaultVoice():
 
     def fit(a,b):
         "Compare two language ids to see if they are similar."
-	as_ = re.split(r'[^a-z]+', a.lower())
-	bs = re.split(r'[^a-z]+', b.lower())
-	for count in range(0, min(len(as_),len(bs))):
+        as_ = re.split(r'[^a-z]+', a.lower())
+        bs = re.split(r'[^a-z]+', b.lower())
+        for count in range(0, min(len(as_),len(bs))):
             if as_[count] != bs[count]:
                 count -= 1
                 break
@@ -155,7 +155,10 @@ def defaultVoice():
     except:
         lang = ""
 
-    best = voices[_("Default")]
+    try:
+        best = voices[_("English")]  # espeak-ng 1.49.1
+    except:
+        best = voices[_("Default")]  # espeak 1.48
     for voice in voices.values():
         voiceMetric = fit(voice.language, lang)
         bestMetric  = fit(best.language, lang)
