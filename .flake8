@@ -1,0 +1,9 @@
+[flake8]
+
+# E402 module level import not at top of file
+# gi.require_version() is required before later imports
+
+# E501 line too long (%d > 79 characters)
+# files have embedded SVGs yet to be reformatted or moved to files
+
+ignore = E402,E501
