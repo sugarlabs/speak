@@ -184,31 +184,31 @@ class View(Gtk.EventBox):
             self.status = status
 
         if self._eyes:
-            for eye in self._eyes:
-                self._eyebox.remove(eye)
+            for the in self._eyes:
+                self._eyebox.remove(the)
         if self._mouth:
             self._mouthbox.remove(self._mouth)
 
         self._eyes = []
 
         for e, i in enumerate(status.eyes):
-            eye = i(self.fill_color)
-            if eye.has_left_center_right():
+            the = i(self.fill_color)
+            if the.has_left_center_right():
                 if e == 0:
                     if len(status.eyes) > 1:  # Left
-                        eye.set_eye(0)
+                        the.set_eye(0)
                     else:
-                        eye.set_eye(1)  # Center if only 1 eye
+                        the.set_eye(1)  # Center if only 1 eye
                 elif e == len(status.eyes) - 1:  # Right
-                    eye.set_eye(2)
+                    the.set_eye(2)
                 else:  # Center
-                    eye.set_eye(1)
-            self._eyes.append(eye)
-            if eye.has_padding():
-                self._eyebox.pack_start(eye, True, True, int(FACE_PAD / 4))
+                    the.set_eye(1)
+            self._eyes.append(the)
+            if the.has_padding():
+                self._eyebox.pack_start(the, True, True, int(FACE_PAD / 4))
             else:
-                self._eyebox.pack_start(eye, True, True, 0)
-            eye.show()
+                self._eyebox.pack_start(the, True, True, 0)
+            the.show()
 
         if self._mouth is not None:
             self._mouth.stop()
