@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 15:58+1000\n"
+"POT-Creation-Date: 2017-12-04 17:17+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity/activity.info:2 activity.py:194
+#: activity/activity.info:2 activity.py:196
 msgid "Speak"
 msgstr ""
 
@@ -34,137 +34,257 @@ msgid ""
 "a funny face."
 msgstr ""
 
-#: voice.py:38
-msgid "Portuguese (Brazil)"
+#: activity.py:108
+msgid "Round"
 msgstr ""
 
-#: voice.py:39
-msgid "Swedish"
+#: activity.py:109
+msgid "Glasses"
 msgstr ""
 
-#: voice.py:40
-msgid "Icelandic"
+#: activity.py:110
+msgid "Half moon"
 msgstr ""
 
-#: voice.py:41
-msgid "Romanian"
+#: activity.py:112
+msgid "Eye lashes"
 msgstr ""
 
-#: voice.py:42
-msgid "Swahili"
+#: activity.py:114
+msgid "Sunglasses"
 msgstr ""
 
-#: voice.py:43
-msgid "Hindi"
+#: activity.py:116
+msgid "Wire frames"
 msgstr ""
 
-#: voice.py:44
-msgid "Dutch"
+#: activity.py:121
+msgid "I am bored."
 msgstr ""
 
-#: voice.py:45
-msgid "Latin"
+#: activity.py:121
+msgid "Talk to me."
 msgstr ""
 
-#: voice.py:46
-msgid "Hungarian"
+#: activity.py:122
+msgid "I am sleepy."
 msgstr ""
 
-#: voice.py:47
-msgid "Macedonian"
+#: activity.py:122
+msgid "Are you still there?"
 msgstr ""
 
-#: voice.py:48
-msgid "Welsh"
+#: activity.py:123
+msgid "Please type something."
 msgstr ""
 
-#: voice.py:49
-msgid "French"
+#: activity.py:124
+msgid "Do you have anything to say to me?"
 msgstr ""
 
-#: voice.py:50
-msgid "Norwegian"
+#: activity.py:124
+msgid "Hello?"
 msgstr ""
 
-#: voice.py:51
-msgid "Russian"
+#: activity.py:125
+msgid "Whoa! Sideways!"
 msgstr ""
 
-#: voice.py:52
-msgid "Afrikaans"
+#: activity.py:125
+msgid "I'm on my side."
 msgstr ""
 
-#: voice.py:53
-msgid "Finnish"
+#: activity.py:125
+msgid "Uh oh."
 msgstr ""
 
-#: voice.py:54 voice.py:158
-msgid "Default"
+#: activity.py:126
+msgid "Wheeeee!"
 msgstr ""
 
-#: voice.py:55
-msgid "Cantonese"
+#: activity.py:126
+msgid "Hey! Put me down!"
 msgstr ""
 
-#: voice.py:56
-msgid "Scottish"
+#: activity.py:126
+msgid "Falling over!"
 msgstr ""
 
-#: voice.py:57
-msgid "Greek"
+#: activity.py:260
+msgid "Type something to hear it"
 msgstr ""
 
-#: voice.py:58
-msgid "Vietnamese"
+#: activity.py:267
+msgid "Ask robot any question"
 msgstr ""
 
-#: voice.py:59 brain.py:46 brain.py:61 brain.py:63 brain.py:86 brain.py:117
-#: brain.py:118
-msgid "English"
+#: activity.py:274
+msgid "Voice chat"
 msgstr ""
 
-#: voice.py:60
-msgid "Lancashire"
+#: activity.py:280
+msgid "Voice"
 msgstr ""
 
-#: voice.py:61
-msgid "Italian"
+#: activity.py:287
+msgid "Face"
 msgstr ""
 
-#: voice.py:62
-msgid "Portuguese"
+#: activity.py:369
+#, python-format
+msgid "Hello %s."
 msgstr ""
 
-#: voice.py:63
-msgid "German"
+#: activity.py:371
+#, python-format
+msgid "Hello %s. Please Type something."
 msgstr ""
 
-#: voice.py:64
-msgid "Whisper"
+#: activity.py:375 activity.py:377
+#, python-format
+msgid "Welcome back %s."
 msgstr ""
 
-#: voice.py:65
-msgid "Croatian"
+#: activity.py:555
+msgid "Choose voice:"
 msgstr ""
 
-#: voice.py:66
-msgid "Czech"
+#: activity.py:608
+msgid "Pitch:"
 msgstr ""
 
-#: voice.py:67
-msgid "Slovak"
+#: activity.py:618
+msgid "Rate:"
 msgstr ""
 
-#: voice.py:68 voice.py:167 brain.py:42
+#: activity.py:626
+msgid "pitch adjusted"
+msgstr ""
+
+#: activity.py:630
+msgid "rate adjusted"
+msgstr ""
+
+#: activity.py:636
+msgid "Set face from photo"
+msgstr ""
+
+#: activity.py:642
+msgid "Clear photo face"
+msgstr ""
+
+#: activity.py:657
+msgid "Simple"
+msgstr ""
+
+#: activity.py:665
+msgid "Waveform"
+msgstr ""
+
+#: activity.py:673
+msgid "Frequency"
+msgstr ""
+
+#: activity.py:704
+msgid "Choose eyes:"
+msgstr ""
+
+#: activity.py:734
+msgid "Eyes number:"
+msgstr ""
+
+#: activity.py:835
+msgid "mouth changed"
+msgstr ""
+
+#: activity.py:884 activity.py:905
+msgid "eyes changed"
+msgstr ""
+
+#: activity.py:1062
+#, python-format
+msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
+msgstr ""
+
+#: activity.py:1097
+msgid "You are in off-line mode, share and invite someone."
+msgstr ""
+
+#: activity.py:1180
+#, python-format
+msgid "%s joined the chat"
+msgstr ""
+
+#: activity.py:1189
+#, python-format
+msgid "%s left the chat"
+msgstr ""
+
+#: activity.py:1199
+#, python-format
+msgid "%s is here"
+msgstr ""
+
+#: brain.py:38 voice.py:67 voice.py:160
 msgid "Spanish"
 msgstr ""
 
-#: voice.py:69
-msgid "Polish"
+#: brain.py:42 brain.py:57 brain.py:59 brain.py:82 brain.py:113 brain.py:114
+#: voice.py:58 voice.py:149
+msgid "English"
 msgstr ""
 
-#: voice.py:70
-msgid "Esperanto"
+#: brain.py:91
+msgid "Sorry, I can't understand what you are asking about."
+msgstr ""
+
+#: brain.py:120
+msgid ""
+"Sorry, there is no free memory to load my brain. Close other activities and "
+"try once more."
+msgstr ""
+
+#: brain.py:141
+#, python-format
+msgid "my name is %s"
+msgstr ""
+
+#: brain.py:142
+#, python-format
+msgid "I am %d years old"
+msgstr ""
+
+#: brain.py:144
+#, python-format
+msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+msgstr ""
+
+#: chat.py:243
+msgid "URL from Speak"
+msgstr ""
+
+#: chatbox.py:649
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: faceselect.py:45
+msgid "Draw a line from the center to the edge of the left eye's iris"
+msgstr ""
+
+#: faceselect.py:46
+msgid "Draw a line from the center to the edge of the right eye's iris"
+msgstr ""
+
+#: faceselect.py:47
+msgid "Draw a line across the mouth"
+msgstr ""
+
+#: faceselect.py:120
+msgid "Cancel"
+msgstr ""
+
+#: faceselect.py:125
+msgid "Next"
 msgstr ""
 
 #. TRANS: A smiley (http://en.wikipedia.org/wiki/Smiley) explanation
@@ -462,246 +582,126 @@ msgstr ""
 msgid "High voltage"
 msgstr ""
 
-#: faceselect.py:48
-msgid "Draw a line from the center to the edge of the left eye's iris"
+#: voice.py:37
+msgid "Portuguese (Brazil)"
 msgstr ""
 
-#: faceselect.py:49
-msgid "Draw a line from the center to the edge of the right eye's iris"
+#: voice.py:38
+msgid "Swedish"
 msgstr ""
 
-#: faceselect.py:50
-msgid "Draw a line across the mouth"
+#: voice.py:39
+msgid "Icelandic"
 msgstr ""
 
-#: faceselect.py:123
-msgid "Cancel"
+#: voice.py:40
+msgid "Romanian"
 msgstr ""
 
-#: faceselect.py:128
-msgid "Next"
+#: voice.py:41
+msgid "Swahili"
 msgstr ""
 
-#: chatbox.py:649
-msgid "Copy to Clipboard"
+#: voice.py:42
+msgid "Hindi"
 msgstr ""
 
-#: brain.py:95
-msgid "Sorry, I can't understand what you are asking about."
+#: voice.py:43
+msgid "Dutch"
 msgstr ""
 
-#: brain.py:124
-msgid ""
-"Sorry, there is no free memory to load my brain. Close other activities and "
-"try once more."
+#: voice.py:44
+msgid "Latin"
 msgstr ""
 
-#: brain.py:145
-#, python-format
-msgid "my name is %s"
+#: voice.py:45
+msgid "Hungarian"
 msgstr ""
 
-#: brain.py:146
-#, python-format
-msgid "I am %d years old"
+#: voice.py:46
+msgid "Macedonian"
 msgstr ""
 
-#: brain.py:148
-#, python-format
-msgid "Hello, I'm a robot \"%s\". Please ask me any question."
+#: voice.py:47
+msgid "Welsh"
 msgstr ""
 
-#: chat.py:246
-msgid "URL from Speak"
+#: voice.py:48
+msgid "French"
 msgstr ""
 
-#: activity.py:106
-msgid "Round"
+#: voice.py:49
+msgid "Norwegian"
 msgstr ""
 
-#: activity.py:107
-msgid "Glasses"
+#: voice.py:50
+msgid "Russian"
 msgstr ""
 
-#: activity.py:108
-msgid "Half moon"
+#: voice.py:51
+msgid "Afrikaans"
 msgstr ""
 
-#: activity.py:110
-msgid "Eye lashes"
+#: voice.py:52
+msgid "Finnish"
 msgstr ""
 
-#: activity.py:112
-msgid "Sunglasses"
+#: voice.py:53 voice.py:151
+msgid "Default"
 msgstr ""
 
-#: activity.py:114
-msgid "Wire frames"
+#: voice.py:54
+msgid "Cantonese"
 msgstr ""
 
-#: activity.py:119
-msgid "I am bored."
+#: voice.py:55
+msgid "Scottish"
 msgstr ""
 
-#: activity.py:119
-msgid "Talk to me."
+#: voice.py:56
+msgid "Greek"
 msgstr ""
 
-#: activity.py:120
-msgid "I am sleepy."
+#: voice.py:57
+msgid "Vietnamese"
 msgstr ""
 
-#: activity.py:120
-msgid "Are you still there?"
+#: voice.py:59
+msgid "Lancashire"
 msgstr ""
 
-#: activity.py:121
-msgid "Please type something."
+#: voice.py:60
+msgid "Italian"
 msgstr ""
 
-#: activity.py:122
-msgid "Do you have anything to say to me?"
+#: voice.py:61
+msgid "Portuguese"
 msgstr ""
 
-#: activity.py:122
-msgid "Hello?"
+#: voice.py:62
+msgid "German"
 msgstr ""
 
-#: activity.py:123
-msgid "Whoa! Sideways!"
+#: voice.py:63
+msgid "Whisper"
 msgstr ""
 
-#: activity.py:123
-msgid "I'm on my side."
+#: voice.py:64
+msgid "Croatian"
 msgstr ""
 
-#: activity.py:123
-msgid "Uh oh."
+#: voice.py:65
+msgid "Czech"
 msgstr ""
 
-#: activity.py:124
-msgid "Wheeeee!"
+#: voice.py:66
+msgid "Slovak"
 msgstr ""
 
-#: activity.py:124
-msgid "Hey! Put me down!"
+#: voice.py:68
+msgid "Polish"
 msgstr ""
 
-#: activity.py:124
-msgid "Falling over!"
-msgstr ""
-
-#: activity.py:258
-msgid "Type something to hear it"
-msgstr ""
-
-#: activity.py:265
-msgid "Ask robot any question"
-msgstr ""
-
-#: activity.py:272
-msgid "Voice chat"
-msgstr ""
-
-#: activity.py:278
-msgid "Voice"
-msgstr ""
-
-#: activity.py:285
-msgid "Face"
-msgstr ""
-
-#: activity.py:367
-#, python-format
-msgid "Hello %s."
-msgstr ""
-
-#: activity.py:369
-#, python-format
-msgid "Hello %s. Please Type something."
-msgstr ""
-
-#: activity.py:373 activity.py:375
-#, python-format
-msgid "Welcome back %s."
-msgstr ""
-
-#: activity.py:553
-msgid "Choose voice:"
-msgstr ""
-
-#: activity.py:606
-msgid "Pitch:"
-msgstr ""
-
-#: activity.py:616
-msgid "Rate:"
-msgstr ""
-
-#: activity.py:624
-msgid "pitch adjusted"
-msgstr ""
-
-#: activity.py:628
-msgid "rate adjusted"
-msgstr ""
-
-#: activity.py:634
-msgid "Set face from photo"
-msgstr ""
-
-#: activity.py:640
-msgid "Clear photo face"
-msgstr ""
-
-#: activity.py:655
-msgid "Simple"
-msgstr ""
-
-#: activity.py:663
-msgid "Waveform"
-msgstr ""
-
-#: activity.py:671
-msgid "Frequency"
-msgstr ""
-
-#: activity.py:702
-msgid "Choose eyes:"
-msgstr ""
-
-#: activity.py:732
-msgid "Eyes number:"
-msgstr ""
-
-#: activity.py:835
-msgid "mouth changed"
-msgstr ""
-
-#: activity.py:884 activity.py:905
-msgid "eyes changed"
-msgstr ""
-
-#: activity.py:1062
-#, python-format
-msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
-msgstr ""
-
-#: activity.py:1097
-msgid "You are in off-line mode, share and invite someone."
-msgstr ""
-
-#: activity.py:1180
-#, python-format
-msgid "%s joined the chat"
-msgstr ""
-
-#: activity.py:1189
-#, python-format
-msgid "%s left the chat"
-msgstr ""
-
-#: activity.py:1199
-#, python-format
-msgid "%s is here"
+#: voice.py:69
+msgid "Esperanto"
 msgstr ""
