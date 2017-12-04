@@ -1,3 +1,9 @@
+55
+
+* Fix fail to start when used with espeak-ng (James Cameron),
+* New translations (Chris Leonard et al),
+* Update POT file (James Cameron),
+
 54
 
 * Remove curse filter; ineffective, untranslated and is offensive
