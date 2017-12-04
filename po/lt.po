@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2016-04-28 09:22+0000\n"
+"PO-Revision-Date: 2017-11-12 20:03+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1461835369.000000\n"
+"X-POOTLE-MTIME: 1510517030.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
@@ -26,7 +26,7 @@ msgstr ""
 
 #. TRANS: "summary" option from activity.info file
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "Animuotas veidas, kuris pasako viską, ką įrašote"
 
 #. TRANS: "description" option from activity.info file
 msgid ""
@@ -51,15 +51,15 @@ msgstr "Balso pokalbis"
 
 #: activity.py:191
 msgid "Language"
-msgstr ""
+msgstr "Kalba"
 
 #: activity.py:197
 msgid "Voice"
-msgstr ""
+msgstr "Balsas"
 
 #: activity.py:203
 msgid "Face"
-msgstr ""
+msgstr "Veidas"
 
 #: activity.py:227 activity.py:409
 msgid "Eyes number:"
@@ -68,52 +68,52 @@ msgstr "Akių skaičius:"
 #: activity.py:245
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "Sveiki %s."
 
 #: activity.py:247
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr ""
+msgstr "Sveiki %s. Įrašykite ką nors prašau."
 
 #: activity.py:331
 msgid "Pitch:"
-msgstr ""
+msgstr "Tonas:"
 
 #: activity.py:344
 msgid "Rate:"
-msgstr ""
+msgstr "Greitis:"
 
 #: activity.py:352
 msgid "pitch adjusted"
-msgstr ""
+msgstr "tonas sureguliuotas"
 
 #: activity.py:356
 msgid "rate adjusted"
-msgstr ""
+msgstr "greitis sureguliuotas"
 
 #: activity.py:365
 msgid "Simple"
-msgstr ""
+msgstr "Paprasta"
 
 #: activity.py:372
 msgid "Waveform"
-msgstr ""
+msgstr "Bangos forma"
 
 #: activity.py:379
 msgid "Frequency"
-msgstr ""
+msgstr "Dažnis"
 
 #: activity.py:392
 msgid "Round"
-msgstr ""
+msgstr "Apvalios"
 
 #: activity.py:399
 msgid "Glasses"
-msgstr ""
+msgstr "Akiniai"
 
 #: activity.py:441
 msgid "mouth changed"
-msgstr ""
+msgstr "burna pakeista"
 
 #: activity.py:461
 msgid "eyes changed"
@@ -123,6 +123,8 @@ msgstr "akys pakeistos"
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"Atleiskite aš nemoku kalbėti %(old_voice)s kalba, vietoj jos, pakalbėkime "
+"%(new_voice)s kalba."
 
 #: activity.py:613
 msgid "You are in off-line mode, share and invite someone."
@@ -130,15 +132,15 @@ msgstr ""
 
 #: brain.py:37 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "Ispanų"
 
 #: brain.py:41 brain.py:56 brain.py:58 brain.py:81 voice.py:58
 msgid "English"
-msgstr ""
+msgstr "Anglų"
 
 #: brain.py:97
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "Atleiskite, aš nesuprantu ko jūs klausiate."
 
 #: brain.py:121
 msgid ""
@@ -154,12 +156,12 @@ msgstr "mano vardas %s"
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "Man %d metų"
 
 #: brain.py:145
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "Sveiki, aš robotas \"%s\". Užduokite man bet kokį klausimą."
 
 #: chatbox.py:248
 msgid "URL from Chat"
@@ -171,7 +173,7 @@ msgstr "Kopijuoti į iškarpinę"
 
 #: toolkit/activity_widgets.py:84
 msgid "Stop"
-msgstr ""
+msgstr "Stabdyti"
 
 #: toolkit/activity_widgets.py:96
 msgid "Undo"
@@ -199,7 +201,7 @@ msgstr ""
 
 #: toolkit/activity_widgets.py:213
 msgid "Description"
-msgstr ""
+msgstr "Aprašas"
 
 #: toolkit/activity_widgets.py:393
 msgid "Activity"
@@ -207,15 +209,15 @@ msgstr ""
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugalų (Brazilija)"
 
 #: voice.py:38
 msgid "Swedish"
-msgstr ""
+msgstr "Švedų"
 
 #: voice.py:39
 msgid "Icelandic"
-msgstr ""
+msgstr "Islandų"
 
 #: voice.py:40
 msgid "Romanian"
@@ -239,7 +241,7 @@ msgstr ""
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "Vengrų"
 
 #: voice.py:46
 msgid "Macedonian"
@@ -251,15 +253,15 @@ msgstr ""
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "Prancūzų"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "Norvegų"
 
 #: voice.py:50
 msgid "Russian"
-msgstr ""
+msgstr "Rusų"
 
 #: voice.py:51
 msgid "Afrikaans"
@@ -267,7 +269,7 @@ msgstr ""
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "Suomių"
 
 #: voice.py:53 voice.py:157
 msgid "Default"
@@ -283,11 +285,11 @@ msgstr ""
 
 #: voice.py:56
 msgid "Greek"
-msgstr ""
+msgstr "Graikų"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamiečių"
 
 #: voice.py:59
 msgid "Lancashire"
@@ -295,15 +297,15 @@ msgstr ""
 
 #: voice.py:60
 msgid "Italian"
-msgstr ""
+msgstr "Italų"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugalų"
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "Vokiečių"
 
 #: voice.py:63
 msgid "Whisper"
@@ -311,20 +313,20 @@ msgstr ""
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "Kroatų"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "Čekų"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "Slovakų"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "Lenkų"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "Esperanto"
