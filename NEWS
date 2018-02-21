@@ -1,6 +1,11 @@
+56
+
+* Fix fail to start when used with espeak-ng 1.49.2 (James Cameron),
+* New translations (Chris Leonard et al),
+
 55
 
-* Fix fail to start when used with espeak-ng (James Cameron),
+* Fix fail to start when used with espeak-ng 1.49.1 (James Cameron),
 * New translations (Chris Leonard et al),
 * Update POT file (James Cameron),
 
