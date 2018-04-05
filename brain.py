@@ -23,7 +23,6 @@ import time
 from gettext import gettext as _
 
 from gi.repository import Gdk
-from gi.repository import GConf
 from gi.repository import GObject
 
 from sugar3 import profile
@@ -64,8 +63,8 @@ _kernel_voice = None
 
 
 def _get_age():
-    client = GConf.Client.get_default()
-    birth_timestamp = client.get_int('/desktop/sugar/user/birth_timestamp')
+    settings = Gio.Settings('org.sugarlabs.user')
+    birth_timestamp = settings.get_int('birth-timestamp')
     if birth_timestamp is None or birth_timestamp == 0:
         return 8
     else:
