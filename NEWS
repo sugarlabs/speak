@@ -1,3 +1,5 @@
+* Port from GConf to Gio.Settings (James Cameron),
+
 56
 
 * Fix fail to start when used with espeak-ng 1.49.2 (James Cameron),
