@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-20 00:31-0400\n"
-"PO-Revision-Date: 2018-02-19 09:21+0000\n"
+"PO-Revision-Date: 2018-02-21 14:25+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1519032068.000000\n"
+"X-POOTLE-MTIME: 1519223114.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:104
@@ -38,15 +38,15 @@ msgstr ""
 
 #: activity.py:170
 msgid "Type something to hear it"
-msgstr ""
+msgstr "יש להקליד משהו כדי לשמוע את ההקראה שלו"
 
 #: activity.py:177
 msgid "Ask robot any question"
-msgstr ""
+msgstr "ניתן לשאול את הרובוט כל שאלה שהיא"
 
 #: activity.py:185
 msgid "Voice chat"
-msgstr ""
+msgstr "צ׳אט קולי"
 
 #: activity.py:191
 msgid "Language"
@@ -76,7 +76,7 @@ msgstr "שלום %s. נא להקליד משהו."
 
 #: activity.py:331
 msgid "Pitch:"
-msgstr ""
+msgstr "גובה צליל:"
 
 #: activity.py:344
 msgid "Rate:"
@@ -84,11 +84,11 @@ msgstr "קצב:"
 
 #: activity.py:352
 msgid "pitch adjusted"
-msgstr ""
+msgstr "גובה הצליל הותאם"
 
 #: activity.py:356
 msgid "rate adjusted"
-msgstr ""
+msgstr "הקצב הותאם"
 
 #: activity.py:365
 msgid "Simple"
@@ -96,7 +96,7 @@ msgstr "פשוט"
 
 #: activity.py:372
 msgid "Waveform"
-msgstr ""
+msgstr "צורת גל"
 
 #: activity.py:379
 msgid "Frequency"
@@ -155,7 +155,7 @@ msgstr "קוראים לי %s"
 #: brain.py:143
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "הגיל שלי הוא %d שנים"
 
 #: brain.py:145
 #, python-format
@@ -292,7 +292,7 @@ msgstr "וייטנאמית"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr ""
+msgstr "לנקשייר"
 
 #: voice.py:60
 msgid "Italian"
@@ -308,7 +308,7 @@ msgstr "גרמנית"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "לחישה"
 
 #: voice.py:64
 msgid "Croatian"
