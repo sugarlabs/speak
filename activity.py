@@ -46,6 +46,7 @@ gi.require_version("Gst", "1.0")
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
+from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gst
 
@@ -461,12 +462,12 @@ class SpeakActivity(activity.Activity):
         return False
 
     def _cursor_moved_cb(self, entry, *ignored):
-        GObject.timeout_add(50, self._look_at_cursor, entry)
+        GLib.timeout_add(50, self._look_at_cursor, entry)
 
     def _poll_accelerometer(self):
         if _has_accelerometer():
             idle_time = self._test_orientation()
-            GObject.timeout_add(idle_time, self._poll_accelerometer)
+            GLib.timeout_add(idle_time, self._poll_accelerometer)
 
     def _test_orientation(self):
         if _has_accelerometer():
@@ -944,7 +945,7 @@ class SpeakActivity(activity.Activity):
             timeout = DELAY_BEFORE_SPEAKING
         else:
             timeout = 100
-        GObject.timeout_add(timeout, self._speak_the_text, entry, text)
+        GLib.timeout_add(timeout, self._speak_the_text, entry, text)
 
     def _dismiss_OSK(self, entry):
         entry.hide()
@@ -982,8 +983,8 @@ class SpeakActivity(activity.Activity):
             entry.select_region(0, -1)
 
         # Launch an robot idle phrase after 2 minutes
-        self._robot_idle_id = GObject.timeout_add(IDLE_DELAY,
-                                                  self._set_idle_phrase)
+        self._robot_idle_id = GLib.timeout_add(IDLE_DELAY,
+                                               self._set_idle_phrase)
 
     def _load_sleeping_face(self):
         if self._face_type == FACE_PHOTO:
@@ -1001,8 +1002,8 @@ class SpeakActivity(activity.Activity):
                     0, len(IDLE_PHRASES) - 1)]
                 self.face.say(idle_phrase)
 
-        self._robot_idle_id = GObject.timeout_add(IDLE_DELAY,
-                                                  self._set_idle_phrase)
+        self._robot_idle_id = GLib.timeout_add(IDLE_DELAY,
+                                               self._set_idle_phrase)
 
     def _active_cb(self, widget, pspec):
         # only generate sound when this activity is active
@@ -1097,7 +1098,7 @@ class SpeakActivity(activity.Activity):
 
     def _remove_idle(self):
         if self._robot_idle_id is not None:
-            GObject.source_remove(self._robot_idle_id)
+            GLib.source_remove(self._robot_idle_id)
             self._robot_idle_id = None
 
             if self._face_type == FACE_PHOTO:
@@ -1372,7 +1373,7 @@ class ToolWidget(Gtk.ToolItem):
         if self.label is not None and value:
             self.label.set_text(self._label_text)
 
-    label_text = GObject.property(getter=get_label_text, setter=set_label_text)
+    label_text = GObject.Property(getter=get_label_text, setter=set_label_text)
 
     def get_label(self):
         return self._label
@@ -1386,7 +1387,7 @@ class ToolWidget(Gtk.ToolItem):
         label.show()
         self.set_label_text(self._label_text)
 
-    label = GObject.property(getter=get_label, setter=set_label)
+    label = GObject.Property(getter=get_label, setter=set_label)
 
     def get_widget(self):
         return self._widget
@@ -1398,4 +1399,4 @@ class ToolWidget(Gtk.ToolItem):
         self._box.pack_end(widget, True, True, 0)
         widget.show()
 
-    widget = GObject.property(getter=get_widget, setter=set_widget)
+    widget = GObject.Property(getter=get_widget, setter=set_widget)

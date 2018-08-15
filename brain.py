@@ -23,7 +23,7 @@ import time
 from gettext import gettext as _
 
 from gi.repository import Gdk
-from gi.repository import GObject
+from gi.repository import GLib
 
 from sugar3 import profile
 
@@ -148,5 +148,5 @@ def load(activity, voice, sorry=None):
         elif sorry:
             activity.face.say_notification(sorry)
 
-    GObject.idle_add(load_brain)
+    GLib.idle_add(load_brain)
     return True
