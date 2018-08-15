@@ -17,6 +17,7 @@
 import numpy
 
 from gi.repository import Gst
+from gi.repository import GLib
 from gi.repository import GObject
 
 import logging
@@ -146,7 +147,7 @@ class BaseAudioGrab(GObject.GObject):
 
                 return False
 
-            GObject.timeout_add(25, poke, data.pts)
+            GLib.timeout_add(25, poke, data.pts)
 
             return True
 
@@ -165,7 +166,7 @@ class BaseAudioGrab(GObject.GObject):
 
                 logger.debug(message.type)
                 self._was_message = False
-                GObject.timeout_add(500, check_after_warnings)
+                GLib.timeout_add(500, check_after_warnings)
 
             elif message.type in (Gst.MessageType.EOS, Gst.MessageType.ERROR):
                 logger.debug(message.type)
