@@ -98,7 +98,7 @@ class BaseAudioGrab(GObject.GObject):
 
         def handoff(element, data, pad):
             size = data.get_size()
-            if size == 0:
+            if size == 0 or data.duration == 0:
                 return True  # common
 
             npc = 50000000  # nanoseconds per chunk
