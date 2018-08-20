@@ -1,4 +1,11 @@
+57
+
 * Port from GConf to Gio.Settings (James Cameron),
+* New translations (Chris Leonard et al),
+* Port from GObject to GLib (James Cameron),
+* Fix occasional ValueError (James Cameron),
+* Fix occasional ZeroDivisionError (James Cameron),
+* Port to TelepathyGLib (James Cameron),
 
 56
 
