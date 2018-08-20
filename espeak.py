@@ -122,8 +122,9 @@ class BaseAudioGrab(GObject.GObject):
 
                 here += bpc
                 when += npc
-                if when > last:
-                    break
+                if when < last:
+                    continue
+                break
 
             def poke(pts):
                 success, position = ears.query_position(Gst.Format.TIME)
