@@ -155,7 +155,7 @@ def defaultVoice():
         "English (America)",  # espeak-ng 1.49.2
         "English",  # espeak-ng 1.49.1
         "Default",  # espeak 1.48
-        ]
+    ]
 
     best = None
     for voice_name in voice_names:
