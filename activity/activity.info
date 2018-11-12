@@ -2,15 +2,13 @@
 name = Speak
 summary = An animated face that speaks whatever you type
 description = Speak is a talking face.  Anything you type will be spoken aloud using a speech synthesizer.  You can adjust the accent, rate and pitch of the voice as well as the shape of the eyes and mouth.  This is a great way to experiment with a speech synthesizer, learn to type or just have fun making a funny face.
-homepage = http://wiki.sugarlabs.org/go/Activities/Speak
+url = http://wiki.sugarlabs.org/go/Activities/Speak
 license = GPLv3+
 categories = language
-stability = stable
 icon = activity-speak
 exec = sugar-activity activity.SpeakActivity
-requires = gst-plugins-espeak; numpy
 activity_version = 57
 bundle_id = vu.lux.olpc.Speak
-category = language
+tags = Language
 repository = https://github.com/sugarlabs/speak
 screenshots = https://github.com/sugarlabs/speak/blob/master/screenshots/en/1.png https://github.com/sugarlabs/speak/blob/master/screenshots/en/2.png
