@@ -13,3 +13,4 @@ activity_version = 57
 bundle_id = vu.lux.olpc.Speak
 category = language
 repository = https://github.com/sugarlabs/speak
+screenshots = https://github.com/sugarlabs/speak/blob/master/screenshots/en/1.png https://github.com/sugarlabs/speak/blob/master/screenshots/en/2.png
