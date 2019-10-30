@@ -82,10 +82,10 @@ class PeakMouth(Mouth):
         #        T
         #  L           R
         #        B
-        Lx, Ly = bounds.width / 2 - mouthW / 2, bounds.height / 2
-        Tx, Ty = bounds.width / 2, bounds.height / 2 - mouthH / 2
-        Rx, Ry = bounds.width / 2 + mouthW / 2, bounds.height / 2
-        Bx, By = bounds.width / 2, bounds.height / 2 + mouthH / 2
+        Lx, Ly = bounds.width // 2 - mouthW // 2, bounds.height // 2
+        Tx, Ty = bounds.width // 2, bounds.height // 2 - mouthH // 2
+        Rx, Ry = bounds.width // 2 + mouthW // 2, bounds.height // 2
+        Bx, By = bounds.width // 2, bounds.height // 2 + mouthH // 2
         cr.set_line_width(min(bounds.height / 10.0, 10))
         cr.move_to(Lx, Ly)
         cr.curve_to(Tx, Ty, Tx, Ty, Rx, Ry)

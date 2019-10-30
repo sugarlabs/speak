@@ -89,14 +89,14 @@ class FFTMouth(Mouth):
         # draw mirrored power vs frequency distribution
         count = 0
         for peak in peaks:
-            cr.line_to(bounds.width / 2 + count, bounds.height / 2 - peak + 12)
+            cr.line_to(bounds.width // 2 + count, bounds.height // 2 - peak + 12)
             count += interval
 
         cr.stroke()
 
         count = 0
         for peak in peaks:
-            cr.line_to(bounds.width / 2 - count, bounds.height / 2 - peak + 12)
+            cr.line_to(bounds.width // 2 - count, bounds.height // 2 - peak + 12)
             count += interval
 
         cr.stroke()

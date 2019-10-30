@@ -20,10 +20,10 @@ class PatternMgr:
 	def __init__(self):
 		self._root = {}
 		self._templateCount = 0
-		self._botName = u"Nameless"
+		self._botName = "Nameless"
 		punctuation = "\"`~!@#$%^&*()-_=+[{]}\|;:',<.>/?"
 		self._puncStripRE = re.compile("[" + re.escape(punctuation) + "]")
-		self._whitespaceRE = re.compile("\s", re.LOCALE | re.UNICODE)
+		self._whitespaceRE = re.compile("\s")
 
 	def numTemplates(self):
 		"""Return the number of templates currently stored."""
@@ -35,7 +35,7 @@ class PatternMgr:
 
 		"""
 		# Collapse a multi-word name into a single word
-		self._botName = unicode(string.join(name.split()))
+		self._botName = str(string.join(name.split()))
 
 	def dump(self):
 		"""Print all learned patterns, for debugging purposes."""
@@ -52,9 +52,9 @@ class PatternMgr:
 			marshal.dump(self._botName, outFile)
 			marshal.dump(self._root, outFile)
 			outFile.close()
-		except Exception, e:
-			print "Error saving PatternMgr to file %s:" % filename
-			raise Exception, e
+		except Exception as e:
+			print("Error saving PatternMgr to file %s:" % filename)
+			raise Exception(e)
 
 	def restore(self, filename):
 		"""Restore a previously save()d collection of patterns."""
@@ -64,66 +64,62 @@ class PatternMgr:
 			self._botName = marshal.load(inFile)
 			self._root = marshal.load(inFile)
 			inFile.close()
-		except Exception, e:
-			print "Error restoring PatternMgr from file %s:" % filename
-			raise Exception, e
+		except Exception as e:
+			print("Error restoring PatternMgr from file %s:" % filename)
+			raise Exception(e)
 
-	def add(self, (pattern,that,topic), template):
+	def add(self, xxx_todo_changeme, template):
 		"""Add a [pattern/that/topic] tuple and its corresponding template
 		to the node tree.
 
 		"""
-		# TODO: make sure words contains only legal characters
-		# (alphanumerics,*,_)
-
-		# Navigate through the node tree to the template's location, adding
-		# nodes if necessary.
+		(pattern,that,topic) = xxx_todo_changeme
 		node = self._root
 		for word in string.split(pattern):
 			key = word
-			if key == u"_":
+			if key == "_":
 				key = self._UNDERSCORE
-			elif key == u"*":
+			elif key == "*":
 				key = self._STAR
-			elif key == u"BOT_NAME":
+			elif key == "BOT_NAME":
 				key = self._BOT_NAME
-			if not node.has_key(key):
+			if key not in node:
 				node[key] = {}
 			node = node[key]
 
 		# navigate further down, if a non-empty "that" pattern was included
 		if len(that) > 0:
-			if not node.has_key(self._THAT):
+			if self._THAT not in node:
 				node[self._THAT] = {}
 			node = node[self._THAT]
 			for word in string.split(that):
 				key = word
-				if key == u"_":
+				if key == "_":
 					key = self._UNDERSCORE
-				elif key == u"*":
+				elif key == "*":
 					key = self._STAR
-				if not node.has_key(key):
+				if key not in node:
 					node[key] = {}
 				node = node[key]
 
 		# navigate yet further down, if a non-empty "topic" string was included
 		if len(topic) > 0:
-			if not node.has_key(self._TOPIC):
+			if self._TOPIC not in node:
 				node[self._TOPIC] = {}
 			node = node[self._TOPIC]
 			for word in string.split(topic):
 				key = word
-				if key == u"_":
+				if key == "_":
 					key = self._UNDERSCORE
-				elif key == u"*":
+				elif key == "*":
 					key = self._STAR
-				if not node.has_key(key):
+				if key not in node:
 					node[key] = {}
 				node = node[key]
 
 
 		# add the template.
-		if not node.has_key(self._TEMPLATE):
+		if self._TEMPLATE not in node:
 			self._templateCount += 1	
 		node[self._TEMPLATE] = template
 
@@ -141,11 +137,11 @@ class PatternMgr:
 		# text to all caps.
 		input = string.upper(pattern)
 		input = re.sub(self._puncStripRE, "", input)
-		if that.strip() == u"": that = u"ULTRABOGUSDUMMYTHAT" # 'that' must never be empty
+		if that.strip() == "": that = "ULTRABOGUSDUMMYTHAT" # 'that' must never be empty
 		thatInput = string.upper(that)
 		thatInput = re.sub(self._whitespaceRE, " ", thatInput)
 		thatInput = re.sub(self._puncStripRE, "", thatInput)
-		if topic.strip() == u"": topic = u"ULTRABOGUSDUMMYTOPIC" # 'topic' must never be empty
+		if topic.strip() == "": topic = "ULTRABOGUSDUMMYTOPIC" # 'topic' must never be empty
 		topicInput = string.upper(topic)
 		topicInput = re.sub(self._puncStripRE, "", topicInput)
 		
@@ -167,11 +163,11 @@ class PatternMgr:
 		# text to all caps.
 		input = string.upper(pattern)
 		input = re.sub(self._puncStripRE, "", input)
-		if that.strip() == u"": that = u"ULTRABOGUSDUMMYTHAT" # 'that' must never be empty
+		if that.strip() == "": that = "ULTRABOGUSDUMMYTHAT" # 'that' must never be empty
 		thatInput = string.upper(that)
 		thatInput = re.sub(self._whitespaceRE, " ", thatInput)
 		thatInput = re.sub(self._puncStripRE, "", thatInput)
-		if topic.strip() == u"": topic = u"ULTRABOGUSDUMMYTOPIC" # 'topic' must never be empty
+		if topic.strip() == "": topic = "ULTRABOGUSDUMMYTOPIC" # 'topic' must never be empty
 		topicInput = string.upper(topic)
 		topicInput = re.sub(self._puncStripRE, "", topicInput)
 
@@ -194,7 +190,7 @@ class PatternMgr:
 			words = topicInput.split()
 		else:
 			# unknown value
-			raise ValueError, "starType must be in ['star', 'thatstar', 'topicstar']"
+			raise ValueError("starType must be in ['star', 'thatstar', 'topicstar']")
 		
 		# compare the input string to the matched pattern, word by word.
 		# At the end of this loop, if foundTheRightStar is true, start and
@@ -290,7 +286,7 @@ class PatternMgr:
 		# Check underscore.
 		# Note: this is causing problems in the standard AIML set, and is
 		# currently disabled.
-		if root.has_key(self._UNDERSCORE):
+		if self._UNDERSCORE in root:
 			# Must include the case where suf is [] in order to handle the case
 			# where a * or _ is at the end of the pattern.
 			for j in range(len(suffix)+1):
@@ -301,21 +297,21 @@ class PatternMgr:
 					return (newPattern, template)
 
 		# Check first
-		if root.has_key(first):
+		if first in root:
 			pattern, template = self._match(suffix, thatWords, topicWords, root[first])
 			if template is not None:
 				newPattern = [first] + pattern
 				return (newPattern, template)
 
 		# check bot name
-		if root.has_key(self._BOT_NAME) and first == self._botName:
+		if self._BOT_NAME in root and first == self._botName:
 			pattern, template = self._match(suffix, thatWords, topicWords, root[self._BOT_NAME])
 			if template is not None:
 				newPattern = [first] + pattern
 				return (newPattern, template)
 		
 		# check star
-		if root.has_key(self._STAR):
+		if self._STAR in root:
 			# Must include the case where suf is [] in order to handle the case
 			# where a * or _ is at the end of the pattern.
 			for j in range(len(suffix)+1):

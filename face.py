@@ -55,8 +55,8 @@ FACE_PAD = style.GRID_CELL_SIZE
 class Status:
     def __init__(self):
         self.voice = voice.defaultVoice()
-        self.pitch = espeak.PITCH_MAX / 2
-        self.rate = espeak.RATE_MAX / 2
+        self.pitch = espeak.PITCH_MAX // 2
+        self.rate = espeak.RATE_MAX // 2
 
         self.eyes = [eye.Eye] * 2
         self.mouth = mouth.Mouth
@@ -160,7 +160,7 @@ class View(Gtk.EventBox):
 
     def look_ahead(self):
         if self._eyes:
-            map(lambda e: e.look_ahead(), self._eyes)
+            list([e.look_ahead() for e in self._eyes])
 
     def look_at(self, pos=None):
         if self._eyes:
@@ -169,7 +169,7 @@ class View(Gtk.EventBox):
                 screen_, x, y, modifiers_ = display.get_pointer()
             else:
                 x, y = pos
-            map(lambda e, x=x, y=y: e.look_at(x, y), self._eyes)
+            list(map(lambda e, x=x, y=y: e.look_at(x, y), self._eyes))
 
     def update(self, status=None):
         if not status:
@@ -233,4 +233,4 @@ class View(Gtk.EventBox):
         self._audio.stop_sound_device()
 
     def _size_allocate_cb(self, widget, allocation):
-        self._mouthbox.set_size_request(-1, int(allocation.height / 2.5))
+        self._mouthbox.set_size_request(-1, int(allocation.height // 2.5))

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Speak.activity
 # A simple front end to the espeak text-to-speech engine on the XO laptop

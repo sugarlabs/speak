@@ -28,7 +28,7 @@ from gi.repository import Gio
 
 from sugar3 import profile
 
-import aiml
+from aiml.Kernel import Kernel
 import voice
 
 import logging
@@ -46,7 +46,7 @@ BOTS = {
 
 
 def get_mem_info(tag):
-    meminfo = file('/proc/meminfo').readlines()
+    meminfo = open('/proc/meminfo').readlines()
     return int([i for i in meminfo if i.startswith(tag)][0].split()[1])
 
 
@@ -114,7 +114,7 @@ def load(activity, voice, sorry=None):
                 brain_name = BOTS[_('English')]['name']
             logger.debug('Load bot: %s' % brain)
 
-            kernel = aiml.Kernel()
+            kernel = Kernel()
 
             if brain['brain'] is None:
                 warning = _("Sorry, there is no free memory to load my "
@@ -123,7 +123,7 @@ def load(activity, voice, sorry=None):
                 return
 
             kernel.loadBrain(brain['brain'])
-            for name, value in brain['predicates'].items():
+            for name, value in list(brain['predicates'].items()):
                 kernel.setBotPredicate(name, value)
 
             if _kernel is not None:

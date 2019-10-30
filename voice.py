@@ -101,8 +101,8 @@ class Voice:
         if friendlynameRP == 'wmids':
                 self.friendlyname = 'English (West Midlands)'
 
-    def __cmp__(self, other):
-        return cmp(self.friendlyname, other.friendlyname if other else '')
+    def __lt__(self, other):
+        return self.friendlyname < other.friendlyname
 
 
 def allVoices():
@@ -163,7 +163,7 @@ def defaultVoice():
             best = voices[voice_name]
             break
 
-    for voice in voices.values():
+    for voice in list(voices.values()):
         voiceMetric = fit(voice.language, lang)
         bestMetric = fit(best.language, lang)
         if lang == 'en_AU.UTF-8':

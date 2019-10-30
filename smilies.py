@@ -159,7 +159,7 @@ def parse(text):
 
     result = [text]
 
-    for smiley in sorted(_catalog.keys(), lambda x, y: cmp(len(y), len(x))):
+    for smiley in sorted(list(_catalog.keys())):
         new_result = []
         for word in result:
             if isinstance(word, GdkPixbuf.Pixbuf):

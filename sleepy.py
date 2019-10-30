@@ -44,8 +44,8 @@ class Sleepy(Eye):
         cr.fill()
 
         w = h = min(bounds.width, bounds.height)
-        x = int((bounds.width - w) / 2)
-        y = int((bounds.height - h) / 2)
+        x = int((bounds.width - w) // 2)
+        y = int((bounds.height - h) // 2)
         pixbuf = self._pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.BILINEAR)
         cr.translate(x + w / 2., y + h / 2.)
         cr.translate(-x - w / 2., -y - h / 2.)

@@ -1,12 +1,12 @@
 # -*- coding=ISO-8859-1 -*-
 """This file contains the public interface to the aiml module."""
-import AimlParser
-import DefaultSubs
-import Utils
-from PatternMgr import PatternMgr
-from WordSub import WordSub
+from . import AimlParser
+from . import DefaultSubs
+from . import Utils
+from .PatternMgr import PatternMgr
+from .WordSub import WordSub
 
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 import copy
 import glob
 import os
@@ -116,10 +116,10 @@ class Kernel:
         try: cmds = [ commands + "" ]
         except: pass
         for cmd in cmds:
-            print self._respond(cmd, self._globalSessionID)
+            print(self._respond(cmd, self._globalSessionID))
             
         if self._verboseMode:
-            print "Kernel bootstrap completed in %.2f seconds" % (time.clock() - start)
+            print("Kernel bootstrap completed in %.2f seconds" % (time.clock() - start))
 
     def verbose(self, isVerbose = True):
         """Enable/disable verbose output mode."""
@@ -152,20 +152,20 @@ class Kernel:
         NOTE: the current contents of the 'brain' will be discarded!
 
         """
-        if self._verboseMode: print "Loading brain from %s..." % filename,
+        if self._verboseMode: print("Loading brain from %s..." % filename, end=' ')
         start = time.clock()
         self._brain.restore(filename)
         if self._verboseMode:
             end = time.clock() - start
-            print "done (%d categories in %.2f seconds)" % (self._brain.numTemplates(), end)
+            print("done (%d categories in %.2f seconds)" % (self._brain.numTemplates(), end))
 
     def saveBrain(self, filename):
         """Dump the contents of the bot's brain to a file on disk."""
-        if self._verboseMode: print "Saving brain to %s..." % filename,
+        if self._verboseMode: print("Saving brain to %s..." % filename, end=' ')
         start = time.clock()
         self._brain.save(filename)
         if self._verboseMode:
-            print "done (%.2f seconds)" % (time.clock() - start)
+            print("done (%.2f seconds)" % (time.clock() - start))
 
     def getPredicate(self, name, sessionID = _globalSessionID):
         """Retrieve the current value of the predicate 'name' from the
@@ -224,14 +224,14 @@ class Kernel:
         substituter.
 
         """
-        inFile = file(filename)
+        inFile = open(filename)
         parser = ConfigParser()
         parser.readfp(inFile, filename)
         inFile.close()
         for s in parser.sections():
             # Add a new WordSub instance for this section.  If one already
             # exists, delete it.
-            if self._subbers.has_key(s):
+            if s in self._subbers:
                 del(self._subbers[s])
             self._subbers[s] = WordSub()
             # iterate over the key,value pairs and add them to the subber
@@ -240,7 +240,7 @@ class Kernel:
 
     def _addSession(self, sessionID):
         """Create a new session with the specified ID string."""
-        if self._sessions.has_key(sessionID):
+        if sessionID in self._sessions:
             return
         # Create the session.
         self._sessions[sessionID] = {
@@ -252,7 +252,7 @@ class Kernel:
         
     def _deleteSession(self, sessionID):
         """Delete the specified session."""
-        if self._sessions.has_key(sessionID):
+        if sessionID in self._sessions:
             _sessions.pop(sessionID)
 
     def getSessionData(self, sessionID = None):
@@ -279,23 +279,23 @@ class Kernel:
 
         """
         for f in glob.glob(filename):
-            if self._verboseMode: print "Loading %s..." % f,
+            if self._verboseMode: print("Loading %s..." % f, end=' ')
             start = time.clock()
             # Load and parse the AIML file.
             parser = AimlParser.create_parser()
             handler = parser.getContentHandler()
             handler.setEncoding(self._textEncoding)
             try: parser.parse(f)
-            except xml.sax.SAXParseException, msg:
+            except xml.sax.SAXParseException as msg:
                 err = "\nFATAL PARSE ERROR in file %s:\n%s\n" % (f,msg)
                 sys.stderr.write(err)
                 continue
             # store the pattern/template pairs in the PatternMgr.
-            for key,tem in handler.categories.items():
+            for key,tem in list(handler.categories.items()):
                 self._brain.add(key,tem)
             # Parsing was successful.
             if self._verboseMode:
-                print "done (%.2f seconds)" % (time.clock() - start)
+                print("done (%.2f seconds)" % (time.clock() - start))
 
     def respond(self, input, sessionID = _globalSessionID):
         """Return the Kernel's response to the input string."""
@@ -480,7 +480,7 @@ class Kernel:
         
         # Case #1: test the value of a specific predicate for a
         # specific value.
-        if attr.has_key('name') and attr.has_key('value'):
+        if 'name' in attr and 'value' in attr:
             val = self.getPredicate(attr['name'], sessionID)
             if val == attr['value']:
                 for e in elem[2:]:
@@ -491,7 +491,7 @@ class Kernel:
             # name and value pair for each one.
             try:
                 name = None
-                if attr.has_key('name'):
+                if 'name' in attr:
                     name = attr['name']
                 # Get the list of <li> elemnents
                 listitems = []
@@ -509,7 +509,7 @@ class Kernel:
                         liAttr = li[1]
                         # if this is the last list item, it's allowed
                         # to have no attributes.  We just skip it for now.
-                        if len(liAttr.keys()) == 0 and li == listitems[-1]:
+                        if len(list(liAttr.keys())) == 0 and li == listitems[-1]:
                             continue
                         # get the name of the predicate to test
                         liName = name
@@ -525,7 +525,7 @@ class Kernel:
                     except:
                         # No attributes, no name/value attributes, no
                         # such predicate/session, or processing error.
-                        if self._verboseMode: print "Something amiss -- skipping listitem", li
+                        if self._verboseMode: print("Something amiss -- skipping listitem", li)
                         raise
                 if not foundMatch:
                     # Check the last element of listitems.  If it has
@@ -533,16 +533,16 @@ class Kernel:
                     try:
                         li = listitems[-1]
                         liAttr = li[1]
-                        if not (liAttr.has_key('name') or liAttr.has_key('value')):
+                        if not ('name' in liAttr or 'value' in liAttr):
                             response += self._processElement(li, sessionID)
                     except:
                         # listitems was empty, no attributes, missing
                         # name/value attributes, or processing error.
-                        if self._verboseMode: print "error in default listitem"
+                        if self._verboseMode: print("error in default listitem")
                         raise
             except:
                 # Some other catastrophic cataclysm
-                if self._verboseMode: print "catastrophic condition failure"
+                if self._verboseMode: print("catastrophic condition failure")
                 raise
         return response
         
@@ -903,7 +903,7 @@ class Kernel:
         response = ""
         try:
             out = os.popen(command)            
-        except RuntimeError, msg:
+        except RuntimeError as msg:
             if self._verboseMode:
                 err = "WARNING: RuntimeError while processing \"system\" element:\n%s\n" % msg.encode(self._textEncoding, 'replace')
                 sys.stderr.write(err)
@@ -939,7 +939,7 @@ class Kernel:
         
         """
         try: elem[2] + ""
-        except TypeError: raise TypeError, "Text element contents are not text"
+        except TypeError: raise TypeError("Text element contents are not text")
 
         # If the the whitespace behavior for this element is "default",
         # we reduce all stretches of >1 whitespace characters to a single
@@ -1084,14 +1084,14 @@ def _testTag(kern, tag, input, outputList):
     """
     global _numTests, _numPassed
     _numTests += 1
-    print "Testing <" + tag + ">:",
+    print("Testing <" + tag + ">:", end=' ')
     response = kern.respond(input).decode(kern._textEncoding)
     if response in outputList:
-        print "PASSED"
+        print("PASSED")
         _numPassed += 1
         return True
     else:
-        print "FAILED (response: '%s')" % response.encode(kern._textEncoding, 'replace')
+        print("FAILED (response: '%s')" % response.encode(kern._textEncoding, 'replace'))
         return False
 
 if __name__ == "__main__":
@@ -1126,7 +1126,7 @@ if __name__ == "__main__":
     there's nothing to worry about.
     """
     if not _testTag(k, 'date', 'test date', ["The date is %s" % time.asctime()]):
-        print date_warning
+        print(date_warning)
     
     _testTag(k, 'formal', 'test formal', ["Formal Test Passed"])
     _testTag(k, 'gender', 'test gender', ["He'd told her he heard that her hernia is history"])
@@ -1166,17 +1166,17 @@ if __name__ == "__main__":
     _testTag(k, 'topicstar test #1', 'test topicstar', ["Solyent Green is made of people!"])
     k.setPredicate("topic", "Soylent Ham and Cheese")
     _testTag(k, 'topicstar test #2', 'test topicstar multiple', ["Both Soylents Ham and Cheese are made of people!"])
-    _testTag(k, 'unicode support', u"ÔÇÉÏºÃ", [u"Hey, you speak Chinese! ÔÇÉÏºÃ"])
+    _testTag(k, 'unicode support', "ÔÇÉÏºÃ", ["Hey, you speak Chinese! ÔÇÉÏºÃ"])
     _testTag(k, 'uppercase', 'test uppercase', ["The Last Word Should Be UPPERCASE"])
     _testTag(k, 'version', 'test version', ["PyAIML is version %s" % k.version()])
     _testTag(k, 'whitespace preservation', 'test whitespace', ["Extra   Spaces\n   Rule!   (but not in here!)    But   Here   They   Do!"])
 
     # Report test results
-    print "--------------------"
+    print("--------------------")
     if _numTests == _numPassed:
-        print "%d of %d tests passed!" % (_numPassed, _numTests)
+        print("%d of %d tests passed!" % (_numPassed, _numTests))
     else:
-        print "%d of %d tests passed (see above for detailed errors)" % (_numPassed, _numTests)
+        print("%d of %d tests passed (see above for detailed errors)" % (_numPassed, _numTests))
 
     # Run an interactive interpreter
     #print "\nEntering interactive mode (ctrl-c to exit)"

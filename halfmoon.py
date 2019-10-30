@@ -47,10 +47,10 @@ class Halfmoon(Eye):
         dX = pupilX - bounds.width / 2.
         dY = pupilY - bounds.height / 2.
         distance = math.sqrt(dX * dX + dY * dY)
-        limit = eyeSize / 2 - outlineWidth * 2 - pupilSize * 2.5
+        limit = eyeSize // 2 - outlineWidth * 2 - pupilSize * 2.5
         if distance > limit:
-            pupilX = bounds.width / 2 + dX * limit / distance
-            pupilY = bounds.height / 2 + dY * limit / distance
+            pupilX = bounds.width // 2 + dX * limit // distance
+            pupilY = bounds.height // 2 + dY * limit // distance
 
         # background
         cr.set_source_rgba(*self.fill_color.get_rgba())
@@ -58,8 +58,8 @@ class Halfmoon(Eye):
         cr.fill()
 
         w = h = min(bounds.width, bounds.height)
-        x = int((bounds.width - w) / 2)
-        y = int((bounds.height - h) / 2)
+        x = int((bounds.width - w) // 2)
+        y = int((bounds.height - h) // 2)
         pixbuf = self._pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.BILINEAR)
         cr.translate(x + w / 2., y + h / 2.)
         cr.translate(-x - w / 2., -y - h / 2.)

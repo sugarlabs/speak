@@ -56,14 +56,14 @@ class Eye(Gtk.DrawingArea):
         if self.x is None or self.y is None:
             # look ahead, but not *directly* in the middle
             pw = self.get_parent().get_allocation().width
-            if a.x + a.width / 2 < pw / 2:
+            if a.x + a.width // 2 < pw // 2:
                 cx = a.width * 0.6
             else:
                 cx = a.width * 0.4
             return cx, a.height * 0.6
 
         EYE_X, EYE_Y = self.translate_coordinates(
-            self.get_toplevel(), a.width / 2, a.height / 2)
+            self.get_toplevel(), a.width // 2, a.height // 2)
         EYE_HWIDTH = a.width
         EYE_HHEIGHT = a.height
         BALL_DIST = EYE_HWIDTH / 4
@@ -84,7 +84,7 @@ class Eye(Gtk.DrawingArea):
                 dx = dist * cosa
                 dy = dist * sina
 
-        return a.width / 2 + dx, a.height / 2 + dy
+        return a.width // 2 + dx, a.height // 2 + dy
 
     def _draw_cb(self, widget, cr):
         bounds = self.get_allocation()
@@ -96,10 +96,10 @@ class Eye(Gtk.DrawingArea):
         dX = pupilX - bounds.width / 2.
         dY = pupilY - bounds.height / 2.
         distance = math.sqrt(dX * dX + dY * dY)
-        limit = eyeSize / 2 - outlineWidth * 2 - pupilSize
+        limit = eyeSize // 2 - outlineWidth * 2 - pupilSize
         if distance > limit:
-            pupilX = bounds.width / 2 + dX * limit / distance
-            pupilY = bounds.height / 2 + dY * limit / distance
+            pupilX = bounds.width // 2 + dX * limit // distance
+            pupilY = bounds.height // 2 + dY * limit // distance
 
         # background
         cr.set_source_rgba(*self.fill_color.get_rgba())
@@ -107,15 +107,15 @@ class Eye(Gtk.DrawingArea):
         cr.fill()
 
         # eye ball
-        cr.arc(bounds.width / 2, bounds.height / 2,
-               eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
+        cr.arc(bounds.width // 2, bounds.height // 2,
+               eyeSize // 2 - outlineWidth // 2, 0, 2 * math.pi)
         cr.set_source_rgb(1, 1, 1)
         cr.fill()
 
         # outline
         cr.set_line_width(outlineWidth)
-        cr.arc(bounds.width / 2, bounds.height / 2,
-               eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
+        cr.arc(bounds.width // 2, bounds.height // 2,
+               eyeSize // 2 - outlineWidth // 2, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
 

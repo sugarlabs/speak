@@ -102,8 +102,8 @@ class BaseAudioGrab(GObject.GObject):
                 return True  # common
 
             npc = 50000000  # nanoseconds per chunk
-            bpc = size * npc / data.duration  # bytes per chunk
-            bpc = bpc / 2 * 2  # force alignment for int16
+            bpc = size * npc // data.duration  # bytes per chunk
+            bpc = bpc // 2 * 2  # force alignment for int16
 
             a = []
             p = []

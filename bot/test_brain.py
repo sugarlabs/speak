@@ -23,4 +23,4 @@ import os.path
 k = aiml.Kernel()
 k.loadBrain("alice.brn")
 
-while True: print k.respond(raw_input("Pregunta > ")) 
+while True: print((k.respond(eval(input("Pregunta > "))))) 
