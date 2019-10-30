@@ -83,7 +83,7 @@ class WaveformMouth(Mouth):
             peak = min(bounds.height, peak)
             peak = max(0, peak)
 
-            x = count * bounds.width / len(self.wave)
+            x = count * bounds.width // len(self.wave)
             y = bounds.height - peak
             cr.line_to(x, y)
 

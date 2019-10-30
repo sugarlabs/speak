@@ -371,20 +371,20 @@ class SpeakActivity(activity.Activity):
             # say hello to the user
             if self._tablet_mode:
                 self._entry.props.text = _('Hello %s.') \
-                    % self.owner.props.nick.encode('utf-8', 'ignore')
+                    % self.owner.props.nick
             self.face.say_notification(_('Hello %s. Please Type something.')
                                        % self.owner.props.nick)
         else:
             if self._tablet_mode:
                 self._entry.props.text = _('Welcome back %s.') \
-                    % self.owner.props.nick.encode('utf-8', 'ignore')
+                    % self.owner.props.nick
             self.face.say_notification(_('Welcome back %s.')
                                        % self.owner.props.nick)
         self._set_idle_phrase(speak=False)
         self._first_time = False
 
     def read_file(self, file_path):
-        self._cfg = json.loads(file(file_path, 'r').read())
+        self._cfg = json.loads(open(file_path, 'r').read())
 
         current_voice = self.face.status.voice
 
@@ -405,7 +405,7 @@ class SpeakActivity(activity.Activity):
             self._set_face(view, FACE_PHOTO)
 
         found_my_voice = False
-        for name in self._voice_evboxes.keys():
+        for name in list(self._voice_evboxes.keys()):
             if self._voice_evboxes[name][1] == current_voice:
                 self._voice_evboxes[name][0].modify_bg(
                     0, style.COLOR_BLACK.get_gdk_color())
@@ -427,16 +427,16 @@ class SpeakActivity(activity.Activity):
 
             self._number_of_eyes_changed_event_cb(
                 None, None, NUMBERS[len(status.eyes) - 1], True)
-            for name in EYE_DICT.keys():
+            for name in list(EYE_DICT.keys()):
                 if status.eyes[0] == EYE_DICT[name]['widget']:
                     self._eye_type[name].set_icon_name(name + '-selected')
                     self._eyes_changed_event_cb(None, None, name, True)
                     break
 
-        self._entry.props.text = self._cfg['text'].encode('utf-8', 'ignore')
+        self._entry.props.text = self._cfg['text']
         if not self._tablet_mode:
             for i in self._cfg['history']:
-                self._entrycombo.append_text(i.encode('utf-8', 'ignore'))
+                self._entrycombo.append_text(i)
 
         self._new_instance()
 
@@ -447,13 +447,12 @@ class SpeakActivity(activity.Activity):
             else:
                 history = []
         else:
-            history = [unicode(i[0], 'utf-8', 'ignore')
-                       for i in self._entrycombo.get_model()]
+            history = [i[0] for i in self._entrycombo.get_model()]
         cfg = {'status': self.face.status.serialize(),
                'face_type': self._face_type,
-               'text': unicode(self._entry.props.text, 'utf-8', 'ignore'),
+               'text': self._entry.props.text,
                'history': history, }
-        file(file_path, 'w').write(json.dumps(cfg))
+        open(file_path, 'w').write(json.dumps(cfg))
 
     def _look_at_cursor(self, entry, *ignored):
         # make the eyes track the motion of the text cursor
@@ -519,7 +518,7 @@ class SpeakActivity(activity.Activity):
         self._voice_evboxes = {}
         self._voice_box = Gtk.HBox()
         vboxes = [Gtk.VBox(), Gtk.VBox(), Gtk.VBox()]
-        count = len(voice_model.allVoices().keys())
+        count = len(list(voice_model.allVoices().keys()))
         found_my_voice = False
         for i, voice in enumerate(sorted(all_voices)):
             label = Gtk.Label()
@@ -542,9 +541,9 @@ class SpeakActivity(activity.Activity):
                 found_my_voice = True
             evbox.add(alignment)
             alignment.show()
-            if i < count / 3:
+            if i < count // 3:
                 vboxes[0].pack_start(evbox, True, True, 0)
-            elif i < 2 * count / 3:
+            elif i < 2 * count // 3:
                 vboxes[1].pack_start(evbox, True, True, 0)
             else:
                 vboxes[2].pack_start(evbox, True, True, 0)
@@ -603,7 +602,7 @@ class SpeakActivity(activity.Activity):
 
         self.pitchadj = Gtk.Adjustment(self.face.status.pitch,
                                        espeak.PITCH_MIN, espeak.PITCH_MAX,
-                                       1, espeak.PITCH_MAX / 10, 0)
+                                       1, espeak.PITCH_MAX // 10, 0)
         pitchbar = Gtk.HScale.new(self.pitchadj)
         pitchbar.set_draw_value(False)
         pitchbar.set_size_request(240, 15)
@@ -613,7 +612,7 @@ class SpeakActivity(activity.Activity):
 
         self.rateadj = Gtk.Adjustment(self.face.status.rate,
                                       espeak.RATE_MIN, espeak.RATE_MAX,
-                                      1, espeak.RATE_MAX / 10, 0)
+                                      1, espeak.RATE_MAX // 10, 0)
         ratebar = Gtk.HScale.new(self.rateadj)
         ratebar.set_draw_value(False)
         ratebar.set_size_request(240, 15)
@@ -685,7 +684,7 @@ class SpeakActivity(activity.Activity):
 
         eye_box = Gtk.VBox()
         self._eye_type = {}
-        for name in EYE_DICT.keys():
+        for name in list(EYE_DICT.keys()):
             self._eye_type[name] = ToolButton(name)
             self._eye_type[name].connect('clicked',
                                          self._eyes_changed_event_cb,
@@ -843,7 +842,7 @@ class SpeakActivity(activity.Activity):
             evboxes = self._brain_evboxes
         else:
             evboxes = self._voice_evboxes
-        for old_voice in evboxes.keys():
+        for old_voice in list(evboxes.keys()):
             if evboxes[old_voice][1] == self.face.status.voice:
                 evboxes[old_voice][0].modify_bg(
                     0, style.COLOR_BLACK.get_gdk_color())
@@ -859,7 +858,7 @@ class SpeakActivity(activity.Activity):
             self._current_voice = voice
 
     def _get_active_eyes(self):
-        for name in EYE_DICT.keys():
+        for name in list(EYE_DICT.keys()):
             if EYE_DICT[name]['index'] == self._active_eyes:
                 return EYE_DICT[name]['widget']
         return None
@@ -869,7 +868,7 @@ class SpeakActivity(activity.Activity):
             return
 
         if self._active_eyes is not None:
-            for old_name in EYE_DICT.keys():
+            for old_name in list(EYE_DICT.keys()):
                 if EYE_DICT[old_name]['index'] == self._active_eyes:
                     self._eye_type[old_name].set_icon_name(old_name)
                     break
@@ -898,7 +897,7 @@ class SpeakActivity(activity.Activity):
             self._active_number_of_eyes = NUMBERS.index(name) + 1
             self._number_of_eyes_type[name].set_icon_name(name + '-selected')
             if self._active_eyes is not None:
-                for eye_name in EYE_DICT.keys():
+                for eye_name in list(EYE_DICT.keys()):
                     if EYE_DICT[eye_name]['index'] == self._active_eyes:
                         value = EYE_DICT[eye_name]['widget']
                         self.face.status.eyes = \
@@ -1050,7 +1049,7 @@ class SpeakActivity(activity.Activity):
         self._voice_palette.set_content(self._brain_box)
 
         new_voice = None
-        for name in brain.BOTS.keys():
+        for name in list(brain.BOTS.keys()):
             if self._current_voice[0].short_name == name:
                 new_voice == self._current_voice[0]
                 break
@@ -1073,7 +1072,7 @@ class SpeakActivity(activity.Activity):
         self._set_voice(new_voice)
 
         evboxes = self._brain_evboxes
-        for old_voice in evboxes.keys():
+        for old_voice in list(evboxes.keys()):
             evboxes[old_voice][0].modify_bg(
                 0, style.COLOR_BLACK.get_gdk_color())
 

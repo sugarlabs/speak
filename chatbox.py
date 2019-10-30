@@ -196,7 +196,7 @@ class TextBox(Gtk.TextView):
         self.palette = None
         iter_tags = self.get_iter_at_location(x, y)
 
-        tags = iter_tags.get_tags()
+        tags = iter_tags[1].get_tags()
         for tag in tags:
             try:
                 url = tag.url

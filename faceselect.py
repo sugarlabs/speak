@@ -48,7 +48,7 @@ _STEPS = [_("Draw a line from the center to the edge of the left eye's iris"),
 
 
 def _scale(iw, ih, aw, ah):
-    factor = min(aw * 1.0 / iw, ah * 1.0 / ih)
+    factor = min(aw * 1.0 // iw, ah * 1.0 // ih)
     return int(iw * factor), int(ih * factor)
 
 
@@ -215,8 +215,8 @@ class FaceSelectorDrawing(Gtk.DrawingArea):
             self._pixbuf = self._full_pixbuf.scale_simple(
                 sw, sh, GdkPixbuf.InterpType.BILINEAR)
 
-            self._offset_x = (alloc.width - sw) / 2
-            self._offset_y = (alloc.height - sh) / 2
+            self._offset_x = (alloc.width - sw) // 2
+            self._offset_y = (alloc.height - sh) // 2
 
         cr.rectangle(self._offset_x, self._offset_y, alloc.width, alloc.height)
         Gdk.cairo_set_source_pixbuf(cr, self._pixbuf,

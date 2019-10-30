@@ -60,8 +60,8 @@ class Status(object):
 
     def __init__(self):
         self.voice = voice.defaultVoice()
-        self.pitch = espeak.PITCH_MAX / 2
-        self.rate = espeak.RATE_MAX / 2
+        self.pitch = espeak.PITCH_MAX // 2
+        self.rate = espeak.RATE_MAX // 2
 
     def serialize(self):
         success, data = self.pixbuf.save_to_bufferv('png', [], [])
@@ -148,8 +148,8 @@ class View(Gtk.DrawingArea):
     def __draw_cb(self, widget, cr):
         bounds = widget.get_allocation()
 
-        offset_x = (bounds.width - self.status.pixbuf.get_width()) / 2
-        offset_y = (bounds.height - self.status.pixbuf.get_height()) / 2
+        offset_x = (bounds.width - self.status.pixbuf.get_width()) // 2
+        offset_y = (bounds.height - self.status.pixbuf.get_height()) // 2
 
         # Background Color
         cr.rectangle(0, 0, bounds.width, bounds.height)
@@ -204,14 +204,14 @@ class View(Gtk.DrawingArea):
 
     # Thanks to xeyes :)
     def _compute_pupil(self, eye, offset_x, offset_y, look_x, look_y):
-        CIRC = eye.circ / _EYE_CIRCUMFERENCE
+        CIRC = eye.circ // _EYE_CIRCUMFERENCE
         EYE_X, EYE_Y = self.translate_coordinates(
             self.get_toplevel(),
             int(eye.center[0] + offset_x),
             int(eye.center[1] + offset_y))
         EYE_HWIDTH = CIRC
         EYE_HHEIGHT = CIRC
-        BALL_DIST = EYE_HWIDTH / (eye.circ / _BALL_DIST_CIRC_RATIO * 4)
+        BALL_DIST = EYE_HWIDTH // (eye.circ // _BALL_DIST_CIRC_RATIO * 4)
 
         dx = look_x - EYE_X
         dy = look_y - EYE_Y

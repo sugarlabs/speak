@@ -141,11 +141,10 @@ class View(Gtk.VBox):
         if not text:
             return
 
-        ascii_text = text.encode('ascii', 'ignore')
-        if STATUS_MSG in ascii_text:
+        if STATUS_MSG in text:
             try:
                 status = face.Status().deserialize(
-                    ascii_text[len(STATUS_MSG) + 1:])
+                    text[len(STATUS_MSG) + 1:])
                 buddy_face.update(status)
                 self.resize_buddy_list()
             except:
@@ -165,7 +164,7 @@ class View(Gtk.VBox):
             # so walk through the list
             nick = buddy.props.nick
             color = buddy.props.color
-            for old_buddy in self._buddies.keys():
+            for old_buddy in list(self._buddies.keys()):
                 if old_buddy.props.nick == nick and \
                    old_buddy.props.color == color:
                     i = self._buddies.get(old_buddy)
@@ -178,7 +177,7 @@ class View(Gtk.VBox):
         """ maintain the buddy list width """
         size = min(BUDDIES_WIDTH, len(self._buddies) * BUDDY_SIZE)
         self._buddies_sw.set_size_request(size, BUDDY_SIZE)
-        for buddy in self._buddies.values():
+        for buddy in list(self._buddies.values()):
             buddy.set_size_request(BUDDY_SIZE, BUDDY_SIZE)
 
     def farewell(self, buddy):
@@ -192,7 +191,7 @@ class View(Gtk.VBox):
         self.resize_buddy_list()
 
     def shut_up(self):
-        for i in self._buddies.values():
+        for i in list(self._buddies.values()):
             i.shut_up()
         self.me.shut_up()
 
@@ -233,7 +232,7 @@ class View(Gtk.VBox):
 
     def look_at(self):
         self.me.look_at()
-        for i in self._buddies.values():
+        for i in list(self._buddies.values()):
             i.look_at()
 
     def __open_on_journal(self, widget, url):
@@ -245,12 +244,12 @@ class View(Gtk.VBox):
             'icon-color': profile.get_color().to_string(),
             'mime_type': 'text/uri-list',
         }
-        for k, v in metadata.items():
+        for k, v in list(metadata.items()):
             jobject.metadata[k] = v
         file_path = os.path.join(get_activity_root(), 'instance',
                                  '%i_' % time.time())
         open(file_path, 'w').write(url + '\r\n')
-        os.chmod(file_path, 0755)
+        os.chmod(file_path, 0o755)
         jobject.set_file_path(file_path)
         datastore.write(jobject)
         show_object_in_journal(jobject.object_id)

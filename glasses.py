@@ -40,10 +40,10 @@ class Glasses(Eye):
         dX = pupilX - bounds.width / 2.
         dY = pupilY - bounds.height / 2.
         distance = math.sqrt(dX * dX + dY * dY)
-        limit = eyeSize / 2 - outlineWidth * 2 - pupilSize
+        limit = eyeSize // 2 - outlineWidth * 2 - pupilSize
         if distance > limit:
-            pupilX = bounds.width / 2 + dX * limit / distance
-            pupilY = bounds.height / 2 + dY * limit / distance
+            pupilX = bounds.width // 2 + dX * limit // distance
+            pupilY = bounds.height // 2 + dY * limit // distance
 
         # background
         cr.set_source_rgba(*self.fill_color.get_rgba())

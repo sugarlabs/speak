@@ -91,15 +91,15 @@ class AimlHandler(ContentHandler):
 			if attr["xml:space"] == "default" or attr["xml:space"] == "preserve":
 				self._whitespaceBehaviorStack.append(attr["xml:space"])
 			else:
-				raise AimlParserError, "Invalid value for xml:space attribute "+self._location()
+				raise AimlParserError("Invalid value for xml:space attribute "+self._location())
 		except KeyError:
 			self._whitespaceBehaviorStack.append(self._whitespaceBehaviorStack[-1])
 
 	def startElementNS(self, name, qname, attr):
-		print "QNAME:", qname
-		print "NAME:", name
+		print("QNAME:", qname)
+		print("NAME:", name)
 		uri,elem = name
-		if (elem == "bot"): print "name:", attr.getValueByQName("name"), "a'ite?"
+		if (elem == "bot"): print("name:", attr.getValueByQName("name"), "a'ite?")
 		self.startElement(elem, attr)
 		pass
 
@@ -118,7 +118,7 @@ class AimlHandler(ContentHandler):
 
 		# process this start-element.
 		try: self._startElement(name, attr)
-		except AimlParserError, msg:
+		except AimlParserError as msg:
 			# Print the error message
 			sys.stderr.write("PARSE ERROR: %s\n" % msg)
 			
@@ -131,10 +131,10 @@ class AimlHandler(ContentHandler):
 		if name == "aiml":
 			# <aiml> tags are only legal in the OutsideAiml state
 			if self._state != self._STATE_OutsideAiml:
-				raise AimlParserError, "Unexpected <aiml> tag "+self._location()
+				raise AimlParserError("Unexpected <aiml> tag "+self._location())
 			self._state = self._STATE_InsideAiml
 			self._insideTopic = False
-			self._currentTopic = u""
+			self._currentTopic = ""
 			try: self._version = attr["version"]
 			except KeyError:
 				# This SHOULD be a syntax error, but so many AIML sets out there are missing
@@ -160,26 +160,26 @@ class AimlHandler(ContentHandler):
 			# <topic> tags are only legal in the InsideAiml state, and only
 			# if we're not already inside a topic.
 			if (self._state != self._STATE_InsideAiml) or self._insideTopic:
-				raise AimlParserError, "Unexpected <topic> tag", self._location()
-			try: self._currentTopic = unicode(attr['name'])
+				raise AimlParserError("Unexpected <topic> tag").with_traceback(self._location())
+			try: self._currentTopic = str(attr['name'])
 			except KeyError:
-				raise AimlParserError, "Required \"name\" attribute missing in <topic> element "+self._location()
+				raise AimlParserError("Required \"name\" attribute missing in <topic> element "+self._location())
 			self._insideTopic = True
 		elif name == "category":
 			# <category> tags are only legal in the InsideAiml state
 			if self._state != self._STATE_InsideAiml:
-				raise AimlParserError, "Unexpected <category> tag "+self._location()
+				raise AimlParserError("Unexpected <category> tag "+self._location())
 			self._state = self._STATE_InsideCategory
-			self._currentPattern = u""
-			self._currentThat = u""
+			self._currentPattern = ""
+			self._currentThat = ""
 			# If we're not inside a topic, the topic is implicitly set to *
-			if not self._insideTopic: self._currentTopic = u"*"
+			if not self._insideTopic: self._currentTopic = "*"
 			self._elemStack = []
 			self._pushWhitespaceBehavior(attr)
 		elif name == "pattern":
 			# <pattern> tags are only legal in the InsideCategory state
 			if self._state != self._STATE_InsideCategory:
-				raise AimlParserError, "Unexpected <pattern> tag "+self._location()
+				raise AimlParserError("Unexpected <pattern> tag "+self._location())
 			self._state = self._STATE_InsidePattern
 		elif name == "that" and self._state == self._STATE_AfterPattern:
 			# <that> are legal either inside a <template> element, or
@@ -190,37 +190,37 @@ class AimlHandler(ContentHandler):
 			# <template> tags are only legal in the AfterPattern and AfterThat
 			# states
 			if self._state not in [self._STATE_AfterPattern, self._STATE_AfterThat]:
-				raise AimlParserError, "Unexpected <template> tag "+self._location()
+				raise AimlParserError("Unexpected <template> tag "+self._location())
 			# if no <that> element was specified, it is implicitly set to *
 			if self._state == self._STATE_AfterPattern:
-				self._currentThat = u"*"
+				self._currentThat = "*"
 			self._state = self._STATE_InsideTemplate
 			self._elemStack.append(['template',{}])
 			self._pushWhitespaceBehavior(attr)
 		elif self._state == self._STATE_InsidePattern:
 			# Certain tags are allowed inside <pattern> elements.
-			if name == "bot" and attr.has_key("name") and attr["name"] == u"name":
+			if name == "bot" and "name" in attr and attr["name"] == "name":
 				# Insert a special character string that the PatternMgr will
 				# replace with the bot's name.
-				self._currentPattern += u" BOT_NAME "
+				self._currentPattern += " BOT_NAME "
 			else:
-				raise AimlParserError, ("Unexpected <%s> tag " % name)+self._location()
+				raise AimlParserError(("Unexpected <%s> tag " % name)+self._location())
 		elif self._state == self._STATE_InsideThat:
 			# Certain tags are allowed inside <that> elements.
-			if name == "bot" and attr.has_key("name") and attr["name"] == u"name":
+			if name == "bot" and "name" in attr and attr["name"] == "name":
 				# Insert a special character string that the PatternMgr will
 				# replace with the bot's name.
-				self._currentThat += u" BOT_NAME "
+				self._currentThat += " BOT_NAME "
 			else:
-				raise AimlParserError, ("Unexpected <%s> tag " % name)+self._location()
-		elif self._state == self._STATE_InsideTemplate and self._validInfo.has_key(name):
+				raise AimlParserError(("Unexpected <%s> tag " % name)+self._location())
+		elif self._state == self._STATE_InsideTemplate and name in self._validInfo:
 			# Starting a new element inside the current pattern. First
 			# we need to convert 'attr' into a native Python dictionary,
 			# so it can later be marshaled.
 			attrDict = {}
-			for k,v in attr.items():
+			for k,v in list(attr.items()):
 				#attrDict[k[1].encode(self._encoding)] = v.encode(self._encoding)
-				attrDict[k.encode(self._encoding)] = unicode(v)
+				attrDict[k.encode(self._encoding)] = str(v)
 			self._validateElemStart(name, attrDict, self._version)
 			# Push the current element onto the element stack.
 			self._elemStack.append([name.encode(self._encoding),attrDict])
@@ -237,7 +237,7 @@ class AimlHandler(ContentHandler):
 				self._currentUnknown = name
 			else:
 				# Otherwise, unknown elements are grounds for error!
-				raise AimlParserError, ("Unexpected <%s> tag " % name)+self._location()
+				raise AimlParserError(("Unexpected <%s> tag " % name)+self._location())
 
 	def characters(self, ch):
 		# Wrapper around _characters which catches errors in _characters()
@@ -252,7 +252,7 @@ class AimlHandler(ContentHandler):
 			# If we're skipping the current category, ignore all text.
 			return
 		try: self._characters(ch)
-		except AimlParserError, msg:
+		except AimlParserError as msg:
 			# Print the message
 			sys.stderr.write("PARSE ERROR: %s\n" % msg)
 			self._numParseErrors += 1 # increment error count
@@ -261,7 +261,7 @@ class AimlHandler(ContentHandler):
 				self._skipCurrentCategory = True
 			
 	def _characters(self, ch):
-		text = unicode(ch)
+		text = str(ch)
 		if self._state == self._STATE_InsidePattern:
 			self._currentPattern += text
 		elif self._state == self._STATE_InsideThat:
@@ -273,9 +273,9 @@ class AimlHandler(ContentHandler):
 				parent = self._elemStack[-1][0]
 				parentAttr = self._elemStack[-1][1]
 				required, optional, canBeParent = self._validInfo[parent]
-				nonBlockStyleCondition = (parent == "condition" and not (parentAttr.has_key("name") and parentAttr.has_key("value")))
+				nonBlockStyleCondition = (parent == "condition" and not ("name" in parentAttr and "value" in parentAttr))
 				if not canBeParent:
-					raise AimlParserError, ("Unexpected text inside <%s> element "%parent)+self._location()
+					raise AimlParserError(("Unexpected text inside <%s> element "%parent)+self._location())
 				elif parent == "random" or nonBlockStyleCondition:
 					# <random> elements can only contain <li> subelements. However,
 					# there's invariably some whitespace around the <li> that we need
@@ -286,10 +286,10 @@ class AimlHandler(ContentHandler):
 						return
 					else:
 						# non-whitespace text inside these elements is a syntax error.
-						raise AimlParserError, ("Unexpected text inside <%s> element "%parent)+self._location()
+						raise AimlParserError(("Unexpected text inside <%s> element "%parent)+self._location())
 			except IndexError:
 				# the element stack is empty. This should never happen.
-				raise AimlParserError, "Element stack is empty while validating text "+self._location()
+				raise AimlParserError("Element stack is empty while validating text "+self._location())
 			
 			# Add a new text element to the element at the top of the element
 			# stack. If there's already a text element there, simply append the
@@ -332,7 +332,7 @@ class AimlHandler(ContentHandler):
 				self._state = self._STATE_InsideAiml
 			return
 		try: self._endElement(name)
-		except AimlParserError, msg:
+		except AimlParserError as msg:
 			# Print the message
 			sys.stderr.write("PARSE ERROR: %s\n" % msg)
 			self._numParseErrors += 1 # increment error count
@@ -350,20 +350,20 @@ class AimlHandler(ContentHandler):
 		if name == "aiml":
 			# </aiml> tags are only legal in the InsideAiml state
 			if self._state != self._STATE_InsideAiml:
-				raise AimlParserError, "Unexpected </aiml> tag "+self._location()
+				raise AimlParserError("Unexpected </aiml> tag "+self._location())
 			self._state = self._STATE_OutsideAiml
 			self._whitespaceBehaviorStack.pop()
 		elif name == "topic":
 			# </topic> tags are only legal in the InsideAiml state, and
 			# only if _insideTopic is true.
 			if self._state != self._STATE_InsideAiml or not self._insideTopic:
-				raise AimlParserError, "Unexpected </topic> tag "+self._location()
+				raise AimlParserError("Unexpected </topic> tag "+self._location())
 			self._insideTopic = False
-			self._currentTopic = u""
+			self._currentTopic = ""
 		elif name == "category":
 			# </category> tags are only legal in the AfterTemplate state
 			if self._state != self._STATE_AfterTemplate:
-				raise AimlParserError, "Unexpected </category> tag "+self._location()
+				raise AimlParserError("Unexpected </category> tag "+self._location())
 			self._state = self._STATE_InsideAiml
 			# End the current category.  Store the current pattern/that/topic and
 			# element in the categories dictionary.
@@ -373,7 +373,7 @@ class AimlHandler(ContentHandler):
 		elif name == "pattern":
 			# </pattern> tags are only legal in the InsidePattern state
 			if self._state != self._STATE_InsidePattern:
-				raise AimlParserError, "Unexpected </pattern> tag "+self._location()
+				raise AimlParserError("Unexpected </pattern> tag "+self._location())
 			self._state = self._STATE_AfterPattern
 		elif name == "that" and self._state == self._STATE_InsideThat:
 			# </that> tags are only allowed inside <template> elements or in
@@ -382,17 +382,17 @@ class AimlHandler(ContentHandler):
 		elif name == "template":
 			# </template> tags are only allowed in the InsideTemplate state.
 			if self._state != self._STATE_InsideTemplate:
-				raise AimlParserError, "Unexpected </template> tag "+self._location()
+				raise AimlParserError("Unexpected </template> tag "+self._location())
 			self._state = self._STATE_AfterTemplate
 			self._whitespaceBehaviorStack.pop()
 		elif self._state == self._STATE_InsidePattern:
 			# Certain tags are allowed inside <pattern> elements.
 			if name not in ["bot"]:
-				raise AimlParserError, ("Unexpected </%s> tag " % name)+self._location()
+				raise AimlParserError(("Unexpected </%s> tag " % name)+self._location())
 		elif self._state == self._STATE_InsideThat:
 			# Certain tags are allowed inside <that> elements.
 			if name not in ["bot"]:
-				raise AimlParserError, ("Unexpected </%s> tag " % name)+self._location()
+				raise AimlParserError(("Unexpected </%s> tag " % name)+self._location())
 		elif self._state == self._STATE_InsideTemplate:
 			# End of an element inside the current template.  Append the
 			# element at the top of the stack onto the one beneath it.
@@ -404,7 +404,7 @@ class AimlHandler(ContentHandler):
 			if elem[0] == "condition": self._foundDefaultLiStack.pop()
 		else:
 			# Unexpected closing tag
-			raise AimlParserError, ("Unexpected </%s> tag " % name)+self._location()
+			raise AimlParserError(("Unexpected </%s> tag " % name)+self._location())
 
 	# A dictionary containing a validation information for each AIML
 	# element. The keys are the names of the elements.  The values are a
@@ -460,24 +460,24 @@ class AimlHandler(ContentHandler):
 		required, optional, canBeParent = self._validInfo[name]
 		for a in required:
 			if a not in attr and not self._forwardCompatibleMode:
-				raise AimlParserError, ("Required \"%s\" attribute missing in <%s> element " % (a,name))+self._location()
+				raise AimlParserError(("Required \"%s\" attribute missing in <%s> element " % (a,name))+self._location())
 		for a in attr:
 			if a in required: continue
 			if a[0:4] == "xml:": continue # attributes in the "xml" namespace can appear anywhere
 			if a not in optional and not self._forwardCompatibleMode:
-				raise AimlParserError, ("Unexpected \"%s\" attribute in <%s> element " % (a,name))+self._location()
+				raise AimlParserError(("Unexpected \"%s\" attribute in <%s> element " % (a,name))+self._location())
 
 		# special-case: several tags contain an optional "index" attribute.
 		# This attribute's value must be a positive integer.
 		if name in ["star", "thatstar", "topicstar"]:
-			for k,v in attr.items():
+			for k,v in list(attr.items()):
 				if k == "index":
 					temp = 0
 					try: temp = int(v)
 					except:
-						raise AimlParserError, ("Bad type for \"%s\" attribute (expected integer, found \"%s\") " % (k,v))+self._location()
+						raise AimlParserError(("Bad type for \"%s\" attribute (expected integer, found \"%s\") " % (k,v))+self._location())
 					if temp < 1:
-						raise AimlParserError, ("\"%s\" attribute must have non-negative value " % (k))+self._location()
+						raise AimlParserError(("\"%s\" attribute must have non-negative value " % (k))+self._location())
 
 		# See whether the containing element is permitted to contain
 		# subelements. If not, this element is invalid no matter what it is.
@@ -487,38 +487,38 @@ class AimlHandler(ContentHandler):
 		except IndexError:
 			# If the stack is empty, no parent is present.  This should never
 			# happen.
-			raise AimlParserError, ("Element stack is empty while validating <%s> " % name)+self._location()
+			raise AimlParserError(("Element stack is empty while validating <%s> " % name)+self._location())
 		required, optional, canBeParent = self._validInfo[parent]
-		nonBlockStyleCondition = (parent == "condition" and not (parentAttr.has_key("name") and parentAttr.has_key("value")))
+		nonBlockStyleCondition = (parent == "condition" and not ("name" in parentAttr and "value" in parentAttr))
 		if not canBeParent:
-			raise AimlParserError, ("<%s> elements cannot have any contents "%parent)+self._location()
+			raise AimlParserError(("<%s> elements cannot have any contents "%parent)+self._location())
 		# Special-case test if the parent element is <condition> (the
 		# non-block-style variant) or <random>: these elements can only
 		# contain <li> subelements.
 		elif (parent == "random" or nonBlockStyleCondition) and name!="li":
-			raise AimlParserError, ("<%s> elements can only contain <li> subelements "%parent)+self._location()
+			raise AimlParserError(("<%s> elements can only contain <li> subelements "%parent)+self._location())
 		# Special-case test for <li> elements, which can only be contained
 		# by non-block-style <condition> and <random> elements, and whose
 		# required attributes are dependent upon which attributes are
 		# present in the <condition> parent.
 		elif name=="li":
 			if not (parent=="random" or nonBlockStyleCondition):
-				raise AimlParserError, ("Unexpected <li> element contained by <%s> element "%parent)+self._location()
+				raise AimlParserError(("Unexpected <li> element contained by <%s> element "%parent)+self._location())
 			if nonBlockStyleCondition:
-				if parentAttr.has_key("name"):
+				if "name" in parentAttr:
 					# Single-predicate condition.  Each <li> element except the
 					# last must have a "value" attribute.
 					if len(attr) == 0:
 						# This could be the default <li> element for this <condition>,
 						# unless we've already found one.
 						if self._foundDefaultLiStack[-1]:
-							raise AimlParserError, "Unexpected default <li> element inside <condition> "+self._location()
+							raise AimlParserError("Unexpected default <li> element inside <condition> "+self._location())
 						else:
 							self._foundDefaultLiStack[-1] = True
-					elif len(attr) == 1 and attr.has_key("value"):
+					elif len(attr) == 1 and "value" in attr:
 						pass # this is the valid case
 					else:
-						raise AimlParserError, "Invalid <li> inside single-predicate <condition> "+self._location()
+						raise AimlParserError("Invalid <li> inside single-predicate <condition> "+self._location())
 				elif len(parentAttr) == 0:
 					# Multi-predicate condition.  Each <li> element except the
 					# last must have a "name" and a "value" attribute.
@@ -526,13 +526,13 @@ class AimlHandler(ContentHandler):
 						# This could be the default <li> element for this <condition>,
 						# unless we've already found one.
 						if self._foundDefaultLiStack[-1]:
-							raise AimlParserError, "Unexpected default <li> element inside <condition> "+self._location()
+							raise AimlParserError("Unexpected default <li> element inside <condition> "+self._location())
 						else:
 							self._foundDefaultLiStack[-1] = True
-					elif len(attr) == 2 and attr.has_key("value") and attr.has_key("name"):
+					elif len(attr) == 2 and "value" in attr and "name" in attr:
 						pass # this is the valid case
 					else:
-						raise AimlParserError, "Invalid <li> inside multi-predicate <condition> "+self._location()
+						raise AimlParserError("Invalid <li> inside multi-predicate <condition> "+self._location())
 		# All is well!
 		return True
 
