@@ -147,7 +147,7 @@ class View(Gtk.VBox):
                     text[len(STATUS_MSG) + 1:])
                 buddy_face.update(status)
                 self.resize_buddy_list()
-            except:
+            except BaseException:
                 logging.error('Could not parse status message %s' %
                               text)
         else:

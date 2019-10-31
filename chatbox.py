@@ -124,10 +124,10 @@ class TextBox(Gtk.TextView):
             highlight_color.get_rgba()
         self.override_background_color(Gtk.StateFlags.SELECTED, rgba)
 
-        self.add_events(Gdk.EventMask.POINTER_MOTION_MASK |
-                        Gdk.EventMask.BUTTON_PRESS_MASK |
-                        Gdk.EventMask.BUTTON_RELEASE_MASK |
-                        Gdk.EventMask.LEAVE_NOTIFY_MASK)
+        self.add_events(Gdk.EventMask.POINTER_MOTION_MASK
+                        | Gdk.EventMask.BUTTON_PRESS_MASK
+                        | Gdk.EventMask.BUTTON_RELEASE_MASK
+                        | Gdk.EventMask.LEAVE_NOTIFY_MASK)
 
         self.connect('event-after', self.__event_after_cb)
         self.connect('button-press-event', self.__button_press_cb)
@@ -144,8 +144,8 @@ class TextBox(Gtk.TextView):
 
     def resize_box(self):
         self.set_buffer(self._empty_buffer)
-        self.set_size_request(Gdk.Screen.width() - style.GRID_CELL_SIZE -
-                              2 * style.DEFAULT_SPACING, -1)
+        self.set_size_request(Gdk.Screen.width() - style.GRID_CELL_SIZE
+                              - 2 * style.DEFAULT_SPACING, -1)
 
     def __leave_notify_event_cb(self, widget, event):
         self._mouse_detector.stop()
@@ -167,7 +167,7 @@ class TextBox(Gtk.TextView):
         for tag in iter_tags.get_tags():
             try:
                 url = tag.url
-            except:
+            except BaseException:
                 url = None
             if url is not None:
                 if event.button == 3:
@@ -201,7 +201,7 @@ class TextBox(Gtk.TextView):
             try:
                 url = tag.url
                 self.palette = tag.palette
-            except:
+            except BaseException:
                 url = None
             if url is not None:
                 hovering = True

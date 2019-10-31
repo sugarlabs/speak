@@ -227,8 +227,8 @@ class SpeakActivity(activity.Activity):
             self._box.pack_start(self.face, True, False, 0)
             self._box.pack_start(self._entry_box, True, True, 0)
 
-        self.add_events(Gdk.EventMask.POINTER_MOTION_HINT_MASK |
-                        Gdk.EventMask.POINTER_MOTION_MASK)
+        self.add_events(Gdk.EventMask.POINTER_MOTION_HINT_MASK
+                        | Gdk.EventMask.POINTER_MOTION_MASK)
         self.connect('motion_notify_event', self._mouse_moved_cb)
 
         self._box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -481,10 +481,10 @@ class SpeakActivity(activity.Activity):
             x = int(xyz[0])
             y = int(xyz[1])
             # DO SOMETHING HERE
-            if ((Gdk.Screen.width() > Gdk.Screen.height() and
-                 abs(x) > abs(y)) or
-                (Gdk.Screen.width() < Gdk.Screen.height() and
-                 abs(x) < abs(y))):
+            if ((Gdk.Screen.width() > Gdk.Screen.height()
+                 and abs(x) > abs(y))
+                or (Gdk.Screen.width() < Gdk.Screen.height()
+                    and abs(x) < abs(y))):
                 sideways_phrase = random.randint(0, len(SIDEWAYS_PHRASES) - 1)
                 self.face.say(SIDEWAYS_PHRASES[sideways_phrase])
                 return IDLE_DELAY  # Don't repeat the message for a while
