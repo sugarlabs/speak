@@ -6,4 +6,7 @@
 # E501 line too long (%d > 79 characters)
 # files have embedded SVGs yet to be reformatted or moved to files
 
-ignore = E402,E501
+# W503 line break before binary operator
+# is okay provided there is consistency
+
+ignore = E402,E501,W503

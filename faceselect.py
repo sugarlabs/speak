@@ -196,9 +196,9 @@ class FaceSelectorDrawing(Gtk.DrawingArea):
         self._offset_x = None
         self._offset_y = None
 
-        self.set_events(Gdk.EventMask.BUTTON_PRESS_MASK |
-                        Gdk.EventMask.BUTTON_RELEASE_MASK |
-                        Gdk.EventMask.POINTER_MOTION_MASK)
+        self.set_events(Gdk.EventMask.BUTTON_PRESS_MASK
+                        | Gdk.EventMask.BUTTON_RELEASE_MASK
+                        | Gdk.EventMask.POINTER_MOTION_MASK)
         self.connect('draw', self.__draw_cb)
         self.connect('button-press-event', self.__button_press_cb)
         self.connect('button-release-event', self.__button_release_cb)

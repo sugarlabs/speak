@@ -93,13 +93,13 @@ class Voice:
         self.friendlyname = ' '.join([self.short_name] + parts[1:])
 
         if friendlynameRP == 'rp':
-                self.friendlyname = 'English (Received Pronunciation)'
+            self.friendlyname = 'English (Received Pronunciation)'
 
         if friendlyname == 'us':
-                self.friendlyname = 'English (USA)'
+            self.friendlyname = 'English (USA)'
 
         if friendlynameRP == 'wmids':
-                self.friendlyname = 'English (West Midlands)'
+            self.friendlyname = 'English (West Midlands)'
 
     def __lt__(self, other):
         return self.friendlyname < other.friendlyname
@@ -148,7 +148,7 @@ def defaultVoice():
         return count
     try:
         lang = os.environ["LANG"]
-    except:
+    except KeyError:
         lang = ""
 
     voice_names = [

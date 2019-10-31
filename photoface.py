@@ -179,8 +179,8 @@ class View(Gtk.DrawingArea):
                      self.status.mouth.h)
         Gdk.cairo_set_source_pixbuf(cr, self.status.mouth.pixbuf,
                                     offset_x + self.status.mouth.x,
-                                    offset_y + self.status.mouth.y +
-                                    volume_offset)
+                                    offset_y + self.status.mouth.y
+                                    + volume_offset)
         cr.fill()
 
         # Eye centers
