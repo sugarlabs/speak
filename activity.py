@@ -560,7 +560,6 @@ class SpeakActivity(activity.Activity):
         self._brain_evboxes = {}
         self._brain_box = Gtk.HBox()
         vboxes = Gtk.VBox()
-        count = brain.BOTS.keys()
         found_my_voice = False
         for i, voice in enumerate(brain_voices):
             label = Gtk.Label()
