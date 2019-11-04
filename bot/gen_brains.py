@@ -18,22 +18,22 @@
 # A simple hack to attach a chatterbot to speak activity
 #coding=utf-8
 
-import aiml
+from aiml.Kernel import Kernel
 import glob
 
-k = aiml.Kernel()
+k = Kernel()
 laiml = glob.glob("sara/*.aiml") #devuelve lista con ficheros *.aiml
 for fichero in laiml:
     k.learn(str(fichero))
 k.saveBrain("sara.brn")
 
-k = aiml.Kernel()
+k = Kernel()
 laiml = glob.glob("alice/*.aiml") #devuelve lista con ficheros *.aiml
 for fichero in laiml:
     k.learn(str(fichero))
 k.saveBrain("alice.brn")
 
-k = aiml.Kernel()
+k = Kernel()
 laiml = glob.glob("alisochka/*.aiml")
 for fichero in laiml:
     k.learn(str(fichero))
