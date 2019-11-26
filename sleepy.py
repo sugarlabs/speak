@@ -35,7 +35,7 @@ class Sleepy(Eye):
 
         self._pixbuf = svg_str_to_pixbuf(eye_svg())
 
-    def expose(self, widget, cr):
+    def draw(self, widget, cr):
         bounds = self.get_allocation()
 
         # background

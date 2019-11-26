@@ -30,7 +30,7 @@ class Glasses(Eye):
     def __init__(self, fill_color):
         Eye.__init__(self, fill_color)
 
-    def expose(self, widget, cr):
+    def draw(self, widget, cr):
         bounds = self.get_allocation()
 
         eyeSize = min(bounds.width, bounds.height)
