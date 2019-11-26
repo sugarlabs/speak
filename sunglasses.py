@@ -52,7 +52,7 @@ class Sunglasses(Eye):
             which_eye = 1
         self._which_eye = which_eye
 
-    def expose(self, widget, cr):
+    def draw(self, widget, cr):
         bounds = self.get_allocation()
 
         eyeSize = min(bounds.width, bounds.height)

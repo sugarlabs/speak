@@ -29,7 +29,7 @@ from gi.repository import Gtk
 class Eye(Gtk.DrawingArea):
     def __init__(self, fill_color):
         Gtk.DrawingArea.__init__(self)
-        self.connect("draw", self.expose)
+        self.connect("draw", self.draw)
         self.x, self.y = 0, 0
         self.fill_color = fill_color
 
@@ -86,7 +86,7 @@ class Eye(Gtk.DrawingArea):
 
         return a.width // 2 + dx, a.height // 2 + dy
 
-    def expose(self, widget, cr):
+    def draw(self, widget, cr):
         bounds = self.get_allocation()
 
         eyeSize = min(bounds.width, bounds.height)
