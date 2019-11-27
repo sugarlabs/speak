@@ -1,4 +1,5 @@
 # Copyright (C) 2009, Aleksey Lim
+# Copyright (C) 2019, Chihurumnaya Ibiam <ibiamchihurumnaya@sugarlabs.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,13 +24,15 @@ from gi.repository import GObject
 import logging
 logger = logging.getLogger('speak')
 
+from sugar3.speech import GstSpeechPlayer
+
 PITCH_MIN = 0
 PITCH_MAX = 200
 RATE_MIN = 0
 RATE_MAX = 200
 
 
-class BaseAudioGrab(GObject.GObject):
+class Speech(GstSpeechPlayer):
     __gsignals__ = {
         'peak': (GObject.SIGNAL_RUN_FIRST, None, [GObject.TYPE_PYOBJECT]),
         'wave': (GObject.SIGNAL_RUN_FIRST, None, [GObject.TYPE_PYOBJECT]),
@@ -37,7 +40,7 @@ class BaseAudioGrab(GObject.GObject):
     }
 
     def __init__(self):
-        GObject.GObject.__init__(self)
+        GstSpeechPlayer.__init__(self)
         self.pipeline = None
 
         self._cb = {}
@@ -59,19 +62,6 @@ class BaseAudioGrab(GObject.GObject):
 
     def connect_idle(self, cb):
         self._cb['idle'] = self.connect('idle', cb)
-
-    def restart_sound_device(self):
-        self.pipeline.set_state(Gst.State.NULL)
-        self.pipeline.set_state(Gst.State.PLAYING)
-
-    def stop_sound_device(self):
-        if self.pipeline is None:
-            return
-
-        self.pipeline.set_state(Gst.State.NULL)
-        self.emit("idle")
-
-        self.pipeline = None
 
     def make_pipeline(self):
         if self.pipeline is not None:
@@ -179,8 +169,6 @@ class BaseAudioGrab(GObject.GObject):
         bus.add_signal_watch()
         bus.connect('message', gst_message_cb)
 
-
-class AudioGrab(BaseAudioGrab):
     def speak(self, status, text):
         self.make_pipeline()
         src = self.pipeline.get_by_name('espeak')
@@ -201,11 +189,13 @@ class AudioGrab(BaseAudioGrab):
         self.restart_sound_device()
 
 
-def voices():
-    out = []
+_speech = None
 
-    for i in Gst.ElementFactory.make('espeak', 'espeak').props.voices:
-        name, language, dialect = i
-        out.append((language, name))
 
-    return out
+def get_speech():
+    global _speech
+
+    if _speech is None:
+        _speech = Speech()
+
+    return _speech

@@ -31,7 +31,7 @@ import json
 
 import sugar3.graphics.style as style
 
-import espeak
+import speech
 import eye
 import glasses
 import eyelashes
@@ -55,8 +55,8 @@ FACE_PAD = style.GRID_CELL_SIZE
 class Status:
     def __init__(self):
         self.voice = voice.defaultVoice()
-        self.pitch = espeak.PITCH_MAX // 2
-        self.rate = espeak.RATE_MAX // 2
+        self.pitch = speech.PITCH_MAX // 2
+        self.rate = speech.RATE_MAX // 2
 
         self.eyes = [eye.Eye] * 2
         self.mouth = mouth.Mouth
@@ -122,7 +122,7 @@ class View(Gtk.EventBox):
 
         self.connect('size-allocate', self._size_allocate_cb)
 
-        self._audio = espeak.AudioGrab()
+        self._audio = speech.get_speech()
 
         # make an empty box for some eyes
         self._eyes = None
