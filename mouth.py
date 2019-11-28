@@ -36,9 +36,7 @@ class Mouth(Gtk.DrawingArea):
         self.fill_color = fill_color
         self.audio = audio
 
-        def realize_cb(widget):
-            widget.connect("draw", self.draw_cb)
-        self.connect("realize", realize_cb)
+        self.connect("draw", self.draw_cb)
 
     def stop(self):
         self.audio.disconnect_all()
