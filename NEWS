@@ -1,3 +1,14 @@
+58
+
+* Replace screenshots and update metadata (Ashnidh),
+* Port to Telepathy via D-Bus (James Cameron),
+* Port to Python 3 (Ibiam Chihurumnaya),
+* Update AIML and recompile Brain (Ibiam Chihurumnaya),
+* Fix missing sunglasses (James Cameron),
+* Port to sugar3.speech (Ibiam Chihurumnaya),
+* Fix missing mouth on welcome speech (James Cameron),
+* Fix support for non-english languages (Martin Abente Lahaye),
+
 57
 
 * Port from GConf to Gio.Settings (James Cameron),
