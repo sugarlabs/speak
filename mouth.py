@@ -45,7 +45,7 @@ class Mouth(Gtk.DrawingArea):
         self.audio = None
 
     def draw_cb(self, widget, cr):
-        pass
+        return True
 
 
 class PeakMouth(Mouth):
