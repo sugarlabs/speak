@@ -27,11 +27,14 @@ import cairo
 
 from gi.repository import Gtk
 
+from sugar3.graphics import style
+
 
 class Mouth(Gtk.DrawingArea):
     def __init__(self, audio, fill_color):
 
         Gtk.DrawingArea.__init__(self)
+        self.set_size_request(-1, style.GRID_CELL_SIZE * 4)
 
         self.fill_color = fill_color
         self.audio = audio

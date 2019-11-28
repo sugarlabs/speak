@@ -120,8 +120,6 @@ class View(Gtk.EventBox):
         self.status = Status()
         self.fill_color = fill_color
 
-        self.connect('size-allocate', self._size_allocate_cb)
-
         self._audio = speech.get_speech()
 
         # make an empty box for some eyes
@@ -132,6 +130,7 @@ class View(Gtk.EventBox):
         # make an empty box to put the mouth in
         self._mouth = None
         self._mouthbox = Gtk.HBox()
+        self._mouthbox.set_size_request(-1, style.GRID_CELL_SIZE * 10 / 2.5)
         self._mouthbox.show()
 
         # layout the screen
@@ -231,6 +230,3 @@ class View(Gtk.EventBox):
 
     def shut_up(self):
         self._audio.stop_sound_device()
-
-    def _size_allocate_cb(self, widget, allocation):
-        self._mouthbox.set_size_request(-1, int(allocation.height // 2.5))
