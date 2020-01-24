@@ -65,10 +65,10 @@ class Status(object):
 
     def serialize(self):
         success, data = self.pixbuf.save_to_bufferv('png', [], [])
-        pixbuf_b64 = base64.b64encode(data)
+        pixbuf_b64 = str(base64.b64encode(data), 'utf-8')
 
         success, data = self.mouth.pixbuf.save_to_bufferv('png', [], [])
-        mouth_pixbuf_b64 = base64.b64encode(data)
+        mouth_pixbuf_b64 = str(base64.b64encode(data), 'utf-8')
 
         mouth_dict = self.mouth.__dict__.copy()
         mouth_dict['pixbuf'] = mouth_pixbuf_b64
