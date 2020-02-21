@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 17:17+1100\n"
+"POT-Creation-Date: 2020-02-21 17:35+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity/activity.info:2 activity.py:196
+#: activity/activity.info:2 activity.py:200
 msgid "Speak"
 msgstr ""
 
@@ -34,203 +34,203 @@ msgid ""
 "a funny face."
 msgstr ""
 
-#: activity.py:108
+#: activity.py:103
 msgid "Round"
 msgstr ""
 
-#: activity.py:109
+#: activity.py:104
 msgid "Glasses"
 msgstr ""
 
-#: activity.py:110
+#: activity.py:105
 msgid "Half moon"
 msgstr ""
 
-#: activity.py:112
+#: activity.py:107
 msgid "Eye lashes"
 msgstr ""
 
-#: activity.py:114
+#: activity.py:109
 msgid "Sunglasses"
 msgstr ""
 
-#: activity.py:116
+#: activity.py:111
 msgid "Wire frames"
 msgstr ""
 
-#: activity.py:121
+#: activity.py:116
 msgid "I am bored."
 msgstr ""
 
-#: activity.py:121
+#: activity.py:116
 msgid "Talk to me."
 msgstr ""
 
-#: activity.py:122
+#: activity.py:117
 msgid "I am sleepy."
 msgstr ""
 
-#: activity.py:122
+#: activity.py:117
 msgid "Are you still there?"
 msgstr ""
 
-#: activity.py:123
+#: activity.py:118
 msgid "Please type something."
 msgstr ""
 
-#: activity.py:124
+#: activity.py:119
 msgid "Do you have anything to say to me?"
 msgstr ""
 
-#: activity.py:124
+#: activity.py:119
 msgid "Hello?"
 msgstr ""
 
-#: activity.py:125
+#: activity.py:120
 msgid "Whoa! Sideways!"
 msgstr ""
 
-#: activity.py:125
+#: activity.py:120
 msgid "I'm on my side."
 msgstr ""
 
-#: activity.py:125
+#: activity.py:120
 msgid "Uh oh."
 msgstr ""
 
-#: activity.py:126
+#: activity.py:121
 msgid "Wheeeee!"
 msgstr ""
 
-#: activity.py:126
+#: activity.py:121
 msgid "Hey! Put me down!"
 msgstr ""
 
-#: activity.py:126
+#: activity.py:121
 msgid "Falling over!"
 msgstr ""
 
-#: activity.py:260
+#: activity.py:264
 msgid "Type something to hear it"
 msgstr ""
 
-#: activity.py:267
+#: activity.py:271
 msgid "Ask robot any question"
 msgstr ""
 
-#: activity.py:274
+#: activity.py:278
 msgid "Voice chat"
 msgstr ""
 
-#: activity.py:280
+#: activity.py:284
 msgid "Voice"
 msgstr ""
 
-#: activity.py:287
+#: activity.py:291
 msgid "Face"
 msgstr ""
 
-#: activity.py:369
+#: activity.py:373
 #, python-format
 msgid "Hello %s."
 msgstr ""
 
-#: activity.py:371
+#: activity.py:375
 #, python-format
 msgid "Hello %s. Please Type something."
 msgstr ""
 
-#: activity.py:375 activity.py:377
+#: activity.py:379 activity.py:381
 #, python-format
 msgid "Welcome back %s."
 msgstr ""
 
-#: activity.py:555
+#: activity.py:558
 msgid "Choose voice:"
 msgstr ""
 
-#: activity.py:608
+#: activity.py:610
 msgid "Pitch:"
 msgstr ""
 
-#: activity.py:618
+#: activity.py:620
 msgid "Rate:"
 msgstr ""
 
-#: activity.py:626
+#: activity.py:628
 msgid "pitch adjusted"
 msgstr ""
 
-#: activity.py:630
+#: activity.py:632
 msgid "rate adjusted"
 msgstr ""
 
-#: activity.py:636
+#: activity.py:638
 msgid "Set face from photo"
 msgstr ""
 
-#: activity.py:642
+#: activity.py:644
 msgid "Clear photo face"
 msgstr ""
 
-#: activity.py:657
+#: activity.py:659
 msgid "Simple"
 msgstr ""
 
-#: activity.py:665
+#: activity.py:667
 msgid "Waveform"
 msgstr ""
 
-#: activity.py:673
+#: activity.py:675
 msgid "Frequency"
 msgstr ""
 
-#: activity.py:704
+#: activity.py:706
 msgid "Choose eyes:"
 msgstr ""
 
-#: activity.py:734
+#: activity.py:736
 msgid "Eyes number:"
 msgstr ""
 
-#: activity.py:835
+#: activity.py:837
 msgid "mouth changed"
 msgstr ""
 
-#: activity.py:884 activity.py:905
+#: activity.py:886 activity.py:907
 msgid "eyes changed"
 msgstr ""
 
-#: activity.py:1062
+#: activity.py:1064
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
 
-#: activity.py:1097
+#: activity.py:1099
 msgid "You are in off-line mode, share and invite someone."
 msgstr ""
 
-#: activity.py:1180
+#: activity.py:1179
 #, python-format
 msgid "%s joined the chat"
 msgstr ""
 
-#: activity.py:1189
+#: activity.py:1188
 #, python-format
 msgid "%s left the chat"
 msgstr ""
 
-#: activity.py:1199
+#: activity.py:1198
 #, python-format
 msgid "%s is here"
 msgstr ""
 
-#: brain.py:38 voice.py:67 voice.py:160
+#: brain.py:38 voice.py:67
 msgid "Spanish"
 msgstr ""
 
 #: brain.py:42 brain.py:57 brain.py:59 brain.py:82 brain.py:113 brain.py:114
-#: voice.py:58 voice.py:149
+#: voice.py:58
 msgid "English"
 msgstr ""
 
@@ -259,7 +259,7 @@ msgstr ""
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
 msgstr ""
 
-#: chat.py:243
+#: chat.py:242
 msgid "URL from Speak"
 msgstr ""
 
@@ -646,7 +646,7 @@ msgstr ""
 msgid "Finnish"
 msgstr ""
 
-#: voice.py:53 voice.py:151
+#: voice.py:53
 msgid "Default"
 msgstr ""
 
