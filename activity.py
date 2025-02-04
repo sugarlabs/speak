@@ -473,6 +473,7 @@ class SpeakActivity(activity.Activity):
         GLib.timeout_add(50, self._look_at_cursor, entry)
 
     def _poll_accelerometer(self):
+        '''checks if device is a table-device & checks orientation of device in a loop.'''
         if _has_accelerometer():
             idle_time = self._test_orientation()
             GLib.timeout_add(idle_time, self._poll_accelerometer)
