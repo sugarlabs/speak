@@ -116,9 +116,11 @@ IDLE_DELAY = 120000  # milleseconds
 IDLE_PHRASES = ['zzzzzzzzz', _('I am bored.'), _('Talk to me.'),
                 _('I am sleepy.'), _('Are you still there?'),
                 _('Please type something.'),
-                _('Do you have anything to say to me?'), _('Hello?')]
+                _('Do you have anything to say to me?'), _('Hello?'), _('Anyone there?'),
+                _('I\'m waiting here.') ]
 SIDEWAYS_PHRASES = [_('Whoa! Sideways!'), _("I'm on my side."), _('Uh oh.'),
-                    _('Wheeeee!'), _('Hey! Put me down!'), _('Falling over!')]
+                    _('Wheeeee!'), _('Hey! Put me down!'), _('Falling over!'), _('Ahhh, Why am I tilted?')
+                    _('Oops! That felt weird.'), _('Help! I\'m not upright!') ]
 SLASH = '-x-SLASH-x-'  # slash safe encoding
 
 CHANNEL_INTERFACE = TelepathyGLib.IFACE_CHANNEL
