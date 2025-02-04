@@ -168,6 +168,11 @@ def _is_tablet_mode():
 
 class SpeakActivity(activity.Activity):
     def __init__(self, handle):
+        """  Initializes the SpeakActivity. 
+        This constructor sets up the SpeakActivity, taking a handle as an argument. 
+        It performs necessary initialization tasks, such as setting up the user interface, 
+        initializing components & layouts. """
+
         super(SpeakActivity, self).__init__(handle)
 
         self._notebook = Gtk.Notebook()
