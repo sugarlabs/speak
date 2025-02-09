@@ -116,9 +116,11 @@ IDLE_DELAY = 120000  # milleseconds
 IDLE_PHRASES = ['zzzzzzzzz', _('I am bored.'), _('Talk to me.'),
                 _('I am sleepy.'), _('Are you still there?'),
                 _('Please type something.'),
-                _('Do you have anything to say to me?'), _('Hello?')]
+                _('Do you have anything to say to me?'), _('Hello?'), _('Anyone there?'),
+                _('I\'m waiting here.') ]
 SIDEWAYS_PHRASES = [_('Whoa! Sideways!'), _("I'm on my side."), _('Uh oh.'),
-                    _('Wheeeee!'), _('Hey! Put me down!'), _('Falling over!')]
+                    _('Wheeeee!'), _('Hey! Put me down!'), _('Falling over!'), _('Ahhh, Why am I tilted?')
+                    _('Oops! That felt weird.'), _('Help! I\'m not upright!') ]
 SLASH = '-x-SLASH-x-'  # slash safe encoding
 
 CHANNEL_INTERFACE = TelepathyGLib.IFACE_CHANNEL
@@ -168,6 +170,11 @@ def _is_tablet_mode():
 
 class SpeakActivity(activity.Activity):
     def __init__(self, handle):
+        """  Initializes the SpeakActivity. 
+        This constructor sets up the SpeakActivity, taking a handle as an argument. 
+        It performs necessary initialization tasks, such as setting up the user interface, 
+        initializing components & layouts. """
+
         super(SpeakActivity, self).__init__(handle)
 
         self._notebook = Gtk.Notebook()
@@ -468,6 +475,7 @@ class SpeakActivity(activity.Activity):
         GLib.timeout_add(50, self._look_at_cursor, entry)
 
     def _poll_accelerometer(self):
+        '''checks if device is a table-device & checks orientation of device in a loop.'''
         if _has_accelerometer():
             idle_time = self._test_orientation()
             GLib.timeout_add(idle_time, self._poll_accelerometer)
