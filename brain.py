@@ -31,6 +31,10 @@ from sugar3 import profile
 from aiml.Kernel import Kernel
 import voice
 
+from llm_brain2 import get_llm_response
+
+import requests
+
 import logging
 logger = logging.getLogger('speak')
 
@@ -85,12 +89,18 @@ def get_default_voice():
 
 
 def respond(text):
-    if _kernel is not None:
-        text = _kernel.respond(text)
-    if _kernel is None or not text:
-        text = _("Sorry, I can't understand what you are asking about.")
-    return text
-
+    # if _kernel is not None:
+    #     text = _kernel.respond(text)
+    # if _kernel is None or not text:
+    #     text = _("Sorry, I can't understand what you are asking about.")
+    
+    # LLM Response 
+    llm_response = get_llm_response(text)
+    if llm_response:
+        return llm_response
+    else:
+        return _("Sorry, I can't understand what you are asking about.")
+       
 
 def load(activity, voice, sorry=None):
     if voice == _kernel_voice:
