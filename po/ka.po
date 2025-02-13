@@ -8,21 +8,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-21 17:35+1100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-02-13 02:37+0000\n"
+"Last-Translator: NF <rkavt@smartprojects.ge>\n"
+"Language-Team: Georgian <http://weblate.sugarlabs.org/projects/"
+"sugar-activities/speak/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #: activity/activity.info:2 activity.py:200
 msgid "Speak"
-msgstr ""
+msgstr "მოლაპარაკე"
 
 #: activity/activity.info:3
 msgid "An animated face that speaks whatever you type"
-msgstr ""
+msgstr "ანიმაციის მქონე სახე, რომელიც წარმოთქვამს, რასაც აკრეფთ"
 
 #: activity/activity.info:4
 msgid ""
@@ -35,11 +38,11 @@ msgstr ""
 
 #: activity.py:103
 msgid "Round"
-msgstr ""
+msgstr "მრგვალი"
 
 #: activity.py:104
 msgid "Glasses"
-msgstr ""
+msgstr "სათვალე"
 
 #: activity.py:105
 msgid "Half moon"
@@ -111,33 +114,33 @@ msgstr ""
 
 #: activity.py:264
 msgid "Type something to hear it"
-msgstr ""
+msgstr "აკრიფეთ რამე და გაიგებთ მას"
 
 #: activity.py:271
 msgid "Ask robot any question"
-msgstr ""
+msgstr "დაუსვით რობოტს კითხვა"
 
 #: activity.py:278
 msgid "Voice chat"
-msgstr ""
+msgstr "ხმოვანი ჩატი"
 
 #: activity.py:284
 msgid "Voice"
-msgstr ""
+msgstr "ხმა"
 
 #: activity.py:291
 msgid "Face"
-msgstr ""
+msgstr "სახე"
 
 #: activity.py:373
 #, python-format
 msgid "Hello %s."
-msgstr ""
+msgstr "გამარჯობა %s."
 
 #: activity.py:375
 #, python-format
 msgid "Hello %s. Please Type something."
-msgstr ""
+msgstr "გამარჯობა %s. აკრიფეთ რამე კლავიატურაზე."
 
 #: activity.py:379 activity.py:381
 #, python-format
@@ -150,19 +153,19 @@ msgstr ""
 
 #: activity.py:610
 msgid "Pitch:"
-msgstr ""
+msgstr "ხმის ტონი:"
 
 #: activity.py:620
 msgid "Rate:"
-msgstr ""
+msgstr "სიჩქარე:"
 
 #: activity.py:628
 msgid "pitch adjusted"
-msgstr ""
+msgstr "ტონი გასწორდა"
 
 #: activity.py:632
 msgid "rate adjusted"
-msgstr ""
+msgstr "სიჩქარე გასწორდა"
 
 #: activity.py:638
 msgid "Set face from photo"
@@ -174,15 +177,15 @@ msgstr ""
 
 #: activity.py:659
 msgid "Simple"
-msgstr ""
+msgstr "მარტივი"
 
 #: activity.py:667
 msgid "Waveform"
-msgstr ""
+msgstr "ტალღისებური"
 
 #: activity.py:675
 msgid "Frequency"
-msgstr ""
+msgstr "სიხშირე"
 
 #: activity.py:706
 msgid "Choose eyes:"
@@ -190,20 +193,21 @@ msgstr ""
 
 #: activity.py:736
 msgid "Eyes number:"
-msgstr ""
+msgstr "თვალების რაოდენობა:"
 
 #: activity.py:837
 msgid "mouth changed"
-msgstr ""
+msgstr "პირი შეიცვალა"
 
 #: activity.py:886 activity.py:907
 msgid "eyes changed"
-msgstr ""
+msgstr "თვალები შეიცვალა"
 
 #: activity.py:1064
 #, python-format
 msgid "Sorry, I can't speak %(old_voice)s, let's talk %(new_voice)s instead."
 msgstr ""
+"უკაცრავად, მე არ ვიცი %(old_voice)s. მოდით, %(new_voice)s-ზე ვილაპარაკოთ."
 
 #: activity.py:1099
 msgid "You are in off-line mode, share and invite someone."
@@ -704,3 +708,22 @@ msgstr ""
 #: voice.py:69
 msgid "Esperanto"
 msgstr ""
+
+#: activity.py:191
+msgid "Language"
+msgstr "ენა"
+
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Speak is a talking face for the XO laptop. Anything you type will be spoken "
+"aloud using the XO's speech synthesizer, espeak. You can adjust the accent, "
+"rate and pitch of the voice as well as the shape of the eyes and mouth. This "
+"is a great way to experiment with the speech synthesizer, learn to type or "
+"just have fun making a funny face for your XO."
+msgstr ""
+"მოლაპარაკე XO ნოუთბუქის მოლაპარაკე სახეა. ყველაფერი, რასაც კლავიატურაზე "
+"აკრეფთ, ხმამაღლა იქნება წარმოთქმული XO-ის საუბრის სინთეზატორის მიერ. "
+"შეგიძლიათ, მოირგოთ აქცენტი, სიჩქარე და ხმის ტონი ხმისთვის და პირისა და "
+"თვალების მოყვანილობა. ეს კარგი გზაა, რომ იექსპერიმენტოთ საუბრის "
+"სინთეზატორთან. ისწავლეთ, როგორ აკრიფოთ ტექსტი, ან უბრალოდ გაერთეთ, როგორ "
+"აიძულოთ სახეს, სასაცილო იყოს."
