@@ -48,6 +48,8 @@ BOTS = {
                    'predicates': {'name': 'Alice',
                                   'master': 'The Sugar Community'}}}
 
+context = []
+
 
 def get_mem_info(tag):
     meminfo = open('/proc/meminfo').readlines()
@@ -94,8 +96,7 @@ def respond(text):
     # if _kernel is None or not text:
     #     text = _("Sorry, I can't understand what you are asking about.")
     
-    # LLM Response 
-    global context
+    # LLM Response
     
     llm_response = get_llm_response(text, context)
     if llm_response:
