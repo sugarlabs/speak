@@ -100,6 +100,7 @@ def respond(text):
     
     llm_response = get_llm_response(text, context)
     if llm_response:
+        print(llm_response)
         return llm_response
     else:
         return _("Sorry, I can't understand what you are asking about.")
