@@ -31,7 +31,7 @@ from sugar3 import profile
 from aiml.Kernel import Kernel
 import voice
 
-from llm_brain2 import get_llm_response
+from llm_brain2 import get_llm_response, context
 
 import requests
 
@@ -47,8 +47,6 @@ BOTS = {
                    'brain': 'bot/alice.brn',
                    'predicates': {'name': 'Alice',
                                   'master': 'The Sugar Community'}}}
-
-context = []
 
 
 def get_mem_info(tag):
