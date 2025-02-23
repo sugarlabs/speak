@@ -95,7 +95,9 @@ def respond(text):
     #     text = _("Sorry, I can't understand what you are asking about.")
     
     # LLM Response 
-    llm_response = get_llm_response(text)
+    global context
+    
+    llm_response = get_llm_response(text, context)
     if llm_response:
         return llm_response
     else:
