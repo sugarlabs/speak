@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-21 17:35+1100\n"
-"PO-Revision-Date: 2025-02-13 02:37+0000\n"
+"PO-Revision-Date: 2025-03-15 20:42+0000\n"
 "Last-Translator: NF <rkavt@smartprojects.ge>\n"
 "Language-Team: Georgian <http://weblate.sugarlabs.org/projects/"
 "sugar-activities/speak/ka/>\n"
@@ -211,7 +211,7 @@ msgstr ""
 
 #: activity.py:1099
 msgid "You are in off-line mode, share and invite someone."
-msgstr ""
+msgstr "მუშაობთ ინტერნეტის გარეშე. გააზიარეთ და მოიწვიეთ ვინმე."
 
 #: activity.py:1179
 #, python-format
@@ -230,37 +230,39 @@ msgstr ""
 
 #: brain.py:38 voice.py:67
 msgid "Spanish"
-msgstr ""
+msgstr "ესპანური"
 
 #: brain.py:42 brain.py:57 brain.py:59 brain.py:82 brain.py:113 brain.py:114
 #: voice.py:58
 msgid "English"
-msgstr ""
+msgstr "ინგლისური"
 
 #: brain.py:91
 msgid "Sorry, I can't understand what you are asking about."
-msgstr ""
+msgstr "უკაცრავად, წარმოდგენა არ მაქვს, რას მიედმოედებით."
 
 #: brain.py:120
 msgid ""
 "Sorry, there is no free memory to load my brain. Close other activities and "
 "try once more."
 msgstr ""
+"უკაცრავად, ტვინის ჩასატვირთად მეხსიერება საკმარისი არაა. დახურეთ სხვა "
+"აქტივობები და თავიდან სცადეთ."
 
 #: brain.py:141
 #, python-format
 msgid "my name is %s"
-msgstr ""
+msgstr "მე მქვია %s"
 
 #: brain.py:142
 #, python-format
 msgid "I am %d years old"
-msgstr ""
+msgstr "მე %d წლის ვარ"
 
 #: brain.py:144
 #, python-format
 msgid "Hello, I'm a robot \"%s\". Please ask me any question."
-msgstr ""
+msgstr "გამარჯობა, მე ვარ რობოტი \"%s\". მკითხეთ, რაც გნებავთ."
 
 #: chat.py:242
 msgid "URL from Speak"
@@ -268,7 +270,7 @@ msgstr ""
 
 #: chatbox.py:649
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "კოპირება ბუფერში"
 
 #: faceselect.py:45
 msgid "Draw a line from the center to the edge of the left eye's iris"
@@ -587,127 +589,127 @@ msgstr ""
 
 #: voice.py:37
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "პორტუგალიური (ბრაზილია)"
 
 #: voice.py:38
 msgid "Swedish"
-msgstr ""
+msgstr "შვედური"
 
 #: voice.py:39
 msgid "Icelandic"
-msgstr ""
+msgstr "ისლანდიური"
 
 #: voice.py:40
 msgid "Romanian"
-msgstr ""
+msgstr "რუმინული"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr ""
+msgstr "სვაჰილი"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr ""
+msgstr "ჰინდი"
 
 #: voice.py:43
 msgid "Dutch"
-msgstr ""
+msgstr "დანიური"
 
 #: voice.py:44
 msgid "Latin"
-msgstr ""
+msgstr "ლათინური"
 
 #: voice.py:45
 msgid "Hungarian"
-msgstr ""
+msgstr "უნგრული"
 
 #: voice.py:46
 msgid "Macedonian"
-msgstr ""
+msgstr "მაკედონიური"
 
 #: voice.py:47
 msgid "Welsh"
-msgstr ""
+msgstr "უელსური"
 
 #: voice.py:48
 msgid "French"
-msgstr ""
+msgstr "ფრანგული"
 
 #: voice.py:49
 msgid "Norwegian"
-msgstr ""
+msgstr "ნორვეგიული"
 
 #: voice.py:50
 msgid "Russian"
-msgstr ""
+msgstr "რუსული"
 
 #: voice.py:51
 msgid "Afrikaans"
-msgstr ""
+msgstr "აფრიკაანსი"
 
 #: voice.py:52
 msgid "Finnish"
-msgstr ""
+msgstr "ფინური"
 
 #: voice.py:53
 msgid "Default"
-msgstr ""
+msgstr "ნაგულისხმევი"
 
 #: voice.py:54
 msgid "Cantonese"
-msgstr ""
+msgstr "კანტონური"
 
 #: voice.py:55
 msgid "Scottish"
-msgstr ""
+msgstr "შოტლანდიური"
 
 #: voice.py:56
 msgid "Greek"
-msgstr ""
+msgstr "ბერძნული"
 
 #: voice.py:57
 msgid "Vietnamese"
-msgstr ""
+msgstr "ვიეტნამური"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr ""
+msgstr "ლანკაშირული"
 
 #: voice.py:60
 msgid "Italian"
-msgstr ""
+msgstr "იტალიური"
 
 #: voice.py:61
 msgid "Portuguese"
-msgstr ""
+msgstr "პორტუგალიური"
 
 #: voice.py:62
 msgid "German"
-msgstr ""
+msgstr "გერმანული"
 
 #: voice.py:63
 msgid "Whisper"
-msgstr ""
+msgstr "ჩურჩული"
 
 #: voice.py:64
 msgid "Croatian"
-msgstr ""
+msgstr "ხორვატიული"
 
 #: voice.py:65
 msgid "Czech"
-msgstr ""
+msgstr "ჩეხური"
 
 #: voice.py:66
 msgid "Slovak"
-msgstr ""
+msgstr "სლოვაკური"
 
 #: voice.py:68
 msgid "Polish"
-msgstr ""
+msgstr "პოლონური"
 
 #: voice.py:69
 msgid "Esperanto"
-msgstr ""
+msgstr "ესპერანტო"
 
 #: activity.py:191
 msgid "Language"
@@ -727,3 +729,43 @@ msgstr ""
 "თვალების მოყვანილობა. ეს კარგი გზაა, რომ იექსპერიმენტოთ საუბრის "
 "სინთეზატორთან. ისწავლეთ, როგორ აკრიფოთ ტექსტი, ან უბრალოდ გაერთეთ, როგორ "
 "აიძულოთ სახეს, სასაცილო იყოს."
+
+#: chatbox.py:248
+msgid "URL from Chat"
+msgstr "ბმული ჩატიდან"
+
+#: toolkit/activity_widgets.py:84
+msgid "Stop"
+msgstr "გაჩერება"
+
+#: toolkit/activity_widgets.py:96
+msgid "Undo"
+msgstr "დაბრუნება"
+
+#: toolkit/activity_widgets.py:104
+msgid "Redo"
+msgstr "გამეორება"
+
+#: toolkit/activity_widgets.py:111
+msgid "Copy"
+msgstr "კოპირება"
+
+#: toolkit/activity_widgets.py:118
+msgid "Paste"
+msgstr "ჩასმა"
+
+#: toolkit/activity_widgets.py:128
+msgid "Private"
+msgstr "პირადი"
+
+#: toolkit/activity_widgets.py:135
+msgid "My Neighborhood"
+msgstr "სამეზობლო"
+
+#: toolkit/activity_widgets.py:213
+msgid "Description"
+msgstr "აღწერა"
+
+#: toolkit/activity_widgets.py:393
+msgid "Activity"
+msgstr "აქტივობა"
