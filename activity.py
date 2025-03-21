@@ -113,7 +113,7 @@ EYE_DICT = {
 }
 DELAY_BEFORE_SPEAKING = 1500  # milleseconds
 IDLE_DELAY = 120000  # milleseconds
-IDLE_PHRASES = ['zzzzzzzzz', _('I am bored.'), _('Talk to me.'),
+IDLE_PHRASES = ['Hello, anybody there?', _('I am bored.'), _('Talk to me.'),
                 _('I am sleepy.'), _('Are you still there?'),
                 _('Please type something.'),
                 _('Do you have anything to say to me?'), _('Hello?')]
