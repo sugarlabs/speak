@@ -328,6 +328,9 @@ class SpeakActivity(activity.Activity):
         else:
             # we are creating the activity
             self.connect('shared', self._shared_cb)
+            
+        print("✅ Hello Yedian! Your code is running.")
+
 
     def _toolbar_expanded(self):
         if self._activity_button.is_expanded():

@@ -1,5 +1,5 @@
 [Activity]
-name = Speak
+name = Edie_Speak
 summary = An animated face that speaks whatever you type
 description = Speak is a talking face.  Anything you type will be spoken aloud using a speech synthesizer.  You can adjust the accent, rate and pitch of the voice as well as the shape of the eyes and mouth.  This is a great way to experiment with a speech synthesizer, learn to type or just have fun making a funny face.
 url = http://wiki.sugarlabs.org/go/Activities/Speak
@@ -8,7 +8,7 @@ categories = language
 icon = activity-speak
 exec = sugar-activity3 activity.SpeakActivity
 activity_version = 59
-bundle_id = vu.lux.olpc.Speak
+bundle_id = org.sugarlabs.Edie_Speak
 tags = Language
 repository = https://github.com/sugarlabs/speak
 screenshots = https://github.com/sugarlabs/speak/blob/master/screenshots/en/1.png https://github.com/sugarlabs/speak/blob/master/screenshots/en/2.png
