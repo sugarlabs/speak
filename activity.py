@@ -84,6 +84,8 @@ from faceselect import FaceSelector
 
 import speech
 
+from gradio_client import Client #not adding this to readme and not mentioning as a requirement as this is just a demo and final product will not use this client
+
 SERVICE = 'org.sugarlabs.Speak'
 IFACE = SERVICE
 PATH = '/org/sugarlabs/Speak'
@@ -165,6 +167,18 @@ def _is_tablet_mode():
         return True
     return False
 
+def llm_response(query, modelname = "Qwen/Qwen2.5-Max-Demo"):
+        client = Client(modelname)
+        result = client.predict(
+                query=query,
+                history=[],
+                system='''You a chatbot for an educational kids app.
+                  Your primary function is to teach kids how to pronounce words right.
+                  You must also answer their questions in a simple manner, in no more than 20-30 words.
+                  You must guide the learner on how to better improve their learning and remind them from time to time about trying new words and explain their meaning.''',
+                api_name="/model_chat"
+        )
+        return result[1][0][1]
 
 class SpeakActivity(activity.Activity):
     def __init__(self, handle):
@@ -964,8 +978,10 @@ class SpeakActivity(activity.Activity):
             self.face.look_ahead()
 
             # speak the text
-            if self._mode == MODE_BOT:
-                self.face.say(brain.respond(text))
+            if self._mode == MODE_BOT: #this sends the text to the chatbot
+                self.face.say("Please wait while I think about this")
+                self.face.say(llm_response(text)) 
+
             else:
                 self.face.say(text)
 
