@@ -62,28 +62,27 @@ class Eye(Gtk.DrawingArea):
                 cx = a.width * 0.4
             return cx, a.height * 0.6
 
+        # Get the eye's center position in window coordinates
         EYE_X, EYE_Y = self.translate_coordinates(
             self.get_toplevel(), a.width // 2, a.height // 2)
-        EYE_HWIDTH = a.width
-        EYE_HHEIGHT = a.height
-        BALL_DIST = EYE_HWIDTH / 4
-
+        
+        # Calculate the vector from eye center to target
         dx = self.x - EYE_X
         dy = self.y - EYE_Y
-
-        if dx or dy:
-            angle = math.atan2(dy, dx)
-            cosa = math.cos(angle)
-            sina = math.sin(angle)
-            h = math.hypot(EYE_HHEIGHT * cosa, EYE_HWIDTH * sina)
-            x = (EYE_HWIDTH * EYE_HHEIGHT) * cosa / h
-            y = (EYE_HWIDTH * EYE_HHEIGHT) * sina / h
-            dist = BALL_DIST * math.hypot(x, y)
-
-            if dist < math.hypot(dx, dy):
-                dx = dist * cosa
-                dy = dist * sina
-
+        
+        # Calculate the angle and distance
+        angle = math.atan2(dy, dx)
+        distance = math.hypot(dx, dy)
+        
+        # Calculate maximum allowed movement radius based on eye size
+        max_radius = min(a.width, a.height) / 4
+        
+        # If the target is too far, limit the movement
+        if distance > max_radius:
+            dx = max_radius * math.cos(angle)
+            dy = max_radius * math.sin(angle)
+        
+        # Return the pupil position relative to eye center
         return a.width // 2 + dx, a.height // 2 + dy
 
     def draw(self, widget, cr):
