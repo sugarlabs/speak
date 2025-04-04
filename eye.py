@@ -35,7 +35,7 @@ class Eye(Gtk.DrawingArea):
         # Add smoothing variables
         self.current_pupil_x = 0
         self.current_pupil_y = 0
-        self.smoothing_factor = 0.3  # Lower value = more smoothing
+        self.smoothing_factor = 0.5  # Lower value = more smoothing
 
     def has_padding(self):
         return True
@@ -91,22 +91,24 @@ class Eye(Gtk.DrawingArea):
             target_x = center_x
             target_y = center_y
         else:
-            # Calculate the movement scale (0 to 1)
-            scale = min(1.0, distance / (eye_size * 0.75))
+            # Convert cursor position to eye-relative coordinates
+            relative_x = dx * (a.width / eye_size)
+            relative_y = dy * (a.height / eye_size)
             
             # Calculate the target position
-            movement = max_travel_radius * scale
-            target_x = center_x + movement * math.cos(angle)
-            target_y = center_y + movement * math.sin(angle)
+            target_x = center_x + relative_x
+            target_y = center_y + relative_y
             
-            # Ensure we don't exceed the boundary
+            # Check if target position exceeds maximum travel radius
             dx_target = target_x - center_x
             dy_target = target_y - center_y
             dist_target = math.hypot(dx_target, dy_target)
             
             if dist_target > max_travel_radius:
-                target_x = center_x + (dx_target * max_travel_radius / dist_target)
-                target_y = center_y + (dy_target * max_travel_radius / dist_target)
+                # If beyond max radius, scale back to the boundary
+                scale = max_travel_radius / dist_target
+                target_x = center_x + dx_target * scale
+                target_y = center_y + dy_target * scale
         
         # Apply smoothing
         self.current_pupil_x += (target_x - self.current_pupil_x) * self.smoothing_factor
