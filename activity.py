@@ -707,7 +707,7 @@ class SpeakActivity(activity.Activity):
         palette = eye_palette_button.get_palette()
         palette.set_content(eye_box)
         eye_box.show_all()
-        eye_palette_button.connect('clicked', self._face_palette_cb)
+        eye_palette_button.connect('clicked', self._toggle_palette_cb)
         facebar.insert(eye_palette_button, -1)
         eye_palette_button.show()
 
@@ -737,7 +737,7 @@ class SpeakActivity(activity.Activity):
         palette = number_of_eyes_palette_button.get_palette()
         palette.set_content(number_of_eyes_box)
         number_of_eyes_box.show_all()
-        number_of_eyes_palette_button.connect('clicked', self._face_palette_cb)
+        number_of_eyes_palette_button.connect('clicked', self._toggle_palette_cb)
         facebar.insert(number_of_eyes_palette_button, -1)
         number_of_eyes_palette_button.show()
 
@@ -816,6 +816,13 @@ class SpeakActivity(activity.Activity):
     def _face_palette_cb(self, button):
         palette = button.get_palette()
         palette.popdown(immediate=True)
+
+    def _toggle_palette_cb(self, button):
+        palette = button.get_palette()
+        if palette.is_up():
+            palette.popdown(immediate=True)
+        else:
+            palette.popup(immediate=True)
 
     def _get_active_mouth(self):
         for i, button in enumerate(self._mouth_type):
