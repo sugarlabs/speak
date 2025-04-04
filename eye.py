@@ -32,9 +32,9 @@ class Eye(Gtk.DrawingArea):
         self.connect("draw", self.draw)
         self.x, self.y = 0, 0
         self.fill_color = fill_color
-        self.current_x = None  # Current pupil position for smooth movement
-        self.current_y = None
-        self.movement_speed = 0.35  # Increased speed for more responsive movement
+        self.current_x = 0  
+        self.current_y = 0
+        self.movement_speed = 0.4
 
     def has_padding(self):
         return True
@@ -47,62 +47,49 @@ class Eye(Gtk.DrawingArea):
         if not parent:
             return
 
-        # Find all eye widgets in the parent
-        eyes = [w for w in parent.get_children() if isinstance(w, Eye)]
-        if len(eyes) <= 1:
-            # Single eye behavior
-            self.x = x
-            self.y = y
-            self.queue_draw()
-            return
-
-        # Get allocations and measurements
-        parent_alloc = parent.get_allocation()
+        # Get our allocation and parent allocation
         our_alloc = self.get_allocation()
+        parent_alloc = parent.get_allocation()
         
+        # Convert cursor position to our coordinate space
+        cursor_x, cursor_y = self.translate_coordinates(
+            self.get_toplevel(), x, y)
+
         # Calculate center points
         parent_center_x = parent_alloc.width / 2
         our_center_x = our_alloc.x + our_alloc.width / 2
         
         # Determine if we're the left or right eye
         is_left_eye = our_center_x < parent_center_x
-        
-        # Initialize current position if not set
-        if self.current_x is None:
-            self.current_x = a.width / 2
-            self.current_y = a.height / 2
 
-        # Convert cursor position to our coordinate space
-        cursor_x, cursor_y = self.translate_coordinates(
-            self.get_toplevel(), x, y)
+        # Calculate how far the cursor is from the center of the face
+        center_distance = (x - parent_center_x) / (parent_alloc.width / 2)
         
-        # Calculate distance from cursor to center of face
-        cursor_offset = (x - parent_center_x) / (parent_alloc.width / 4)
-        in_center_zone = abs(cursor_offset) < 1.0
+        # Determine if cursor is in the center zone (between eyes)
+        in_center_zone = abs(center_distance) < 0.5
 
         if in_center_zone:
-            # Convergent gaze when cursor is between eyes
+            # Both eyes look at cursor when it's between them
             target_x = cursor_x
             target_y = cursor_y
         else:
-            # Parallel gaze when cursor is outside center zone
+            # When cursor is outside center, adjust gaze to be more parallel
             if is_left_eye:
                 if x < parent_center_x:
-                    # Look directly at cursor when it's on our side
                     target_x = cursor_x
                 else:
-                    # Parallel gaze when cursor is on opposite side
-                    target_x = cursor_x - our_alloc.width / 3
+                    # Adjust gaze to be more parallel when looking right
+                    offset = (x - parent_center_x) * 0.3
+                    target_x = cursor_x - offset
             else:  # Right eye
                 if x > parent_center_x:
-                    # Look directly at cursor when it's on our side
                     target_x = cursor_x
                 else:
-                    # Parallel gaze when cursor is on opposite side
-                    target_x = cursor_x + our_alloc.width / 3
+                    # Adjust gaze to be more parallel when looking left
+                    offset = (parent_center_x - x) * 0.3
+                    target_x = cursor_x + offset
             target_y = cursor_y
 
-        # Store target position
         self.x = target_x
         self.y = target_y
         self.queue_draw()
@@ -110,8 +97,8 @@ class Eye(Gtk.DrawingArea):
     def look_ahead(self):
         self.x = None
         self.y = None
-        self.current_x = None
-        self.current_y = None
+        self.current_x = self.get_allocation().width / 2
+        self.current_y = self.get_allocation().height / 2
         self.queue_draw()
 
     def computePupil(self):
@@ -126,36 +113,28 @@ class Eye(Gtk.DrawingArea):
                 cx = a.width * 0.4
             return cx, a.height * 0.6
 
-        # Initialize current position if not set
-        if self.current_x is None:
-            self.current_x = a.width / 2
-            self.current_y = a.height / 2
-
         # Get the eye's center position
         center_x = a.width / 2
         center_y = a.height / 2
 
-        # Calculate target vector
+        # Calculate vector to target
         dx = self.x - center_x
         dy = self.y - center_y
 
-        # Calculate the angle and distance
+        # Limit the maximum movement radius
+        max_radius = min(a.width, a.height) / 4
         distance = math.hypot(dx, dy)
         
-        # Calculate maximum allowed movement radius (1/3 of eye size)
-        max_radius = min(a.width, a.height) / 3
-        
-        # If the target is too far, limit the movement
         if distance > max_radius:
             scale = max_radius / distance
             dx *= scale
             dy *= scale
-        
+
         # Calculate target position
         target_x = center_x + dx
         target_y = center_y + dy
         
-        # Smooth movement interpolation
+        # Smooth movement
         self.current_x += (target_x - self.current_x) * self.movement_speed
         self.current_y += (target_y - self.current_y) * self.movement_speed
         
