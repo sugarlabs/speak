@@ -32,10 +32,6 @@ class Eye(Gtk.DrawingArea):
         self.connect("draw", self.draw)
         self.x, self.y = 0, 0
         self.fill_color = fill_color
-        # Add smoothing variables
-        self.current_pupil_x = 0
-        self.current_pupil_y = 0
-        self.smoothing_factor = 0.5  # Lower value = more smoothing
 
     def has_padding(self):
         return True
@@ -53,75 +49,57 @@ class Eye(Gtk.DrawingArea):
         self.y = None
         self.queue_draw()
 
+    # Thanks to xeyes :)
     def computePupil(self):
         a = self.get_allocation()
-        
-        # Center of the eye
-        center_x = a.width / 2
-        center_y = a.height / 2
-        
+
         if self.x is None or self.y is None:
-            # Default forward look position
+            # look ahead, but not *directly* in the middle
             pw = self.get_parent().get_allocation().width
             if a.x + a.width // 2 < pw // 2:
-                return center_x * 1.2, center_y * 1.2
+                cx = a.width * 0.6
             else:
-                return center_x * 0.8, center_y * 1.2
+                cx = a.width * 0.4
+            return cx, a.height * 0.6
 
-        # Get absolute eye position
-        EYE_X, EYE_Y = self.translate_coordinates(self.get_toplevel(), int(center_x), int(center_y))
-        
-        # Calculate direction vector from eye center to cursor
+        EYE_X, EYE_Y = self.translate_coordinates(
+            self.get_toplevel(), a.width // 2, a.height // 2)
+        EYE_HWIDTH = a.width
+        EYE_HHEIGHT = a.height
+        BALL_DIST = EYE_HWIDTH / 4
+
         dx = self.x - EYE_X
         dy = self.y - EYE_Y
-        
-        # Calculate the angle and distance
-        angle = math.atan2(dy, dx)
-        distance = math.hypot(dx, dy)
-        
-        # Calculate the eye's usable radius (accounting for pupil size and outline)
-        eye_size = min(a.width, a.height)
-        outline_width = eye_size / 20.0
-        pupil_size = eye_size / 10.0
-        max_travel_radius = (eye_size / 2) - outline_width - pupil_size
-        
-        # Calculate target position with proper boundary constraints
-        if distance == 0:
-            # If cursor is exactly at center, keep pupil at center
-            target_x = center_x
-            target_y = center_y
-        else:
-            # Convert cursor position to eye-relative coordinates
-            relative_x = dx * (a.width / eye_size)
-            relative_y = dy * (a.height / eye_size)
-            
-            # Calculate the target position
-            target_x = center_x + relative_x
-            target_y = center_y + relative_y
-            
-            # Check if target position exceeds maximum travel radius
-            dx_target = target_x - center_x
-            dy_target = target_y - center_y
-            dist_target = math.hypot(dx_target, dy_target)
-            
-            if dist_target > max_travel_radius:
-                # If beyond max radius, scale back to the boundary
-                scale = max_travel_radius / dist_target
-                target_x = center_x + dx_target * scale
-                target_y = center_y + dy_target * scale
-        
-        # Apply smoothing
-        self.current_pupil_x += (target_x - self.current_pupil_x) * self.smoothing_factor
-        self.current_pupil_y += (target_y - self.current_pupil_y) * self.smoothing_factor
-        
-        return self.current_pupil_x, self.current_pupil_y
+
+        if dx or dy:
+            angle = math.atan2(dy, dx)
+            cosa = math.cos(angle)
+            sina = math.sin(angle)
+            h = math.hypot(EYE_HHEIGHT * cosa, EYE_HWIDTH * sina)
+            x = (EYE_HWIDTH * EYE_HHEIGHT) * cosa / h
+            y = (EYE_HWIDTH * EYE_HHEIGHT) * sina / h
+            dist = BALL_DIST * math.hypot(x, y)
+
+            if dist < math.hypot(dx, dy):
+                dx = dist * cosa
+                dy = dist * sina
+
+        return a.width // 2 + dx, a.height // 2 + dy
 
     def draw(self, widget, cr):
         bounds = self.get_allocation()
+
         eyeSize = min(bounds.width, bounds.height)
         outlineWidth = eyeSize / 20.0
         pupilSize = eyeSize / 10.0
         pupilX, pupilY = self.computePupil()
+        dX = pupilX - bounds.width / 2.
+        dY = pupilY - bounds.height / 2.
+        distance = math.sqrt(dX * dX + dY * dY)
+        limit = eyeSize // 2 - outlineWidth * 2 - pupilSize
+        if distance > limit:
+            pupilX = bounds.width // 2 + dX * limit // distance
+            pupilY = bounds.height // 2 + dY * limit // distance
 
         # background
         cr.set_source_rgba(*self.fill_color.get_rgba())
@@ -129,15 +107,15 @@ class Eye(Gtk.DrawingArea):
         cr.fill()
 
         # eye ball
-        cr.arc(bounds.width / 2, bounds.height / 2,
-               eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
+        cr.arc(bounds.width // 2, bounds.height // 2,
+               eyeSize // 2 - outlineWidth // 2, 0, 2 * math.pi)
         cr.set_source_rgb(1, 1, 1)
         cr.fill()
 
         # outline
         cr.set_line_width(outlineWidth)
-        cr.arc(bounds.width / 2, bounds.height / 2,
-               eyeSize / 2 - outlineWidth / 2, 0, 2 * math.pi)
+        cr.arc(bounds.width // 2, bounds.height // 2,
+               eyeSize // 2 - outlineWidth // 2, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
 
