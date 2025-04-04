@@ -22,9 +22,7 @@
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
-
 from gi.repository import Gtk
-
 
 class Eye(Gtk.DrawingArea):
     def __init__(self, fill_color):
@@ -32,9 +30,10 @@ class Eye(Gtk.DrawingArea):
         self.connect("draw", self.draw)
         self.x, self.y = 0, 0
         self.fill_color = fill_color
-        self.current_x = 0  
+        # Add smooth movement
+        self.current_x = 0
         self.current_y = 0
-        self.movement_speed = 0.4
+        self.movement_speed = 0.3
 
     def has_padding(self):
         return True
@@ -47,51 +46,57 @@ class Eye(Gtk.DrawingArea):
         if not parent:
             return
 
-        # Get our allocation and parent allocation
+        # Get allocations
         our_alloc = self.get_allocation()
         parent_alloc = parent.get_allocation()
-        
-        # Convert cursor position to our coordinate space
+
+        # Convert cursor to our coordinate space
         cursor_x, cursor_y = self.translate_coordinates(
             self.get_toplevel(), x, y)
 
         # Calculate center points
         parent_center_x = parent_alloc.width / 2
         our_center_x = our_alloc.x + our_alloc.width / 2
-        
+        our_center_y = our_alloc.height / 2
+
         # Determine if we're the left or right eye
         is_left_eye = our_center_x < parent_center_x
 
-        # Calculate how far the cursor is from the center of the face
-        center_distance = (x - parent_center_x) / (parent_alloc.width / 2)
+        # Calculate relative cursor position from face center
+        relative_x = (x - parent_center_x) / (parent_alloc.width / 2)
         
-        # Determine if cursor is in the center zone (between eyes)
-        in_center_zone = abs(center_distance) < 0.5
+        # Check if cursor is inside eye circumference
+        eye_radius = min(our_alloc.width, our_alloc.height) / 2
+        dx = cursor_x - our_center_x
+        dy = cursor_y - our_center_y
+        cursor_distance = math.hypot(dx, dy)
+        cursor_in_eye = cursor_distance < eye_radius
 
-        if in_center_zone:
-            # Both eyes look at cursor when it's between them
+        # Calculate target position based on cursor location
+        if abs(relative_x) < 0.4:  # Cursor is between eyes - convergent gaze
             target_x = cursor_x
             target_y = cursor_y
-        else:
-            # When cursor is outside center, adjust gaze to be more parallel
-            if is_left_eye:
-                if x < parent_center_x:
-                    target_x = cursor_x
-                else:
-                    # Adjust gaze to be more parallel when looking right
-                    offset = (x - parent_center_x) * 0.3
-                    target_x = cursor_x - offset
-            else:  # Right eye
-                if x > parent_center_x:
-                    target_x = cursor_x
-                else:
-                    # Adjust gaze to be more parallel when looking left
-                    offset = (parent_center_x - x) * 0.3
-                    target_x = cursor_x + offset
+        elif cursor_in_eye:  # Cursor is inside this eye
+            target_x = cursor_x
             target_y = cursor_y
+            # The other eye should mirror this eye's movement
+            if is_left_eye:
+                mirror_offset = (parent_alloc.width - 2 * our_center_x)
+                target_x = cursor_x + mirror_offset
+            else:
+                mirror_offset = (2 * our_center_x - parent_alloc.width)
+                target_x = cursor_x - mirror_offset
+        else:  # Normal parallel gaze for distant targets
+            if (is_left_eye and x < parent_center_x) or (not is_left_eye and x > parent_center_x):
+                # Cursor is on our side - look directly
+                target_x = cursor_x
+            else:
+                # Cursor is on opposite side - maintain parallel gaze
+                gaze_offset = (abs(relative_x) - 0.4) * our_alloc.width * 0.3
+                target_x = cursor_x + (-gaze_offset if is_left_eye else gaze_offset)
 
         self.x = target_x
-        self.y = target_y
+        self.y = cursor_y
         self.queue_draw()
 
     def look_ahead(self):
@@ -113,15 +118,15 @@ class Eye(Gtk.DrawingArea):
                 cx = a.width * 0.4
             return cx, a.height * 0.6
 
-        # Get the eye's center position
+        # Get eye center
         center_x = a.width / 2
         center_y = a.height / 2
 
-        # Calculate vector to target
+        # Calculate movement vector
         dx = self.x - center_x
         dy = self.y - center_y
 
-        # Limit the maximum movement radius
+        # Limit maximum movement
         max_radius = min(a.width, a.height) / 4
         distance = math.hypot(dx, dy)
         
@@ -133,11 +138,11 @@ class Eye(Gtk.DrawingArea):
         # Calculate target position
         target_x = center_x + dx
         target_y = center_y + dy
-        
-        # Smooth movement
+
+        # Apply smooth movement
         self.current_x += (target_x - self.current_x) * self.movement_speed
         self.current_y += (target_y - self.current_y) * self.movement_speed
-        
+
         return self.current_x, self.current_y
 
     def draw(self, widget, cr):
