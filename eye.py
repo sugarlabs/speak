@@ -57,7 +57,6 @@ class Eye(Gtk.DrawingArea):
         # Calculate center points
         parent_center_x = parent_alloc.width / 2
         our_center_x = our_alloc.x + our_alloc.width / 2
-        our_center_y = our_alloc.height / 2
 
         # Determine if we're the left or right eye
         is_left_eye = our_center_x < parent_center_x
@@ -65,28 +64,10 @@ class Eye(Gtk.DrawingArea):
         # Calculate relative cursor position from face center
         relative_x = (x - parent_center_x) / (parent_alloc.width / 2)
         
-        # Check if cursor is inside eye circumference
-        eye_radius = min(our_alloc.width, our_alloc.height) / 2
-        dx = cursor_x - our_center_x
-        dy = cursor_y - our_center_y
-        cursor_distance = math.hypot(dx, dy)
-        cursor_in_eye = cursor_distance < eye_radius
-
-        # Calculate target position based on cursor location
-        if abs(relative_x) < 0.4:  # Cursor is between eyes - convergent gaze
+        # Adjust gaze based on cursor position
+        if abs(relative_x) < 0.4:  # Cursor is between eyes
             target_x = cursor_x
-            target_y = cursor_y
-        elif cursor_in_eye:  # Cursor is inside this eye
-            target_x = cursor_x
-            target_y = cursor_y
-            # The other eye should mirror this eye's movement
-            if is_left_eye:
-                mirror_offset = (parent_alloc.width - 2 * our_center_x)
-                target_x = cursor_x + mirror_offset
-            else:
-                mirror_offset = (2 * our_center_x - parent_alloc.width)
-                target_x = cursor_x - mirror_offset
-        else:  # Normal parallel gaze for distant targets
+        else:  # Cursor is outside central area
             if (is_left_eye and x < parent_center_x) or (not is_left_eye and x > parent_center_x):
                 # Cursor is on our side - look directly
                 target_x = cursor_x
