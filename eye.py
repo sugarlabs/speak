@@ -57,24 +57,48 @@ class Eye(Gtk.DrawingArea):
         # Calculate center points
         parent_center_x = parent_alloc.width / 2
         our_center_x = our_alloc.x + our_alloc.width / 2
+        eye_width = our_alloc.width
 
         # Determine if we're the left or right eye
         is_left_eye = our_center_x < parent_center_x
 
+        # Check if cursor is inside eye circumference
+        eye_radius = min(our_alloc.width, our_alloc.height) / 2
+        dx = x - (our_alloc.x + our_alloc.width/2)
+        dy = y - (our_alloc.y + our_alloc.height/2)
+        cursor_in_eye = (dx*dx + dy*dy) < (eye_radius * eye_radius)
+
         # Calculate relative cursor position from face center
         relative_x = (x - parent_center_x) / (parent_alloc.width / 2)
         
-        # Adjust gaze based on cursor position
-        if abs(relative_x) < 0.4:  # Cursor is between eyes
+        # Calculate convergence factor (0 to 1)
+        convergence = max(0, 1 - abs(relative_x))
+        
+        if cursor_in_eye:
+            # If cursor is in this eye, look directly at it
             target_x = cursor_x
-        else:  # Cursor is outside central area
-            if (is_left_eye and x < parent_center_x) or (not is_left_eye and x > parent_center_x):
-                # Cursor is on our side - look directly
-                target_x = cursor_x
-            else:
-                # Cursor is on opposite side - maintain parallel gaze
-                gaze_offset = (abs(relative_x) - 0.4) * our_alloc.width * 0.3
-                target_x = cursor_x + (-gaze_offset if is_left_eye else gaze_offset)
+        elif abs(relative_x) < 0.4:
+            # Cursor is between eyes - converge both eyes
+            target_x = cursor_x
+        else:
+            # Cursor is outside - maintain parallel gaze with slight convergence
+            base_offset = eye_width * 0.2  # Base parallel offset
+            convergence_factor = 0.7  # How much to maintain parallel gaze vs converge
+            
+            if is_left_eye:
+                if x < parent_center_x:
+                    # Left eye looking left - slight convergence
+                    target_x = cursor_x + (base_offset * convergence_factor)
+                else:
+                    # Left eye looking right - maintain more parallel
+                    target_x = cursor_x - (base_offset * (1 - convergence_factor))
+            else:  # Right eye
+                if x > parent_center_x:
+                    # Right eye looking right - slight convergence
+                    target_x = cursor_x - (base_offset * convergence_factor)
+                else:
+                    # Right eye looking left - maintain more parallel
+                    target_x = cursor_x + (base_offset * (1 - convergence_factor))
 
         self.x = target_x
         self.y = cursor_y
