@@ -32,7 +32,9 @@ class Eye(Gtk.DrawingArea):
         self.connect("draw", self.draw)
         self.x, self.y = 0, 0
         self.fill_color = fill_color
-        self._shared_target = None  # Store shared target coordinates
+        self.current_x = 0  # Current pupil position for smooth movement
+        self.current_y = 0
+        self.movement_speed = 0.2  # Adjust speed of eye movement (0-1)
 
     def has_padding(self):
         return True
@@ -43,48 +45,60 @@ class Eye(Gtk.DrawingArea):
     def look_at(self, x, y):
         self.x = x
         self.y = y
+        
         # Get parent widget (face container)
         parent = self.get_parent()
         if parent:
             # Find all eye widgets in the parent
             eyes = [w for w in parent.get_children() if isinstance(w, Eye)]
             if len(eyes) > 1:
-                # Get our allocation and parent allocation
-                our_alloc = self.get_allocation()
+                # Get parent allocation for calculations
                 parent_alloc = parent.get_allocation()
-                
-                # Calculate center point between eyes
                 center_x = parent_alloc.width / 2
                 
-                # Determine if cursor is closer to left or right eye
-                is_left_side = (x < center_x)
+                # Get our allocation
+                our_alloc = self.get_allocation()
+                our_center_x = our_alloc.x + our_alloc.width / 2
                 
-                # Find the reference eye (the one cursor is closer to)
-                ref_eye = None
-                for eye in eyes:
-                    eye_alloc = eye.get_allocation()
-                    if (is_left_side and eye_alloc.x < center_x) or \
-                       (not is_left_side and eye_alloc.x > center_x):
-                        ref_eye = eye
-                        break
+                # Determine if we're the left or right eye
+                is_left_eye = our_center_x < center_x
                 
-                if ref_eye:
-                    # Convert cursor position to reference eye's coordinates
-                    ref_x, ref_y = ref_eye.translate_coordinates(
-                        ref_eye.get_toplevel(), x, y)
-                    # Share these coordinates with all eyes
-                    for eye in eyes:
-                        eye._shared_target = (ref_x, ref_y)
+                # Calculate convergence based on cursor position
+                cursor_center_ratio = (x - center_x) / (parent_alloc.width / 2)
+                # Adjust convergence strength when cursor is between eyes
+                convergence = abs(cursor_center_ratio) < 0.5
+                
+                if convergence:
+                    # Both eyes should look towards the cursor position
+                    target_x = x
+                    target_y = y
+                else:
+                    # When cursor is outside center area, use parallel gaze
+                    if is_left_eye:
+                        # Left eye
+                        target_x = x + (our_alloc.width / 2 if x < center_x else 0)
+                    else:
+                        # Right eye
+                        target_x = x - (our_alloc.width / 2 if x > center_x else 0)
+                    target_y = y
+                
+                # Convert target position to eye's coordinates
+                target_x, target_y = self.translate_coordinates(
+                    self.get_toplevel(), target_x, target_y)
+                
+                # Store target for smooth movement
+                self.x = target_x
+                self.y = target_y
         
         self.queue_draw()
 
     def look_ahead(self):
         self.x = None
         self.y = None
-        self._shared_target = None
+        self.current_x = 0
+        self.current_y = 0
         self.queue_draw()
 
-    # Thanks to xeyes :)
     def computePupil(self):
         a = self.get_allocation()
 
@@ -101,14 +115,9 @@ class Eye(Gtk.DrawingArea):
         EYE_X, EYE_Y = self.translate_coordinates(
             self.get_toplevel(), a.width // 2, a.height // 2)
 
-        # Use shared target if available, otherwise use direct coordinates
-        if self._shared_target:
-            target_x, target_y = self._shared_target
-            dx = target_x - EYE_X
-            dy = target_y - EYE_Y
-        else:
-            dx = self.x - EYE_X
-            dy = self.y - EYE_Y
+        # Calculate target movement
+        dx = self.x - EYE_X
+        dy = self.y - EYE_Y
 
         # Calculate the angle and distance
         angle = math.atan2(dy, dx)
@@ -122,8 +131,16 @@ class Eye(Gtk.DrawingArea):
             dx = max_radius * math.cos(angle)
             dy = max_radius * math.sin(angle)
         
-        # Return the pupil position relative to eye center
-        return a.width // 2 + dx, a.height // 2 + dy
+        # Smooth movement interpolation
+        target_x = a.width // 2 + dx
+        target_y = a.height // 2 + dy
+        
+        # Update current position with smooth interpolation
+        self.current_x += (target_x - self.current_x) * self.movement_speed
+        self.current_y += (target_y - self.current_y) * self.movement_speed
+        
+        # Return interpolated position
+        return self.current_x, self.current_y
 
     def draw(self, widget, cr):
         bounds = self.get_allocation()
