@@ -32,6 +32,7 @@ class Eye(Gtk.DrawingArea):
         self.connect("draw", self.draw)
         self.x, self.y = 0, 0
         self.fill_color = fill_color
+        self._shared_target = None  # Store shared target coordinates
 
     def has_padding(self):
         return True
@@ -42,11 +43,45 @@ class Eye(Gtk.DrawingArea):
     def look_at(self, x, y):
         self.x = x
         self.y = y
+        # Get parent widget (face container)
+        parent = self.get_parent()
+        if parent:
+            # Find all eye widgets in the parent
+            eyes = [w for w in parent.get_children() if isinstance(w, Eye)]
+            if len(eyes) > 1:
+                # Get our allocation and parent allocation
+                our_alloc = self.get_allocation()
+                parent_alloc = parent.get_allocation()
+                
+                # Calculate center point between eyes
+                center_x = parent_alloc.width / 2
+                
+                # Determine if cursor is closer to left or right eye
+                is_left_side = (x < center_x)
+                
+                # Find the reference eye (the one cursor is closer to)
+                ref_eye = None
+                for eye in eyes:
+                    eye_alloc = eye.get_allocation()
+                    if (is_left_side and eye_alloc.x < center_x) or \
+                       (not is_left_side and eye_alloc.x > center_x):
+                        ref_eye = eye
+                        break
+                
+                if ref_eye:
+                    # Convert cursor position to reference eye's coordinates
+                    ref_x, ref_y = ref_eye.translate_coordinates(
+                        ref_eye.get_toplevel(), x, y)
+                    # Share these coordinates with all eyes
+                    for eye in eyes:
+                        eye._shared_target = (ref_x, ref_y)
+        
         self.queue_draw()
 
     def look_ahead(self):
         self.x = None
         self.y = None
+        self._shared_target = None
         self.queue_draw()
 
     # Thanks to xeyes :)
@@ -65,11 +100,16 @@ class Eye(Gtk.DrawingArea):
         # Get the eye's center position in window coordinates
         EYE_X, EYE_Y = self.translate_coordinates(
             self.get_toplevel(), a.width // 2, a.height // 2)
-        
-        # Calculate the vector from eye center to target
-        dx = self.x - EYE_X
-        dy = self.y - EYE_Y
-        
+
+        # Use shared target if available, otherwise use direct coordinates
+        if self._shared_target:
+            target_x, target_y = self._shared_target
+            dx = target_x - EYE_X
+            dy = target_y - EYE_Y
+        else:
+            dx = self.x - EYE_X
+            dy = self.y - EYE_Y
+
         # Calculate the angle and distance
         angle = math.atan2(dy, dx)
         distance = math.hypot(dx, dy)
