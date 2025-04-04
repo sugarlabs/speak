@@ -1,9 +1,41 @@
+# Speak.activity
+# A simple front end to the espeak text-to-speech engine on the XO laptop
+# http://wiki.laptop.org/go/Speak
+#
+# Copyright (C) 2008  Joshua Minor
+# This file is part of Speak.activity
+#
+# Parts of Speak.activity are based on code from Measure.activity
+# Copyright (C) 2007  Arjun Sarwal - arjun@laptop.org
+#
+# Speak.activity is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
+#
+#     Speak.activity is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+#
+#     You should have received a copy of the GNU General Public License
+#     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
+
+import math
+
+from gi.repository import Gtk
+
+
 class Eye(Gtk.DrawingArea):
     def __init__(self, fill_color):
         Gtk.DrawingArea.__init__(self)
         self.connect("draw", self.draw)
-        self.x, self.y = None, None  # Current look-at position
+        self.x, self.y = 0, 0
         self.fill_color = fill_color
+        # Add smoothing variables
+        self.current_pupil_x = 0
+        self.current_pupil_y = 0
+        self.smoothing_factor = 0.3  # Lower value = more smoothing
 
     def has_padding(self):
         return True
@@ -21,77 +53,77 @@ class Eye(Gtk.DrawingArea):
         self.y = None
         self.queue_draw()
 
-    def compute_pupil_position(self):
-        allocation = self.get_allocation()
-        eye_center_x = allocation.width // 2
-        eye_center_y = allocation.height // 2
-        
-        # If not looking at anything specific, look slightly off-center
+    # Thanks to xeyes :)
+    def computePupil(self):
+        a = self.get_allocation()
+
         if self.x is None or self.y is None:
-            # Look ahead but slightly inward (toward nose)
-            if allocation.x + allocation.width // 2 < self.get_parent().get_allocation().width // 2:
-                return (allocation.width * 0.6, allocation.height * 0.5)
+            # look ahead, but not *directly* in the middle
+            pw = self.get_parent().get_allocation().width
+            if a.x + a.width // 2 < pw // 2:
+                cx = a.width * 0.6
             else:
-                return (allocation.width * 0.4, allocation.height * 0.5)
+                cx = a.width * 0.4
+            return cx, a.height * 0.6
+
+        # Get eye center coordinates
+        EYE_X, EYE_Y = self.translate_coordinates(
+            self.get_toplevel(), a.width // 2, a.height // 2)
         
-        # Convert cursor position to eye coordinates
-        cursor_x, cursor_y = self.translate_coordinates(
-            self.get_toplevel(), self.x, self.y)
-        if cursor_x is None or cursor_y is None:
-            return (eye_center_x, eye_center_y)
+        # Calculate distance from cursor to eye center
+        dx = self.x - EYE_X
+        dy = self.y - EYE_Y
+        distance = math.sqrt(dx * dx + dy * dy)
         
-        # Calculate vector from eye center to cursor
-        dx = cursor_x - eye_center_x
-        dy = cursor_y - eye_center_y
+        # Calculate maximum allowed distance (radius of eye minus pupil size)
+        max_distance = (min(a.width, a.height) / 2) - (min(a.width, a.height) / 10.0)
         
-        # Calculate distance from center
-        distance = math.hypot(dx, dy)
+        # If cursor is inside the eye circle, limit the movement
+        if distance < max_distance:
+            # Scale the movement based on distance from center
+            scale = distance / max_distance
+            target_x = a.width // 2 + dx * scale
+            target_y = a.height // 2 + dy * scale
+        else:
+            # Normal movement when cursor is outside
+            angle = math.atan2(dy, dx)
+            target_x = a.width // 2 + max_distance * math.cos(angle)
+            target_y = a.height // 2 + max_distance * math.sin(angle)
         
-        # Eye parameters
-        eye_radius = min(allocation.width, allocation.height) // 2
-        pupil_radius = eye_radius // 5
-        max_pupil_distance = eye_radius - pupil_radius * 1.5
+        # Apply smoothing
+        self.current_pupil_x += (target_x - self.current_pupil_x) * self.smoothing_factor
+        self.current_pupil_y += (target_y - self.current_pupil_y) * self.smoothing_factor
         
-        # If cursor is inside eye boundary, look directly at it
-        if distance <= max_pupil_distance:
-            return (cursor_x, cursor_y)
-        
-        # Otherwise, look in that direction but constrained to eye boundary
-        scale = max_pupil_distance / distance
-        pupil_x = eye_center_x + dx * scale
-        pupil_y = eye_center_y + dy * scale
-        
-        return (pupil_x, pupil_y)
+        return self.current_pupil_x, self.current_pupil_y
 
     def draw(self, widget, cr):
         bounds = self.get_allocation()
-        eye_size = min(bounds.width, bounds.height)
-        outline_width = eye_size / 20.0
-        pupil_size = eye_size / 10.0
-        
-        # Get pupil position
-        pupil_x, pupil_y = self.compute_pupil_position()
 
-        # Draw background
+        eyeSize = min(bounds.width, bounds.height)
+        outlineWidth = eyeSize / 20.0
+        pupilSize = eyeSize / 10.0
+        pupilX, pupilY = self.computePupil()
+
+        # background
         cr.set_source_rgba(*self.fill_color.get_rgba())
         cr.rectangle(0, 0, bounds.width, bounds.height)
         cr.fill()
 
-        # Draw eye white
+        # eye ball
         cr.arc(bounds.width // 2, bounds.height // 2,
-               eye_size // 2 - outline_width // 2, 0, 2 * math.pi)
+               eyeSize // 2 - outlineWidth // 2, 0, 2 * math.pi)
         cr.set_source_rgb(1, 1, 1)
         cr.fill()
 
-        # Draw eye outline
-        cr.set_line_width(outline_width)
+        # outline
+        cr.set_line_width(outlineWidth)
         cr.arc(bounds.width // 2, bounds.height // 2,
-               eye_size // 2 - outline_width // 2, 0, 2 * math.pi)
+               eyeSize // 2 - outlineWidth // 2, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
 
-        # Draw pupil
-        cr.arc(pupil_x, pupil_y, pupil_size, 0, 2 * math.pi)
+        # pupil
+        cr.arc(pupilX, pupilY, pupilSize, 0, 2 * math.pi)
         cr.set_source_rgb(0, 0, 0)
         cr.fill()
 
