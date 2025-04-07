@@ -33,8 +33,6 @@ import voice
 
 from llm_brain import get_llm_response, context
 
-import requests
-
 import logging
 logger = logging.getLogger('speak')
 
