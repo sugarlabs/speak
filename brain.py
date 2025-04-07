@@ -46,6 +46,8 @@ BOTS = {
                    'predicates': {'name': 'Alice',
                                   'master': 'The Sugar Community'}}}
 
+context = []
+
 
 def get_mem_info(tag):
     meminfo = open('/proc/meminfo').readlines()
