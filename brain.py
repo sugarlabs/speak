@@ -31,7 +31,7 @@ from sugar3 import profile
 from aiml.Kernel import Kernel
 import voice
 
-from llm_brain2 import get_llm_response, context
+from llm_brain import get_llm_response, context
 
 import requests
 
