@@ -1,12 +1,8 @@
 import requests
-import os
-from dotenv import load_dotenv
-load_dotenv(override=True)
 
-# Replace with your Groq API key and model name
-API_KEY = os.environ.get("GROQ_API_KEY")
-API_URL = 'https://api.groq.com/openai/v1/chat/completions'  # Replace with the actual Groq API endpoint
-MODEL_NAME = 'llama-3.3-70b-versatile'  # Replace with the desired model, e.g., 'groq-llama', 'groq-mixtral', etc.
+API_KEY = "Your API KEY"
+API_URL = 'https://api.groq.com/openai/v1/chat/completions' 
+MODEL_NAME = 'llama-3.3-70b-versatile'  
 
 # Initialize context
 context = []
@@ -17,7 +13,6 @@ def get_llm_response(prompt, context):
         'Content-Type': 'application/json'
     }
     
-    # Define a system prompt template
     system_prompt = "You are a helpful assistant. You reply with very short answers."
     
     # Create the messages list
