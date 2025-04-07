@@ -86,24 +86,30 @@ def get_default_voice():
         return voice.allVoices()[_('English')]
     else:
         return default_voice
+    
+def input_routing(text):
+    # Returning false for now to verify LLM response
+    return False
 
 
 def respond(text):
-    # if _kernel is not None:
-    #     text = _kernel.respond(text)
-    # if _kernel is None or not text:
-    #     text = _("Sorry, I can't understand what you are asking about.")
+    if input_routing(text) is True:
+        # aiml response
+        if _kernel is not None:
+            text = _kernel.respond(text)
+        if _kernel is None or not text:
+            text = _("Sorry, I can't understand what you are asking about.")
     
-    # LLM Response
-    
-    llm_response = get_llm_response(text, context)
-    if llm_response:
-        print(llm_response)
-        context.append(f"You: {text}")
-        context.append(f"LLM: {llm_response}")
-        return llm_response
     else:
-        return _("Sorry, I can't understand what you are asking about.")
+        # LLM Response
+        llm_response = get_llm_response(text, context)
+        if llm_response:
+            print(llm_response)
+            context.append(f"You: {text}")
+            context.append(f"LLM: {llm_response}")
+            return llm_response
+        else:
+            return _("Sorry, I can't understand what you are asking about.")
        
 
 def load(activity, voice, sorry=None):
