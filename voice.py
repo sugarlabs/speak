@@ -121,6 +121,12 @@ def allVoices():
         voice = Voice(language, name)
         _allVoices[voice.friendlyname] = voice
 
+    # Add Robin voice for the AI chatbot
+    robin_voice = Voice('en', 'english')
+    robin_voice.short_name = 'Robin'
+    robin_voice.friendlyname = 'Robin (AI Tutor)'
+    _allVoices[robin_voice.friendlyname] = robin_voice
+
     en_name = _friendly_name('English')
     if en_name not in _allVoices:
         _allVoices[en_name] = _allVoices[_friendly_name('English (America)')]
