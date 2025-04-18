@@ -20,6 +20,9 @@
 #     <http://www.gnu.org/licenses/>.
 
 import time
+import os
+import json
+import logging
 from gettext import gettext as _
 
 from gi.repository import Gdk
@@ -30,6 +33,14 @@ from sugar3 import profile
 
 from aiml.Kernel import Kernel
 import voice
+
+# Try to import ai_chat, but don't fail if unavailable
+try:
+    import ai_chat
+    _has_ai_chat = True
+except ImportError:
+    _has_ai_chat = False
+    logging.warning("ai_chat module not available - using legacy AIML bot instead")
 
 import logging
 logger = logging.getLogger('speak')
@@ -44,11 +55,25 @@ BOTS = {
                    'predicates': {'name': 'Alice',
                                   'master': 'The Sugar Community'}}}
 
+# The MS. Robin bot uses the new AI chat system
+BOTS[_('Robin')] = {'name': 'Robin', 
+                   'brain': None,  # No AIML brain needed
+                   'predicates': {'name': 'Robin',
+                                  'master': 'The Sugar Community'}}
 
 def get_mem_info(tag):
-    meminfo = open('/proc/meminfo').readlines()
-    return int([i for i in meminfo if i.startswith(tag)][0].split()[1])
+    '''
+    Returns the specified memory information in KB
 
+    tag -- the memory information to return
+        MemTotal, MemFree, MemAvailable, etc from /proc/meminfo
+    '''
+    meminfo = {}
+    with open('/proc/meminfo') as f:
+        for line in f:
+            key, value = line.split(':', 1)
+            meminfo[key] = int(value.strip().split()[0])
+    return meminfo.get(tag, 0)
 
 # load Standard AIML set for restricted systems
 if get_mem_info('MemTotal:') < 524288:
@@ -64,27 +89,41 @@ _kernel_voice = None
 
 
 def _get_age():
-    settings = Gio.Settings('org.sugarlabs.user')
-    birth_timestamp = settings.get_int('birth-timestamp')
-    if birth_timestamp is None or birth_timestamp == 0:
-        return 8
-    else:
-        current_timestamp = time.time()
-        age = (current_timestamp - birth_timestamp) / (365. * 24 * 60 * 60)
-        if age < 5 or age > 16:
-            age = 8
-        return int(age)
+    birth_timestamp = os.stat(os.path.expanduser('~/.sugar/default/user'))
+    birth_time = time.gmtime(birth_timestamp.st_ctime)
+    now_time = time.gmtime()
+    birth_year = birth_time.tm_year
+    birth_month = birth_time.tm_mon
+    birth_day = birth_time.tm_mday
+    now_year = now_time.tm_year
+    now_month = now_time.tm_mon
+    now_day = now_time.tm_mday
+    age = now_year - birth_year
+    if now_month < birth_month or \
+            (now_month == birth_month and now_day < birth_day):
+        age -= 1
+    return age
 
 
 def get_default_voice():
-    default_voice = voice.defaultVoice()
-    if default_voice.friendlyname not in BOTS:
-        return voice.allVoices()[_('English')]
+    if 'es' in _('English'):
+        default_language = 'es'
     else:
-        return default_voice
+        default_language = 'en'
+    return voice.get_default_voice(default_language)
 
 
 def respond(text):
+    """Generate a response to user input text using LLM or AIML"""
+    # If AI chat is available and properly initialized, use it
+    if _has_ai_chat and _kernel_voice and _kernel_voice.short_name == "Robin":
+        try:
+            return ai_chat.get_response(text)
+        except Exception as e:
+            logger.error(f"Error using AI chatbot: {e}")
+            # Fall through to AIML backup
+    
+    # Otherwise use AIML-based response
     if _kernel is not None:
         text = _kernel.respond(text)
     if _kernel is None or not text:
@@ -113,7 +152,23 @@ def load(activity, voice, sorry=None):
                 brain = BOTS[_('English')]
                 brain_name = BOTS[_('English')]['name']
             logger.debug('Load bot: %s' % brain)
-
+            
+            # For "Robin" bot, we don't need to load an AIML brain
+            if voice.short_name == "Robin" and _has_ai_chat:
+                _kernel_voice = voice
+                activity.get_window().set_cursor(old_cursor)
+                
+                if is_first_session:
+                    hello = \
+                        _("Hello, I'm Ms. Robin. I'm here to help you learn to read. What would you like to talk about?")
+                    if sorry:
+                        hello += ' ' + sorry
+                    activity.face.say_notification(hello)
+                elif sorry:
+                    activity.face.say_notification(sorry)
+                return
+            
+            # For other bots, load AIML brain
             kernel = Kernel()
 
             if brain['brain'] is None:
