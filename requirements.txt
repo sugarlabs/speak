@@ -1,11 +1,18 @@
-
 # LLM and TTS integration
-llama-cpp-python
-
-fuzzywuzzy>=0.18.0
-python-Levenshtein>=0.12.2
+llama-cpp-python --prefer-binary --extra-index-url=https://jllllll.github.io/llama-cpp-python-wheels/AVX2
 coqui-tts
+pytest
 
 # Optional: Transformers fallback
-transformers>=4.30.0
-torch>=2.0.0
+transformers
+torch
+
+# Fallback TTS
+pyttsx3
+pygame
+
+# Optional dependencies for AI features
+fuzzywuzzy
+python-Levenshtein
+aiml
+pillow
