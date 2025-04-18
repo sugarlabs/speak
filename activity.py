@@ -84,6 +84,14 @@ from faceselect import FaceSelector
 
 import speech
 
+# Try to import ai_chat, but don't fail if unavailable
+try:
+    import ai_chat
+    _has_ai_chat = True
+except ImportError:
+    _has_ai_chat = False
+    logging.warning("ai_chat module not available - using legacy AIML bot instead")
+
 SERVICE = 'org.sugarlabs.Speak'
 IFACE = SERVICE
 PATH = '/org/sugarlabs/Speak'
@@ -965,7 +973,19 @@ class SpeakActivity(activity.Activity):
 
             # speak the text
             if self._mode == MODE_BOT:
-                self.face.say(brain.respond(text))
+                # Use a try-except block to handle import issues gracefully
+                try:
+                    # Import here to avoid circular imports and handle missing dependencies
+                    from ai_chat import get_response
+                    self.face.say(get_response(text))
+                except ImportError as e:
+                    # Fallback if ai_chat module has issues
+                    logger.error(f"Error importing ai_chat module: {e}")
+                    self.face.say("I'm sorry, I couldn't understand that. Please try again.")
+                except Exception as e:
+                    # General error handling
+                    logger.error(f"Error getting AI response: {e}")
+                    self.face.say("I'm thinking about what you said. Can you tell me more?")
             else:
                 self.face.say(text)
 
