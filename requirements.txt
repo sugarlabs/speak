@@ -16,3 +16,6 @@ fuzzywuzzy
 python-Levenshtein
 aiml
 pillow
+
+# Required system dependencies
+dbus-python
