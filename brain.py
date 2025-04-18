@@ -93,9 +93,6 @@ def respond(text):
 
 
 def load(activity, voice, sorry=None):
-    if voice == _kernel_voice:
-        return False
-
     old_cursor = activity.get_window().get_cursor()
     activity.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
 
@@ -148,6 +145,8 @@ def load(activity, voice, sorry=None):
             activity.face.say_notification(hello)
         elif sorry:
             activity.face.say_notification(sorry)
+        else:
+            activity.face.say_notification("Hi again!")
 
     GLib.idle_add(load_brain)
     return True
