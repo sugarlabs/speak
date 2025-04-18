@@ -324,6 +324,9 @@ class ChatBox(Gtk.ScrolledWindow):
         self._last_msg = None
         self._chat_log = ''
         self._row_counter = 0
+        
+        # Initialize kernel for chatbot
+        self.kernel = None
 
         # We need access to individual messages for resizing
         # TODO: use a signal for this
@@ -621,6 +624,36 @@ class ChatBox(Gtk.ScrolledWindow):
         width = Gdk.Screen.width() - style.GRID_CELL_SIZE
         height = int(Gdk.Screen.height() - 3 * style.GRID_CELL_SIZE) - dy
         self._conversation.set_size_request(width, height)
+
+    def send_input(self, text):
+        """Send user input to the AI chatbot and display the response."""
+        # First, show a thinking indicator
+        bot_user = {'nick': 'Ms. Robin', 'color': '#000000,#FF8800'}
+        self.add_text(bot_user, "Thinking...", status_message=True)
+        
+        # Try to use the AI chat module
+        try:
+            from ai_chat import get_response
+            # Get AI response (this might take a moment)
+            response = get_response(text)
+        except ImportError as e:
+            logging.error(f"Failed to import ai_chat module: {e}")
+            response = "I'm sorry, I'm having trouble understanding. Could you try again?"
+        except Exception as e:
+            logging.error(f"Error generating AI response: {e}")
+            response = "I'm thinking about what you said. Can you tell me more?"
+        
+        # Display the actual response
+        self.display(response)
+        
+        # Speech is handled by the activity.py caller
+        return response
+
+    def display(self, text):
+        """Display text as a message from the chat bot."""
+        # Use a dict to represent the chatbot user
+        bot_user = {'nick': 'Ms. Robin', 'color': '#000000,#FF8800'}
+        self.add_text(bot_user, text)
 
 
 class ContentInvoker(Invoker):
