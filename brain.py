@@ -113,22 +113,24 @@ def get_default_voice():
     return voice.get_default_voice(default_language)
 
 
-def respond(text):
+def respond(activity, text):
     """Generate a response to user input text using LLM or AIML"""
-    # If AI chat is available and properly initialized, use it
-    if _has_ai_chat and _kernel_voice and _kernel_voice.short_name == "Robin":
-        try:
-            return ai_chat.get_response(text)
-        except Exception as e:
-            logger.error(f"Error using AI chatbot: {e}")
-            # Fall through to AIML backup
+    # First, try to use AI chat if available
+    try:
+        import ai_chat
+        response = ai_chat.get_response(text)
+        activity.face.say(response)
+        return
+    except Exception as e:
+        logger.error("Error using AI chatbot: %s" % e)
+        # Fall through to AIML backup
     
     # Otherwise use AIML-based response
     if _kernel is not None:
         text = _kernel.respond(text)
     if _kernel is None or not text:
         text = _("Sorry, I can't understand what you are asking about.")
-    return text
+    activity.face.say(text)
 
 
 def load(activity, voice, sorry=None):

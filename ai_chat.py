@@ -1,52 +1,28 @@
+"""
+AI Chat module for Speak activity - Python 2 compatible version
+This is a simplified version for OLPC XO laptops running Python 2 on Fedora 18
+"""
 import json
 import os
 import random
 import logging
-import importlib.util
+import re
 
 logger = logging.getLogger('speak')
 
-# Load invented‑spelling map
+# Load invented-spelling map
 try:
     with open(os.path.join(os.path.dirname(__file__), 'invented_spelling.json')) as f:
         SPELL_MAP = json.load(f)
 except Exception as e:
-    logger.error(f"Error loading spelling map: {e}")
+    logger.error("Error loading spelling map: %s" % e)
     SPELL_MAP = {}
 
-# Initialize LLM with fallback mechanism
+# For Python 2 compatibility, we're using a simplified AI approach
 _has_llm = False
 _llm = None
 
-# Check for llamacpp availability - don't try to import directly
-if importlib.util.find_spec("llamacpp") is not None:
-    try:
-        from llamacpp import Llama
-        MODEL_PATH = os.environ.get('LLM_MODEL', '/models/llama-7B/ggml-model.bin')
-        # Only try to initialize if model exists
-        if os.path.exists(MODEL_PATH):
-            _llm = Llama(model_path=MODEL_PATH)
-            _has_llm = True
-            logger.info(f"LLM loaded successfully from {MODEL_PATH}")
-        else:
-            logger.warning(f"LLM model not found at {MODEL_PATH}")
-    except Exception as e:
-        logger.warning(f"Failed to initialize LLM: {e}")
-else:
-    logger.warning("llamacpp module not found")
-
-# Check for fuzzywuzzy availability
-_has_fuzzy = False
-try:
-    from fuzzywuzzy import process
-    _has_fuzzy = True
-except ImportError:
-    logger.warning("fuzzywuzzy not available - spelling correction will be limited")
-
-SYSTEM_PROMPT = (
-    "You are Ms. Robin, a kind tutor speaking to a beginning reader. "
-    "Use short, simple sentences and encourage the learner.\n"
-)
+# Educational coaching prompts for reading assistance
 COACHING_PROMPTS = [
     "Have you tried sounding this word out?",
     "Here's a fun word: butterfly!",
@@ -60,8 +36,8 @@ COACHING_PROMPTS = [
     "I believe in you!"
 ]
 
-# Fallback responses when LLM is not available
-FALLBACK_RESPONSES = [
+# Age-appropriate educational responses
+EDUCATIONAL_RESPONSES = [
     "I like talking with you! Tell me more.",
     "That's interesting! How do you feel about that?",
     "Can you tell me more about that?",
@@ -82,75 +58,75 @@ FALLBACK_RESPONSES = [
     "I'm proud of how you're working on your reading skills!"
 ]
 
-def normalize_spelling(text: str) -> str:
-    """Correct common invented spellings from young readers."""
-    if not SPELL_MAP:
-        return text
-        
+# Topic-based responses to make the conversation more contextual
+TOPIC_RESPONSES = {
+    "animal": [
+        "Animals are fascinating! What's your favorite animal?",
+        "Did you know that dolphins sleep with one eye open?",
+        "I love learning about different animals too!"
+    ],
+    "book": [
+        "Reading books helps us learn new words!",
+        "What's your favorite part of the story?",
+        "Books can take us on amazing adventures!"
+    ],
+    "school": [
+        "What's your favorite subject in school?",
+        "Learning new things is so exciting!",
+        "I enjoy helping you with your schoolwork."
+    ],
+    "friend": [
+        "Friends are important! What do you like to do with your friends?",
+        "Being a good friend means being kind and helpful.",
+        "It's fun to share stories with friends!"
+    ],
+    "family": [
+        "Families come in all shapes and sizes!",
+        "What activities do you enjoy with your family?",
+        "Family time is special time."
+    ]
+}
+
+def simple_spelling_correction(text):
+    """Basic spelling correction using the invented spelling map."""
     words = text.split()
     normalized = []
     for w in words:
         lw = w.lower()
         if lw in SPELL_MAP:
             normalized.append(SPELL_MAP[lw])
-        elif _has_fuzzy and len(lw) > 2:
-            # Only use fuzzy matching if available and for words longer than 2 characters
-            try:
-                best, score = process.extractOne(w, SPELL_MAP.keys())
-                normalized.append(SPELL_MAP[best] if score > 80 else w)
-            except Exception:
-                normalized.append(w)
         else:
             normalized.append(w)
     return ' '.join(normalized)
 
-def simple_spelling_correction(text: str) -> str:
-    """Basic spelling correction without fuzzy matching."""
-    words = text.split()
-    normalized = []
-    for w in words:
-        lw = w.lower()
-        if lw in SPELL_MAP:
-            normalized.append(SPELL_MAP[lw])
-        else:
-            normalized.append(w)
-    return ' '.join(normalized)
+def detect_topic(text):
+    """Detect topics in the user's text to provide more relevant responses."""
+    text = text.lower()
+    for topic in TOPIC_RESPONSES:
+        if topic in text:
+            return topic
+    return None
 
-def get_response(user_text: str) -> str:
-    """Generate a response to user text using the LLM with fallback options."""
-    # 1) correct obvious invented spelling
+def get_response(user_text):
+    """Generate a response to user text using our educational response system.
+    This is a simplified version of an AI chatbot for Python 2 compatibility."""
+    
+    # 1) Correct obvious invented spelling
     try:
-        if _has_fuzzy:
-            cleaned = normalize_spelling(user_text)
-        else:
-            cleaned = simple_spelling_correction(user_text)
+        cleaned = simple_spelling_correction(user_text)
     except Exception as e:
-        logger.error(f"Error normalizing spelling: {e}")
+        logger.error("Error normalizing spelling: %s" % e)
         cleaned = user_text
     
-    # 2) Use LLM if available, otherwise use fallback
-    if _has_llm and _llm is not None:
-        try:
-            # build prompt
-            prompt = f"{SYSTEM_PROMPT}Child: {cleaned}\nTutor:"
-            
-            # call the LLM
-            resp = _llm(prompt, max_tokens=128, temperature=0.7)
-            reply = resp['choices'][0]['text'].strip()
-            
-            # 4) randomly append a coaching tip
-            if random.random() < 0.3:
-                reply += " " + random.choice(COACHING_PROMPTS)
-            
-            return reply
-        except Exception as e:
-            logger.error(f"Error generating LLM response: {e}")
-            # Fall through to fallback
+    # 2) Check for topic-specific responses
+    topic = detect_topic(cleaned)
+    if topic and random.random() > 0.5:
+        response = random.choice(TOPIC_RESPONSES[topic])
+    else:
+        # Use general educational response
+        response = random.choice(EDUCATIONAL_RESPONSES)
     
-    # Fallback response
-    response = random.choice(FALLBACK_RESPONSES)
-    
-    # If the input contained a question, try to give a more specific response
+    # 3) If the input contained a question, give question-specific response
     if "?" in user_text:
         question_responses = [
             "That's a great question! What do you think?",
@@ -160,14 +136,14 @@ def get_response(user_text: str) -> str:
         ]
         response = random.choice(question_responses)
     
-    # Echo back part of their input to seem more responsive
+    # 4) Echo back part of their input to seem more responsive
     words = cleaned.split()
     if len(words) > 3 and random.random() > 0.5:
         word_to_echo = random.choice(words)
         if len(word_to_echo) > 3:  # Only echo substantial words
-            response += f" I like how you used the word '{word_to_echo}'!"
+            response += " I like how you used the word '%s'!" % word_to_echo
     
-    # Add a coaching prompt
+    # 5) Add a coaching prompt occasionally
     if random.random() < 0.3:
         response += " " + random.choice(COACHING_PROMPTS)
         
