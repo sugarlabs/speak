@@ -5,6 +5,12 @@ Speak is a voice synthesis activity for the Sugar desktop.
 
 Speak shows a face that will talk what is typed, within reason.
 
+Gen-AI Requirements
+===========
+1. Obtain OpenAI API key
+2. Set environment variable:
+   `export OPENAI_API_KEY="your-key"`
+
 How to use?
 ===========
 

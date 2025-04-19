@@ -25,3 +25,8 @@
 
 from sugar3.activity import bundlebuilder
 bundlebuilder.start()
+install_requires=[
+    'openai>=1.0',  # Add Gen-AI dependency [6]
+    'python-sugar3',
+    'gstreamer1.0-espeak',
+]
