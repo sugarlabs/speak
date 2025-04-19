@@ -15,6 +15,19 @@ Speak is part of the Sugar desktop and is often included.  Please refer to;
 * [Download Speak using Browse](https://v4.activities.sugarlabs.org/), search for `Speak`, then download, and;
 * [How to use Speak](https://help.sugarlabs.org/en/speak.html).
 
+AI Chatbot Mode
+==============
+
+Speak now includes an AI chatbot mode using LLM technology with invented spelling correction. This is particularly helpful for beginning readers who may use spelling approximations. The AI responds with age-appropriate reading coaching and encouragement.
+
+Features:
+* Smart spelling correction
+* LLM-powered responses
+* Reading-focused coaching suggestions
+* Fallback mode when LLM is unavailable
+
+To activate, select the robot icon in the toolbar and start typing questions or statements.
+
 How to upgrade?
 ===============
 

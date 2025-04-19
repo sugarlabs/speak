@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # Speak.activity
 # A simple front end to the espeak text-to-speech engine on the XO laptop
@@ -23,5 +23,5 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
 
-from sugar3.activity import bundlebuilder
+from sugar.activity import bundlebuilder
 bundlebuilder.start()

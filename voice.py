@@ -15,8 +15,7 @@
 #
 #     Speak.activity is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
-#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#     GNU General Public License for more details.
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #
 #     You should have received a copy of the GNU General Public License
 #     along with Speak.activity.  If not, see <http://www.gnu.org/licenses/>.
@@ -120,6 +119,12 @@ def allVoices():
     for language, name in voice_list.items():
         voice = Voice(language, name)
         _allVoices[voice.friendlyname] = voice
+
+    # Add Robin voice for the AI chatbot
+    robin_voice = Voice('en', 'english')
+    robin_voice.short_name = 'Robin'
+    robin_voice.friendlyname = 'Robin (AI Tutor)'
+    _allVoices[robin_voice.friendlyname] = robin_voice
 
     en_name = _friendly_name('English')
     if en_name not in _allVoices:

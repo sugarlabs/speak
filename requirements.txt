@@ -1,0 +1,21 @@
+# LLM and TTS integration
+llama-cpp-python --prefer-binary --extra-index-url=https://jllllll.github.io/llama-cpp-python-wheels/AVX2
+coqui-tts
+pytest
+
+# Optional: Transformers fallback
+transformers
+torch
+
+# Fallback TTS
+pyttsx3
+pygame
+
+# Optional dependencies for AI features
+fuzzywuzzy
+python-Levenshtein
+aiml
+pillow
+
+# Required system dependencies
+dbus-python
