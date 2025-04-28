@@ -111,26 +111,27 @@ def load(activity, voice, sorry=None):
                 brain_name = BOTS[_('English')]['name']
             logger.debug('Load bot: %s' % brain)
 
-            kernel = Kernel()
+            if voice != _kernel_voice or _kernel is None:
+                kernel = Kernel()
 
-            if brain['brain'] is None:
-                warning = _("Sorry, there is no free memory to load my "
-                            "brain. Close other activities and try once more.")
-                activity.face.say_notification(warning)
-                return
+                if brain['brain'] is None:
+                    warning = _("Sorry, there is no free memory to load my "
+                                "brain. Close other activities and try once more.")
+                    activity.face.say_notification(warning)
+                    return
 
-            kernel.loadBrain(brain['brain'])
-            for name, value in list(brain['predicates'].items()):
-                kernel.setBotPredicate(name, value)
+                kernel.loadBrain(brain['brain'])
+                for name, value in list(brain['predicates'].items()):
+                    kernel.setBotPredicate(name, value)
 
-            if _kernel is not None:
-                del _kernel
-                _kernel = None
-                import gc
-                gc.collect()
+                if _kernel is not None:
+                    del _kernel
+                    _kernel = None
+                    import gc
+                    gc.collect()
 
-            _kernel = kernel
-            _kernel_voice = voice
+                _kernel = kernel
+                _kernel_voice = voice
         finally:
             activity.get_window().set_cursor(old_cursor)
 
