@@ -34,6 +34,17 @@ from sugar3 import profile
 
 import face
 from chatbox import ChatBox
+from .ai_service import AIChatProcessor  # New import
+
+class ChatHandler:
+    def __init__(self):
+        # self.aiml_kernel = aiml.Kernel()  # Remove AIML
+        self.ai_processor = AIChatProcessor()  # Gen-AI integration [6]
+    
+    def get_response(self, text):
+        # return self.aiml_kernel.respond(text)  # Old AIML response
+        return self.ai_processor.generate_response(text)  # Gen-AI response
+
 
 logger = logging.getLogger('speak')
 
