@@ -12,7 +12,7 @@ Speak is part of the Sugar desktop and is often included.  Please refer to;
 
 * [How to Get Sugar on sugarlabs.org](https://sugarlabs.org/),
 * [How to use Sugar](https://help.sugarlabs.org/),
-* [Download Speak using Browse](https://v4.activities.sugarlabs.org/), search for `Speak`, then download, and;
+* [Download Speak using Browse](https://v4.activities.sugarlabs.org/app/vu.lux.olpc.Speak.html), then download, and;
 * [How to use Speak](https://help.sugarlabs.org/en/speak.html).
 
 How to upgrade?
@@ -20,7 +20,7 @@ How to upgrade?
 
 On Sugar desktop systems;
 * use [My Settings](https://help.sugarlabs.org/en/my_settings.html), [Software Update](https://help.sugarlabs.org/en/my_settings.html#software-update), or;
-* use Browse to open [v4.activities.sugarlabs.org](https://v4.activities.sugarlabs.org/), search for `Speak`, then download.
+* use Browse to open [Speak](https://v4.activities.sugarlabs.org/app/vu.lux.olpc.Speak.html), then download.
 
 How to integrate?
 =================

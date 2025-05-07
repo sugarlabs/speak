@@ -193,6 +193,10 @@ class SpeakActivity(activity.Activity):
         # make a box to type into
         self._entry_box = Gtk.HBox()
 
+        #Added GTK Accelerator Group for keyboard shortcuts
+        self._accel_group = Gtk.AccelGroup()
+        self.add_accel_group(self._accel_group)
+
         if self._tablet_mode:
             self._entry = Gtk.Entry()
             self._entry_box.pack_start(self._entry, True, True, 0)
@@ -263,6 +267,16 @@ class SpeakActivity(activity.Activity):
             icon_name='mode-type')
         self._mode_type.set_tooltip(_('Type something to hear it'))
         self._mode_type.connect('toggled', self.__toggled_mode_type_cb)
+        
+        # Ctrl 1 -> Speak mode
+        key1 = Gdk.keyval_from_name('1')
+        def on_ctrl_1_accel(*args):
+            if not self._mode_type.get_active():
+                self._mode_type.set_active(True)
+            return True
+        self._accel_group.connect(key1, Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE, on_ctrl_1_accel)
+        accel_label1 = Gtk.accelerator_get_label(key1, Gdk.ModifierType.CONTROL_MASK)
+        self._mode_type.set_tooltip_text(f"{_('Keyboard shortcut: ')} ({accel_label1})")
         toolbox.toolbar.insert(self._mode_type, -1)
 
         mode_robot = RadioToolButton(
@@ -270,6 +284,16 @@ class SpeakActivity(activity.Activity):
             group=self._mode_type)
         mode_robot.set_tooltip(_('Ask robot any question'))
         mode_robot.connect('toggled', self.__toggled_mode_robot_cb)
+        
+        # Ctrl+2 -> Chatbot Mode
+        key2 = Gdk.keyval_from_name('2')
+        def on_ctrl_2_accel(*args):
+            if not mode_robot.get_active():
+                mode_robot.set_active(True)
+            return True
+        self._accel_group.connect(key2, Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE, on_ctrl_2_accel)
+        accel_label2 = Gtk.accelerator_get_label(key2, Gdk.ModifierType.CONTROL_MASK)
+        mode_robot.set_tooltip_text(f"{_('Keyboard shortcut: ')} ({accel_label2})")
         toolbox.toolbar.insert(mode_robot, -1)
 
         self._mode_chat = RadioToolButton(
@@ -277,6 +301,16 @@ class SpeakActivity(activity.Activity):
             group=self._mode_type)
         self._mode_chat.set_tooltip(_('Voice chat'))
         self._mode_chat.connect('toggled', self.__toggled_mode_chat_cb)
+        
+        # Ctrl+3 -> Voice Chat
+        key3 = Gdk.keyval_from_name('3')
+        def on_ctrl_3_accel(*args):
+            if not self._mode_chat.get_active():
+                self._mode_chat.set_active(True)
+            return True
+        self._accel_group.connect(key3, Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE, on_ctrl_3_accel)
+        accel_label3 = Gtk.accelerator_get_label(key3, Gdk.ModifierType.CONTROL_MASK)
+        self._mode_chat.set_tooltip_text(f"{_('Keyboard shortcut: ')} ({accel_label3})")
         toolbox.toolbar.insert(self._mode_chat, -1)
 
         self._voice_button = ToolbarButton(
@@ -676,6 +710,29 @@ class SpeakActivity(activity.Activity):
         button.connect('clicked', self._mouth_changed_cb, False)
         facebar.insert(button, -1)
         self._mouth_type.append(button)
+
+        # Ctrl+M → cycle mouth types
+        keym = Gdk.keyval_from_name('m')
+        def on_ctrl_m_accel(*args): 
+            active_index = -1
+            for i, button in enumerate(self._mouth_type): #cycle through different mouth types
+                if button.get_active():
+                    active_index = i
+                    break
+            next_index = (active_index + 1) % len(self._mouth_type)
+            self._mouth_type[next_index].grab_focus()
+            self._mouth_type[next_index].set_active(True)
+            self._mouth_type[next_index].activate()
+            return True
+        self._accel_group.connect(keym, Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE, on_ctrl_m_accel)
+
+        # Ctrl+S → speak current text 🗣️
+        keys = Gdk.keyval_from_name('S')
+        def on_ctrl_s_accel(*args):
+            text = self._entry.props.text
+            self._speak_the_text(self._entry, text)
+            return True
+        self._accel_group.connect(keys, Gdk.ModifierType.CONTROL_MASK, Gtk.AccelFlags.VISIBLE, on_ctrl_s_accel)
 
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
