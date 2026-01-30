@@ -191,7 +191,7 @@ class SpeakActivity(activity.Activity):
         self._cfg = {}
 
         # make a box to type into
-        self._entry_box = Gtk.HBox()
+        self._entry_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
         if self._tablet_mode:
             self._entry = Gtk.Entry()
@@ -219,7 +219,8 @@ class SpeakActivity(activity.Activity):
         self.face.show()
 
         # layout the screen
-        self._box = Gtk.VBox(homogeneous=False)
+        self._box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self._box.set_homogeneous(False)
         if self._tablet_mode:
             self._box.pack_start(self._entry_box, False, True, 0)
             self._box.pack_start(self.face, True, True, 0)
@@ -516,8 +517,8 @@ class SpeakActivity(activity.Activity):
 
         # A palette for the voice selection
         self._voice_evboxes = {}
-        self._voice_box = Gtk.HBox()
-        vboxes = [Gtk.VBox(), Gtk.VBox(), Gtk.VBox()]
+        self._voice_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        vboxes = [Gtk.Box(orientation=Gtk.Orientation.VERTICAL) for _ in range(3)]
         count = len(list(voice_model.allVoices().keys()))
         found_my_voice = False
         for i, voice in enumerate(sorted(all_voices)):
@@ -568,8 +569,8 @@ class SpeakActivity(activity.Activity):
             brain_voices.append([voice_model.allVoices()[name], name])
 
         self._brain_evboxes = {}
-        self._brain_box = Gtk.HBox()
-        vboxes = Gtk.VBox()
+        self._brain_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        vboxes = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         found_my_voice = False
         for i, voice in enumerate(brain_voices):
             label = Gtk.Label()
@@ -682,7 +683,7 @@ class SpeakActivity(activity.Activity):
         separator.set_expand(False)
         facebar.insert(separator, -1)
 
-        eye_box = Gtk.VBox()
+        eye_box =Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self._eye_type = {}
         for name in list(EYE_DICT.keys()):
             self._eye_type[name] = ToolButton(name)
@@ -690,7 +691,7 @@ class SpeakActivity(activity.Activity):
                                          self._eyes_changed_event_cb,
                                          None, name, False)
             label = Gtk.Label(EYE_DICT[name]['label'])
-            hbox = Gtk.HBox()
+            hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
             hbox.pack_start(self._eye_type[name], True, True, 0)
             self._eye_type[name].show()
             hbox.pack_start(label, True, True, 0)
@@ -711,7 +712,7 @@ class SpeakActivity(activity.Activity):
         facebar.insert(eye_palette_button, -1)
         eye_palette_button.show()
 
-        number_of_eyes_box = Gtk.VBox()
+        number_of_eyes_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self._number_of_eyes_type = {}
         for name in NUMBERS:
             self._number_of_eyes_type[name] = ToolButton(name)
@@ -719,7 +720,7 @@ class SpeakActivity(activity.Activity):
                 'clicked', self._number_of_eyes_changed_event_cb,
                 None, name, False)
             label = Gtk.Label(name)
-            hbox = Gtk.HBox()
+            hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
             hbox.pack_start(self._number_of_eyes_type[name], True, True, 0)
             self._number_of_eyes_type[name].show()
             hbox.pack_start(label, True, True, 0)
@@ -1354,7 +1355,7 @@ class ToolWidget(Gtk.ToolItem):
         self._widget = None
         self._label = None
         self._label_text = None
-        self._box = Gtk.HBox(False, style.DEFAULT_SPACING)
+        self._box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
         GObject.GObject.__init__(self, **kwargs)
         self.props.border_width = style.DEFAULT_PADDING
