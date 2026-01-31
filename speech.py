@@ -103,7 +103,7 @@ class Speech(GstSpeechPlayer):
             when = data.pts
             last = data.pts + data.duration
             while True:
-                wave = numpy.fromstring(data.extract_dup(here, bpc), 'int16')
+                wave = numpy.frombuffer(data.extract_dup(here, bpc), dtype='int16')
                 peak = numpy.core.max(wave)
 
                 a.append(wave)
