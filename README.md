@@ -3,7 +3,8 @@ What is this?
 
 Speak is a voice synthesis activity for the Sugar desktop.
 
-Speak shows a face that will talk what is typed, within reason.
+Speak shows a face that will talk what is typed, 
+with some limitations on text length and special characters.
 
 How to use?
 ===========
