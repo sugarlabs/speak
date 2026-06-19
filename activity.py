@@ -232,7 +232,7 @@ class SpeakActivity(activity.Activity):
         self.connect('motion_notify_event', self._mouse_moved_cb)
 
         self._box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-        self._box.connect('button_press_event', self._mouse_clicked_cb)
+        self.connect('button_press_event', self._mouse_clicked_cb)
 
         # desktop
         self._notebook.show()
@@ -916,7 +916,18 @@ class SpeakActivity(activity.Activity):
         if not self._entry.is_focus():
             if not self._tablet_mode:
                 self._entry.grab_focus()
-            self._entry.select_region(0, -1)
+            
+            selected_text = combo.get_active_text()
+            if selected_text:
+                if selected_text.startswith("You: "):
+                    user_text = selected_text[5:]  # Remove "You: " prefix
+                    self._entry.set_text(user_text)
+                    self._entry.select_region(0, -1)
+                elif selected_text.startswith("Bot: "):
+                    bot_text = selected_text[5:]  # Remove "Bot: " prefix
+                    self.face.say(bot_text)
+                    self._entry.set_text(bot_text)
+                    self._entry.select_region(0, -1)
 
     def _entry_key_press_cb(self, combo, event):
         # make the up/down arrows navigate through our history
@@ -965,21 +976,49 @@ class SpeakActivity(activity.Activity):
 
             # speak the text
             if self._mode == MODE_BOT:
-                self.face.say(brain.respond(text))
+                bot_response = brain.respond(text)
+                self.face.say(bot_response)
+                
+                # Add user input and bot response to history
+                if not self._tablet_mode:
+                    history = self._entrycombo.get_model()
+                    user_entry = f"You: {text}"
+                    bot_entry = f"Bot: {bot_response}"
+                    
+                    # Add user input
+                    if len(history) == 0 or history[-1][0] != user_entry:
+                        self._entrycombo.append_text(user_entry)
+                    
+                    # Add bot response
+                    self._entrycombo.append_text(bot_entry)
+                    
+                    # Keep history at 20 entries
+                    while len(history) > 20:
+                        self._entrycombo.remove(0)
+                        self._entrycombo.remove(0)  # Remove both user and bot entries
+                    
+                    # Select the new user entry
+                    self._entrycombo.set_active(len(history) - 2)  # Select user entry
+                    
+                    # Set the input box to the user text
+                    self._entry.set_text(text)
             else:
                 self.face.say(text)
+                if not self._tablet_mode:
+                    # Add this text to our history unless it is the same as the last item
+                    history = self._entrycombo.get_model()
+                    user_entry = f"You: {text}"
+                    if len(history) == 0 or history[-1][0] != user_entry:
+                        self._entrycombo.append_text(user_entry)
+                        # don't let the history get too big
+                        while len(history) > 20:
+                            self._entrycombo.remove(0)
+                        # select the new item
+                        self._entrycombo.set_active(len(history) - 1)
+                    
+                    # Set the input box to the user text
+                    self._entry.set_text(text)
 
-        if text and not self._tablet_mode:
-            # add this text to our history unless it is the same as
-            # the last item
-            history = self._entrycombo.get_model()
-            if len(history) == 0 or history[-1][0] != text:
-                self._entrycombo.append_text(text)
-                # don't let the history get too big
-                while len(history) > 20:
-                    self._entrycombo.remove(0)
-                # select the new item
-                self._entrycombo.set_active(len(history) - 1)
         if text:
             # select the whole text
             entry.select_region(0, -1)
