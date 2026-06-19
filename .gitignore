@@ -2,3 +2,7 @@ dist
 .0sugar
 *~
 *.pyc
+locale
+
+.venv/
+dev_launcher.sh
