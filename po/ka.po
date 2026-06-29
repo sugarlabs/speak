@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-21 17:35+1100\n"
-"PO-Revision-Date: 2026-06-15 16:05+0000\n"
+"PO-Revision-Date: 2026-06-29 06:56+0000\n"
 "Last-Translator: NF <rkavt@smartprojects.ge>\n"
 "Language-Team: Georgian <http://weblate.sugarlabs.org/projects/"
 "sugar-activities/speak/ka/>\n"
@@ -181,7 +181,7 @@ msgstr "მარტივი"
 
 #: activity.py:667
 msgid "Waveform"
-msgstr "ტალღისებური"
+msgstr "ტალღის ფორმა"
 
 #: activity.py:675
 msgid "Frequency"
@@ -605,11 +605,11 @@ msgstr "რუმინული"
 
 #: voice.py:41
 msgid "Swahili"
-msgstr "სვაჰილი"
+msgstr "სუაჰილი"
 
 #: voice.py:42
 msgid "Hindi"
-msgstr "ჰინდი"
+msgstr "ინდური"
 
 #: voice.py:43
 msgid "Dutch"
@@ -673,7 +673,7 @@ msgstr "ვიეტნამური"
 
 #: voice.py:59
 msgid "Lancashire"
-msgstr "ლანკაშირული"
+msgstr "ლანკაშირი"
 
 #: voice.py:60
 msgid "Italian"
@@ -693,7 +693,7 @@ msgstr "ჩურჩული"
 
 #: voice.py:64
 msgid "Croatian"
-msgstr "ხორვატიული"
+msgstr "ხორვატული"
 
 #: voice.py:65
 msgid "Czech"
