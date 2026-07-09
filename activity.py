@@ -965,7 +965,8 @@ class SpeakActivity(activity.Activity):
 
             # speak the text
             if self._mode == MODE_BOT:
-                self.face.say(brain.respond(text))
+                #self.face.say(brain.respond(text))
+                self.face.say(self.get_llm_response(text))
             else:
                 self.face.say(text)
 
@@ -987,6 +988,16 @@ class SpeakActivity(activity.Activity):
         # Launch an robot idle phrase after 2 minutes
         self._robot_idle_id = GLib.timeout_add(IDLE_DELAY,
                                                self._set_idle_phrase)
+
+    # mock llm response                            
+    def get_llm_response(self, input_text):
+        responses = [
+            "Hello! I'm your friendly chatbot.",
+            "Great job typing that!",
+            "Let's talk more!",
+            "That's interesting!",
+        ]
+        return random.choice(responses)
 
     def _load_sleeping_face(self):
         if self._face_type == FACE_PHOTO:
