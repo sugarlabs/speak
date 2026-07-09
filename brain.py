@@ -31,6 +31,8 @@ from sugar3 import profile
 from aiml.Kernel import Kernel
 import voice
 
+from llm_brain import get_llm_response, context
+
 import logging
 logger = logging.getLogger('speak')
 
@@ -44,6 +46,7 @@ BOTS = {
                    'predicates': {'name': 'Alice',
                                   'master': 'The Sugar Community'}}}
 
+context = [] # Initialize context
 
 def get_mem_info(tag):
     meminfo = open('/proc/meminfo').readlines()
@@ -84,12 +87,29 @@ def get_default_voice():
         return default_voice
 
 
+def input_routing(text):
+    # Returning false for now to verify LLM response
+    return False
+
+
 def respond(text):
-    if _kernel is not None:
-        text = _kernel.respond(text)
-    if _kernel is None or not text:
-        text = _("Sorry, I can't understand what you are asking about.")
-    return text
+    if input_routing(text) is True:
+        # aiml response
+        if _kernel is not None:
+            text = _kernel.respond(text)
+        if _kernel is None or not text:
+            text = _("Sorry, I can't understand what you are asking about.")
+
+    else:
+        # LLM Response
+        llm_response = get_llm_response(text, context)
+        if llm_response:
+            print(llm_response)
+            context.append(f"You: {text}")
+            context.append(f"LLM: {llm_response}")
+            return llm_response
+        else:
+            return _("Sorry, I can't understand what you are asking about.")
 
 
 def load(activity, voice, sorry=None):
