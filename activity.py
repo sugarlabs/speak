@@ -265,12 +265,20 @@ class SpeakActivity(activity.Activity):
         self._mode_type.connect('toggled', self.__toggled_mode_type_cb)
         toolbox.toolbar.insert(self._mode_type, -1)
 
-        mode_robot = RadioToolButton(
+        self.mode_robot = RadioToolButton(
             icon_name='mode-robot',
             group=self._mode_type)
-        mode_robot.set_tooltip(_('Ask robot any question'))
-        mode_robot.connect('toggled', self.__toggled_mode_robot_cb)
-        toolbox.toolbar.insert(mode_robot, -1)
+        self.mode_robot.set_tooltip(_('Ask robot any question'))
+        self.mode_robot.connect('toggled', self.__toggled_mode_robot_cb)
+        
+        # LANGUAGE GUARD: Check if system is English
+        # Only insert the button into the toolbar if language is English
+        lang = os.environ.get('LANG', 'en') 
+        if lang.startswith('en'):
+            toolbox.toolbar.insert(self.mode_robot, -1)
+            self.mode_robot.set_sensitive(False) # Disable until brain loads
+        else:
+            logging.info(f"AI disabled: No model available for language '{lang}'")
 
         self._mode_chat = RadioToolButton(
             icon_name='mode-chat',
@@ -311,6 +319,8 @@ class SpeakActivity(activity.Activity):
 
         self._configure_cb()
         self._poll_accelerometer()
+        if hasattr(self.face, 'status') and self.mode_robot.get_parent():
+            brain.load(self, self.face.status.voice)
 
         if self.shared_activity:
             # we are joining the activity
@@ -965,7 +975,10 @@ class SpeakActivity(activity.Activity):
 
             # speak the text
             if self._mode == MODE_BOT:
-                self.face.say(brain.respond(text))
+                # Use a callback to prevent blocking the UI during AI inference
+                def _on_ai_reply(response_text):
+                    self.face.say(response_text)
+                brain.respond(text, _on_ai_reply)
             else:
                 self.face.say(text)
 
@@ -1201,7 +1214,7 @@ class SpeakActivity(activity.Activity):
     def _received_cb(self, buddy, text):
         '''Show message that was received.'''
         if buddy:
-            if type(buddy) is dict:
+            if isinstance(buddy, dict):
                 nick = buddy['nick']
             else:
                 nick = buddy.props.nick

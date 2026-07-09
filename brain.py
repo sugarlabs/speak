@@ -28,126 +28,92 @@ from gi.repository import Gio
 
 from sugar3 import profile
 
-from aiml.Kernel import Kernel
+# Replaced Kernel with our new AI Manager
+from ai_manager import AIManager
 import voice
 
 import logging
 logger = logging.getLogger('speak')
 
+# Compatibility: Keep this dictionary so activity.py doesn't crash when building the menu.
+# We map 'English' to our generic Robot.
 BOTS = {
-    _('Spanish'): {'name': 'Sara',
-                   'brain': 'bot/sara.brn',
-                   'predicates': {'nombre_bot': 'Sara',
-                                  'botmaster': 'La comunidad Azucar'}},
-    _('English'): {'name': 'Alice',
-                   'brain': 'bot/alice.brn',
-                   'predicates': {'name': 'Alice',
-                                  'master': 'The Sugar Community'}}}
+    _('English'): {'name': 'Robot',
+                   'brain': None,
+                   'predicates': {'name': 'Robot'}}
+}
 
+_ai_brain = None
 
-def get_mem_info(tag):
-    meminfo = open('/proc/meminfo').readlines()
-    return int([i for i in meminfo if i.startswith(tag)][0].split()[1])
-
-
-# load Standard AIML set for restricted systems
-if get_mem_info('MemTotal:') < 524288:
-    mem_free = get_mem_info('MemFree:') + get_mem_info('Cached:')
-    if mem_free < 102400:
-        BOTS[_('English')]['brain'] = None
-    else:
-        BOTS[_('English')]['brain'] = 'bot/alisochka.brn'
-
-
-_kernel = None
-_kernel_voice = None
-
-
-def _get_age():
-    settings = Gio.Settings('org.sugarlabs.user')
-    birth_timestamp = settings.get_int('birth-timestamp')
-    if birth_timestamp is None or birth_timestamp == 0:
-        return 8
-    else:
-        current_timestamp = time.time()
-        age = (current_timestamp - birth_timestamp) / (365. * 24 * 60 * 60)
-        if age < 5 or age > 16:
-            age = 8
-        return int(age)
-
-
+# Compatibility: activity.py calls this.
 def get_default_voice():
-    default_voice = voice.defaultVoice()
-    if default_voice.friendlyname not in BOTS:
-        return voice.allVoices()[_('English')]
+    return voice.defaultVoice()
+
+def respond(text, callback_func):
+    """
+    Non-blocking respond.
+    text: User input
+    callback_func: Function to call when answer is ready (must handle UI update)
+    """
+    if _ai_brain:
+        # 1. Define the callback that runs on the UI thread
+        def safe_ui_callback(response_text):
+            callback_func(response_text)
+            return False # Stop GLib.idle_add
+
+        # 2. Define the callback that the background thread calls
+        def thread_bridge(response_text):
+            GLib.idle_add(safe_ui_callback, response_text)
+
+        # 3. Actually ask the AI
+        _ai_brain.generate_response(text, thread_bridge)
     else:
-        return default_voice
-
-
-def respond(text):
-    if _kernel is not None:
-        text = _kernel.respond(text)
-    if _kernel is None or not text:
-        text = _("Sorry, I can't understand what you are asking about.")
-    return text
+        # Fallback if brain isn't loaded
+        callback_func(_("I am not ready yet."))
 
 
 def load(activity, voice, sorry=None):
-    old_cursor = activity.get_window().get_cursor()
-    activity.get_window().set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
+    """
+    Initialize the AI Manager in a background thread.
+    """
+    # 1. Set "Watch" cursor immediately to show loading
+    window = activity.get_window()
+    old_cursor = window.get_cursor() if window else None
+    if window:
+        window.set_cursor(Gdk.Cursor(Gdk.CursorType.WATCH))
 
-    def load_brain():
-        global _kernel
-        global _kernel_voice
-
-        is_first_session = _kernel is None
-
-        try:
-            if voice.friendlyname in BOTS:
-                brain = BOTS[voice.friendlyname]
-                brain_name = BOTS[voice.friendlyname]['name']
+    # Callback when the model finishes loading
+    def on_brain_loaded(success, message):
+        def _update_ui():
+            if window:
+                window.set_cursor(old_cursor)
+            
+            if success:
+                # Enable the button and speak
+                if hasattr(activity, 'mode_robot'):
+                    activity.mode_robot.set_sensitive(True)
+                if hasattr(activity, 'face'):
+                    activity.face.say(_("I am ready."))
             else:
-                brain = BOTS[_('English')]
-                brain_name = BOTS[_('English')]['name']
-            logger.debug('Load bot: %s' % brain)
+                print(f"DEBUG: Load failed: {message}")
+                if hasattr(activity, 'face'):
+                    activity.face.say(_("I failed to load."))
+            return False
+        
+        # Ensure UI updates happen on the main thread
+        GLib.idle_add(_update_ui)
 
-            if voice != _kernel_voice or _kernel is None:
-                kernel = Kernel()
+    # 2. Start the Threaded Loader IMMEDIATELY
+    global _ai_brain
+    if _ai_brain is None:
+        print(" brain.py: Initializing AIManager...")
+        _ai_brain = AIManager()
+        _ai_brain.load_model(callback=on_brain_loaded)
+    else:
+        # Already loaded
+        if window:
+            window.set_cursor(old_cursor)
+        if hasattr(activity, 'mode_robot'):
+            activity.mode_robot.set_sensitive(True)
 
-                if brain['brain'] is None:
-                    warning = _("Sorry, there is no free memory to load my "
-                                "brain. Close other activities and try once more.")
-                    activity.face.say_notification(warning)
-                    return
-
-                kernel.loadBrain(brain['brain'])
-                for name, value in list(brain['predicates'].items()):
-                    kernel.setBotPredicate(name, value)
-
-                if _kernel is not None:
-                    del _kernel
-                    _kernel = None
-                    import gc
-                    gc.collect()
-
-                _kernel = kernel
-                _kernel_voice = voice
-        finally:
-            activity.get_window().set_cursor(old_cursor)
-
-        if is_first_session:
-            _kernel.respond(_('my name is %s') % (profile.get_nick_name()))
-            _kernel.respond(_('I am %d years old') % (_get_age()))
-            hello = \
-                _("Hello, I'm a robot \"%s\". Please ask me any question.") \
-                % brain_name
-            if sorry:
-                hello += ' ' + sorry
-            activity.face.say_notification(hello)
-        elif sorry:
-            activity.face.say_notification(sorry)
-        else:
-            activity.face.say_notification("Hi again!")
-
-    GLib.idle_add(load_brain)
     return True

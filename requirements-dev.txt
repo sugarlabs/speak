@@ -1,0 +1,3 @@
+# AI Dependencies for the new Chatbot Brain
+# Install these to enable the Gen-AI features
+llama-cpp-python
